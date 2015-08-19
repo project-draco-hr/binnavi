@@ -1,0 +1,3 @@
+JFrame parent
+CEventListTable table
+ITraceListProvider traceProvider

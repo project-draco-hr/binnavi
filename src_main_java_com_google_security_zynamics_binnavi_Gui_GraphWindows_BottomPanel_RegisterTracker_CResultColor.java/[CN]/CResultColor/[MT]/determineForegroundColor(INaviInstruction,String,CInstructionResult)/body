@@ -1,0 +1,29 @@
+{
+  Preconditions.checkNotNull(startInstruction,"IE01674: Start instruction argument can not be null");
+  Preconditions.checkNotNull(trackedRegister,"IE01675: Tracked register argument can not be null");
+  Preconditions.checkNotNull(result,"IE01676: Result argument can not be null");
+  if (result.getInstruction() == startInstruction) {
+    return Color.BLACK;
+  }
+ else   if (result.undefinesAll()) {
+    return Color.WHITE;
+  }
+ else   if (result.clearsTrackedRegister(trackedRegister)) {
+    return Color.WHITE;
+  }
+ else   if (result.undefinesSome()) {
+    return Color.BLACK;
+  }
+ else   if (result.defines()) {
+    return Color.BLACK;
+  }
+ else   if (result.updates()) {
+    return Color.BLACK;
+  }
+ else   if (result.uses()) {
+    return Color.WHITE;
+  }
+ else {
+    return Color.BLACK;
+  }
+}

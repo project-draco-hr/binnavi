@@ -1,0 +1,3 @@
+{
+  return IndirectCallFinder.find(module);
+}

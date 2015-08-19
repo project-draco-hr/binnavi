@@ -1,0 +1,21 @@
+{
+  final GeneralSettingsConfigItem settings=ConfigManager.instance().getGeneralSettings();
+  settings.setIdaDirectory(idaDirectoryPanel.getText());
+  settings.setLogLevel(logLevelBox.getSelectedIndex());
+  settings.setDefaultScriptingLanguage(scriptingBox.getSelectedLanguage());
+  settings.setSupportEmailAddress(emailBox.getText());
+switch (logLevelBox.getSelectedIndex()) {
+case 0:
+    NaviLogger.setLevel(Level.OFF);
+  break;
+case 1:
+NaviLogger.setLevel(Level.INFO);
+break;
+case 2:
+NaviLogger.setLevel(Level.ALL);
+break;
+default :
+throw new IllegalStateException("IE01190: Invalid log level selection");
+}
+return false;
+}

@@ -1,0 +1,4 @@
+{
+  m_firstNode=firstNode;
+  m_returnNode=returnNode;
+}

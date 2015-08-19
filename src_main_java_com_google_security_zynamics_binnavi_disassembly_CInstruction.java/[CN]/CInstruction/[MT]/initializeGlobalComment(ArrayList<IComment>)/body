@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE00134: Instruction comment can not be null");
+  CommentManager.get(m_provider).initializeGlobalInstructionComment(this,comment);
+}

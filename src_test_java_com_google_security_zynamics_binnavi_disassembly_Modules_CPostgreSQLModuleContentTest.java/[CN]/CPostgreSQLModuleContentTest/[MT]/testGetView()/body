@@ -1,0 +1,31 @@
+{
+  final CModule module6=(CModule)getDatabase().getContent().getModules().get(0);
+  try {
+    module6.load();
+  }
+ catch (  final CouldntLoadDataException e1) {
+    try {
+      module6.initialize();
+    }
+ catch (    final CouldntSaveDataException e) {
+    }
+  }
+ finally {
+    module6.load();
+  }
+  final CModuleContent moduleContent6=module6.getContent();
+  assertNotNull(moduleContent6.getViewContainer().getView(module6.getContent().getFunctionContainer().getFunctions().get(0)));
+  try {
+    moduleContent6.getViewContainer().getView((INaviFunction)null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  module6.close();
+  try {
+    moduleContent6.getViewContainer().getView(module6.getContent().getFunctionContainer().getFunctions().get(0));
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

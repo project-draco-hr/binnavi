@@ -1,0 +1,6 @@
+{
+  if ((c != null) && (c instanceof Frame)) {
+    return (((Frame)c).getExtendedState() & Frame.ICONIFIED) != 0;
+  }
+  return false;
+}

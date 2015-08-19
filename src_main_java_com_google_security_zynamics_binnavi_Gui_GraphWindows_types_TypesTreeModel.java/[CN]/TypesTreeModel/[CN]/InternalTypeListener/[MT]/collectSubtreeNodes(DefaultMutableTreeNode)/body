@@ -1,0 +1,7 @@
+{
+  final List<DefaultMutableTreeNode> nodes=new ArrayList<DefaultMutableTreeNode>();
+  for (final Enumeration<?> e=node.breadthFirstEnumeration(); e.hasMoreElements(); ) {
+    nodes.add((DefaultMutableTreeNode)e.nextElement());
+  }
+  return nodes;
+}

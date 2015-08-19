@@ -1,0 +1,4 @@
+{
+  m_dialog=Preconditions.checkNotNull(dialog,"Error: dialog argument can not be null");
+  ((JComponent)dialog.getRootPane()).registerKeyboardAction(new InternalListener(),"doEscape",HotKeys.ESCAPE_HK.getKeyStroke(),JComponent.WHEN_IN_FOCUSED_WINDOW);
+}

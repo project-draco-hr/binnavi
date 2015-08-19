@@ -1,0 +1,4 @@
+int line
+int position
+int length
+Color color

@@ -1,0 +1,11 @@
+{
+  try {
+    Desktop.getDesktop().open(new File(MANUAL_FILE));
+  }
+ catch (  final Exception e) {
+    CUtilityFunctions.logException(e);
+    final String message="E00198: " + "Could not open help file";
+    final String description=CUtilityFunctions.createDescription(String.format("The help file '%s' could not be opened.",MANUAL_FILE),new String[]{"The manual file was accidentaly deleted."},new String[]{"BinNavi could not open the help file. Please try to open the " + "help file manually."});
+    CNaviErrorDialog.show(parent,message,description,e);
+  }
+}

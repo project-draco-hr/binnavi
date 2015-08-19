@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: Base type can not be null.");
+  final Node typeNode=containedRelationMap.get(baseType);
+  final TypeSearch search=new TypeSearch(containedRelationMap.inverse());
+  search.start(containedRelation,typeNode);
+  return search.getDependentTypes();
+}

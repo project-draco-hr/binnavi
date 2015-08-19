@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviProject project
+DebuggerTemplateManager debuggerManager
+List<INaviModule> list

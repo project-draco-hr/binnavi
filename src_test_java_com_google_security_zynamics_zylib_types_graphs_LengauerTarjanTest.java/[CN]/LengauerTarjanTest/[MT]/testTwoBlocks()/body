@@ -1,0 +1,14 @@
+{
+  final MockNode rootNode=new MockNode("root");
+  final MockNode secondNode=new MockNode("child");
+  MockNode.link(rootNode,secondNode);
+  final List<MockNode> nodes=Lists.newArrayList(rootNode,secondNode);
+  final List<MockEdge> edges=new ArrayList<MockEdge>();
+  final DirectedGraph<MockNode,MockEdge> graph=new DirectedGraph<MockNode,MockEdge>(nodes,edges);
+  final Tree<MockNode> tree=LengauerTarjan.calculate(graph,rootNode).first();
+  assertNotNull(tree.getRootNode());
+  assertEquals(1,tree.getRootNode().getChildren().size());
+  assertEquals(rootNode,tree.getRootNode().getObject());
+  assertEquals(0,tree.getRootNode().getChildren().get(0).getChildren().size());
+  assertEquals(secondNode,tree.getRootNode().getChildren().get(0).getObject());
+}

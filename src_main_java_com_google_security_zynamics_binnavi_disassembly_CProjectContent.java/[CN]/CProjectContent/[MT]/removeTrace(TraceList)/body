@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(trace,"IE02232: Trace argument can not be null");
+  if (!trace.inSameDatabase(m_provider)) {
+    throw new IllegalStateException("IE02233: Trace and project are not in the same database");
+  }
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.deletingTrace(m_project,trace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_provider.deleteTrace(trace);
+  m_traces.remove(trace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.removedTrace(m_project,trace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_project.getConfiguration().updateModificationDate();
+}

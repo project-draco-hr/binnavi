@@ -1,0 +1,11 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  m_view.addListener(listener);
+  final Function function=module.getFunctions().get(0);
+  m_view.load();
+  final FunctionNode node=m_view.createFunctionNode(function);
+  assertEquals(node,m_view.getGraph().getNodes().get(0));
+  assertEquals(listener.events,"addedNode;changedGraphType;");
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.GraphType.Callgraph,m_view.getGraphType());
+  m_view.removeListener(listener);
+}

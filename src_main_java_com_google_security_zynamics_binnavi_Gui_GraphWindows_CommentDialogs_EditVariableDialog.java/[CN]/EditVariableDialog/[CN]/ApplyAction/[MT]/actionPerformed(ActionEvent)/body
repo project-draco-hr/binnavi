@@ -1,0 +1,6 @@
+{
+  okClicked=validateUserInput();
+  if (okClicked) {
+    dispose();
+  }
+}

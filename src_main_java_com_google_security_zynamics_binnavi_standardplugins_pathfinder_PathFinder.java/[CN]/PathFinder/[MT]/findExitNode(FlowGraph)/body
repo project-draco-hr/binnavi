@@ -1,0 +1,9 @@
+{
+  final ArrayList<BasicBlock> exitNodes=new ArrayList<BasicBlock>();
+  for (  final BasicBlock block : graph) {
+    if (block.getChildren().size() == 0) {
+      exitNodes.add(block);
+    }
+  }
+  return exitNodes;
+}

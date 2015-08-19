@@ -1,0 +1,28 @@
+{
+  if ((col != NAME_COLUMN) && (col != DESCRIPTION_COLUMN)) {
+    throw new IllegalStateException("IE01167: Column can not be edited");
+  }
+  final INaviModule module=getModules().get(row);
+  if (col == NAME_COLUMN) {
+    try {
+      module.getConfiguration().setName((String)value);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String message="E00167: " + "Could not change the module name";
+      final String description=CUtilityFunctions.createDescription("The new module name could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the module name was saved"},new String[]{"The module name was not saved. Please try to find out what went wrong with the database connection and try to save the module name again."});
+      CNaviErrorDialog.show(null,message,description,e);
+    }
+  }
+ else   if (col == DESCRIPTION_COLUMN) {
+    try {
+      module.getConfiguration().setDescription((String)value);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String message="E00168: " + "Could not change the module description";
+      final String description=CUtilityFunctions.createDescription("The new module description could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the module description was saved"},new String[]{"The module description was not saved. Please try to find out what went wrong with the database connection and try to save the module description again."});
+      CNaviErrorDialog.show(null,message,description,e);
+    }
+  }
+}

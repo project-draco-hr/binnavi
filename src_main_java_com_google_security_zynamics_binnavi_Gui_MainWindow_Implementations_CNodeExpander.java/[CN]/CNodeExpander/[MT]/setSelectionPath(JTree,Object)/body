@@ -1,0 +1,4 @@
+{
+  tree.setSelectionPath(new TreePath(new Object[]{tree.getModel().getRoot(),findNode(tree,object)}));
+  tree.validate();
+}

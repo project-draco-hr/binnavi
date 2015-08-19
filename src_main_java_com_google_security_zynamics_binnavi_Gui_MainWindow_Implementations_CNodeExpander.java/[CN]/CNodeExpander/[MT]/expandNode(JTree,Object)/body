@@ -1,0 +1,4 @@
+{
+  tree.expandPath(new TreePath(findNode(tree,object).getPath()));
+  tree.validate();
+}

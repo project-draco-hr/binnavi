@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(rootNode,"IE00212: Root node can't be null.");
+  this.typeManager=Preconditions.checkNotNull(typeManager,"Type manager can not be null.");
+  this.instanceContainer=Preconditions.checkNotNull(instanceContainer,"Type instance container can not be null.");
+  this.provider=Preconditions.checkNotNull(provider,"Sql provider can not be null.");
+  if (rootNode.getChildren().size() == 0) {
+    final COperandTreeNode realParent=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),provider,typeManager,instanceContainer);
+    COperandTreeNode.link(realParent,rootNode);
+    root=realParent;
+  }
+ else {
+    root=rootNode;
+  }
+  initializeTree(root);
+}

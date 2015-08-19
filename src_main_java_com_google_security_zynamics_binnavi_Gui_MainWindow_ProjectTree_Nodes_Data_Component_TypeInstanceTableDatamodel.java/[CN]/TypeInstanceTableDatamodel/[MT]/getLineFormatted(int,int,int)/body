@@ -1,0 +1,41 @@
+{
+  Color backgroundColor=getBackgroundColor(rowIndex,columnIndex);
+switch (columnIndex) {
+case ADDRESS_INDEX:
+    TypeInstance type=typesToDisplay.get(rowIndex);
+  String addressString="";
+if (lineIndex == 0) {
+  addressString=TypeInstanceAddressTableCellRenderer.getStringToDisplay(false,type.getAddress());
+}
+return stringToFormattedCharacterBuffer(addressString,rowIndex,columnIndex);
+case NAME_INDEX:
+String typeName="";
+if (lineIndex == 0) {
+typeName=typesToDisplay.get(rowIndex).getName();
+}
+return new FormattedCharacterBuffer(Strings.padEnd(typeName,columns[columnIndex].getWidth(),' '),STANDARD_FONT,columns[columnIndex].getDefaultFontColor(),backgroundColor);
+case TYPE_INDEX:
+FormattedCharacterBuffer typeDeclaration=typeDeclarations.get(rowIndex);
+if (typeDeclaration.getNumberOfLines() > lineIndex) {
+return typeDeclarations.get(rowIndex).getLine(lineIndex).setBackgroundColor(backgroundColor);
+}
+return stringToFormattedCharacterBuffer("",rowIndex,columnIndex);
+case XREFS_INDEX:
+TypeInstanceReference reference=getTypeInstanceReference(rowIndex,lineIndex);
+String xrefString="";
+if (reference != null) {
+xrefString=TypeInstanceCrossReferenceRenderer.renderText(reference);
+}
+return stringToFormattedCharacterBuffer(xrefString,rowIndex,columnIndex);
+case COMMENTS_INDEX:
+FormattedCharacterBuffer comment=generateFormattedComment(typeContainer.getComments(typesToDisplay.get(rowIndex)));
+if (lineIndex < comment.getNumberOfLines()) {
+return comment.getLine(lineIndex).setBackgroundColor(backgroundColor);
+}
+return stringToFormattedCharacterBuffer("",rowIndex,columnIndex);
+default :
+Logger.warning("Invalid column index, investigate.");
+break;
+}
+return null;
+}

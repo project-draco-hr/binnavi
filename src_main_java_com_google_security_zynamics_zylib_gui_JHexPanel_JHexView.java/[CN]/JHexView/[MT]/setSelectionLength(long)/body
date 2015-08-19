@@ -1,0 +1,7 @@
+{
+  m_selectionLength=selectionLength;
+  for (  final IHexPanelListener listener : m_listeners) {
+    listener.selectionChanged(m_selectionStart,m_selectionLength);
+  }
+  repaint();
+}

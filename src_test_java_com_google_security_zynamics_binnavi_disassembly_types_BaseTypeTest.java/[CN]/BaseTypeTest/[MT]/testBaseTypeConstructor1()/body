@@ -1,0 +1,3 @@
+{
+  new BaseType(-1,null,-1,false,BaseTypeCategory.ATOMIC);
+}

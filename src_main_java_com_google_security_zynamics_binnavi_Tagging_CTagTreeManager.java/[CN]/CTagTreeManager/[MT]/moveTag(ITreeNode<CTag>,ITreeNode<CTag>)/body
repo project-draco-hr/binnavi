@@ -1,0 +1,28 @@
+{
+  m_provider.moveTag(newParentNode,movedNode,m_type);
+  final ITreeNode<CTag> childParent=movedNode.getParent();
+  if (childParent != null) {
+    for (    final ITreeNode<CTag> childChild : movedNode.getChildren()) {
+      unlink(movedNode,childChild);
+      link(childParent,childChild);
+    }
+    childParent.removeChild(movedNode);
+    for (    final ITagTreeManagerListener listener : m_listeners) {
+      try {
+        listener.deletedTag(this,newParentNode,movedNode);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+  link(newParentNode,movedNode);
+  for (  final ITagTreeManagerListener listener : m_listeners) {
+    try {
+      listener.addedTag(this,movedNode);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return debuggerTemplateName + " - " + debugClientHost+ ":"+ debugClientPort;
+}

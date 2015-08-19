@@ -1,0 +1,13 @@
+{
+  checkArguments(provider,module);
+  Preconditions.checkNotNull(address,"IE00495: Address argument can not be null");
+  final CConnection connection=provider.getConnection();
+  try {
+    final String query=String.format("UPDATE %s SET image_base = %s " + " WHERE id = %d",CTableNames.MODULES_TABLE,address.toBigInteger().toString(),module.getConfiguration().getId());
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.MODULES_TABLE,module.getConfiguration().getId());
+}

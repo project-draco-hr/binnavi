@@ -1,0 +1,8 @@
+{
+  super("Add address space");
+  m_parent=Preconditions.checkNotNull(parent,"IE01849: Parent argument can't be null");
+  m_project=Preconditions.checkNotNull(project,"IE01850: Project argument can't be null");
+  m_updater=Preconditions.checkNotNull(updater,"IE02335: Updater argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.ADDRESS_SPACE_SELECTION_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_ADD_ADDRESSSPACE".charAt(0));
+}

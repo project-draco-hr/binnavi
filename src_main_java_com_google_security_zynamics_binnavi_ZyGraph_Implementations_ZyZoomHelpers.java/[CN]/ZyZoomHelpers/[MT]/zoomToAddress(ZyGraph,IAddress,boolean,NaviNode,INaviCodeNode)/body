@@ -1,0 +1,13 @@
+{
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    if (instruction.getAddress().equals(address)) {
+      uncollapseParents(codeNode);
+      if (!node.isVisible()) {
+        graph.showNode(node,true);
+      }
+      ZoomFunctions.zoomToNode(graph,node,CCodeNodeHelpers.instructionToLine(codeNode,instruction),animate);
+      return true;
+    }
+  }
+  return false;
+}

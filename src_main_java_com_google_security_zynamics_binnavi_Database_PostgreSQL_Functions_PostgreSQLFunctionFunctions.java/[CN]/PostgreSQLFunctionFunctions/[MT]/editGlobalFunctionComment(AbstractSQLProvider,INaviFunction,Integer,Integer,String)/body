@@ -1,0 +1,3 @@
+{
+  PostgreSQLCommentFunctions.editComment(provider,commentId,userId,newComment);
+}

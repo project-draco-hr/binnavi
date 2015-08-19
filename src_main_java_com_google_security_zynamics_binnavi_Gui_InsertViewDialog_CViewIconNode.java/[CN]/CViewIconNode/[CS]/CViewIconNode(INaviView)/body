@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(view,"IE01823: View argument can not be null");
+  m_view=view;
+}

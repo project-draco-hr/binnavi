@@ -1,0 +1,26 @@
+{
+  final HashSet<Long> guids=new HashSet<>();
+  final ArrayList<Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>> validatedPlugins=new ArrayList<>();
+  for (  final Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus> pluginPair : result.getLoadedPlugins()) {
+    final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin=pluginPair.first();
+    final String name=plugin.getName();
+    final long guid=plugin.getGuid();
+    if ((name == null) && (guid == 0)) {
+      validatedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.InvalidNameGuid));
+    }
+ else     if (name == null) {
+      validatedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.InvalidName));
+    }
+ else     if (guid == 0) {
+      validatedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.InvalidGuid));
+    }
+ else     if (guids.contains(guid)) {
+      validatedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.DuplicateGuid));
+    }
+ else {
+      validatedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.Valid));
+    }
+    guids.add(guid);
+  }
+  return new LoadResult<T>(validatedPlugins,result.getFailedPlugins());
+}

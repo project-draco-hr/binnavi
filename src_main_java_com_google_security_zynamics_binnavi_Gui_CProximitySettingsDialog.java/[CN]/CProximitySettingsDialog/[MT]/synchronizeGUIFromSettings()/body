@@ -1,0 +1,24 @@
+{
+  final int parentDepth=m_settings.getProximitySettings().getProximityBrowsingParents();
+  final int childDepth=m_settings.getProximitySettings().getProximityBrowsingChildren();
+  if (parentDepth == -1) {
+    m_parentDepthSlider.setValue(0);
+    m_checkBoxParentDepth.setSelected(false);
+  }
+ else {
+    m_parentDepthSlider.setValue(parentDepth);
+    m_checkBoxParentDepth.setSelected(true);
+  }
+  m_parentLabel.setText(parentDepth == -1 ? "all" + "   " : ((Integer)m_parentDepthSlider.getValue()).toString() + "   ");
+  m_parentDepthSlider.setEnabled(parentDepth != -1);
+  if (childDepth == -1) {
+    m_childDepthSlider.setValue(0);
+    m_checkBoxChildDepth.setSelected(false);
+  }
+ else {
+    m_childDepthSlider.setValue(childDepth);
+    m_checkBoxChildDepth.setSelected(true);
+  }
+  m_childLabel.setText(childDepth == -1 ? "all" + "   " : ((Integer)m_childDepthSlider.getValue()).toString() + "   ");
+  m_childDepthSlider.setEnabled(childDepth != -1);
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLAddressSpaceFunctions.setName(this,addressSpace,name);
+}

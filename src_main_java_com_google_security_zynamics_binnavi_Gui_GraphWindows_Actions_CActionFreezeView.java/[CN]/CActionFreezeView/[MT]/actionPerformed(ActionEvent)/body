@@ -1,0 +1,4 @@
+{
+  CGraphFreezer.toogleProximityFrozen(m_graph);
+  updateButton();
+}

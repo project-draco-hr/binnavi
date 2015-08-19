@@ -1,0 +1,27 @@
+{
+  super("Selection");
+  m_model=model;
+  setMnemonic("HK_MENU_SELECTION".charAt(0));
+  add(CActionProxy.proxy(new CActionUndoSelection(model.getSelectionHistory())));
+  add(CActionProxy.proxy(new CActionRedoSelection(model.getSelectionHistory())));
+  addSeparator();
+  add(CActionProxy.proxy(new CGroupAction(model.getGraph())));
+  add(CActionProxy.proxy(new CUngroupSelectedGroupsAction(model.getGraph())));
+  add(CActionProxy.proxy(new CToggleSelectedGroupsAction(model.getGraph())));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionSelectChildren(model.getGraph(),false)));
+  add(CActionProxy.proxy(new CActionSelectParents(model.getGraph(),false)));
+  add(CActionProxy.proxy(new CActionInvertSelection(model.getGraph(),false)));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionExpandSelectionDown(model.getGraph())));
+  add(CActionProxy.proxy(new CActionExpandSelectionUp(model.getGraph())));
+  add(CActionProxy.proxy(new CActionExpandSelection(model.getGraph())));
+  add(CActionProxy.proxy(new CActionShrinkSelectionDown(model.getGraph())));
+  add(CActionProxy.proxy(new CActionShrinkSelectionUp(model.getGraph())));
+  add(CActionProxy.proxy(new CActionShrinkSelection(model.getGraph())));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionSelectByCriteria(model.getGraphPanel(),false)));
+  add(m_previousCriteriaMenu);
+  m_previousCriteriaMenu.setVisible(false);
+  m_criteriumCache.addListener(m_criteriumCacheListener);
+}

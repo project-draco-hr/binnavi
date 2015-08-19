@@ -1,0 +1,8 @@
+{
+  m_view.load();
+  final InliningResult result=ViewGraphHelpers.inlineFunctionCall(m_view,m_codeNode,m_codeNode.getInstructions().get(1),m_functionNode.getFunction());
+  assertNotNull(result.getFirstNode());
+  assertNotNull(result.getSecondNode());
+  assertEquals(2,result.getFirstNode().getInstructions().size());
+  assertEquals(1,result.getSecondNode().getInstructions().size());
+}

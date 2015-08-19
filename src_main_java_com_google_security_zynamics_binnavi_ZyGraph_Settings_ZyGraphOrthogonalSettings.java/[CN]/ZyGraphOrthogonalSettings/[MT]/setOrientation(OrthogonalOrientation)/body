@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(value,"IE00888: Orientation argument must not be negative");
+  if (value == getOrientation()) {
+    return;
+  }
+  if (m_type == null) {
+    m_orientation=value;
+  }
+ else {
+    m_type.setOrthogonalOrientation(value.ordinal());
+  }
+}

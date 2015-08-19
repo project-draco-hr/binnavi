@@ -1,0 +1,5 @@
+{
+  super(String.format(Constants.MENU_EXECUTE_AGAIN_SCRIPT,"-"));
+  putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_E,CTRL_MASK | KeyEvent.SHIFT_MASK));
+  setFile(null);
+}

@@ -1,0 +1,6 @@
+{
+  final CTraceOptionsDialog dlg=new CTraceOptionsDialog(parent);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  return dlg;
+}

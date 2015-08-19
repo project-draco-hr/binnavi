@@ -1,0 +1,3 @@
+{
+  CTagFunctions.editTag(m_parent,m_tag);
+}

@@ -1,0 +1,11 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"ori");
+  final Triple<IOperandTree,IOperandTree,IOperandTree> operands=OperandLoader.loadDuplicateFirst(instruction);
+  final String targetRegister=operands.first().getRootNode().getChildren().get(0).getValue();
+  final String sourceRegister=operands.second().getRootNode().getChildren().get(0).getValue();
+  final String sourceImmediate=operands.third().getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  final long offset=baseOffset;
+  instructions.add(ReilHelpers.createOr(offset,dw,sourceRegister,dw,sourceImmediate,dw,targetRegister));
+}

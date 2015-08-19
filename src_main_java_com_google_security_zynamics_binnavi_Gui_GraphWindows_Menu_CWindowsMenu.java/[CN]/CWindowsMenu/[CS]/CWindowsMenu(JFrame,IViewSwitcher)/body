@@ -1,0 +1,9 @@
+{
+  super("Window");
+  setMnemonic("HK_MENU_WINDOW".charAt(0));
+  add(CActionProxy.proxy(new CSwitchToStandardView(viewSwitcher)));
+  add(CActionProxy.proxy(new CSwitchToDebugView(viewSwitcher)));
+  addSeparator();
+  add(new JMenuItem(new CShowHotkeysAction(parent)));
+  add(new JMenuItem(new CActionContextHelp(parent)));
+}

@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(provider,"IE00570: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE00571: Module argument can not be null");
+  Preconditions.checkNotNull(name,"IE02192: Name argument can not be null");
+  Preconditions.checkNotNull(description,"IE02193: Description argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00572: The given module is not part of this database");
+  return createTrace(provider,CTableNames.MODULE_TRACES_TABLE,"module_id",CTableNames.MODULES_TABLE,module.getConfiguration().getId(),name,description);
+}

@@ -1,0 +1,6 @@
+{
+  if (m_tag.getObject() == tag) {
+    m_model.getRoot().addGraphNodeNodeToTree(node,CTaggedGraphNodesContainerNode.this);
+    m_model.nodeStructureChanged(m_model.getRoot());
+  }
+}

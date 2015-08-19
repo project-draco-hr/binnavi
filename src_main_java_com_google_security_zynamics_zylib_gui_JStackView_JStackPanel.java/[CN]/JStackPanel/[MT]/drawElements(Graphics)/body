@@ -1,0 +1,45 @@
+{
+  if (isEnabled()) {
+    g.setColor(m_fontColorValues);
+  }
+ else {
+    g.setColor(m_disabledColor != m_bgColorOffset ? m_disabledColor : Color.WHITE);
+  }
+  final int x=(10 + m_offsetViewWidth) - (m_charWidth * m_firstColumn);
+  int linesToDraw=getNumberOfVisibleRows();
+  if ((m_firstRow + linesToDraw) >= m_model.getNumberOfEntries()) {
+    linesToDraw=m_model.getNumberOfEntries() - m_firstRow;
+    if (linesToDraw < 0) {
+      return;
+    }
+  }
+  if (m_model.getStartAddress() == -1) {
+    return;
+  }
+  final long elementSize=getElementSize();
+  if (m_status == DefinitionStatus.DEFINED) {
+    final long startAddress=m_model.getStartAddress() + (m_firstRow * elementSize);
+    final long numberOfBytes=linesToDraw * elementSize;
+    if (!m_model.hasData(startAddress,numberOfBytes)) {
+      setDefinitionStatus(DefinitionStatus.UNDEFINED);
+      setEnabled(false);
+      if (m_updateTimer != null) {
+        m_updateTimer.setRepeats(false);
+        m_updateTimer.stop();
+      }
+      m_updateTimer=new Timer(1000,new WaitingForDataAction(startAddress,numberOfBytes));
+      m_updateTimer.setRepeats(true);
+      m_updateTimer.start();
+      return;
+    }
+    for (int i=0; i < linesToDraw; i++) {
+      final long elementAddress=startAddress + (i * elementSize);
+      g.drawString(m_model.getElement(elementAddress),x,m_paddingTop + (i * m_rowHeight));
+    }
+  }
+ else {
+    for (int i=0; i < linesToDraw; i++) {
+      g.drawString(Strings.repeat("?",2 * getElementSize()),x,m_paddingTop + (i * m_rowHeight));
+    }
+  }
+}

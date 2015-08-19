@@ -1,0 +1,14 @@
+{
+  final LastDirFileChooser chooser=new LastDirFileChooser();
+  if (chooser.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
+    final File outputFile=chooser.getSelectedFile();
+    if (outputFile != null) {
+      try {
+        FileUtils.writeTextFile(outputFile,text);
+      }
+ catch (      final IOException e) {
+        CUtilityFunctions.logException(e);
+      }
+    }
+  }
+}

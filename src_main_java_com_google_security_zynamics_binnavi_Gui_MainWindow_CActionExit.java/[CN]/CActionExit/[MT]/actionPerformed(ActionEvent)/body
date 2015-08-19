@@ -1,0 +1,3 @@
+{
+  CWindowClosingFunctions.exit(m_parent);
+}

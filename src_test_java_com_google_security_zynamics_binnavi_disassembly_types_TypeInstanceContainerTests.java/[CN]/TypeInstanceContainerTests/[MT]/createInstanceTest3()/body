@@ -1,0 +1,3 @@
+{
+  typeInstanceContainer.createInstance("TYPEINSTANCE",null,baseType,null,-1);
+}

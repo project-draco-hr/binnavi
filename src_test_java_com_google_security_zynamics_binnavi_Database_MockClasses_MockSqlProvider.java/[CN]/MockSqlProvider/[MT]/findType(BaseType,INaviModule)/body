@@ -1,0 +1,8 @@
+{
+  for (  final RawBaseType rawType : types.get(module.getConfiguration().getId())) {
+    if (rawType.getId() == baseType.getId()) {
+      return rawType;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,5 @@
+{
+  final CGraphWindowHotkeysDialog dlg=new CGraphWindowHotkeysDialog(m_parent);
+  GuiHelper.centerChildToParent(m_parent,dlg,true);
+  dlg.setVisible(true);
+}

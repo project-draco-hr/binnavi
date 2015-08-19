@@ -1,0 +1,3 @@
+{
+  PostgreSQLModuleFunctions.starModule(this,module,isStared);
+}

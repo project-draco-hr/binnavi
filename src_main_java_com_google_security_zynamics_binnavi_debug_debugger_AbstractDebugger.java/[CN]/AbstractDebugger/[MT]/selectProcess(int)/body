@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    connection.sendSelectProcessMessage(pid);
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

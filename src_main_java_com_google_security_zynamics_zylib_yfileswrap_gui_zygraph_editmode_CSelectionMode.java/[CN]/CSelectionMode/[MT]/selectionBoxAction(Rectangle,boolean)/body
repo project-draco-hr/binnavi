@@ -1,0 +1,30 @@
+{
+  m_graph.getGraph().firePreEvent();
+  final NodeList selectedNodes=new NodeList();
+  for (final NodeCursor node=m_graph.getGraph().nodes(); node.ok(); node.next()) {
+    final NodeType zyNode=m_graph.getNode(node.node());
+    if ((zyNode == null) || (zyNode instanceof ZyProximityNode<?>)) {
+      continue;
+    }
+    if (belongsToSelection(node.node(),rect)) {
+      selectedNodes.add(node.node());
+    }
+  }
+  if (((getLastDragEvent().getModifiersEx() & InputEvent.CTRL_DOWN_MASK) == 0) && ((getLastDragEvent().getModifiersEx() & InputEvent.SHIFT_DOWN_MASK) == 0)) {
+    m_graph.getGraph().unselectAll();
+  }
+  for (  final Object nodeObject : selectedNodes) {
+    final Node node=(Node)nodeObject;
+    m_graph.getGraph().setSelected(node,true);
+  }
+  for (final EdgeCursor ec=m_graph.getGraph().selectedEdges(); ec.ok(); ec.next()) {
+    final Edge e=ec.edge();
+    final Node src=e.source();
+    final Node dst=e.target();
+    if (!m_graph.getGraph().getRealizer(src).isSelected() && !m_graph.getGraph().getRealizer(dst).isSelected()) {
+      m_graph.getGraph().getRealizer(e).setSelected(false);
+    }
+  }
+  m_graph.getGraph().firePostEvent();
+  m_graph.getGraph().updateViews();
+}

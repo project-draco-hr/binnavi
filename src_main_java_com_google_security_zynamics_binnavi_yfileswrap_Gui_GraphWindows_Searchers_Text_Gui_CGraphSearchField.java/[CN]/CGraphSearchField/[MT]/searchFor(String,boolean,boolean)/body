@@ -1,0 +1,7 @@
+{
+  if (!"".equals(searchString)) {
+    add(searchString);
+  }
+  CSearchExecuter.search(SwingUtilities.getWindowAncestor(this),getEditor(),m_graph,m_searcher,searchString,cycleBackwards,zoomToResult);
+  notifyListeners();
+}

@@ -1,0 +1,11 @@
+{
+  final DefaultMutableTreeNode root=createModel();
+  typeManager.deleteMember(typeSystem.ssIntMember);
+  final Multimap<Integer,DefaultMutableTreeNode> nodesByLevel=getNodesByLevel(root);
+  Assert.assertEquals(LEVEL_0_NODES,nodesByLevel.get(0).size());
+  Assert.assertEquals(LEVEL_1_NODES,nodesByLevel.get(1).size());
+  Assert.assertEquals(LEVEL_2_NODES - 1,nodesByLevel.get(2).size());
+  Assert.assertEquals(LEVEL_3_NODES - 2,nodesByLevel.get(3).size());
+  Assert.assertEquals(LEVEL_4_NODES - 1,nodesByLevel.get(4).size());
+  verifySorted(root);
+}

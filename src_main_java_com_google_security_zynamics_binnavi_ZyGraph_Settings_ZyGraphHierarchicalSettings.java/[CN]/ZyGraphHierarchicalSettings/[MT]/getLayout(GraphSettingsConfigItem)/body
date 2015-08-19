@@ -1,0 +1,9 @@
+{
+  try {
+    return HierarchicStyle.parseInt(type.getHierarchicEdgeRoutingStyle());
+  }
+ catch (  final IllegalStateException e) {
+    CUtilityFunctions.logException(e);
+    return HierarchicStyle.OCTLINEAR_OPTIMAL;
+  }
+}

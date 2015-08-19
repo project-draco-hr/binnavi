@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"Instruction argument can not be null");
+  return instruction.getMnemonic().equalsIgnoreCase("ADD") || instruction.getMnemonic().equalsIgnoreCase("SUB") || instruction.getMnemonic().equalsIgnoreCase("MUL")|| instruction.getMnemonic().equalsIgnoreCase("DIV")|| instruction.getMnemonic().equalsIgnoreCase("MOD")|| instruction.getMnemonic().equalsIgnoreCase("BSH")|| instruction.getMnemonic().equalsIgnoreCase("AND")|| instruction.getMnemonic().equalsIgnoreCase("OR")|| instruction.getMnemonic().equalsIgnoreCase("XOR");
+}

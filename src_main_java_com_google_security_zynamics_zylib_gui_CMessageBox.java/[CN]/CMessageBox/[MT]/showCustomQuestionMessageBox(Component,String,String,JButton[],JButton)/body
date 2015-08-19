@@ -1,0 +1,3 @@
+{
+  return JOptionPane.showOptionDialog(parent,description,title,JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,buttons,defaultButton);
+}

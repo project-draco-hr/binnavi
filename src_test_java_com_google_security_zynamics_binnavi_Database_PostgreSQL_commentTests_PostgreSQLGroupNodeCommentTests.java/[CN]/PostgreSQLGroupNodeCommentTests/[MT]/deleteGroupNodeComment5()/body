@@ -1,0 +1,15 @@
+{
+  final INaviGroupNode groupNode=setupGroupNode();
+  final List<IComment> comments=groupNode.getComments() == null ? new ArrayList<IComment>() : groupNode.getComments();
+  final IComment lastComment=comments.size() == 0 ? null : Iterables.getLast(comments);
+  final String commentString=" TEST DELETE GROUP NODE COMMENT WRONG USER ";
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final int commentId=getProvider().appendGroupNodeComment(groupNode,commentString,user.getUserId());
+  final IComment newComment=new CComment(commentId,user,lastComment,commentString);
+  final ArrayList<IComment> storedComments=getProvider().loadCommentById(commentId);
+  assertNotNull(storedComments);
+  assertEquals(comments.size() + 1,storedComments.size());
+  assertEquals(newComment,Iterables.getLast(storedComments));
+  final IUser wrongUser=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().deleteGroupNodeComment(groupNode,commentId,wrongUser.getUserId());
+}

@@ -1,0 +1,9 @@
+{
+  final Builder<BaseType> builder=ImmutableList.builder();
+  for (  BaseType baseType : types) {
+    if (filter.apply(baseType)) {
+      builder.add(baseType);
+    }
+  }
+  filteredTypes=builder.build();
+}

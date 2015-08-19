@@ -1,0 +1,18 @@
+{
+  if (reply.getErrorCode() == 0) {
+    SwingUtilities.invokeLater(new Thread(){
+      @Override public void run(){
+        final RemoteFileBrowserLoader loader=new RemoteFileBrowserLoader(parent,debugger);
+        if (!loader.load()) {
+          try {
+            debugger.cancelTargetSelection();
+          }
+ catch (          final DebugException e) {
+            Logger.logException(e);
+          }
+        }
+      }
+    }
+);
+  }
+}

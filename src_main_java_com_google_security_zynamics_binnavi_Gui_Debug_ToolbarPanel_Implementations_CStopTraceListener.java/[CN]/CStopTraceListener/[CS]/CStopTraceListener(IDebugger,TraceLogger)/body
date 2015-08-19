@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(logger,"IE01565: Logger argument can not be null");
+  m_debugger=debugger;
+  m_logger=logger;
+  debugger.addListener(m_debuggerListener);
+}

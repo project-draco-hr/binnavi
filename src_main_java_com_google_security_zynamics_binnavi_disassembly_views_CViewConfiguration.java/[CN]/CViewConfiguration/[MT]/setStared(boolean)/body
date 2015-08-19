@@ -1,0 +1,15 @@
+{
+  if (isStarred == isStared) {
+    return;
+  }
+  provider.setStared(view,isStared);
+  isStarred=isStared;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedStarState(view,isStared);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

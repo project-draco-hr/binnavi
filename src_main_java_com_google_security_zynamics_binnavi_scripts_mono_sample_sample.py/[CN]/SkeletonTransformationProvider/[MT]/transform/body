@@ -1,0 +1,5 @@
+def transform(self, node, currentState, influencingState):
+    transformed_state = SkeletonLatticeElement()
+    transformed_state.written_registers = transformed_state.written_registers.union(currentState.written_registers)
+    transformed_state.written_registers = transformed_state.written_registers.union(influencingState.written_registers)
+    return transformed_state

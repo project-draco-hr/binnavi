@@ -1,0 +1,18 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final List<IComment> storedComments=edge.getLocalComment() == null ? new ArrayList<IComment>() : edge.getLocalComment();
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String firstCommentString=" PASS LOCAL EDGE COMMENT WITHOUT PARENT ID ";
+  final int firstCommentId=getProvider().appendLocalEdgeComment(edge,firstCommentString,user.getUserId());
+  final IComment firstComment=new CComment(firstCommentId,user,lastComment,firstCommentString);
+  final String secondCommentString=" PASS LOCAL EDGE COMMENT WITH PARENT ID ";
+  final int secondCommentId=getProvider().appendLocalEdgeComment(edge,secondCommentString,user.getUserId());
+  final IComment secondComment=new CComment(secondCommentId,user,firstComment,secondCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(secondCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(storedComments.size() + 2,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(firstComment));
+  assertTrue(commentsFromDatabase.contains(secondComment));
+  final CNaviViewEdge callgraphEdge=(CNaviViewEdge)loadCallGraphEdge(getKernel32Module());
+  getProvider().appendLocalEdgeComment(callgraphEdge," PASS LOCAL CALLGRAPH EDGE COMMENT WITHOUT PARENT ID ",user.getUserId());
+}

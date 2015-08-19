@@ -1,0 +1,11 @@
+{
+  final int currentStep=callResolver.getCurrentStep();
+  for (int i=0; i < panels.length; i++) {
+    panels[i].setEnabled(i <= currentStep);
+    panels[i].setDone(i < currentStep);
+  }
+  listResolvedFunctionsButton.setEnabled(currentStep == panels.length);
+  graphResolvedFunctionsButton.setEnabled(currentStep == panels.length);
+  portResultsButton.setEnabled(currentStep == panels.length);
+  nextAction.putValue(Action.NAME,currentStep == panels.length ? "Reset" : "Next");
+}

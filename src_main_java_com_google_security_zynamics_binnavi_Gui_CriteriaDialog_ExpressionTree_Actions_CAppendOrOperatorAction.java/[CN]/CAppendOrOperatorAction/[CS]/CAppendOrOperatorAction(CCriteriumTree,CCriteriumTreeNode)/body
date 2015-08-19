@@ -1,0 +1,5 @@
+{
+  super("Append OR");
+  m_ctree=tree;
+  m_parent=parent;
+}

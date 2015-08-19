@@ -1,0 +1,3 @@
+{
+  m_saveButton.setEnabled(!m_stdEditPanel.getNameString().equals(m_project.getConfiguration().getName()) || !m_stdEditPanel.getDescription().equals(m_project.getConfiguration().getDescription()) || !getSelectedDebuggers().equals(new HashSet<DebuggerTemplate>(m_project.getConfiguration().getDebuggers())));
+}

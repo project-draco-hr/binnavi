@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null");
+  types.add(baseType);
+  typesById.put(baseType.getId(),baseType);
+  typesByName.put(baseType.getName(),baseType);
+  stableTypeList.clear();
+  dependenceGraph.addType(baseType);
+}

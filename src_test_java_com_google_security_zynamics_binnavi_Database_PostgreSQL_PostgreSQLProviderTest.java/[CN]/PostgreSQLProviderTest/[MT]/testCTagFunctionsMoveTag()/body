@@ -1,0 +1,12 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  tagManager.addTag(tagManager.getRootTag(),"Node Tag I");
+  tagManager.addTag(tagManager.getRootTag(),"Node Tag II");
+  tagManager.addTag(tagManager.getRootTag().getChildren().get(0),"Node Tag III");
+  final ITreeNode<CTag> tag1=tagManager.getRootTag().getChildren().get(0);
+  final ITreeNode<CTag> tag2=tagManager.getRootTag().getChildren().get(1);
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  tagManager.moveTag(tag1,tag2);
+  tagManager.moveTag(tag2,tag1);
+}

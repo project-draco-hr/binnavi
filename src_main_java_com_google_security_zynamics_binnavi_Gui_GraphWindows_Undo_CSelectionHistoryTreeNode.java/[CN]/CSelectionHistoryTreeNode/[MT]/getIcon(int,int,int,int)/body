@@ -1,0 +1,24 @@
+{
+  if (countAll == 0) {
+    return ICON_EMPTY_FOLDER;
+  }
+ else   if (invisible == countAll) {
+    return ICON_ALL_INVISIBLE_GRAPHNODES;
+  }
+ else   if (selected == countAll) {
+    return ICON_ALL_SELECTED_GRAPHNODES;
+  }
+ else   if (unselected == countAll && invisible == 0) {
+    return ICON_ALL_UNSELECTED_GRAPHNODES;
+  }
+ else   if (selected == 0) {
+    return ICON_ALL_UNSELECTED_SOME_VISIBLE_SOME_INVISIBLE_GRAPHNODES;
+  }
+ else   if (invisible == 0) {
+    return ICON_ALL_VISIBLE_SOME_SELECTED_SOME_UNSELECTED_GRAPHNODES;
+  }
+ else   if (invisible != 0 && selected != 0) {
+    return ICON_SOME_SELECTED_SOME_VISIBLE_SOME_INVISIBLE_GRAPHNODES;
+  }
+  return ICON_DUMMY;
+}

@@ -1,0 +1,12 @@
+{
+  m_internallyDisabled=true;
+  for (  final Node node : m_proximityMap.keySet()) {
+    m_graph.getGraph().removeNode(node);
+  }
+  m_proximityMap.clear();
+  for (  final Entry<ZyProximityNode<?>,InternalNodeListener> entry : m_nodeListeners.entrySet()) {
+    ((IViewNode<?>)entry.getKey().getRawNode().getAttachedNode()).removeListener(entry.getValue());
+  }
+  m_nodeListeners.clear();
+  m_internallyDisabled=false;
+}

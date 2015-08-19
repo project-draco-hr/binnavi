@@ -1,0 +1,15 @@
+{
+  final MockDatabaseListener listener=new MockDatabaseListener();
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  database.addListener(listener);
+  database.setSavePassword(false);
+  assertEquals("changedSavePassword;",listener.events);
+  assertFalse(database.isSavePassword());
+  assertFalse(mockDatabase.getConfiguration().isSavePassword());
+  mockDatabase.getConfiguration().setSavePassword(true);
+  assertEquals("changedSavePassword;changedSavePassword;",listener.events);
+  assertTrue(database.isSavePassword());
+  assertTrue(mockDatabase.getConfiguration().isSavePassword());
+  database.removeListener(listener);
+}

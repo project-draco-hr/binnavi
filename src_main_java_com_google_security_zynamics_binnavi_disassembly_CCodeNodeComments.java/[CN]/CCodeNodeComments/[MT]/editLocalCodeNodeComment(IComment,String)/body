@@ -1,0 +1,3 @@
+{
+  return CommentManager.get(m_provider).editLocalCodeNodeComment(m_codeNode,oldComment,commentText);
+}

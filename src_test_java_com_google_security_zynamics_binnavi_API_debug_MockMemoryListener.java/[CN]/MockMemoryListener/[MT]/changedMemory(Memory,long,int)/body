@@ -1,0 +1,3 @@
+{
+  events+=String.format("changedMemory/%d/%d;",address,size);
+}

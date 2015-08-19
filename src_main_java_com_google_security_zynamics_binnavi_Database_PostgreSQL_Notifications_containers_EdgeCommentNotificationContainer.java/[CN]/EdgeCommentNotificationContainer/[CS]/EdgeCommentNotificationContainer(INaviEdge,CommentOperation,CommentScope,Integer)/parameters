@@ -1,0 +1,4 @@
+INaviEdge edge
+CommentOperation operation
+CommentScope scope
+Integer commentId

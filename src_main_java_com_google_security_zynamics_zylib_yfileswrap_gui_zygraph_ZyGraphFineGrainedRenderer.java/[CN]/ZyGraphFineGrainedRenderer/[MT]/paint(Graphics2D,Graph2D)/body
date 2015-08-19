@@ -1,0 +1,4 @@
+{
+  m_drawEdges=m_view.drawEdges();
+  super.paint(gfx,graph);
+}

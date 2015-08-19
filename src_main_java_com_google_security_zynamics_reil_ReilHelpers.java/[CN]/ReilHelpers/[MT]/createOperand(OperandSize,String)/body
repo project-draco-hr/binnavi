@@ -1,0 +1,6 @@
+{
+  final ReilOperandNode root=new ReilOperandNode(size.toSizeString(),ExpressionType.SIZE_PREFIX);
+  final ReilOperandNode child=new ReilOperandNode(value,getOperandType(value));
+  ReilOperandNode.link(root,child);
+  return new ReilOperand(root);
+}

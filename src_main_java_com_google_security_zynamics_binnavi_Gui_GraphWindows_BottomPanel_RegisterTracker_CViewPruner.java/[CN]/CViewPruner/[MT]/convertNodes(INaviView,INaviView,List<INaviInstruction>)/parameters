@@ -1,0 +1,3 @@
+INaviView view
+INaviView prunedView
+List<INaviInstruction> keptInstructions

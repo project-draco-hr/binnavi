@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"IE02126: Graph argument can not be null");
+  final DefaultBackgroundRenderer dBGRender=new DefaultBackgroundRenderer(graph.getView());
+  if (graph.getSettings().getDisplaySettings().getGradientBackground()) {
+    dBGRender.setImage(new ImageIcon(CMain.class.getResource("data/gradientbackground2.jpg")).getImage());
+    dBGRender.setMode(DefaultBackgroundRenderer.FULLSCREEN);
+  }
+ else {
+    dBGRender.setColor(new Color(250,250,250));
+  }
+  graph.getView().setBackgroundRenderer(dBGRender);
+  graph.updateViews();
+}

@@ -1,0 +1,7 @@
+{
+  final boolean isActiveNode=m_model.getGraph().getEditMode().getLabelEventHandler().isActiveLabel(node.getRealizer().getNodeContent());
+  final JPopupMenu menu=ZyGraphPopupMenus.getPopupMenu(m_model,node,clickedObject,y - node.getY(),isActiveNode,extensions);
+  if (menu != null) {
+    menu.show(m_model.getGraph().getView(),event.getX(),event.getY());
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final DebuggerTemplate deletedView=ObjectFinders.getObject(debugger,m_debuggerTemplates);
+  m_debuggerTemplates.remove(deletedView);
+  for (  final IDebuggerTemplateManagerListener listener : m_listeners) {
+    try {
+      listener.deletedDebuggerTemplate(DebuggerTemplateManager.this,deletedView);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

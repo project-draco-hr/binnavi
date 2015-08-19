@@ -1,0 +1,5 @@
+{
+  super(text);
+  m_information=information;
+  enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+}

@@ -1,0 +1,4 @@
+{
+  this.typeManager=typeManager;
+  this.wrapper=wrapper;
+}

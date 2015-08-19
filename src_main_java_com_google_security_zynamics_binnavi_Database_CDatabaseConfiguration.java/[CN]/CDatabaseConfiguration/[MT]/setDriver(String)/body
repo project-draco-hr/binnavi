@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(driver,"IE00690: Database driver can not be null");
+  if (driver.equals(getDriver())) {
+    return;
+  }
+  m_driver=driver;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedDriver(m_database,driver);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

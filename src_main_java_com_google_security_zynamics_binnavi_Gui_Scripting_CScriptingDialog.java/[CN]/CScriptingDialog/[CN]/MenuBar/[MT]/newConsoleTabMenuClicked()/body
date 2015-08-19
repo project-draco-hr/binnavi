@@ -1,0 +1,6 @@
+{
+  final ConsolePane panel=new ConsolePane();
+  initPanel(panel);
+  scriptTab.addTab("Console",panel);
+  scriptTab.setSelectedComponent(panel);
+}

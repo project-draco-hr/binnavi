@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.updateMemberOffsets(getConnection().getConnection(),updatedMembers,delta,implicitlyUpdatedMembers,implicitDelta,module);
+}

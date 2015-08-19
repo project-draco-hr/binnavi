@@ -1,0 +1,16 @@
+{
+  module.load();
+  for (  final INaviView view : module.getContent().getViewContainer().getViews().subList(10,20)) {
+    view.load();
+    final TypeInstanceContainer container=module.getContent().getTypeInstanceContainer();
+    for (    final TypeInstance typeInstance : container.getTypeInstances()) {
+      for (      final TypeInstanceReference reference : container.getReferences(typeInstance)) {
+        if (reference.getTreeNode().isPresent()) {
+          final RawTypeInstanceReference rawReference=provider.loadTypeInstanceReference(module,typeInstance.getId(),reference.getAddress().toBigInteger(),reference.getPosition(),reference.getTreeNode().get().getId());
+          Assert.assertEquals(reference.getAddress(),rawReference.getAddress());
+        }
+      }
+    }
+    view.close();
+  }
+}

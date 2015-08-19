@@ -1,0 +1,6 @@
+{
+  super("Exit");
+  m_parent=Preconditions.checkNotNull(parent,"IE01827: Parent argument can't be null");
+  putValue(MNEMONIC_KEY,(int)'X');
+  putValue(ACCELERATOR_KEY,HotKeys.EXIT_ACCELERATOR_KEY.getKeyStroke());
+}

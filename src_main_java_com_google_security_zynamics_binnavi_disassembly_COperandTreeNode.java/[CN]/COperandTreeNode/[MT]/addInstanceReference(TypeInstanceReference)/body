@@ -1,0 +1,6 @@
+{
+  if (instanceReferences == null) {
+    instanceReferences=new ArrayList<TypeInstanceReference>();
+  }
+  instanceReferences.add(reference);
+}

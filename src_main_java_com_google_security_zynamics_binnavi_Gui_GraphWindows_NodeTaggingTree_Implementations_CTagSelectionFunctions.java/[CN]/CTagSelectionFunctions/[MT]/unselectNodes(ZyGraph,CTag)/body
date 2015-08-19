@@ -1,0 +1,3 @@
+{
+  unselectNodes(graph,Sets.newHashSet(tag),true);
+}

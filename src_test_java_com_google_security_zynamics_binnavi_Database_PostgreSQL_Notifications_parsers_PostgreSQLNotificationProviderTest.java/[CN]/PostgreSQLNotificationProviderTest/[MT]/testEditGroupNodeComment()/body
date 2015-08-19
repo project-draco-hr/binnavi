@@ -1,0 +1,44 @@
+{
+  final CView databaseOneGroupNodeView=databaseOneModuleTwo.getContent().getViewContainer().createView(" GROUP NODE TESTING VIEW ","");
+  CViewInserter.insertView(databaseOneView,databaseOneGroupNodeView);
+  final INaviGroupNode databaseOneGroupNode=databaseOneGroupNodeView.getContent().createGroupNode(databaseOneGroupNodeView.getGraph().getNodes());
+  databaseOneGroupNodeView.save();
+  databaseTwoModuleTwo.close();
+  databaseTwoModuleTwo.load();
+  databaseTwoView.load();
+  final INaviView databaseTwoGroupNodeView=Iterables.getLast(databaseTwoModuleTwo.getContent().getViewContainer().getUserViews());
+  INaviGroupNode databaseTwoGroupNode=null;
+  assertEquals(databaseOneGroupNodeView.getName(),databaseTwoGroupNodeView.getName());
+  databaseTwoGroupNodeView.load();
+  for (  final INaviViewNode node : databaseTwoGroupNodeView.getContent().getGraph().getNodes()) {
+    if (node instanceof INaviGroupNode) {
+      databaseTwoGroupNode=(INaviGroupNode)node;
+    }
+  }
+  assertNotNull(databaseTwoGroupNode);
+  assertEquals(databaseTwoGroupNode.getId(),databaseOneGroupNode.getId());
+  final List<IComment> comments=databaseOneGroupNode.appendComment(" TEST NOTIFICATION PROVIDER TESTS (GROUP NODE COMMENT) BEFORE ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneGroupNode.getComments();
+  final List<IComment> twoAfter=databaseTwoGroupNode.getComments();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(1,oneAfter.size());
+  assertEquals(1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+  final int oneTwoSize=oneAfter.size();
+  final int twoTwoSize=twoAfter.size();
+  databaseOneGroupNode.editComment(Iterables.getLast(comments)," TEST NOTIFICATION PROVIDER TESTS (GROUP NODE COMMENT) AFTER ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneThree=databaseOneGroupNode.getComments();
+  final List<IComment> twoThree=databaseTwoGroupNode.getComments();
+  assertEquals(oneTwoSize,oneThree.size());
+  assertEquals(twoTwoSize,twoThree.size());
+  assertEquals(oneThree,twoThree);
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (GROUP NODE COMMENT) AFTER ",Iterables.getLast(oneThree).getComment());
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (GROUP NODE COMMENT) AFTER ",Iterables.getLast(twoThree).getComment());
+}

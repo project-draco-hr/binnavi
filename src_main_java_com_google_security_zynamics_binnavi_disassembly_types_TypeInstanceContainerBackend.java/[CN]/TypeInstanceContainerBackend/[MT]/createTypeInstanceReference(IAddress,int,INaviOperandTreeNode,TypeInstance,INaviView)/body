@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkArgument(position >= 0,"Error: position argument must be greater or equal to zero");
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  Preconditions.checkNotNull(instance,"Error: instance argument can not be null");
+  Preconditions.checkNotNull(view,"Error: view argument can not be null");
+  provider.createTypeInstanceReference(module.getConfiguration().getId(),address.toLong(),position,node.getId(),instance.getId());
+  final TypeInstanceReference reference=new TypeInstanceReference(address,position,Optional.of(node),instance,view);
+  referenceLookup.put(new InstanceReferenceLookup(address,position,node.getId()),reference);
+  return reference;
+}

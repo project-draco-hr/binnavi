@@ -1,0 +1,9 @@
+{
+  try {
+    BreakpointConditionParser.evaluate(inputField.getText());
+    fireEditingStopped();
+  }
+ catch (  final InvalidFormulaException e) {
+  }
+  return true;
+}

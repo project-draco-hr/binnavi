@@ -1,0 +1,7 @@
+{
+  final List<COperandTree> clonedOperands=new FilledList<COperandTree>();
+  for (  final COperandTree operand : operands) {
+    clonedOperands.add(operand.cloneTree());
+  }
+  return clonedOperands;
+}

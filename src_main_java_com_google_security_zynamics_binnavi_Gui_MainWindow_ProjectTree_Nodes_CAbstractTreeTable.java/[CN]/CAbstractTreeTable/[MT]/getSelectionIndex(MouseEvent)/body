@@ -1,0 +1,3 @@
+{
+  return convertRowIndexToModel(rowAtPoint(event.getPoint()));
+}

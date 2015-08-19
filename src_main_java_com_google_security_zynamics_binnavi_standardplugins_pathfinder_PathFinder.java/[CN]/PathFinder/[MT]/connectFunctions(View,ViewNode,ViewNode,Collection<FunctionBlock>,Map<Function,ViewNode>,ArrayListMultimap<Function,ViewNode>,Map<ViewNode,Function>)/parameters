@@ -1,0 +1,7 @@
+View view
+ViewNode startNode
+ViewNode targetNode
+Collection<FunctionBlock> passedFunctions
+Map<Function,ViewNode> entryNodes
+ArrayListMultimap<Function,ViewNode> exitNodes
+Map<ViewNode,Function> functionMap

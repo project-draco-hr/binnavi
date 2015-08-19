@@ -1,0 +1,4 @@
+{
+  graph.getView().focusView(zoom,point2D,graph.getSettings().getLayoutSettings().getAnimateLayout());
+  graph.updateViews();
+}

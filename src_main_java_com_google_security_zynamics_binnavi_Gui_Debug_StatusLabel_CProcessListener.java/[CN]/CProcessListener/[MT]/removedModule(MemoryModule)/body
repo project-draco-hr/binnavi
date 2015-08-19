@@ -1,0 +1,3 @@
+{
+  m_label.setText(String.format("Unloaded module %s from base address %s",module.getName(),module.getBaseAddress().getAddress().toHexString()));
+}

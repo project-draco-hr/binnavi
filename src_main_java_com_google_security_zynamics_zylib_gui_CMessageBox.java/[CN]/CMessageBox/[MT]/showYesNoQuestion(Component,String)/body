@@ -1,0 +1,3 @@
+{
+  return showYesNoQuestionWithCheckbox(parent,msg,null).first();
+}

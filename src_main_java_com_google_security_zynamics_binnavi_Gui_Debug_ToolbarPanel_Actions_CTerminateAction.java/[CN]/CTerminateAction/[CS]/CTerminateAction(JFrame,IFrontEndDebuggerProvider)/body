@@ -1,0 +1,5 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE00678: Parent argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01551: Debugger argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Terminate");
+}

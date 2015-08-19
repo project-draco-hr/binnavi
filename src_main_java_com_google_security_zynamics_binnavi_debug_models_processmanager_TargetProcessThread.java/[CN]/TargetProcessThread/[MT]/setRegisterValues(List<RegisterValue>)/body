@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(registerValues,"IE00764: Register values argument can not be null");
+  this.registerValues=ImmutableList.<RegisterValue>copyOf(registerValues);
+  for (  final ThreadListener listener : listeners) {
+    try {
+      listener.registersChanged(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

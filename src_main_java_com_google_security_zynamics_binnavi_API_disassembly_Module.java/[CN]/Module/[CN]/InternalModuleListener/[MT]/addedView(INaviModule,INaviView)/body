@@ -1,0 +1,12 @@
+{
+  final View newView=new View(Module.this,view,m_nodeTagManager,m_viewTagManager);
+  m_views.add(newView);
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.addedView(Module.this,newView);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

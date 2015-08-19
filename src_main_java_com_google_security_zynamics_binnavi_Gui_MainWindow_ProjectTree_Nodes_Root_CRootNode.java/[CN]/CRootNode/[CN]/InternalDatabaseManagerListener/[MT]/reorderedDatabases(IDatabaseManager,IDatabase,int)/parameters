@@ -1,0 +1,3 @@
+IDatabaseManager databaseManager
+IDatabase database
+int index

@@ -1,0 +1,3 @@
+{
+  return register.equals("ah") || register.equals("bh") || register.equals("ch")|| register.equals("dh");
+}

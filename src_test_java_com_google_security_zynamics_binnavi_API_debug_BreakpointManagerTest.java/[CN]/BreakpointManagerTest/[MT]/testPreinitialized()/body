@@ -1,0 +1,8 @@
+{
+  final com.google.security.zynamics.binnavi.debug.models.breakpoints.BreakpointManager internalManager=new com.google.security.zynamics.binnavi.debug.models.breakpoints.BreakpointManager();
+  internalManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_0_SET);
+  internalManager.addBreakpoints(BreakpointType.ECHO,Sets.newHashSet(new BreakpointAddress(CommonTestObjects.MODULE,new UnrelocatedAddress(new CAddress(1)))));
+  final BreakpointManager apiManager=new BreakpointManager(internalManager);
+  assertEquals(0,apiManager.getBreakpoints().get(0).getAddress().toLong());
+  assertEquals(1,apiManager.getEchoBreakpoints().get(0).getAddress().toLong());
+}

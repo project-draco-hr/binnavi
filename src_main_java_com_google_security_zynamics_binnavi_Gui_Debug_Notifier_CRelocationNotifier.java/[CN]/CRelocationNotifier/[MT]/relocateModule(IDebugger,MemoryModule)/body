@@ -1,0 +1,15 @@
+{
+  for (  final INaviModule module : debugger.getModules()) {
+    if (module.getConfiguration().getName().equalsIgnoreCase(memoryModule.getName())) {
+      final RelocatedAddress assumedAddress=debugger.fileToMemory(module,new UnrelocatedAddress(module.getConfiguration().getFileBase()));
+      if (!assumedAddress.getAddress().equals(memoryModule.getBaseAddress().getAddress())) {
+        try {
+          module.getConfiguration().setImageBase(memoryModule.getBaseAddress().getAddress());
+        }
+ catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

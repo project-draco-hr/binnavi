@@ -1,0 +1,4 @@
+{
+  super("Filter by event count");
+  m_filterField=filterField;
+}

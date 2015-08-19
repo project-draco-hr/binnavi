@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(provider,"IE00573: Provider argument can not be null");
+  Preconditions.checkNotNull(project,"IE00574: Project argument can not be null");
+  Preconditions.checkNotNull(name,"IE00575: Name argument can not be null");
+  Preconditions.checkNotNull(description,"IE02194: Description argument can not be null");
+  return createTrace(provider,CTableNames.PROJECT_TRACES_TABLE,"project_id",CTableNames.PROJECTS_TABLE,project.getConfiguration().getId(),name,description);
+}

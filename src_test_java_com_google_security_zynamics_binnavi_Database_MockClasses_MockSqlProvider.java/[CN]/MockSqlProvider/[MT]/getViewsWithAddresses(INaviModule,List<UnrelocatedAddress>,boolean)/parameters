@@ -1,0 +1,3 @@
+INaviModule module
+List<UnrelocatedAddress> address
+boolean all

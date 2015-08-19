@@ -1,0 +1,2 @@
+Collection<CommentNotification> commentNotifications
+SQLProvider provider

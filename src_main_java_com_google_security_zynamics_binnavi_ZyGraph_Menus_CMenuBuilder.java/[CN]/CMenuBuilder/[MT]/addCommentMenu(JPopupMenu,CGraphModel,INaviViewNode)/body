@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(menu,"IE02140: Menu argument can not be null");
+  Preconditions.checkNotNull(node,"IE02143: Node argument can not be null");
+  menu.add(CActionProxy.proxy(new CActionEditComments(model,node)));
+  menu.add(CActionProxy.proxy(new CActionCreateCommentNode(model.getParent(),model.getGraph().getRawView(),node)));
+  menu.addSeparator();
+}

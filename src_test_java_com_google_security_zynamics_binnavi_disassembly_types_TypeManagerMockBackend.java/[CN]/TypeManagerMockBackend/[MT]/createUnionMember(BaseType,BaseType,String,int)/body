@@ -1,0 +1,3 @@
+{
+  return createStructureMember(containingType,memberType,memberName,memberOffset);
+}

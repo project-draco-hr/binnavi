@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  Preconditions.checkNotNull(name,"Error: Name argument can not be null");
+  for (  final Function function : module.getFunctions()) {
+    if (function.getName().equals(name)) {
+      return function;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,4 @@
+{
+  updatePathEllipsis();
+  super.repaint();
+}

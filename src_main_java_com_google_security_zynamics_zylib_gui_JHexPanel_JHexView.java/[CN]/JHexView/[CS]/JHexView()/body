@@ -1,0 +1,15 @@
+{
+  for (int i=0; i < m_coloredRanges.length; i++) {
+    m_coloredRanges[i]=new ColoredRangeManager();
+  }
+  setFocusable(true);
+  setLayout(new BorderLayout());
+  setFont(m_font);
+  initListeners();
+  initHotkeys();
+  initScrollbar();
+  img=new BufferedImage((getWidth() + 1) - m_scrollbar.getWidth(),(getHeight() + 1) - m_horizontalScrollbar.getHeight(),BufferedImage.TYPE_INT_RGB);
+  bufferGraphics=img.getGraphics();
+  updateOffsetViewWidth();
+  setEnabled(false);
+}

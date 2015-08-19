@@ -1,0 +1,12 @@
+{
+  final TraceEvent newEvent=new TraceEvent(event);
+  events.add(newEvent);
+  for (  final ITraceListener listener : listeners) {
+    try {
+      listener.addedEvent(Trace.this,newEvent);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  setFileFilter(m_fileFilters.get(index));
+}

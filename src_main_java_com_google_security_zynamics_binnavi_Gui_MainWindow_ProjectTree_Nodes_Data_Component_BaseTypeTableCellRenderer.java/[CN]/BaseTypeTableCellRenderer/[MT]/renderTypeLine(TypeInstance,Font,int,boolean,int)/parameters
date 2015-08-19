@@ -1,0 +1,5 @@
+TypeInstance instance
+Font font
+int desiredWidth
+boolean renderData
+int line

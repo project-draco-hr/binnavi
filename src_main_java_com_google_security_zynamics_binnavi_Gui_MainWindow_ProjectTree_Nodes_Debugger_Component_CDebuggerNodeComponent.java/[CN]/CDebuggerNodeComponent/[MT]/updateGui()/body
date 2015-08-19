@@ -1,0 +1,9 @@
+{
+  final boolean nameModified=!m_nameTextField.getText().equals(m_debugger.getName());
+  final boolean hostModified=!m_hostTextField.getText().equals(m_debugger.getHost());
+  final boolean portModified=!m_portTextField.getText().equals(String.valueOf(m_debugger.getPort()));
+  m_saveButton.setEnabled(nameModified || hostModified || portModified);
+  m_nameTextField.setModified(nameModified);
+  m_hostTextField.setModified(hostModified);
+  m_portTextField.setModified(portModified);
+}

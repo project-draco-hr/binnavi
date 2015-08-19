@@ -1,0 +1,9 @@
+{
+  final boolean starState2=true;
+  view.getConfiguration().setStaredInternal(starState2);
+  assertEquals(starState2,view.getConfiguration().isStared());
+  final ViewNotificationContainer container=new ViewNotificationContainer(view.getConfiguration().getId(),Optional.fromNullable(view),Optional.<Integer>absent(),Optional.<INaviModule>absent(),Optional.<INaviProject>absent(),"UPDATE");
+  final PostgreSQLViewNotificationParser parser=new PostgreSQLViewNotificationParser();
+  parser.inform(Lists.<ViewNotificationContainer>newArrayList(container),provider);
+  assertEquals(false,view.getConfiguration().isStared());
+}

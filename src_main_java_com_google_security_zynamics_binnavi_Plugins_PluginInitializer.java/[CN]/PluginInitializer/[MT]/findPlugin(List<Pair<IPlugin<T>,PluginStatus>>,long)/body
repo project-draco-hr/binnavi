@@ -1,0 +1,8 @@
+{
+  for (  final Pair<IPlugin<T>,PluginStatus> pt : validatedPlugins) {
+    if (pt.first().getGuid() == guid) {
+      return pt.first();
+    }
+  }
+  return null;
+}

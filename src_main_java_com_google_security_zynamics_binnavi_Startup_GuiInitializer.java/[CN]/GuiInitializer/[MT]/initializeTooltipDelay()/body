@@ -1,0 +1,6 @@
+{
+  final ToolTipManager toolTipManager=ToolTipManager.sharedInstance();
+  toolTipManager.setDismissDelay(60000);
+  toolTipManager.setInitialDelay(1000);
+  toolTipManager.setReshowDelay(1000);
+}

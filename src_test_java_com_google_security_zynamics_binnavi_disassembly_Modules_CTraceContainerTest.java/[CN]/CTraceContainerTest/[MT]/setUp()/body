@@ -1,0 +1,7 @@
+{
+  m_listener=new MockTraceContainerListener();
+  final CModule m_module=MockCreator.createModule(m_sql);
+  m_module.load();
+  m_content=new CTraceContainer(m_module,new FilledList<TraceList>(),m_sql);
+  m_content.addListener(m_listener);
+}

@@ -1,0 +1,3 @@
+{
+  return UserInputTypeValidation.validateTypeName(parent,typeManager,name) && UserInputTypeValidation.validateTypeSize(parent,size);
+}

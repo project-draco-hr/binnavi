@@ -1,0 +1,4 @@
+{
+  final ImmutableSet<BaseType> affectedTypes=dependenceGraph.addMember(typeSystem.simpleStruct,typeSystem.intType).getAffectedTypes();
+  assertEquals(ImmutableSet.<BaseType>of(typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.complexUnion),affectedTypes);
+}

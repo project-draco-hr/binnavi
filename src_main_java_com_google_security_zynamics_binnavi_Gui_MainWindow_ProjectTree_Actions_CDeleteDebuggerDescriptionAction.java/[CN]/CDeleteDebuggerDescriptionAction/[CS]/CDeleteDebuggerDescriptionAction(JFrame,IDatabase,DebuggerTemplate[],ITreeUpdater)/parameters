@@ -1,0 +1,4 @@
+JFrame parent
+IDatabase database
+DebuggerTemplate[] debuggers
+ITreeUpdater updater

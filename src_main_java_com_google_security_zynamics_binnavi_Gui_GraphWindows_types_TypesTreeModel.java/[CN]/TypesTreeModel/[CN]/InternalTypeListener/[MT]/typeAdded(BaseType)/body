@@ -1,0 +1,6 @@
+{
+  if (filter.includeType(baseType)) {
+    final ChildNodeDescriptor insertResult=insertBaseType(baseType);
+    nodesWereInserted(root,new int[]{insertResult.getIndex()});
+  }
+}

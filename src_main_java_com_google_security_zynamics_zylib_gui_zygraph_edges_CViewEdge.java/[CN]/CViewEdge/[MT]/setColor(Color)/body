@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(color,"Error: Color argument can not be null");
+  if (m_color.equals(color)) {
+    return;
+  }
+  m_color=color;
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.changedColor(this,color);
+  }
+}

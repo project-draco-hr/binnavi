@@ -1,0 +1,3 @@
+{
+  return findView(m_provider.findModule(containerId).getContent().getViewContainer().getViews(),viewId);
+}

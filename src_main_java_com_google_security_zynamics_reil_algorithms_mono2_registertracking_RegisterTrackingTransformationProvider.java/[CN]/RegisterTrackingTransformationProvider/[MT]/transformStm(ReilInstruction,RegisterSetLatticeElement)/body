@@ -1,0 +1,11 @@
+{
+  final ReilOperand op1=ins.getFirstOperand();
+  if (op1.getType().equals(OperandType.REGISTER)) {
+    if (state.isTainted(op1.getValue())) {
+      final RegisterSetLatticeElement newState=state.copy();
+      newState.addReadReg(op1.getValue());
+      return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newState,null);
+    }
+  }
+  return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(state,null);
+}

@@ -1,0 +1,9 @@
+{
+  m_graph=ZyGraphFactory.generateTestGraph();
+  m_tree=new CCachedExpressionTree();
+  try {
+    PluginInterface.instance("",new MockDatabaseManager(),new PluginRegistry());
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

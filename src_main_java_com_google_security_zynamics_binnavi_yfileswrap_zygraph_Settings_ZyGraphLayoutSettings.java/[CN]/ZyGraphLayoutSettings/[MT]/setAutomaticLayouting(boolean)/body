@@ -1,0 +1,19 @@
+{
+  if (value == getAutomaticLayouting()) {
+    return;
+  }
+  if (m_type == null) {
+    m_automaticLayouting=value;
+  }
+ else {
+    m_type.setAutomaticLayouting(value);
+  }
+  for (  final IZyGraphLayoutSettingsListener listener : m_listeners) {
+    try {
+      listener.changedAutomaticLayouting(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

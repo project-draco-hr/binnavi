@@ -1,0 +1,3 @@
+{
+  return "1:1: Tokens : ( T__31 | T__32 | T__33 | T__34 | WS | CHARACTER | NUMBER | HEX_NUMBER | IDENTIFIER | EQ_SIGN | GEQ_SIGN | LEQ_SIGN | LT_SIGN | GT_SIGN | NEQ_SIGN | NEQ_SIGN_2 | OR | AND | B_OR | B_AND | B_XOR | LSH | RSH | MULT | DIV | MOD | ADD | SUB );";
+}

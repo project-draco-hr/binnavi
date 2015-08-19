@@ -1,0 +1,7 @@
+{
+  final Set<RelocatedAddress> relocatedAddresses=new HashSet<RelocatedAddress>();
+  for (  final BreakpointAddress breakpointAddress : addresses) {
+    relocatedAddresses.add(fileToMemory(breakpointAddress.getModule(),breakpointAddress.getAddress()));
+  }
+  return relocatedAddresses;
+}

@@ -1,0 +1,15 @@
+{
+  if (address == null) {
+    return;
+  }
+  if (updating) {
+    return;
+  }
+  updating=true;
+  final IDebugger activeDebugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (activeDebugger != null) {
+    final MemorySection section=ProcessHelpers.getSectionWith(activeDebugger.getProcessManager().getMemoryMap(),address);
+    memorySectionBox.setSelectedItem(section);
+  }
+  updating=false;
+}

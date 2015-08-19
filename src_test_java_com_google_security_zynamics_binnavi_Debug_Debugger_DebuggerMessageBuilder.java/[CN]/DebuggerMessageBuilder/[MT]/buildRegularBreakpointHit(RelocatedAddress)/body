@@ -1,0 +1,3 @@
+{
+  return new BreakpointHitReply(0,0,CommonTestObjects.THREAD_ID,RegisterValuesParser.parse(String.format("<Registers><Thread id=\"%d\"><Register name=\"EAX\" value=\"123\" memory=\"\" /><Register name=\"EBX\" value=\"456\" memory=\"\" /><Register name=\"EIP\" value=\"%s\" memory=\"\" pc=\"true\" /></Thread></Registers>",CommonTestObjects.THREAD_ID,address.getAddress().toBigInteger().toString(16)).getBytes()));
+}

@@ -1,0 +1,8 @@
+{
+  super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+  final BaseType baseType=(BaseType)value;
+  if (value != null) {
+    setText(baseType.getName());
+  }
+  return this;
+}

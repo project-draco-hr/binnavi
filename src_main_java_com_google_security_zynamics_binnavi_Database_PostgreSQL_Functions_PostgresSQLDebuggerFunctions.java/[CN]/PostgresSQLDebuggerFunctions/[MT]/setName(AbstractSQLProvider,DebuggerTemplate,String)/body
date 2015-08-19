@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00425: Debugger argument can not be null");
+  Preconditions.checkNotNull(name,"IE00426: Name argument can not be null");
+  Preconditions.checkArgument(debugger.inSameDatabase(provider),"IE00427: Debugger is not part of this database");
+  final String query="UPDATE " + CTableNames.DEBUGGERS_TABLE + " SET name = ? WHERE id = ?";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+    try {
+      statement.setString(1,name);
+      statement.setInt(2,debugger.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

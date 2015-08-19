@@ -1,0 +1,12 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(fileSystem,"IE01060: File system argument can not be null");
+  }
+ else {
+    if (fileSystem != null) {
+      throw new IllegalArgumentException("IE01061: File system argument must be null");
+    }
+  }
+  remoteFileSystem=fileSystem;
+}

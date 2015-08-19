@@ -1,0 +1,15 @@
+{
+  final MemberTableModel model=members.getModel();
+  final int modelIndex=members.convertRowIndexToModel(rowIndex);
+  if (rowIndex + 1 < members.getRowCount()) {
+    final MemberTableRowData row=model.getRow(modelIndex);
+    final MemberTableRowData subsequentRow=model.getRow(members.convertRowIndexToModel(rowIndex + 1));
+    if (row.getBaseType() == null) {
+      return false;
+    }
+    if (subsequentRow.getIndex() < row.getIndex() + row.getBaseType().getByteSize()) {
+      return false;
+    }
+  }
+  return true;
+}

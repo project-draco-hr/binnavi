@@ -1,0 +1,5 @@
+{
+  final INaviModule nativeModule=new MockModule();
+  final Module module=ModuleFactory.get(nativeModule);
+  debugger.toImagebase(module,null);
+}

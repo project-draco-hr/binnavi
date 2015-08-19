@@ -1,0 +1,6 @@
+{
+  m_tree=Preconditions.checkNotNull(tree,"Error: tree argument can not be null");
+  m_component=Preconditions.checkNotNull(component,"Error: component argument can not be null");
+  m_menuBuilder=Preconditions.checkNotNull(menuBuilder,"Error: menuBuilder argument can not be null");
+  m_object=object;
+}

@@ -1,0 +1,16 @@
+{
+  final List<Reference> references=expression.getReferences();
+  for (  final Reference reference : references) {
+    if ((reference != null) && ReferenceType.isCodeReference(reference.getType())) {
+      if (function.getAddress().equals(reference.getTarget())) {
+        return true;
+      }
+    }
+  }
+  for (  final OperandExpression node : expression.getChildren()) {
+    if (hasFunctionCallReference(node,function)) {
+      return true;
+    }
+  }
+  return false;
+}

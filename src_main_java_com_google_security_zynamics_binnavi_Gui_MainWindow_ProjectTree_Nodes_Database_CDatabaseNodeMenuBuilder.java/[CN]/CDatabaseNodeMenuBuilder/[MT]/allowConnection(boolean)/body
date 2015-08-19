@@ -1,0 +1,4 @@
+{
+  allowConnection=allowed;
+  updateActions(database);
+}

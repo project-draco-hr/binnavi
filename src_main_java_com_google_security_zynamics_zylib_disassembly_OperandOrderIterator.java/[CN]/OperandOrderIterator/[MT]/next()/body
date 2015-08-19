@@ -1,0 +1,37 @@
+{
+  if (!m_started) {
+    pushLongestPathFrom(m_root);
+    m_started=true;
+  }
+ else {
+    if (m_traversalStack.empty()) {
+      throw new RuntimeException("Internal Error: Traversal already finished");
+    }
+    final Pair<IOperandTreeNode,Integer> lastProcessed=m_traversalStack.pop();
+    final IOperandTreeNode lastProcessedNode=lastProcessed.first();
+    final int lastProcessedChildrenProcessed=lastProcessed.second();
+    if (lastProcessedChildrenProcessed < lastProcessedNode.getChildren().size()) {
+      if (lastProcessed.first().getChildren().size() > 1) {
+        m_traversalStack.add(lastProcessed);
+      }
+      pushLongestPathFrom(lastProcessedNode.getChildren().get(lastProcessedChildrenProcessed));
+      return true;
+    }
+ else {
+      if (m_traversalStack.empty()) {
+        return false;
+      }
+ else {
+        do {
+          final Pair<IOperandTreeNode,Integer> parent=m_traversalStack.pop();
+          if (parent.second() < (parent.first().getChildren().size() - 1)) {
+            m_traversalStack.push(new Pair<IOperandTreeNode,Integer>(parent.first(),parent.second() + 1));
+            return true;
+          }
+        }
+ while (!m_traversalStack.empty());
+      }
+    }
+  }
+  return !m_traversalStack.empty();
+}

@@ -1,0 +1,3 @@
+{
+  return "If selected, the password in the field above is shown in plain text.";
+}

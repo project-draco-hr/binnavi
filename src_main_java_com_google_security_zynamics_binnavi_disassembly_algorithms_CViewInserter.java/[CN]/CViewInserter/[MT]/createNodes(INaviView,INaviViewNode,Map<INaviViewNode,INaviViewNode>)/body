@@ -1,0 +1,28 @@
+{
+  final INaviViewNode newNode=CNodeTypeSwitcher.switchNode(sourceNode,new INodeTypeCallback<INaviViewNode>(){
+    @Override public INaviViewNode handle(    final INaviCodeNode node){
+      return insertCodeNode(target,node);
+    }
+    @Override public INaviViewNode handle(    final INaviFunctionNode node){
+      return insertFunctionNode(target,node);
+    }
+    @Override public INaviViewNode handle(    final INaviGroupNode node){
+      return null;
+    }
+    @Override public INaviViewNode handle(    final INaviTextNode node){
+      return insertTextNode(target,node);
+    }
+  }
+);
+  if (newNode != null) {
+    newNode.setBorderColor(sourceNode.getBorderColor());
+    newNode.setColor(sourceNode.getColor());
+    newNode.setHeight(sourceNode.getHeight());
+    newNode.setSelected(sourceNode.isSelected());
+    newNode.setVisible(sourceNode.isVisible());
+    newNode.setWidth(sourceNode.getWidth());
+    newNode.setX(sourceNode.getX());
+    newNode.setY(sourceNode.getY());
+    nodeMap.put(sourceNode,newNode);
+  }
+}

@@ -1,0 +1,31 @@
+{
+  if (visited.contains(node)) {
+    return null;
+  }
+  visited.add(node);
+  for (  final INaviEdge outgoingEdge : node.getOutgoingEdges()) {
+    if (outgoingEdge.getType() == EdgeType.LEAVE_INLINED_FUNCTION) {
+      try {
+        if (node.getParentFunction() == originalFunction) {
+          if (outgoingEdge.getTarget() instanceof INaviCodeNode) {
+            return (INaviCodeNode)outgoingEdge.getTarget();
+          }
+ else {
+            return null;
+          }
+        }
+      }
+ catch (      final MaybeNullException e) {
+      }
+    }
+  }
+  for (  final INaviEdge outgoingEdge : node.getOutgoingEdges()) {
+    if (outgoingEdge.getTarget() instanceof INaviCodeNode) {
+      final INaviCodeNode endNode=getEndNode((INaviCodeNode)outgoingEdge.getTarget(),originalFunction,visited);
+      if (endNode != null) {
+        return endNode;
+      }
+    }
+  }
+  return null;
+}

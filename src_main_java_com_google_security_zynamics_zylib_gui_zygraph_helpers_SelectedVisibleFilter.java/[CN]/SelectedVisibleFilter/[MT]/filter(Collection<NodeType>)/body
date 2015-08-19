@@ -1,0 +1,3 @@
+{
+  return CollectionHelpers.filter(collection,new SelectedVisibleFilter<NodeType>());
+}

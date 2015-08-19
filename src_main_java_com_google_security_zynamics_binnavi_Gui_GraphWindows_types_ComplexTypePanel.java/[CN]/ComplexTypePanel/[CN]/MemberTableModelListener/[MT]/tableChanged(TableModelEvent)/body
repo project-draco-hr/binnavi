@@ -1,0 +1,10 @@
+{
+  if (event.getType() == TableModelEvent.INSERT || event.getType() == TableModelEvent.UPDATE) {
+    final MemberTableModel model=members.getModel();
+    for (int i=0; i < model.getRowCount(); i++) {
+      final int modelIndex=members.convertRowIndexToModel(i);
+      boolean validate=validateTableRow(i);
+      model.markRow(modelIndex,validate);
+    }
+  }
+}

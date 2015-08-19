@@ -1,0 +1,35 @@
+{
+  try {
+    m_readLock.lock();
+    final MemoryChunk nextChunk=findChunk(address);
+    if (nextChunk != null) {
+      final long start=nextChunk.getAddress();
+      if (start == 0) {
+        return 0;
+      }
+ else {
+        final MemoryChunk c2=findChunk(start - 1);
+        if (c2 != null) {
+          return getSectionStart(start - 1);
+        }
+ else {
+          return start;
+        }
+      }
+    }
+ else {
+      final MemoryChunk mem=new MemoryChunk(address,1);
+      final int cpos=findChunkPosition(mem);
+      if (cpos == 0) {
+        return 0;
+      }
+ else {
+        final MemoryChunk chunkBefore=m_chunks.get(cpos - 1);
+        return chunkBefore.getAddress() + chunkBefore.getLength();
+      }
+    }
+  }
+  finally {
+    m_readLock.unlock();
+  }
+}

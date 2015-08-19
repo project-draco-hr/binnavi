@@ -1,0 +1,21 @@
+{
+  setFont(table.getFont());
+  final String value=(String)object;
+  if (value.equals("Supported")) {
+    super.setHorizontalAlignment(CENTER);
+    setForeground(Color.WHITE);
+    setBackground(new Color(0,160,0));
+  }
+ else   if (value.equals("Not supported")) {
+    super.setHorizontalAlignment(CENTER);
+    setForeground(Color.WHITE);
+    setBackground(Color.RED);
+  }
+ else {
+    super.setHorizontalAlignment(LEFT);
+    setForeground(Color.BLACK);
+    setBackground(Color.WHITE);
+  }
+  setText(value);
+  return this;
+}

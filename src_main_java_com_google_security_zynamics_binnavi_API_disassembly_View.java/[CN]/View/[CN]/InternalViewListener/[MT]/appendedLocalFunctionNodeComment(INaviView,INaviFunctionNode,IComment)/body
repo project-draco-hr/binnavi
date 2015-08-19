@@ -1,0 +1,14 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final FunctionNode viewNode=(FunctionNode)cachedNodes.get(node);
+  for (  final IFunctionNodeListener listener : viewNode.getFunctionListeners()) {
+    try {
+      listener.appendedComment(viewNode,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

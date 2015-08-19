@@ -1,0 +1,3 @@
+{
+  (((ZyEdgeRealizer<?>)m_graph.getGraph().getRealizer(m_graph.getEdge(edge).getEdge()))).regenerate();
+}

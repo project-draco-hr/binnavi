@@ -1,0 +1,6 @@
+{
+  final InstructionNode node=new InstructionNode(instruction,true);
+  instructionNodes.put(instruction,node);
+  typeSubstitutions.put(substitution,node);
+  return node;
+}

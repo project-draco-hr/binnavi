@@ -1,0 +1,5 @@
+int packetId
+int errorCode
+long threadId
+RelocatedAddress address
+RegisterValues registerValues

@@ -1,0 +1,17 @@
+{
+  menu.add(new JMenuItem(m_loadAddressSpaceAction));
+  menu.add(new JSeparator());
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteAddressSpaceAction(getParent(),m_project,m_addressSpaces,getParentUpdater()))));
+  if (m_addressSpaces.length == 1) {
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(CActionProxy.proxy(new CCreateCombinedCallgraphAction(getParent(),m_container,m_project,m_addressSpaces[0]))));
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(CActionProxy.proxy(new CResolveAllFunctionsSingleAddressSpaceAction(menu,m_database,m_addressSpaces[0]))));
+  }
+  if (m_table != null) {
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(CActionProxy.proxy(new CSearchTableAction(getParent(),m_table))));
+    menu.add(new JMenuItem(CActionProxy.proxy(new CopySelectionAction(m_table))));
+  }
+  addPluginMenus(menu);
+}

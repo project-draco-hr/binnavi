@@ -1,0 +1,20 @@
+{
+  final ReilOperand memoryAddressOperand=instruction.getFirstOperand();
+  final ReilOperand outputOperand=instruction.getThirdOperand();
+  final Register outputRegister=new Register(outputOperand.getValue());
+  final IValueElement memoryAddress=getOperandValue(memoryAddressOperand,incomingState);
+  if ((memoryAddress == null) || (memoryAddress instanceof Undefined)) {
+    final IValueElement memoryAddressValue=getAtomicType(memoryAddressOperand);
+    final Dereference dereference=new Dereference(memoryAddressValue);
+    return incomingState.update(instruction,outputRegister,dereference);
+  }
+ else {
+    final IValueElement previousState2=incomingState.getState(new MemoryCell(memoryAddress));
+    if (previousState2 == null) {
+      return incomingState.update(instruction,outputRegister,new Dereference(memoryAddress));
+    }
+ else {
+      return incomingState.update(instruction,outputRegister,previousState2);
+    }
+  }
+}

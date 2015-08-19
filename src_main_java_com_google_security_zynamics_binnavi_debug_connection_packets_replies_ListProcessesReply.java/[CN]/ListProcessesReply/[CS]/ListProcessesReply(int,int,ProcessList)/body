@@ -1,0 +1,12 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(processList,"IE01062: Process list argument can not be null");
+  }
+ else {
+    if (processList != null) {
+      throw new IllegalArgumentException("IE01063: Process list argument must be null");
+    }
+  }
+  this.processList=processList;
+}

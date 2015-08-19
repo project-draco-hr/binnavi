@@ -1,0 +1,17 @@
+{
+  for (  final INaviViewNode node : view.getGraph().getNodes()) {
+    if (node instanceof INaviFunctionNode) {
+      final INaviFunctionNode fnode=(INaviFunctionNode)node;
+      if (fnode.getFunction().getAddress().equals(address.getAddress())) {
+        return true;
+      }
+    }
+ else     if (node instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)node;
+      if (CCodeNodeHelpers.containsAddress(cnode,address.getAddress())) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

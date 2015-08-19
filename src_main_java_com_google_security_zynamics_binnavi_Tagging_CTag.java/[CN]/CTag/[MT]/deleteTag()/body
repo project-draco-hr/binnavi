@@ -1,0 +1,10 @@
+{
+  for (  final ITagListener listener : m_listeners) {
+    try {
+      listener.deletedTag(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

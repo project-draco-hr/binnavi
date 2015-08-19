@@ -1,0 +1,7 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  final int notches=e.getWheelRotation();
+  m_scrollbar.setValue(m_scrollbar.getValue() + notches);
+}

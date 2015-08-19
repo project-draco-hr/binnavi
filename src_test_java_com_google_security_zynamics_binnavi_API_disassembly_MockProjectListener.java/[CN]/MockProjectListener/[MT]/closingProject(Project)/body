@@ -1,0 +1,4 @@
+{
+  events+="closingProject;";
+  return true;
+}

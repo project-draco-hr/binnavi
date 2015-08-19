@@ -1,0 +1,9 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    m_wasCanceled=false;
+    for (    final CAbstractSettingsPanel panel : m_settingsPanel) {
+      m_needsLayouting|=panel.updateSettings(m_settings);
+    }
+  }
+  dispose();
+}

@@ -1,0 +1,6 @@
+{
+  final IDebugger debugger=m_debugger.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    CTraceFunctions.startTrace(m_parent,debugger,m_graph,m_debugger.getTraceLogger(debugger));
+  }
+}

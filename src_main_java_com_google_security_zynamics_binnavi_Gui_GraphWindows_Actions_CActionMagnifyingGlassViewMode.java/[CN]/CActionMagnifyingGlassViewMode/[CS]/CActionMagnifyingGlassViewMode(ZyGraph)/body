@@ -1,0 +1,6 @@
+{
+  super("Toggle magnifying glass");
+  m_graph=Preconditions.checkNotNull(graph,"IE01252: Graph argument can not be null");
+  putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/nomagnifieingglass_hover.jpg")));
+  putValue(Action.SHORT_DESCRIPTION,"Magnifying Glass");
+}

@@ -1,0 +1,5 @@
+{
+  sizeLeftPanel=properties.getInteger(SIZE_LEFT_PANEL,SIZE_LEFT_PANEL_DEFAULT);
+  sizeRightPanel=properties.getInteger(SIZE_RIGHT_PANEL,SIZE_RIGHT_PANEL_DEFAULT);
+  sizeBottomPanel=properties.getInteger(SIZE_BOTTOM_PANEL,SIZE_BOTTOM_PANEL_DEFAULT);
+}

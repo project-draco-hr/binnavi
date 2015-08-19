@@ -1,0 +1,11 @@
+{
+  extender.addTab("Special Instructions",this);
+  final JTabbedPane tabbedPane=new JTabbedPane();
+  final CSpecialInstructionsModel instructionsModel=new CSpecialInstructionsModel();
+  m_synchronizer=new CGraphSynchronizer(model.getGraph(),instructionsModel);
+  m_resultsPanel=new CResultsPanel(model.getGraph(),instructionsModel);
+  m_optionsPanel=new COptionsPanel(instructionsModel.getDescriptions());
+  tabbedPane.addTab("Highlighted Instruction",m_resultsPanel);
+  tabbedPane.addTab("Options",m_optionsPanel);
+  add(tabbedPane);
+}

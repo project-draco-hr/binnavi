@@ -1,0 +1,21 @@
+{
+  try {
+    final INaviFunction startFunction=firstNode.getParentFunction();
+    try {
+      final INaviFunction endFunction=secondNode.getParentFunction();
+      return !startFunction.equals(endFunction);
+    }
+ catch (    final MaybeNullException e) {
+      return true;
+    }
+  }
+ catch (  final MaybeNullException e) {
+    try {
+      secondNode.getParentFunction();
+      return true;
+    }
+ catch (    final MaybeNullException e1) {
+      return false;
+    }
+  }
+}

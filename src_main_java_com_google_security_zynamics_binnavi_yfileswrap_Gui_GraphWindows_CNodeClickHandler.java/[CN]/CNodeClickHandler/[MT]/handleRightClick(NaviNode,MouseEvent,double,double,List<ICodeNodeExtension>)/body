@@ -1,0 +1,32 @@
+{
+  final Object positionObject=ZyNodeContentHelpers.getObject(node,x,y);
+  if (event.isAltDown() && event.isShiftDown()) {
+    m_grayer.handleGrayLine(m_model,node,y);
+  }
+ else   if (event.isAltDown() && event.isControlDown()) {
+    m_highlighter.handleHighlightLine(node,y);
+  }
+ else   if (event.isAltDown()) {
+    if (positionObject instanceof CLocalNodeCommentWrapper) {
+      CNodeFunctions.editNodeComments(m_model,((CLocalNodeCommentWrapper)positionObject).getNode(),InitialTab.LocalNodeComments);
+    }
+ else     if (positionObject instanceof CGlobalNodeCommentWrapper) {
+      CNodeFunctions.editNodeComments(m_model,((CGlobalNodeCommentWrapper)positionObject).getNode(),InitialTab.GlobalNodeComments);
+    }
+ else     if (node.getRawNode() instanceof INaviCodeNode) {
+      handleShowInstructionComment(node,y);
+    }
+  }
+ else   if (event.isShiftDown()) {
+    handleBreakpointClick(node,y);
+  }
+ else   if (event.isControlDown() && positionObject instanceof COperandTreeNode) {
+    handleDoRegisterTrackingDown(node,y,x,(COperandTreeNode)positionObject);
+  }
+ else   if (event.isControlDown() && event.isShiftDown() && positionObject instanceof COperandTreeNode) {
+    handleDoRegisterTrackingUp(node,y,x,(COperandTreeNode)positionObject);
+  }
+ else {
+    showPopupMenu(node,event,positionObject,y,extensions);
+  }
+}

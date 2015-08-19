@@ -1,0 +1,6 @@
+{
+  getView().addViewMode(m_editMode);
+  m_editModeListener=new InternalEditModeListener<NodeType,EdgeType>(m_graphListeners);
+  m_editMode.addListener(m_editModeListener);
+  getView().setAntialiasedPainting(true);
+}

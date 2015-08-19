@@ -1,0 +1,6 @@
+{
+  if (!m_imports.containsKey(database)) {
+    m_imports.put(database,new ArrayList<String>());
+  }
+  m_imports.get(database).add(idb);
+}

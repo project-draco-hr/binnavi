@@ -1,0 +1,28 @@
+{
+  for (  final ViewNodeAdapter child : node.getChildren()) {
+    if ((depth <= 0) && !(child.getNode() instanceof ITextNode)) {
+      continue;
+    }
+ else     if (child.getNode().getParentGroup() != null) {
+      IGroupNode<?,?> previousNode=child.getNode().getParentGroup();
+      while (previousNode != null) {
+        if (!visited(visited,previousNode)) {
+          final ViewNodeAdapter groupNodeAdapter=new ViewNodeAdapter(previousNode);
+          visited.add(groupNodeAdapter);
+          nodes.add(groupNodeAdapter);
+          previousNode=previousNode.getParentGroup();
+        }
+ else {
+          previousNode=null;
+        }
+      }
+    }
+    if (NodeHelpers.getVisibleNode(child.getNode()) != child.getNode()) {
+      continue;
+    }
+    visited.add(child);
+    nodes.add(child);
+    getPredecessorsInternal(child,-1,nodes,new HashSet<ViewNodeAdapter>());
+    getSuccessorsInternal(child,depth - 1,nodes,visited);
+  }
+}

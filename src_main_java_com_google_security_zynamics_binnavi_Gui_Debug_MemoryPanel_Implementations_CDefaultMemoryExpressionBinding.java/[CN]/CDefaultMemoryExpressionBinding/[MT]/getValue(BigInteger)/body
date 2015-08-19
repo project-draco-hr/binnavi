@@ -1,0 +1,8 @@
+{
+  if (m_memory.hasData(address.longValue(),4)) {
+    return BigInteger.valueOf(ByteHelpers.readDwordLittleEndian(m_memory.getData(address.longValue(),4),0));
+  }
+ else {
+    throw new CEvaluationException(String.format("Unknown memory address %s",address.toString(16)));
+  }
+}

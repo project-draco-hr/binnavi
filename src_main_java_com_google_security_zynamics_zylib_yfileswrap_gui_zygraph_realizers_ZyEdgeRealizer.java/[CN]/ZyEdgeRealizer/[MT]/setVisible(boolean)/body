@@ -1,0 +1,11 @@
+{
+  super.setVisible(visible);
+  for (  final IZyEdgeRealizerListener<EdgeType> listener : m_listeners) {
+    try {
+      listener.changedVisibility(this);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

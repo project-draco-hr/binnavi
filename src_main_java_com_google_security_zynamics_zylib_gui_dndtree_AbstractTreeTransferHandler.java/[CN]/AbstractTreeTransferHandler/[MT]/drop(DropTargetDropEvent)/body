@@ -1,0 +1,42 @@
+{
+  if (drawImage) {
+    clearImage();
+  }
+  final int action=dtde.getDropAction();
+  final Transferable transferable=dtde.getTransferable();
+  final Point pt=dtde.getLocation();
+  if (transferable.isDataFlavorSupported(TransferableNode.NODE_FLAVOR) && canPerformAction(tree,draggedNode,action,pt)) {
+    boolean gotData=false;
+    DefaultMutableTreeNode node=null;
+    try {
+      node=(DefaultMutableTreeNode)transferable.getTransferData(TransferableNode.NODE_FLAVOR);
+      gotData=true;
+    }
+ catch (    final IOException e) {
+      System.out.println(e);
+    }
+catch (    final UnsupportedFlavorException e) {
+      System.out.println(e);
+    }
+    if (gotData) {
+      final TreePath pathTarget=tree.getPathForLocation(pt.x,pt.y);
+      final DefaultMutableTreeNode newParentNode=(DefaultMutableTreeNode)pathTarget.getLastPathComponent();
+      if (executeDrop(tree,node,newParentNode,action)) {
+        dtde.acceptDrop(action);
+        dtde.dropComplete(true);
+        return;
+      }
+    }
+  }
+ else   if (canPerformAction(tree,dtde.getCurrentDataFlavors()[0],dtde.getTransferable(),action,pt)) {
+    final TreePath pathTarget=tree.getPathForLocation(pt.x,pt.y);
+    final DefaultMutableTreeNode newParentNode=(DefaultMutableTreeNode)pathTarget.getLastPathComponent();
+    if (executeDrop(tree,dtde.getTransferable(),newParentNode,action)) {
+      dtde.acceptDrop(action);
+      dtde.dropComplete(true);
+      return;
+    }
+  }
+  dtde.rejectDrop();
+  dtde.dropComplete(false);
+}

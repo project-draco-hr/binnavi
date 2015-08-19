@@ -1,0 +1,16 @@
+{
+  super((Window)null,"Function filter");
+  new CDialogEscaper(this);
+  CIconInitializer.initializeWindowIcons(this);
+  setLayout(new BorderLayout());
+  final JPanel innerPanel=new JPanel(new GridLayout(1,3));
+  innerPanel.add(typePanel=new CFunctionTypePanel(m_listeners));
+  add(innerPanel);
+  pack();
+  addWindowFocusListener(new WindowAdapter(){
+    @Override public void windowLostFocus(    final WindowEvent event){
+      dispose();
+    }
+  }
+);
+}

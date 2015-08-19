@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01439: Parent can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01440: Debug perspective model can not be null");
+  Preconditions.checkNotNull(rangeProvider,"IE01441: Range provider argument can not be null");
+  add(m_refreshButton);
+  final Action defaultAction=new CRefreshAction(parent,debugPerspectiveModel,rangeProvider,stackRangeProvider);
+  final Action askAction=new CAskRefreshAction(parent,debugPerspectiveModel);
+  m_buttonSynchronizer=new CMemoryRefreshButtonSynchronizer(m_refreshButton,debugPerspectiveModel,defaultAction,askAction);
+}

@@ -1,0 +1,17 @@
+{
+  if (m_containerNode == null) {
+    m_containerNode=getModuleContainerNode(CNodeExpander.findNode(getProjectTree(),m_database));
+  }
+  menu.add(new JMenuItem(CActionProxy.proxy(new CImportModuleAction(getParent(),m_database))));
+  menu.add(new JMenuItem(CActionProxy.proxy(new CRefreshRawModulesAction(getParent(),m_database))));
+  menu.add(new JMenuItem(CActionProxy.proxy(new CResolveAllFunctionsAction(menu,m_database))));
+  menu.add(new JSeparator());
+  final JMenu sortMenu=new JMenu("Sort");
+  final JRadioButtonMenuItem idMenu=new JRadioButtonMenuItem(new CActionSortModulesById(m_containerNode));
+  idMenu.setSelected(!m_containerNode.isSorted());
+  sortMenu.add(idMenu);
+  final JRadioButtonMenuItem nameMenu=new JRadioButtonMenuItem(new CActionSortModulesByName(m_containerNode));
+  nameMenu.setSelected(m_containerNode.isSorted());
+  sortMenu.add(nameMenu);
+  menu.add(sortMenu);
+}

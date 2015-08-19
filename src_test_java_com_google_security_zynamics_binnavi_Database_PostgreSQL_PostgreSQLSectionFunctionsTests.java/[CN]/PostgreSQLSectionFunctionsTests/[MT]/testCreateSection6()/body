@@ -1,0 +1,15 @@
+{
+  final INaviModule module=getKernel32Module();
+  final String sectionName=" SECTION NAME ";
+  final BigInteger startAddress=new BigInteger("10000",16);
+  final BigInteger endAddress=new BigInteger("20000",16);
+  final int sectionId=getProvider().createSection(module.getConfiguration().getId(),sectionName,null,startAddress,endAddress,SectionPermission.READ_WRITE_EXECUTE,new byte[]{});
+  module.close();
+  module.load();
+  final Section section=module.getContent().getSections().getSection(sectionId);
+  Assert.assertEquals(section.getName(),sectionName);
+  Assert.assertEquals(section.getStartAddress().toBigInteger(),startAddress);
+  Assert.assertEquals(section.getEndAddress().toBigInteger(),endAddress);
+  Assert.assertEquals(section.getSectionPermission(),SectionPermission.READ_WRITE_EXECUTE);
+  module.close();
+}

@@ -1,0 +1,39 @@
+{
+  if (!isEditable(coordinate)) {
+    return;
+  }
+  INaviInstruction instruction=internalData.get(coordinate.getRow()).first();
+  Pair<IComment,Pair<Integer,Integer>> commentAndIndex=getCommentAndIndexAtCoordinate(coordinate);
+  IComment comment=commentAndIndex.first();
+  Pair<Integer,Integer> indices=commentAndIndex.second();
+switch (event.getKeyCode()) {
+case KeyEvent.VK_UNDEFINED:
+switch (event.getKeyChar()) {
+case java.awt.Event.ENTER:
+      handleRegularKeyInComment(instruction,comment,indices,coordinate,event);
+    coordinate.setLine(coordinate.getLine() + 1);
+  coordinate.setFieldIndex(0);
+break;
+case java.awt.Event.BACK_SPACE:
+handleBackspaceKeyInComment(instruction,comment,indices,coordinate);
+break;
+case java.awt.Event.DELETE:
+handleDeleteKeyInComment(instruction,comment,indices,coordinate);
+break;
+default :
+handleRegularKeyInComment(instruction,comment,indices,coordinate,event);
+coordinate.setFieldIndex(coordinate.getFieldIndex() + 1);
+break;
+}
+break;
+case KeyEvent.VK_HOME:
+coordinate.setFieldIndex(0);
+break;
+case KeyEvent.VK_END:
+coordinate.setFieldIndex(indices.second() - indices.first());
+break;
+default :
+Logger.warning("Default case in keyTyped hit, investigate why.");
+break;
+}
+}

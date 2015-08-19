@@ -1,0 +1,37 @@
+{
+  assertEquals(7,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(96,m_graph.getRawView().getNodeCount());
+  final CTextNode textNode=m_graph.getRawView().getContent().createTextNode(Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null,"Hannes")));
+  assertEquals(8,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(97,m_graph.getRawView().getNodeCount());
+  final List<NaviNode> nodes=GraphHelpers.getNodes(m_graph);
+  final NaviNode cnn=searchNode(nodes,textNode);
+  assertTrue(textNode.isVisible());
+  assertEquals(textNode.isVisible(),cnn.isVisible());
+  textNode.setVisible(false);
+  assertFalse(textNode.isVisible());
+  assertEquals(textNode.isVisible(),cnn.isVisible());
+  textNode.setVisible(true);
+  assertTrue(textNode.isVisible());
+  assertEquals(textNode.isVisible(),cnn.isVisible());
+  assertFalse(textNode.isSelected());
+  assertEquals(textNode.isSelected(),cnn.isSelected());
+  textNode.setSelected(false);
+  assertFalse(textNode.isSelected());
+  assertEquals(textNode.isSelected(),cnn.isSelected());
+  textNode.setSelected(true);
+  assertTrue(textNode.isSelected());
+  assertEquals(textNode.isSelected(),cnn.isSelected());
+  assertEquals(textNode.getColor(),cnn.getRealizer().getFillColor());
+  textNode.setColor(Color.GREEN);
+  assertEquals(Color.GREEN,textNode.getColor());
+  assertEquals(textNode.getColor(),cnn.getRealizer().getFillColor());
+  textNode.setX(100);
+  assertEquals(100,textNode.getX(),0.1);
+  assertEquals(textNode.getX(),cnn.getX(),0.1);
+  textNode.setY(200);
+  assertEquals(200,textNode.getY(),0.1);
+  assertEquals(textNode.getY(),cnn.getY(),0.1);
+}

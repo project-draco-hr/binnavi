@@ -1,0 +1,21 @@
+{
+  super.setText("### ");
+  m_column=column;
+  m_value=value;
+  if (font == null) {
+    normalFont=new Font(getFont().getFontName(),Font.PLAIN,12);
+    normalBoldFont=new Font(getFont().getFontName(),Font.BOLD,12);
+  }
+ else {
+    normalFont=new Font(font.getName(),Font.PLAIN,font.getSize());
+    normalBoldFont=new Font(font.getName(),Font.BOLD,font.getSize());
+  }
+  m_view=table.getUnsortedView(row);
+  final GraphType graphType=m_view.getGraphType();
+  FunctionType functionType=FunctionType.NORMAL;
+  final INaviFunction function=container.getFunction(m_view);
+  if (function != null) {
+    functionType=function.getType();
+  }
+  setBackground(getBackgroundColor(table,isSelected,functionType,graphType));
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"Error: grouNode argument can not be null");
+  deleteComment(new Commentable(node,CommentScope.GLOBAL),commentId,userId);
+}

@@ -1,0 +1,17 @@
+{
+  m_tidBox.removeAllItems();
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    m_tidBox.setEnabled(false);
+  }
+ else {
+    final List<TargetProcessThread> threads=debugger.getProcessManager().getThreads();
+    for (    final TargetProcessThread thread : threads) {
+      m_tidBox.addItem(thread);
+    }
+    if (!threads.isEmpty()) {
+      m_tidBox.setSelectedIndex(0);
+    }
+    m_tidBox.setEnabled(true);
+  }
+}

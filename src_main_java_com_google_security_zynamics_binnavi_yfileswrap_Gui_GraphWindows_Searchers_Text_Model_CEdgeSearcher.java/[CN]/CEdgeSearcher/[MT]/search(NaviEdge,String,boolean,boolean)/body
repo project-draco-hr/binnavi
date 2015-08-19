@@ -1,0 +1,6 @@
+{
+  if (edge.getRealizerLabelCount() != 1) {
+    return new ArrayList<SearchResult>();
+  }
+  return CElementSearcher.search(edge,edge.getLabelContent(),searchString,regEx,caseSensitive);
+}

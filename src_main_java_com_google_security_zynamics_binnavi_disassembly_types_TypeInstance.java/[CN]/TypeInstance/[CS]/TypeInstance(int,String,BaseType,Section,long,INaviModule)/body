@@ -1,0 +1,11 @@
+{
+  Preconditions.checkArgument(id >= 0,"Error: id argument must be greater or equal to zero");
+  this.id=id;
+  this.name=name;
+  this.baseType=Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null");
+  this.section=Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  Preconditions.checkArgument(sectionOffset >= 0,"Error: section offset must be greater or equal to zero and ");
+  Preconditions.checkArgument(section.getStartAddress().toBigInteger().add(BigInteger.valueOf(sectionOffset)).compareTo(section.getEndAddress().toBigInteger()) <= 0,"Error: the offset of the type instance is not within section boundaries.");
+  this.module=Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  address=new TypeInstanceAddress(section.getStartAddress(),sectionOffset);
+}

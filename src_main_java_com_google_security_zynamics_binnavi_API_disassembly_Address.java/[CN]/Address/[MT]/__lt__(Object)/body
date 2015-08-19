@@ -1,0 +1,3 @@
+{
+  return getBigInteger(this).compareTo(getBigInteger(rhs)) < 0;
+}

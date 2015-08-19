@@ -1,0 +1,12 @@
+{
+  final List<TraceList> traces=getTraces();
+  int counter=0;
+  do {
+    final String name="Trace" + counter;
+    if (!hasTrace(name,traces)) {
+      return name;
+    }
+    ++counter;
+  }
+ while (true);
+}

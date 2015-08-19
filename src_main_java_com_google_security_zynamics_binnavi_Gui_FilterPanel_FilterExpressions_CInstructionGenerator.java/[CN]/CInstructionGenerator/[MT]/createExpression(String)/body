@@ -1,0 +1,13 @@
+{
+  final Pattern pattern=Pattern.compile(RULE_REGEX);
+  final Matcher matcher=pattern.matcher(text);
+  matcher.matches();
+  final String value=matcher.group(2);
+  try {
+    final List<INaviView> views=m_container.getViewsWithAddresses(Lists.newArrayList(new UnrelocatedAddress(new CAddress(new BigInteger(value,16)))),true);
+    return new CInstructionFilterExpression(views);
+  }
+ catch (  final CouldntLoadDataException e) {
+    return null;
+  }
+}

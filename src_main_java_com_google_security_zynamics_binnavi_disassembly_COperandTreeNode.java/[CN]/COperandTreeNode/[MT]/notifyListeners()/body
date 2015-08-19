@@ -1,0 +1,5 @@
+{
+  for (  final INaviOperandTreeNodeListener listener : listeners) {
+    listener.changedValue(COperandTreeNode.this);
+  }
+}

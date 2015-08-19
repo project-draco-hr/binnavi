@@ -1,0 +1,9 @@
+{
+  if (Double.compare(m_y1,y1) == 0) {
+    return;
+  }
+  m_y1=y1;
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.changedSourceY(this,y1);
+  }
+}

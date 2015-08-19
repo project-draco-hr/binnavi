@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Remove Breakpoint\" message to the debug client");
+  return sendPacket(new RemoveBreakpointsCommand(getMessageId(),addresses,type));
+}

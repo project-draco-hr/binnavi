@@ -1,0 +1,3 @@
+{
+  return typeInstanceCommentContainer.getCommented(comment);
+}

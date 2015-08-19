@@ -1,0 +1,3 @@
+{
+  m_block=Preconditions.checkNotNull(block,"IE01231: Block argument can not be null");
+}

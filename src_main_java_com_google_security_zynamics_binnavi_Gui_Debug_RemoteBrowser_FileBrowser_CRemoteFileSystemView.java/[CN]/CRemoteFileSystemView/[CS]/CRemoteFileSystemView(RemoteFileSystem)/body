@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(fileSystem,"IE01496: File system argument can not be null");
+  m_fileSystem=fileSystem;
+  m_defaultDirectory=new CRemoteFile(fileSystem.getDirectory().getName(),true);
+}

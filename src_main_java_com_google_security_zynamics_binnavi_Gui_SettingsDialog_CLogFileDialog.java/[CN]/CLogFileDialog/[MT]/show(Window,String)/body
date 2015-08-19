@@ -1,0 +1,5 @@
+{
+  final CLogFileDialog dialog=new CLogFileDialog(parent,content);
+  GuiHelper.centerChildToParent(parent,dialog,true);
+  dialog.setVisible(true);
+}

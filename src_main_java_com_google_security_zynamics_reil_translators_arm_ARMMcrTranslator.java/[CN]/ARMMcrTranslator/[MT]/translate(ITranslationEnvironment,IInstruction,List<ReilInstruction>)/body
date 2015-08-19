@@ -1,0 +1,5 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"MCR");
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  instructions.add(ReilHelpers.createUnknown(baseOffset++));
+}

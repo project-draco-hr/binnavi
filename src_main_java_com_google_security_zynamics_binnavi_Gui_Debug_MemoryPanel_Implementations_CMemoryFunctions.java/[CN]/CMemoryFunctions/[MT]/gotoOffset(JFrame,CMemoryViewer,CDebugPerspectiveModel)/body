@@ -1,0 +1,17 @@
+{
+  final IDebugger debugger=model.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    return;
+  }
+  final TargetProcessThread activeThread=debugger.getProcessManager().getActiveThread();
+  final Memory memory=debugger.getProcessManager().getMemory();
+  final CDefaultMemoryExpressionBinding binding=new CDefaultMemoryExpressionBinding(activeThread,memory);
+  final CGotoDialog dlg=new CGotoDialog(parent,model.getCurrentSelectedDebugger().getProcessManager().getMemoryMap(),binding,model.getGotoAddress());
+  dlg.setVisible(true);
+  final IAddress value=dlg.getValue();
+  if (value != null) {
+    model.setGotoAddress(value);
+    model.setActiveMemoryAddress(value,true);
+    view.requestFocusInWindow();
+  }
+}

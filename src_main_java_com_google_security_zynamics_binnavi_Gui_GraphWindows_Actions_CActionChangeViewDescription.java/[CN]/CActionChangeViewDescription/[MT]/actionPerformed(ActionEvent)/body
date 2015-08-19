@@ -1,0 +1,3 @@
+{
+  CGraphDialogs.showViewDescriptionDialog(m_parent,m_view);
+}

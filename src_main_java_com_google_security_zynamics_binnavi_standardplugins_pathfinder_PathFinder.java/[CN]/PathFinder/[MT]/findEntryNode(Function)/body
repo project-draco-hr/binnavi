@@ -1,0 +1,8 @@
+{
+  for (  final BasicBlock block : function.getGraph()) {
+    if (block.getAddress().equals(function.getAddress())) {
+      return block;
+    }
+  }
+  throw new IllegalStateException("Error: The given function has no block with the same address as the function address " + "which is an illegal state");
+}

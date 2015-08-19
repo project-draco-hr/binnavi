@@ -1,0 +1,4 @@
+{
+  final TypeInstance instance=typeInstanceContainer.createInstance("TYPEINSTANCE1",null,baseType,section,0);
+  typeInstanceContainer.setInstanceName(instance,"");
+}

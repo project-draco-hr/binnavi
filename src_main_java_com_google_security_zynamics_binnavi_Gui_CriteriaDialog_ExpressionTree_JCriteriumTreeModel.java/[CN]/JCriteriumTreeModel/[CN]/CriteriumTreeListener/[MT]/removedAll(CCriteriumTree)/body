@@ -1,0 +1,6 @@
+{
+  final JCriteriumTreeNode rootNode=(JCriteriumTreeNode)getRoot();
+  rootNode.removeAllChildren();
+  nodeStructureChanged(rootNode);
+  m_jtree.setSelectionPath(new TreePath(rootNode.getPath()));
+}

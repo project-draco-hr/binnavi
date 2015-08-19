@@ -1,0 +1,6 @@
+{
+  super("Delete");
+  m_parent=Preconditions.checkNotNull(parent,"IE01376: Parent argument can't be null");
+  m_traceListProvider=Preconditions.checkNotNull(traceListProvider,"IE01377: Trace list provider argument can't be null");
+  m_traces=Preconditions.checkNotNull(traces,"IE01378: Traces argument can't be null");
+}

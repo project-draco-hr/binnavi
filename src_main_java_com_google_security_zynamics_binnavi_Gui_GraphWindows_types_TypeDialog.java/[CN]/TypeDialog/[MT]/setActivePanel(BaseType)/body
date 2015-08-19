@@ -1,0 +1,29 @@
+{
+  if (baseType == null) {
+    currentPanel=atomicTypePanel;
+    return;
+  }
+switch (baseType.getCategory()) {
+case ATOMIC:
+    currentPanel=atomicTypePanel;
+  break;
+case POINTER:
+currentPanel=pointerTypePanel;
+break;
+case ARRAY:
+currentPanel=arrayTypePanel;
+break;
+case STRUCT:
+currentPanel=structureTypePanel;
+break;
+case UNION:
+currentPanel=unionTypePanel;
+break;
+case FUNCTION_PROTOTYPE:
+currentPanel=functionPrototypePanel;
+break;
+default :
+throw new IllegalStateException("Error: Base type: " + baseType.getCategory().toString() + " has no panel type associated to it.");
+}
+tabbedPane.setSelectedComponent(currentPanel);
+}

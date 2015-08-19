@@ -1,0 +1,5 @@
+{
+synchronized (m_threads) {
+    return new ArrayList<TargetProcessThread>(m_threads);
+  }
+}

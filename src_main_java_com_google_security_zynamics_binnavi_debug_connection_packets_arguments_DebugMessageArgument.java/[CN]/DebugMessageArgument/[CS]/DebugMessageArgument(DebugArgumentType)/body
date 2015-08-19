@@ -1,0 +1,3 @@
+{
+  appendInt(type.getValue());
+}

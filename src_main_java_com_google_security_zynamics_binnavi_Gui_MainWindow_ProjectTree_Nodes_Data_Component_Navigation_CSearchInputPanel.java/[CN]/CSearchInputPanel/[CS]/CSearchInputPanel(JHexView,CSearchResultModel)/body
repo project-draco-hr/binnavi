@@ -1,0 +1,14 @@
+{
+  super(new BorderLayout());
+  m_hexView=hexView;
+  m_model=model;
+  m_modeBox.setPreferredSize(new Dimension(150,m_modeBox.getMinimumSize().height));
+  m_inputField.setPreferredSize(new Dimension(150,m_inputField.getMinimumSize().height));
+  m_modeBox.setBorder(new EmptyBorder(0,0,0,5));
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.add(m_modeBox,BorderLayout.WEST);
+  innerPanel.add(m_inputField,BorderLayout.EAST);
+  add(innerPanel,BorderLayout.WEST);
+  m_modeBox.addItemListener(new InternalItemListener());
+  m_inputField.addActionListener(new InternalActionListener());
+}

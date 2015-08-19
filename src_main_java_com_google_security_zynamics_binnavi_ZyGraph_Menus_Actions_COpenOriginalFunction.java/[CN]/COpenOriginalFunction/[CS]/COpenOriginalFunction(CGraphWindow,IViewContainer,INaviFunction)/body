@@ -1,0 +1,6 @@
+{
+  super(String.format("Open original function '%s'",function.getName()));
+  m_parent=parent;
+  m_container=container;
+  m_function=function;
+}

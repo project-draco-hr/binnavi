@@ -1,0 +1,7 @@
+{
+  m_container=Preconditions.checkNotNull(container,"IE02305: container argument can not be null");
+  m_extender=Preconditions.checkNotNull(extender,"IE02306: extender argument can not be null");
+  setFloatable(false);
+  createAndAddIconToToolbar(this,new ClearAction(),"data/clearinstructionhighlighting_up.png","data/clearinstructionhighlighting_hover.png","data/clearinstructionhighlighting_down.png");
+  createAndAddIconToToolbar(this,new CloneAction(),"data/createnewgraph_up.png","data/createnewgraph_hover.png","data/createnewgraph_down.png");
+}

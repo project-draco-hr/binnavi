@@ -1,0 +1,13 @@
+{
+  for (  final INaviView view : views) {
+    try {
+      view.getConfiguration().setStared(false);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00176: " + "View could not be unstared";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be unstared.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view star was not updated."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

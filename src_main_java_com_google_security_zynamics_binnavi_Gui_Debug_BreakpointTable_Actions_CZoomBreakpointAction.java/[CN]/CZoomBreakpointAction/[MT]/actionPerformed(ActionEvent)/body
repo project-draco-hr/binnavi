@@ -1,0 +1,3 @@
+{
+  CBreakpointFunctions.zoomToBreakpoint(m_parent,m_graph,m_container,m_address);
+}

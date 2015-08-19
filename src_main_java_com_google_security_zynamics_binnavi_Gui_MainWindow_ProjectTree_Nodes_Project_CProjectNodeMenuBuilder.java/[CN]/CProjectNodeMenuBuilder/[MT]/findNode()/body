@@ -1,0 +1,3 @@
+{
+  return findProjectNode(CProjectTreeNodeHelpers.findDatabaseNode(getProjectTree(),m_database),m_projects[0]);
+}

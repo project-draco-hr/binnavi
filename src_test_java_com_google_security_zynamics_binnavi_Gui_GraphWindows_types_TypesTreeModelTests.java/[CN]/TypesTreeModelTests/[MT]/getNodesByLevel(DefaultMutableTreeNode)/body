@@ -1,0 +1,8 @@
+{
+  final Multimap<Integer,DefaultMutableTreeNode> nodesByLevel=HashMultimap.create();
+  for (final Enumeration<?> e=root.breadthFirstEnumeration(); e.hasMoreElements(); ) {
+    final DefaultMutableTreeNode node=(DefaultMutableTreeNode)e.nextElement();
+    nodesByLevel.put(node.getLevel(),node);
+  }
+  return nodesByLevel;
+}

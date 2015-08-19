@@ -1,0 +1,16 @@
+{
+  try {
+    final PreparedStatement statement=connection.prepareStatement("DELETE FROM " + CTableNames.BASE_TYPES_TABLE + " WHERE module_id = ? AND id = ?");
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setInt(2,baseType.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

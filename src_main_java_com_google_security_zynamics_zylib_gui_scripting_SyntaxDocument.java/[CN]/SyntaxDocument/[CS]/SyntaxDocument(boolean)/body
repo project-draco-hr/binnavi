@@ -1,0 +1,21 @@
+{
+  doc=this;
+  m_addBraces=addBraces;
+  rootElement=doc.getDefaultRootElement();
+  putProperty(DefaultEditorKit.EndOfLineStringProperty,"\n");
+  StyleConstants.setForeground(normal,Color.black);
+  StyleConstants.setFontSize(normal,DEFAULT_FONT_SIZE);
+  StyleConstants.setForeground(comment,Color.gray);
+  StyleConstants.setItalic(comment,true);
+  StyleConstants.setFontSize(comment,DEFAULT_FONT_SIZE);
+  StyleConstants.setForeground(keyword,Color.blue.darker());
+  StyleConstants.setFontSize(keyword,DEFAULT_FONT_SIZE);
+  StyleConstants.setForeground(quote,Color.red);
+  StyleConstants.setFontSize(quote,DEFAULT_FONT_SIZE);
+  StyleConstants.setForeground(type,Color.PINK.darker());
+  StyleConstants.setFontSize(type,DEFAULT_FONT_SIZE);
+  StyleConstants.setForeground(number,Color.green.darker());
+  StyleConstants.setFontSize(number,DEFAULT_FONT_SIZE);
+  StyleConstants.setForeground(constant,Color.red.darker().darker());
+  StyleConstants.setFontSize(constant,DEFAULT_FONT_SIZE);
+}

@@ -1,0 +1,6 @@
+{
+  super("Context Help");
+  m_parent=Preconditions.checkNotNull(parent,"IE02863: parent argument can not be null");
+  putValue(MNEMONIC_KEY,KeyEvent.VK_C);
+  putValue(ACCELERATOR_KEY,HotKeys.CONTEXT_HELP_HK.getKeyStroke());
+}

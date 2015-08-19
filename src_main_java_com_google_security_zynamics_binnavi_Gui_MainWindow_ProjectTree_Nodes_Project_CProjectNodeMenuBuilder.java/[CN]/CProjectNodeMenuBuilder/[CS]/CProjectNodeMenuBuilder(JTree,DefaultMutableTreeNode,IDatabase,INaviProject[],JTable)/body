@@ -1,0 +1,24 @@
+{
+  super(projectTree);
+  m_database=Preconditions.checkNotNull(database,"IE01982: Database argument can't be null");
+  Preconditions.checkNotNull(projects,"IE01983: Project argument can't be null");
+  m_parentNode=parentNode;
+  m_projects=projects.clone();
+  m_table=table;
+  m_loadProjectAction=CActionProxy.proxy(new CLoadProjectAction(projectTree,projects));
+  if (projects.length == 1) {
+    final INaviProject singleProject=projects[0];
+    if (m_table == null) {
+      singleProject.addListener(m_listener);
+    }
+    m_container=new CProjectContainer(database,singleProject);
+    m_searchViewAction=CActionProxy.proxy(new CSearchAction(projectTree,m_container));
+    m_forwardAction=CActionProxy.proxy(new CResolveAllFunctionsSingleProjectAction(projectTree,m_database,m_projects[0]));
+    updateActions(singleProject);
+  }
+ else {
+    m_addAddressSpaceAction=null;
+    m_searchViewAction=null;
+    m_forwardAction=null;
+  }
+}

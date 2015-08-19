@@ -1,0 +1,10 @@
+{
+  for (  final INaviModule module : modules) {
+    if (module.isInitialized()) {
+      CModuleLoader.loadModule(projectTree,module);
+    }
+ else {
+      CModuleInitializationFunctions.initializeAndLoadModule(projectTree,module);
+    }
+  }
+}

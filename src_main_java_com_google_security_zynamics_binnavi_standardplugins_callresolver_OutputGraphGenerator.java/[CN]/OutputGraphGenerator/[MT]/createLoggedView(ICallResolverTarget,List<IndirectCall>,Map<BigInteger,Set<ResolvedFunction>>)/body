@@ -1,0 +1,70 @@
+{
+  final View view=target.createView();
+  final Map<Function,FunctionNode> nodes=new HashMap<Function,FunctionNode>();
+  for (  final Entry<BigInteger,Set<ResolvedFunction>> element : resolvedAddresses.entrySet()) {
+    final BigInteger start=element.getKey();
+    final Set<ResolvedFunction> targets=element.getValue();
+    final IndirectCall call=IndirectCallResolver.findIndirectCall(target.getDebugger(),indirectCallAddresses,start);
+    FunctionNode sourceNode=nodes.get(call.getFunction());
+    if (sourceNode == null) {
+      sourceNode=view.createFunctionNode(call.getFunction());
+      nodes.put(call.getFunction(),sourceNode);
+    }
+    for (    final ResolvedFunction targetFunction : targets) {
+      final Function function=targetFunction.getFunction();
+      final MemoryModule memoryModule=targetFunction.getMemoryModule();
+      if (function != null) {
+        FunctionNode targetNode=nodes.get(function);
+        if (targetNode == null) {
+          targetNode=view.createFunctionNode(function);
+          nodes.put(function,targetNode);
+        }
+        try {
+          sourceNode.appendComment(start.toString(16).toUpperCase() + " -> " + function.getAddress().toHexString().toUpperCase());
+        }
+ catch (        final CouldntSaveDataException e) {
+          e.printStackTrace();
+        }
+catch (        final CouldntLoadDataException e) {
+          e.printStackTrace();
+        }
+        view.createEdge(sourceNode,targetNode,EdgeType.JumpUnconditional);
+      }
+ else       if (memoryModule != null) {
+        final String targetString=String.format("%s!%s",targetFunction.getMemoryModule().getName(),targetFunction.getAddress().toHexString().toUpperCase());
+        try {
+          sourceNode.appendComment(start.toString(16).toUpperCase() + " -> " + targetString);
+        }
+ catch (        final CouldntSaveDataException e) {
+          e.printStackTrace();
+        }
+catch (        final CouldntLoadDataException e) {
+          e.printStackTrace();
+        }
+      }
+ else {
+        final String targetString="???!" + targetFunction.getAddress().toHexString().toUpperCase();
+        try {
+          sourceNode.appendComment(start.toString(16).toUpperCase() + " -> " + targetString);
+        }
+ catch (        final CouldntSaveDataException e) {
+          e.printStackTrace();
+        }
+catch (        final CouldntLoadDataException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+  for (  final Module module : target.getModules()) {
+    final Callgraph callgraph=module.getCallgraph();
+    for (    final FunctionEdge edge : callgraph.getEdges()) {
+      final FunctionNode source=nodes.get(edge.getSource().getFunction());
+      final FunctionNode targetNode=nodes.get(edge.getTarget().getFunction());
+      if ((source != null) && (targetNode != null)) {
+        view.createEdge(source,targetNode,EdgeType.JumpUnconditional);
+      }
+    }
+  }
+  return view;
+}

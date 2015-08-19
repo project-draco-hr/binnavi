@@ -1,0 +1,4 @@
+{
+  final ImageProducer imageProducer=new FilteredImageSource(inImage.getSource(),filter);
+  return Toolkit.getDefaultToolkit().createImage(imageProducer);
+}

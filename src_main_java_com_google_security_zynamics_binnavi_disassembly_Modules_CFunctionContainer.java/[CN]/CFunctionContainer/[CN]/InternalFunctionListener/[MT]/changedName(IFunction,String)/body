@@ -1,0 +1,9 @@
+{
+  final INaviView view=m_module.getContent().getViewContainer().getView((INaviFunction)function);
+  try {
+    view.getConfiguration().setName(name);
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

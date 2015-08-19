@@ -1,0 +1,31 @@
+{
+  final List<IMainWindowMenuPlugin> plugins=new ArrayList<IMainWindowMenuPlugin>();
+  for (  @SuppressWarnings("rawtypes") final IPlugin plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof IMainWindowMenuPlugin) {
+      plugins.add((IMainWindowMenuPlugin)plugin);
+    }
+  }
+  final JMenu menu=new JMenu("Plugins");
+  menu.setMnemonic('U');
+  menu.add(CActionProxy.proxy(new CActionOpenScriptingDialog(getParent())));
+  menu.add(CActionProxy.proxy(new CActionOpenLogConsole()));
+  menu.addSeparator();
+  menu.add(CActionProxy.proxy(new CPluginManagementAction(getParent())));
+  menu.add(CActionProxy.proxy(new CPluginsReloadAction()));
+  menu.addSeparator();
+  for (  final IMainWindowMenuPlugin plugin : plugins) {
+    try {
+      final List<JMenuItem> menus=plugin.extendPluginMenu();
+      for (      final JMenuItem m : menus) {
+        menu.add(m);
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+      final String innerMessage="E00092: " + "Plugin caused an unexpected exception";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
+      CNaviErrorDialog.show(getParent(),innerMessage,innerDescription,exception);
+    }
+  }
+  return menu;
+}

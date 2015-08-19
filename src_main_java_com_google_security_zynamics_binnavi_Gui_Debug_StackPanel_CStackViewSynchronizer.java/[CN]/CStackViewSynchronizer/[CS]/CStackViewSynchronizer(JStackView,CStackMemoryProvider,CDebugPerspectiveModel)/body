@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(stackView,"IE01506: Stack view argument can not be null");
+  Preconditions.checkNotNull(model,"IE01507: Model argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01508: Debug perspective model argument can not be null");
+  m_stackView=stackView;
+  m_model=model;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  m_debugPerspectiveModel.addListener(m_listener);
+  synchronizeDebuggers(null,m_debugPerspectiveModel.getCurrentSelectedDebugger());
+}

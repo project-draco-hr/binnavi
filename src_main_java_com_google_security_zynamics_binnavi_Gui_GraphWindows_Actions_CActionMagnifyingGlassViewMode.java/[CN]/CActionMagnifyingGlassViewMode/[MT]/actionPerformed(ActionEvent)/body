@@ -1,0 +1,4 @@
+{
+  CGraphMagnifier.toogleMagnifyingGlass(m_graph);
+  updateButton();
+}

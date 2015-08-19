@@ -1,0 +1,19 @@
+{
+  try {
+    final CallableStatement statement=connection.prepareCall("{ call update_member_offsets(?, ?, ?, ?, ?) }");
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setArray(2,connection.createArrayOf("int4",members.toArray()));
+      statement.setInt(3,delta);
+      statement.setArray(4,connection.createArrayOf("int4",implicitlyUpdatedMembers.toArray()));
+      statement.setInt(5,implicitDelta);
+      statement.execute();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

@@ -1,0 +1,54 @@
+{
+  final String query="INSERT INTO " + CTableNames.NODES_TABLE + "( view_id, parent_id, type, x, y, width, height, color, bordercolor, "+ " selected, visible) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  final PreparedStatement preparedStatement=provider.getConnection().getConnection().prepareStatement(query,java.sql.Statement.RETURN_GENERATED_KEYS);
+  int counter=0;
+  for (  final INaviViewNode node : nodes) {
+    String nodeType=null;
+    if (node instanceof CCodeNode) {
+      nodeType=CODE;
+      codeNodeIndices.add(counter);
+    }
+ else     if (node instanceof CFunctionNode) {
+      nodeType=FUNCTION;
+      functionNodeIndices.add(counter);
+    }
+ else     if (node instanceof INaviGroupNode) {
+      nodeType=GROUP;
+      groupNodeIndices.add(counter);
+      groupNodeMap.put(counter,(INaviGroupNode)node);
+    }
+ else     if (node instanceof CTextNode) {
+      nodeType=TEXT;
+      textNodeIndices.add(counter);
+    }
+    counter++;
+    preparedStatement.setInt(1,newViewId);
+    preparedStatement.setNull(2,Types.INTEGER);
+    preparedStatement.setObject(3,nodeType,Types.OTHER);
+    preparedStatement.setDouble(4,node.getX());
+    preparedStatement.setDouble(5,node.getY());
+    preparedStatement.setDouble(6,node.getWidth());
+    preparedStatement.setDouble(7,node.getHeight());
+    preparedStatement.setInt(8,node.getColor().getRGB());
+    preparedStatement.setInt(9,node.getBorderColor().getRGB());
+    preparedStatement.setBoolean(10,node.isSelected());
+    preparedStatement.setBoolean(11,node.isVisible());
+    preparedStatement.addBatch();
+  }
+  preparedStatement.executeBatch();
+  final ResultSet resultSet=preparedStatement.getGeneratedKeys();
+  int lastId=0;
+  try {
+    while (resultSet.next()) {
+      if (resultSet.isFirst()) {
+        lastId=resultSet.getInt(1);
+        break;
+      }
+    }
+  }
+  finally {
+    preparedStatement.close();
+    resultSet.close();
+  }
+  return lastId;
+}

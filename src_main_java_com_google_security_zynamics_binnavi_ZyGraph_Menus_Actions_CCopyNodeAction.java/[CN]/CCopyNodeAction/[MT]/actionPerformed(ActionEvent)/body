@@ -1,0 +1,3 @@
+{
+  ClipboardCopier.copyToClipboard(m_node);
+}

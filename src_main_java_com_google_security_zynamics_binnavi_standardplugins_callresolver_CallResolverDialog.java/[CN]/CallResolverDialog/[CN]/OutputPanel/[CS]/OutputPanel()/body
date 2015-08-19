@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  outputArea.setEditable(false);
+  outputArea.setFont(GuiHelper.MONOSPACED_FONT);
+  add(new JScrollPane(outputArea));
+}

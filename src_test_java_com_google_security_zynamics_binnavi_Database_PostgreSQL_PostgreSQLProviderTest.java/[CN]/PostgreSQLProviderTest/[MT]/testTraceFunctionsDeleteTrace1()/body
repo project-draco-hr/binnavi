@@ -1,0 +1,19 @@
+{
+  final CProject project=getProvider().createProject("SOME_NEW_PROJECT");
+  getProvider().createTrace(project,"SOME_TRACE_NAME_ONE","SOME_TRACE_DESCRIPTION_ONE");
+  getProvider().createTrace(project,"SOME_TRACE_NAME_TWO","SOME_TRACE_DESCRIPTION_TWO");
+  project.load();
+  final int projectTraceCount=project.getContent().getTraceCount();
+  assertEquals(2,projectTraceCount);
+  PostgreSQLTraceFunctions.deleteTrace((AbstractSQLProvider)getProvider(),project.getContent().getTraces().get(0));
+  project.close();
+  final List<INaviProject> projects=getProvider().loadProjects();
+  INaviProject project2=null;
+  for (  final INaviProject cProject : projects) {
+    if (cProject.getConfiguration().getId() == project.getConfiguration().getId()) {
+      project2=cProject;
+    }
+  }
+  project2.load();
+  assertEquals(projectTraceCount - 1,project2.getContent().getTraceCount());
+}

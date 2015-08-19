@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    return connection.sendSearchMessage(start,size,data);
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

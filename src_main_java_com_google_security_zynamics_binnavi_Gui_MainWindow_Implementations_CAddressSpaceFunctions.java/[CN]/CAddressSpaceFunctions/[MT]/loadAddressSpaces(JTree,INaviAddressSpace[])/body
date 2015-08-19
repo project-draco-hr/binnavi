@@ -1,0 +1,33 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final CDefaultProgressOperation operation=new CDefaultProgressOperation("Loading address spaces",false,true);
+      operation.getProgressPanel().setMaximum(addressSpaces.length);
+      for (      final INaviAddressSpace addressSpace : addressSpaces) {
+        operation.getProgressPanel().setText("Loading address spaces" + ": '" + addressSpace.getConfiguration().getName() + "'");
+        try {
+          addressSpace.load();
+          new SwingInvoker(){
+            @Override protected void operation(){
+              CNodeExpander.expandNode(projectTree,addressSpace);
+            }
+          }
+.invokeLater();
+        }
+ catch (        final CouldntLoadDataException exception) {
+          CUtilityFunctions.logException(exception);
+          final String message="E00109: " + "Address space could not be loaded";
+          final String description=CUtilityFunctions.createDescription(String.format("The address space '%s' could not be loaded. Try loading the address space again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",addressSpace.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The address space was not loaded."});
+          CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(projectTree),message,description,exception);
+        }
+catch (        final LoadCancelledException e) {
+        }
+ finally {
+          operation.getProgressPanel().next();
+        }
+      }
+      operation.stop();
+    }
+  }
+.start();
+}

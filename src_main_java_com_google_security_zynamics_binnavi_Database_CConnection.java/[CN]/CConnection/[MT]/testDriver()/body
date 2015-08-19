@@ -1,0 +1,8 @@
+{
+  try {
+    Class.forName(m_databaseConfiguration.getDriver());
+  }
+ catch (  final ClassNotFoundException exception) {
+    throw new CouldntLoadDriverException("E00044: Couldn't load database driver " + m_databaseConfiguration.getDriver() + ".");
+  }
+}

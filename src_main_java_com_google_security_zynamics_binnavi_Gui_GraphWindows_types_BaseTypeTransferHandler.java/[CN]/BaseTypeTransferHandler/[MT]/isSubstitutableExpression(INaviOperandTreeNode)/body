@@ -1,0 +1,3 @@
+{
+  return node.getChildren().size() == 0 || (node.hasAddendSibling() && node.determineAddendValue() >= 0);
+}

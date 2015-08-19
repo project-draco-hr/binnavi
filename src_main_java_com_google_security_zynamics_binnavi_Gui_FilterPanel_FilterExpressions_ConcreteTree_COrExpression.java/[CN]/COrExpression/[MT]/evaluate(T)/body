@@ -1,0 +1,8 @@
+{
+  for (  final IFilterExpression<T> expression : m_expressions) {
+    if (expression.evaluate(module)) {
+      return true;
+    }
+  }
+  return false;
+}

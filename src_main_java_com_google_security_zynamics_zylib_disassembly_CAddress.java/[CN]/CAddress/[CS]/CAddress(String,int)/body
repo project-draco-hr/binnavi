@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(address,"Address argument can not be null");
+  Preconditions.checkArgument(base > 0,"Base must be positive");
+  m_address=new BigInteger(address,base).longValue();
+}

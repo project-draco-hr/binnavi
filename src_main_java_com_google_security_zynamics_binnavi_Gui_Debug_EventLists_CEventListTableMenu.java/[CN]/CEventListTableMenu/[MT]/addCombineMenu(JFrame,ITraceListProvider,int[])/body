@@ -1,0 +1,13 @@
+{
+  addSeparator();
+  final JMenu combineMenu=new JMenu("Combine Traces");
+  final List<TraceList> traces=getTraces(traceProvider,selectedRows);
+  combineMenu.add(CActionProxy.proxy(new CActionCombineTraces(parent,traceProvider,traces)));
+  combineMenu.add(CActionProxy.proxy(new CActionIntersectTraces(parent,traceProvider,traces)));
+  if (traces.size() == 2) {
+    combineMenu.addSeparator();
+    combineMenu.add(CActionProxy.proxy(new CActionDifferenceTraces(parent,traceProvider,traces.get(0),traces.get(1))));
+    combineMenu.add(CActionProxy.proxy(new CActionDifferenceTraces(parent,traceProvider,traces.get(1),traces.get(0))));
+  }
+  add(combineMenu);
+}

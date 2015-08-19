@@ -1,0 +1,3 @@
+{
+  this.realizer=Preconditions.checkNotNull(realizer,"Error: Node realizer can't be null.");
+}

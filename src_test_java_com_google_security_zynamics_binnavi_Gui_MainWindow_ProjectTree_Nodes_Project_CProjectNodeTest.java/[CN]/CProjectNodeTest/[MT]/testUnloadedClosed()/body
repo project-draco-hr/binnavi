@@ -1,0 +1,14 @@
+{
+  final CProjectNode node=new CProjectNode(m_tree,new DefaultMutableTreeNode(),m_database,m_project,new CProjectContainer(m_database,m_project));
+  assertEquals("Name (0)",node.toString());
+  m_project.load();
+  assertEquals("Name (1)",node.toString());
+  final CAddressSpace addressSpace=m_project.getContent().createAddressSpace("Fark");
+  assertEquals("Name (2)",node.toString());
+  m_project.getContent().removeAddressSpace(addressSpace);
+  assertEquals("Name (1)",node.toString());
+  m_project.close();
+  node.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_project,"m_listeners"),"m_listeners")).isEmpty());
+}

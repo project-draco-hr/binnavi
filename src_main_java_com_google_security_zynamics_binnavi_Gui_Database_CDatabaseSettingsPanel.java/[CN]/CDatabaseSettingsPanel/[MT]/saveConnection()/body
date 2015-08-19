@@ -1,0 +1,20 @@
+{
+  final boolean connectionChanged=!database.getConfiguration().getPassword().equals(new String(passwordField.getPassword())) || !database.getConfiguration().getHost().equals(databaseHostField.getText()) || !database.getConfiguration().getName().equals(databaseNameField.getText())|| !database.getConfiguration().getUser().equals(databaseUserField.getText());
+  database.getConfiguration().setAutoConnect(autoConnectBox.isSelected());
+  database.getConfiguration().setDescription(databaseDescriptionField.getText());
+  database.getConfiguration().setPassword(new String(passwordField.getPassword()));
+  database.getConfiguration().setSavePassword(savePasswordBox.isSelected());
+  database.getConfiguration().setHost(databaseHostField.getText());
+  database.getConfiguration().setName(databaseNameField.getText());
+  database.getConfiguration().setUser(databaseUserField.getText());
+  database.getConfiguration().setIdentity(databaseIdentityField.getText());
+  if (database.isConnected() && connectionChanged && (CMessageBox.showYesNoQuestion(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),"To adopt the changes you have to re-connect to the database. Do you want to reconnect now?") == JOptionPane.YES_OPTION)) {
+    if (database.close()) {
+      CDatabaseConnectionFunctions.openDatabase(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),database);
+    }
+ else {
+      CMessageBox.showInformation(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),"Could not close the selected database because views or other elements from the database are still open.");
+    }
+  }
+  ConfigManager.instance().saveSettings((JFrame)SwingUtilities.getAncestorOfClass(JFrame.class,this));
+}

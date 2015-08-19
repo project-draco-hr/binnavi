@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(parent,"IE01622: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01623: Graph argument can not be null");
+  Preconditions.checkNotNull(graphPanel,"IE01624: Action provider argument can't be null");
+  m_settings=graph.getSettings();
+  createButtons(parent,graph,graphPanel);
+  m_navigationPanel=new CGraphToolBarNavigationPanel(graph,modules,parent);
+  add(m_navigationPanel);
+  setFloatable(false);
+  m_settings.getDisplaySettings().addListener(m_internalListener);
+}

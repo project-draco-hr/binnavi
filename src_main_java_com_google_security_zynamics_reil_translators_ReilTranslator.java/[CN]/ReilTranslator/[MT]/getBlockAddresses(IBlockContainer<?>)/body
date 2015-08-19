@@ -1,0 +1,26 @@
+{
+  return CollectionHelpers.map(function.getBasicBlocks(),new ICollectionMapper<ICodeContainer<?>,IAddress>(){
+    private boolean isDelayedBranch(    final ReilInstruction instruction){
+      return instruction.getMnemonic().equals(ReilHelpers.OPCODE_JCC) && ReilHelpers.isDelayedBranch(instruction);
+    }
+    @Override public IAddress map(    final ICodeContainer<?> block){
+      final IInstruction lastInstruction=Iterables.getFirst(block.getInstructions(),null);
+      final ReilTranslator<IInstruction> translator=new ReilTranslator<IInstruction>();
+      try {
+        final ReilGraph reilGraph=translator.translate(new StandardEnvironment(),lastInstruction);
+        final ReilBlock lastNode=reilGraph.getNodes().get(reilGraph.getNodes().size() - 1);
+        final ReilInstruction lastReilInstruction=Iterables.getLast(lastNode.getInstructions());
+        if (isDelayedBranch(lastReilInstruction)) {
+          return ReilHelpers.toReilAddress(Iterables.get(block.getInstructions(),1).getAddress());
+        }
+ else {
+          return ReilHelpers.toReilAddress(block.getAddress());
+        }
+      }
+ catch (      final InternalTranslationException e) {
+        return ReilHelpers.toReilAddress(block.getAddress());
+      }
+    }
+  }
+);
+}

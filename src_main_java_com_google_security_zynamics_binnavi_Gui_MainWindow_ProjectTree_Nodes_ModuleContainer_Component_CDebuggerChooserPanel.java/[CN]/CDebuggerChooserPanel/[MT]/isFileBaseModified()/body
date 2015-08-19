@@ -1,0 +1,5 @@
+{
+  final String fileBaseText=getFileBase();
+  final boolean fileBaseChanged="".equals(fileBaseText) || !new CAddress(Convert.hexStringToLong(fileBaseText)).equals(m_module.getConfiguration().getFileBase());
+  return fileBaseChanged;
+}

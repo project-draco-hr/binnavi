@@ -1,0 +1,12 @@
+{
+  final MemoryModule newModule=new MemoryModule(module);
+  modules.add(newModule);
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.addedModule(Process.this,newModule);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

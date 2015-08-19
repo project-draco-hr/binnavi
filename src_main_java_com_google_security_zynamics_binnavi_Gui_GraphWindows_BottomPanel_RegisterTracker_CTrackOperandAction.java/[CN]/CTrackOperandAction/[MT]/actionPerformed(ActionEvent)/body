@@ -1,0 +1,9 @@
+{
+  try {
+    final CTrackingResult result=CTracking.track(m_resultsContainer.getGraph().getRawView(),m_instruction,m_register,m_options);
+    m_resultsContainer.setResult(result);
+  }
+ catch (  final InternalTranslationException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

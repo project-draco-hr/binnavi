@@ -1,0 +1,7 @@
+{
+  module.load();
+  final TypeInstance typeInstance=module.getContent().getTypeInstanceContainer().getTypeInstances().get(0);
+  final RawTypeInstance rawTypeInstance=provider.loadTypeInstance(module,typeInstance.getId());
+  Assert.assertEquals(typeInstance.getId(),rawTypeInstance.getId());
+  Assert.assertEquals(typeInstance.getBaseType().getId(),rawTypeInstance.getTypeId());
+}

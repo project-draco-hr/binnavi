@@ -1,0 +1,4 @@
+{
+  m_nodeHoverer.nodeHovered(node,y);
+  m_model.getGraph().updateViews();
+}

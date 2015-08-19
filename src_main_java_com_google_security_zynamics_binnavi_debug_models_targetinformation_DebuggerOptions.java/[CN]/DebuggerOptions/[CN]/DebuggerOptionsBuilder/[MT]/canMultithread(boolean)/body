@@ -1,0 +1,4 @@
+{
+  this.canMultithread=value;
+  return this;
+}

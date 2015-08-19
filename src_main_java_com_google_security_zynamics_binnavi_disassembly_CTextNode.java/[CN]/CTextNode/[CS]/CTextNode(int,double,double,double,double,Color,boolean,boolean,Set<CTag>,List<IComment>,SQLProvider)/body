@@ -1,0 +1,6 @@
+{
+  super(nodeId,x,y,width,height,color,color.darker().darker(),selected,visible,tags,provider);
+  m_provider=Preconditions.checkNotNull(provider,"IE02393: provider argument can not be null");
+  CommentManager.get(m_provider).initializeTextNodeComment(this,comments);
+  CommentManager.get(m_provider).addListener(m_internalCommentListener);
+}

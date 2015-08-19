@@ -1,0 +1,4 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  getProvider().getViewsWithAddresses(module,null,true);
+}

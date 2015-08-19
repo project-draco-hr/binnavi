@@ -1,0 +1,9 @@
+{
+synchronized (m_threads) {
+    for (    final TargetProcessThread thread : m_threads) {
+      thread.removeListener(m_threadListener);
+    }
+    m_threads.clear();
+  }
+  fireTableDataChanged();
+}

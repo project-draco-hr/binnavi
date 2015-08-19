@@ -1,0 +1,12 @@
+{
+  final Project newProject=new Project(Database.this,project,m_nodeTagManager,m_viewTagManager);
+  m_projects.add(newProject);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.addedProject(Database.this,newProject);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

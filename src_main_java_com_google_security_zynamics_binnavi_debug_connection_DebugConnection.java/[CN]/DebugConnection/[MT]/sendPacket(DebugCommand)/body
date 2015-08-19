@@ -1,0 +1,5 @@
+{
+  debugClientSocket.getOutputStream().write(message.toByteArray());
+  debugClientSocket.getOutputStream().flush();
+  return message.getPacketId();
+}

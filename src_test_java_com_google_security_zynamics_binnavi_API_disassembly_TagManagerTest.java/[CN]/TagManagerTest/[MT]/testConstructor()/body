@@ -1,0 +1,4 @@
+{
+  assertEquals("Tag Manager",tagManager.toString());
+  assertEquals(0,tagManager.getRootTags().size());
+}

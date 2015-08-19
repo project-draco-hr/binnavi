@@ -1,0 +1,19 @@
+{
+  m_module=Preconditions.checkNotNull(module,"IE00126: Module argument can not be null");
+  m_address=Preconditions.checkNotNull(address,"IE00127: Address argument can not be null");
+  m_mnemonic=Preconditions.checkNotNull(mnemonic,"IE00128: Mnemonic argument can not be null");
+  Preconditions.checkArgument(!mnemonic.isEmpty(),"IE00129: Mnemonic argument can not be empty");
+  Preconditions.checkNotNull(operands,"IE00130: Operands argument can not be null");
+  verifyOperands(operands);
+  Preconditions.checkNotNull(data,"IE02195: Data argument can not be null");
+  m_architecture=Preconditions.checkNotNull(architecture,"IE02196: Architecture argument can not be null");
+  Preconditions.checkArgument(!architecture.isEmpty(),"IE02197: Architecture argument can not be empty");
+  m_provider=Preconditions.checkNotNull(provider,"IE00132: SQL provider argument can not be null");
+  m_saved=saved;
+  m_operands=new ArrayList<COperandTree>(operands);
+  m_data=data.clone();
+  CommentManager.get(m_provider).addListener(m_internalCommentListener);
+  for (  final COperandTree operand : operands) {
+    operand.setNaviInstruction(this);
+  }
+}

@@ -1,0 +1,17 @@
+{
+  if (!SwingUtilities.isEventDispatchThread()) {
+    try {
+      SwingUtilities.invokeAndWait(new Runnable(){
+        @Override public void run(){
+          operation();
+        }
+      }
+);
+    }
+ catch (    final Exception e) {
+    }
+  }
+ else {
+    operation();
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (module.isLoaded()) {
+    for (    final INaviFunction sourceFunction : module.getContent().getFunctionContainer().getFunctions()) {
+      if (sourceFunction.getForwardedFunctionModuleId() == function.getModule().getConfiguration().getId() && sourceFunction.getForwardedFunctionAddress().equals(function.getAddress())) {
+        return sourceFunction;
+      }
+    }
+  }
+  throw new MaybeNullException();
+}

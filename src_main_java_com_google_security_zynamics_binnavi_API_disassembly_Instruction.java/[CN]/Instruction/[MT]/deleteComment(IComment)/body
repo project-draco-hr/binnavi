@@ -1,0 +1,11 @@
+{
+  try {
+    m_instruction.deleteGlobalComment(comment);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntDeleteException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+  for (  final IInstructionListener listener : m_listeners) {
+    listener.deletedComment(this,comment);
+  }
+}

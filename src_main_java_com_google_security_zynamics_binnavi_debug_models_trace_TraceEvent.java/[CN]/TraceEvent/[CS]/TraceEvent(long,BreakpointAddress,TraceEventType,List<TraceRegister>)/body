@@ -1,0 +1,6 @@
+{
+  traceEventBreakpointAddress=Preconditions.checkNotNull(address,"IE00775: Address argument can not be null");
+  traceEventType=Preconditions.checkNotNull(type,"IE00776: Type argument can not be null");
+  traceEventSourceThreadId=tid;
+  traceValues=ImmutableList.copyOf(values);
+}

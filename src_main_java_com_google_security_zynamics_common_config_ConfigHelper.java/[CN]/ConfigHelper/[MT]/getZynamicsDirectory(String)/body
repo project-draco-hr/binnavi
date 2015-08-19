@@ -1,0 +1,3 @@
+{
+  return SystemHelpers.getApplicationDataDirectory() + File.separator + (SystemHelpers.isRunningWindows() ? companyName : ("." + companyName.toLowerCase()))+ File.separator;
+}

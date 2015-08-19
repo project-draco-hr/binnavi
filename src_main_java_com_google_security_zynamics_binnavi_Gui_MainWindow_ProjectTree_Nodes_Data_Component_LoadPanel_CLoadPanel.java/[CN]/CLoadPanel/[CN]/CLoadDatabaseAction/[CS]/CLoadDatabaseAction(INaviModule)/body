@@ -1,0 +1,5 @@
+{
+  super("Load");
+  m_module=module;
+  putValue(Action.SMALL_ICON,new ImageIcon(CMain.class.getResource("data/load_from_database.png")));
+}

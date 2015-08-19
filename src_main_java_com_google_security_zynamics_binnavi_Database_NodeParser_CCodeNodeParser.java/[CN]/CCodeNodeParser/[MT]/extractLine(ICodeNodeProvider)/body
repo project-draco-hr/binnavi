@@ -1,0 +1,32 @@
+{
+  if (dataset.isAfterLast()) {
+    return null;
+  }
+  final InstructionLine row=createLine(dataset);
+  OperandTree tree=new OperandTree(dataset.getExpressionTreeId());
+  int operandPositionCounter=0;
+  do {
+    final IAddress currentAddress=dataset.getInstructionAddress();
+    if (!row.getAddress().equals(currentAddress) || (row.getBasicBlock() != dataset.getNodeId())) {
+      break;
+    }
+    final Integer position=dataset.getOperandPosition();
+    if ((position == null) || (position != operandPositionCounter)) {
+      if (tree.getNodes().size() != 0) {
+        row.getOperands().add(tree);
+      }
+      tree=new OperandTree(dataset.getExpressionTreeId());
+      operandPositionCounter=position == null ? 0 : position;
+    }
+    if (position != null) {
+      final int moduleId=dataset.getModule();
+      final INaviModule module=modules.get(moduleId);
+      tree.getNodes().add(createNewOperand(module,dataset));
+    }
+  }
+ while (dataset.next());
+  if (tree.getNodes().size() != 0) {
+    row.getOperands().add(tree);
+  }
+  return row;
+}

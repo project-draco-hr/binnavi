@@ -1,0 +1,28 @@
+{
+  final List<IGraphPanel> panels=collectPanelsWithAddress(debugger,address);
+  if (panels.isEmpty()) {
+    return null;
+  }
+ else {
+    final List<IGraphPanel> activeWindowPanels=new ArrayList<IGraphPanel>();
+    final List<IGraphPanel> inactiveWindowPanels=new ArrayList<IGraphPanel>();
+    for (    final IGraphPanel panel : panels) {
+      final CGraphWindow parent=panel.getModel().getParent();
+      if (parent.isActive() && parent.isActiveGraph(panel)) {
+        return panel;
+      }
+ else       if (parent.isActive()) {
+        activeWindowPanels.add(panel);
+      }
+ else {
+        inactiveWindowPanels.add(panel);
+      }
+    }
+    if (activeWindowPanels.isEmpty()) {
+      return inactiveWindowPanels.get(0);
+    }
+ else {
+      return activeWindowPanels.get(0);
+    }
+  }
+}

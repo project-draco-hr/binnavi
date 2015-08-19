@@ -1,0 +1,23 @@
+{
+  if (breakpoints.size() != 0) {
+    final Set<BreakpointAddress> echoAddresses=Sets.newHashSet();
+    final Set<BreakpointAddress> stepAddresses=Sets.newHashSet();
+    final Set<BreakpointAddress> regularAddresses=Sets.newHashSet();
+    for (    final Breakpoint breakpoint : breakpoints) {
+switch (breakpoint.getType()) {
+case ECHO:
+        echoAddresses.add(breakpoint.getAddress());
+      break;
+case STEP:
+    stepAddresses.add(breakpoint.getAddress());
+  break;
+case REGULAR:
+regularAddresses.add(breakpoint.getAddress());
+break;
+}
+}
+removeBreakpoints(echoAddresses,BreakpointType.ECHO);
+removeBreakpoints(stepAddresses,BreakpointType.STEP);
+removeBreakpoints(regularAddresses,BreakpointType.REGULAR);
+}
+}

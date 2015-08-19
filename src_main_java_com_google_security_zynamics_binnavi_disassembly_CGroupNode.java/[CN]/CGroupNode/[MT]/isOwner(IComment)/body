@@ -1,0 +1,3 @@
+{
+  return CUserManager.get(m_provider).isOwner(comment);
+}

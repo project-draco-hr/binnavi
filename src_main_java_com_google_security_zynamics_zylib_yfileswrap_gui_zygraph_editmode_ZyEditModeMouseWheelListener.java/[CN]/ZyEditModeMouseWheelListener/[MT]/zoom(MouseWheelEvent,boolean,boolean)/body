@@ -1,0 +1,11 @@
+{
+  if (!hasSelectedNode() || !centerSelected) {
+    super.mouseWheelMoved(event);
+  }
+ else   if (zoomOut) {
+    centerZoom(1 - (m_zyGraph.getSettings().getMouseSettings().getZoomSensitivity() * ZOOM_SUB_FACTOR),centerSelected);
+  }
+ else {
+    centerZoom(1 + (m_zyGraph.getSettings().getMouseSettings().getZoomSensitivity() * ZOOM_SUB_FACTOR),centerSelected);
+  }
+}

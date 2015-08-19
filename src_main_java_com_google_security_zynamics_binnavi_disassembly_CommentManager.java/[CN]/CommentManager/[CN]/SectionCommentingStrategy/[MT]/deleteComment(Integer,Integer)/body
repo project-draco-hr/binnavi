@@ -1,0 +1,3 @@
+{
+  provider.deleteSectionComment(section.getModule().getConfiguration().getId(),section.getId(),commentId,userId);
+}

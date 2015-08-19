@@ -1,0 +1,3 @@
+{
+  debugTargetSettings=Preconditions.checkNotNull(target,"IE01669: target argument can not be null");
+}

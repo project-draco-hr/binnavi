@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(registerModel,"Error: Argument registerModel can't be null");
+  registerModel.addListener(m_listener);
+  setFocusable(true);
+  setOpaque(true);
+  initializeListeners();
+  m_registerModel=registerModel;
+  updateLongestRegisterName();
+  setBackground(m_backgroundColor);
+  updatePreferredSize();
+}

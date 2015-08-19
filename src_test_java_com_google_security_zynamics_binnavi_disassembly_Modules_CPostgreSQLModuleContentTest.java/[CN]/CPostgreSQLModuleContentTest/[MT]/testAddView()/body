@@ -1,0 +1,33 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent1=module.getContent();
+  assertNotNull(moduleContent1);
+  final CView view=moduleContent1.getViewContainer().createView("name","desc");
+  final CView view2=(CView)moduleContent1.getViewContainer().getViews().get(1);
+  assertNotNull(view);
+  assertNotNull(view2);
+  view2.load();
+  view2.getContent().createFunctionNode(module.getContent().getFunctionContainer().getFunctions().get(0));
+  view2.getConfiguration().setDescription("foobar");
+  view2.getConfiguration().setName("barfoo");
+  try {
+    moduleContent1.getViewContainer().createView(null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    moduleContent1.getViewContainer().createView("name",null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    moduleContent1.close();
+    moduleContent1.getViewContainer().createView("name","desc");
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

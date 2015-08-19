@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(EDITED_TYPE_INSTANCE_COMMENT);
+}

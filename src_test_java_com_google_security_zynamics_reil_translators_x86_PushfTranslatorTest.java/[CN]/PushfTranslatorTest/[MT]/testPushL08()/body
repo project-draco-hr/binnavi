@@ -1,0 +1,17 @@
+{
+  interpreter.setRegister("esp",BigInteger.valueOf(0x2000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("PF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("AF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ZF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("SF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("OF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  final List<MockOperandTree> operands=new FilledList<MockOperandTree>();
+  final IInstruction instruction=new MockInstruction("pushf",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(BigInteger.valueOf(0x1FFC),interpreter.getVariableValue("esp"));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(0x8D7,interpreter.readMemoryWord(0x1FFC));
+  assertEquals(8,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+}

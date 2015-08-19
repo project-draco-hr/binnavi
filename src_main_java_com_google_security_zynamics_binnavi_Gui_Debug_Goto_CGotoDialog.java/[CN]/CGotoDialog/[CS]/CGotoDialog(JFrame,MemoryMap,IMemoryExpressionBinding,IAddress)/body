@@ -1,0 +1,27 @@
+{
+  super(parent,"Goto Address",ModalityType.APPLICATION_MODAL);
+  m_memoryMap=memoryMap;
+  m_bindings=bindings;
+  if (address != null) {
+    offsetField.setText("0x" + address.toHexString());
+  }
+  setResizable(false);
+  new CDialogEscaper(this);
+  m_parent=parent;
+  setLayout(new BorderLayout());
+  final JPanel inputPanel=new JPanel();
+  inputPanel.setLayout(new BorderLayout());
+  inputPanel.setBorder(new TitledBorder(""));
+  final JPanel fooPanel=new JPanel(new BorderLayout());
+  final JLabel label=new JLabel("Address" + ": ");
+  fooPanel.add(label,BorderLayout.WEST);
+  fooPanel.add(offsetField,BorderLayout.CENTER);
+  inputPanel.add(fooPanel,BorderLayout.NORTH);
+  final CPanelTwoButtons panel=new CPanelTwoButtons(new InternalListener(),"OK","Cancel");
+  getContentPane().add(inputPanel,BorderLayout.NORTH);
+  getContentPane().add(panel,BorderLayout.SOUTH);
+  getRootPane().setDefaultButton(panel.getFirstButton());
+  pack();
+  setSize(300,100);
+  setLocationRelativeTo(null);
+}

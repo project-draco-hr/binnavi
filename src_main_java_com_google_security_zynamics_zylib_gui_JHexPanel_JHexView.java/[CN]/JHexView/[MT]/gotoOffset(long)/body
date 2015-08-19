@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(m_dataProvider,"Error: No data provider active");
+  if (getCurrentOffset() == offset) {
+    if (!isPositionVisible(getSelectionStart())) {
+      scrollToPosition(getSelectionStart());
+    }
+    return;
+  }
+  long realOffset;
+  if (offset < m_baseAddress) {
+    realOffset=offset;
+  }
+ else {
+    realOffset=offset - m_baseAddress;
+  }
+  if ((realOffset < 0) || (realOffset >= m_dataProvider.getDataLength())) {
+    throw new IllegalArgumentException("Error: Invalid offset");
+  }
+  setCurrentPosition(2 * realOffset);
+}

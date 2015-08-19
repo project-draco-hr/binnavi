@@ -1,0 +1,7 @@
+{
+  final List<ITraceEvent> events=new ArrayList<ITraceEvent>();
+  for (  final int row : rows) {
+    events.add(m_tracesPanel.getEventsTable().getTreeTableModel().getEvents().get(row));
+  }
+  return events;
+}

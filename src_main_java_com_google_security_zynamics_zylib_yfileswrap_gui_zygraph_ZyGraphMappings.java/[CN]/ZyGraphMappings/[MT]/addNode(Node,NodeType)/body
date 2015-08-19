@@ -1,0 +1,4 @@
+{
+  m_nodeMap.put(n,n2);
+  m_rawNodeMap.put(n2.getRawNode(),n2);
+}

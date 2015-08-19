@@ -1,0 +1,13 @@
+{
+  final CModule module2=(CModule)getDatabase().getContent().getModules().get(0);
+  module2.load();
+  final CModuleContent moduleContent2=module2.getContent();
+  assertNotNull(moduleContent2.getNativeCallgraph());
+  module2.close();
+  try {
+    moduleContent2.getViewContainer().getNativeCallgraphView();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

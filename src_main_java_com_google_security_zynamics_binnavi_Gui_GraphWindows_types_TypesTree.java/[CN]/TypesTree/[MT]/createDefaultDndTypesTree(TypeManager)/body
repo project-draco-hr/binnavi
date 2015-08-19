@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(typeManager,"Error: typeManager argument can not be null");
+  final TypesTree typesTree=CreateDragAndDropTypesTree(typeManager);
+  typesTree.setModel(TypesTreeModel.createDefaultModel(typeManager));
+  return typesTree;
+}

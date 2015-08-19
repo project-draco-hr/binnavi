@@ -1,0 +1,5 @@
+IInstructionGraph graph
+AnalysisDirection direction
+ILattice<LatticeElementType> lattice
+Map<IInstructionGraphEdge,LatticeElementType> stateMap
+Set<IInstructionGraphEdge> traversedEdges

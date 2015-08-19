@@ -1,0 +1,3 @@
+{
+  getProvider().deleteLocalEdgeComment(edge,1,null);
+}

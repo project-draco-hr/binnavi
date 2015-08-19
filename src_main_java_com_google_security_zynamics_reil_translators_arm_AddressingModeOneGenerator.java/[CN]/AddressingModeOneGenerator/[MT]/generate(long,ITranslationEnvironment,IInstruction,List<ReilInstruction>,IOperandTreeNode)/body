@@ -1,0 +1,44 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  if (rootNode.getChildren().get(0).getType() == ExpressionType.IMMEDIATE_INTEGER) {
+    return immediateRotateZero(rootNode.getChildren().get(0).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("ROR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.IMMEDIATE_INTEGER)) {
+    return immediateROR(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if (rootNode.getChildren().get(0).getType() == ExpressionType.REGISTER) {
+    return register(rootNode.getChildren().get(0).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("LSL") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.IMMEDIATE_INTEGER)) {
+    return lslImmediate(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("LSL") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.REGISTER)) {
+    return lslRegister(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("LSR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.IMMEDIATE_INTEGER)) {
+    return lsrImmediate(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("LSR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.REGISTER)) {
+    return lsrRegister(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("ASR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.IMMEDIATE_INTEGER)) {
+    return asrImmediate(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("ASR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.REGISTER)) {
+    return asrRegister(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("ROR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.IMMEDIATE_INTEGER)) {
+    return rorImmediate(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("ROR") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)&& (rootNode.getChildren().get(0).getChildren().get(1).getType() == ExpressionType.REGISTER)) {
+    return rorRegister(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue(),rootNode.getChildren().get(0).getChildren().get(1).getValue());
+  }
+ else   if ((rootNode.getChildren().get(0).getType() == ExpressionType.OPERATOR) && rootNode.getChildren().get(0).getValue().equals("RRX") && (rootNode.getChildren().get(0).getChildren().get(0).getType() == ExpressionType.REGISTER)) {
+    return rrxRegister(baseOffset,environment,instructions,rootNode.getChildren().get(0).getChildren().get(0).getValue());
+  }
+ else {
+    throw new InternalTranslationException("Error: AddressOperandTypeOne OperandTree is not valid" + instruction.getMnemonic() + " "+ instruction.getAddress().toString());
+  }
+}

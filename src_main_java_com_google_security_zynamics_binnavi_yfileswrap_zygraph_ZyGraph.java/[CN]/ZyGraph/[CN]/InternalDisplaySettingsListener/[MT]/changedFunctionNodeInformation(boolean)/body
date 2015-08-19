@@ -1,0 +1,8 @@
+{
+  for (  final NaviNode node : getMappings().getNodes()) {
+    if (node.getRawNode() instanceof INaviFunctionNode) {
+      (((ZyNodeRealizer<?>)getGraph().getRealizer(node.getNode()))).regenerate();
+    }
+  }
+  updateViews();
+}

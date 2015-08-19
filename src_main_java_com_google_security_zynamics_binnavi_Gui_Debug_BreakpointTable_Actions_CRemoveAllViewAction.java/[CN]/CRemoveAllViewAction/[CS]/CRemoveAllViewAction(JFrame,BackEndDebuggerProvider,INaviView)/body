@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(parent,"IE01354: Parent argument can not be null");
+  Preconditions.checkNotNull(debuggerProvider,"IE01355: Manager argument can not be null");
+  Preconditions.checkNotNull(view,"IE01356: View argument can not be null");
+  m_parent=parent;
+  m_debuggerProvider=debuggerProvider;
+  m_view=view;
+  putValue(SHORT_DESCRIPTION,"Remove all view breakpoints");
+}

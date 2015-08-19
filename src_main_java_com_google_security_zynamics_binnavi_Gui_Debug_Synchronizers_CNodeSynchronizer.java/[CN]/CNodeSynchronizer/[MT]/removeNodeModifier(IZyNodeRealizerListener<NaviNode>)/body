@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(modifier,"IE01513: Modifier argument can not be null");
+  m_graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      node.removeNodeModifier(modifier);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

@@ -1,0 +1,18 @@
+{
+  if (m_nativeCallgraphView.isLoaded() && !m_nativeCallgraphView.close()) {
+    return false;
+  }
+  if (!closeViews(m_nativeFlowgraphs)) {
+    return false;
+  }
+  if (!closeViews(m_customViews)) {
+    return false;
+  }
+  for (  final INaviView view : m_customViews) {
+    view.removeListener(m_viewListener);
+  }
+  for (  final INaviView view : m_nativeFlowgraphs) {
+    view.removeListener(m_viewListener);
+  }
+  return true;
+}

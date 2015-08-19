@@ -1,0 +1,38 @@
+{
+  Preconditions.checkNotNull(data,"IE01300: Data argument can not be null");
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  int addressSize=-1;
+  List<RegisterDescription> registers=null;
+  DebuggerOptions options=null;
+  try {
+    final DocumentBuilder builder=factory.newDocumentBuilder();
+    final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+    final NodeList nodes=document.getFirstChild().getChildNodes();
+    for (int i=0; i < nodes.getLength(); ++i) {
+      final Node node=nodes.item(i);
+      final String nodeName=node.getNodeName();
+      if ("registers".equals(nodeName)) {
+        registers=parseRegisterInformation(node);
+      }
+ else       if ("size".equals(nodeName)) {
+        addressSize=Integer.valueOf(node.getTextContent());
+      }
+ else       if ("options".equals(nodeName)) {
+        options=parseOptionsInformation(node);
+      }
+ else {
+        throw new MessageParserException(String.format("Found unknown node '%s' in target information string",nodeName));
+      }
+    }
+  }
+ catch (  final ParserConfigurationException|SAXException|IOException exception) {
+    CUtilityFunctions.logException(exception);
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+  if (addressSize == -1) {
+    throw new MessageParserException("E00070: IE01043: Received invalid target information string (missing address size information)");
+  }
+  Preconditions.checkNotNull(registers,"IE01044: Received invalid target information string (missing registers information)");
+  Preconditions.checkNotNull(options,"IE01046: Received invalid target information string (missing options information)");
+  return new TargetInformation(addressSize,registers,options);
+}

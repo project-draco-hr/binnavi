@@ -1,0 +1,5 @@
+{
+  if (history.canRedo()) {
+    history.redo();
+  }
+}

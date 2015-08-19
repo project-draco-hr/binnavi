@@ -1,0 +1,13 @@
+{
+  List<IComment> currentComments=new ArrayList<IComment>();
+  try {
+    currentComments=m_node.getComments().appendLocalCodeNodeComment(comment);
+  }
+ catch (  final CouldntSaveDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntSaveDataException(exception);
+  }
+catch (  final CouldntLoadDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntLoadDataException(exception);
+  }
+  return currentComments;
+}

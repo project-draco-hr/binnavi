@@ -1,0 +1,3 @@
+{
+  return new CStateChange(m_factory.createNodeClickedMiddleState(m_node,event),true);
+}

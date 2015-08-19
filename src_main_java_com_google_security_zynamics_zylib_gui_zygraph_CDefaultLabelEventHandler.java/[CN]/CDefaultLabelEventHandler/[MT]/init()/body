@@ -1,0 +1,20 @@
+{
+  m_keyBehaviourMap.put(KeyEvent.VK_UP,new CCursorKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_DOWN,new CCursorKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_LEFT,new CCursorKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_RIGHT,new CCursorKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_TAB,new CTabKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_HOME,new CHomeKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_END,new CEndKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_INSERT,new CInsertKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_DELETE,new CDelKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_BACK_SPACE,new CBackspaceKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(KeyEvent.VK_ENTER,new CReturnKeyBehavior(m_undoManager));
+  m_keyBehaviourMap.put(null,new CCharKeyBehavior(m_undoManager));
+  m_ctrlKeyBehaviourMap.put(KeyEvent.VK_A,new CSelectAllKeyBehavior(m_undoManager));
+  m_ctrlKeyBehaviourMap.put(KeyEvent.VK_X,new CCutKeyBehavior(m_undoManager));
+  m_ctrlKeyBehaviourMap.put(KeyEvent.VK_C,new CCopyKeyBehavior(m_undoManager));
+  m_ctrlKeyBehaviourMap.put(KeyEvent.VK_V,new CPasteKeyBehavior(m_undoManager));
+  m_ctrlKeyBehaviourMap.put(KeyEvent.VK_Y,new CRedoKeyBehavior(m_undoManager));
+  m_ctrlKeyBehaviourMap.put(KeyEvent.VK_Z,new CUndoKeyBehavior(m_undoManager));
+}

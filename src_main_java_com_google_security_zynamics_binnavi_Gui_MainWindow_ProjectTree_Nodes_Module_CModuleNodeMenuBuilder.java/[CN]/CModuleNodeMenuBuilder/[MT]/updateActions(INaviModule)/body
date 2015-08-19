@@ -1,0 +1,8 @@
+{
+  m_loadModulesAction.putValue("Name",CLoadModuleAction.generateActionString(module));
+  m_loadModulesAction.setEnabled(module.getConfiguration().getRawModule().isComplete() && !module.isLoaded());
+  m_initializeModuleAction.setEnabled(!module.isInitialized() && module.getConfiguration().getRawModule().isComplete());
+  m_resolveAction.setEnabled(module.isLoaded());
+  m_resolveAllAction.setEnabled(module.isLoaded());
+  m_searchAction.setEnabled(module.isLoaded());
+}

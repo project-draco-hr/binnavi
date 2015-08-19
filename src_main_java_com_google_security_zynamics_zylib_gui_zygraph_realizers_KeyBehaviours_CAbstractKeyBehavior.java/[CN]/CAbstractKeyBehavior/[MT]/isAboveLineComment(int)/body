@@ -1,0 +1,10 @@
+{
+  final int nonCommentLineYPos=getLabelContent().getNonPureCommentLineIndexOfModelAt(lineYPos);
+  if (nonCommentLineYPos < 0) {
+    return false;
+  }
+  if (nonCommentLineYPos <= lineYPos) {
+    return false;
+  }
+  return true;
+}

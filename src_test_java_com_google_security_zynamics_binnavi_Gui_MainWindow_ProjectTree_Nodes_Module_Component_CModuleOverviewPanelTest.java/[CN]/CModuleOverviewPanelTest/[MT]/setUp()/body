@@ -1,0 +1,17 @@
+{
+  ConfigManager.instance().read();
+  final JTree tree=new JTree();
+  m_database=new MockDatabase(m_provider);
+  m_project=new CProject(1,"Mock Project","Mock Project Description",new Date(),new Date(),0,new ArrayList<DebuggerTemplate>(),m_provider);
+  m_project.load();
+  final DebuggerTemplate template=new DebuggerTemplate(1,"Mock Debugger","localhaus",88,m_provider);
+  m_module=new CModule(123,"Name","Comment",new Date(),new Date(),"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),template,null,Integer.MAX_VALUE,false,m_provider);
+  m_database.getContent().getDebuggerTemplateManager().addDebugger(template);
+  m_viewContainer=new CModuleContainer(m_database,m_module);
+  m_component=new CModuleOverviewPanel(tree,m_database,null,m_module,m_viewContainer);
+  m_saveButton=(JButton)ReflectionHelpers.getField(m_component,"m_saveButton");
+  m_editPanel=(CStandardEditPanel)ReflectionHelpers.getField(m_component,"m_stdEditPanel");
+  m_fileBaseAddr=(JTextField)ReflectionHelpers.getField(ReflectionHelpers.getField(m_component,"m_debuggerPanel"),"m_fileBaseAddr");
+  m_imageBaseAddr=(JTextField)ReflectionHelpers.getField(ReflectionHelpers.getField(m_component,"m_debuggerPanel"),"m_imageBaseAddr");
+  m_debuggerCombo=(CDebuggerComboBox)ReflectionHelpers.getField(ReflectionHelpers.getField(m_component,"m_debuggerPanel"),"m_debuggerCombo");
+}

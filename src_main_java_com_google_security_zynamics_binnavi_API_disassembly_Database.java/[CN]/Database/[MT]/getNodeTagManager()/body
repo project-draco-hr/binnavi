@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalArgumentException("Error: The database is not loaded yet");
+  }
+  return m_nodeTagManager;
+}

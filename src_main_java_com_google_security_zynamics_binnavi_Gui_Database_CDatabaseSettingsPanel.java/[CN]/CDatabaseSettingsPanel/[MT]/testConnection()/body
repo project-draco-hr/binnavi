@@ -1,0 +1,39 @@
+{
+  testButton.setEnabled(false);
+  if (databaseIdentityField.getText().isEmpty() || databaseIdentityField.getText() == null) {
+    CMessageBox.showInformation(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),"Could not test the connection to the database because the identity name is not set.");
+    testButton.setEnabled(true);
+    return;
+  }
+  if (databaseUserField.getText().isEmpty() || databaseUserField.getText() == null) {
+    CMessageBox.showInformation(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),"Could not test the connection to the database because the user name is not set.");
+    testButton.setEnabled(true);
+    return;
+  }
+  if (new String(passwordField.getPassword()).isEmpty()) {
+    CMessageBox.showInformation(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),"Could not test the connection to the database because the password is not set.");
+    testButton.setEnabled(true);
+    return;
+  }
+  new Thread(){
+    @Override public void run(){
+      final CProgressPanel panel=new CProgressPanel("Testing database connection",true,false,false);
+      final IProgressOperation operation=new IProgressOperation(){
+        @Override public String getDescription(){
+          return "Testing DB Connection";
+        }
+        @Override public CProgressPanel getProgressPanel(){
+          return panel;
+        }
+      }
+;
+      CGlobalProgressManager.instance().add(operation);
+      panel.start();
+      final CDatabaseConfiguration configuration=new CDatabaseConfiguration(database,new ListenerProvider<IDatabaseListener>(),"CONNECTION TEST",database.getConfiguration().getDriver(),databaseHostField.getText(),databaseNameField.getText(),databaseUserField.getText(),new String(passwordField.getPassword()),databaseIdentityField.getText(),false,false);
+      CDatabaseConnector.testConnection(SwingUtilities.getWindowAncestor(CDatabaseSettingsPanel.this),configuration);
+      CGlobalProgressManager.instance().remove(operation);
+      testButton.setEnabled(true);
+    }
+  }
+.start();
+}

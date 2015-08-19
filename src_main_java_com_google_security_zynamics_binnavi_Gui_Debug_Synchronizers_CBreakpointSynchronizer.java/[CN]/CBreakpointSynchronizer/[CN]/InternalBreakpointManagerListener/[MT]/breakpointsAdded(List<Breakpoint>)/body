@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(breakpoints,"IE00735: breakpoints argument can not be null");
+  for (  final Breakpoint breakpoint : breakpoints) {
+    if (breakpoint.getType() == BreakpointType.REGULAR) {
+      CBreakpointPainter.paintBreakpoints(m_manager,m_graph,breakpoint.getAddress());
+    }
+  }
+}

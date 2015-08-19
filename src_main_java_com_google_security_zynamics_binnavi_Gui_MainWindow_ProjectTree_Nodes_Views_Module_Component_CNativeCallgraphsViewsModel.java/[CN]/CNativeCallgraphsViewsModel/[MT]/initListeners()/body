@@ -1,0 +1,5 @@
+{
+  if (m_module.isLoaded()) {
+    m_module.getContent().getViewContainer().getNativeCallgraphView().addListener(m_viewListener);
+  }
+}

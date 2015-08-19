@@ -1,0 +1,26 @@
+{
+  final List<INaviInstruction> instructions=new ArrayList<INaviInstruction>();
+  final List<CCodeNode> createNodes=new ArrayList<CCodeNode>();
+  final INaviBasicBlock block=blockNode.getBlock();
+  for (  final INaviInstruction instruction : block) {
+    instructions.add(instruction.cloneInstruction());
+  }
+  if (!instructions.isEmpty()) {
+    final CCodeNode node=view.getContent().createCodeNode(function,instructions);
+    node.setColor(new Color(221,234,244));
+    if (node.getAddress().equals(function.getAddress()) && (blockNode.getChildren().size() == 0)) {
+      node.setBorderColor(new Color(-6250496));
+    }
+ else     if (node.getAddress().equals(function.getAddress())) {
+      node.setBorderColor(new Color(-16736256));
+    }
+ else     if (blockNode.getChildren().size() == 0) {
+      node.setBorderColor(new Color(-6291456));
+    }
+    if (parentGroup != null) {
+      parentGroup.addElement(node);
+    }
+    createNodes.add(node);
+    map.put(blockNode,node);
+  }
+}

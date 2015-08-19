@@ -1,0 +1,25 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final List<INaviView> views=module.getContent().getViewContainer().getViews();
+  final INaviView view=views.get(264);
+  view.load();
+  PostgreSQLViewFunctions.starView((AbstractSQLProvider)getProvider(),(CView)view,true);
+  view.close();
+  module.close();
+  final INaviModule module2=getProvider().loadModules().get(0);
+  module2.load();
+  final List<INaviView> views2=module2.getContent().getViewContainer().getViews();
+  final INaviView view2=views2.get(264);
+  view2.load();
+  assertTrue(view2.isStared());
+  PostgreSQLViewFunctions.starView((AbstractSQLProvider)getProvider(),(CView)view2,false);
+  view2.close();
+  module2.close();
+  final INaviModule module3=getProvider().loadModules().get(0);
+  module3.load();
+  final List<INaviView> views3=module3.getContent().getViewContainer().getViews();
+  final INaviView view3=views3.get(264);
+  view3.load();
+  assertFalse(view3.isStared());
+}

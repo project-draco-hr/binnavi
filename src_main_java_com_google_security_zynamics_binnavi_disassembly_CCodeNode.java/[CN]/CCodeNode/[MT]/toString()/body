@@ -1,0 +1,9 @@
+{
+  final StringBuilder description=new StringBuilder("Code Node " + getId() + "\n");
+  for (  final IInstruction instruction : codeNodeInstructions) {
+    description.append("  ");
+    description.append(instruction.toString());
+    description.append('\n');
+  }
+  return description.toString();
+}

@@ -1,0 +1,5 @@
+{
+  super("Initial Flow graph Settings");
+  m_parent=Preconditions.checkNotNull(parent,"IE01845: Parent argument can not be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_INITIAL_FLOWGRAPH_SETTINGS".charAt(0));
+}

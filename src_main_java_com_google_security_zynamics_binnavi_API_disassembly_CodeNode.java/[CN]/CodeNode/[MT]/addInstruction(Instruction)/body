@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(instruction,"Error: Instruction argument can not be null");
+  m_node.addInstruction(instruction.getNative(),null);
+  return instruction;
+}

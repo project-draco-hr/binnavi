@@ -1,0 +1,23 @@
+{
+switch (node.getType()) {
+case SYMBOL:
+case IMMEDIATE_INTEGER:
+case REGISTER:
+case IMMEDIATE_FLOAT:
+case EXPRESSION_LIST:
+    throw new MaybeNullException();
+case OPERATOR:
+  if (node.getChildren().size() == 1) {
+    return getMemoryAccessNode(node.getChildren().get(0));
+  }
+ else {
+    throw new MaybeNullException();
+  }
+case MEMDEREF:
+return node;
+case SIZE_PREFIX:
+return getMemoryAccessNode(node.getChildren().get(0));
+default :
+throw new IllegalArgumentException("IE00702: Unknown node type");
+}
+}

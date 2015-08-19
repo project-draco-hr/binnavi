@@ -1,0 +1,6 @@
+{
+  super("Add Tag to selected Nodes");
+  m_tag=Preconditions.checkNotNull(tag,"IE01781: Tag can't be null.");
+  m_parent=Preconditions.checkNotNull(parent,"IE02311: Parent argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE02312: graph argument can not be null");
+}

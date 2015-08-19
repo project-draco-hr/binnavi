@@ -1,0 +1,8 @@
+{
+  final MockThreadListener listener=new MockThreadListener();
+  m_thread.addListener(listener);
+  m_internalThread.setState(com.google.security.zynamics.binnavi.debug.models.processmanager.ThreadState.SUSPENDED);
+  assertEquals("changedState;",listener.events);
+  assertEquals(ThreadState.Suspended,m_thread.getState());
+  m_thread.removeListener(listener);
+}

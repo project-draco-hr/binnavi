@@ -1,0 +1,27 @@
+{
+  final TreePath path=getTreePath(event);
+  if (path == null) {
+    return;
+  }
+  if (event.getButton() == 1) {
+    final Object obj=path.getLastPathComponent();
+    if (obj instanceof CSelectionHistoryTreeNode) {
+      final CSelectionHistoryTreeNode treenode=(CSelectionHistoryTreeNode)obj;
+      final List<NaviNode> selection=treenode.getSnapshot().getSelection();
+      if (new HashSet<NaviNode>(selection).equals(m_graph.getSelectedNodes())) {
+        unselectNodes(selection);
+      }
+ else {
+        selectNodes(selection);
+      }
+    }
+ else     if (obj instanceof CNodeNode) {
+      final CNodeNode treenode=(CNodeNode)obj;
+      final NaviNode graphNode=treenode.getNode();
+      final boolean graphNodeSelected=graphNode.getRawNode().isSelected();
+      m_graph.removeListener(m_graphSelectionListener);
+      m_graph.selectNode(graphNode,!graphNodeSelected);
+      m_graph.addListener(m_graphSelectionListener);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can't be null");
+  final IZyNodeRealizer realizer=node.getRealizer();
+  Preconditions.checkNotNull(realizer,"Error: Node does not belong to the graph");
+  final double offset=realizer.getNodeContent().getLineHeight() * line;
+  final Point2D oldViewPoint=graph.getView().getViewPoint2D();
+  graph.getView().setCenter(realizer.getCenterX(),(realizer.getCenterY() - (realizer.getHeight() / 2)) + offset);
+  if (animate) {
+    final Point2D newCenter=graph.getView().getCenter();
+    graph.getView().setViewPoint((int)oldViewPoint.getX(),(int)oldViewPoint.getY());
+    graph.getView().focusView(graph.getView().getZoom(),newCenter,graph.getSettings().getLayoutSettings().getAnimateLayout());
+  }
+  graph.updateViews();
+}

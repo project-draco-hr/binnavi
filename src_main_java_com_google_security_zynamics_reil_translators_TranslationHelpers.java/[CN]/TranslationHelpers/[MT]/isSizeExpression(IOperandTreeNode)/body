@@ -1,0 +1,3 @@
+{
+  return OperandSize.isSizeString(expression.getValue());
+}

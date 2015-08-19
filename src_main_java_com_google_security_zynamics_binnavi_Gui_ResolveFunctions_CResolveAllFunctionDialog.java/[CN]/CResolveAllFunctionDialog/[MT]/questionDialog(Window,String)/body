@@ -1,0 +1,6 @@
+{
+  if (JOptionPane.YES_OPTION == CMessageBox.showYesNoCancelQuestion(owner,message)) {
+    return resolveAllFunctions();
+  }
+  return 0;
+}

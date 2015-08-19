@@ -1,0 +1,18 @@
+{
+  m_graphSynchronizer.dispose();
+  m_bottomPanel.dispose();
+  m_centerPanel.dispose();
+  m_model.dispose();
+  final INaviView view=m_model.getGraph().getRawView();
+  view.close();
+  m_menuBar.dipose();
+  m_toolBar.dispose();
+  m_menuBar.removeAll();
+  m_toolBar.removeAll();
+  m_menuBar=null;
+  m_toolBar=null;
+  m_rightPanel.dispose();
+  m_leftPanel.dispose();
+  m_dialogs.dispose();
+  removeAll();
+}

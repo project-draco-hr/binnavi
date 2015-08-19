@@ -1,0 +1,3 @@
+{
+  return getRealizer(m_edge).getTargetPoint().x;
+}

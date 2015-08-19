@@ -1,0 +1,17 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(address,"IE01066: Address argument can not be null");
+    Preconditions.checkNotNull(data,"IE01067: Data argument can not be null");
+  }
+ else {
+    if (address != null) {
+      throw new IllegalArgumentException("IE01068: Address argument must be null");
+    }
+    if (data != null) {
+      throw new IllegalArgumentException("IE01069: Data argument must be null");
+    }
+  }
+  startAddress=address;
+  memoryData=data == null ? null : data.clone();
+}

@@ -1,0 +1,26 @@
+{
+  if (viewNotificationContainer.getDatabaseOperation().equals("INSERT")) {
+    return;
+  }
+  if (viewNotificationContainer.getDatabaseOperation().equals("UPDATE")) {
+    final Integer viewId=viewNotificationContainer.getViewId();
+    final INaviView view=viewNotificationContainer.getView().get();
+    final ImmutableNaviViewConfiguration databaseViewConfiguration=view.getConfiguration().getModule() == null ? provider.loadFlowGraphInformation(view.getConfiguration().getProject(),viewId) : provider.loadFlowGraphInformation(view.getConfiguration().getModule(),viewId);
+    if (databaseViewConfiguration == null) {
+      return;
+    }
+    if (!databaseViewConfiguration.getName().equals(view.getConfiguration().getName())) {
+      view.getConfiguration().setNameInternal(databaseViewConfiguration.getName());
+    }
+    if (databaseViewConfiguration.getDescription() != view.getConfiguration().getDescription() && !databaseViewConfiguration.getDescription().equals(view.getConfiguration().getDescription())) {
+      view.getConfiguration().setDescriptionInternal(databaseViewConfiguration.getDescription());
+    }
+    if (databaseViewConfiguration.getStarState() != view.getConfiguration().isStared()) {
+      view.getConfiguration().setStaredInternal(databaseViewConfiguration.getStarState());
+    }
+    view.getConfiguration().setModificationDateInternal(databaseViewConfiguration.getModificationDate());
+  }
+  if (viewNotificationContainer.getDatabaseOperation().equals("DELETE")) {
+    return;
+  }
+}

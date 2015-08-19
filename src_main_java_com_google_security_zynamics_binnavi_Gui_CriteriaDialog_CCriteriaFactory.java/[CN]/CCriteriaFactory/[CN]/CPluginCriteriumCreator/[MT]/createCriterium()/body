@@ -1,0 +1,9 @@
+{
+  try {
+    return new CPluginCriterium(m_view2D,m_plugin.getCriterium(m_view2D));
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    return null;
+  }
+}

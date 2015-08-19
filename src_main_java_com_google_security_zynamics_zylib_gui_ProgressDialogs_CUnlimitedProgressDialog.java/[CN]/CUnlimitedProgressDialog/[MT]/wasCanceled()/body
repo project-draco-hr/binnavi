@@ -1,0 +1,3 @@
+{
+  return m_isCancelable && ((ICancelableCommand)m_command).wasCanceled();
+}

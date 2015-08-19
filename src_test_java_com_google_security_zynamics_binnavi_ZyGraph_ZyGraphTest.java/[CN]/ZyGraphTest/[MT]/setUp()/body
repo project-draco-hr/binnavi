@@ -1,0 +1,13 @@
+{
+  ConfigManager.instance().read();
+  final ZyGraphViewSettings settings=ConfigManager.instance().getDefaultFlowGraphSettings();
+  settings.getProximitySettings().setProximityBrowsingActivationThreshold(50);
+  settings.getProximitySettings().setProximityBrowsingChildren(2);
+  settings.getProximitySettings().setProximityBrowsingParents(2);
+  ConfigManager.instance().updateFlowgraphSettings(settings);
+  m_provider=new MockSqlProvider();
+  m_module=new MockModule(m_provider);
+  m_function=new MockFunction(m_provider);
+  m_view=MockViewGenerator.generate(m_provider,m_module,m_function);
+  m_graph=CGraphBuilder.buildGraph(m_view);
+}

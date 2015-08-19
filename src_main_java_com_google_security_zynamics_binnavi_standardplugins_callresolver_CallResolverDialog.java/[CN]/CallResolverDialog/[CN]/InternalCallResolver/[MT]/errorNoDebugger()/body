@@ -1,0 +1,3 @@
+{
+  appendOutput("Error: No debugger configured for the selected target.");
+}

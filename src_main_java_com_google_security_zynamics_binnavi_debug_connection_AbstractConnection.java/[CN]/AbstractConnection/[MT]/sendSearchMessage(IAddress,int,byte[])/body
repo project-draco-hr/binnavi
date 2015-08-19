@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Search Memory\" message to the debug client");
+  return sendPacket(new SearchCommand(getMessageId(),start,new CAddress(size),data));
+}

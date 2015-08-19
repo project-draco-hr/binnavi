@@ -1,0 +1,4 @@
+{
+  checkArguments(graph);
+  MoveFunctions.centerNode(graph,node);
+}

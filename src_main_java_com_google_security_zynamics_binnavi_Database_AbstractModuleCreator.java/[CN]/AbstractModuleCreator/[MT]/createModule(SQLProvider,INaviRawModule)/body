@@ -1,0 +1,13 @@
+{
+  NaviLogger.info("Starting to convert raw module %s",rawModule.getName());
+  int moduleId=-1;
+  try {
+    NaviLogger.info("Creating a new module for raw module %s",rawModule.getName());
+    moduleId=createNewModule(rawModule);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  NaviLogger.info("Loading module %d",moduleId);
+  return readModule(moduleId,rawModule,provider);
+}

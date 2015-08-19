@@ -1,0 +1,3 @@
+{
+  return "dbg_" + debugger.getId() + "_"+ keySuffix;
+}

@@ -1,0 +1,10 @@
+{
+  m_project=Preconditions.checkNotNull(project,"IE01984: Project argument can't be null");
+  project.addListener(m_projectListener);
+  if (project.isLoaded()) {
+    for (    final INaviAddressSpace addressSpace : project.getContent().getAddressSpaces()) {
+      addressSpace.addListener(m_addressSpaceListener);
+      addressSpace.getConfiguration().addListener(m_addressSpaceConfigurationListener);
+    }
+  }
+}

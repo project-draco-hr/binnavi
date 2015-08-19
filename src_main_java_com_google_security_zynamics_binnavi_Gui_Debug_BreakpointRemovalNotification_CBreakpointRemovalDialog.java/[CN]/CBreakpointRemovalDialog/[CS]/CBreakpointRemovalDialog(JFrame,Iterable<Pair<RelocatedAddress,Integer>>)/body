@@ -1,0 +1,23 @@
+{
+  super(parent,Constants.DEFAULT_WINDOW_TITLE,true);
+  new CDialogEscaper(this);
+  CIconInitializer.initializeWindowIcons(this);
+  setLayout(new BorderLayout());
+  final JPanel upperPanel=new JPanel();
+  upperPanel.add(new JLabel("The following breakpoints could not be removed from the target process:"));
+  add(upperPanel,BorderLayout.NORTH);
+  final StringBuilder stringBuilder=new StringBuilder();
+  for (  final Pair<RelocatedAddress,Integer> pair : failedAddresses) {
+    stringBuilder.append(pair.first().getAddress().toHexString());
+    stringBuilder.append('\n');
+  }
+  final JTextArea textArea=new JTextArea(stringBuilder.toString());
+  textArea.setEditable(false);
+  textArea.setFont(GuiHelper.MONOSPACED_FONT);
+  add(new JScrollPane(textArea));
+  final JPanel lowerPanel=new JPanel(new BorderLayout());
+  final JButton button=new JButton(new InternalButtonAction());
+  lowerPanel.add(button,BorderLayout.EAST);
+  add(lowerPanel,BorderLayout.SOUTH);
+  setSize(500,300);
+}

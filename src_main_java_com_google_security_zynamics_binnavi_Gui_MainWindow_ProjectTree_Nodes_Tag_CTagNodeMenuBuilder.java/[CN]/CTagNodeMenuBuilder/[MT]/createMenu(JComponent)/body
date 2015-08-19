@@ -1,0 +1,8 @@
+{
+  menu.add(new JMenuItem(CActionProxy.proxy(new CAddTagAction(getParent(),m_database.getContent().getViewTagManager(),m_tag,"New Tag"))));
+  menu.add(new JMenuItem(CActionProxy.proxy(new CInsertTagAction(getParent(),m_database.getContent().getViewTagManager(),m_tag,"New Tag"))));
+  menu.add(new JSeparator());
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteTagAction(getParent(),m_database.getContent().getViewTagManager(),m_tag))));
+  menu.add(new JSeparator());
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteTagSubtreeAction(getParent(),m_database.getContent().getViewTagManager(),m_tag))));
+}

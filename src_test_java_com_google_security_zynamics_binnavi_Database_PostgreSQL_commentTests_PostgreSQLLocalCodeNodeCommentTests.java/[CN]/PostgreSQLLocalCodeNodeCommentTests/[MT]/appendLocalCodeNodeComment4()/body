@@ -1,0 +1,4 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().appendLocalCodeNodeComment(codeNode," PASS LOCAL CODE NODE COMMENT ",user.getUserId());
+}

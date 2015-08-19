@@ -1,0 +1,4 @@
+{
+  final CProject project=(CProject)getProvider().loadProjects().get(0);
+  PostgreSQLAddressSpaceLoader.loadAddressSpaces((AbstractSQLProvider)getProvider(),project,null,null);
+}

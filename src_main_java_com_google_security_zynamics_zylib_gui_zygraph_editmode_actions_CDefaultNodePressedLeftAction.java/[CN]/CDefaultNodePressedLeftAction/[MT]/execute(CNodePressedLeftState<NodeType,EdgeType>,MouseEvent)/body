@@ -1,0 +1,17 @@
+{
+  final AbstractZyGraph<NodeType,EdgeType> graph=state.getGraph();
+  final NodeType draggedNode=graph.getNode(state.getNode());
+  if (draggedNode != null) {
+    final ZyLabelContent labelContent=draggedNode.getRealizer().getNodeContent();
+    if (graph.getEditMode().getLabelEventHandler().isActiveLabel(labelContent)) {
+      CEditNodeHelper.setCaretStart(graph,state.getNode(),event);
+      CEditNodeHelper.setCaretEnd(graph,state.getNode(),event);
+    }
+ else {
+      CEditNodeHelper.removeCaret(graph);
+    }
+  }
+ else {
+    CEditNodeHelper.removeCaret(graph);
+  }
+}

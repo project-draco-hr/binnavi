@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof DatabaseVersion) && (m_version.equals(((DatabaseVersion)rhs).m_version));
+}

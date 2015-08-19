@@ -1,0 +1,4 @@
+{
+  super(getLastDir());
+  addPropertyChangeListener(JFileChooser.DIRECTORY_CHANGED_PROPERTY,new DirectoryChangedListener());
+}

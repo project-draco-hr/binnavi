@@ -1,0 +1,3 @@
+{
+  return (treeNode.getType() == ExpressionType.REGISTER) || ((treeNode.getType() == ExpressionType.IMMEDIATE_INTEGER) && (ProcessHelpers.getSectionWith(debugger.getProcessManager().getMemoryMap(),new CAddress(simpleAddress)) != null));
+}

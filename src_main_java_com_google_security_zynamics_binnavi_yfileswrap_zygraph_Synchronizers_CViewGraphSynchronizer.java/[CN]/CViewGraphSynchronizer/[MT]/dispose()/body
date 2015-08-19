@@ -1,0 +1,5 @@
+{
+  removeListeners(m_graph.getRawView());
+  m_edgeDrawingSynchronizer.dispose();
+  m_settingsSynchronizer.dispose();
+}

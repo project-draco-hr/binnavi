@@ -1,0 +1,5 @@
+{
+  final TypesTree typesTree=new TypesTree();
+  typesTree.setTransferHandler(new MemberNodeTransferHandler(typesTree,typeManager));
+  return typesTree;
+}

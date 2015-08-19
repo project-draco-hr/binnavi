@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(node,"IE02370: node argument can not be null");
+  if (node.getType() == ExpressionType.MEMDEREF) {
+    return node.getChildren().get(0);
+  }
+ else   if (node.getParent() == null) {
+    throw new IllegalStateException("IE00705: Operand tree node.getParent is null");
+  }
+ else {
+    return getAddressExpression(node.getParent());
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final Database newDatabase=new Database(database);
+  m_databases.add(newDatabase);
+  for (  final IDatabaseManagerListener listener : m_listeners) {
+    try {
+      listener.addedDatabase(DatabaseManager.this,newDatabase);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

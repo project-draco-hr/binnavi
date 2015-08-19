@@ -1,0 +1,9 @@
+{
+  for (  final INaviModule module : m_modules) {
+    if (module.isInitialized()) {
+      m_initializeModuleAction.setEnabled(false);
+      return;
+    }
+  }
+  m_initializeModuleAction.setEnabled(true);
+}

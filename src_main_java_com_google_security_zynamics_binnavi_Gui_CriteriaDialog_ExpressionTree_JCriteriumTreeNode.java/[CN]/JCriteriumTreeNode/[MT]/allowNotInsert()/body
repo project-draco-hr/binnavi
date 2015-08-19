@@ -1,0 +1,7 @@
+{
+  final int childCount=getChildCount();
+  if (!(getCriterium() instanceof CNotCriterium) && childCount == 1 && !(((JCriteriumTreeNode)children.get(0)).getCriterium() instanceof CNotCriterium)) {
+    return true;
+  }
+  return false;
+}

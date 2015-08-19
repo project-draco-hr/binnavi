@@ -1,0 +1,17 @@
+{
+  assertEquals(7,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(96,m_graph.getRawView().getNodeCount());
+  final List<NaviNode> nodes=GraphHelpers.getNodes(m_graph);
+  final INaviViewNode oldChild=m_view.getGraph().getNodes().get(1);
+  assertEquals(1,searchNode(nodes,oldChild).getParents().size());
+  m_view.getContent().deleteNode(m_view.getGraph().getNodes().get(0));
+  assertEquals(6,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(95,m_graph.getRawView().getNodeCount());
+  assertEquals(0,searchNode(nodes,oldChild).getParents().size());
+  m_view.getContent().deleteNodes(Lists.newArrayList(m_view.getGraph().getNodes().get(0),m_view.getGraph().getNodes().get(1)));
+  assertEquals(4,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(93,m_graph.getRawView().getNodeCount());
+}

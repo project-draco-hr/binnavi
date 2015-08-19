@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  m_criterium=tagCriterium;
+  m_tagManager=tagManager;
+  m_tagTree.addTreeSelectionListener(m_selectionListener);
+  m_anyTagBox.addChangeListener(m_checkboxListener);
+  initPanel(tagManager.getRootTag());
+  tagManager.addListener(m_listener);
+}

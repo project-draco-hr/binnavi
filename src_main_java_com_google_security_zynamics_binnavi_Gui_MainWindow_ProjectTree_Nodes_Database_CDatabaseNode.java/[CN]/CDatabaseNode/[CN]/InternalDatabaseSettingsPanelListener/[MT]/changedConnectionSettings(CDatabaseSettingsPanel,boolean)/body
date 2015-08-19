@@ -1,0 +1,3 @@
+{
+  ((CDatabaseNodeMenuBuilder)getMenuBuilder()).allowConnection(!changed);
+}

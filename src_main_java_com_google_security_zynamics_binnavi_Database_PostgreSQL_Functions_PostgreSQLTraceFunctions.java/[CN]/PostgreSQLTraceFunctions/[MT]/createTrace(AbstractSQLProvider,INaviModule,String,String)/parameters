@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviModule module
+String name
+String description

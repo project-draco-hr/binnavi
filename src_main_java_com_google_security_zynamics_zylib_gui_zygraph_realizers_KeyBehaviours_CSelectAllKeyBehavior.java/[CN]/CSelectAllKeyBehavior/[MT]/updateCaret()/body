@@ -1,0 +1,10 @@
+{
+  final int lastLineIndex=getLabelContent().getLineCount() - 1;
+  int lineMaxX=0;
+  for (  final ZyLineContent lineContent : getLabelContent()) {
+    lineMaxX=Math.max(lineContent.getText().length(),lineMaxX);
+  }
+  final ZyLineContent lastLineContent=getLineContent(lastLineIndex);
+  final int lastLineLength=lastLineContent.getText().length();
+  setCaret(0,0,0,lastLineLength,lineMaxX,lastLineIndex);
+}

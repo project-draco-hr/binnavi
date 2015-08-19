@@ -1,0 +1,5 @@
+{
+  for (  final IDatabase database : m_databaseManager) {
+    add(new CDatabaseNode(getProjectTree(),this,database));
+  }
+}

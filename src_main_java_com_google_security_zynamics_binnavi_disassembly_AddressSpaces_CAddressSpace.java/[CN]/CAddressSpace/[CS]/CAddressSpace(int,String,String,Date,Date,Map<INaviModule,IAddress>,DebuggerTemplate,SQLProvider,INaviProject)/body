@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(addressSpaceId > 0,"IE00023: ID argument must be positive");
+  Preconditions.checkNotNull(name,"IE00024: Name argument can not be null");
+  Preconditions.checkNotNull(description,"IE00025: Description argument can not be null");
+  Preconditions.checkNotNull(creationDate,"IE00026: Creation date argument can not be null");
+  Preconditions.checkNotNull(modificationDate,"IE00027: Modification date argument can not be null");
+  Preconditions.checkNotNull(imageBases,"IE00028: Image bases argument can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE00029: Provider argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"IE01790: project argument can not be null");
+  m_configuration=new CAddressSpaceConfiguration(this,provider,addressSpaceId,name,description,creationDate,modificationDate,debuggerTemplate);
+  m_moduleCount=imageBases.size();
+}

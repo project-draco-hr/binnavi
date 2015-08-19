@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(commentable,"Error: commentable argument can not be null");
+  Preconditions.checkNotNull(userId,"Error: userId argument can not be null");
+  Preconditions.checkNotNull(commentText,"Error: commentText argument can not be null");
+  final IUser currentUser=getCurrentUser(userId);
+  final int commentId=getRandom();
+  final ArrayList<IComment> currentComments=comments.containsKey(commentable) ? comments.get(commentable) : new ArrayList<IComment>();
+  currentComments.add(new CComment(commentId,currentUser,null,commentText));
+  comments.put(commentable,currentComments);
+  return commentId;
+}

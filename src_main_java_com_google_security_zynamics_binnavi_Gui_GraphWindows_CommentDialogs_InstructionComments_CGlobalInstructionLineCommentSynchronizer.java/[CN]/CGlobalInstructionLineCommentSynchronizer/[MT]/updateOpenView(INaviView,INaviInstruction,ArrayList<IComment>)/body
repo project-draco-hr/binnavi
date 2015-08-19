@@ -1,0 +1,11 @@
+{
+  final List<INaviInstruction> naviinstrlist=new ArrayList<INaviInstruction>();
+  for (  final INaviViewNode viewnode : view.getGraph().getNodes()) {
+    if (viewnode instanceof INaviCodeNode) {
+      naviinstrlist.addAll(collectInstructions((INaviCodeNode)viewnode,instruction));
+    }
+  }
+  for (  final INaviInstruction instr : naviinstrlist) {
+    instr.initializeGlobalComment(comments);
+  }
+}

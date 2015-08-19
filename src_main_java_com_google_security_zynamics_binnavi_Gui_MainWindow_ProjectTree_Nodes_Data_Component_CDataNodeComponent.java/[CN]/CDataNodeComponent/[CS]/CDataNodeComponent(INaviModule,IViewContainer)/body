@@ -1,0 +1,18 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(module,"IE01960: Module argument can not be null");
+  final JideSplitPane splitPane=new JideSplitPane(JideSplitPane.VERTICAL_SPLIT);
+  splitPane.setDoubleBuffered(true);
+  splitPane.setOneTouchExpandable(true);
+  splitPane.setMinimumSize(new Dimension(0,0));
+  splitPane.setProportionalLayout(true);
+  splitPane.setInitiallyEven(true);
+  final JPanel panel=new JPanel(new BorderLayout());
+  dataSectionComponent=new DataSectionComponent(module,originContainer);
+  panel.add(dataSectionComponent);
+  final JTabbedPane pane=new JTabbedPane();
+  pane.addTab("Navigation",new CNavigationPanel(dataSectionComponent.getHexView()));
+  splitPane.addPane(panel);
+  splitPane.addPane(pane);
+  add(splitPane);
+}

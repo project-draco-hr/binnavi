@@ -1,0 +1,17 @@
+{
+  checkArguments(provider,addressSpace);
+  Preconditions.checkNotNull(module,"IE01859: Module argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE01860: Module is not part of this database");
+  final CConnection connection=provider.getConnection();
+  final int addressSpaceId=addressSpace.getConfiguration().getId();
+  final int moduleId=module.getConfiguration().getId();
+  NaviLogger.info("Adding module %s (%d) to address space %s (%d)",addressSpace.getConfiguration().getName(),addressSpaceId,module.getConfiguration().getName(),moduleId);
+  final String query="INSERT INTO " + CTableNames.SPACE_MODULES_TABLE + " VALUES("+ moduleId+ ", "+ addressSpaceId+ ", 0)";
+  try {
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

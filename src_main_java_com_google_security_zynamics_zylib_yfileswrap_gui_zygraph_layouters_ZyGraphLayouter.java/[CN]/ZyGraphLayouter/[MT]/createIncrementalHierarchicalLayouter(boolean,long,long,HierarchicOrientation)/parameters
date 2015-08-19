@@ -1,0 +1,4 @@
+boolean orthogonalEdgeRooting
+long minLayerDist
+long minNodeDist
+HierarchicOrientation orientation

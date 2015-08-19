@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(value,"IE00876: Graph layout argument can't be null");
+  if (m_type == null) {
+    m_defaultGraphLayout=value;
+  }
+ else {
+    m_type.setDefaultGraphLayout(value.ordinal());
+  }
+  updateLayouter();
+}

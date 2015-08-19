@@ -1,0 +1,19 @@
+{
+  final List<InstructionGraphNode> nodes=new ArrayList<InstructionGraphNode>();
+  final List<InstructionGraphEdge> edges=new ArrayList<InstructionGraphEdge>();
+  final InstructionGraphNode node1=new InstructionGraphNode(new ReilInstruction(new Address(0),"nop",ReilOperand.EMPTY_OPERAND,ReilOperand.EMPTY_OPERAND,ReilOperand.EMPTY_OPERAND));
+  final InstructionGraphNode node2=new InstructionGraphNode(new ReilInstruction(new Address(1),"nop",ReilOperand.EMPTY_OPERAND,ReilOperand.EMPTY_OPERAND,ReilOperand.EMPTY_OPERAND));
+  final InstructionGraphEdge edge1=new InstructionGraphEdge(node1,node2,EdgeType.JumpUnconditional);
+  InstructionGraphNode.link(node1,node2,edge1);
+  nodes.add(node1);
+  nodes.add(node2);
+  edges.add(edge1);
+  final InstructionGraph graph=new InstructionGraph(nodes,edges);
+  assertEquals(graph.edgeCount(),1);
+  assertEquals(1,node2.getParents().size());
+  assertEquals(1,node1.getChildren().size());
+  graph.removeEdge(edge1);
+  InstructionGraphNode.unlink(node1,node2,edge1);
+  assertEquals(0,node2.getParents().size());
+  assertEquals(0,node1.getChildren().size());
+}

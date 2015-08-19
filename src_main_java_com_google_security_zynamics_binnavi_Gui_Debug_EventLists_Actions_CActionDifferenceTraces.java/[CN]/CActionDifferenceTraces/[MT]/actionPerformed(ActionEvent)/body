@@ -1,0 +1,3 @@
+{
+  CTraceCombinationFunctions.differenceTraces(m_parent,m_traceProvider,m_trace1,m_trace2);
+}

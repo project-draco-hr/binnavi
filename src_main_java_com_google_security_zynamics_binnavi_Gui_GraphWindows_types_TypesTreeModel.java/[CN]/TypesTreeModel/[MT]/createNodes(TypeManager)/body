@@ -1,0 +1,8 @@
+{
+  for (  final BaseType baseType : typeManager.getTypes()) {
+    if (filter.includeType(baseType)) {
+      insertBaseType(baseType);
+    }
+  }
+  return root;
+}

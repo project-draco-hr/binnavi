@@ -1,0 +1,3 @@
+{
+  getProvider().appendFunctionComment((INaviFunction)null,null,null);
+}

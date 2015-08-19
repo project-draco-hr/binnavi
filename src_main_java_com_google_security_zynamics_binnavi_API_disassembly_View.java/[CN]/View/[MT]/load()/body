@@ -1,0 +1,17 @@
+{
+  if (isLoaded()) {
+    return;
+  }
+  try {
+    naviView.load();
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntLoadDataException e) {
+    throw new CouldntLoadDataException(e);
+  }
+catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CPartialLoadException e) {
+    throw new PartialLoadException(e);
+  }
+catch (  final LoadCancelledException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

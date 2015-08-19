@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(style,"IE00463: Style argument can not be null");
+  if (displayStyle.equals(style)) {
+    return;
+  }
+  displayStyle=style;
+  for (  final INaviOperandTreeNodeListener listener : listeners) {
+    try {
+      listener.changedDisplayStyle(this,style);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

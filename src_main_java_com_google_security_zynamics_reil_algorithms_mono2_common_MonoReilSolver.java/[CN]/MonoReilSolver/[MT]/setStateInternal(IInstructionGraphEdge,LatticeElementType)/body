@@ -1,0 +1,4 @@
+{
+  m_traversedEdges.add(edge);
+  setState(edge,state);
+}

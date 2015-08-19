@@ -1,0 +1,12 @@
+{
+  add(new CIntegerOperandMenu(node,node.getReplacement()));
+  final long address=Long.parseLong(node.getValue());
+  final List<Section> containingSections=sections.findSections(new CAddress(address));
+  if (containingSections.size() == 1) {
+    add(new GotoSectionAction(containingSections.get(0),address,module));
+  }
+ else   if (containingSections.size() > 1) {
+    add(new GotoSectionMenu(containingSections,address,module));
+  }
+  addSeparator();
+}

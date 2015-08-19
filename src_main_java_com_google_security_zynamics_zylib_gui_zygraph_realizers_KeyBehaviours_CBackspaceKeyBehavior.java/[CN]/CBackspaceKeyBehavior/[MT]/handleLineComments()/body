@@ -1,0 +1,72 @@
+{
+  int x=getCaretEndPosX();
+  final int y=getCaretMouseReleasedY();
+  final ZyLineContent lineContent=getLineContent(y);
+  if (m_editableObject == null) {
+    return;
+  }
+  final int firstModelLine=getLabelContent().getFirstLineIndexOfModelAt(y);
+  final int nonCommentLine=getLabelContent().getNonPureCommentLineIndexOfModelAt(y);
+  final int firstCommentLine=(nonCommentLine != -1) && m_isBehindComment ? nonCommentLine : firstModelLine;
+  final String lineText=lineContent.getText();
+  String changedText="";
+  if (!isCommentDelimiter(x,y)) {
+    if ((lineText.length() > 0) && (lineText.length() == m_editableObject.getEnd()) && (x == lineText.length())) {
+      final char lastChar=lineText.charAt(lineText.length() - 1);
+      if ((lastChar == '\n') || (lastChar == '\r')) {
+        x=-1;
+      }
+    }
+    changedText=String.format("%s%s",lineText.substring(m_editableObject.getStart(),x - 1),lineText.substring(x,m_editableObject.getEnd()));
+    m_caretY=y;
+    m_caretX=x - 1;
+    changedText=getMultilineComment(m_caretY,changedText);
+  }
+ else {
+    final List<IZyEditableObject> editableObjectList=lineContent.getLineFragmentObjectList();
+    m_editableObject=editableObjectList.get(editableObjectList.size() - 1);
+    if (firstCommentLine == y) {
+      if (m_editableObject.getLength() == 1) {
+        if (y > 0) {
+          m_caretY=y - 1;
+          final ZyLineContent prevLineContent=getLineContent(m_caretY);
+          m_caretX=prevLineContent.getText().length();
+        }
+        changedText=getMultilineComment(y,changedText);
+      }
+ else {
+        m_caretX=getCaretEndPosX();
+        m_caretY=getCaretMouseReleasedY();
+        return;
+      }
+    }
+ else {
+      final ZyLineContent prevLineContent=getLineContent(y - 1);
+      final String prevLineText=prevLineContent.getText();
+      if (!prevLineText.isEmpty() && !prevLineContent.getLineObject().isPlaceholder()) {
+        final IZyEditableObject prevLineFragmentObject=prevLineContent.getLineFragmentObjectAt(prevLineText.length() - 1);
+        changedText=prevLineText.substring(prevLineFragmentObject.getStart(),prevLineFragmentObject.getEnd() - 1);
+        m_caretY=y - 1;
+        m_caretX=prevLineText.length() - 1;
+        changedText=getMultilineComment(m_caretY,changedText);
+      }
+ else {
+        m_caretY=y - 1;
+        m_caretX=0;
+      }
+    }
+  }
+  if (changedText.endsWith("\n")) {
+    changedText=changedText.substring(0,changedText.length() - 1) + "\r";
+  }
+  if (m_isAboveComment) {
+    m_editableObject.updateComment(changedText,ECommentPlacement.ABOVE_LINE);
+  }
+ else   if (m_isBehindComment) {
+    m_editableObject.updateComment(changedText,ECommentPlacement.BEHIND_LINE);
+  }
+ else   if (m_isLabelComment) {
+    m_editableObject.update(changedText);
+  }
+  getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),m_editableObject.getPersistentModel());
+}

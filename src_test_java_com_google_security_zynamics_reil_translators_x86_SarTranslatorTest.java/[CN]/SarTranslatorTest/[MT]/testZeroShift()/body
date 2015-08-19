@@ -1,0 +1,25 @@
+{
+  interpreter.setRegister("AF",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.UNDEFINED);
+  interpreter.setRegister("CF",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.UNDEFINED);
+  interpreter.setRegister("OF",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.UNDEFINED);
+  interpreter.setRegister("SF",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.UNDEFINED);
+  interpreter.setRegister("ZF",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.UNDEFINED);
+  interpreter.setRegister("eax",BigInteger.valueOf(0x123),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"eax"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"0"));
+  final IInstruction instruction=new MockInstruction("sar",Lists.newArrayList(operandTree1,operandTree2));
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(2,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x123),interpreter.getVariableValue("eax"));
+  assertFalse(interpreter.isDefined("AF"));
+  assertFalse(interpreter.isDefined("CF"));
+  assertFalse(interpreter.isDefined("OF"));
+  assertFalse(interpreter.isDefined("SF"));
+  assertFalse(interpreter.isDefined("ZF"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

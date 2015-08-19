@@ -1,0 +1,3 @@
+{
+  return String.format("TraceLogger [%s : %s]",debugger.toString(),project == null ? module.getName() : project.getName());
+}

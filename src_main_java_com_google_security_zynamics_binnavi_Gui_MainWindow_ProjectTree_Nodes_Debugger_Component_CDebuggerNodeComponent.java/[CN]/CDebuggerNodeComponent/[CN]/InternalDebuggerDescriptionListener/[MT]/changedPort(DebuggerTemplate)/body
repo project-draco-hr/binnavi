@@ -1,0 +1,4 @@
+{
+  m_portTextField.setText(String.valueOf(debugger.getPort()));
+  updateGui();
+}

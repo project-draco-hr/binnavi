@@ -1,0 +1,6 @@
+{
+  for (int index=0; index < numberOfLinesInBuffer * numberOfColumnsInBuffer; index++) {
+    perCharBackgroundColor[index]=background;
+  }
+  return this;
+}

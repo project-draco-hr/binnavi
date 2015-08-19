@@ -1,0 +1,6 @@
+{
+  if (flavor.equals(VIEW_FLAVOR)) {
+    return new ArrayList<INaviView>(m_views);
+  }
+  throw new UnsupportedFlavorException(flavor);
+}

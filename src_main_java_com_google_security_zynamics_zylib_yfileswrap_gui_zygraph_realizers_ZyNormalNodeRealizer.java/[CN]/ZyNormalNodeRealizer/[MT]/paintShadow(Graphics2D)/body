@@ -1,0 +1,10 @@
+{
+  if (!isSelected() && isDropShadowVisible()) {
+    gfx.setColor(SHADOW_COLOR);
+    setDropShadowOffsetX(SHADOW_SIZE);
+    setDropShadowOffsetY(SHADOW_SIZE);
+    gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.70f));
+    super.paintShadow(gfx);
+    gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1.f));
+  }
+}

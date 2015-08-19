@@ -1,0 +1,10 @@
+{
+  final Set<Breakpoint> breakpoints=new HashSet<Breakpoint>();
+  for (  final BreakpointAddress breakpointAddress : addresses) {
+    final Breakpoint breakpoint=breakpointAddressToBreakpoint.get(breakpointAddress);
+    if (breakpoint != null) {
+      breakpoints.add(breakpointAddressToBreakpoint.get(breakpointAddress));
+    }
+  }
+  return breakpoints;
+}

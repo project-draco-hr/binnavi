@@ -1,0 +1,8 @@
+{
+  super(getCommandForType(type),packetId);
+  Preconditions.checkNotNull(addresses,"IE00824: Address argument can not be null");
+  addArgument(new DebugMessageIntegerArgument(addresses.size()));
+  for (  final RelocatedAddress address : addresses) {
+    addArgument(new DebugMessageAddressArgument(address.getAddress()));
+  }
+}

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(module,"IE00534: Module argument can not be null");
+  Preconditions.checkNotNull(key,"IE00535: Key argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00536: Module is not part of this database");
+  return readSetting(provider.getConnection(),module.getConfiguration().getId(),key,"module_id",CTableNames.MODULE_SETTINGS_TABLE);
+}

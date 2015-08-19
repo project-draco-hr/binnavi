@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"POP");
+  translateAll(environment,instruction,"POP",instructions);
+}

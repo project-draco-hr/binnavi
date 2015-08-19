@@ -1,0 +1,9 @@
+{
+  super(DebugCommandType.CMD_SEARCH,packetId);
+  Preconditions.checkNotNull(start,"IE01023: Start argument can not be null");
+  Preconditions.checkNotNull(size,"IE01024: Size argument can not be null");
+  Preconditions.checkNotNull(data,"IE01025: Data argument can not be null");
+  addArgument(new DebugMessageAddressArgument(start));
+  addArgument(new DebugMessageAddressArgument(size));
+  addArgument(new DebugMessageRawArgument(data));
+}

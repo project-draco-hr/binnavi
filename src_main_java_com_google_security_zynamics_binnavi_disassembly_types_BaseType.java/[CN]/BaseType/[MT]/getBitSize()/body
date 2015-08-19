@@ -1,0 +1,16 @@
+{
+switch (category) {
+case ATOMIC:
+case FUNCTION_PROTOTYPE:
+case POINTER:
+    return bitSize;
+case ARRAY:
+  return getArraySize();
+case STRUCT:
+return getStructSize();
+case UNION:
+return getUnionSize();
+default :
+throw new IllegalStateException("Error: can not infer size of type.");
+}
+}

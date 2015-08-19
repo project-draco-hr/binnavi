@@ -1,0 +1,3 @@
+{
+  return PostgreSQLAddressSpaceFunctions.loadModules(this,addressSpace);
+}

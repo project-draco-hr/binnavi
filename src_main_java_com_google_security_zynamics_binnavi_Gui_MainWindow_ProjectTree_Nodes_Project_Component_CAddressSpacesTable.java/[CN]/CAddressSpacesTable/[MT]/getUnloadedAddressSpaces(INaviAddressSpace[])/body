@@ -1,0 +1,9 @@
+{
+  final List<INaviAddressSpace> unloadedAddressSpaces=new ArrayList<INaviAddressSpace>();
+  for (  final INaviAddressSpace module : addressSpaces) {
+    if (!module.isLoaded()) {
+      unloadedAddressSpaces.add(module);
+    }
+  }
+  return unloadedAddressSpaces.toArray(new CAddressSpace[]{});
+}

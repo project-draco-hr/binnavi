@@ -1,0 +1,10 @@
+{
+  for (  final IDebuggerTemplateListener listener : m_listeners) {
+    try {
+      listener.changedName(DebuggerTemplate.this,debugger.getName());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

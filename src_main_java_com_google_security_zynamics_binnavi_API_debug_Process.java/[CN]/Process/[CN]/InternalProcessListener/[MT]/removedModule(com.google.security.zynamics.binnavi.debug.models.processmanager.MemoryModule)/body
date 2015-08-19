@@ -1,0 +1,12 @@
+{
+  final MemoryModule apiModule=ObjectFinders.getObject(module,modules);
+  modules.remove(apiModule);
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.removedModule(Process.this,apiModule);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

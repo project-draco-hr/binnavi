@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.createTypeInstanceReference(getConnection().getConnection(),moduleId,address,position,expressionId,typeInstanceId);
+}

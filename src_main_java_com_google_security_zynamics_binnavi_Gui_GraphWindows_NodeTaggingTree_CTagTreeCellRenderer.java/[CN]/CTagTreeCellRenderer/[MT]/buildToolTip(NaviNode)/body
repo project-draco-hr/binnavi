@@ -1,0 +1,4 @@
+{
+  final ZyLabelContent content=node.getRealizer().getNodeContent();
+  return HtmlGenerator.getHtml(content,GuiHelper.getMonospaceFont(),true);
+}

@@ -1,0 +1,4 @@
+{
+  final CModuleNodeMenuBuilder menu=new CModuleNodeMenuBuilder(getProjectTree(),null,m_database,m_addressSpace,getSelectedModules(row),this);
+  return menu.getPopupMenu();
+}

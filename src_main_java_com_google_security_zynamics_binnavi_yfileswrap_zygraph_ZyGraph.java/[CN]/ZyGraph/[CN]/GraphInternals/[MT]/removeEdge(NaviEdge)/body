@@ -1,0 +1,7 @@
+{
+  if (edge.getEdge().getGraph() != null) {
+    getGraph().removeEdge(edge.getEdge());
+  }
+  getMappings().removeEdge(edge);
+  NaviNode.unlink(edge.getSource(),edge.getTarget());
+}

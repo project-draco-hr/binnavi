@@ -1,0 +1,12 @@
+{
+  m_nameTextField.setText("New Name");
+  m_portTextField.setText("999");
+  m_hostTextField.setText("Hannes");
+  assertTrue(m_saveButton.isEnabled());
+  m_saveButton.getAction().actionPerformed(null);
+  assertFalse(m_saveButton.isEnabled());
+  assertEquals("New Name",m_template.getName());
+  assertEquals(999,m_template.getPort());
+  assertEquals("Hannes",m_template.getHost());
+  testListenersRemoved();
+}

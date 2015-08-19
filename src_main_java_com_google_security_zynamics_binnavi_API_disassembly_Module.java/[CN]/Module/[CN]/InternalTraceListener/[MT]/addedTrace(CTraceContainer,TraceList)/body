@@ -1,0 +1,12 @@
+{
+  final Trace newTrace=new Trace(trace);
+  m_traces.add(newTrace);
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.addedTrace(Module.this,newTrace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

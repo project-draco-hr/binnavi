@@ -1,0 +1,4 @@
+SQLProvider provider
+INaviFunctionNode functionNode
+String commentText
+Integer userId

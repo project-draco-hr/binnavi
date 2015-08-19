@@ -1,0 +1,6 @@
+{
+  final JTextArea asmField=new JTextArea(10,30);
+  asmField.setFont(GuiHelper.MONOSPACED_FONT);
+  asmField.setEditable(false);
+  return asmField;
+}

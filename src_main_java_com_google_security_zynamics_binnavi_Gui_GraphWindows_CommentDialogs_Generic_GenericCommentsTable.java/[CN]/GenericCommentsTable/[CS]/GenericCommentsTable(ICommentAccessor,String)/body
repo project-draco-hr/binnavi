@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(accessor,"Error: argument 'accessor' can not be null");
+  Preconditions.checkNotNull(title,"Error: argument 'title' can not be null");
+  setFocusable(true);
+  commentsModel=new GenericCommentsTableModel(accessor);
+  codeDisplay=new CodeDisplay(commentsModel);
+  this.title=title;
+  add(codeDisplay);
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(key,"Error: Key argument can not be null");
+  m_instruction.setMetaData(key,value);
+}

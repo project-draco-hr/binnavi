@@ -1,0 +1,7 @@
+{
+  final int lastPressedXPos=getLastLineXPos(m_mouse_pressed_y);
+  if (mouseXPos > lastPressedXPos) {
+    mouseXPos=lastPressedXPos;
+  }
+  m_mouse_pressed_x=mouseXPos;
+}

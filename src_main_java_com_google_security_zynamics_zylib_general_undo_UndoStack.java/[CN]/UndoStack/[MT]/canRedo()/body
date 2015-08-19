@@ -1,0 +1,3 @@
+{
+  return undoPosition < undoStack.size();
+}

@@ -1,0 +1,4 @@
+{
+  final IViewNode<?> rawNode=node.getRawNode();
+  return (rawNode.getParentGroup() == null) || GroupHelpers.isExpanded(rawNode.getParentGroup());
+}

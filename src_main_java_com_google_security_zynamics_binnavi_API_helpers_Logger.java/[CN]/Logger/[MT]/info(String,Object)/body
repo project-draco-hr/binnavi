@@ -1,0 +1,3 @@
+{
+  NaviLogger.info(message,objects);
+}

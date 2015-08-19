@@ -1,0 +1,3 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+}

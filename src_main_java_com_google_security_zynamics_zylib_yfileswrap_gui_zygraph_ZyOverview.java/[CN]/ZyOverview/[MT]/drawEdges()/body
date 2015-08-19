@@ -1,0 +1,3 @@
+{
+  return getGraph2D().E() < _minEdgesForSloppyEdgeHiding;
+}

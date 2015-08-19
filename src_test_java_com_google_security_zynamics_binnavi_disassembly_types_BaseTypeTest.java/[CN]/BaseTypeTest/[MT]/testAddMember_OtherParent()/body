@@ -1,0 +1,3 @@
+{
+  testStruct.addMember(typeSystem.ssIntMember);
+}

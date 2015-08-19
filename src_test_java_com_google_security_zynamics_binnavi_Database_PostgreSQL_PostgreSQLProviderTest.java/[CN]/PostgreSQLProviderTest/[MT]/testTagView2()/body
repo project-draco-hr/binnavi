@@ -1,0 +1,5 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  final CTag tag=tagManager.getRootTag().getChildren().get(0).getObject();
+  getProvider().tagView(null,tag);
+}

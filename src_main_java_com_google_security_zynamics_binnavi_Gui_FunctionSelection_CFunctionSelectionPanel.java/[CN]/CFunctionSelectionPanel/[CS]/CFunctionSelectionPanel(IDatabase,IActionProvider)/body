@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(database,"IE01573: Database argument can not be null");
+  Preconditions.checkNotNull(actionProvider,"IE01574: Action provider argument can not be null");
+  m_tree=new CFunctionSelectionTree(database,actionProvider);
+  add(m_tree);
+}

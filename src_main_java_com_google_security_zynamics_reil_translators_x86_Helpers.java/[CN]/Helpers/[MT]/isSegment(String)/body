@@ -1,0 +1,3 @@
+{
+  return value.equals("cs") || value.equals("ds") || value.equals("es")|| value.equals("fs")|| value.equals("gs")|| value.equals("ss");
+}

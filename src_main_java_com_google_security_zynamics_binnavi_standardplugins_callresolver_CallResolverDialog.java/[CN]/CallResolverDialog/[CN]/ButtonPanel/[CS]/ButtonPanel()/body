@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  final JPanel innerButtonPanel=new JPanel(new BorderLayout());
+  innerButtonPanel.add(new JButton(nextAction),BorderLayout.WEST);
+  innerButtonPanel.add(new JButton(new CancelAction()),BorderLayout.EAST);
+  add(innerButtonPanel,BorderLayout.EAST);
+}

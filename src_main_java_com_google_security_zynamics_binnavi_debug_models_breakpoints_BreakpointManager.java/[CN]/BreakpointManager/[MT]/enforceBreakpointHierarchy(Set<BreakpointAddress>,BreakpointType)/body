@@ -1,0 +1,26 @@
+{
+  final SetView<BreakpointAddress> alreadyRegularBreakpoints=Sets.intersection(addresses,indexedBreakpointStorage.getBreakPointAddresses());
+  final SetView<BreakpointAddress> alreadySteppingBreakpoints=Sets.intersection(addresses,stepBreakpointStorage.getBreakPointAddresses());
+  final SetView<BreakpointAddress> alreadyEchoBreakpoints=Sets.intersection(addresses,echoBreakpointStorage.getBreakPointAddresses());
+  Set<BreakpointAddress> addressesSet=null;
+switch (type) {
+case REGULAR:
+    final SetView<BreakpointAddress> notInRegularBreakpoints=Sets.difference(addresses,indexedBreakpointStorage.getBreakPointAddresses());
+  removeBreakpoints(alreadySteppingBreakpoints,stepBreakpointStorage);
+removeBreakpoints(alreadyEchoBreakpoints,echoBreakpointStorage);
+addressesSet=notInRegularBreakpoints;
+break;
+case STEP:
+final SetView<BreakpointAddress> notInSteppingBreakpoints=Sets.difference(addresses,stepBreakpointStorage.getBreakPointAddresses());
+removeBreakpoints(alreadyEchoBreakpoints,echoBreakpointStorage);
+addressesSet=Sets.difference(notInSteppingBreakpoints,alreadyRegularBreakpoints);
+break;
+case ECHO:
+final SetView<BreakpointAddress> notInEchoBreakPoints=Sets.difference(addresses,echoBreakpointStorage.getBreakPointAddresses());
+addressesSet=Sets.difference(notInEchoBreakPoints,Sets.union(alreadySteppingBreakpoints,alreadyRegularBreakpoints));
+break;
+default :
+throw new IllegalStateException("IE00722: Breakpoint of invalid type");
+}
+return addressesSet;
+}

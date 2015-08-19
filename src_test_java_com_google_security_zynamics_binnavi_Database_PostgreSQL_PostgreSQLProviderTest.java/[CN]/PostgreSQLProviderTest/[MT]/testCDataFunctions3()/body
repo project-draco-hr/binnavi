@@ -1,0 +1,3 @@
+{
+  PostgreSQLDataFunctions.loadData((AbstractSQLProvider)getProvider(),null);
+}

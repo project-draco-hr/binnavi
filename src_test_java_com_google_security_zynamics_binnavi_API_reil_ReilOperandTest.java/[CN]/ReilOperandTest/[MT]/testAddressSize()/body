@@ -1,0 +1,4 @@
+{
+  final ReilOperand operand=new ReilOperand(OperandSize.OPERAND_SIZE_ADDRESS,"100.200");
+  assertEquals(OperandSize.OPERAND_SIZE_ADDRESS,operand.getSize());
+}

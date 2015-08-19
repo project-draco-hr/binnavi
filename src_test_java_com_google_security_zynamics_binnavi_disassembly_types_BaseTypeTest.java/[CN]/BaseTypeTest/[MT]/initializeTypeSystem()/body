@@ -1,0 +1,9 @@
+{
+  typeSystem=new TestTypeSystem(new TypeManager(new TypeManagerMockBackend()));
+  int typeId=100;
+  testStruct=new BaseType(++typeId,"test_struct",0,false,BaseTypeCategory.STRUCT);
+  testMember0=TypeMember.createStructureMember(++typeId,testStruct,typeSystem.uintType,"testMember0",0);
+  testMember1=TypeMember.createStructureMember(++typeId,testStruct,typeSystem.uintType,"testMember1",typeSystem.uintType.getBitSize());
+  testMember2=TypeMember.createStructureMember(++typeId,testStruct,typeSystem.uintType,"testMember2",testMember1.getBitOffset().get() + typeSystem.uintType.getBitSize());
+  testMember3=TypeMember.createStructureMember(++typeId,testStruct,typeSystem.uintType,"testMember3",testMember2.getBitOffset().get() + typeSystem.uintType.getBitSize());
+}

@@ -1,0 +1,9 @@
+{
+  if (hasFocus() && (m_editedRegister != -1)) {
+    final Rectangle r=getRegisterBounds(m_editedRegister);
+    final int characterHeight=m_font.getSize();
+    final int x=(r.x + (m_caretPosition * m_charWidth) + (m_longestRegisterName * m_charWidth)+ 5) - 1;
+    final int y=r.y;
+    m_caret.draw(g,x,y,characterHeight);
+  }
+}

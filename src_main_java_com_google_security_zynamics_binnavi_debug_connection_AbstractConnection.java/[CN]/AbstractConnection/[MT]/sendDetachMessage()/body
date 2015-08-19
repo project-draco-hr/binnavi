@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Detach\" message to the debug client");
+  return sendPacket(new DetachCommand(getMessageId()));
+}

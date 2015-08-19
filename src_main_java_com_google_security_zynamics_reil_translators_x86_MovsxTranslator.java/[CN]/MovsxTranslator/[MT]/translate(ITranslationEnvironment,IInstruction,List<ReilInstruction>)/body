@@ -1,0 +1,25 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"movsx");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a movsx instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final TranslationResult sourceResult=Helpers.translateOperand(environment,offset,operands.get(1),true);
+  instructions.addAll(sourceResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String sourceOperand=sourceResult.getRegister();
+  final String destinationOperand=Helpers.getLeafValue(operands.get(0).getRootNode());
+  final OperandSize destSize=Helpers.getRegisterSize(destinationOperand);
+  final OperandSize sourceSize=sourceResult.getSize();
+  final TranslationResult extendedSign=Helpers.extendSign(environment,offset,sourceOperand,sourceSize,destSize);
+  instructions.addAll(extendedSign.getInstructions());
+  offset=baseOffset + instructions.size();
+  if (destSize == environment.getArchitectureSize()) {
+    instructions.add(ReilHelpers.createStr(offset,destSize,extendedSign.getRegister(),destSize,destinationOperand));
+  }
+ else {
+    Helpers.moveAndMask(environment,offset,extendedSign.getSize(),extendedSign.getRegister(),destinationOperand,instructions);
+  }
+}

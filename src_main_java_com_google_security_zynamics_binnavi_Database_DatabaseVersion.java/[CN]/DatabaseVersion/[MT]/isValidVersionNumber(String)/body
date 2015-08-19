@@ -1,0 +1,15 @@
+{
+  if (version == null) {
+    return false;
+  }
+  final String[] parts=version.split("\\.");
+  if (parts.length != 3) {
+    return false;
+  }
+  for (  final String part : parts) {
+    if (!Convert.isDecString(part)) {
+      return false;
+    }
+  }
+  return true;
+}

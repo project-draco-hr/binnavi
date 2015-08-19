@@ -1,0 +1,3 @@
+{
+  CMessageBox.showError(m_parent,String.format("The trace '%s' could not be saved to the database.",list.getName()));
+}

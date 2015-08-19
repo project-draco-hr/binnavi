@@ -1,0 +1,3 @@
+{
+  iconName=Preconditions.checkNotNull(name,"Error: name argument can not be null");
+}

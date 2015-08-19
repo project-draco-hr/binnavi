@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  trace.addEvent(new com.google.security.zynamics.binnavi.debug.models.trace.TraceEvent(tid,new BreakpointAddress(module == null ? null : module.getNative(),new UnrelocatedAddress(new CAddress(address.toLong()))),type.getNative(),new ArrayList<com.google.security.zynamics.binnavi.debug.models.trace.TraceRegister>()));
+}

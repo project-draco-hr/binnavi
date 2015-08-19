@@ -1,0 +1,9 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      insert(new CAddressSpaceNode(getProjectTree(),CProjectNode.this,m_database,project,space,m_container),getChildCount() - 2);
+      getTreeModel().nodeStructureChanged(CProjectNode.this);
+    }
+  }
+.invokeAndWait();
+}

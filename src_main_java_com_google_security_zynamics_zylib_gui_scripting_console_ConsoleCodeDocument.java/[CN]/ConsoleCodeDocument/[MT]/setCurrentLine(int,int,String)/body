@@ -1,0 +1,13 @@
+{
+  final Element element=getParagraphElement(pos);
+  final int start=element.getStartOffset();
+  final int end=element.getEndOffset();
+  try {
+    remove(start + skip,end - (start + skip + 1));
+    super.insertString(start + skip,line,normal);
+  }
+ catch (  final BadLocationException e) {
+    System.out.println("Bad location!");
+    e.printStackTrace();
+  }
+}

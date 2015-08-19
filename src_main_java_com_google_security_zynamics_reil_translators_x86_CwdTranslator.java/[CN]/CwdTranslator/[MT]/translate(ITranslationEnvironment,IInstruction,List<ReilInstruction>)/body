@@ -1,0 +1,15 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cwd");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final String isolatedMsb=environment.getNextVariableString();
+  final String shiftedMsb=environment.getNextVariableString();
+  final String mask=environment.getNextVariableString();
+  final String truncatedMask=environment.getNextVariableString();
+  final String maskedEdx=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(baseOffset,OperandSize.DWORD,"eax",OperandSize.DWORD,"32768",OperandSize.DWORD,isolatedMsb));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 1,OperandSize.DWORD,isolatedMsb,OperandSize.DWORD,"-15",OperandSize.DWORD,shiftedMsb));
+  instructions.add(ReilHelpers.createSub(baseOffset + 2,OperandSize.DWORD,"0",OperandSize.DWORD,shiftedMsb,OperandSize.DWORD,mask));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 3,OperandSize.DWORD,mask,OperandSize.DWORD,"65535",OperandSize.WORD,truncatedMask));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 4,OperandSize.DWORD,"edx",OperandSize.DWORD,"4294901760",OperandSize.DWORD,maskedEdx));
+  instructions.add(ReilHelpers.createOr(baseOffset + 5,OperandSize.WORD,truncatedMask,OperandSize.DWORD,maskedEdx,OperandSize.DWORD,"edx"));
+}

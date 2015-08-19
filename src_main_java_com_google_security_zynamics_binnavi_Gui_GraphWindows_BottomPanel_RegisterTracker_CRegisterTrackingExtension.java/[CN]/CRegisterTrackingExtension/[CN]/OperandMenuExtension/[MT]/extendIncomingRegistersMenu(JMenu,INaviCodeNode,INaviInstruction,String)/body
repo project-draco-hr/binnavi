@@ -1,0 +1,4 @@
+{
+  menu.add(CActionProxy.proxy(new CTrackOperandAction(m_resultsContainer,instruction,register,new RegisterTrackingOptions(m_settingsPanel.doClearAllRegisters(),m_settingsPanel.getClearedRegisters(),true,AnalysisDirection.DOWN))));
+  menu.add(CActionProxy.proxy(new CTrackOperandAction(m_resultsContainer,instruction,register,new RegisterTrackingOptions(m_settingsPanel.doClearAllRegisters(),m_settingsPanel.getClearedRegisters(),true,AnalysisDirection.UP))));
+}

@@ -1,0 +1,14 @@
+{
+  try {
+    final Integer typeId=m_resultSet.getInt("expression_types_type");
+    if (m_resultSet.wasNull()) {
+      return null;
+    }
+ else {
+      return typeId;
+    }
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

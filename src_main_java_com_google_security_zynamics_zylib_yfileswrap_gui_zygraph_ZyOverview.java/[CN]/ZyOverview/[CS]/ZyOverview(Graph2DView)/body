@@ -1,0 +1,5 @@
+{
+  super(arg0);
+  setPaintDetailThreshold(0.0);
+  setMinEdgesForSloppyEdgeHiding(1000);
+}

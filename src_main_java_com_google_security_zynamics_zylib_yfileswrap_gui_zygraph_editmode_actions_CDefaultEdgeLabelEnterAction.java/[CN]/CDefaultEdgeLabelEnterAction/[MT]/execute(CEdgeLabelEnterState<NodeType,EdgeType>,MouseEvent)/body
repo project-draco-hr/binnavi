@@ -1,0 +1,13 @@
+{
+  highlightEdge(state.getLabel());
+  final AbstractZyGraph<NodeType,EdgeType> graph=state.getGraph();
+  final EdgeLabel label=state.getLabel();
+  for (  final IZyEditModeListener<NodeType,EdgeType> listener : state.getStateFactory().getListeners()) {
+    try {
+      listener.edgeLabelEntered(label,event);
+    }
+ catch (    final Exception exception) {
+    }
+  }
+  graph.updateViews();
+}

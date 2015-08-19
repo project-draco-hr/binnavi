@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debuggerProvider,"IE01320: Debugger provider can't be null");
+  m_bookmarkTable=new CBookmarkTable(debuggerProvider);
+  add(new JScrollPane(m_bookmarkTable),BorderLayout.CENTER);
+}

@@ -1,0 +1,10 @@
+{
+  try {
+    final INaviFunction parentFunction=node.getParentFunction();
+    final String address=modifier == null ? parentFunction.getAddress().toHexString() : modifier.getAddress(parentFunction.getModule(),new UnrelocatedAddress(parentFunction.getAddress()),true);
+    final String name=parentFunction.getName();
+    content.addLineContent(new ZyLineContent(address + PADDING_AFTER_FUNCTION_ADDRESS + parentFunction.getModule().getConfiguration().getName()+ "::"+ name,BOLD_FONT,Lists.newArrayList(new CStyleRunData(0,-1,Color.BLACK)),null));
+  }
+ catch (  final MaybeNullException exception) {
+  }
+}

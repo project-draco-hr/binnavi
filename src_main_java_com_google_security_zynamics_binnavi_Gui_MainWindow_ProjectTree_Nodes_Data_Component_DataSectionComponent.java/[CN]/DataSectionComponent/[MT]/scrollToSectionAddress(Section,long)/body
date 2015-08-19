@@ -1,0 +1,4 @@
+{
+  sections.setSelectedItem(section);
+  hexView.gotoOffset(address - section.getStartAddress().toLong());
+}

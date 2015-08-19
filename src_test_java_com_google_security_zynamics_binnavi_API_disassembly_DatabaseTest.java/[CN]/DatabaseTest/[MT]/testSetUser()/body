@@ -1,0 +1,15 @@
+{
+  final MockDatabaseListener listener=new MockDatabaseListener();
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  database.addListener(listener);
+  database.setUser("Fark 1");
+  assertEquals("changedUser;",listener.events);
+  assertEquals("Fark 1",database.getUser());
+  assertEquals("Fark 1",mockDatabase.getConfiguration().getUser());
+  mockDatabase.getConfiguration().setUser("Fark 2");
+  assertEquals("changedUser;changedUser;",listener.events);
+  assertEquals("Fark 2",database.getUser());
+  assertEquals("Fark 2",mockDatabase.getConfiguration().getUser());
+  database.removeListener(listener);
+}

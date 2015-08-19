@@ -1,0 +1,8 @@
+{
+  final List<JComponent> menus=new ArrayList<JComponent>();
+  if (modules.size() == 1) {
+    final Module targetModule=modules.get(0);
+    menus.add(new JMenuItem(new PathfindingAction(targetModule)));
+  }
+  return menus;
+}

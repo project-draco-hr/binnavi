@@ -1,0 +1,5 @@
+{
+  oldView.removeListener(m_viewListener);
+  newView.addListener(m_viewListener);
+  m_menuBar.updateGui();
+}

@@ -1,0 +1,4 @@
+JFrame parent
+CTagsTree tagsTree
+ZyGraph graph
+ITagManager tagManager

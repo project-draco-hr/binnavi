@@ -1,0 +1,15 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"blelr");
+  Long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final String jumpOperand=environment.getNextVariableString();
+  final IOperandTreeNode BIOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,String.valueOf((Helpers.getCRRegisterIndex(BIOperand.getValue()) * 4) + 2),OperandSize.BYTE,String.valueOf((Helpers.getCRRegisterIndex(BIOperand.getValue()) * 4) + 0),OperandSize.BYTE,jumpOperand));
+  String suffix="";
+  if (instruction.getMnemonic().endsWith("+")) {
+    suffix="+";
+  }
+  if (instruction.getMnemonic().endsWith("-")) {
+    suffix="-";
+  }
+  BranchGenerator.generate(baseOffset,environment,instruction,instructions,"blelr" + suffix,jumpOperand,Helpers.LINK_REGISTER,false,false,false,false,false,false);
+}

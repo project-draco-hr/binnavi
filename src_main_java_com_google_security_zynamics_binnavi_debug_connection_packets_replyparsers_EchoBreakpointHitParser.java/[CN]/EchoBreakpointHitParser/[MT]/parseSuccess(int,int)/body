@@ -1,0 +1,12 @@
+{
+  final long tid=parseThreadId();
+  final byte[] data=parseData();
+  try {
+    final RegisterValues registerValues=RegisterValuesParser.parse(data);
+    return new EchoBreakpointHitReply(packetId,0,tid,registerValues);
+  }
+ catch (  final Exception e) {
+    CUtilityFunctions.logException(e);
+    return new EchoBreakpointHitReply(packetId,PARSER_ERROR,0,null);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final CBend path=m_rawEdge.getBends().get(index);
+  path.setX(x);
+  path.setY(y);
+}

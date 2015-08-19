@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(connection,"IE00598: Connection argument can not be null");
+  Preconditions.checkArgument(!connection.getAutoCommit(),"IE00599: Commit can only be performed when auto commit is false");
+  connection.commit();
+  connection.setAutoCommit(true);
+}

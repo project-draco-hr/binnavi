@@ -1,0 +1,10 @@
+{
+  for (  final ICallResolverTargetListener listener : listeners) {
+    try {
+      listener.changedDebugger(AddressSpaceCallResolverTarget.this,debugger);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

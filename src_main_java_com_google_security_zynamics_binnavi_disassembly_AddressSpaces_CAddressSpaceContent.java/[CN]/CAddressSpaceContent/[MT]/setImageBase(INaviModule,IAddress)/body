@@ -1,0 +1,23 @@
+{
+  Preconditions.checkNotNull(module,"IE00045: Module argument can not be null");
+  Preconditions.checkNotNull(imageBase,"IE00046: Address argument can not be null");
+  Preconditions.checkArgument(m_modules.contains(module),"IE00048: Module is not part of the address space");
+  if (imageBase.equals(m_imageBases.get(module))) {
+    return;
+  }
+  m_provider.setImageBase(m_addressSpace,module,imageBase);
+  m_imageBases.put(module,imageBase);
+  final IDebugger debugger=m_addressSpace.getConfiguration().getDebugger();
+  if (debugger != null) {
+    debugger.setAddressTranslator(module,module.getConfiguration().getFileBase(),getImageBase(module));
+  }
+  for (  final IAddressSpaceContentListener listener : m_listeners) {
+    try {
+      listener.changedImageBase(m_addressSpace,module,imageBase);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_addressSpace.getConfiguration().updateModificationDate();
+}

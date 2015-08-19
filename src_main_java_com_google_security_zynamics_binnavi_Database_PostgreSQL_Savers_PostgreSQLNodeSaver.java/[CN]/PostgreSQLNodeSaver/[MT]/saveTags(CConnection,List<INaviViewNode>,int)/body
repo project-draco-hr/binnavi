@@ -1,0 +1,40 @@
+{
+  int counter=firstNode;
+  final String deleteStatement="DELETE FROM " + CTableNames.TAGGED_NODES_TABLE + " WHERE node_id IN (%s)";
+  final String insertStatement="INSERT INTO " + CTableNames.TAGGED_NODES_TABLE + " VALUES %s ";
+  boolean isFirst=true;
+  final StringBuilder range=new StringBuilder();
+  for (int i=0; i < nodes.size(); i++) {
+    if (isFirst) {
+      range.append(counter);
+      isFirst=false;
+      continue;
+    }
+    range.append(", ");
+    range.append(counter);
+    ++counter;
+  }
+  if (range.length() != 0) {
+    connection.executeUpdate(String.format(deleteStatement,range.toString()),true);
+  }
+  counter=firstNode;
+  final StringBuilder insert=new StringBuilder();
+  isFirst=true;
+  for (  final INaviViewNode node : nodes) {
+    final Iterator<CTag> it=node.getTagsIterator();
+    while (it.hasNext()) {
+      final CTag tag=it.next();
+      insert.append(isFirst ? "" : ",");
+      insert.append('(');
+      insert.append(counter);
+      insert.append(", ");
+      insert.append(tag.getId());
+      insert.append(')');
+      isFirst=false;
+    }
+    ++counter;
+  }
+  if (insert.length() != 0) {
+    connection.executeUpdate(String.format(insertStatement,insert.toString()),true);
+  }
+}

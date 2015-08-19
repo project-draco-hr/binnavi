@@ -1,0 +1,16 @@
+{
+  int count=0;
+  final StringBuilder list=new StringBuilder();
+  for (  final INaviModule module : modules) {
+    list.append("- ");
+    list.append(module.getConfiguration().getName());
+    list.append('\n');
+    count++;
+    if ((count == MAX_LIST_LENGTH) && (modules.length != MAX_LIST_LENGTH)) {
+      list.append("\n... ");
+      list.append(String.format("%d others ...",modules.length - count));
+      break;
+    }
+  }
+  return list.toString();
+}

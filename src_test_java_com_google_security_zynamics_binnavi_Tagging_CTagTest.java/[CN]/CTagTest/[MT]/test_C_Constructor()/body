@@ -1,0 +1,36 @@
+{
+  try {
+    new CTag(-1,"Tag Name","Tag Description",TagType.NODE_TAG,new MockSqlProvider());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    new CTag(0,null,"Tag Description",TagType.NODE_TAG,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CTag(0,"Tag Name",null,TagType.NODE_TAG,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CTag(0,"Tag Name","Tag Description",null,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CTag(0,"Tag Name","Tag Description",TagType.NODE_TAG,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals(1,m_tag.getId());
+  assertEquals("Tag Name",m_tag.getName());
+  assertEquals("Tag Description",m_tag.getDescription());
+  assertEquals(TagType.NODE_TAG,m_tag.getType());
+}

@@ -1,0 +1,8 @@
+{
+  super(owner,"Select operand type",true);
+  this.typeManager=Preconditions.checkNotNull(typeManager,"IE02859: Type manager can not be null.");
+  this.selectedNode=Preconditions.checkNotNull(selectedNode,"IE02860: Operand tree node can not be null.");
+  addendValue=selectedNode.hasAddendSibling() ? (int)(selectedNode.determineAddendValue() * 8) : 0;
+  createControls(stackFrame);
+  populateControls(selectedNode.getTypeSubstitution());
+}

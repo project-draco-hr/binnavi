@@ -1,0 +1,3 @@
+{
+  PostgreSQLNodeFunctions.editGroupNodeComment(this,groupNode,commentId,userId,newComment);
+}

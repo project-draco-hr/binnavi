@@ -1,0 +1,3 @@
+{
+  PostgreSQLDataImporter.importTypes(getProvider().getConnection(),rawModuleId,moduleId);
+}

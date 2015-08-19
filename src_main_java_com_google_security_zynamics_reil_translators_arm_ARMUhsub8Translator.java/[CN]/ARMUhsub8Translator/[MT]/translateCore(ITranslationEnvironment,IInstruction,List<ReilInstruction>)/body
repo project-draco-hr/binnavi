@@ -1,0 +1,28 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final OperandSize wd=OperandSize.WORD;
+  final long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  new Processor(){
+    @Override protected int getResultShiftDelta(){
+      return -1;
+    }
+    @Override protected String[] process(    final long offset,    final String[] firstFour,    final String[] secondFour){
+      final String diff1=environment.getNextVariableString();
+      final String diff2=environment.getNextVariableString();
+      final String diff3=environment.getNextVariableString();
+      final String diff4=environment.getNextVariableString();
+      long baseOffset=offset;
+      instructions.add(ReilHelpers.createSub(baseOffset++,wd,firstFour[0],wd,secondFour[0],dw,diff1));
+      instructions.add(ReilHelpers.createSub(baseOffset++,wd,firstFour[1],wd,secondFour[1],dw,diff2));
+      instructions.add(ReilHelpers.createSub(baseOffset++,wd,firstFour[2],wd,secondFour[2],dw,diff3));
+      instructions.add(ReilHelpers.createSub(baseOffset++,wd,firstFour[3],wd,secondFour[3],dw,diff4));
+      return new String[]{diff1,diff2,diff3,diff4};
+    }
+  }
+.generate(environment,baseOffset,8,sourceRegister1,sourceRegister2,targetRegister,instructions);
+}

@@ -1,0 +1,5 @@
+{
+  m_project.removeListener(m_projectListener);
+  m_database.getContent().getDebuggerTemplateManager().removeListener(m_debuggerManagerListener);
+  m_table.dispose();
+}

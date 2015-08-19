@@ -1,0 +1,3 @@
+{
+  return instruction.getMetaData().containsKey("branch_delay") && instruction.getMetaData().get("branch_delay").equalsIgnoreCase("true");
+}

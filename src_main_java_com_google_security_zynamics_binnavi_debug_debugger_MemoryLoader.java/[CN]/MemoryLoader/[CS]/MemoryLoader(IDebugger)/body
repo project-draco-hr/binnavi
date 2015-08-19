@@ -1,0 +1,3 @@
+{
+  this.debugger=Preconditions.checkNotNull(debugger,"IE00822: Debugger can not be null");
+}

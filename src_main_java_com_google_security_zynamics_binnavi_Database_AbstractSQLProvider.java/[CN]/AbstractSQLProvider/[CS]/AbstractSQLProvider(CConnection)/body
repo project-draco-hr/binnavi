@@ -1,0 +1,3 @@
+{
+  this.connection=Preconditions.checkNotNull(connection,"IE00042: Connection argument can not be null");
+}

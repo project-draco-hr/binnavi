@@ -1,0 +1,16 @@
+{
+  m_options=new RegisterTrackingOptions(true,new HashSet<String>(),true,AnalysisDirection.DOWN);
+  final String trackedRegister="ebp";
+  final MonoReilSolverResult<RegisterSetLatticeElement> result=RegisterTracker.track(m_function,m_movInstruction,trackedRegister,m_options);
+  final Map<IAddress,RegisterSetLatticeElement> resultMap=result.generateAddressToStateMapping(m_movInstruction,m_options.trackIncoming());
+  for (  final Entry<IAddress,RegisterSetLatticeElement> resultEntry : resultMap.entrySet()) {
+    if ((resultEntry.getKey().toLong() >> 8) == 5) {
+      final RegisterSetLatticeElement movInstructionResult=resultEntry.getValue();
+      Assert.assertTrue(movInstructionResult.getNewlyTaintedRegisters().isEmpty());
+      Assert.assertTrue(movInstructionResult.getReadRegisters().contains("ebp"));
+      Assert.assertTrue(movInstructionResult.getTaintedRegisters().contains("ebp"));
+      Assert.assertTrue(movInstructionResult.getUntaintedRegisters().isEmpty());
+      Assert.assertTrue(movInstructionResult.getUpdatedRegisters().isEmpty());
+    }
+  }
+}

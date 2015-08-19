@@ -1,0 +1,6 @@
+{
+  if (event.getValueIsAdjusting()) {
+    return;
+  }
+  CTypeResultsHighlighter.updateHighlighting(m_graph,m_model.getInstructions());
+}

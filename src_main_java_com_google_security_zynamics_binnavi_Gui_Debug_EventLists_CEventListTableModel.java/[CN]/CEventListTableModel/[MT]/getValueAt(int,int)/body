@@ -1,0 +1,13 @@
+{
+  final TraceList debugEvent=getTraces().get(row);
+switch (col) {
+case NAME_COLUMN:
+    return debugEvent.getName();
+case EVENT_COLUMN:
+  return Integer.valueOf(debugEvent.getEventCount());
+case DESCRIPTION_COLUMN:
+return debugEvent.getDescription();
+default :
+throw new IllegalStateException("IE01119: Unkown column");
+}
+}

@@ -1,0 +1,5 @@
+{
+  if (groupNode.isStored()) {
+    provider.editGroupNodeComment(groupNode,id,userId,commentText);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (m_HistoryPosition < (m_LineHistory.size() - 1)) {
+    setCurrentLine(m_LineHistory.get(++m_HistoryPosition));
+  }
+ else   if (m_HistoryPosition == (m_LineHistory.size() - 1)) {
+    m_HistoryPosition++;
+    setCurrentLine(m_SavedTypedLine);
+  }
+  e.consume();
+}

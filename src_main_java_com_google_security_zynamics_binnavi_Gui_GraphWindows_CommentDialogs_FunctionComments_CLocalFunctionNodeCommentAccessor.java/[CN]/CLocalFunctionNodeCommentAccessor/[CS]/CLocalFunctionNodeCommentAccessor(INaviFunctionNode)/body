@@ -1,0 +1,3 @@
+{
+  m_functionNode=Preconditions.checkNotNull(functionNode,"IE02671: functionNode argument can not be null");
+}

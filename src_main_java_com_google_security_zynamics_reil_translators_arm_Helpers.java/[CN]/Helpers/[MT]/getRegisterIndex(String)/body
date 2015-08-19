@@ -1,0 +1,14 @@
+{
+  if (register.equals("SP")) {
+    return 13;
+  }
+ else   if (register.equals("LR")) {
+    return 14;
+  }
+ else   if (register.equals("PC")) {
+    return 15;
+  }
+ else {
+    return Integer.decode(register.substring(1));
+  }
+}

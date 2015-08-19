@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(listener,"Error: Listener argument can not be null.");
+  substitutionListeners.removeListener(listener);
+}

@@ -1,0 +1,21 @@
+{
+  final DirectedGraph<ICallgraphNode,ICallgraphEdge> graph=m_module.getContent().getNativeCallgraph();
+  final List<FunctionBlock> blocks=new ArrayList<FunctionBlock>();
+  final List<FunctionEdge> edges=new ArrayList<FunctionEdge>();
+  final HashMap<ICallgraphNode,FunctionBlock> blockMap=new HashMap<ICallgraphNode,FunctionBlock>();
+  final HashMap<INaviFunction,Function> functionMap=new HashMap<INaviFunction,Function>();
+  for (  final Function function : m_functions) {
+    functionMap.put(function.getNative(),function);
+  }
+  for (  final ICallgraphNode block : graph.getNodes()) {
+    final FunctionBlock newBlock=new FunctionBlock(functionMap.get(block.getFunction()));
+    blockMap.put(block,newBlock);
+    blocks.add(newBlock);
+  }
+  for (  final ICallgraphEdge edge : graph.getEdges()) {
+    final FunctionBlock source=blockMap.get(edge.getSource());
+    final FunctionBlock target=blockMap.get(edge.getTarget());
+    edges.add(new FunctionEdge(source,target));
+  }
+  m_callgraph=new Callgraph(blocks,edges);
+}

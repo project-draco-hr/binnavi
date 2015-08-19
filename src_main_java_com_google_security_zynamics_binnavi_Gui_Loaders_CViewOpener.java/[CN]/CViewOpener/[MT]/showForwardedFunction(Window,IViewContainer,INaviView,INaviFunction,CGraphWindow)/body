@@ -1,0 +1,42 @@
+{
+  if (container instanceof CModuleContainer) {
+    CMessageBox.showInformation(parent,"Please open forwarded views from inside a project.");
+    return;
+  }
+  final IDatabase database=container.getDatabase();
+  final int moduleId=function.getForwardedFunctionModuleId();
+  final INaviModule forwardedModule=database.getContent().getModule(moduleId);
+  if (forwardedModule == null) {
+    final String message="E00019: " + "Forwarded view can not be loaded (Unknown module)";
+    final String description=CUtilityFunctions.createDescription("BinNavi could not open the forwarded view because the module of " + "the forwarding target is unknown.",new String[]{"Probably the result of a bug in BinNavi"},new String[]{"The view can not be opened. Try to update the " + "forwarding target again. Restart BinNavi if the view " + "can still not be opened. Contact the BinNavi support if necessary."});
+    CNaviErrorDialog.show(parent,message,description);
+  }
+ else   if (forwardedModule.isLoaded()) {
+    final IAddress address=function.getForwardedFunctionAddress();
+    final INaviFunction forwardedFunction=forwardedModule.getContent().getFunctionContainer().getFunction(address);
+    if (forwardedFunction == null) {
+      final String message="E00020: " + "Forwarded view can not be loaded (Unknown function)";
+      final String description=CUtilityFunctions.createDescription("BinNavi could not open the forwarded view because the target function is unknown.",new String[]{"Probably the result of a bug in BinNavi"},new String[]{"The view can not be opened. Try to update the forwarding target " + "again. Restart BinNavi if the view can still not be opened. Contact the " + "BinNavi support if necessary."});
+      CNaviErrorDialog.show(parent,message,description);
+    }
+ else {
+      final INaviView forwardedView=forwardedModule.getContent().getViewContainer().getView(forwardedFunction);
+      if (forwardedView == null) {
+        final String message="E00107: " + "Forwarded view can not be loaded (Unknown view)";
+        final String description=CUtilityFunctions.createDescription("BinNavi could not open the forwarded view because the target view is unknown.",new String[]{"Probably the result of a bug in BinNavi"},new String[]{"The view can not be opened. Try to update the forwarding target " + "again. Restart BinNavi if the view can still not be opened. Contact the " + "BinNavi support if necessary."});
+        CNaviErrorDialog.show(parent,message,description);
+      }
+ else {
+        CGraphOpener.showGraph(container,forwardedView,window,parent);
+      }
+    }
+  }
+ else {
+    if (CMessageBox.showYesNoQuestion(parent,"The view can not be opened because it is forwarded to an unloaded module.\n\n" + "Do you want to load the forwarded module now?") == JOptionPane.YES_OPTION) {
+      CModuleLoader.loadModule(parent,forwardedModule);
+      if (forwardedModule.isLoaded()) {
+        showForwardedFunction(parent,container,view,function,window);
+      }
+    }
+  }
+}

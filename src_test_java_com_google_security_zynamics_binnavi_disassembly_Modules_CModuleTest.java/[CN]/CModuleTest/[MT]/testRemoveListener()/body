@@ -1,0 +1,4 @@
+{
+  m_module.load();
+  m_module.removeListener(m_listener);
+}

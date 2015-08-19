@@ -1,0 +1,22 @@
+{
+  final List<CReference> references=new ArrayList<CReference>();
+  boolean hasReferences=false;
+  do {
+    final CReference reference=dataset.getReference();
+    if (reference == null) {
+      if (hasReferences) {
+        dataset.prev();
+      }
+      break;
+    }
+    hasReferences=true;
+    final int currentExpressionId=dataset.getExpressionTreeId();
+    if (expressionId != currentExpressionId) {
+      dataset.prev();
+      break;
+    }
+    references.add(reference);
+  }
+ while (dataset.next());
+  return references;
+}

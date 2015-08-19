@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  Preconditions.checkNotNull(type,"Error: Type argument can not be null");
+  try {
+    final CReference reference=new CReference(new CAddress(address.toLong()),type.getNative());
+    m_node.addReference(reference);
+    return ObjectFinders.getObject(reference,m_references);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

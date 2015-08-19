@@ -1,0 +1,10 @@
+{
+  for (  final IZyGraphListener<NodeType,EdgeType> listener : m_graphListeners) {
+    try {
+      listener.nodeEntered(node,event);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  final int openWindows=getTabCount();
+  for (int i=0; i < openWindows; i++) {
+    if (btc == getTabComponentAt(i)) {
+      final IGraphPanel panel=(IGraphPanel)getComponentAt(i);
+      if (CPanelCloser.closeTab(m_parent,panel)) {
+        btc.removeListener(m_listener);
+        final int moduleId=panel.getModel().getViewContainer().getModules().get(0).getConfiguration().getId();
+        if (moduleIdCount.get(moduleId) == 1) {
+          moduleIdCount.remove(moduleId);
+        }
+ else {
+          moduleIdCount.put(moduleId,moduleIdCount.get(moduleId) - 1);
+        }
+        return true;
+      }
+ else {
+        return false;
+      }
+    }
+  }
+  return true;
+}

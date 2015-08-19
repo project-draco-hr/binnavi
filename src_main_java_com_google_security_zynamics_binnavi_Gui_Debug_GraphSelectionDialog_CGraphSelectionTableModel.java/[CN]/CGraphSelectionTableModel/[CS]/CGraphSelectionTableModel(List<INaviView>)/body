@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(views,"IE01393: Views argument can not be null");
+  m_views=new ArrayList<INaviView>(views);
+}

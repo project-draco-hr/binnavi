@@ -1,0 +1,6 @@
+{
+  tree.put(tag,new CTagFilterNode(tag));
+  for (  final ITreeNode<CTag> child : tag.getChildren()) {
+    createTree(child);
+  }
+}

@@ -1,0 +1,47 @@
+{
+  try {
+    @SuppressWarnings("unused") final Trace trace=m_logger.start("Name","Description",Lists.newArrayList(new TracePoint(m_mockModule,new Address(0x100))));
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  m_mockDebugger.connect();
+  try {
+    @SuppressWarnings("unused") final Trace trace=m_logger.start(null,"Description",Lists.newArrayList(new TracePoint(m_mockModule,new Address(0x100))));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    @SuppressWarnings("unused") final Trace trace=m_logger.start("Name",null,Lists.newArrayList(new TracePoint(m_mockModule,new Address(0x100))));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    @SuppressWarnings("unused") final Trace trace=m_logger.start("Name","Description",null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    @SuppressWarnings("unused") final Trace trace=m_logger.start("Name","Description",Lists.newArrayList(new TracePoint(m_mockModule,null)));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  @SuppressWarnings("unused") final Trace trace=m_logger.start("Name","Description",Lists.newArrayList(new TracePoint(m_mockModule,new Address(0x100))));
+  try {
+    m_logger.start("Name","Description",Lists.newArrayList(new TracePoint(m_mockModule,new Address(0x100))));
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  m_logger.stop();
+  try {
+    m_logger.stop();
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+}

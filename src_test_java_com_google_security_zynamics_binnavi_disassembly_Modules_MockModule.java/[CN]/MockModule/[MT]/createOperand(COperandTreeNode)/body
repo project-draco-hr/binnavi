@@ -1,0 +1,3 @@
+{
+  return new COperandTree(node,new MockSqlProvider(),this.getTypeManager(),this.getContent().getTypeInstanceContainer());
+}

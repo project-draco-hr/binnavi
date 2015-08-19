@@ -1,0 +1,26 @@
+{
+  final Set<File> scriptFiles=new HashSet<>();
+  final String scriptPath=startupPath + File.separator + "scripts";
+  final File scriptDir=new File(scriptPath);
+  DirUtils.traverse(scriptDir,new IDirectoryTraversalCallback(){
+    private boolean skip=false;
+    @Override public void entering(    final File directory){
+      skip=isLibDirectory(scriptDir,directory);
+    }
+    @Override public void leaving(    final File directory){
+      skip=false;
+    }
+    @Override public void nextFile(    final File file){
+      if (skip) {
+        return;
+      }
+      final String filename=FileUtils.getFileBasename(file);
+      if ("init".equals(filename) || !ScriptRunner.canRun(file)) {
+        return;
+      }
+      scriptFiles.add(file);
+    }
+  }
+);
+  return scriptFiles;
+}

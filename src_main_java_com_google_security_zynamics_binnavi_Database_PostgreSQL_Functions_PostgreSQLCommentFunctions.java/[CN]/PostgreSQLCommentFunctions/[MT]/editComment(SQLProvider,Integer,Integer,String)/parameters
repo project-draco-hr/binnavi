@@ -1,0 +1,4 @@
+SQLProvider provider
+Integer commentId
+Integer userId
+String newComment

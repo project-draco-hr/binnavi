@@ -1,0 +1,12 @@
+{
+  final List<RegisterDescription> registers=new ArrayList<>();
+  final NodeList nodes=node.getChildNodes();
+  for (int i=0; i < nodes.getLength(); ++i) {
+    final Node child=nodes.item(i);
+    final String registerName=getAttribute(child,"name");
+    final String registerSize=getAttribute(child,"size");
+    final String registerEditable=getAttribute(child,"editable");
+    registers.add(new RegisterDescription(registerName,Integer.valueOf(registerSize),Boolean.valueOf(registerEditable)));
+  }
+  return registers;
+}

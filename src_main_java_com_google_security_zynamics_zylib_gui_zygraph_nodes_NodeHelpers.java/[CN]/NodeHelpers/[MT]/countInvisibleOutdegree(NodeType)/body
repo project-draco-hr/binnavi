@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.countIf(node.getOutgoingEdges(),new ICollectionFilter<IViewEdge<? extends IViewNode<?>>>(){
+    @Override public boolean qualifies(    final IViewEdge<? extends IViewNode<?>> item){
+      return !getVisibleNode(item.getTarget()).isVisible();
+    }
+  }
+);
+}

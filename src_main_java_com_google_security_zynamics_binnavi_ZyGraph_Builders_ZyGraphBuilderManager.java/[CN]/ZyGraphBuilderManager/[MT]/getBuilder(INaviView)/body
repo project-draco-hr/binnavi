@@ -1,0 +1,7 @@
+{
+  final ZyGraphBuilder builder=m_builders.get(view);
+  if (builder == null) {
+    throw new MaybeNullException();
+  }
+  return builder;
+}

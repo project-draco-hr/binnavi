@@ -1,0 +1,6 @@
+{
+  tabbedPane.setEnabledAt(1,module.isLoaded());
+  tabbedPane.setEnabledAt(2,module.isLoaded());
+  tabbedPane.setEnabledAt(3,module.isLoaded());
+  tabbedPane.setEnabledAt(4,module.isLoaded());
+}

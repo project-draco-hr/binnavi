@@ -1,0 +1,17 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent=module.getContent();
+  moduleContent.getFunctionContainer().getFunctionCount();
+  assertNotNull(moduleContent.getFunctionContainer().getFunctions());
+  module.close();
+  try {
+    moduleContent.getFunctionContainer().getFunctions();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  final CModule module1=(CModule)getDatabase().getContent().getModules().get(0);
+  module1.load();
+  @SuppressWarnings("unused") final CModuleContent moduleContent1=module.getContent();
+}

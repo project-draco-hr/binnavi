@@ -1,0 +1,16 @@
+{
+  final Set<INaviInstruction> instructions=Sets.newHashSet();
+  if (paths == null) {
+    return instructions;
+  }
+  for (  final TreePath treePath : paths) {
+    final DefaultMutableTreeNode node=(DefaultMutableTreeNode)treePath.getLastPathComponent();
+    if (node instanceof InstructionNode) {
+      instructions.add(((InstructionNode)node).getInstruction());
+    }
+ else {
+      instructions.addAll(findInstructions(node));
+    }
+  }
+  return instructions;
+}

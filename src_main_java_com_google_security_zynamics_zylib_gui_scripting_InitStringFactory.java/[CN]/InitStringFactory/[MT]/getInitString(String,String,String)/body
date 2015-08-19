@@ -1,0 +1,9 @@
+{
+  if (string == null) {
+    return "";
+  }
+  if (string.startsWith("python")) {
+    return String.format("import sys\nsys.stdout = %s\nsys.path.append('%s')\n",consoleName,libPath);
+  }
+  return "";
+}

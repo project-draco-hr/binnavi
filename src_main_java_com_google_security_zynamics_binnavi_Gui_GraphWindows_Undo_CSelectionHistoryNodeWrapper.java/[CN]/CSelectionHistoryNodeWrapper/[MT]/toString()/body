@@ -1,0 +1,20 @@
+{
+  int visible=0;
+  int invisible=0;
+  int selected=0;
+  int all=0;
+  final List<NaviNode> selection=m_operation.getSelection();
+  for (  final NaviNode graphnode : selection) {
+    all++;
+    if (graphnode.getRawNode().isVisible()) {
+      if (graphnode.getRawNode().isSelected()) {
+        selected++;
+      }
+      visible++;
+    }
+ else {
+      invisible++;
+    }
+  }
+  return String.format("%d-%s (%d/%d/%d/%d)",m_stateIndex,m_operation.getDescription(),selected,visible,invisible,all);
+}

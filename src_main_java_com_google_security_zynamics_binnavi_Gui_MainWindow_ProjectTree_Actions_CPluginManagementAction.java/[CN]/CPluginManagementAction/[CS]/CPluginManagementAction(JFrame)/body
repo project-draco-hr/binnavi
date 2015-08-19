@@ -1,0 +1,5 @@
+{
+  super("Plugin Manager");
+  this.parent=parent;
+  putValue(SHORT_DESCRIPTION,"Can be used to configure the available plugins");
+}

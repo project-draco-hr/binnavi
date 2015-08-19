@@ -1,0 +1,4 @@
+View view
+Collection<FunctionBlock> passedFunctions
+Map<BasicBlock,ViewNode> nodeMap
+Map<ViewNode,Function> functionMap

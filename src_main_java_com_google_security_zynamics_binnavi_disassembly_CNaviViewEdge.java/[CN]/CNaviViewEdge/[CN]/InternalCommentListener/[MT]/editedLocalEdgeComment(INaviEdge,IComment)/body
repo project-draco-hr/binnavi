@@ -1,0 +1,14 @@
+{
+  if (CNaviViewEdge.this.equals(edge)) {
+    for (    final IViewEdgeListener listener : m_listeners) {
+      if (listener instanceof INaviEdgeCommentListener) {
+        try {
+          ((INaviEdgeCommentListener)listener).editedLocalEdgeComment(edge,comment);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

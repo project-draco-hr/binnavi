@@ -1,0 +1,3 @@
+{
+  view.addListener(m_viewListener);
+}

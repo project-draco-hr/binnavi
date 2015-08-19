@@ -1,0 +1,9 @@
+{
+  final BookmarkManager manager=new BookmarkManager();
+  try {
+    manager.getBookmark(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

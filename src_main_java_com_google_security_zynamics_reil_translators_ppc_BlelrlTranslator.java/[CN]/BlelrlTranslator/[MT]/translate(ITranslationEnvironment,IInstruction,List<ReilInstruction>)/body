@@ -1,0 +1,8 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"blelrl");
+  Long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final String jumpOperand=environment.getNextVariableString();
+  final IOperandTreeNode BIOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,String.valueOf((Helpers.getCRRegisterIndex(BIOperand.getValue()) * 4) + 2),OperandSize.BYTE,String.valueOf((Helpers.getCRRegisterIndex(BIOperand.getValue()) * 4) + 0),OperandSize.BYTE,jumpOperand));
+  BranchGenerator.generate(baseOffset,environment,instruction,instructions,"blelrl",jumpOperand,Helpers.LINK_REGISTER,true,false,false,false,false,false);
+}

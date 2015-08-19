@@ -1,0 +1,10 @@
+{
+  if (node.getRawNode() instanceof INaviFunctionNode) {
+    final INaviFunctionNode functionNode=(INaviFunctionNode)node.getRawNode();
+    if (functionNode.getFunction().getType() == FunctionType.IMPORT) {
+      return IterationMode.CONTINUE;
+    }
+  }
+  breakpointNodeCallback.next(node);
+  return IterationMode.CONTINUE;
+}

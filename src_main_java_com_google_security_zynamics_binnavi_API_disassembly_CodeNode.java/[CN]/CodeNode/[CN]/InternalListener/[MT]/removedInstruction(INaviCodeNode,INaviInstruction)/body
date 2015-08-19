@@ -1,0 +1,12 @@
+{
+  final Instruction removedInstruction=ObjectFinders.getObject(instruction,m_instructions);
+  m_instructions.remove(removedInstruction);
+  for (  final ICodeNodeListener listener : m_listeners) {
+    try {
+      listener.removedInstruction(CodeNode.this,removedInstruction);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

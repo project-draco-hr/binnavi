@@ -1,0 +1,5 @@
+{
+  super("Load");
+  putValue(Action.SMALL_ICON,new ImageIcon(CMain.class.getResource("data/folder.png")));
+  m_module=module;
+}

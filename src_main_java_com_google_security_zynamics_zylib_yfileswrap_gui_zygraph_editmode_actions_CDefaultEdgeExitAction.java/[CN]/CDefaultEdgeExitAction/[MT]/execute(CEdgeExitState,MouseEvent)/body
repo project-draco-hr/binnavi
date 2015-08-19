@@ -1,0 +1,7 @@
+{
+  clearTooltip(state.getGraph());
+  if (state.getEdge().getGraph() != null) {
+    unhighlightEdge(state.getEdge());
+  }
+  state.getGraph().updateViews();
+}

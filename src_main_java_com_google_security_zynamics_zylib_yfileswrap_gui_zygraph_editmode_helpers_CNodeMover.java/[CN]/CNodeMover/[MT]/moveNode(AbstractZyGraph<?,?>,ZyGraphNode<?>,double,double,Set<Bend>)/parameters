@@ -1,0 +1,5 @@
+AbstractZyGraph<?,?> graph
+ZyGraphNode<?> node
+double xdist
+double ydist
+Set<Bend> movedBends

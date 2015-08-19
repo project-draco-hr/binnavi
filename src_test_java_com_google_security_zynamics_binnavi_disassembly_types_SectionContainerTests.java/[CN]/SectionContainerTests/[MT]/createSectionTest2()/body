@@ -1,0 +1,6 @@
+{
+  final SectionContainer sectionContainer=new SectionContainer(backend);
+  Assert.assertNotNull(sectionContainer);
+  Assert.assertEquals(0,sectionContainer.getSections().size());
+  sectionContainer.createSection(".text",null,null,null,null);
+}

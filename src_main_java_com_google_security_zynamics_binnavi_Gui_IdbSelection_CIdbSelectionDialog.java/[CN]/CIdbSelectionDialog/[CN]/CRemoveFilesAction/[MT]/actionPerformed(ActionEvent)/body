@@ -1,0 +1,10 @@
+{
+  final int[] indices=m_selectionList.getSelectedIndices();
+  final File[] files=new File[indices.length];
+  for (int i=0; i < indices.length; i++) {
+    files[i]=m_selectionList.getFileAt(indices[i]);
+  }
+  for (  final File file : files) {
+    m_selectionList.removeFile(file);
+  }
+}

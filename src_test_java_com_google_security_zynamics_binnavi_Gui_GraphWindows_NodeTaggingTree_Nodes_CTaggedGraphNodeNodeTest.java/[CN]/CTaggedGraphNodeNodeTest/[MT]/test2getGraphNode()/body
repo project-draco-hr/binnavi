@@ -1,0 +1,7 @@
+{
+  final ZyGraph graph=ZyGraphFactory.generateTestGraph();
+  final CCodeNode node=graph.getRawView().getBasicBlocks().get(0);
+  final NaviNode naviNode=graph.getNode(node);
+  final CTaggedGraphNodeNode taggedNode=new CTaggedGraphNodeNode(graph,naviNode);
+  assertEquals(naviNode,taggedNode.getGraphNode());
+}

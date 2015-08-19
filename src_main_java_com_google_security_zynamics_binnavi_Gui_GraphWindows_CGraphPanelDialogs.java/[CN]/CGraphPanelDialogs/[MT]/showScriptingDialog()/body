@@ -1,0 +1,12 @@
+{
+  if (!m_shownScriptingDialogBefore) {
+    GuiHelper.centerChildToParent(m_model.getParent(),m_scriptingDlg,true);
+  }
+  m_shownScriptingDialogBefore=true;
+  if (m_scriptingDlg.isVisible()) {
+    m_scriptingDlg.toFront();
+  }
+ else {
+    m_scriptingDlg.setVisible(true);
+  }
+}

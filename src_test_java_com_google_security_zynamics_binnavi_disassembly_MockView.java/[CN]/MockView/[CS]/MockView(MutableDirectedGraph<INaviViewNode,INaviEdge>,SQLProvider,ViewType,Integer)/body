@@ -1,0 +1,6 @@
+{
+  m_content=new CViewContent(this,m_listeners,provider,graph);
+  m_configuration=new CViewConfiguration(this,m_listeners,provider,viewId,"Mock View Description","Mock View",type,new Date(),new Date(),new LinkedHashSet<CTag>(),false);
+  m_provider=provider;
+  ViewManager.get(provider).putView(this);
+}

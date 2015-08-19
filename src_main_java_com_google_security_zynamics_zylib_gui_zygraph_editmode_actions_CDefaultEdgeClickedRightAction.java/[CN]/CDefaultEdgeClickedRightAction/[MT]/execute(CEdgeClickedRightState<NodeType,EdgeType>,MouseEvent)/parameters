@@ -1,0 +1,2 @@
+CEdgeClickedRightState<NodeType,EdgeType> state
+MouseEvent event

@@ -1,0 +1,12 @@
+{
+  final AddressSpace newSpace=new AddressSpace(m_database,Project.this,space);
+  m_addressSpaces.add(newSpace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedAddressSpace(Project.this,newSpace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

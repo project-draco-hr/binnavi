@@ -1,0 +1,18 @@
+{
+  final INaviCodeNode databaseOnecodeNode=databaseOneView.getContent().getBasicBlocks().get(1);
+  final INaviCodeNode databaseTwocodeNode=databaseTwoView.getContent().getBasicBlocks().get(1);
+  final List<IComment> oneBefore=databaseOnecodeNode.getComments().getGlobalCodeNodeComment() == null ? new ArrayList<IComment>() : databaseOnecodeNode.getComments().getGlobalCodeNodeComment();
+  final List<IComment> twoBefore=databaseTwocodeNode.getComments().getGlobalCodeNodeComment() == null ? new ArrayList<IComment>() : databaseTwocodeNode.getComments().getGlobalCodeNodeComment();
+  assertEquals(oneBefore,twoBefore);
+  databaseOnecodeNode.getComments().appendGlobalCodeNodeComment(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL CODE NODE COMMENT) ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOnecodeNode.getComments().getGlobalCodeNodeComment();
+  final List<IComment> twoAfter=databaseTwocodeNode.getComments().getGlobalCodeNodeComment();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+}

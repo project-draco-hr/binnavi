@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    listener.initializedGlobalEdgeComments(edge,comments);
+  }
+ else {
+    listener.initializedLocalEdgeComments(edge,comments);
+  }
+}

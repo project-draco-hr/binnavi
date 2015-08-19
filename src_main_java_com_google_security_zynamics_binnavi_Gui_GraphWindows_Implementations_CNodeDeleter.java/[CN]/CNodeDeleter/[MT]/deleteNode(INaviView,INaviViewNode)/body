@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(view,"IE01730: View argument can not be null");
+  Preconditions.checkNotNull(node,"IE01731: Node argument can not be null");
+  view.getContent().deleteNode(node);
+}

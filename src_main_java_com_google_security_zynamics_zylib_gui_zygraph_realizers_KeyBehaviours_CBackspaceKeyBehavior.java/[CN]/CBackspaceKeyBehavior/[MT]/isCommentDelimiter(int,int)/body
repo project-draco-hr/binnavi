@@ -1,0 +1,6 @@
+{
+  final ZyLineContent lineContent=getLineContent(y);
+  final IZyEditableObject fragment=lineContent.getLineFragmentObjectAt(x);
+  IZyEditableObject leftNeighbourFragment=x > 0 ? leftNeighbourFragment=lineContent.getLineFragmentObjectAt(x - 1) : null;
+  return ((fragment != null) && fragment.isCommentDelimiter()) || ((leftNeighbourFragment != null) && leftNeighbourFragment.isCommentDelimiter());
+}

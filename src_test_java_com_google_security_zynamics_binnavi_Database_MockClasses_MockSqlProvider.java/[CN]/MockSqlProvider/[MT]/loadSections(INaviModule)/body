@@ -1,0 +1,7 @@
+{
+  final HashMap<Section,Integer> sectionsMap=Maps.newHashMap();
+  for (  final Section section : sections.get(module.getConfiguration().getId())) {
+    sectionsMap.put(section,null);
+  }
+  return sectionsMap;
+}

@@ -1,0 +1,21 @@
+{
+  super((Window)null,"Ongoing operations");
+  CIconInitializer.initializeWindowIcons(this);
+  setLayout(new BorderLayout());
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  final JPanel upperPanel=new JPanel(new BorderLayout());
+  upperPanel.add(m_progressPanel,BorderLayout.NORTH);
+  innerPanel.add(new JScrollPane(upperPanel));
+  add(innerPanel);
+  final JPanel lowerPanel=new JPanel(new BorderLayout());
+  lowerPanel.add(new JButton(new CHideAction()),BorderLayout.EAST);
+  add(lowerPanel,BorderLayout.SOUTH);
+  setSize(400,300);
+  GuiHelper.centerOnScreen(this);
+  setDefaultCloseOperation(HIDE_ON_CLOSE);
+  for (  final IProgressOperation operation : CGlobalProgressManager.instance().getOperations()) {
+    add(operation);
+  }
+  setFocusable(false);
+  CGlobalProgressManager.instance().addListener(m_listener);
+}

@@ -1,0 +1,3 @@
+{
+  CWindowFunctions.showScriptingDialog(m_parent);
+}

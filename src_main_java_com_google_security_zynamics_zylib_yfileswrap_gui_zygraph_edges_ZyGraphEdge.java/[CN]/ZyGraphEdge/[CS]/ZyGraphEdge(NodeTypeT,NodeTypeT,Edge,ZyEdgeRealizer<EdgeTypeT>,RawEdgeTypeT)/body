@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(source,"Source node cannot be null");
+  Preconditions.checkNotNull(target,"Target node cannot be null");
+  Preconditions.checkNotNull(edge,"Edge argument cannot be null");
+  Preconditions.checkNotNull(rawEdge,"Raw edge argument cannot be null");
+  m_sourceNode=source;
+  m_targetNode=target;
+  m_edge=edge;
+  m_rawEdge=rawEdge;
+  m_realizer=realizer;
+  m_realizer.setSelected(rawEdge.isSelected());
+  m_realizer.setSourcePoint(new YPoint(rawEdge.getX1(),rawEdge.getY1()));
+  m_realizer.setTargetPoint(new YPoint(rawEdge.getX2(),rawEdge.getY2()));
+  m_graph=(Graph2D)edge.getGraph();
+  m_graph.setRealizer(edge,realizer);
+  for (  final CBend bend : m_rawEdge.getBends()) {
+    m_realizer.addPoint(bend.getX(),bend.getY());
+    bend.addListener(m_listener);
+  }
+  realizer.addListener(m_listener);
+  rawEdge.addListener(m_listener);
+}

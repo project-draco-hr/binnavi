@@ -1,0 +1,8 @@
+{
+  final CStandardProgressDialog dlg=new CStandardProgressDialog(parent,Constants.DEFAULT_WINDOW_TITLE,description,thread);
+  CIconInitializer.initializeWindowIcons(dlg);
+  thread.start();
+  dlg.setSize(400,150);
+  dlg.setVisible(true);
+  return dlg;
+}

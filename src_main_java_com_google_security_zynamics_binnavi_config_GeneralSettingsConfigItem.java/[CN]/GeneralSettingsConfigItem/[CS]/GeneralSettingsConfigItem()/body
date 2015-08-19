@@ -1,0 +1,6 @@
+{
+  idbDirectories=Lists.newArrayList();
+  lastOpenWindow=new LastOpenWindowConfigItem();
+  graphWindow=new GraphWindowConfigItem();
+  plugins=Lists.newArrayList();
+}

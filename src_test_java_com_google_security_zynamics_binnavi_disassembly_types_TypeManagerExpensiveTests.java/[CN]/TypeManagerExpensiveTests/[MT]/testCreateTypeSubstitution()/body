@@ -1,0 +1,4 @@
+{
+  testCreateTypeSubstitution(getKernel32Module());
+  testCreateTypeSubstitution(getNotepadModule());
+}

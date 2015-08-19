@@ -1,0 +1,4 @@
+{
+  synchronizeThreads(oldThread,newThread);
+  updateGui();
+}

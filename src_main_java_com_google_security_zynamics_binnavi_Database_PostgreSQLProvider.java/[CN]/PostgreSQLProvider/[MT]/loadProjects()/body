@@ -1,0 +1,4 @@
+{
+  projects=PostgreSQLDatabaseFunctions.loadProjects(this,getDebuggerManager());
+  return new ArrayList<INaviProject>(projects);
+}

@@ -1,0 +1,3 @@
+{
+  return m_taintedRegs.contains(Preconditions.checkNotNull(register,"Error: Register argument can not be null"));
+}

@@ -1,0 +1,3 @@
+{
+  m_database.getConfiguration().setPassword(password);
+}

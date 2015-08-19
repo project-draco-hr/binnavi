@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(address >= 0,"Error: Argument address can't be less than 0");
+  Preconditions.checkArgument(length > 0,"Error: Argument length must be bigger than 0");
+  memory.store(address,getData(value,length));
+}

@@ -1,0 +1,4 @@
+CStateFactory<?,?> m_factory
+MouseEvent event
+AbstractZyGraph<?,?> graph
+IMouseState state

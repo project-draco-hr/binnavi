@@ -1,0 +1,5 @@
+{
+  if (log.isLoggable(Level.WARNING)) {
+    log.warning(String.format(string,args));
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return TypeMember.createFunctionPrototypeMember(++typeMemberId,containingType,memberType,memberName,memberArgumentIndex);
+}

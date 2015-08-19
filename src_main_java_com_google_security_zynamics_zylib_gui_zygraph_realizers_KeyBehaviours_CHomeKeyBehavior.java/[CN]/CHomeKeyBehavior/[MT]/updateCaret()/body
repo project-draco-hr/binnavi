@@ -1,0 +1,14 @@
+{
+  if (!isShiftPressed() && !isCtrlPressed()) {
+    setCaret(0,0,getCaretMousePressedY(),0,0,getCaretMouseReleasedY());
+  }
+ else   if (isShiftPressed() && !isCtrlPressed()) {
+    setCaret(getCaretStartPosX(),getCaretMousePressedX(),getCaretMousePressedY(),0,0,getCaretMouseReleasedY());
+  }
+ else   if (!isShiftPressed() && isCtrlPressed()) {
+    setCaret(0,0,0,0,0,0);
+  }
+ else   if (isShiftPressed() && isCtrlPressed()) {
+    setCaret(getCaretStartPosX(),getCaretMousePressedX(),getCaretMousePressedY(),0,0,0);
+  }
+}

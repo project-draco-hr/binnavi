@@ -1,0 +1,5 @@
+{
+  super.dispose();
+  m_database.getContent().getViewTagManager().removeListener(m_tagManagerListener);
+  deleteChildren();
+}

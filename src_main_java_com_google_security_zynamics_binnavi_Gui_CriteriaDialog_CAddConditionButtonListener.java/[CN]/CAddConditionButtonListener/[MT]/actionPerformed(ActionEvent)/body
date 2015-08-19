@@ -1,0 +1,3 @@
+{
+  CCriteriumFunctions.appendCriterium(m_jtree,m_ctree,m_selectionBox);
+}

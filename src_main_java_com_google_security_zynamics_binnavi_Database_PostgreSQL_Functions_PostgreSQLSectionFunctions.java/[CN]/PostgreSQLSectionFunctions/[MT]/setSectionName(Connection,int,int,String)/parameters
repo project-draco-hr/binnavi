@@ -1,0 +1,4 @@
+Connection connection
+int moduleId
+int sectionId
+String name

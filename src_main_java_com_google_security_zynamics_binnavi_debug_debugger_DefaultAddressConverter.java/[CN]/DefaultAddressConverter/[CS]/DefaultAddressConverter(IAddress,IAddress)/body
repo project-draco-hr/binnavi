@@ -1,0 +1,4 @@
+{
+  sectionMemoryStartAddress=Preconditions.checkNotNull(membase,"IE00817: Memory base argument can not be null");
+  fileMemoryStartAddress=Preconditions.checkNotNull(filebase,"IE00819: File base argument can not be null");
+}

@@ -1,0 +1,4 @@
+{
+  final File f=new File(s);
+  addFile(f);
+}

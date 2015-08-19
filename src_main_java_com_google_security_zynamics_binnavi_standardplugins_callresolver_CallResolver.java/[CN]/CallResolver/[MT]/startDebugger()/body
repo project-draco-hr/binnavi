@@ -1,0 +1,17 @@
+{
+  if (debugger == null) {
+    errorNoDebugger();
+    return;
+  }
+  debugger.addListener(debuggerListener);
+  try {
+    if (!debugger.isConnected()) {
+      debugger.connect();
+    }
+    step++;
+  }
+ catch (  final DebugException e) {
+    debugger.removeListener(debuggerListener);
+    errorConnectingDebugger(e);
+  }
+}

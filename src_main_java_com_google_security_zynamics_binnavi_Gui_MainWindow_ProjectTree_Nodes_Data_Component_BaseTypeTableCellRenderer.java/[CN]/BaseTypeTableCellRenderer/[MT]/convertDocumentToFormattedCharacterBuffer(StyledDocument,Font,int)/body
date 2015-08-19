@@ -1,0 +1,30 @@
+{
+  int width=desiredWidth, height=0;
+  String text="";
+  try {
+    text=document.getText(0,document.getLength());
+  }
+ catch (  BadLocationException e) {
+  }
+  String[] chunks=text.split("\n");
+  height=chunks.length;
+  for (  String line : chunks) {
+    width=Math.max(width,line.length() + 1);
+  }
+  FormattedCharacterBuffer result=new FormattedCharacterBuffer(height,width);
+  int lineindex=0, columnindex=0;
+  for (int index=0; index < document.getLength(); ++index) {
+    if (text.charAt(index) != '\n') {
+      AttributeSet attributes=document.getCharacterElement(index).getAttributes();
+      Color foreground=document.getForeground(attributes);
+      Color background=document.getBackground(attributes);
+      columnindex++;
+      result.setAt(lineindex,columnindex,text.charAt(index),font,foreground,background);
+    }
+ else {
+      columnindex=0;
+      lineindex++;
+    }
+  }
+  return result;
+}

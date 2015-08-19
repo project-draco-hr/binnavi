@@ -1,0 +1,5 @@
+{
+  final HashSet<String> set=Sets.newHashSet(m_lhs.getVariables());
+  set.addAll(m_rhs.getVariables());
+  return set;
+}

@@ -1,0 +1,33 @@
+{
+  final CModuleLoaderOperation operation=new CModuleLoaderOperation(module);
+  boolean success=false;
+  try {
+    if (projectTree != null) {
+      CNodeExpander.findNode(projectTree,module).getComponent();
+    }
+    module.load();
+    success=true;
+    if (projectTree != null) {
+      new SwingInvoker(){
+        @Override protected void operation(){
+          CNodeExpander.expandNode(projectTree,module);
+          operation.stop();
+        }
+      }
+.invokeLater();
+    }
+  }
+ catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00177: " + "Module data could not be loaded";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the module '%s'.",module.getConfiguration().getName()),new String[]{"The connection dropped while the data was loaded."},new String[]{"BinNavi can not open the module. To fix this situation try " + "to load the module again. Restart BinNavi if necessary and contact " + "the BinNavi support if the problem persists."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+catch (  final LoadCancelledException e) {
+  }
+ finally {
+    if (!success) {
+      operation.stop();
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  if (isComment(lineXPos,lineYPos)) {
+    final ZyLineContent lineContent=getLineContent(lineYPos);
+    int x=lineContent.getLineFragmentObjectList().get(lineContent.getLineFragmentObjectList().size() - 1).getEnd();
+    int y=lineYPos;
+    for (int index=lineYPos + 1; index <= getLabelContent().getLastLineIndexOfModelAt(lineYPos); ++index) {
+      final ZyLineContent nextLineContent=getLineContent(index);
+      final int editableObjectSize=nextLineContent.getLineFragmentObjectList().size();
+      final IZyEditableObject firstEditableObject=nextLineContent.getLineFragmentObjectAt(0);
+      if (firstEditableObject != null) {
+        if (firstEditableObject.isCommentDelimiter()) {
+          x=nextLineContent.getLineFragmentObjectAt(editableObjectSize - 1).getEnd();
+          y=index;
+        }
+      }
+ else {
+        break;
+      }
+    }
+    return new Point(x,y);
+  }
+  return null;
+}

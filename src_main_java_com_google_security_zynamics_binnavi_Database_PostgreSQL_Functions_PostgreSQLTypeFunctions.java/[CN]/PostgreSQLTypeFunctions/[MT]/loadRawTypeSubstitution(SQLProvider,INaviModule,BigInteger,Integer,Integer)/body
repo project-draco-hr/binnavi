@@ -1,0 +1,38 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkNotNull(position,"Error: position argument can not be null");
+  Preconditions.checkNotNull(expressionId,"Error: expressionId argument can not be null");
+  final String query=" SELECT * FROM load_type_substitution(?, ?, ?, ?) ";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+    statement.setInt(1,module.getConfiguration().getId());
+    statement.setObject(2,address,Types.BIGINT);
+    statement.setInt(3,position);
+    statement.setInt(4,expressionId);
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        if (resultSet.first()) {
+          final int baseTypeId=resultSet.getInt("base_type_id");
+          final Array arr=resultSet.getArray("path");
+          final Integer[] path=resultSet.wasNull() ? new Integer[0] : (Integer[])arr.getArray();
+          Integer offset=resultSet.getInt("offset");
+          if (resultSet.wasNull()) {
+            offset=null;
+          }
+          return new RawTypeSubstitution(new CAddress(address),position,expressionId,baseTypeId,path,offset);
+        }
+      }
+    }
+  finally {
+      resultSet.close();
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  throw new CouldntLoadDataException("Error: could not load single type substitution from the database.");
+}

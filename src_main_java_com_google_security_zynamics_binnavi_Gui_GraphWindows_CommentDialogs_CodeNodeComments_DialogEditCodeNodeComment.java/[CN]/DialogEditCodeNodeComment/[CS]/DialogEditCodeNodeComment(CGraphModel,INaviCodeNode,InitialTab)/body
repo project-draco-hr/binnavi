@@ -1,0 +1,16 @@
+{
+  super(model.getParent(),"Edit Node Comments",true);
+  m_codeNode=Preconditions.checkNotNull(node,"IE01701: Node argument can't be null");
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  m_commentsPanel=new CodeNodeCommentsPanel(node);
+  m_globalLineCommentsPanel=new CGlobalInstructionCommentsPanel(m_codeNode,model);
+  m_localLineCommentsPanel=new LocalInstructionCommentsPanel(m_codeNode,model);
+  try {
+    m_functionCommentsPanel=new CFunctionCommentsPanel(node.getParentFunction(),null);
+  }
+ catch (  final MaybeNullException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  createGui(initialTab);
+}

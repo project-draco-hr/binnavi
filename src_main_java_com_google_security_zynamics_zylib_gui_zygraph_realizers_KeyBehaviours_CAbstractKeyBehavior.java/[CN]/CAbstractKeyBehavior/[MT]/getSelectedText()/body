@@ -1,0 +1,33 @@
+{
+  if (!isSelection()) {
+    return "";
+  }
+  final int yStart=Math.min(getCaretMousePressedY(),getCaretMouseReleasedY());
+  final int yEnd=Math.max(getCaretMousePressedY(),getCaretMouseReleasedY());
+  final int xStart=Math.min(getCaretMousePressedX(),getCaretMouseReleasedX());
+  final int xEnd=Math.max(getCaretMousePressedX(),getCaretMouseReleasedX());
+  final StringBuilder clipboardText=new StringBuilder();
+  for (int lineIndex=yStart; lineIndex <= yEnd; ++lineIndex) {
+    final ZyLineContent lineContent=getLineContent(lineIndex);
+    final int lineLength=lineContent.getText().length();
+    if (xStart < lineLength) {
+      int xTempEnd=xEnd;
+      if (xEnd > lineLength) {
+        xTempEnd=lineLength;
+      }
+      final String lineText=lineContent.getText();
+      String fragment=lineText.substring(xStart,xTempEnd);
+      if (!fragment.endsWith("\n") && (lineIndex != yEnd)) {
+        fragment+="\n";
+      }
+      if (fragment.endsWith("\r") || ((lineIndex == yEnd) && fragment.endsWith("\n"))) {
+        fragment=fragment.substring(0,fragment.length() - 1);
+      }
+      clipboardText.append(fragment);
+    }
+ else     if (lineIndex != yEnd) {
+      clipboardText.append("\n");
+    }
+  }
+  return clipboardText.toString();
+}

@@ -1,0 +1,41 @@
+{
+  if (!dataProvider.next()) {
+    return new ArrayList<CCodeNode>();
+  }
+  while (true) {
+    if (dataProvider.isAfterLast()) {
+      if (currentNode != null) {
+        nodes.add(currentNode);
+      }
+      break;
+    }
+    nodes.add(extractNode(dataProvider));
+  }
+  final HashSet<Integer> allComments=Sets.newHashSet();
+  allComments.addAll(localCommentIdToCodeNode.keySet());
+  allComments.addAll(globalCommentIdToCodeNode.keySet());
+  allComments.addAll(globalCommentIdToInstruction.keySet());
+  allComments.addAll(localCommentIdToInstruction.keySet());
+  try {
+    final HashMap<Integer,ArrayList<IComment>> commentIdToComments=sqlProvider.loadMultipleCommentsById(allComments);
+    for (    final Entry<Integer,ArrayList<IComment>> commentIdToComment : commentIdToComments.entrySet()) {
+      if (localCommentIdToCodeNode.containsKey(commentIdToComment.getKey())) {
+        localCommentIdToCodeNode.get(commentIdToComment.getKey()).getComments().initializeLocalCodeNodeComment(commentIdToComment.getValue());
+      }
+      if (globalCommentIdToCodeNode.containsKey(commentIdToComment.getKey())) {
+        globalCommentIdToCodeNode.get(commentIdToComment.getKey()).getComments().initializeGlobalCodeNodeComment(commentIdToComment.getValue());
+      }
+      if (localCommentIdToInstruction.containsKey(commentIdToComment.getKey())) {
+        final Pair<INaviInstruction,INaviCodeNode> instructionToCodeNode=localCommentIdToInstruction.get(commentIdToComment.getKey());
+        instructionToCodeNode.second().getComments().initializeLocalInstructionComment(instructionToCodeNode.first(),commentIdToComment.getValue());
+      }
+      if (globalCommentIdToInstruction.containsKey(commentIdToComment.getKey())) {
+        globalCommentIdToInstruction.get(commentIdToComment.getKey()).initializeGlobalComment(commentIdToComment.getValue());
+      }
+    }
+  }
+ catch (  final CouldntLoadDataException exception) {
+    throw new CPartialLoadException("Error: Comments could not be loaded.",null);
+  }
+  return nodes;
+}

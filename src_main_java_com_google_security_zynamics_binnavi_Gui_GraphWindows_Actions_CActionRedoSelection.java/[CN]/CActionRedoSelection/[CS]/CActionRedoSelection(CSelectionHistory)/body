@@ -1,0 +1,5 @@
+{
+  super("Redo Last Selection");
+  m_history=Preconditions.checkNotNull(history,"IE02828: history argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_REDO_SELECTION_HK.getKeyStroke());
+}

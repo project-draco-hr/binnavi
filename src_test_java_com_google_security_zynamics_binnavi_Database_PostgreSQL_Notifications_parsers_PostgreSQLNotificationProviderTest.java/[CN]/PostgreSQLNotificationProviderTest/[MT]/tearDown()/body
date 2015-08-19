@@ -1,0 +1,6 @@
+{
+  databaseOneView.close();
+  databaseOne.close();
+  databaseTwoView.close();
+  databaseTwo.close();
+}

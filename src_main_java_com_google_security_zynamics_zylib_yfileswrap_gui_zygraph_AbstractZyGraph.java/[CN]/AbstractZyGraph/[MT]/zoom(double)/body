@@ -1,0 +1,6 @@
+{
+  final double zoom=m_view.getZoom() * factor;
+  m_view.setZoom(zoom);
+  ZoomHelpers.keepZoomValid(m_view);
+  m_graph.updateViews();
+}

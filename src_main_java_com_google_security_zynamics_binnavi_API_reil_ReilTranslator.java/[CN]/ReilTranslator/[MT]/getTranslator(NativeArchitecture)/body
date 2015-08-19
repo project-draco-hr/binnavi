@@ -1,0 +1,14 @@
+{
+switch (architecture) {
+case X86_32:
+    return new TranslatorX86<INaviInstruction>();
+case PPC_32:
+  return new TranslatorPPC<INaviInstruction>();
+case ARM_32:
+return new TranslatorARM<INaviInstruction>();
+case REIL:
+return new TranslatorREIL<INaviInstruction>();
+default :
+throw new IllegalArgumentException("Error: Unknown REIL architecture");
+}
+}

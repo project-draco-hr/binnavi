@@ -1,0 +1,2 @@
+INaviOperandTreeNode currentNode
+List<INaviOperandTreeNode> nodes

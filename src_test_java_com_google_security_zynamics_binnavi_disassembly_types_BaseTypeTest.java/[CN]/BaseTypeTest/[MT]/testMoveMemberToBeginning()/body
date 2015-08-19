@@ -1,0 +1,6 @@
+{
+  typeSystem.simpleStruct.moveMembers(Sets.newTreeSet(typeSystem.ssUintMember),-32);
+  assertEquals(Integer.valueOf(0),typeSystem.ssUintMember.getBitOffset().get());
+  assertEquals(Integer.valueOf(32),typeSystem.ssIntMember.getBitOffset().get());
+  assertEquals(Integer.valueOf(64),typeSystem.ssArrayMember.getBitOffset().get());
+}

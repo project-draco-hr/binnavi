@@ -1,0 +1,42 @@
+{
+  final ReilInstruction ins=n.getReilInstruction();
+  final Integer mnemonic=ins.getMnemonicCode();
+switch (mnemonic) {
+case ReilHelpers._OPCODE_ADD:
+    return transformAdd(ins,state);
+case ReilHelpers._OPCODE_AND:
+  return transformAnd(ins,state);
+case ReilHelpers._OPCODE_BISZ:
+return transformBisz(ins,state);
+case ReilHelpers._OPCODE_BSH:
+return transformBsh(ins,state);
+case ReilHelpers._OPCODE_DIV:
+return transformDiv(ins,state);
+case ReilHelpers._OPCODE_JCC:
+return transformJcc(ins,state);
+case ReilHelpers._OPCODE_LDM:
+return transformLdm(ins,state);
+case ReilHelpers._OPCODE_MOD:
+return transformMod(ins,state);
+case ReilHelpers._OPCODE_MUL:
+return transformMod(ins,state);
+case ReilHelpers._OPCODE_NOP:
+return transformNop(ins,state);
+case ReilHelpers._OPCODE_OR:
+return transformOr(ins,state);
+case ReilHelpers._OPCODE_STM:
+return transformStm(ins,state);
+case ReilHelpers._OPCODE_STR:
+return transformStr(ins,state);
+case ReilHelpers._OPCODE_SUB:
+return transformSub(ins,state);
+case ReilHelpers._OPCODE_UNDEF:
+return transformUndef(ins,state);
+case ReilHelpers._OPCODE_UNKNOWN:
+return transformUnknown(ins,state);
+case ReilHelpers._OPCODE_XOR:
+return transformXor(ins,state);
+default :
+return transformUnknownOpcode(ins,state);
+}
+}

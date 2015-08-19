@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(type,"IE00175: Type argument can not be null");
+  Preconditions.checkNotNull(memoryModules,"IE00177: Memory Modules argument can not be null");
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.sizeByModuleFilter(memoryModules);
+case ECHO:
+  return echoBreakpointStorage.sizeByModuleFilter(memoryModules);
+case STEP:
+return stepBreakpointStorage.sizeByModuleFilter(memoryModules);
+default :
+throw new IllegalArgumentException(String.format("Invalid breakpoint type '%s'",type));
+}
+}

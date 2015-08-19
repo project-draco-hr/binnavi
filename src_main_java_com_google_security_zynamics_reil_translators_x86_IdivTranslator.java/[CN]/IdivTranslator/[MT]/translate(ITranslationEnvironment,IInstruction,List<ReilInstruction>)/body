@@ -1,0 +1,42 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"idiv");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a idiv instruction (invalid number of operands)");
+  }
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree divisorOperand=operands.get(0);
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final OperandSize size=Helpers.getOperandSize(operands.get(0));
+  final TranslationResult resultDividend=Helpers.loadFirstDivOperand(environment,offset,size);
+  instructions.addAll(resultDividend.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String dividend=resultDividend.getRegister();
+  final TranslationResult resultDivisor=Helpers.translateOperand(environment,offset,divisorOperand,true);
+  instructions.addAll(resultDivisor.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String divisor=resultDivisor.getRegister();
+  final Pair<String,String> absDividend=Helpers.generateAbs(environment,offset,dividend,size,instructions);
+  offset=baseOffset + instructions.size();
+  final Pair<String,String> absDivisor=Helpers.generateAbs(environment,offset,divisor,size,instructions);
+  offset=baseOffset + instructions.size();
+  final String divResult=environment.getNextVariableString();
+  final String modResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createDiv(offset,size,absDividend.second(),size,absDivisor.second(),size,divResult));
+  instructions.add(ReilHelpers.createMod(offset + 1,size,absDividend.second(),size,absDivisor.second(),size,modResult));
+  final String xoredSigns=environment.getNextVariableString();
+  final String toggleMask=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset + 2,size,absDividend.first(),size,absDividend.second(),size,xoredSigns));
+  instructions.add(ReilHelpers.createSub(offset + 3,size,"0",size,xoredSigns,size,toggleMask));
+  final String decDivResult=environment.getNextVariableString();
+  final String realDivResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(offset + 4,size,divResult,size,xoredSigns,size,decDivResult));
+  instructions.add(ReilHelpers.createXor(offset + 5,size,decDivResult,size,toggleMask,size,realDivResult));
+  final String modToggleMask=environment.getNextVariableString();
+  final String decModResult=environment.getNextVariableString();
+  final String realModResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(offset + 6,size,"0",size,absDividend.first(),size,modToggleMask));
+  instructions.add(ReilHelpers.createSub(offset + 7,size,modResult,size,absDividend.first(),size,decModResult));
+  instructions.add(ReilHelpers.createXor(offset + 8,size,decModResult,size,modToggleMask,size,realModResult));
+  instructions.addAll(Helpers.writeDivResult(environment,offset + 9,realDivResult,realModResult,size));
+}

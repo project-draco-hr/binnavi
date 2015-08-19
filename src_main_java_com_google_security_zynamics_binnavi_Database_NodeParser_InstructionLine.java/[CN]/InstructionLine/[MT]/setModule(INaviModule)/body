@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(module,"IE00715: Module argument can not be null");
+  this.module=module;
+}

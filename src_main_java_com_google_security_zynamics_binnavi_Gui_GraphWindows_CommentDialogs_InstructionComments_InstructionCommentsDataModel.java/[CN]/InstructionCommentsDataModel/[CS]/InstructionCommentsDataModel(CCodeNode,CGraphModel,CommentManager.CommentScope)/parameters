@@ -1,0 +1,3 @@
+CCodeNode codeNode
+CGraphModel model
+CommentManager.CommentScope scope

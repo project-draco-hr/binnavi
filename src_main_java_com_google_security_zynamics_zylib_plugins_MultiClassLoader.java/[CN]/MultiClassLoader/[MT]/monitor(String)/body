@@ -1,0 +1,5 @@
+{
+  if (monitorOn) {
+    print(text);
+  }
+}

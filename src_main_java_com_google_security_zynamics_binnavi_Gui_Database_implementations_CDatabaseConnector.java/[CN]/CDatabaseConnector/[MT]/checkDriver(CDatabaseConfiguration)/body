@@ -1,0 +1,9 @@
+{
+  try {
+    Class.forName(configuration.getDriver()).newInstance();
+  }
+ catch (  final Exception e) {
+    CUtilityFunctions.logException(e);
+    throw new CouldntLoadDriverException(String.format("Could not load database driver '%s'.",configuration.getDriver()));
+  }
+}

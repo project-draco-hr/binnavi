@@ -1,0 +1,3 @@
+{
+  CViewContainerFunctions.deleteViews(parentWindow,viewContainer,views);
+}

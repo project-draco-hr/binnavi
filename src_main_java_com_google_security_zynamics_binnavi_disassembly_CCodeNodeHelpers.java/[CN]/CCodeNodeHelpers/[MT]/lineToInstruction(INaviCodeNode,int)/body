@@ -1,0 +1,14 @@
+{
+  Preconditions.checkArgument(line >= 0,"IE00061: Line number can not be negative");
+  Preconditions.checkNotNull(codeNode,"IE01784: Code node argument can not be null");
+  int lineCounter=getInitialLineCounter(codeNode);
+  final HashMap<INaviInstruction,INaviFunction> functionMap=CReferenceFinder.getCodeReferenceMap(codeNode);
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    final int instructionLines=getInstructionLineCount(codeNode,instruction,functionMap.get(instruction));
+    if ((line >= lineCounter) && (line < (lineCounter + instructionLines))) {
+      return instruction;
+    }
+    lineCounter+=instructionLines;
+  }
+  return null;
+}

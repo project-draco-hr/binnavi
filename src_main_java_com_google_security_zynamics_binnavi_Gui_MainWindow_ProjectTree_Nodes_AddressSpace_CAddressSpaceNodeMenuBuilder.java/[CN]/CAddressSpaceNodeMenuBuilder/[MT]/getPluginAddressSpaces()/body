@@ -1,0 +1,18 @@
+{
+  final DatabaseManager manager=PluginInterface.instance().getDatabaseManager();
+  for (  final Database database : manager) {
+    if (database.getNative() == m_database) {
+      for (      final Project project : database.getProjects()) {
+        if (project.getNative() == m_project) {
+          final List<AddressSpace> allSpaces=project.getAddressSpaces();
+          final List<AddressSpace> menuSpaces=new ArrayList<AddressSpace>();
+          for (          final INaviAddressSpace addressSpace : m_addressSpaces) {
+            menuSpaces.add(ObjectFinders.getObject(addressSpace,allSpaces));
+          }
+          return menuSpaces;
+        }
+      }
+    }
+  }
+  throw new IllegalStateException("IE01159: Unknown database");
+}

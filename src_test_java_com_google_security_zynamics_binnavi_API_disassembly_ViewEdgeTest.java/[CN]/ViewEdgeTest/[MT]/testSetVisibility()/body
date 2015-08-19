@@ -1,0 +1,8 @@
+{
+  final MockViewEdgeListener listener=new MockViewEdgeListener();
+  m_edge.addListener(listener);
+  m_edge.setVisible(false);
+  assertFalse(m_edge.isVisible());
+  assertEquals("changedVisibility;",listener.events);
+  m_edge.removeListener(listener);
+}

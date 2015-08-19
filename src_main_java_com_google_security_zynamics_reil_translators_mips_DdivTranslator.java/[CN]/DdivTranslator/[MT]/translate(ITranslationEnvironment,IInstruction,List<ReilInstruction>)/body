@@ -1,0 +1,30 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"ddiv");
+  final String sourceRegister1=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String sourceRegister2=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final OperandSize qw=OperandSize.QWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final Pair<String,String> sourceRegister1Abs=Helpers.generateAbs(environment,offset,sourceRegister1,qw,instructions);
+  final String sourceRegister1Absolute=sourceRegister1Abs.second();
+  offset=baseOffset + instructions.size();
+  final Pair<String,String> sourceRegister2Abs=Helpers.generateAbs(environment,offset,sourceRegister2,qw,instructions);
+  final String sourceRegister2Absolute=sourceRegister2Abs.second();
+  offset=baseOffset + instructions.size();
+  final String divResult=environment.getNextVariableString();
+  final String modResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createDiv(offset++,qw,sourceRegister1Absolute,qw,sourceRegister2Absolute,qw,divResult));
+  instructions.add(ReilHelpers.createMod(offset,qw,sourceRegister1Absolute,qw,sourceRegister2Absolute,qw,modResult));
+  final String xoredSigns=environment.getNextVariableString();
+  final String divToggleMask=environment.getNextVariableString();
+  final String xoredDivResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset++,qw,sourceRegister1Abs.first(),qw,sourceRegister2Abs.first(),qw,xoredSigns));
+  instructions.add(ReilHelpers.createSub(offset++,qw,String.valueOf(0L),qw,xoredSigns,qw,divToggleMask));
+  instructions.add(ReilHelpers.createXor(offset++,qw,divToggleMask,qw,divResult,qw,xoredDivResult));
+  instructions.add(ReilHelpers.createAdd(offset,qw,xoredDivResult,qw,xoredSigns,qw,"LO"));
+  final String modToggleMask=environment.getNextVariableString();
+  final String xoredModResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(offset++,qw,String.valueOf(0L),qw,sourceRegister1Abs.first(),qw,modToggleMask));
+  instructions.add(ReilHelpers.createXor(offset++,qw,modToggleMask,qw,modResult,qw,xoredModResult));
+  instructions.add(ReilHelpers.createAdd(offset,qw,xoredModResult,qw,sourceRegister1Abs.first(),qw,"HI"));
+}

@@ -1,0 +1,6 @@
+int packetId
+int errorCode
+long tid
+long code
+RelocatedAddress address
+String exceptionName

@@ -1,0 +1,12 @@
+{
+  super("Delete Project");
+  m_parent=Preconditions.checkNotNull(parent,"IE01882: Parent argument can't be null");
+  m_database=Preconditions.checkNotNull(database,"IE01883: Database argument can't be null");
+  m_projects=Preconditions.checkNotNull(projects,"IE01884: Projects argument can't be null").clone();
+  m_updater=Preconditions.checkNotNull(updater,"IE02339: updater argument can not be null");
+  for (  final INaviProject project : projects) {
+    Preconditions.checkNotNull(project,"IE01885: Projects list contains a null-element");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_PROJECT".charAt(0));
+}

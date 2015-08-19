@@ -1,0 +1,10 @@
+{
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.yposChanged(view,node,ypos);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

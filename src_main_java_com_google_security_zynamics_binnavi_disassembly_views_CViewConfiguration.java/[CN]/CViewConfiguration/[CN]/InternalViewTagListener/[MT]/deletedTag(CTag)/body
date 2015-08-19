@@ -1,0 +1,12 @@
+{
+  tag.removeListener(tagListener);
+  viewTags.remove(tag);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.untaggedView(view,tag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

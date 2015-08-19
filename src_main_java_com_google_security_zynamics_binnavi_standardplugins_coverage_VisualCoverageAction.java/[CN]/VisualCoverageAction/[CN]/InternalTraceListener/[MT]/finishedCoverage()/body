@@ -1,0 +1,4 @@
+{
+  coverage.removeListener(traceListener);
+  coverage=null;
+}

@@ -1,0 +1,3 @@
+{
+  return String.format("%d Modules in Address Space '%s'",m_addressSpace.getModuleCount(),m_addressSpace.getConfiguration().getName());
+}

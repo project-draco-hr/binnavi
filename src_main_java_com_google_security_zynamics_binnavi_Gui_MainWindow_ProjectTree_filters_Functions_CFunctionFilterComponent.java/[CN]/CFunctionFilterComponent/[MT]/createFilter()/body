@@ -1,0 +1,18 @@
+{
+  return new IFilter<INaviView>(){
+    @Override public boolean checkCondition(    final INaviView element){
+      final CFunctionTypePanel typePanel=dialog.getFunctionTypePanel();
+      final INaviFunction function=module.getFunction(element);
+      return ((typePanel.isShowAdjustorFunctions() && (function.getType() == FunctionType.ADJUSTOR_THUNK)) || (typePanel.isShowImportedFunctions() && (function.getType() == FunctionType.IMPORT)) || (typePanel.isShowLibraryFunctions() && (function.getType() == FunctionType.LIBRARY))|| (typePanel.isShowNormalFunctions() && (function.getType() == FunctionType.NORMAL))|| (typePanel.isShowThunkFunctions() && (function.getType() == FunctionType.THUNK)));
+    }
+    @Override public IFilledList<INaviView> get(    final List<INaviView> elements){
+      return new FilledList<INaviView>(CollectionHelpers.filter(elements,new ICollectionFilter<INaviView>(){
+        @Override public boolean qualifies(        final INaviView item){
+          return checkCondition(item);
+        }
+      }
+));
+    }
+  }
+;
+}

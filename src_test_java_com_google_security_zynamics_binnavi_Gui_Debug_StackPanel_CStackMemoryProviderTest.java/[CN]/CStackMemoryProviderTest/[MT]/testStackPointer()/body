@@ -1,0 +1,10 @@
+{
+  m_provider.setDebugger(m_debugger);
+  assertEquals(-1,m_provider.getStackPointer());
+  m_debugger.connect();
+  assertEquals(-1,m_provider.getStackPointer());
+  final TargetProcessThread thread=new TargetProcessThread(0,ThreadState.SUSPENDED);
+  thread.setRegisterValues(Lists.newArrayList(new RegisterValue("esp",BigInteger.valueOf(0x123),new byte[0],false,true)));
+  m_provider.setActiveThread(thread);
+  assertEquals(0x123,m_provider.getStackPointer());
+}

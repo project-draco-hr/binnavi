@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(node,"IE00133: Operand tree node with value null detected");
+  for (  final IZyTreeNode child : node.getChildren()) {
+    verifyNode(child);
+  }
+}

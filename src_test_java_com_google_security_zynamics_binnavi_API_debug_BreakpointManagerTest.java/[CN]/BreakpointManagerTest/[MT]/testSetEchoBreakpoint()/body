@@ -1,0 +1,19 @@
+{
+  apiManager.addListener(mockListener);
+  try {
+    apiManager.setEchoBreakpoint(null,null);
+  }
+ catch (  final NullPointerException exception) {
+  }
+  apiManager.setEchoBreakpoint(module,new Address(0x123));
+  assertEquals("addedEchoBreakpoint/123;",mockListener.events);
+  try {
+    apiManager.setEchoBreakpoint(null,new Address(0x123));
+  }
+ catch (  final NullPointerException exception) {
+  }
+  internalManager.addBreakpoints(BreakpointType.ECHO,Sets.newHashSet(new BreakpointAddress(CommonTestObjects.MODULE,new UnrelocatedAddress(new CAddress(0x124)))));
+  assertEquals("addedEchoBreakpoint/123;addedEchoBreakpoint/124;",mockListener.events);
+  assertTrue(apiManager.hasEchoBreakpoint(module,new Address(0x124)));
+  apiManager.removeListener(mockListener);
+}

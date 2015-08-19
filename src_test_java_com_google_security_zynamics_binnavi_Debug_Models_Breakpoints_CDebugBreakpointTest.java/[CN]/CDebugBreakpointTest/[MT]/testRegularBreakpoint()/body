@@ -1,0 +1,16 @@
+{
+  final Breakpoint bp=new Breakpoint(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123);
+  assertEquals(BreakpointType.REGULAR,bp.getType());
+  assertEquals(null,bp.getDescription());
+  assertEquals(BigInteger.valueOf(0x123),bp.getAddress().getAddress().getAddress().toBigInteger());
+  assertEquals(BreakpointType.REGULAR,bp.getType());
+  assertEquals(null,bp.getDescription());
+  assertEquals(BigInteger.valueOf(0x123),bp.getAddress().getAddress().getAddress().toBigInteger());
+  assertEquals(BreakpointType.REGULAR,bp.getType());
+  assertEquals(null,bp.getDescription());
+  assertEquals(BigInteger.valueOf(0x123),bp.getAddress().getAddress().getAddress().toBigInteger());
+  bp.setDescription("foo");
+  assertEquals(BreakpointType.REGULAR,bp.getType());
+  assertEquals("foo",bp.getDescription());
+  assertEquals(BigInteger.valueOf(0x123),bp.getAddress().getAddress().getAddress().toBigInteger());
+}

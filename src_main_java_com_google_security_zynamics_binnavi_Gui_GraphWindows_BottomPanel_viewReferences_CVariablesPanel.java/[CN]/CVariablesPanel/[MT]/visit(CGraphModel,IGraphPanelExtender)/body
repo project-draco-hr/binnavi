@@ -1,0 +1,12 @@
+{
+  graphModel=model;
+  if (graphModel.getGraph().getRawView().getConfiguration().getModule() == null) {
+    return;
+  }
+  extender.addTab("Variables",this);
+  final ViewReferencesTableModel treeModel=new ViewReferencesTableModel(model.getGraph().getRawView());
+  referencesTable=new ViewReferencesTable(treeModel);
+  add(new JScrollPane(referencesTable));
+  referencesTable.addTreeSelectionListener(treeSelectionListener);
+  referencesTable.addMouseListener(new VariablesPanelMouseAdapter());
+}

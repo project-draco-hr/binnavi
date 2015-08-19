@@ -1,0 +1,6 @@
+{
+  super(String.format("Insert member after '%s'",existingMember.getName()));
+  this.owner=owner;
+  this.typeManager=typeManager;
+  this.existingMember=existingMember;
+}

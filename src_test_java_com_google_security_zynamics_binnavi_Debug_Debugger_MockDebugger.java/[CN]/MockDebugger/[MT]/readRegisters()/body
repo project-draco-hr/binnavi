@@ -1,0 +1,5 @@
+{
+  super.readRegisters();
+  processCounter();
+  requests+="READREGS;";
+}

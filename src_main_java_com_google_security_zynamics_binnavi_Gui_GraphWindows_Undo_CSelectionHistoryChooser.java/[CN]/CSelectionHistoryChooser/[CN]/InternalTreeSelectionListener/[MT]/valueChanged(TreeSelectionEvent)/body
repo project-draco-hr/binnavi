@@ -1,0 +1,10 @@
+{
+  final DefaultMutableTreeNode node=(DefaultMutableTreeNode)m_tree.getLastSelectedPathComponent();
+  if (node == null || node.isLeaf()) {
+    return;
+  }
+  final int childIndex=m_model.getIndexOfChild(m_model.getRoot(),node) == -1 ? 0 : m_model.getIndexOfChild(m_model.getRoot(),node);
+  final int index=m_selectionHistory.size() - childIndex - 1;
+  final CSelectionSnapshot snapshot=m_selectionHistory.getSnapshot(index);
+  selectNodes(snapshot.getSelection());
+}

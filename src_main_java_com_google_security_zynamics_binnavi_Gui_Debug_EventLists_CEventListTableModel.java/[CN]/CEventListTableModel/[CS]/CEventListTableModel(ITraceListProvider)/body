@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(traceProvider,"IE01375: Event list manager can't be null");
+  m_traceProvider=traceProvider;
+  m_traceProvider.addListener(m_listener);
+  if (traceProvider.isLoaded()) {
+    for (    final TraceList traceList : traceProvider) {
+      traceList.addListener(m_listener);
+    }
+  }
+}

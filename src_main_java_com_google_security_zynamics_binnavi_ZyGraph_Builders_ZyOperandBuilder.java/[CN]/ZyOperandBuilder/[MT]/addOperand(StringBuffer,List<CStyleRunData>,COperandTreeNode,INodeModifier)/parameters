@@ -1,0 +1,4 @@
+StringBuffer line
+List<CStyleRunData> styleRuns
+COperandTreeNode treeNode
+INodeModifier modifier

@@ -1,0 +1,4 @@
+{
+  this(label,url);
+  setToolTipText(tip);
+}

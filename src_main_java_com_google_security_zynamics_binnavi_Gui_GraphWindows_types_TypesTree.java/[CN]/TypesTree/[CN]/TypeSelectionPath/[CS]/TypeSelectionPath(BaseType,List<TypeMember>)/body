@@ -1,0 +1,5 @@
+{
+  this.rootType=rootType;
+  this.members=members;
+  containsUnion=rootType == null ? false : containsUnion(rootType,members);
+}

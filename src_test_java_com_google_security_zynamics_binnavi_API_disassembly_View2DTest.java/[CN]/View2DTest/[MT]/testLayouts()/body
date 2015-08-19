@@ -1,0 +1,7 @@
+{
+  m_view2d.doCircularLayout();
+  m_view2d.doHierarchicalLayout();
+  m_view2d.doOrthogonalLayout();
+  m_view2d.zoomToScreen();
+  m_view2d.updateUI();
+}

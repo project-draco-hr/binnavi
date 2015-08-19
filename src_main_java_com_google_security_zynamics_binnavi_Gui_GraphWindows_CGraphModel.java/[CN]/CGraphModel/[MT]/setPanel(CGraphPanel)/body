@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(m_graphPanel == null,"IE01615: Graph panel can not be set twice");
+  m_graphPanel=Preconditions.checkNotNull(graphPanel,"IE01614: Graph panel argument can not be null");
+}

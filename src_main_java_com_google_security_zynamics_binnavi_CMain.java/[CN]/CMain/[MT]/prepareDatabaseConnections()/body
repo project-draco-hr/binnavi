@@ -1,0 +1,7 @@
+{
+  NaviLogger.info("Initializing database connections");
+  final CDatabaseManager manager=CDatabaseManager.instance();
+  for (  final DatabaseConfigItem database : ConfigManager.instance().getDatabases()) {
+    manager.addDatabase(new CDatabase(database.getDescription(),database.getDriver(),database.getHost(),database.getName(),database.getUser(),database.getPassword(),database.getIdentity(),database.isSavePassword(),database.isAutoConnect()));
+  }
+}

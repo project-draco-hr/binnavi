@@ -1,0 +1,3 @@
+{
+  writeSetting(key,Boolean.toString(value));
+}

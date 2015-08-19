@@ -1,0 +1,9 @@
+{
+  try {
+    showPathfindingDialog(m_module);
+  }
+ catch (  final CouldntLoadDataException exception) {
+    Logger.logException(exception);
+    MessageBox.showException(pluginInterface.getMainWindow().getFrame(),exception,"Could not create path");
+  }
+}

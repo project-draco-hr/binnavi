@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(targetInformation,"Error: Target information argument can not be null");
+  this.targetInformation=targetInformation;
+}

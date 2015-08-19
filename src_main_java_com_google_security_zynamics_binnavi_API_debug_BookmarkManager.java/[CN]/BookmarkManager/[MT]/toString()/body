@@ -1,0 +1,3 @@
+{
+  return String.format("Bookmark Manager (Managing %d Bookmarks)",getNumberOfBookmarks());
+}

@@ -1,0 +1,9 @@
+{
+  m_database.removeListener(m_databaseListener);
+  if (m_database.isLoaded()) {
+    final List<INaviProject> projects=m_database.getContent().getProjects();
+    for (    final INaviProject project : projects) {
+      project.removeListener(m_projectListener);
+    }
+  }
+}

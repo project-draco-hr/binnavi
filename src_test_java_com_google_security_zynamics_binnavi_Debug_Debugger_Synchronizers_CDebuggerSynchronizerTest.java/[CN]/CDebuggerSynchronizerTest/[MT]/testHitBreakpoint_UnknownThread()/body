@@ -1,0 +1,4 @@
+{
+  debuggerSynchronizer.receivedEvent(DebuggerMessageBuilder.buildRegularBreakpointHit(CommonTestObjects.BP_ADDRESS_123_RELOC));
+  assertEquals(0,listener.exception);
+}

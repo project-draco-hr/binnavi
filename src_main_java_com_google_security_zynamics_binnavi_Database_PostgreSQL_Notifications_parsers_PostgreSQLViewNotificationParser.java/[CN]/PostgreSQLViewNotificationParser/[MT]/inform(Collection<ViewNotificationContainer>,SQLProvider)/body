@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(parsedViewNotifications,"Error: parsedViewNotifications argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02748: provider argument can not be null");
+  for (  final ViewNotificationContainer container : parsedViewNotifications) {
+    if (container.getNotificationModule().isPresent()) {
+      informModuleNotification(container,provider);
+    }
+ else     if (container.getNotificationProject().isPresent()) {
+      informProjectNotification(container,provider);
+    }
+ else     if (!container.getNotificationObjectId().isPresent()) {
+      informViewNotification(container,provider);
+    }
+ else     if (!container.getNotificationObjectId().isPresent() && !container.getNotificationModule().isPresent() && !container.getNotificationProject().isPresent()) {
+      throw new IllegalStateException("IE02749: Not enough information available.");
+    }
+  }
+}

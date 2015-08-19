@@ -1,0 +1,12 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(targetInformation,"IE01053: Target information argument can not be null");
+  }
+ else {
+    if (targetInformation != null) {
+      throw new IllegalArgumentException("IE01074: Target information must be null");
+    }
+  }
+  this.targetInformation=targetInformation;
+}

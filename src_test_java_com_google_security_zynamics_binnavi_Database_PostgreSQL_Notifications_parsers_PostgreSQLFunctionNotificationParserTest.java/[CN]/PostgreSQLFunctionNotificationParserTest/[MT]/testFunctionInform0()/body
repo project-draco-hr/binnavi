@@ -1,0 +1,5 @@
+{
+  final FunctionNotificationContainer container=new FunctionNotificationContainer(module.getConfiguration().getId(),module,function.getAddress(),"INSERT");
+  final PostgreSQLFunctionNotificationParser parser=new PostgreSQLFunctionNotificationParser();
+  parser.inform(Lists.newArrayList(container),provider);
+}

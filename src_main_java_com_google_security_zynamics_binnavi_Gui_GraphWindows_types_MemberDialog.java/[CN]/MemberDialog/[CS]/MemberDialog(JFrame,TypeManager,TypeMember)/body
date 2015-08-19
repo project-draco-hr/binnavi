@@ -1,0 +1,5 @@
+{
+  super(owner,true);
+  createControls(typeManager);
+  populateControls(member);
+}

@@ -1,0 +1,7 @@
+{
+  checkArguments(provider,addressSpace);
+  Preconditions.checkNotNull(description,"IE00395: Description argument can not be null");
+  final CConnection connection=provider.getConnection();
+  PostgreSQLHelpers.setDescription(connection,addressSpace.getConfiguration().getId(),description,CTableNames.ADDRESS_SPACES_TABLE);
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

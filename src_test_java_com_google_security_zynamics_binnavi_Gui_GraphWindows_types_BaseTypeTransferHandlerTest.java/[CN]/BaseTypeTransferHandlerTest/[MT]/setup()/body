@@ -1,0 +1,7 @@
+{
+  baseType=mock(BaseType.class);
+  wrapper=mock(DragAndDropSupportWrapper.class);
+  when(wrapper.getDroppedBaseType()).thenReturn(baseType);
+  manager=mock(TypeManager.class);
+  node=mock(INaviOperandTreeNode.class);
+}

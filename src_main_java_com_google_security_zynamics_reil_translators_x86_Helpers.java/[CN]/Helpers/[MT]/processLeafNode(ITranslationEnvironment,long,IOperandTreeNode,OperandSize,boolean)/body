@@ -1,0 +1,29 @@
+{
+  final String value=expression.getValue();
+  final OperandType operandType=OperandType.getOperandType(value);
+  TranslationResultType nodeType=null;
+switch (operandType) {
+case REGISTER:
+    nodeType=TranslationResultType.REGISTER;
+  break;
+case INTEGER_LITERAL:
+nodeType=TranslationResultType.LITERAL;
+break;
+default :
+throw new InternalTranslationException("Error: Leaf has invalid type");
+}
+final List<ReilInstruction> instructions=new ArrayList<>();
+final String nextVariableString=environment.getNextVariableString();
+if ((operandType == OperandType.INTEGER_LITERAL) || !needsExtraction(environment,value)) {
+if (loadOperand) {
+instructions.add(ReilHelpers.createStr(baseOffset,size,value,size,nextVariableString));
+return new TranslationResult(nextVariableString,size,nodeType,null,instructions,baseOffset);
+}
+ else {
+return new TranslationResult(value,size,nodeType,null,instructions,baseOffset);
+}
+}
+ else {
+return extractRegister(environment,baseOffset,value);
+}
+}

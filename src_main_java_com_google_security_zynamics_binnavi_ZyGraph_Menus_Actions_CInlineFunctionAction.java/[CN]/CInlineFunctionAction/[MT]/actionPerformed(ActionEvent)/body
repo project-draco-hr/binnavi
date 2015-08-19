@@ -1,0 +1,3 @@
+{
+  CGraphInliner.inlineFunction(m_model.getParent(),m_model.getViewContainer(),m_model.getGraph(),m_node,m_instruction,m_function);
+}

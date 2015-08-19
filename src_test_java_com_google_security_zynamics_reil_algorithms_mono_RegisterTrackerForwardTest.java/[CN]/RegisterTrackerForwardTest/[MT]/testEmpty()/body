@@ -1,0 +1,4 @@
+{
+  new InstructionGraph(new ArrayList<InstructionGraphNode>(),new ArrayList<InstructionGraphEdge>());
+  new StateVector<InstructionGraphNode,RegisterSet>();
+}

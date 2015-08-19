@@ -1,0 +1,3 @@
+{
+  CBreakpointRemoveFunctions.disableAllView(m_debuggerProvider,m_view);
+}

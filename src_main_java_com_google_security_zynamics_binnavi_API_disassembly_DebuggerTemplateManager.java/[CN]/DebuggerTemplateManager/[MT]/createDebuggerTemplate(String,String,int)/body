@@ -1,0 +1,9 @@
+{
+  try {
+    final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate newTemplate=m_manager.createDebugger(name,host,port);
+    return ObjectFinders.getObject(newTemplate,m_debuggerTemplates);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

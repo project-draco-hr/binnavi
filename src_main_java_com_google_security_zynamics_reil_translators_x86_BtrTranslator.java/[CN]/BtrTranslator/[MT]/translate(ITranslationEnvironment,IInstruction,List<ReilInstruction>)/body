@@ -1,0 +1,28 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"btr");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a btr instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree targetOperand=instruction.getOperands().get(0);
+  final IOperandTree sourceOperand=instruction.getOperands().get(1);
+  final TranslationResult targetResult=Helpers.translateOperand(environment,offset,targetOperand,true);
+  instructions.addAll(targetResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult sourceResult=Helpers.translateOperand(environment,offset,sourceOperand,true);
+  instructions.addAll(sourceResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String negatedIndex=environment.getNextVariableString();
+  final String shiftedTarget=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(offset++,OperandSize.BYTE,"0",sourceResult.getSize(),sourceResult.getRegister(),OperandSize.WORD,negatedIndex));
+  instructions.add(ReilHelpers.createBsh(offset++,targetResult.getSize(),targetResult.getRegister(),OperandSize.BYTE,negatedIndex,targetResult.getSize(),shiftedTarget));
+  instructions.add(ReilHelpers.createAnd(offset++,targetResult.getSize(),shiftedTarget,OperandSize.BYTE,"1",OperandSize.BYTE,Helpers.CARRY_FLAG));
+  final String shiftedIndex=environment.getNextVariableString();
+  final String negatedShiftedIndex=environment.getNextVariableString();
+  final String andedResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(offset++,OperandSize.BYTE,"1",sourceResult.getSize(),sourceResult.getRegister(),targetResult.getSize(),shiftedIndex));
+  instructions.add(ReilHelpers.createXor(offset++,targetResult.getSize(),shiftedIndex,targetResult.getSize(),String.valueOf(TranslationHelpers.getAllBitsMask(targetResult.getSize())),targetResult.getSize(),negatedShiftedIndex));
+  instructions.add(ReilHelpers.createAnd(offset++,targetResult.getSize(),targetResult.getRegister(),targetResult.getSize(),negatedShiftedIndex,targetResult.getSize(),andedResult));
+  Helpers.writeBack(environment,offset++,targetOperand,andedResult,targetResult.getSize(),targetResult.getAddress(),targetResult.getType(),instructions);
+}

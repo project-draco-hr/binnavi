@@ -1,0 +1,3 @@
+{
+  this.graph=Preconditions.checkNotNull(graph,"Error: graph argument can not be null.");
+}

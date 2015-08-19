@@ -1,0 +1,8 @@
+{
+  try {
+    return m_resultSet.getBytes("instruction_data");
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

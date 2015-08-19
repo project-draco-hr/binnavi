@@ -1,0 +1,49 @@
+{
+  try {
+    m_module.getContent().getViewContainer().createView(null,"New Trace Description");
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_module.getContent().getViewContainer().createView("New Trace",null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_module.getContent().getViewContainer().createView("New View","New Trace Description");
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_module.load();
+  final CView newView=m_module.getContent().getViewContainer().createView("New View","New View Description");
+  assertEquals("addedView/",m_listener.eventList);
+  assertEquals(newView,m_listener.addedViews.get(0));
+  assertEquals(1,m_module.getCustomViewCount());
+  assertEquals(1,m_module.getFunctionCount());
+  assertEquals(3,m_module.getViewCount());
+  assertTrue(newView.isLoaded());
+  assertEquals("New View",newView.getName());
+  assertEquals("New View Description",newView.getConfiguration().getDescription());
+  assertEquals(0,newView.getNodeCount());
+  assertEquals(0,newView.getEdgeCount());
+  assertEquals(ViewType.NonNative,newView.getType());
+  assertEquals(GraphType.MIXED_GRAPH,newView.getGraphType());
+  try {
+    m_module.getContent().getViewContainer().deleteView(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals(1,m_module.getCustomViewCount());
+  assertEquals(1,m_module.getFunctionCount());
+  assertEquals(3,m_module.getViewCount());
+  m_module.getContent().getViewContainer().deleteView(newView);
+  assertEquals("addedView/deletedView/",m_listener.eventList);
+  assertEquals(newView,m_listener.deletedViews.get(0));
+  assertEquals(0,m_module.getCustomViewCount());
+  assertEquals(1,m_module.getFunctionCount());
+  assertEquals(2,m_module.getViewCount());
+}

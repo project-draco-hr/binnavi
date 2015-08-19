@@ -1,0 +1,4 @@
+{
+  managers.remove(provider);
+  provider.removeListener(providerListener);
+}

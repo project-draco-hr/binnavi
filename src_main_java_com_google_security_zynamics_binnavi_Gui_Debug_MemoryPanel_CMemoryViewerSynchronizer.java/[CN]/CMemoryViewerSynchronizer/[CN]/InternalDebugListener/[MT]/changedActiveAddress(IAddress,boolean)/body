@@ -1,0 +1,15 @@
+{
+  if (!resizeData(address)) {
+    for (    final IMemoryViewerSynchronizerListener listener : m_listeners) {
+      try {
+        listener.requestedUnsectionedAddress(address);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+ else   if (focusMemoryWindow) {
+    m_hexView.requestFocusInWindow();
+  }
+}

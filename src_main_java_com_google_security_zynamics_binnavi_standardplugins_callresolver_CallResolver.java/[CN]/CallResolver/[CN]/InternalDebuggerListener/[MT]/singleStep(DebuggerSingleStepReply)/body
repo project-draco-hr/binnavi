@@ -1,0 +1,13 @@
+{
+  if (step != 5) {
+    return;
+  }
+  final BigInteger resolvedAddress=getProgramCounter(reply.getThreadId(),reply.getRegisterValues());
+  processCompleteSingleStep(reply.getThreadId(),resolvedAddress);
+  try {
+    debugger.resume();
+  }
+ catch (  final DebugException e) {
+    e.printStackTrace();
+  }
+}

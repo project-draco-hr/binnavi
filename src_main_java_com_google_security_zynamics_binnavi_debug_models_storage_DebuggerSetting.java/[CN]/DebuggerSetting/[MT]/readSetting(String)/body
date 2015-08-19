@@ -1,0 +1,3 @@
+{
+  return debugTargetSettings.readSetting(getUniqueKey(key));
+}

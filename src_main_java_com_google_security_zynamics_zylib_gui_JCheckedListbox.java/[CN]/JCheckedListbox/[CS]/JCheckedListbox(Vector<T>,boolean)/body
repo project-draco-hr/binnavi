@@ -1,0 +1,7 @@
+{
+  super(listData);
+  this.m_selectCompleteLine=selectCompleteLine;
+  m_selected=new boolean[listData.size()];
+  setCellRenderer(new CheckedListboxRenderer<T>());
+  addMouseListener(new InternalListener());
+}

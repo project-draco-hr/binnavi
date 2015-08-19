@@ -1,0 +1,9 @@
+{
+  m_debugger.connect();
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(mockMemoryModule));
+  m_breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,m_breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.REGULAR));
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildRegularBreakpointSetError(CommonTestObjects.BP_ADDRESS_456_RELOC));
+  assertEquals(BreakpointStatus.BREAKPOINT_INVALID,m_breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.REGULAR));
+  assertEquals("CONNECT;READREGS;RESUME;SET_BREAKPOINTS/00000456/REGULAR;",m_debugger.requests);
+}

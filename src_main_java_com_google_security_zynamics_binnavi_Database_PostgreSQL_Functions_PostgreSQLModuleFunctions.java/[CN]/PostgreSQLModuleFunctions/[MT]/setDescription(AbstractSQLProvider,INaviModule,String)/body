@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,module);
+  Preconditions.checkNotNull(description,"IE00493: Description argument can not be null");
+  PostgreSQLHelpers.setDescription(provider.getConnection(),module.getConfiguration().getId(),description,CTableNames.MODULES_TABLE);
+}

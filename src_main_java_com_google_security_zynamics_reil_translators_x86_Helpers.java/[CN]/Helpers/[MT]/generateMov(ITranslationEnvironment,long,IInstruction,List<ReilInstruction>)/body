@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  long reilOffset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final TranslationResult loadSource=Helpers.translateOperand(environment,reilOffset,operands.get(1),true);
+  instructions.addAll(loadSource.getInstructions());
+  reilOffset=baseOffset + instructions.size();
+  final TranslationResult loadDest=Helpers.translateOperand(environment,reilOffset,operands.get(0),false);
+  instructions.addAll(loadDest.getInstructions());
+  reilOffset=baseOffset + instructions.size();
+  Helpers.writeBack(environment,reilOffset,operands.get(0),loadSource.getRegister(),loadDest.getSize(),loadDest.getAddress(),loadDest.getType(),instructions);
+}

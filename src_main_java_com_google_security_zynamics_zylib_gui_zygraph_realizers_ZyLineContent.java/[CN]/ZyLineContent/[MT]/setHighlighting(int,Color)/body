@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(color,"Error: Color argument can't be null");
+  if (isEmpty()) {
+    return false;
+  }
+  for (  final CHighlighting highlighting : new ArrayList<CHighlighting>(m_highlighting)) {
+    if (highlighting.getLevel() == level) {
+      if (highlighting.getColor().equals(color)) {
+        return false;
+      }
+ else {
+        m_highlighting.remove(highlighting);
+        break;
+      }
+    }
+  }
+  m_highlighting.add(new CHighlighting(level,0,m_text.length() * m_charWidth,color));
+  Collections.sort(m_highlighting);
+  return true;
+}

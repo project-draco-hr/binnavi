@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  m_processList=processList;
+  final CProcessListModel model=new CProcessListModel(processList);
+  m_sorter=new TableRowSorter<CProcessListModel>(model);
+  m_table=new JTable(model);
+  m_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  m_table.setRowSorter(m_sorter);
+  final JScrollPane scrollPane=new JScrollPane(m_table);
+  scrollPane.setBorder(new TitledBorder("Please select a process to debug"));
+  add(scrollPane);
+  setPreferredSize(new Dimension(200,200));
+}

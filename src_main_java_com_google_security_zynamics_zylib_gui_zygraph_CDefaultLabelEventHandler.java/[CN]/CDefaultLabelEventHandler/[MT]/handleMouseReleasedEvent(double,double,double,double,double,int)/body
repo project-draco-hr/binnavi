@@ -1,0 +1,17 @@
+{
+  final ZyCaret caret=getActiveLabelContent().getCaret();
+switch (clickCount) {
+case 1:
+    caret.setCaretEnd(labelParentX,labelParentY,mouseX,mouseY,zoomFactor);
+  break;
+case 2:
+caret.selectWord(labelParentX,labelParentY,mouseX,mouseY,zoomFactor);
+break;
+case 3:
+caret.selectLine(labelParentY,mouseY);
+break;
+case 4:
+caret.selectAll();
+}
+m_activeRealizer.repaint();
+}

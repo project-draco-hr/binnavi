@@ -1,0 +1,4 @@
+{
+  final IComment comment=new CComment(null,CommonTestObjects.TEST_USER_1,null,"Foo");
+  return new CTextNode(1,0,0,0,0,Color.RED,false,true,new HashSet<CTag>(),Lists.newArrayList(comment),new MockSqlProvider());
+}

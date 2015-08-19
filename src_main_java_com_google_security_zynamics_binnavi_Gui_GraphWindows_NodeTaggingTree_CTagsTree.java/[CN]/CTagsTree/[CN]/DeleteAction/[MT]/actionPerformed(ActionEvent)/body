@@ -1,0 +1,6 @@
+{
+  final Object component=getLastSelectedPathComponent();
+  if (component instanceof CTagTreeNode) {
+    CTagFunctions.deleteTag(m_parent,m_tagManager,((CTagTreeNode)component).getTag());
+  }
+}

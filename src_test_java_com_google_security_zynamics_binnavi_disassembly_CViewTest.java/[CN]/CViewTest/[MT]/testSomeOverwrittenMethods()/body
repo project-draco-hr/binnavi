@@ -1,0 +1,30 @@
+{
+  final CProjectViewGenerator generator=new CProjectViewGenerator(m_sql,new MockProject());
+  final CView view=generator.generate(6,"Blub","Bla",ViewType.Native,GraphType.FLOWGRAPH,new Date(1234),new Date(12345),123,700,new HashSet<CTag>(),new HashSet<CTag>(),false);
+  assertEquals(6,view.getConfiguration().getId());
+  view.load();
+  assertNotNull(view.getBasicBlockEdges());
+  assertNotNull(view.getBasicBlocks());
+  assertNotNull(view.getClass());
+  assertNotNull(view.getConfiguration());
+  assertNotNull(view.getContent());
+  assertNotNull(view.getDerivedViews());
+  assertEquals(0,view.getEdgeCount());
+  assertNotNull(view.getGraph());
+  assertEquals(GraphType.MIXED_GRAPH,view.getGraphType());
+  assertEquals(-1,view.getLoadState());
+  assertEquals("Blub",view.getName());
+  assertEquals(0,view.getNodeCount());
+  assertNotNull(view.getNodeTags());
+  assertEquals(ViewType.Native,view.getType());
+  assertTrue(view.isLoaded());
+  assertFalse(view.isStared());
+  try {
+    view.save();
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  assertFalse(view.wasModified());
+  view.close();
+}

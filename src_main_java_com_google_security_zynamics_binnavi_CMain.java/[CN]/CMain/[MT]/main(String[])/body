@@ -1,0 +1,28 @@
+{
+  CSettingsDirectoryCreator.createSettingsDirectory();
+  final boolean firstStart=!CConfigurationFileCreator.setupConfigurationFile();
+  BuildVersionInformation.loadBuildVersionInformation();
+  System.out.printf("Starting %s %s Build: %s/%s%n",Constants.PROJECT_NAME,Constants.PROJECT_VERSION,Constants.BUILD_ID,Constants.REVISION_NUMBER);
+  CGraphPanelExtender.extend();
+  GuiInitializer.initialize();
+  if (firstStart) {
+    final CDatabase newDatabase=new CDatabase("Click and configure me","org.postgresql.Driver","localhost","new_database","user","password","identity",false,false);
+    CDatabaseManager.instance().addDatabase(newDatabase);
+  }
+  prepareDatabaseConnections();
+  final PluginRegistry pluginRegistry=new PluginRegistry();
+  final String startPath=FileUtils.findLocalRootPath(CMain.class);
+  Constants.startPath=startPath;
+  NaviLogger.info("Defaulting startup path to %s",startPath);
+  final CDatabaseManager databaseManager=CDatabaseManager.instance();
+  final PluginInterface pluginInterface=PluginInterface.instance(startPath,databaseManager,pluginRegistry);
+  final CProjectMainFrame window=new CProjectMainFrame(databaseManager,ConfigManager.instance(),firstStart);
+  pluginInterface.setMainWindow(new MainWindow(window));
+  pluginInterface.reloadPlugins();
+  final CommandlineOptions options=CommandlineParser.parseCommandLine(args);
+  if (options.getBatchPlugin() != null) {
+    CBatchPluginExecuter.execute(options.getBatchPlugin(),pluginRegistry);
+  }
+  window.setVisible(true);
+  GuiHelper.applyWindowFix(window);
+}

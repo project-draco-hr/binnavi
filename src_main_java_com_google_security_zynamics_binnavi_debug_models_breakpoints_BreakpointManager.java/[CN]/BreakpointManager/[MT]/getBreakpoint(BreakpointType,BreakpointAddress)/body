@@ -1,0 +1,13 @@
+{
+  checkArguments(type,address);
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.get(address);
+case ECHO:
+  return echoBreakpointStorage.get(address);
+case STEP:
+return stepBreakpointStorage.get(address);
+default :
+throw new IllegalStateException(String.format("IE01008: Invalid breakpoint type '%s'",type));
+}
+}

@@ -1,0 +1,8 @@
+{
+  final int index=findTreeNodeIndex(baseType,(DefaultMutableTreeNode)root);
+  if (index < 0 || index >= root.getChildCount()) {
+    return new ChildNodeDescriptor();
+  }
+  final BaseTypeTreeNode node=(BaseTypeTreeNode)((DefaultMutableTreeNode)root).getChildAt(index);
+  return new ChildNodeDescriptor(node,index);
+}

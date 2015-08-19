@@ -1,0 +1,43 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  Preconditions.checkNotNull(typeId,"Error: typeId argument can not be null");
+  final String query=" SELECT * FROM load_type_member(?, ?) ";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+    statement.setInt(1,module.getConfiguration().getId());
+    statement.setInt(2,typeId);
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        if (resultSet.first()) {
+          final int id=resultSet.getInt("id");
+          final String name=resultSet.getString("name");
+          final int baseTypeId=resultSet.getInt("base_type");
+          final Integer parentId=resultSet.getInt("parent_id");
+          Integer offset=resultSet.getInt("offset");
+          if (resultSet.wasNull()) {
+            offset=null;
+          }
+          Integer argument=resultSet.getInt("argument");
+          if (resultSet.wasNull()) {
+            argument=null;
+          }
+          Integer numberOfElements=resultSet.getInt("number_of_elements");
+          if (resultSet.wasNull()) {
+            numberOfElements=null;
+          }
+          return new RawTypeMember(id,name,baseTypeId,parentId,offset,argument,numberOfElements);
+        }
+      }
+    }
+  finally {
+      resultSet.close();
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  throw new CouldntLoadDataException("Error: could not load single type member from the database.");
+}

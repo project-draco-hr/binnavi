@@ -1,0 +1,16 @@
+{
+  int count=0;
+  final StringBuilder list=new StringBuilder();
+  for (  final INaviView view : views) {
+    list.append("- ");
+    list.append(view.getName());
+    list.append('\n');
+    count++;
+    if ((count == MAX_LIST_LENGTH) && (views.length != MAX_LIST_LENGTH)) {
+      list.append("\n... ");
+      list.append(String.format("%d others ...",views.length - count));
+      break;
+    }
+  }
+  return list.toString();
+}

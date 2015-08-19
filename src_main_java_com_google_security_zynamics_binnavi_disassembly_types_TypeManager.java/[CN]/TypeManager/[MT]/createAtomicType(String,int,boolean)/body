@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(name,"IE02778: Type name can not be null.");
+  Preconditions.checkArgument(size >= 0,"Size can not be negative.");
+  final BaseType newType=instantiateType(name,size,signed,null,BaseTypeCategory.ATOMIC);
+  notifyTypeAdded(newType);
+  return newType;
+}

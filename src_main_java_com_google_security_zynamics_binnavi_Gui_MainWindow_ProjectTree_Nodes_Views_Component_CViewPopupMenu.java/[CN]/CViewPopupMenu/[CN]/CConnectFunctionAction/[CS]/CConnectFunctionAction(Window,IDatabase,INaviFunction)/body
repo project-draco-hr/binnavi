@@ -1,0 +1,6 @@
+{
+  super("Resolve Imported Function");
+  parentWindow=parent;
+  this.database=database;
+  this.function=function;
+}

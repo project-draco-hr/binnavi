@@ -1,0 +1,3 @@
+{
+  return String.format("Trace Event [%s : %s]",getType(),getAddress());
+}

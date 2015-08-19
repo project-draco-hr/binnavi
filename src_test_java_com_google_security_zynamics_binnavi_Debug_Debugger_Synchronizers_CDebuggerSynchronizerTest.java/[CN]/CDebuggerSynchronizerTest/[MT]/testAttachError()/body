@@ -1,0 +1,6 @@
+{
+  mockDebugger.connect();
+  debuggerSynchronizer.receivedEvent(new AttachReply(0,5));
+  assertFalse(mockDebugger.getProcessManager().isAttached());
+  assertEquals("ERROR_ATTACH/5;",listener.events);
+}

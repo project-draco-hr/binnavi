@@ -1,0 +1,3 @@
+{
+  m_view.getContent().deleteEdge(m_view.getGraph().getEdges().get(0));
+}

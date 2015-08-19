@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  Preconditions.checkNotNull(startAddress,"Error: start address argument can not be null");
+  Preconditions.checkNotNull(endAddress,"Error: end address argument can not be null");
+  Preconditions.checkNotNull(permission,"Error: permission argument can not be null");
+  final int sectionId=provider.createSection(module.getConfiguration().getId(),name,null,startAddress.toBigInteger(),endAddress.toBigInteger(),permission,data);
+  return new Section(sectionId,name,CommentManager.get(provider),module,startAddress,endAddress,permission,data);
+}

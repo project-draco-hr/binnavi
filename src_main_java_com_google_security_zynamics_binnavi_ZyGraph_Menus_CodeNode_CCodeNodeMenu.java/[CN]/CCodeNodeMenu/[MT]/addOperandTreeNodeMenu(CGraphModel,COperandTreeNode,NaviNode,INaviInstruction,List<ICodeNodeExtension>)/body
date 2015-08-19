@@ -1,0 +1,17 @@
+{
+  final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+  final INaviModule module=model.getViewContainer().getModules().get(0);
+  if (treeNode.getType() == ExpressionType.IMMEDIATE_INTEGER && treeNode.getTypeInstanceReferences().isEmpty()) {
+    addImmediateOperandMenu(treeNode,module.getContent().getSections(),module);
+  }
+  if (treeNode.getType() == ExpressionType.REGISTER) {
+    addRegisterOperandMenu(model,treeNode,instruction,extensions,codeNode);
+  }
+  final INaviReplacement replacement=treeNode.getReplacement();
+  if (!treeNode.getTypeInstanceReferences().isEmpty() && !(replacement instanceof CFunctionReplacement)) {
+    addInstanceReferenceMenu(model,treeNode);
+  }
+  if (replacement instanceof CFunctionReplacement) {
+    addFunctionOperandMenu(model,replacement);
+  }
+}

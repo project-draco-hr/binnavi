@@ -1,0 +1,2 @@
+Collection<PGNotification> notifications
+SQLProvider provider

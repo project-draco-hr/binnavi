@@ -1,0 +1,14 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final ViewNode viewNode=cachedNodes.get(node);
+  for (  final IViewNodeListener listener : viewNode.getListeners()) {
+    try {
+      listener.changedVisibility(viewNode,visible);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

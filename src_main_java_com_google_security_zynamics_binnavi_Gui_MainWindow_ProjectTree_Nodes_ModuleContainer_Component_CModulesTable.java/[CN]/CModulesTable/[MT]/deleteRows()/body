@@ -1,0 +1,3 @@
+{
+  CModuleFunctions.deleteModules(getParentWindow(),m_database,getModules(getSortSelectedRows()),new CEmptyUpdater());
+}

@@ -1,0 +1,12 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,"Really close BinNavi?") != JOptionPane.YES_OPTION) {
+    return;
+  }
+  for (  final CGraphWindow window : CWindowManager.instance()) {
+    if (!window.close()) {
+      return;
+    }
+  }
+  saveSettings(parent);
+  System.exit(0);
+}

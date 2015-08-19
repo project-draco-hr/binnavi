@@ -1,0 +1,24 @@
+{
+  int numberOfRows=0;
+  for (  final IComment comment : comments) {
+    final CommentContainer commentContainer=new CommentContainer(comment);
+    final List<String> commentFragments=commentContainer.getCommentingString();
+    numberOfRows+=commentFragments.size();
+  }
+  FormattedCharacterBuffer result=new FormattedCharacterBuffer(numberOfRows + 1,columns[COMMENTS_INDEX].getWidth());
+  int lineIndex=0;
+  int columnIndex=0;
+  for (  final IComment comment : comments) {
+    final CommentContainer commentContainer=new CommentContainer(comment);
+    final List<String> commentFragments=commentContainer.getCommentingString();
+    for (    final String commentFragment : commentFragments) {
+      for (int i=0; i < commentFragment.length(); i++) {
+        result.setAt(lineIndex,columnIndex,commentFragment.charAt(i),STANDARD_FONT,Color.BLACK,Color.WHITE);
+        columnIndex++;
+      }
+      columnIndex=0;
+      lineIndex++;
+    }
+  }
+  return result;
+}

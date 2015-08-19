@@ -1,0 +1,10 @@
+{
+  final double distX=m_graph.getEditMode().translateX(event.getX()) - m_graph.getEditMode().translateX(m_event.getX());
+  final double distY=m_graph.getEditMode().translateY(event.getY()) - m_graph.getEditMode().translateY(m_event.getY());
+  if (m_graph.getNode(m_node) == null) {
+    return new CStateChange(m_factory.createNodeExitState(m_node,event),true);
+  }
+ else {
+    return new CStateChange(m_factory.createNodeDraggedLeftState(m_node,event,distX,distY),false);
+  }
+}

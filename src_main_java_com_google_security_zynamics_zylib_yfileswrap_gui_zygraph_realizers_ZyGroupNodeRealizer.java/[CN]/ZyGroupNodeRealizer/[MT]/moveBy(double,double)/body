@@ -1,0 +1,5 @@
+{
+  moveContent(x,y);
+  super.moveBy(x,y);
+  notifyLocationChanged(getX(),getY());
+}

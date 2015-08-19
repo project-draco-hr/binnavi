@@ -1,0 +1,11 @@
+{
+  super(new BorderLayout());
+  m_model=model;
+  m_synchronizer=synchronizer;
+  m_perspectiveModel=perspectiveModel;
+  m_debugBottomPanel=new CDebugBottomPanel(model,((CDebugPerspectiveModel)perspectiveModel.getModel(PerspectiveType.DebugPerspective)));
+  add(m_standardBottomPanel);
+  m_extensions=CAbstractGraphPanelExtensionFactory.getExtensions();
+  registerExtensions();
+  perspectiveModel.addListener(m_listener);
+}

@@ -1,0 +1,3 @@
+{
+  jarResources=new JarResources(jarName);
+}

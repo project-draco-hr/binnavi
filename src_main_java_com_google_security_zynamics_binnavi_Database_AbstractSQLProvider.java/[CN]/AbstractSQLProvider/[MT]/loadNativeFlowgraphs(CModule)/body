@@ -1,0 +1,3 @@
+{
+  return PostgreSQLModuleFlowgraphsLoader.loadNativeFlowgraphs(this,module,getViewTagManager(),nodeTagManager);
+}

@@ -1,0 +1,23 @@
+{
+  IAddress srcAddr=null;
+  IAddress dstAddr=null;
+  int srcModuleId=-1;
+  int dstModuleId=-1;
+  if (edge.getSource() instanceof INaviCodeNode) {
+    srcAddr=((INaviCodeNode)edge.getSource()).getAddress();
+    srcModuleId=((INaviCodeNode)edge.getSource()).getParentFunction().getModule().getConfiguration().getId();
+  }
+ else   if (edge.getSource() instanceof INaviFunctionNode) {
+    srcAddr=((INaviFunctionNode)edge.getSource()).getFunction().getAddress();
+    srcModuleId=((INaviFunctionNode)edge.getSource()).getFunction().getModule().getConfiguration().getId();
+  }
+  if (edge.getTarget() instanceof INaviCodeNode) {
+    dstAddr=((INaviCodeNode)edge.getTarget()).getAddress();
+    dstModuleId=((INaviCodeNode)edge.getTarget()).getParentFunction().getModule().getConfiguration().getId();
+  }
+ else   if (edge.getTarget() instanceof INaviFunctionNode) {
+    dstAddr=((INaviFunctionNode)edge.getTarget()).getFunction().getAddress();
+    dstModuleId=((INaviFunctionNode)edge.getTarget()).getFunction().getModule().getConfiguration().getId();
+  }
+  return new Quad<Integer,IAddress,Integer,IAddress>(srcModuleId,srcAddr,dstModuleId,dstAddr);
+}

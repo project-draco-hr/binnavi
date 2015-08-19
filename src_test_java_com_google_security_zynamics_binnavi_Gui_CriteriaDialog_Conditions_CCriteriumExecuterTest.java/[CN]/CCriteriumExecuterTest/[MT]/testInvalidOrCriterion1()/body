@@ -1,0 +1,6 @@
+{
+  final CCachedOrCriterium criterium=new CCachedOrCriterium();
+  final CCachedExpressionTreeNode node=new CCachedExpressionTreeNode(criterium);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node);
+  CCriteriumExecuter.execute(m_tree,m_graph);
+}

@@ -1,0 +1,11 @@
+{
+  m_nodes=Preconditions.checkNotNull(nodes,"Nodes argument can not be null");
+  m_edges=Preconditions.checkNotNull(edges,"Edges argument can not be null");
+  for (  final NodeType node : nodes) {
+    Preconditions.checkNotNull(node,"Node list contains null-nodes");
+    m_nodeToEdges.put(node,new ArrayList<EdgeType>());
+  }
+  for (  final EdgeType edge : edges) {
+    updateNodeToEdgeMapping(edge);
+  }
+}

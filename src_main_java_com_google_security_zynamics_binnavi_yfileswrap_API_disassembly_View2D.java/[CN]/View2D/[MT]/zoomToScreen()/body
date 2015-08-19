@@ -1,0 +1,3 @@
+{
+  ZoomFunctions.zoomToScreen(m_graph);
+}

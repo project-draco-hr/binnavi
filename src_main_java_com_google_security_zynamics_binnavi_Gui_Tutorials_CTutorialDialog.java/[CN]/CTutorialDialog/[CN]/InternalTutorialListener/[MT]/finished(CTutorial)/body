@@ -1,0 +1,7 @@
+{
+  m_warningLabel.setText("");
+  updateNextButton();
+  m_skipButton.setEnabled(false);
+  m_descriptionField.setText("Tutorial finished");
+  toFront();
+}

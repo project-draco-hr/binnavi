@@ -1,0 +1,4 @@
+IViewsTable table
+boolean isSelected
+FunctionType functionType
+GraphType graphType

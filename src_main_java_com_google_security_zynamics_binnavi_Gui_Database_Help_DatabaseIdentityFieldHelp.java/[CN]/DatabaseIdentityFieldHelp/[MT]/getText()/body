@@ -1,0 +1,3 @@
+{
+  return "This field contains the identity of the user which will be used to identify user generated content in BinNavi.";
+}

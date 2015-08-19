@@ -1,0 +1,16 @@
+{
+  final String NOTIFICATION=containerId != null ? table + " " + databaseOperation+ " "+ viewId+ " "+ containerId : table + " " + databaseOperation+ " "+ viewId;
+  notifications.add(new MockPGNotification("view_changes",NOTIFICATION));
+  final PostgreSQLViewNotificationParser parser=new PostgreSQLViewNotificationParser();
+  final Collection<ViewNotificationContainer> result=parser.parse(notifications,provider);
+  assertNotNull(result);
+  assertTrue(!result.isEmpty());
+  assertTrue(result.size() == 1);
+  final ViewNotificationContainer container=Iterables.getFirst(result,null);
+  assertNotNull(container);
+  assertEquals(databaseOperation,container.getDatabaseOperation());
+  assertEquals(viewId,container.getViewId().toString());
+  if (containerId != null) {
+    assertEquals(containerId,container.getNotificationObjectId().get().toString());
+  }
+}

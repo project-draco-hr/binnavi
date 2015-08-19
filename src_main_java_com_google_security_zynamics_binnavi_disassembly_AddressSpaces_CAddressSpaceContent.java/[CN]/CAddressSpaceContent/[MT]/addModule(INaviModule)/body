@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(module,"IE00030: Module argument can not be null");
+  Preconditions.checkArgument(!m_modules.contains(module),"IE00032: Module can not be added more than once");
+  Preconditions.checkArgument(module.inSameDatabase(m_addressSpace),"IE00033: Module and address space are not in the same database");
+  m_provider.addModule(m_addressSpace,module);
+  m_modules.add(module);
+  for (  final IAddressSpaceContentListener listener : m_listeners) {
+    try {
+      listener.addedModule(m_addressSpace,module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  setImageBase(module,module.getConfiguration().getImageBase());
+}

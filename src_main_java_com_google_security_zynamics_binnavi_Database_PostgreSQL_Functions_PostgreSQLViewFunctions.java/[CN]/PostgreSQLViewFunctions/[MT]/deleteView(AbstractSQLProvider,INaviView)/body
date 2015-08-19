@@ -1,0 +1,19 @@
+{
+  checkArguments(provider,view);
+  Preconditions.checkArgument(view.getType() != ViewType.Native,"IE00614: Native views can not be deleted");
+  final CConnection connection=provider.getConnection();
+  NaviLogger.info("Deleting view %s",view.getName());
+  final int viewId=view.getConfiguration().getId();
+  if (!(viewId == -1)) {
+    try {
+      PostgreSQLHelpers.beginTransaction(connection);
+      PostgreSQLHelpers.deleteById(connection,CTableNames.VIEWS_TABLE,viewId);
+      PostgreSQLHelpers.deleteByColumnValue(connection,"" + CTableNames.NODES_TABLE + "","view_id",viewId);
+      PostgreSQLHelpers.deleteByColumnValue(connection,"" + CTableNames.TRACES_TABLE + "","view_id",viewId);
+      PostgreSQLHelpers.endTransaction(connection);
+    }
+ catch (    final SQLException exception) {
+      throw new CouldntDeleteException(exception);
+    }
+  }
+}

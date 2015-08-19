@@ -1,0 +1,14 @@
+{
+  List<INaviProject> localCachedValues=m_cachedValues;
+  if (localCachedValues == null) {
+    if (m_database.isConnected()) {
+      final IFilter<INaviProject> filter=getFilter();
+      localCachedValues=filter == null ? m_database.getContent().getProjects() : filter.get(m_database.getContent().getProjects());
+    }
+ else {
+      localCachedValues=new ArrayList<INaviProject>();
+    }
+  }
+  m_cachedValues=localCachedValues;
+  return new ArrayList<INaviProject>(localCachedValues);
+}

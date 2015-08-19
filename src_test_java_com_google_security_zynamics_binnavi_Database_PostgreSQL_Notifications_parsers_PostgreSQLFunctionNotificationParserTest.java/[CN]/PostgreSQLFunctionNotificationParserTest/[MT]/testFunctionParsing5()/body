@@ -1,0 +1,3 @@
+{
+  testParser(CTableNames.FUNCTIONS_TABLE,"INSERT","XXXXXX",String.valueOf(module.getConfiguration().getId()));
+}

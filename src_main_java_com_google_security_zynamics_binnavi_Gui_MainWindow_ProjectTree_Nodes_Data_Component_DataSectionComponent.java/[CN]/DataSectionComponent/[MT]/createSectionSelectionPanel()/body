@@ -1,0 +1,9 @@
+{
+  final JPanel section_panel=new JPanel();
+  final JLabel lblSection=new JLabel("Section:");
+  section_panel.add(lblSection);
+  sections=new SectionComboBox();
+  section_panel.add(sections);
+  sections.addActionListener(new SectionSelectedListener());
+  return section_panel;
+}

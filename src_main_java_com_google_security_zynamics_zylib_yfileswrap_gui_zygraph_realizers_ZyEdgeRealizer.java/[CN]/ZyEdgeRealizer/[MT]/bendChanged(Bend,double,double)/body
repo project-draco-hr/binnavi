@@ -1,0 +1,12 @@
+{
+  final int index=bendPos(bend);
+  super.bendChanged(bend,x,y);
+  for (  final IZyEdgeRealizerListener<EdgeType> listener : m_listeners) {
+    try {
+      listener.bendChanged(index,bend.getX(),bend.getY());
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

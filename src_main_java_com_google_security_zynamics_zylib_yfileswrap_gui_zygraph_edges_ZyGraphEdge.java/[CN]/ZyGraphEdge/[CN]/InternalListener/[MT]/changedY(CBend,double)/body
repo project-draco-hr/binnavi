@@ -1,0 +1,5 @@
+{
+  final int index=m_rawEdge.getBends().indexOf(bend);
+  final Bend rbend=m_realizer.getBend(index);
+  rbend.setLocation(rbend.getX(),y);
+}

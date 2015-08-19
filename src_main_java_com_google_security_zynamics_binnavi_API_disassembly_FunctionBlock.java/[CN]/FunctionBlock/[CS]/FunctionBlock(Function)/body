@@ -1,0 +1,3 @@
+{
+  m_function=Preconditions.checkNotNull(function,"Error: Function argument can not be null");
+}

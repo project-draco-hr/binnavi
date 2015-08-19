@@ -1,0 +1,8 @@
+{
+  final BufferedImage temporaryImage=new BufferedImage(10,10,BufferedImage.TYPE_INT_RGB);
+  Graphics2D temporaryGraphics2D=(Graphics2D)temporaryImage.getGraphics();
+  temporaryGraphics2D.setFont(font);
+  fontMetrics=temporaryGraphics2D.getFontMetrics();
+  fontCharWidth=fontMetrics.getMaxAdvance();
+  fontLineHeight=fontMetrics.getHeight();
+}

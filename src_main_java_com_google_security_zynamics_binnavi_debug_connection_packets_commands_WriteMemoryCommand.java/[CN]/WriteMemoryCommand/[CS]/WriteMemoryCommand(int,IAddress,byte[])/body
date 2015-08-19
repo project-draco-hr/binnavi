@@ -1,0 +1,5 @@
+{
+  super(DebugCommandType.CMD_WRITE_MEMORY,packetId);
+  addArgument(new DebugMessageAddressArgument(address));
+  addArgument(new DebugMessageRawArgument(data));
+}

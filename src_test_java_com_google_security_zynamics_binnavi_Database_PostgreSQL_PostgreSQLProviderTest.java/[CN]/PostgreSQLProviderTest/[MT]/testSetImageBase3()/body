@@ -1,0 +1,3 @@
+{
+  getProvider().setImageBase(new MockAddressSpace(),null,new CAddress(BigInteger.valueOf(0)));
+}

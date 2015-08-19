@@ -1,0 +1,3 @@
+{
+  getModuleConverter().initializeModule(this,module,reporter);
+}

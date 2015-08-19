@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(state,"IE00765: Thread state can not be null");
+  if (threadState == state) {
+    return;
+  }
+  if (state == ThreadState.RUNNING) {
+    relocatedAddress=null;
+  }
+  threadState=state;
+  for (  final ThreadListener listener : listeners) {
+    try {
+      listener.stateChanged(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

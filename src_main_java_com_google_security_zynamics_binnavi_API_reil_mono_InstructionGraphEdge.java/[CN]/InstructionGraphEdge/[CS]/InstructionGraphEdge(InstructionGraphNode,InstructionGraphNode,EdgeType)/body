@@ -1,0 +1,7 @@
+{
+  super(source,target);
+  if (edgeType == null) {
+    throw new IllegalArgumentException("Error: Edge type argument can not be null");
+  }
+  this.edgeType=edgeType;
+}

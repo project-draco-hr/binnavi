@@ -1,0 +1,14 @@
+{
+  final List<? extends ITreeNode<CTag>> children=m_tagTreeNode.getChildren();
+  final ITreeNode<CTag> tagNode=children.get(row);
+switch (col) {
+case NAME_COLUMN:
+    return tagNode.getObject().getName();
+case DESCRIPTION_COLUMN:
+  return tagNode.getObject().getDescription();
+case CHILDREN_COUNT_COLUMN:
+return tagNode.getChildren().size();
+default :
+throw new IllegalStateException("IE01178: Invalid column");
+}
+}

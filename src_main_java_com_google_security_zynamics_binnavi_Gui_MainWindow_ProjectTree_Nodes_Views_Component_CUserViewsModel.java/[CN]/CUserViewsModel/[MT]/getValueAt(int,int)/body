@@ -1,0 +1,20 @@
+{
+  final List<INaviView> views=m_cachedViews == null ? getViews() : m_cachedViews;
+  final INaviView view=views.get(rowIndex);
+switch (columnIndex) {
+case NAME_COLUMN:
+    return view.getName();
+case DESCRIPTION_COLUMN:
+  return view.getConfiguration().getDescription();
+case NODE_COUNT_COLUMN:
+return view.getNodeCount();
+case EDGE_COUNT_COLUMN:
+return view.getEdgeCount();
+case CREATION_DATE_COLUMN:
+return view.getConfiguration().getCreationDate();
+case MODIFICATION_DATE_COLUMN:
+return view.getConfiguration().getModificationDate();
+default :
+throw new IllegalStateException("IE02244: Unknown column");
+}
+}

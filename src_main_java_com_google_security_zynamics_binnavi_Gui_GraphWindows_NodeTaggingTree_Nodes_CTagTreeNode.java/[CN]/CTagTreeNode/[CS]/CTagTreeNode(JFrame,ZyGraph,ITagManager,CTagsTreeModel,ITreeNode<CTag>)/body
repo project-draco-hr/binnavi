@@ -1,0 +1,11 @@
+{
+  super(tag.getObject().getId(),graph);
+  m_parent=Preconditions.checkNotNull(parent,"IE02328: Parent argument can not be null");
+  m_tag=Preconditions.checkNotNull(tag,"IE02329: Tag argument can not be null");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE01802: Tag manager can not be null");
+  m_model=Preconditions.checkNotNull(model,"IE01803: Treemodel can't be null.");
+  m_menuBuilder=new CTagTreeNodeMenuBuilder(parent,graph,tagManager,m_tag);
+  m_tagManager.addListener(m_tagManagerListener);
+  m_tag.getObject().addListener(m_tagListener);
+  createChildren();
+}

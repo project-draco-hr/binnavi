@@ -1,0 +1,3 @@
+{
+  return PostgreSQLModuleMixedGraphsLoader.loadMixedgraphs(this,module,getViewTagManager(),nodeTagManager);
+}

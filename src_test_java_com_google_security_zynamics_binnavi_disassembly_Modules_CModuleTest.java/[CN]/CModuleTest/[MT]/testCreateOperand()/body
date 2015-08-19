@@ -1,0 +1,6 @@
+{
+  m_module.load();
+  final List<IReference> references=new ArrayList<IReference>();
+  final COperandTreeNode node=new COperandTreeNode(1,2,"2",new CStringReplacement("bar"),references,m_sql,m_module.getTypeManager(),m_module.getContent().getTypeInstanceContainer());
+  assertNotNull(m_module.createOperand(node));
+}

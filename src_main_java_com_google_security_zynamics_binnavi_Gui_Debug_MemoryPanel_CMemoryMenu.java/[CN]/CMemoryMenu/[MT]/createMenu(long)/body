@@ -1,0 +1,43 @@
+{
+  final JPopupMenu menu=new JPopupMenu();
+  final IDebugger debugger=m_debugger.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    return null;
+  }
+  menu.add(CActionProxy.proxy(new CSearchAction(m_parent,m_debugger,m_memoryView)));
+  menu.add(CActionProxy.proxy(new CGotoAction(m_parent,m_memoryView,m_debugger)));
+  if (canReadDword(debugger.getProcessManager().getMemoryMap(),offset)) {
+    final byte[] data=debugger.getProcessManager().getMemory().getData(offset,4);
+    final IAddress dword=new CAddress(ByteHelpers.readDwordLittleEndian(data,0));
+    if (canReadDword(debugger.getProcessManager().getMemoryMap(),dword.toLong())) {
+      menu.add(CActionProxy.proxy(new CFollowDumpAction(m_debugger,dword)));
+    }
+  }
+  menu.addSeparator();
+  final long firstOffset=m_memoryView.getHexView().getBaseAddress();
+  final int size=m_memoryView.getHexView().getData().getDataLength();
+  menu.add(new CLoadAllAction(m_parent,debugger,new CAddress(firstOffset),size));
+  final JMenu dumpMenu=new JMenu("Dump to file");
+  dumpMenu.add(CActionProxy.proxy(new CDumpMemoryRangeAction(m_parent,debugger,m_memoryView.getHexView().getData(),new CAddress(firstOffset),size)));
+  menu.add(dumpMenu);
+  menu.addSeparator();
+  final BookmarkManager manager=debugger.getBookmarkManager();
+  final CBookmark bookmark=manager.getBookmark(new CAddress(offset));
+  if (bookmark == null) {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CCreateBookmarkAction(manager,new CAddress(offset)))));
+  }
+ else {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteBookmarkAction(manager,bookmark))));
+  }
+  if (manager.getNumberOfBookmarks() != 0) {
+    menu.addSeparator();
+    final JMenu bookmarksItem=new JMenu("Bookmarks");
+    for (int i=0; i < manager.getNumberOfBookmarks(); i++) {
+      bookmarksItem.add(CActionProxy.proxy(new CGotoBookmarkAction(m_debugger,manager.getBookmark(i))));
+    }
+    menu.add(bookmarksItem);
+  }
+  menu.addSeparator();
+  menu.add(HexViewOptionsMenu.createHexViewOptionsMenu(m_memoryView.getHexView()));
+  return menu;
+}

@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  setBorder(UNSELECTED_BORDER);
+  setBackground(UNSELECTED_COLOR);
+  checkBox.setBackground(UNSELECTED_COLOR);
+}

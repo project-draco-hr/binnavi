@@ -1,0 +1,3 @@
+{
+  CDataFunctions.storeData(SwingUtilities.getWindowAncestor(CLoadPanel.this),m_module);
+}

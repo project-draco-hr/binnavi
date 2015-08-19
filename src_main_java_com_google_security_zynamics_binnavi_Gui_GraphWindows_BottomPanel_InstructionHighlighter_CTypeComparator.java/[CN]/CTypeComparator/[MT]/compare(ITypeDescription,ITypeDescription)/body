@@ -1,0 +1,3 @@
+{
+  return rhs.getDescription().hashCode() - lhs.getDescription().hashCode();
+}

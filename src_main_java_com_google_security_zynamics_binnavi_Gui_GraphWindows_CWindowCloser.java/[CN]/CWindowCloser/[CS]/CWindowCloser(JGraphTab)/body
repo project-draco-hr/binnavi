@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(graphPane,"IE01636: Graph pane argument can not be null");
+  m_tabbedPane=graphPane;
+}

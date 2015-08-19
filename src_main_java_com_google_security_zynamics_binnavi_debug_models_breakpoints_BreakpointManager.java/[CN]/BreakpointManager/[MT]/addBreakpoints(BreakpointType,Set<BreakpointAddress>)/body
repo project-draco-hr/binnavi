@@ -1,0 +1,18 @@
+{
+  if (addresses.size() == 0) {
+    return;
+  }
+switch (type) {
+case REGULAR:
+    addBreakpoints(enforceBreakpointHierarchy(addresses,type),BreakpointStatus.BREAKPOINT_INACTIVE,indexedBreakpointStorage,type);
+  break;
+case ECHO:
+addBreakpoints(enforceBreakpointHierarchy(addresses,type),BreakpointStatus.BREAKPOINT_ENABLED,echoBreakpointStorage,type);
+break;
+case STEP:
+addBreakpoints(enforceBreakpointHierarchy(addresses,type),BreakpointStatus.BREAKPOINT_INACTIVE,stepBreakpointStorage,type);
+break;
+default :
+throw new IllegalStateException(String.format("Invalid breakpoint type '%s'",type));
+}
+}

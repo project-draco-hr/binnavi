@@ -1,0 +1,14 @@
+{
+  final CAddressSpace addressSpace=newProject.getContent().createAddressSpace("Default address space");
+  try {
+    addressSpace.load();
+  }
+ catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00139: " + "Default address space could not be loaded";
+    final String innerDescription=CUtilityFunctions.createDescription("The default address space of the new project could not be loaded.",new String[]{"There was a problem with the database connection."},new String[]{"The new project was created but its default address space could not be loaded."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+  }
+catch (  final LoadCancelledException e) {
+  }
+}

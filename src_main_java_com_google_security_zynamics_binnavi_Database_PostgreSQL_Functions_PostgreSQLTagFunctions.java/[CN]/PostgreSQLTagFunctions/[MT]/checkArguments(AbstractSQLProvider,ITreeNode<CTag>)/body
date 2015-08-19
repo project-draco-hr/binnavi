@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00551: Provider argument can not be null");
+  Preconditions.checkNotNull(tag,"IE00552: Tag argument can not be null");
+  Preconditions.checkArgument(tag.getObject().inSameDatabase(provider),"IE00553: Tag is not part of this database");
+}

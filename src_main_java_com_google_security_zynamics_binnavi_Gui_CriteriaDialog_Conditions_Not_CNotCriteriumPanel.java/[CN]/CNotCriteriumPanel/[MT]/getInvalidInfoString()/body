@@ -1,0 +1,3 @@
+{
+  return "NOT operator requires exactly one child.";
+}

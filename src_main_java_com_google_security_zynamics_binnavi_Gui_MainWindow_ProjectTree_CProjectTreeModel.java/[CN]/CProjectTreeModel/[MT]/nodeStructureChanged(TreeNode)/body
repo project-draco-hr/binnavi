@@ -1,0 +1,11 @@
+{
+  final Enumeration<TreePath> expandedPaths=m_tree.getExpandedDescendants(new TreePath(getRoot()));
+  super.nodeStructureChanged(node);
+  if (expandedPaths != null) {
+    while (expandedPaths.hasMoreElements()) {
+      final TreePath path=expandedPaths.nextElement();
+      m_tree.expandPath(path);
+    }
+  }
+  m_tree.validate();
+}

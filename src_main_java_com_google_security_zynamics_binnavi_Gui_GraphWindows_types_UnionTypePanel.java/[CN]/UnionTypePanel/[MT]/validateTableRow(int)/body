@@ -1,0 +1,3 @@
+{
+  return super.validateTableRow(rowIndex) && members.getModel().getRow(members.convertRowIndexToModel(rowIndex)).getIndex() == 0;
+}

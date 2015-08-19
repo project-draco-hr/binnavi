@@ -1,0 +1,9 @@
+{
+  for (int index=0; index < getItemCount(); index++) {
+    final DebuggerTemplate currentDebugger=getItemAt(index).getObject();
+    if (currentDebugger != null && currentDebugger.equals(debugger)) {
+      setSelectedIndex(index);
+      break;
+    }
+  }
+}

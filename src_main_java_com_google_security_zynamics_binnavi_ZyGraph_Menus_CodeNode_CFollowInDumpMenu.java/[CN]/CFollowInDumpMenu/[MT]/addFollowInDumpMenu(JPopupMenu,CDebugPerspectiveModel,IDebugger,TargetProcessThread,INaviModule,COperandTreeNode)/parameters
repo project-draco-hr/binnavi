@@ -1,0 +1,6 @@
+JPopupMenu menu
+CDebugPerspectiveModel viewModel
+IDebugger debugger
+TargetProcessThread activeThread
+INaviModule module
+COperandTreeNode treeNode

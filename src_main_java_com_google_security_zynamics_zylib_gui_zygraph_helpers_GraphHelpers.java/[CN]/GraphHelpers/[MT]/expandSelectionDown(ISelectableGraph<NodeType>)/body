@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can't be null");
+  final ArrayList<NodeType> toSelect=new ArrayList<NodeType>();
+  final INodeFilter<NodeType> deselectedFilter=StandardFilters.getDeselectedFilter();
+  graph.iterateSelected(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      toSelect.addAll(GraphAlgorithms.collectChildren(node,deselectedFilter));
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  graph.selectNodes(toSelect,true);
+}

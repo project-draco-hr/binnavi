@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(isValidVersionNumber(version),"IE00707: Invalid database version string");
+  m_version=version;
+}

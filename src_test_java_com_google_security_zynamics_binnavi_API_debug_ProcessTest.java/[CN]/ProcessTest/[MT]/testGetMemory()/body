@@ -1,0 +1,10 @@
+{
+  final MockProcessListener listener=new MockProcessListener();
+  final ProcessManager manager=new ProcessManager();
+  final Process process=new Process(manager);
+  process.addListener(listener);
+  final Memory m1=process.getMemory();
+  final Memory m2=process.getMemory();
+  assertEquals(m1,m2);
+  process.removeListener(listener);
+}

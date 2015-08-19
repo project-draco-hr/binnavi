@@ -1,0 +1,19 @@
+{
+  ConfigManager.instance().read();
+  final TagManager tagManager=new TagManager(new MockTagManager(TagType.NODE_TAG));
+  final CTagManager internalTagManager=new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"","",TagType.VIEW_TAG,m_provider))),TagType.VIEW_TAG,m_provider);
+  m_viewTagManager=new TagManager(internalTagManager);
+  final Database database=new Database(new MockDatabase());
+  internalModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,m_provider);
+  internalModule.load();
+  module=new Module(database,internalModule,tagManager,m_viewTagManager);
+  final Calendar cal=Calendar.getInstance();
+  cal.setTime(module.getModificationDate());
+  cal.add(Calendar.DATE,1);
+  m_modificationDate=cal.getTime();
+  m_creationDate=new Date();
+  final ITreeNode<CTag> tag=internalTagManager.addTag(internalTagManager.getRootTag(),"foo");
+  final CModuleViewGenerator generator=new CModuleViewGenerator(m_provider,internalModule);
+  final INaviView internalView=generator.generate(1,"My View","My View Description",com.google.security.zynamics.zylib.disassembly.ViewType.NonNative,GraphType.MIXED_GRAPH,m_creationDate,m_modificationDate,1,2,Sets.newHashSet(tag.getObject()),new HashSet<CTag>(),false);
+  m_view=new View(module,internalView,tagManager,m_viewTagManager);
+}

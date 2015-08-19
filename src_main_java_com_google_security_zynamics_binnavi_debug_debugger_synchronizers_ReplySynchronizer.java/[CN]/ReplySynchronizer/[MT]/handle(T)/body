@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(reply,"IE01220: Reply argument can not be null");
+  if (reply.success()) {
+    handleSuccess(reply);
+  }
+ else {
+    handleError(reply);
+  }
+  for (  final IDebugEventListener listener : listeners) {
+    try {
+      notifyListener(listener,reply);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

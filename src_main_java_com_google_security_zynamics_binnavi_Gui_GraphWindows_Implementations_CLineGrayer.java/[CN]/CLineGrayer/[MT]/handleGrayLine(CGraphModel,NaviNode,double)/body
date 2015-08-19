@@ -1,0 +1,5 @@
+{
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    grayLine(model,node,(INaviCodeNode)node.getRawNode(),y);
+  }
+}

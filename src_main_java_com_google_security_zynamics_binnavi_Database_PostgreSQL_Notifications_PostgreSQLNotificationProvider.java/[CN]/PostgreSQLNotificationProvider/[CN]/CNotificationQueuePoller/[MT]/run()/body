@@ -1,0 +1,21 @@
+{
+  if (!m_connection.isConnectionValid()) {
+    try {
+      m_connection=new CConnection(m_configuration);
+    }
+ catch (    final CouldntLoadDriverException exception) {
+      NaviLogger.severe("Error: Could not reestablish the connection with the database backend %s",exception);
+    }
+catch (    final SQLException exception) {
+      NaviLogger.severe("Error: Could not reestablish the connection with the database backend %s",exception);
+    }
+  }
+  syncListenedChannels();
+  try {
+    poll();
+  }
+ catch (  final Exception exception) {
+    NaviLogger.severe("Error: Could not get notifications from the PostgreSQL backend with exception %s",exception);
+    exception.printStackTrace();
+  }
+}

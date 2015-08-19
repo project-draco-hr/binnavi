@@ -1,0 +1,30 @@
+{
+  final JPanel panel=new JPanel();
+  getContentPane().add(panel,BorderLayout.SOUTH);
+  panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+  final JButton buttonOk=new JButton("OK");
+  buttonOk.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      wasCancelled=false;
+      dispose();
+    }
+  }
+);
+  panel.add(buttonOk);
+  final JButton buttonCancel=new JButton("Cancel");
+  buttonCancel.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      dispose();
+    }
+  }
+);
+  panel.add(buttonCancel);
+  xrefs=new JTable(new XRefsTableModel(references));
+  xrefs.addMouseListener(internalMouseListener);
+  xrefs.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  xrefs.setRowSelectionInterval(0,0);
+  final JPanel tablePanel=new JPanel(new BorderLayout(5,5));
+  tablePanel.setBorder(new TitledBorder("Cross references"));
+  tablePanel.add(new JScrollPane(xrefs),BorderLayout.CENTER);
+  add(tablePanel,BorderLayout.CENTER);
+}

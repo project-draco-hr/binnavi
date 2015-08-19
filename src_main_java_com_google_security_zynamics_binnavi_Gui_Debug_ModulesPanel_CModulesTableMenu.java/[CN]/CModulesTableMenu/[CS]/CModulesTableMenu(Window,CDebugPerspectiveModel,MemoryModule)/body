@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(parent,"IE01458: Parent argument can not be null");
+  Preconditions.checkNotNull(module,"IE01459: Module argument can not be null");
+  add(CActionProxy.proxy(new CGotoModule(parent,debugPerspectiveModel,module)));
+}

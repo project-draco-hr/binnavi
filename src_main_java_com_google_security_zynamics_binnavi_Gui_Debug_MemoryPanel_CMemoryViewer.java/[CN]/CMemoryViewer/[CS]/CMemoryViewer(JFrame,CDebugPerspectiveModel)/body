@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01404: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01405: Debugger argument can not be null");
+  m_hexView.setData(m_dataProvider);
+  m_hexView.setMenuCreator(new CMemoryMenu(parent,debugPerspectiveModel,this));
+  m_hexView.setVisible(true);
+  add(m_hexView);
+  m_synchronizer=new CMemoryViewerSynchronizer(m_hexView,m_dataProvider,debugPerspectiveModel);
+}

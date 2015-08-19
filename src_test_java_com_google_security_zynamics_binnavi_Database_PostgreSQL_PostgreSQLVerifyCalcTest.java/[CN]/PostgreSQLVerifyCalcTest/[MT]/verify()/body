@@ -1,0 +1,5 @@
+{
+  final INaviModule module=m_database.getContent().getModules().get(1);
+  module.load();
+  verify(module);
+}

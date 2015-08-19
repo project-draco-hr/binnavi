@@ -1,0 +1,25 @@
+{
+  final CModule module6=(CModule)getDatabase().getContent().getModules().get(0);
+  module6.load();
+  final CModuleContent moduleContent6=module6.getContent();
+  assertTrue(moduleContent6.getViewContainer().hasView(module6.getContent().getViewContainer().getViews().get(0)));
+  try {
+    moduleContent6.getViewContainer().hasView(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    moduleContent6.getViewContainer().hasView(new MockView());
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  module6.close();
+  try {
+    moduleContent6.getViewContainer().getViews();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

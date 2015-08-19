@@ -1,0 +1,4 @@
+{
+  testCreateType(getKernel32Module());
+  testCreateType(getNotepadModule());
+}

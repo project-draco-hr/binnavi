@@ -1,0 +1,18 @@
+{
+switch (predicate) {
+case EQUAL_TO:
+    return register.getValue().toLong() == value;
+case GREATER_EQUAL_THAN:
+  return register.getValue().toLong() >= value;
+case GREATER_THAN:
+return register.getValue().toLong() > value;
+case LESS_EQUAL_TO:
+return register.getValue().toLong() <= value;
+case LESS_THAN:
+return register.getValue().toLong() < value;
+case NOT_EQUAL_TO:
+return register.getValue().toLong() != value;
+default :
+throw new IllegalStateException("IE00264: Unknown predicate");
+}
+}

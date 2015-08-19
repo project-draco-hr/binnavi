@@ -1,0 +1,5 @@
+{
+  this.m_first=first;
+  this.m_second=second;
+  this.m_third=third;
+}

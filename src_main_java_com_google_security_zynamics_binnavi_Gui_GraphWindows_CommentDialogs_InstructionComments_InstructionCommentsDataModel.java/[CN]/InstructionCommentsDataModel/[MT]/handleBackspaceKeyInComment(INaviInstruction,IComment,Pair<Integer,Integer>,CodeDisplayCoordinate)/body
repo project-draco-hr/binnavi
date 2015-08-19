@@ -1,0 +1,7 @@
+{
+  coordinate.setFieldIndex(Math.max(coordinate.getFieldIndex() - 1,0));
+  if (coordinate.getFieldIndex() > (indices.second() - indices.first())) {
+    return;
+  }
+  deleteCharacterFromComment(instruction,comment,indices.first() + coordinate.getFieldIndex());
+}

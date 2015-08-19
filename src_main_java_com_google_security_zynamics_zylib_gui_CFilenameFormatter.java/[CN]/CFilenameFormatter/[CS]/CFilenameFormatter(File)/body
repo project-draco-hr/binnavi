@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(directory.exists(),"Error: Direcctory must exist.");
+  m_directory=directory;
+}

@@ -1,0 +1,6 @@
+{
+  if (m_tag.getObject() == tag) {
+    m_model.getRoot().refreshTree(m_tag);
+    m_model.nodeStructureChanged(parent);
+  }
+}

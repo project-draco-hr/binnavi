@@ -1,0 +1,6 @@
+Window parent
+ComboBoxEditor editor
+ZyGraph graph
+GraphSearcher searcher
+String searchString
+boolean zoomToResult

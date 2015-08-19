@@ -1,0 +1,7 @@
+{
+  if (!(rhs instanceof IndirectCall)) {
+    return false;
+  }
+  final IndirectCall rhsCall=(IndirectCall)rhs;
+  return rhsCall.address.equals(address) && rhsCall.module.equals(module);
+}

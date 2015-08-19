@@ -1,0 +1,4 @@
+{
+  super(model,new CEventTableHelp());
+  m_model=model;
+}

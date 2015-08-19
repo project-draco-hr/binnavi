@@ -1,0 +1,4 @@
+TypeSubstitution typeSubstitution
+BaseType baseType
+List<TypeMember> memberPath
+int offset

@@ -1,0 +1,23 @@
+{
+  PostgreSQLViewSaver.checkArguments(provider,view);
+  final CConnection connection=provider.getConnection();
+  try {
+    PostgreSQLHelpers.beginTransaction(connection);
+    final int viewId=view.getConfiguration().getId();
+    final List<INaviViewNode> nodes=view.getGraph().getNodes();
+    final List<INaviEdge> edges=view.getGraph().getEdges();
+    PostgreSQLViewSaver.deleteNodes(connection,viewId);
+    PostgreSQLNodeSaver.writeNodes(provider,viewId,nodes);
+    PostgreSQLEdgeSaver.writeEdges(provider,edges);
+    PostgreSQLHelpers.endTransaction(connection);
+  }
+ catch (  final SQLException exception) {
+    try {
+      PostgreSQLHelpers.rollback(connection);
+    }
+ catch (    final SQLException e) {
+      CUtilityFunctions.logException(e);
+    }
+    throw new CouldntSaveDataException(exception);
+  }
+}

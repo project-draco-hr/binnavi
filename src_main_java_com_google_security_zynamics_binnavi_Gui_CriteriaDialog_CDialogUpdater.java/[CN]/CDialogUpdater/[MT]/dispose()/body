@@ -1,0 +1,4 @@
+{
+  m_jtree.removeTreeSelectionListener(m_treeSelectionListener);
+  m_ctree.removeListener(m_treeCriteriumlListener);
+}

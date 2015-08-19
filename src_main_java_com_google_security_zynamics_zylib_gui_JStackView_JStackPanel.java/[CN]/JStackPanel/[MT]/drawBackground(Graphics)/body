@@ -1,0 +1,4 @@
+{
+  g.setColor(m_bgColorOffset);
+  g.fillRect(-m_firstColumn * m_charWidth,0,m_offsetViewWidth,getHeight());
+}

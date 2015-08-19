@@ -1,0 +1,4 @@
+NodeType node
+int depth
+List<NodeType> nodes
+Set<NodeType> visited

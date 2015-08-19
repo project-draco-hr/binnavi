@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(user,"IE02723: user argument can not be null");
+  Preconditions.checkNotNull(userName,"IE02724: userName argument can not be null");
+  if (!users.contains(user)) {
+    throw new IllegalStateException("IE02725: User is not known to the user management.");
+  }
+  if (containsUserName(userName)) {
+    throw new IllegalStateException("IE02726: User name is already in use by another user.");
+  }
+  final IUser newUser=provider.editUserName(user,userName);
+  for (  final IUserManagerListener listener : listeners) {
+    try {
+      listener.editedUser(newUser);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return newUser;
+}

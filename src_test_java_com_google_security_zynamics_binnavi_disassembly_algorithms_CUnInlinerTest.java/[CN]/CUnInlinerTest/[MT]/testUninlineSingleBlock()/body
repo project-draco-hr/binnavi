@@ -1,0 +1,37 @@
+{
+  final List<INaviViewNode> nodes=new FilledList<INaviViewNode>();
+  final List<INaviEdge> edges=new FilledList<INaviEdge>();
+  final INaviFunction mockFunction=new MockFunction(m_provider);
+  final INaviFunction mockFunction2=new MockFunction(m_provider);
+  final MockInstruction mi1=new MockInstruction(0x123);
+  final MockInstruction mi2=new MockInstruction(0x124);
+  final MockInstruction mi3=new MockInstruction(0x125);
+  final CCodeNode upperNode=new CCodeNode(0,0,0,0,0,Color.RED,Color.RED,false,true,null,mockFunction,new HashSet<CTag>(),m_provider);
+  final CCodeNode inlinedNode=new CCodeNode(0,0,0,0,0,Color.RED,Color.RED,false,true,null,mockFunction2,new HashSet<CTag>(),m_provider);
+  final CCodeNode lowerNode=new CCodeNode(0,0,0,0,0,Color.RED,Color.RED,false,true,null,mockFunction,new HashSet<CTag>(),m_provider);
+  final CTextNode textNode=new CTextNode(0,0,0,0,0,Color.RED,false,true,new HashSet<CTag>(),null,m_provider);
+  upperNode.addInstruction(mi1,null);
+  inlinedNode.addInstruction(mi2,null);
+  lowerNode.addInstruction(mi3,null);
+  nodes.add(upperNode);
+  nodes.add(inlinedNode);
+  nodes.add(textNode);
+  nodes.add(lowerNode);
+  final CNaviViewEdge enteringEdge=new CNaviViewEdge(0,upperNode,inlinedNode,EdgeType.ENTER_INLINED_FUNCTION,0,0,0,0,Color.BLACK,false,true,null,new FilledList<CBend>(),m_provider);
+  final CNaviViewEdge leavingEdge=new CNaviViewEdge(0,inlinedNode,lowerNode,EdgeType.LEAVE_INLINED_FUNCTION,0,0,0,0,Color.BLACK,false,true,null,new FilledList<CBend>(),m_provider);
+  final CNaviViewEdge textEdge=new CNaviViewEdge(0,textNode,inlinedNode,EdgeType.TEXTNODE_EDGE,0,0,0,0,Color.BLACK,false,true,null,new FilledList<CBend>(),m_provider);
+  edges.add(enteringEdge);
+  edges.add(leavingEdge);
+  edges.add(textEdge);
+  connect(upperNode,inlinedNode,enteringEdge);
+  connect(inlinedNode,lowerNode,leavingEdge);
+  connect(textNode,inlinedNode,textEdge);
+  final MockView view=new MockView(nodes,edges,m_provider);
+  CUnInliner.unInline(view,inlinedNode);
+  assertEquals(1,view.getNodeCount());
+  assertEquals(0,view.getEdgeCount());
+  final INaviCodeNode cnode=(INaviCodeNode)view.getGraph().getNodes().get(0);
+  assertEquals(2,Iterables.size(cnode.getInstructions()));
+  assertEquals(mi1.toString(),Iterables.get(cnode.getInstructions(),0).toString());
+  assertEquals(mi3.toString(),Iterables.get(cnode.getInstructions(),1).toString());
+}

@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can't be null");
+  final ArrayList<NodeType> nodes=new ArrayList<NodeType>();
+  graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      if (!node.isSelected()) {
+        nodes.add(node);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return nodes;
+}

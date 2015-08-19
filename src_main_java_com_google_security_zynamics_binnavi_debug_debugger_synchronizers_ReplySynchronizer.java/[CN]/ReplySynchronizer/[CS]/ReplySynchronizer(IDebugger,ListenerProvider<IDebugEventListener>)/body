@@ -1,0 +1,4 @@
+{
+  this.debugger=Preconditions.checkNotNull(debugger,"IE01043: Debugger argument can not be null");
+  this.listeners=Preconditions.checkNotNull(listeners,"IE01044: Listeners argument can not be null");
+}

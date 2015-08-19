@@ -1,0 +1,21 @@
+{
+  final CModule module=MockCreator.createModule(m_sql);
+  m_addressSpace.load();
+  m_addressSpace.getContent().addListener(m_listener);
+  try {
+    m_addressSpace.getContent().removeModule(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_addressSpace.getContent().removeModule(module);
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  m_addressSpace.getContent().addModule(module);
+  m_addressSpace.getContent().removeModule(module);
+  assertEquals("addedModule;changedImageBase;removedModule;",m_listener.events);
+  assertEquals(0,m_addressSpace.getModuleCount());
+}

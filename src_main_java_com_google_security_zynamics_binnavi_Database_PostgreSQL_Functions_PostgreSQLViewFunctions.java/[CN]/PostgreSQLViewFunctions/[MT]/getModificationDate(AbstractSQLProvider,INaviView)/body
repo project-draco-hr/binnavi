@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,view);
+  final CConnection connection=provider.getConnection();
+  return PostgreSQLHelpers.getModificationDate(connection,CTableNames.VIEWS_TABLE,view.getConfiguration().getId());
+}

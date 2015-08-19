@@ -1,0 +1,3 @@
+{
+  m_hexView.setAddressMode(information.getAddressSize() == 64 ? AddressMode.BIT64 : AddressMode.BIT32);
+}

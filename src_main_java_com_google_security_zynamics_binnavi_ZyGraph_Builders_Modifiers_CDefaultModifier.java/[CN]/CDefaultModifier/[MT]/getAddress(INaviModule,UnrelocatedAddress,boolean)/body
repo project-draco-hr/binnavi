@@ -1,0 +1,9 @@
+{
+  final IDebugger debugger=m_provider.getDebugger(module);
+  if ((debugger != null) && m_settings.getDisplaySettings().getShowMemoryAddresses(debugger)) {
+    return pad ? debugger.fileToMemory(module,address).getAddress().toHexString() : debugger.fileToMemory(module,address).getAddress().toBigInteger().toString(16).toUpperCase();
+  }
+ else {
+    return pad ? address.getAddress().toHexString() : address.getAddress().toBigInteger().toString(16).toUpperCase();
+  }
+}

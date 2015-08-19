@@ -1,0 +1,16 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bgtz");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String rs=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final IOperandTreeNode target=operands.get(1).getRootNode().getChildren().get(0);
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String signBit=environment.getNextVariableString();
+  final String invertedSignBit=environment.getNextVariableString();
+  final String condition=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(offset++,dw,rs,dw,String.valueOf(-31L),dw,signBit));
+  instructions.add(ReilHelpers.createBisz(offset++,dw,signBit,dw,invertedSignBit));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,invertedSignBit,dw,rs,dw,condition));
+  Helpers.generateDelayBranch(instructions,offset,dw,condition,dw,target);
+}

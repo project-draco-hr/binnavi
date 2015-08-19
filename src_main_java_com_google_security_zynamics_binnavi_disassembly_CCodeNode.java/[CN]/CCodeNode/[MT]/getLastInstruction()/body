@@ -1,0 +1,3 @@
+{
+  return codeNodeInstructions.isEmpty() ? null : codeNodeInstructions.get(codeNodeInstructions.size() - 1);
+}

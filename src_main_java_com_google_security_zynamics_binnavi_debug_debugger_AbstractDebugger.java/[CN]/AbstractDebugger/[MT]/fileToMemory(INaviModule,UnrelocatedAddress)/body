@@ -1,0 +1,10 @@
+{
+  if (module == null) {
+    return new RelocatedAddress(address.getAddress());
+  }
+  final IAddressConverter converter=addressConverters.get(module);
+  if (converter == null) {
+    throw new IllegalStateException(String.format("Error: No address converter configured for module '%s'",module.getConfiguration().getName()));
+  }
+  return converter.fileToMemory(address);
+}

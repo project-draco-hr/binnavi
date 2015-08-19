@@ -1,0 +1,5 @@
+{
+  m_module.load();
+  final byte[] data={(byte)0x90};
+  assertNotNull(m_module.createInstruction(new MockAddress(),"add",new ArrayList<COperandTree>(),data,"ARM"));
+}

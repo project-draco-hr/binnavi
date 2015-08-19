@@ -1,0 +1,7 @@
+{
+  if (!hitCounter.containsKey(breakpointAddress)) {
+    hitCounter.put(breakpointAddress,0);
+  }
+  hitCounter.put(breakpointAddress,hitCounter.get(breakpointAddress) + 1);
+  lastHits.put(threadId,breakpointAddress);
+}

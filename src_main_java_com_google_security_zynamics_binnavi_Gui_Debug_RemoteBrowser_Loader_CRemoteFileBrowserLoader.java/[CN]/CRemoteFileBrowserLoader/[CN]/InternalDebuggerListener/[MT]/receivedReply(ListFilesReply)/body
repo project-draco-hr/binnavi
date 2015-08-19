@@ -1,0 +1,6 @@
+{
+  if (m_fileSystemRequest == reply.getId()) {
+    m_fileSystem=reply.getFileSystem();
+    m_waitingFor--;
+  }
+}

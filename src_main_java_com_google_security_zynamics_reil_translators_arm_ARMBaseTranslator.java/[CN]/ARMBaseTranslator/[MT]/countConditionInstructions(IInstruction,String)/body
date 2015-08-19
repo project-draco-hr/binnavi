@@ -1,0 +1,5 @@
+{
+  final List<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  translateCondition(new StandardEnvironment(),instruction,prefix,instructions,0);
+  return instructions.size();
+}

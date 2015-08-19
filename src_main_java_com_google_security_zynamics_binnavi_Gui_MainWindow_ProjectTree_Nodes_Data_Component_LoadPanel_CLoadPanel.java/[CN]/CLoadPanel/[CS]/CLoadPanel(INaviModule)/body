@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(module,"IE01961: Module argument can not be null");
+  m_storeButton=new JButton(CActionProxy.proxy(new CStoreAction(module)));
+  setLayout(new BorderLayout());
+  final JPanel innerPanelLeft=new JPanel(new BorderLayout());
+  innerPanelLeft.add(new JButton(CActionProxy.proxy(new CLoadDatabaseAction(module))),BorderLayout.WEST);
+  add(innerPanelLeft,BorderLayout.WEST);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  final JPanel loadButtonPanel=new JPanel(new BorderLayout());
+  loadButtonPanel.setBorder(new EmptyBorder(0,0,0,3));
+  loadButtonPanel.add(new JButton(CActionProxy.proxy(new CLoadAction(module))),BorderLayout.CENTER);
+  innerPanel.add(loadButtonPanel,BorderLayout.WEST);
+  innerPanel.add(m_storeButton,BorderLayout.EAST);
+  add(innerPanel,BorderLayout.EAST);
+  setBorder(new TitledBorder("Data Options"));
+}

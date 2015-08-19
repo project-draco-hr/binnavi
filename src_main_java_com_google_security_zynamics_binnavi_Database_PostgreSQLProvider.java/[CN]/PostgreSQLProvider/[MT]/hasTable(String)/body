@@ -1,0 +1,3 @@
+{
+  return PostgreSQLHelpers.hasTable(getConnection(),tableName);
+}

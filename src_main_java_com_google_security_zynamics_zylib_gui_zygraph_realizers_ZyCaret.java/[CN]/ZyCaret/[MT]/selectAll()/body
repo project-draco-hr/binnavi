@@ -1,0 +1,8 @@
+{
+  m_mouse_pressed_x=0;
+  m_mouse_pressed_y=0;
+  m_mouse_released_y=m_content.getLineCount() - 1;
+  m_mouse_released_x=calcSelectedLinesMaxLength();
+  m_caret_startpos_x=m_mouse_pressed_x;
+  m_caret_endpos_x=m_mouse_released_x;
+}

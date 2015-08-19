@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(elementType,"Error: element type argument can not be null.");
+  final String arrayName=buildArrayName(elementType,numberElements);
+  final BaseType arrayType=instantiateType(arrayName,elementType.getBitSize() * numberElements,false,null,BaseTypeCategory.ARRAY);
+  createArrayMember(arrayType,elementType,"array_elements",numberElements);
+  notifyTypeAdded(arrayType);
+  return arrayType;
+}

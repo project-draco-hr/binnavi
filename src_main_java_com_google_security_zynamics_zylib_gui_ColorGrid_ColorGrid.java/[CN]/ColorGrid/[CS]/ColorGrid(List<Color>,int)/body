@@ -1,0 +1,6 @@
+{
+  m_colors=Preconditions.checkNotNull(colors,"Error: colors argument can not be null");
+  m_columns=columns;
+  final int rows=(m_colors.size() / m_columns) + ((m_colors.size() % m_columns) == 0 ? 0 : 1);
+  setPreferredSize(new Dimension(columns * squareSize,rows * squareSize));
+}

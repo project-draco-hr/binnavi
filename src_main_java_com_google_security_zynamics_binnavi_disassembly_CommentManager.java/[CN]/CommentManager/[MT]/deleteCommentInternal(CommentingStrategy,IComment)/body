@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(comment,"IE02542: comment argument can not be null");
+  final List<IComment> currentComments=strategy.getComments();
+  if (!currentComments.remove(comment)) {
+    return;
+  }
+  strategy.saveComments(currentComments);
+  commentIdToComment.remove(comment.getId());
+  for (  final CommentListener listener : listeners) {
+    try {
+      strategy.sendDeletedCommentNotification(listener,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

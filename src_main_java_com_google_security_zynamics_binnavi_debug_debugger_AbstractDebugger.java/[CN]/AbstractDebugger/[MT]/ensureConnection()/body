@@ -1,0 +1,5 @@
+{
+  if (!isConnected()) {
+    throw new DebugExceptionWrapper("Error: Debugger is not connected");
+  }
+}

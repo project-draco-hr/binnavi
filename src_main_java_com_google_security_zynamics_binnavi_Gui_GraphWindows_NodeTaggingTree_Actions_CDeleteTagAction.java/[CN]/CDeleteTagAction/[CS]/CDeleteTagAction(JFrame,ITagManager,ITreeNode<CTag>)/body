@@ -1,0 +1,6 @@
+{
+  super("Delete Tag");
+  m_parent=Preconditions.checkNotNull(parent,"IE01217: Parent argument can not be null");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE01218: Tag manager argument can not be null");
+  m_tag=Preconditions.checkNotNull(tag,"IE01782: Tag can't be null.");
+}

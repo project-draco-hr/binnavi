@@ -1,0 +1,11 @@
+{
+  if (m_hasNext == false) {
+    throw new NoSuchElementException();
+  }
+  if (m_edgecursor.current() == m_last) {
+    m_hasNext=false;
+  }
+  final IInstructionGraphEdge result=m_edgesMap.get(m_edgecursor.current());
+  m_edgecursor.next();
+  return result;
+}

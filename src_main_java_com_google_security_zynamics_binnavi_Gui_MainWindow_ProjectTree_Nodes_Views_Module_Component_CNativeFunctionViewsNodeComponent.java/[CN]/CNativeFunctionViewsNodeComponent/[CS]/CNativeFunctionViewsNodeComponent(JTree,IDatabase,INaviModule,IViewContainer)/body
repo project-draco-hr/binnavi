@@ -1,0 +1,5 @@
+{
+  super(new CFunctionViewsTable(projectTree,database,module,container),new CFunctionFilterCreator(container),new CViewFilterHelp());
+  updateBorderText(String.format("%d Native Functions",module.getFunctionCount()));
+  addListener(m_filterFieldListener);
+}

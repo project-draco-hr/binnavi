@@ -1,0 +1,10 @@
+{
+  if ((event.getButton() == MouseEvent.BUTTON1) && (event.getClickCount() == 2)) {
+    final int sortedRow=rowAtPoint(event.getPoint());
+    if (sortedRow == -1) {
+      return;
+    }
+    final int row=convertRowIndexToModel(sortedRow);
+    ZyZoomHelpers.zoomToInstruction(m_graph,m_model.getInstruction(row).getInstruction());
+  }
+}

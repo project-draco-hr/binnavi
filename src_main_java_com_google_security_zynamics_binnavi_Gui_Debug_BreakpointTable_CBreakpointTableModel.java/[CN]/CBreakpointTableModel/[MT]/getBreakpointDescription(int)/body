@@ -1,0 +1,6 @@
+{
+  final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(m_debuggerProvider,row);
+  final BreakpointManager manager=breakpoint.first().getBreakpointManager();
+  final int breakpointIndex=breakpoint.second();
+  return manager.getBreakpoint(BreakpointType.REGULAR,breakpointIndex).getDescription();
+}

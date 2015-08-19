@@ -1,0 +1,4 @@
+{
+  final TypeInstance typeInstance=typeInstancContainerBackend.createTypeInstance(" TYPE INSTANCE "," TYPE INSTANCE COMMENT ",baseType,section,0);
+  typeInstancContainerBackend.setInstanceName(typeInstance,"");
+}

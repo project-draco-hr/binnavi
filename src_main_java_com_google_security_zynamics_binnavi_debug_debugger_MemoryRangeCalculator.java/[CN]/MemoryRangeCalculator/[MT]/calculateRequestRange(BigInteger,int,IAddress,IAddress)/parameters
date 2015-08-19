@@ -1,0 +1,4 @@
+BigInteger offset
+int size
+IAddress sectionStart
+IAddress sectionEnd

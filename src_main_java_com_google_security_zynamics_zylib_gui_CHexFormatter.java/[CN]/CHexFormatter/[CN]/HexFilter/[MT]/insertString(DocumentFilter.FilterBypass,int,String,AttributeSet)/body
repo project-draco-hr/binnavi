@@ -1,0 +1,5 @@
+{
+  if (isValid(string,0)) {
+    super.insertString(fb,offset,string,attr);
+  }
+}

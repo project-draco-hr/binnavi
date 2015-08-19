@@ -1,0 +1,11 @@
+{
+  if (m_filterFactory != null) {
+    m_filterFactory.dispose();
+  }
+  if (m_filterPanel != null) {
+    m_filterPanel.dispose();
+    m_filterPanel.removeListener(m_filterListener);
+  }
+  m_table.dispose();
+  disposeInternal();
+}

@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.filter(visibleNodes,new ICollectionFilter<U>(){
+    @Override public boolean qualifies(    final U node){
+      return NodeHelpers.getVisibleNode(node.getRawNode()) == node.getRawNode();
+    }
+  }
+);
+}

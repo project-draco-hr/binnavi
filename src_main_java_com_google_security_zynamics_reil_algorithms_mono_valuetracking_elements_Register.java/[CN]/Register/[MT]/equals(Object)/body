@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Register) && ((Register)rhs).m_register.equals(m_register);
+}

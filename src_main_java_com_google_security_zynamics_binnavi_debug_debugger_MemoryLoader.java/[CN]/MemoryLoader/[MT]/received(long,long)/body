@@ -1,0 +1,6 @@
+{
+  final Pair<CAddress,Long> pair=Pair.make(new CAddress(offset),size);
+  if (lastMemoryRequest.contains(pair)) {
+    lastMemoryRequest.remove(pair);
+  }
+}

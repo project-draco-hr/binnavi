@@ -1,0 +1,6 @@
+{
+  final CDefaultLabelEventHandler labelEventHandler=graph.getEditMode().getLabelEventHandler();
+  if (labelEventHandler.isActive()) {
+    labelEventHandler.deactivateLabelContent();
+  }
+}

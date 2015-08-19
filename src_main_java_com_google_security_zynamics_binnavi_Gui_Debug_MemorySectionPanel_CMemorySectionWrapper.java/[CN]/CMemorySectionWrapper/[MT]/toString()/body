@@ -1,0 +1,4 @@
+{
+  final MemorySection section=getObject();
+  return String.format("%s - %s (%s)",section.getStart().toHexString(),section.getEnd().toHexString(),toString(section.getSize()));
+}

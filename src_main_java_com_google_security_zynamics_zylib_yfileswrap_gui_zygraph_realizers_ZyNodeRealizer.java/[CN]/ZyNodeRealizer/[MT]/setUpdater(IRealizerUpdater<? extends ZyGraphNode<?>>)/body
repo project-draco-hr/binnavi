@@ -1,0 +1,6 @@
+{
+  m_updater=updater;
+  if (updater != null) {
+    updater.setRealizer(this);
+  }
+}

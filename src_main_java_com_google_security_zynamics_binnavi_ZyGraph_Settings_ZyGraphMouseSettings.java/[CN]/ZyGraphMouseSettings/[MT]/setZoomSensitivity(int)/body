@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00900: Sensitivity argument must not be negative");
+  if (value == getZoomSensitivity()) {
+    return;
+  }
+  if (m_type == null) {
+    m_zoomSensitivity=value;
+  }
+ else {
+    m_type.setZoomSensitivity(value);
+  }
+}

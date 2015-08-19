@@ -1,0 +1,7 @@
+{
+  final BaseType newBaseType=backend.loadRawBaseType(baseTypeId);
+  final BaseType oldBaseType=typesContainer.getBaseTypeById(baseTypeId);
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.updateBaseType(oldBaseType,newBaseType.getName(),newBaseType.isSigned(),newBaseType.getBitSize());
+  notifyTypesUpdated(affectedTypes);
+  notifySubstitutionsChanged(affectedTypes);
+}

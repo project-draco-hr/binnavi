@@ -1,0 +1,4 @@
+{
+  typeSystem.intType.setSize(123);
+  assertEquals(123,typeSystem.intType.getBitSize());
+}

@@ -1,0 +1,17 @@
+{
+  try {
+    m_tag.setDescription(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("Tag Description",m_tag.getDescription());
+  m_tag.setDescription("Test Description");
+  assertEquals("changedDescription=Test Description/",m_listener.eventList);
+  assertEquals("Test Description",m_tag.getDescription());
+  m_tag.setDescription("Tag Description");
+  assertEquals("changedDescription=Test Description/changedDescription=Tag Description/",m_listener.eventList);
+  m_tag.setDescription("Tag Description");
+  assertEquals("changedDescription=Test Description/changedDescription=Tag Description/",m_listener.eventList);
+  assertEquals("Tag Description",m_tag.getDescription());
+}

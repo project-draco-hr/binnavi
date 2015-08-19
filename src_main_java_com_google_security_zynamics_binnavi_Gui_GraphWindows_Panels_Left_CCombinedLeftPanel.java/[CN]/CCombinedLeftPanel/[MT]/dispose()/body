@@ -1,0 +1,5 @@
+{
+  m_perspectiveModel.removeListener(m_listener);
+  m_leftPanel.delete();
+  m_debugLeftPanel.dispose();
+}

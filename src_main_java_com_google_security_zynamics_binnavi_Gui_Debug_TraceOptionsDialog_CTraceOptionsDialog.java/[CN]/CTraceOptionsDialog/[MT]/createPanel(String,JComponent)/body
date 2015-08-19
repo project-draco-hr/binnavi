@@ -1,0 +1,6 @@
+{
+  final JPanel panel=new JPanel(new GridLayout(1,2));
+  panel.add(new JLabel(description));
+  panel.add(component);
+  return panel;
+}

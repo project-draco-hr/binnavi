@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(projectTree,"IE02045: Project tree argument can not be null");
+  Preconditions.checkNotNull(container,"IE02048: Container argument can not be null");
+  m_flowComponent=new CUserViewsComponent(projectTree,container);
+  add(m_flowComponent);
+}

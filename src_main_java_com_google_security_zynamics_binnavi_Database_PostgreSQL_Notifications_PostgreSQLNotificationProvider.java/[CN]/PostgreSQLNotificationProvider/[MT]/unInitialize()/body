@@ -1,0 +1,9 @@
+{
+  sendUnlistens(m_channels);
+  unlisten(m_channels);
+  stopPolling();
+  m_notificationProviders.remove(m_provider);
+  m_connection.closeConnection();
+  m_connection=null;
+  return true;
+}

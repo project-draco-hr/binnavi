@@ -1,0 +1,13 @@
+{
+  try {
+    final String name=logger.getTraceProvider().generateName();
+    return logger.getTraceProvider().createTrace(name,"");
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00095: " + "Creating the new trace failed";
+    final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not create the new trace in the database.",new String[]{"There was a problem with the database connection."},new String[]{"The debugger will not enter trace mode. You can try to start " + "trace mode again after you have resolved the database connection problem."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    return null;
+  }
+}

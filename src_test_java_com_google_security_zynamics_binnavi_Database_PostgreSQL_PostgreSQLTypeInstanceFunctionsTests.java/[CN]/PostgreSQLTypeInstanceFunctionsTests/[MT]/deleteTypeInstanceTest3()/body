@@ -1,0 +1,8 @@
+{
+  module.load();
+  final TypeInstance typeInstance=module.getContent().getTypeInstanceContainer().getTypeInstances().get(0);
+  provider.deleteTypeInstance(module.getConfiguration().getId(),typeInstance.getId());
+  module.close();
+  module.load();
+  Assert.assertFalse(module.getContent().getTypeInstanceContainer().getTypeInstances().contains(typeInstance));
+}

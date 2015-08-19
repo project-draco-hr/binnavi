@@ -1,0 +1,14 @@
+{
+  m_colorGenerator.next(thread);
+  final Timer timer=new Timer(300,new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent event){
+      final Color newColor=m_colorGenerator.next(thread);
+      if (newColor.equals(Color.WHITE)) {
+        ((Timer)event.getSource()).stop();
+      }
+      m_table.updateUI();
+    }
+  }
+);
+  timer.start();
+}

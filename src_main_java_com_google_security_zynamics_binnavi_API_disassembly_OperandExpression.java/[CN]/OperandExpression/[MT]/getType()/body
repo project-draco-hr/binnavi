@@ -1,0 +1,3 @@
+{
+  return ExpressionType.convert(m_node.getType());
+}

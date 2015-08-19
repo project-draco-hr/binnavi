@@ -1,0 +1,4 @@
+{
+  super(reply);
+  memoryReply=Preconditions.checkNotNull(reply,"Error: reply argument can not be null");
+}

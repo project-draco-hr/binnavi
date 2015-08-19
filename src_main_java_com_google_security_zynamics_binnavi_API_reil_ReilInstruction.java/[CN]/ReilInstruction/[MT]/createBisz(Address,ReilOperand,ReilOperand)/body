@@ -1,0 +1,3 @@
+{
+  return new ReilInstruction(address,ReilMnemonics.BISZ,inputValue,ReilOperand.EMPTY_OPERAND,outputValue);
+}

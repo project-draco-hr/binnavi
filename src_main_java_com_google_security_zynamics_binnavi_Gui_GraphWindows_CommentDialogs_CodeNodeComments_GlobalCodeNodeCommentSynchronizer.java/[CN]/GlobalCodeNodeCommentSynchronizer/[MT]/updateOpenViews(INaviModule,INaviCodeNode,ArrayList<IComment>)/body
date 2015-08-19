@@ -1,0 +1,20 @@
+{
+  if (module.isLoaded()) {
+    final List<INaviCodeNode> nodelist=new ArrayList<INaviCodeNode>();
+    for (    final INaviView view : module.getContent().getViewContainer().getViews()) {
+      if (view.isLoaded()) {
+        nodelist.addAll(collectNodes(view,codeNode));
+      }
+    }
+    final List<IComment> codeNodeComments=codeNode.getComments().getGlobalCodeNodeComment();
+    for (    final INaviCodeNode currentCodeNode : nodelist) {
+      final List<IComment> currentNodeComments=currentCodeNode.getComments().getGlobalCodeNodeComment();
+      if (codeNodeComments.equals(currentNodeComments)) {
+        continue;
+      }
+ else {
+        currentCodeNode.getComments().initializeGlobalCodeNodeComment(comments);
+      }
+    }
+  }
+}

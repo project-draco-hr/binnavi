@@ -1,0 +1,27 @@
+{
+  Preconditions.checkNotNull(firstChunk,"Error: First memory chunk can't be null");
+  Preconditions.checkNotNull(secondChunk,"Error: Second memory chunk can't be null");
+  Preconditions.checkArgument(secondChunk.getAddress() > firstChunk.getAddress(),"Error: Second memory chunk must start after the first memory chunk");
+  final long newAddress=firstChunk.getAddress();
+  MemoryChunk newChunk;
+  if ((firstChunk.getAddress() + firstChunk.getLength()) == secondChunk.getAddress()) {
+    final byte[] newData=concat(firstChunk.getBytes(),secondChunk.getBytes());
+    newChunk=new MemoryChunk(newAddress,newData);
+  }
+ else {
+    final int toFill=(int)(secondChunk.getAddress() - firstChunk.getAddress()) - firstChunk.getLength();
+    final byte[] newData=new byte[firstChunk.getLength() + toFill + secondChunk.getLength()];
+    if (toFill > 0) {
+      return null;
+    }
+ else     if (toFill < 0) {
+      System.arraycopy(firstChunk.getBytes(),0,newData,0,firstChunk.getLength());
+      System.arraycopy(secondChunk.getBytes(),-toFill,newData,firstChunk.getLength(),secondChunk.getLength() + toFill);
+    }
+    newChunk=new MemoryChunk(newAddress,newData);
+  }
+  removeChunk(firstChunk);
+  removeChunk(secondChunk);
+  insertChunk(newChunk);
+  return newChunk;
+}

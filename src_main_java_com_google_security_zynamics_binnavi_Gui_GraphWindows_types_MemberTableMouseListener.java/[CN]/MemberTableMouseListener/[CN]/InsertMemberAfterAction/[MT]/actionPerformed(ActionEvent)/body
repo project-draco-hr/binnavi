@@ -1,0 +1,8 @@
+{
+  if (rowIndex + 1 == table.getModel().getRowCount()) {
+    table.getModel().addRow(new MemberTableRowData());
+  }
+ else {
+    table.getModel().addRow(rowIndex + 1);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  final String architecture=getArchitecture(provider.getConnection(),rawModuleId);
+  final int userId=CUserManager.get(provider).getCurrentActiveUser().getUserId();
+  final String query="WITH comments_to_id(id, address, comment) AS " + " ( " + "   SELECT nextval('bn_comments_id_seq'::regclass), address, comment "+ "   FROM ex_" + rawModuleId + "_address_comments "+ " ), comments_table AS ( "+ "   INSERT INTO "+ CTableNames.COMMENTS_TABLE+ " (id, parent_id, user_id, comment_text) "+ "   SELECT id, null, "+ userId+ ", comment "+ "   FROM comments_to_id "+ " ) "+ "   INSERT INTO "+ CTableNames.INSTRUCTIONS_TABLE+ " (module_id, address, mnemonic, data, native, architecture, comment_id) "+ "   SELECT "+ moduleId+ ", isn.address, mnemonic, data, true, '"+ architecture+ "', com.id "+ "   FROM ex_"+ rawModuleId+ "_instructions AS isn "+ "   LEFT JOIN comments_to_id AS com ON com.address = isn.address; ";
+  provider.getConnection().executeUpdate(query,true);
+}

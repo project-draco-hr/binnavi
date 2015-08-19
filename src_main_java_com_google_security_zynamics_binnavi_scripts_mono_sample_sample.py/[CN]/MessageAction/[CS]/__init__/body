@@ -1,0 +1,4 @@
+def __init__(self, pi, frame):
+    AbstractAction.__init__(self, 'Monotone Framework Sample')
+    self.pi = pi
+    self.frame = frame

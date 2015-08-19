@@ -1,0 +1,35 @@
+{
+  Preconditions.checkNotNull(name,"IE00568: Name argument can not be null");
+  Preconditions.checkNotNull(description,"IE00569: Description argument can not be null");
+  final CConnection connection=provider.getConnection();
+  final String query="INSERT INTO " + CTableNames.TRACES_TABLE + "(view_id, name, description) VALUES(?, ?, ?) RETURNING id";
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+    Integer listId=null;
+    try {
+      statement.setInt(1,0);
+      statement.setString(2,name);
+      statement.setString(3,description);
+      final ResultSet resultSet=statement.executeQuery();
+      try {
+        while (resultSet.next()) {
+          if (resultSet.isFirst()) {
+            listId=resultSet.getInt(1);
+          }
+        }
+      }
+  finally {
+        resultSet.close();
+      }
+    }
+  finally {
+      statement.close();
+    }
+    connection.executeUpdate("INSERT INTO " + tracesTable + "("+ tracesColumn+ ", trace_id) "+ " VALUES("+ containerId+ ", "+ listId+ ")",true);
+    PostgreSQLHelpers.updateModificationDate(connection,containerTable,containerId);
+    return new TraceList(listId,name,description,provider);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

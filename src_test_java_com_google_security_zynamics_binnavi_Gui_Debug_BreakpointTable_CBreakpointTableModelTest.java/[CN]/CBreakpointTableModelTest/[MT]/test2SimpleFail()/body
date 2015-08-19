@@ -1,0 +1,8 @@
+{
+  try {
+    @SuppressWarnings("unused") final CBreakpointTableModel tableModel=new CBreakpointTableModel(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

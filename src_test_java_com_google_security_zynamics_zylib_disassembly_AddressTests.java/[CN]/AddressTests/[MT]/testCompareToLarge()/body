@@ -1,0 +1,16 @@
+{
+  final CAddress compareLarge=new CAddress(0x8000000010000000L);
+  assertTrue(compareLarge.compareTo(0x8000000020000000L) < 0);
+  assertTrue(compareLarge.compareTo(0x8000000010000000L) == 0);
+  assertTrue(compareLarge.compareTo(0x8000000000000000L) > 0);
+  assertTrue(compareLarge.compareTo(new CAddress(0x8000000020000000L)) < 0);
+  assertTrue(compareLarge.compareTo(new CAddress(0x8000000010000000L)) == 0);
+  assertTrue(compareLarge.compareTo(new CAddress(0x8000000000000000L)) > 0);
+  assertFalse(compareLarge.compareTo(new MockAddress()) < 0);
+  assertFalse(compareLarge.compareTo(new MockAddress()) == 0);
+  assertTrue(compareLarge.compareTo(new MockAddress()) > 0);
+  assertTrue(new CAddress(0x7000000000000000L).compareTo(0x8000000010000000L) < 0);
+  assertTrue(new CAddress(0x8000000010000000L).compareTo(0x7000000000000000L) > 0);
+  assertTrue(new CAddress(0x7000000000000000L).compareTo(new CAddress(0x8000000010000000L)) < 0);
+  assertTrue(new CAddress(0x8000000010000000L).compareTo(new CAddress(0x7000000000000000L)) > 0);
+}

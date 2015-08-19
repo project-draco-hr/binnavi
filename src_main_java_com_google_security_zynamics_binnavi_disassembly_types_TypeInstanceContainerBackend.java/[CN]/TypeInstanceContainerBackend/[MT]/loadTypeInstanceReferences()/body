@@ -1,0 +1,18 @@
+{
+  final List<RawTypeInstanceReference> rawReferences=provider.loadTypeInstanceReferences(module);
+  final List<TypeInstanceReference> references=Lists.newArrayList();
+  for (  final RawTypeInstanceReference rawReference : rawReferences) {
+    final TypeInstance typeInstance=instancesById.get(rawReference.getTypeInstanceId());
+    final INaviView view=ViewManager.get(provider).getView(rawReference.getViewId());
+    if (view != null) {
+      final Optional<INaviOperandTreeNode> node=Optional.absent();
+      final IAddress address=rawReference.getAddress();
+      final int position=rawReference.getOperandPosition();
+      final int expressionId=rawReference.getExpressionId();
+      final TypeInstanceReference reference=new TypeInstanceReference(address,position,node,typeInstance,view);
+      references.add(reference);
+      referenceLookup.put(new InstanceReferenceLookup(address,position,expressionId),reference);
+    }
+  }
+  return references;
+}

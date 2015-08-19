@@ -1,0 +1,7 @@
+{
+  final TreePath selPath=tree.getPathForLocation(x,y);
+  if (selPath == null) {
+    return null;
+  }
+  return selPath.getLastPathComponent();
+}

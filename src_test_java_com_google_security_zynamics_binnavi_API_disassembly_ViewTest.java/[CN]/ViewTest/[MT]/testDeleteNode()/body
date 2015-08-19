@@ -1,0 +1,13 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  final Function function=module.getFunctions().get(0);
+  m_view.load();
+  final FunctionNode node=m_view.createFunctionNode(function);
+  m_view.addListener(listener);
+  assertEquals(node,m_view.getGraph().getNodes().get(0));
+  m_view.deleteNode(node);
+  assertTrue(m_view.getGraph().getNodes().isEmpty());
+  assertEquals(0,m_view.getNodeCount());
+  assertEquals("deletedNode;changedGraphType;",listener.events);
+  m_view.removeListener(listener);
+}

@@ -1,0 +1,5 @@
+{
+  parent.m_outgoingEdges.add(Preconditions.checkNotNull(edge,"IE01232: Edge argument can not be null"));
+  parent.m_children.add(Preconditions.checkNotNull(parent,"IE01233: Parent argument can not be null"));
+  child.m_parents.add(Preconditions.checkNotNull(child,"IE01234: Child argument can not be null"));
+}

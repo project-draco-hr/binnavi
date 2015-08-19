@@ -1,0 +1,8 @@
+{
+  final int id=m_globalComment.size() + 1;
+  final IComment parent=m_globalComment.size() == 0 ? null : m_globalComment.get(m_globalComment.size() - 1);
+  final IUser user=CUserManager.get(m_provider).getCurrentActiveUser();
+  final IComment comment=new CComment(id,user,parent,commentText);
+  m_globalComment.add(comment);
+  return m_globalComment;
+}

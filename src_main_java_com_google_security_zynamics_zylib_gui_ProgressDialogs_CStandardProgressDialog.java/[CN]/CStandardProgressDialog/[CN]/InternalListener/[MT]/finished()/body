@@ -1,0 +1,5 @@
+{
+  m_finished=true;
+  m_progressModel.removeProgressListener(this);
+  dispose();
+}

@@ -1,0 +1,10 @@
+{
+  final JCriteriumTreeNode parentNode=findParentNode((JCriteriumTreeNode)getRoot(),parent.getCriterium());
+  final JCriteriumTreeNode childNode=new JCriteriumTreeNode(criteriumTree,child.getCriterium(),m_criteria);
+  parentNode.add(childNode);
+  childNode.setParent(parentNode);
+  sortChildren(parentNode);
+  nodeStructureChanged(parentNode);
+  m_jtree.setSelectionPath(new TreePath(childNode.getPath()));
+  child.getCriterium().addListener(m_internalCriteriumListener);
+}

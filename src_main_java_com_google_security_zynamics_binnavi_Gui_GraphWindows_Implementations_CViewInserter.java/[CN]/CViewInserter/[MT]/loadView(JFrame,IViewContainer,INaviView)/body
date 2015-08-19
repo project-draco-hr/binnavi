@@ -1,0 +1,4 @@
+{
+  CViewLoader.load(parent,viewContainer,view);
+  return view.isLoaded();
+}

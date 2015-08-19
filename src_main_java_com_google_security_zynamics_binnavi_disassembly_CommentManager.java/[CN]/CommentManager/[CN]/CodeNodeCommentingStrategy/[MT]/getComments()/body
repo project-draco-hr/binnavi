@@ -1,0 +1,3 @@
+{
+  return scope.equals(CommentScope.GLOBAL) ? getGlobalCodeNodeComment(codeNode) : getLocalCodeNodeComment(codeNode);
+}

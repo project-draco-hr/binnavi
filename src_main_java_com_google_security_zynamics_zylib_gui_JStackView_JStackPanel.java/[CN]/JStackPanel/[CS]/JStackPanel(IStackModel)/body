@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(model,"Error: Model argument can not be null");
+  m_model=model;
+  m_model.addListener(m_listener);
+  setFocusable(true);
+  setFont(m_font);
+  setPreferredSize(new Dimension(400,400));
+}

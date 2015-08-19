@@ -1,0 +1,17 @@
+{
+  if (template == m_debuggerTemplate) {
+    return;
+  }
+  m_provider.assignDebugger(m_module,template);
+  m_debuggerTemplate=template;
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedDebuggerTemplate(m_module,template);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateDebugger(template);
+  updateModificationDate();
+}

@@ -1,0 +1,8 @@
+{
+  final T instance1=factory.createFirstInstance();
+  final T instance2=factory.createSecondInstance();
+  final T instance3=factory.createThirdInstance();
+  assertTrue(instance1.equals(instance1));
+  assertTrue(instance2.equals(instance2));
+  assertTrue(instance3.equals(instance3));
+}

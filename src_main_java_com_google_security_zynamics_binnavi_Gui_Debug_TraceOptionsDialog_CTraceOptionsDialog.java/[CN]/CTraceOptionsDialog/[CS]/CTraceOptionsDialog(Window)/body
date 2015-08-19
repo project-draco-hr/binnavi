@@ -1,0 +1,15 @@
+{
+  super(parent,"Trace Options",ModalityType.DOCUMENT_MODAL);
+  setLayout(new BorderLayout());
+  m_maximumHitsField.setText("1");
+  final JPanel upperPanel=new JPanel(new BorderLayout());
+  final JPanel innerPanel=new JPanel(new GridLayout(1,1));
+  innerPanel.add(createPanel("Maximum Hits",m_maximumHitsField));
+  upperPanel.add(innerPanel,BorderLayout.NORTH);
+  upperPanel.setBorder(new CompoundBorder(new EmptyBorder(5,5,5,5),new TitledBorder("")));
+  add(upperPanel);
+  final CPanelTwoButtons panel=new CPanelTwoButtons(new InternalListener(),"OK","Cancel");
+  getRootPane().setDefaultButton(panel.getFirstButton());
+  add(panel,BorderLayout.SOUTH);
+  setSize(400,200);
+}

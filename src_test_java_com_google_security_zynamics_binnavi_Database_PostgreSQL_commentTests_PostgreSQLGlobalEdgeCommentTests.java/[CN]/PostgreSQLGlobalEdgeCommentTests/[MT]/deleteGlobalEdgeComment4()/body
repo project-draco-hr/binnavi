@@ -1,0 +1,16 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final List<IComment> comments=edge.getGlobalComment() == null ? new ArrayList<IComment>() : edge.getGlobalComment();
+  final IComment lastComment=comments.isEmpty() ? null : Iterables.getLast(comments);
+  final String commentText=" COMMENT TO BE DELETED ";
+  final Integer commentId=getProvider().appendGlobalEdgeComment(edge,commentText,user.getUserId());
+  final IComment commentToBeDelete=new CComment(commentId,user,lastComment,commentText);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(commentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(comments.size() + 1,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(commentToBeDelete));
+  getProvider().deleteGlobalEdgeComment(edge,commentId,user.getUserId());
+  final ArrayList<IComment> commentsAfterDelete=getProvider().loadCommentById(commentId);
+  assertNotNull(commentsAfterDelete);
+  assertTrue(commentsAfterDelete.isEmpty());
+}

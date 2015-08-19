@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(project,"IE01954: Project argument can not be null");
+  m_project=project;
+}

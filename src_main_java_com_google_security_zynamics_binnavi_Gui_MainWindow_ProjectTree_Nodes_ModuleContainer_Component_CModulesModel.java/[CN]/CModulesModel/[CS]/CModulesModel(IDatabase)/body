@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(database,"IE01214: Database can't be null");
+  m_database=database;
+  m_database.addListener(m_databaseListener);
+  if (m_database.isLoaded()) {
+    for (    final INaviModule module : m_database.getContent().getModules()) {
+      module.addListener(m_moduleListener);
+    }
+  }
+}

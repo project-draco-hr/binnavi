@@ -1,0 +1,8 @@
+{
+  super(tree,action,true);
+  Preconditions.checkNotNull(handlers,"IE01930: Handlers argument can not be null");
+  for (  final IDropHandler handler : handlers) {
+    Preconditions.checkNotNull(handler,"IE01931: Handlers list contains a null-element");
+  }
+  m_handlers=new ArrayList<IDropHandler>(handlers);
+}

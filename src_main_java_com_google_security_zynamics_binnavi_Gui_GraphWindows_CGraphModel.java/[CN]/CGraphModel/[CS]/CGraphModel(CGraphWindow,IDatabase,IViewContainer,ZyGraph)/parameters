@@ -1,0 +1,4 @@
+CGraphWindow parent
+IDatabase database
+IViewContainer viewContainer
+ZyGraph graph

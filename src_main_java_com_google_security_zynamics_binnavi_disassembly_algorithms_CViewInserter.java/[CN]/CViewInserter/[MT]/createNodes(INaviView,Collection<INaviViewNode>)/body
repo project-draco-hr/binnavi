@@ -1,0 +1,7 @@
+{
+  final HashMap<INaviViewNode,INaviViewNode> map=new HashMap<INaviViewNode,INaviViewNode>();
+  for (  final INaviViewNode blockNode : nodes) {
+    createNodes(target,blockNode,map);
+  }
+  return map;
+}

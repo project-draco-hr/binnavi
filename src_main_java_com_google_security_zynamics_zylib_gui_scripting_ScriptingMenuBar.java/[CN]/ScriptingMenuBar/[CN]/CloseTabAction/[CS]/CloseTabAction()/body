@@ -1,0 +1,5 @@
+{
+  super(Constants.MENU_CLOSE_ACTIVE_TAB);
+  putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_Q,CTRL_MASK));
+  putValue(SMALL_ICON,new ImageIcon(Constants.class.getResource("folder_delete.png")));
+}

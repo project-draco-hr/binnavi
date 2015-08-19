@@ -1,0 +1,12 @@
+{
+  if (m_highlighting.isEmpty()) {
+    return false;
+  }
+  for (  final CHighlighting highlighting : new ArrayList<CHighlighting>(m_highlighting)) {
+    if (highlighting.getLevel() == level) {
+      m_highlighting.remove(highlighting);
+      return true;
+    }
+  }
+  return false;
+}

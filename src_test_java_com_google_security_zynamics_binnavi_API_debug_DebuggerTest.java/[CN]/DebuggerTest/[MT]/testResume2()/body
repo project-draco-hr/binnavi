@@ -1,0 +1,5 @@
+{
+  debugger.connect();
+  debugger.resume();
+  assertEquals("CONNECT;RESUME;",mockDebugger.requests);
+}

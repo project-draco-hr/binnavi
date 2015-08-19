@@ -1,0 +1,3 @@
+{
+  return String.format("Group Node [%d elements]",m_node.getNumberOfElements());
+}

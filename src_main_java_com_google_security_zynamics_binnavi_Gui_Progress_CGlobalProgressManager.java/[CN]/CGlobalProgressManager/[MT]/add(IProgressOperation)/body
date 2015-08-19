@@ -1,0 +1,11 @@
+{
+  m_operations.add(operation);
+  for (  final IGlobalProgressManagerListener listener : m_listeners) {
+    try {
+      listener.added(operation);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

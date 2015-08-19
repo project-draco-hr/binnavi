@@ -1,0 +1,9 @@
+{
+  final TranslationResultType childType=intermediateResult.getType();
+  if ((childType == TranslationResultType.LITERAL) || (childType == TranslationResultType.REGISTER)) {
+    return processSimpleMemoryAccessLiteralOrRegisterLoad(environment,segmentOverride,size,loadOperand,intermediateResult);
+  }
+ else {
+    return processSimpleMemoryAccessFromCompoundAddress(environment,segmentOverride,size,loadOperand,intermediateResult);
+  }
+}

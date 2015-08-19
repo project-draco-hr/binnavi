@@ -1,0 +1,17 @@
+{
+  final ArrayList<INaviModule> loadedModules=new ArrayList<INaviModule>();
+  for (  final INaviModule currentModule : modules) {
+    if (!currentModule.isLoaded()) {
+      try {
+        currentModule.load();
+      }
+ catch (      final CouldntLoadDataException exception) {
+        exceptionDialog(currentModule,this,exception);
+      }
+catch (      final LoadCancelledException exception) {
+      }
+    }
+    loadedModules.add(currentModule);
+  }
+  return loadedModules;
+}

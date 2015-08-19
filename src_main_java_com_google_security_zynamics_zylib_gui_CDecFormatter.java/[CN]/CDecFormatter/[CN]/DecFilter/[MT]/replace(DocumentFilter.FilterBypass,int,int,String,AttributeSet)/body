@@ -1,0 +1,5 @@
+{
+  if (isValid(string,length)) {
+    super.replace(fb,offset,length,string,attr);
+  }
+}

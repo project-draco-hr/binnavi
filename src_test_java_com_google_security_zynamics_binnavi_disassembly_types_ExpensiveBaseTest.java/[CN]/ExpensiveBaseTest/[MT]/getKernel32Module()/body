@@ -1,0 +1,3 @@
+{
+  return loadModule(Kernel32String);
+}

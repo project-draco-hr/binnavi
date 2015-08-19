@@ -1,0 +1,9 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  assertFalse(CTextEvaluator.evaluate(node,"britzel",false,true));
+  assertTrue(CTextEvaluator.evaluate(node,"Foo",false,true));
+  assertFalse(CTextEvaluator.evaluate(node,"foo",false,true));
+  assertTrue(CTextEvaluator.evaluate(node,"foo",false,false));
+  assertTrue(CTextEvaluator.evaluate(node,"F*",true,true));
+  assertFalse(CTextEvaluator.evaluate(node,"f*",true,true));
+}

@@ -1,0 +1,4 @@
+JFrame parent
+INaviProject project
+INaviAddressSpace[] spaces
+ITreeUpdater updater

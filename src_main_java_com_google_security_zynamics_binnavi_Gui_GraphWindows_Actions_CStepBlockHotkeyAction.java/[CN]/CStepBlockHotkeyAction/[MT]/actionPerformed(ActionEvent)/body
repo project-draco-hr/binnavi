@@ -1,0 +1,6 @@
+{
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    CDebuggerFunctions.stepBlock(m_parent,debugger,m_graph);
+  }
+}

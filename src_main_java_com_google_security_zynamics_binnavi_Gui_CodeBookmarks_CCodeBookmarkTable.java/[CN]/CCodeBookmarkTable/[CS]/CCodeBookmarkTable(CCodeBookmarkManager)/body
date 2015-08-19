@@ -1,0 +1,7 @@
+{
+  m_bookmarkManager=Preconditions.checkNotNull(bookmarkManager,"IE01310: Bookmark Manager can't be null");
+  m_model=new CCodeBookmarkTableModel(bookmarkManager);
+  setModel(m_model);
+  getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+  addMouseListener(new InternalMouseListener());
+}

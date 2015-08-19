@@ -1,0 +1,4 @@
+{
+  m_separator=DEFAULT_SEPARATOR;
+  sb.append(initial);
+}

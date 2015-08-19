@@ -1,0 +1,12 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final CDefaultProgressOperation operation=new CDefaultProgressOperation("Creating combined call graph" + ": " + addressSpace.getConfiguration().getName(),true,false);
+      operation.getProgressPanel().setText("Creating combined call graph");
+      final INaviView view=CCallgraphCombiner.createCombinedCallgraph(project,addressSpace);
+      operation.stop();
+      CShowViewFunctions.showViewInLastWindow(parent,container,new INaviView[]{view});
+    }
+  }
+.start();
+}

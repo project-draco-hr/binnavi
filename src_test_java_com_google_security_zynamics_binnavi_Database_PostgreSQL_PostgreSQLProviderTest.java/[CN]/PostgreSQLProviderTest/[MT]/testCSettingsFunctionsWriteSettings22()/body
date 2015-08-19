@@ -1,0 +1,3 @@
+{
+  PostgreSQLSettingsFunctions.writeSetting((AbstractSQLProvider)getProvider(),(CProject)null,null,null);
+}

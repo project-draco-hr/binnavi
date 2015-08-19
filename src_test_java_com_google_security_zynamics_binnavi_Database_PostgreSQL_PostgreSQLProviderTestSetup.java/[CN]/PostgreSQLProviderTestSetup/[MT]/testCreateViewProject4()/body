@@ -1,0 +1,5 @@
+{
+  final INaviView view=getKernel32Module().getContent().getViewContainer().getViews().get(223);
+  view.load();
+  getProvider().createView(new MockProject(),view,"View Name",null);
+}

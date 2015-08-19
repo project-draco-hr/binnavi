@@ -1,0 +1,8 @@
+{
+  for (  final GraphNode node : nodes) {
+    if (((InstructionGraphNode)node).getInstruction().getAddress().toLong() == l) {
+      return node;
+    }
+  }
+  throw new IllegalStateException();
+}

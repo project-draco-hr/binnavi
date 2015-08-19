@@ -1,0 +1,3 @@
+{
+  changeBy(event,m_activeView == Views.HEX_VIEW ? 1 : 2);
+}

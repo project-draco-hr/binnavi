@@ -1,0 +1,12 @@
+{
+switch (col) {
+case MODULE_COLUMN:
+    return m_bookmarkManager.get(row).getModule().getConfiguration().getName();
+case ADDRESS_COLUMN:
+  return m_bookmarkManager.get(row).getAddress().toHexString();
+case DESCRIPTION_COLUMN:
+return m_bookmarkManager.get(row).getDescription();
+default :
+throw new IllegalArgumentException("IE01312: Unknown column");
+}
+}

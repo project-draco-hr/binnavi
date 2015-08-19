@@ -1,0 +1,12 @@
+{
+  if (tag == apiTag.getNative().getObject()) {
+    return apiTag;
+  }
+  for (  final Tag child : apiTag.getChildren()) {
+    final Tag foundTag=findTag(tag,child);
+    if (foundTag != null) {
+      return foundTag;
+    }
+  }
+  return null;
+}

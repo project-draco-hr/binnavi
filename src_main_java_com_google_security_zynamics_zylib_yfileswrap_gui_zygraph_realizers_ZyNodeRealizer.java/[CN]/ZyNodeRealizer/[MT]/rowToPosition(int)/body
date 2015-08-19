@@ -1,0 +1,4 @@
+{
+  final ZyLabelContent content=getNodeContent();
+  return content.getPaddingTop() + row * content.getLineHeight();
+}

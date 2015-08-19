@@ -1,0 +1,6 @@
+JPanel panel
+JComboBox<String> comboBox
+String description
+String hint
+String[] values
+int selectedOption

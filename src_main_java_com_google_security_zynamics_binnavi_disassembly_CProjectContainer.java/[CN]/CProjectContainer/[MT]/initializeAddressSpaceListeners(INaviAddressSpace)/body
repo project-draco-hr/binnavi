@@ -1,0 +1,13 @@
+{
+  addressSpace.addListener(m_addressSpaceListener);
+  addressSpace.getConfiguration().addListener(m_addressSpaceConfigurationListener);
+  final List<INaviModule> allModules=getModules();
+  if (addressSpace.isLoaded()) {
+    addressSpace.getContent().addListener(m_internalContentListener);
+    for (    final INaviModule module : addressSpace.getContent().getModules()) {
+      if (CollectionHelpers.count(allModules,module) == 1) {
+        module.addListener(m_moduleListener);
+      }
+    }
+  }
+}

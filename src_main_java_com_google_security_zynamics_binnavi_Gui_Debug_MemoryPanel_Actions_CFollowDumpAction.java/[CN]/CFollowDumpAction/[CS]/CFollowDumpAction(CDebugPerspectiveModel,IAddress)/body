@@ -1,0 +1,7 @@
+{
+  super("Follow DWORD in Dump");
+  Preconditions.checkNotNull(perspectiveModel,"IE01416: Perspective model argument can not be null");
+  Preconditions.checkNotNull(offset,"IE01417: Offset argument can not be null");
+  m_perspectiveModel=perspectiveModel;
+  m_offset=offset;
+}

@@ -1,0 +1,2 @@
+Iterable<Pair<IPlugin<T>,PluginStatus>> plugins
+long guid

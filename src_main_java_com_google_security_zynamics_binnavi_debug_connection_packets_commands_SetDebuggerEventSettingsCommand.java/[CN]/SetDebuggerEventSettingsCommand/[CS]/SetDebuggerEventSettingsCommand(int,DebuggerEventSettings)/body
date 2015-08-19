@@ -1,0 +1,6 @@
+{
+  super(DebugCommandType.CMD_SET_DEBUGGER_EVENT_SETTINGS,packetId);
+  Preconditions.checkNotNull(eventSettings,"IE00054: Event settings arugment can not be null");
+  addArgument(new DebugMessageIntegerArgument(eventSettings.getBreakOnDllLoad() ? 1 : 0));
+  addArgument(new DebugMessageIntegerArgument(eventSettings.getBreakOnDllUnload() ? 1 : 0));
+}

@@ -1,0 +1,14 @@
+{
+  final Style arrayStyle=createDeclarationStyle(document);
+  try {
+    document.remove(0,document.getLength());
+    final BaseType baseType=instance.getBaseType();
+    appendString(document,baseType.getName(),arrayStyle);
+    if (renderData) {
+      appendString(document,renderInstanceData(baseType,instance.getAddress().getOffset(),instance.getSection()),createDataStyle(document));
+    }
+  }
+ catch (  final BadLocationException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  final Set<INaviViewNode> children=new HashSet<INaviViewNode>();
+  for (  final INaviViewNode element : m_elements) {
+    final List<INaviViewNode> outsideChildren=CollectionHelpers.filter(element.getChildren(),new ICollectionFilter<INaviViewNode>(){
+      @Override public boolean qualifies(      final INaviViewNode node){
+        return node.getParentGroup() != CGroupNode.this;
+      }
+    }
+);
+    children.addAll(outsideChildren);
+  }
+  return new ArrayList<INaviViewNode>(children);
+}

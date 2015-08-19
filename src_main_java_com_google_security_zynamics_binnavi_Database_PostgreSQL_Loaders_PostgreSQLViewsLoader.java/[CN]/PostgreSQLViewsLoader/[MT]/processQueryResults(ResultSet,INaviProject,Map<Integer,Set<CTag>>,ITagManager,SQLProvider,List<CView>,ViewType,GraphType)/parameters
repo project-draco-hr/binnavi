@@ -1,0 +1,8 @@
+ResultSet resultSet
+INaviProject project
+Map<Integer,Set<CTag>> tags
+ITagManager nodeTagManager
+SQLProvider provider
+List<CView> views
+ViewType viewType
+GraphType graphType

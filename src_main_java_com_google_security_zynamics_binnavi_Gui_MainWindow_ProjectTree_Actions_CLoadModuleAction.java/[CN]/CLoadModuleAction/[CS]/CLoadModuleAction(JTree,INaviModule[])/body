@@ -1,0 +1,10 @@
+{
+  super(generateActionString(modules));
+  m_projectTree=Preconditions.checkNotNull(projectTree,"IE01901: Project tree argument can not be null");
+  m_modules=Preconditions.checkNotNull(modules,"IE01902: Modules argument can't be null").clone();
+  for (  final INaviModule module : modules) {
+    Preconditions.checkNotNull(module,"IE01903: Modules list contains a null-element");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.LOAD_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_LOAD_MODULE".charAt(0));
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(m_nodes.remove(node),String.format("Error: Node '%s' was not part of the graph",node));
+  m_edges.removeAll(m_nodeToEdges.get(node));
+  m_nodeToEdges.remove(node);
+}

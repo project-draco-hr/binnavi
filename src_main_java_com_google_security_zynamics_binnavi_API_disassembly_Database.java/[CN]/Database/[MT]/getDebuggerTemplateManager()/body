@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: Database must be loaded first");
+  }
+  return m_debuggerTemplateManager;
+}

@@ -1,0 +1,2 @@
+IDirectedGraph<NodeType,?> graph
+NodeType rootNode

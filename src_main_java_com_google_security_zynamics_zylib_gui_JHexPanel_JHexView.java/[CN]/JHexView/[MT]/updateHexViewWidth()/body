@@ -1,0 +1,3 @@
+{
+  m_hexViewWidth=15 + ((getColumnSize() * getBytesPerRow()) / getBytesPerColumn());
+}

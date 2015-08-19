@@ -1,0 +1,4 @@
+IComment comment
+int lineNumber
+int index
+String string

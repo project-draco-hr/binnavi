@@ -1,0 +1,4 @@
+AbstractAction action
+String defaultIconPath
+String rolloverIconPath
+String pressedIconPath

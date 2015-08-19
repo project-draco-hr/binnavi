@@ -1,0 +1,8 @@
+{
+  final BaseType parentType=member.getParentType();
+  if (!filter.includeUpdatedType(parentType)) {
+    return;
+  }
+  deleteMemberNodes(member);
+  addMemberNodes(member);
+}

@@ -1,0 +1,5 @@
+INaviOperandTreeNode node
+TypeSubstitution substitution
+BaseType baseType
+List<TypeMember> memberPath
+int offset

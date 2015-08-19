@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(functionNode,"IE02595: functionNode argument can not be null");
+  return functionNodeCommentContainer.getComments(functionNode);
+}

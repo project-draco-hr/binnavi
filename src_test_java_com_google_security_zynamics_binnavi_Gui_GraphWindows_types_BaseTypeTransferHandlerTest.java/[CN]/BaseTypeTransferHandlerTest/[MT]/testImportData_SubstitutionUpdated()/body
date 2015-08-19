@@ -1,0 +1,8 @@
+{
+  initSubstitutionStubs();
+  final TypeSubstitution substitution=mock(TypeSubstitution.class);
+  when(node.getTypeSubstitution()).thenReturn(substitution);
+  final BaseTypeTransferHandler handler=new BaseTypeTransferHandler(manager,wrapper);
+  handler.importData(null);
+  verify(manager).updateTypeSubstitution(node,substitution,baseType,new ArrayList<TypeMember>(),OFFSET);
+}

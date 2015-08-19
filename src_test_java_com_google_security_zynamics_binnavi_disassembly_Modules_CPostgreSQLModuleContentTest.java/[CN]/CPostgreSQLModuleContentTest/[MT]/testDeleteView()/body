@@ -1,0 +1,48 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent1=module.getContent();
+  assertNotNull(moduleContent1);
+  final CView view=moduleContent1.getViewContainer().createView("name","desc");
+  assertNotNull(view);
+  try {
+    moduleContent1.getViewContainer().deleteView(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  assertEquals(1,moduleContent1.getViewContainer().getCustomViewCount());
+  moduleContent1.getViewContainer().deleteView(view);
+  assertEquals(0,moduleContent1.getViewContainer().getCustomViewCount());
+  try {
+    moduleContent1.getViewContainer().deleteView(view);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  try {
+    moduleContent1.getViewContainer().deleteView(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  CView nativeView=null;
+  for (  final INaviView view1 : module.getContent().getViewContainer().getViews()) {
+    if (view1.getType() == ViewType.Native) {
+      nativeView=(CView)view1;
+    }
+  }
+  try {
+    moduleContent1.getViewContainer().deleteView(nativeView);
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  try {
+    moduleContent1.close();
+    moduleContent1.getViewContainer().deleteView(view);
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

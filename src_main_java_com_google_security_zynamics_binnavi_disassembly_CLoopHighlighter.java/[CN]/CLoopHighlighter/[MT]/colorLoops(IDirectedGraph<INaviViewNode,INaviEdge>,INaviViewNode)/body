@@ -1,0 +1,16 @@
+{
+  final Collection<INaviEdge> edges=graph.getEdges();
+  if (entryNode != null) {
+    final HashMap<INaviViewNode,ArrayList<INaviViewNode>> backedges=GraphAlgorithms.getBackEdges(graph,entryNode);
+    for (    final INaviEdge edge : edges) {
+      if (edge.getSource() == edge.getTarget()) {
+        edge.setEdgeType(loopify(edge.getType()));
+      }
+      if (backedges.containsKey(edge.getSource())) {
+        if (backedges.get(edge.getSource()).contains(edge.getTarget())) {
+          edge.setEdgeType(loopify(edge.getType()));
+        }
+      }
+    }
+  }
+}

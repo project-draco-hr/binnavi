@@ -1,0 +1,9 @@
+int viewId
+String name
+String description
+ViewType viewType
+Date creationDate
+Date modificationDate
+boolean starState
+int nodeCount
+int edgeCount

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(table,"IE01460: Model argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01461: Debug perspective model argument can not be null");
+  m_model=table.getTreeTableModel();
+  m_renderer=table.getDefaultRenderer();
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  synchronizeDebugger(null,debugPerspectiveModel.getCurrentSelectedDebugger());
+  debugPerspectiveModel.addListener(m_listener);
+}

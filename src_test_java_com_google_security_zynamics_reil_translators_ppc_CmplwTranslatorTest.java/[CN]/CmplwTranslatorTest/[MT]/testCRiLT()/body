@@ -1,0 +1,31 @@
+{
+  interpreter.setRegister("CR4EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r2",BigInteger.valueOf(0x7FFFFFFFL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r1",BigInteger.valueOf(0x80000000L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("cr4",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"byte");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"cr4"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"%r1"));
+  final MockOperandTree operandTree3=new MockOperandTree();
+  operandTree3.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree3.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"%r2"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2,operandTree3);
+  final IInstruction instruction=new MockInstruction("cmplw",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100L));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("cr4"));
+  assertEquals(BigInteger.valueOf(0x80000000L),interpreter.getVariableValue("%r1"));
+  assertEquals(BigInteger.valueOf(0x7FFFFFFFL),interpreter.getVariableValue("%r2"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CR4EQ"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CR4LT"));
+  assertEquals(BigInteger.ONE,interpreter.getVariableValue("CR4GT"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CR4SO"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(8,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+}

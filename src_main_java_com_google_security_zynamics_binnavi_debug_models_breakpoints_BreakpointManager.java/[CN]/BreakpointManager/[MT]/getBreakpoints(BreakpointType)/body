@@ -1,0 +1,12 @@
+{
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.getBreakpoints();
+case ECHO:
+  return echoBreakpointStorage.getBreakpoints();
+case STEP:
+return stepBreakpointStorage.getBreakpoints();
+default :
+throw new IllegalStateException(String.format("Invalid breakpoint type '%s'",type));
+}
+}

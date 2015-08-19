@@ -1,0 +1,5 @@
+{
+  for (  final INaviProject project : projects) {
+    CProjectLoader.loadProject(projectTree,project);
+  }
+}

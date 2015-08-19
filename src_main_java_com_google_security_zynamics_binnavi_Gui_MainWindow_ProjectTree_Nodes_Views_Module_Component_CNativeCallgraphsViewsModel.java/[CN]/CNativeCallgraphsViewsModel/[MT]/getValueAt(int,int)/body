@@ -1,0 +1,15 @@
+{
+  final INaviView view=m_module.getContent().getViewContainer().getNativeCallgraphView();
+switch (col) {
+case NAME_COLUMN:
+    return view.getName();
+case DESCRIPTION_COLUMN:
+  return view.getConfiguration().getDescription();
+case FUNCTION_COUNT_COLUMN:
+return view.getNodeCount();
+case EDGE_COUNT_COLUMN:
+return view.getEdgeCount();
+default :
+throw new IllegalStateException("IE02246: Unknown column");
+}
+}

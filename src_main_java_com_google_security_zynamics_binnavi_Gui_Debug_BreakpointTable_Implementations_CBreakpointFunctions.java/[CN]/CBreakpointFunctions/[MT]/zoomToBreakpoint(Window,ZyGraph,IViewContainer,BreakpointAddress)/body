@@ -1,0 +1,15 @@
+{
+  final IAddress addr=address.getAddress().getAddress();
+  if (!ZyZoomHelpers.zoomToAddress(graph,addr,address.getModule(),true)) {
+    for (    final CGraphWindow window : CWindowManager.instance()) {
+      for (      final IGraphPanel graphPanel : window) {
+        if (ZyZoomHelpers.zoomToAddress(graphPanel.getModel().getGraph(),addr,address.getModule(),true)) {
+          window.activate(graphPanel);
+          window.toFront();
+          return;
+        }
+      }
+    }
+    CViewSearcher.searchView(parent,container,addr);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  final CSpecialInstruction instruction=m_instructions.get(rowIndex);
+switch (columnIndex) {
+case TYPE_COLUMN:
+    return instruction.getType();
+case ADDRESS_COLUMN:
+  return instruction.getInstruction().getAddress().toHexString();
+case INSTRUCTION_COLUMN:
+return instruction.getInstruction().getInstructionString();
+default :
+throw new IllegalStateException("IE00668: Invalid column index given");
+}
+}

@@ -1,0 +1,7 @@
+{
+  final List<TraceList> traces=Lists.newArrayList(trace1,trace2);
+  final List<Collection<BreakpointAddress>> traceAddresses=getTraceAddresses(traces);
+  final LinkedHashSet<BreakpointAddress> addresses=new LinkedHashSet<BreakpointAddress>(traceAddresses.get(0));
+  addresses.removeAll(traceAddresses.get(1));
+  return addresses;
+}

@@ -1,0 +1,31 @@
+{
+  final InstructionLine row=new InstructionLine();
+  row.setBasicBlock(instructionSet.getNodeId());
+  row.setAddress(instructionSet.getInstructionAddress());
+  row.setMnemonic(instructionSet.getMnemonic());
+  row.setArchitecture(instructionSet.getInstructionArchitecture());
+  final int moduleId=instructionSet.getModule();
+  final IAddress parentFunction=instructionSet.getParentFunction();
+  final INaviModule module=modules.get(moduleId);
+  if (module == null) {
+    throw new ParserException(String.format("Instruction with ID %d has unknown module with ID %d",row.getId(),moduleId));
+  }
+  final INaviFunction function=parentFunction == null ? null : module.getContent().getFunctionContainer().getFunction(parentFunction);
+  row.setParentFunction(function);
+  if ((parentFunction != null) && (function == null)) {
+    throw new ParserException(String.format("Instruction with ID %d has unknown parent function with address %s",row.getId(),parentFunction.toHexString()));
+  }
+  row.setX(instructionSet.getX());
+  row.setY(instructionSet.getY());
+  row.setColor(new Color(instructionSet.getColor()));
+  row.setBorderColor(new Color(instructionSet.getBorderColor()));
+  row.setSelected(instructionSet.isSelected());
+  row.setVisible(instructionSet.isVisible());
+  row.setLocalNodeCommentId(instructionSet.getLocalNodeCommentId());
+  row.setGlobalNodeComment(instructionSet.getGlobalNodeCommentId());
+  row.setGlobalInstructionComment(instructionSet.getGlobalInstructionCommentId());
+  row.setLocalInstructionComment(instructionSet.getLocalInstructionCommentId());
+  row.setData(instructionSet.getData());
+  row.setModule(module);
+  return row;
+}

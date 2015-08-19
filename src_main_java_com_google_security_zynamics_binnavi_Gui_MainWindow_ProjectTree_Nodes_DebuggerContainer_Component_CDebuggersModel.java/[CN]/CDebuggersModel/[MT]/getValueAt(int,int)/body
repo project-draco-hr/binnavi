@@ -1,0 +1,12 @@
+{
+switch (col) {
+case NAME_COLUMN:
+    return m_database.getContent().getDebuggerTemplateManager().getDebugger(row).getName();
+case HOST_COLUMN:
+  return m_database.getContent().getDebuggerTemplateManager().getDebugger(row).getHost();
+case PORT_COLUMN:
+return m_database.getContent().getDebuggerTemplateManager().getDebugger(row).getPort();
+default :
+throw new IllegalStateException("IE01163: Invalid column");
+}
+}

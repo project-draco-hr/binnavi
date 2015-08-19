@@ -1,0 +1,12 @@
+{
+  if (oldDebugger != null) {
+    oldDebugger.getProcessManager().removeListener(m_processListener);
+    final TargetProcessThread activeThread=oldDebugger.getProcessManager().getActiveThread();
+    synchronizeThread(activeThread,null);
+  }
+  if (newDebugger != null) {
+    newDebugger.getProcessManager().addListener(m_processListener);
+    final TargetProcessThread activeThread=newDebugger.getProcessManager().getActiveThread();
+    synchronizeThread(null,activeThread);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  m_clearAll=clearAll;
+  m_clearedRegisters=new HashSet<String>(Preconditions.checkNotNull(clearedRegisters,"Error: clearedRegisters argument can not be null"));
+  m_trackIncoming=trackIncoming;
+  m_analysisDirection=Preconditions.checkNotNull(analysisDirection,"Error: Analysis direction argument can not be null");
+}

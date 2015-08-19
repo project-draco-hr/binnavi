@@ -1,0 +1,5 @@
+CGraphModel model
+COperandTreeNode treeNode
+INaviInstruction instruction
+List<ICodeNodeExtension> extensions
+INaviCodeNode codeNode

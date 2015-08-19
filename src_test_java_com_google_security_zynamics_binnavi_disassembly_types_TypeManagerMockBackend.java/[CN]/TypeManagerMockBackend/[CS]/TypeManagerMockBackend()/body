@@ -1,0 +1,5 @@
+{
+  final RawTestTypeSystem typeSystem=new RawTestTypeSystem();
+  rawTypes=typeSystem.getRawTypes();
+  rawMembers=typeSystem.getRawMembers();
+}

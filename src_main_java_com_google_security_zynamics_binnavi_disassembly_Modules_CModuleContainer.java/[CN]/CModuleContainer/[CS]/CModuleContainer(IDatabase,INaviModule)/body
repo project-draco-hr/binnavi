@@ -1,0 +1,12 @@
+{
+  m_database=Preconditions.checkNotNull(database,"IE02397: database argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"IE02398: module argument can not be null");
+  m_debuggerProvider=new DebuggerProvider(new ModuleTargetSettings(m_module));
+  final IDebugger debugger=m_module.getConfiguration().getDebugger();
+  if (debugger != null) {
+    m_activeDebugger=debugger;
+    m_debuggerProvider.addDebugger(debugger);
+  }
+  m_module.addListener(m_listener);
+  m_provider=new ModuleTraceProvider(m_module);
+}

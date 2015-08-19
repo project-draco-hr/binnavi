@@ -1,0 +1,4 @@
+{
+  m_cachedValues=null;
+  super.setFilter(filter);
+}

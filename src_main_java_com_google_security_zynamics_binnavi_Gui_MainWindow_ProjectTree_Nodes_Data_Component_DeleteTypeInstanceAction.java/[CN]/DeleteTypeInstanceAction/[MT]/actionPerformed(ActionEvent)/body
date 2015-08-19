@@ -1,0 +1,11 @@
+{
+  final int result=CMessageBox.showYesNoQuestion(owner,String.format("Do you really want to delete the type instance '%s'?",instance.getName()));
+  if (result == JOptionPane.YES_OPTION) {
+    try {
+      instanceContainer.deleteInstance(instance);
+    }
+ catch (    final CouldntDeleteException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+IAddress nodeAddress
+Integer moduleId
+INaviViewNode node

@@ -1,0 +1,10 @@
+{
+  super("Create Debugger");
+  m_parent=Preconditions.checkNotNull(parent,"IE01861: Parent argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE01862: Database argument can not be null");
+  m_name=Preconditions.checkNotNull(name,"IE01863: Name argument can not be null");
+  m_host=Preconditions.checkNotNull(host,"IE01864: Host argument can not be null");
+  m_port=port;
+  m_updater=updater;
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_CREATE_DEBUGGER_DESCRIPTION".charAt(0));
+}

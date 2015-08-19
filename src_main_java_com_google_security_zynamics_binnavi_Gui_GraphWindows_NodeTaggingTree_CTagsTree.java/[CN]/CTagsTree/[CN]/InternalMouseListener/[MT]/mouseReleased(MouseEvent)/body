@@ -1,0 +1,24 @@
+{
+  if (event.isPopupTrigger()) {
+    showPopupMenu(event);
+  }
+  final int y=event.getY();
+  final int x=event.getX();
+  final TreePath path=getPathForLocation(x,y);
+  if (path == null) {
+    return;
+  }
+  final Object treenode=path.getLastPathComponent();
+  if ((event.getButton() == 3) && (treenode instanceof CTaggedGraphNodeNode)) {
+    final CTaggedGraphNodeNode treeNode=(CTaggedGraphNodeNode)treenode;
+    final NaviNode graphNode=treeNode.getGraphNode();
+    if (graphNode.isVisible()) {
+      if (event.getClickCount() == 1) {
+        MoveFunctions.centerNode(m_graph,graphNode);
+      }
+ else       if (event.getClickCount() == 2) {
+        ZoomFunctions.zoomToNode(m_graph,graphNode);
+      }
+    }
+  }
+}

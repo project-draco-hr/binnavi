@@ -1,0 +1,6 @@
+{
+  synchronizeDebugger(oldDebugger,newDebugger);
+  if (newDebugger != null) {
+    resizeData(getFirstAddress(newDebugger.getProcessManager().getMemoryMap()));
+  }
+}

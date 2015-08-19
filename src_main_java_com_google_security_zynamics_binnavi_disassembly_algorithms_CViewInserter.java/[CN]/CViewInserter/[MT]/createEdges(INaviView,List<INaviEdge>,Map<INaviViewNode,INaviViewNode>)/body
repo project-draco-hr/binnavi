@@ -1,0 +1,15 @@
+{
+  for (  final INaviEdge edge : edges) {
+    final INaviViewNode sourceNode=nodeMap.get(edge.getSource());
+    final INaviViewNode targetNode=nodeMap.get(edge.getTarget());
+    final CNaviViewEdge newEdge=target.getContent().createEdge(sourceNode,targetNode,edge.getType());
+    newEdge.setColor(edge.getColor());
+    newEdge.setX1(edge.getX1());
+    newEdge.setY1(edge.getY1());
+    newEdge.setX2(edge.getX2());
+    newEdge.setY2(edge.getY2());
+    for (    final CBend bend : edge.getBends()) {
+      newEdge.addBend(bend.getX(),bend.getY());
+    }
+  }
+}

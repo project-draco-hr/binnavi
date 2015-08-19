@@ -1,0 +1,8 @@
+{
+  if (m_graph.getSettings().getDisplaySettings().getMagnifyingGlassMode()) {
+    selectButton();
+  }
+ else {
+    unselectButton();
+  }
+}

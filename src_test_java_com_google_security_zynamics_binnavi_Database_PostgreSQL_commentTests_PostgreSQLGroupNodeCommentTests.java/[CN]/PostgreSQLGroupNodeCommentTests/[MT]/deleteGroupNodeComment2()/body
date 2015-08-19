@@ -1,0 +1,4 @@
+{
+  final INaviGroupNode groupNode=setupGroupNode();
+  getProvider().deleteGroupNodeComment(groupNode,null,null);
+}

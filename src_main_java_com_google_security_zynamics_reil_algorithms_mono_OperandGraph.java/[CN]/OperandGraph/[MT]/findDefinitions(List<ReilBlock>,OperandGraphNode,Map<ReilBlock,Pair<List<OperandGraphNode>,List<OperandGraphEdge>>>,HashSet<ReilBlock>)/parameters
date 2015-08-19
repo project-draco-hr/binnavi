@@ -1,0 +1,4 @@
+List<ReilBlock> parents
+OperandGraphNode node
+Map<ReilBlock,Pair<List<OperandGraphNode>,List<OperandGraphEdge>>> graphMap
+HashSet<ReilBlock> visited

@@ -1,0 +1,3 @@
+INaviCodeNode node
+INaviInstruction instruction
+List<IComment> comments

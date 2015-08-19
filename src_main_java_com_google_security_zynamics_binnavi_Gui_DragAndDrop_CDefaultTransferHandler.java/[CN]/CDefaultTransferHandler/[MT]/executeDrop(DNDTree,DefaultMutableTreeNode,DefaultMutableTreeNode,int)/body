@@ -1,0 +1,4 @@
+{
+  m_activeHandler.drop(target,newParentNode,draggedNode);
+  return true;
+}

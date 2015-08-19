@@ -1,0 +1,3 @@
+{
+  m_offsetLabel.setText(String.format("%s: %08X","Current Offset",m_hexView.getHexView().getCurrentOffset()));
+}

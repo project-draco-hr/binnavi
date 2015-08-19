@@ -1,0 +1,3 @@
+{
+  codeNode=(CCodeNode)loadCodeNode(getNotepadModule(),"sub_1002B87");
+}

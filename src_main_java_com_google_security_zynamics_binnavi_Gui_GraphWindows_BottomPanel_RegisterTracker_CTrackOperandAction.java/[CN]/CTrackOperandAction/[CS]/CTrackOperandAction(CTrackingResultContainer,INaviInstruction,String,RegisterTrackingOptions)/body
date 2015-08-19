@@ -1,0 +1,7 @@
+{
+  super(generateName(options));
+  m_resultsContainer=Preconditions.checkNotNull(resultsContainer,"IE01696: Container argument can not be null");
+  m_instruction=Preconditions.checkNotNull(instruction,"IE01697: Instruction argument can not be null");
+  m_register=Preconditions.checkNotNull(register,"IE01698: Register argument can not be null");
+  m_options=Preconditions.checkNotNull(options,"IE02307: options argument can not be null");
+}

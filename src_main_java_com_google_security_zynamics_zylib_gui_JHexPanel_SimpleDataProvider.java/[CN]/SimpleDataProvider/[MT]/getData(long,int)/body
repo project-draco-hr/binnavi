@@ -1,0 +1,3 @@
+{
+  return Arrays.copyOfRange(m_data,(int)offset,(int)(offset + length));
+}

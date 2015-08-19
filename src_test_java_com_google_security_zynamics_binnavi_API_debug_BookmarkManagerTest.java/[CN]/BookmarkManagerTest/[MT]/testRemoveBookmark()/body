@@ -1,0 +1,21 @@
+{
+  try {
+    m_apiManager.removeBookmark(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_apiManager.removeBookmark(new Address(0x123));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_apiManager.addBookmark(new Address(0x123),"Fark");
+  m_apiManager.addListener(m_mockListener);
+  m_apiManager.removeBookmark(new Address(0x123));
+  assertEquals(0,m_nativeManager.getNumberOfBookmarks());
+  assertEquals(0,m_apiManager.getNumberOfBookmarks());
+  assertEquals("removedBookmark/123;",m_mockListener.events);
+  m_apiManager.removeListener(m_mockListener);
+}

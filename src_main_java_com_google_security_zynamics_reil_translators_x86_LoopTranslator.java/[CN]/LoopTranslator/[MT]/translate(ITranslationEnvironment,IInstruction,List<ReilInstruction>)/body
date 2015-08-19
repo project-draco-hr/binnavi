@@ -1,0 +1,16 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"loop");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a loop instruction (invalid number of operand)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(archSize);
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String loopTarget=Helpers.getLeafValue(operands.get(0).getRootNode());
+  final String tempEcx=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(baseOffset,archSize,"ecx",archSize,"1",archSize,tempEcx));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 1,resultSize,tempEcx,archSize,truncateMask,archSize,"ecx"));
+  instructions.add(ReilHelpers.createJcc(baseOffset + 2,archSize,"ecx",archSize,loopTarget));
+}

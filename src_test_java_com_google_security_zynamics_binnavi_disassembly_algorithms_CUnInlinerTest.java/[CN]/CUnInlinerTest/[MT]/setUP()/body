@@ -1,0 +1,3 @@
+{
+  m_provider=new MockSqlProvider();
+}

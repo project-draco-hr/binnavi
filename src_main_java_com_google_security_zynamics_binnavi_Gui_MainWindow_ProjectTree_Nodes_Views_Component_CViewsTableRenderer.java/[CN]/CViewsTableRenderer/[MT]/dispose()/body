@@ -1,0 +1,6 @@
+{
+  CWindowManager.instance().removeListener(listener);
+  for (  final CGraphWindow window : CWindowManager.instance().getOpenWindows()) {
+    window.removeListener(panelListener);
+  }
+}

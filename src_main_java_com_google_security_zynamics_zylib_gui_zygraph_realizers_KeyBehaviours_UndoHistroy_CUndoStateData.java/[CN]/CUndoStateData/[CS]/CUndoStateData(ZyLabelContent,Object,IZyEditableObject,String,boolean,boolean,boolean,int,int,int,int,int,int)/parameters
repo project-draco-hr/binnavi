@@ -1,0 +1,13 @@
+ZyLabelContent labelContent
+Object persistentModel
+IZyEditableObject editableObject
+String text
+boolean isAboveLineComment
+boolean isBehindLineComment
+boolean isLabelComment
+int caretStartX
+int caretMousePressedX
+int caretMousePressedY
+int caretEndX
+int caretMouseReleasedX
+int caretMouseReleasedY

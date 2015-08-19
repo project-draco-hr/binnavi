@@ -1,0 +1,2 @@
+TreeSet<TypeMember> moveMembers
+int moveDelta

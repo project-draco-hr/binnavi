@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"UADD8");
+  translateAll(environment,instruction,"UADD8",instructions);
+}

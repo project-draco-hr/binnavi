@@ -1,0 +1,14 @@
+{
+  final String idaLocation=ConfigManager.instance().getGeneralSettings().getIdaDirectory();
+  final File idaExec=new File(idaLocation);
+  if (idaExec.exists()) {
+    return idaExec.getAbsolutePath();
+  }
+  do {
+    final String newIdaLocation=promptForIdaDirectory(parent);
+    if (newIdaLocation != null) {
+      return newIdaLocation;
+    }
+  }
+ while (true);
+}

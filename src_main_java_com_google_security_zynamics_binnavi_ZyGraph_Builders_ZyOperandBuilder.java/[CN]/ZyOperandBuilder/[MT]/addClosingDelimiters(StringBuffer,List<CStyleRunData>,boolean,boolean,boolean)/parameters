@@ -1,0 +1,5 @@
+StringBuffer line
+List<CStyleRunData> styleRuns
+boolean hasMemderef
+boolean hasExpressionList
+boolean hasExclamationMark

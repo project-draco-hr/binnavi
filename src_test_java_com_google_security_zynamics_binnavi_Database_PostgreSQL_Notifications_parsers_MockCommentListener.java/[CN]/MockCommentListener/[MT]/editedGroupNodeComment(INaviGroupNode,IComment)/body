@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(EDITED_GROUP_NODE_COMMENT);
+}

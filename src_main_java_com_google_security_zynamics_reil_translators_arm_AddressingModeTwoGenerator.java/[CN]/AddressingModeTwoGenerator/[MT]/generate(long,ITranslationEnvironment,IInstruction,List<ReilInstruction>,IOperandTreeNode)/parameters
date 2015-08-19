@@ -1,0 +1,5 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+IOperandTreeNode rootNode

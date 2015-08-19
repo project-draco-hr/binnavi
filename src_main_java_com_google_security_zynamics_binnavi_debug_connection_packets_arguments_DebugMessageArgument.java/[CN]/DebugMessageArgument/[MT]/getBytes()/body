@@ -1,0 +1,5 @@
+{
+  final List<Byte> list=new ArrayList<>(byteData);
+  prependInteger(list,list.size() - 4);
+  return list;
+}

@@ -1,0 +1,6 @@
+{
+  if (!(rhs instanceof Address)) {
+    return false;
+  }
+  return m_value.equals(((Address)rhs).m_value);
+}

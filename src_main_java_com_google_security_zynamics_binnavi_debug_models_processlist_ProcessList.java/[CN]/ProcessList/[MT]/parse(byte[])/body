@@ -1,0 +1,20 @@
+{
+  final List<ProcessDescription> processes=new ArrayList<>();
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  final DocumentBuilder builder=factory.newDocumentBuilder();
+  final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+  final NodeList nodes=document.getFirstChild().getChildNodes();
+  for (int i=0; i < nodes.getLength(); ++i) {
+    final Node node=nodes.item(i);
+    final String nodeName=node.getNodeName();
+    if ("Process".equals(nodeName)) {
+      final String pid=node.getAttributes().getNamedItem("pid").getNodeValue();
+      final String name=node.getAttributes().getNamedItem("name").getNodeValue();
+      processes.add(new ProcessDescription(Integer.valueOf(pid),name));
+    }
+ else {
+      NaviLogger.severe("Error: Unknown node name " + nodeName);
+    }
+  }
+  return new ProcessList(processes);
+}

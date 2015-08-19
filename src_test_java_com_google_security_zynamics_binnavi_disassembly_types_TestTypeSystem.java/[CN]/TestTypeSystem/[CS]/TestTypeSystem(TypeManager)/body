@@ -1,0 +1,33 @@
+{
+  final RawTestTypeSystem rawTypeSystem=new RawTestTypeSystem();
+  intType=typeManager.getBaseType(rawTypeSystem.intType.getId());
+  uintType=typeManager.getBaseType(rawTypeSystem.uintType.getId());
+  uintPointerType=typeManager.getBaseType(rawTypeSystem.uintPointerType.getId());
+  uintArrayType=typeManager.getBaseType(rawTypeSystem.uintArrayType.getId());
+  uintArrayTypeMember=uintArrayType.getLastMember();
+  simpleStruct=typeManager.getBaseType(rawTypeSystem.simpleStruct.getId());
+  nestedStruct=typeManager.getBaseType(rawTypeSystem.nestedStruct.getId());
+  doubleNestedStruct=typeManager.getBaseType(rawTypeSystem.doubleNestedStruct.getId());
+  simpleUnion=typeManager.getBaseType(rawTypeSystem.simpleUnion.getId());
+  complexUnion=typeManager.getBaseType(rawTypeSystem.complexUnion.getId());
+  voidFunctionPrototype=typeManager.getBaseType(rawTypeSystem.voidFunctionPrototype.getId());
+  final Iterator<TypeMember> simpleMembers=simpleStruct.iterator();
+  ssIntMember=simpleMembers.next();
+  ssUintMember=simpleMembers.next();
+  ssArrayMember=simpleMembers.next();
+  final Iterator<TypeMember> nestedMembers=nestedStruct.iterator();
+  nsIntMember=nestedMembers.next();
+  nsSimpleStructMember=nestedMembers.next();
+  final Iterator<TypeMember> doubleNestedMembers=doubleNestedStruct.iterator();
+  dnsNestedStructMember=doubleNestedMembers.next();
+  dnsIntMember=doubleNestedMembers.next();
+  dnsPointerMember=doubleNestedMembers.next();
+  final Iterator<TypeMember> simpleUnionMembers=simpleUnion.iterator();
+  suArraymember=simpleUnionMembers.next();
+  suIntMember=simpleUnionMembers.next();
+  suUintMember=simpleUnionMembers.next();
+  final Iterator<TypeMember> complexUnionMembers=complexUnion.iterator();
+  cuDoubleNestedStructMember=complexUnionMembers.next();
+  cuIntMember=complexUnionMembers.next();
+  cuSimpleStructMember=complexUnionMembers.next();
+}

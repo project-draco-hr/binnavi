@@ -1,0 +1,4 @@
+{
+  final List<IComment> comments=CommentManager.get(provider).getTypeInstanceComments(instance);
+  return comments == null ? new ArrayList<IComment>() : comments;
+}

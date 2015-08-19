@@ -1,0 +1,6 @@
+{
+  assertEquals(m_codeNode,ViewGraphHelpers.getCodeNode(m_graph,new Address(0x123)));
+  assertNull(ViewGraphHelpers.getCodeNode(m_graph,new Address(0x124)));
+  assertEquals(m_codeNode,ViewGraphHelpers.getCodeNode(m_graph,0x123));
+  assertNull(ViewGraphHelpers.getCodeNode(m_graph,0x124));
+}

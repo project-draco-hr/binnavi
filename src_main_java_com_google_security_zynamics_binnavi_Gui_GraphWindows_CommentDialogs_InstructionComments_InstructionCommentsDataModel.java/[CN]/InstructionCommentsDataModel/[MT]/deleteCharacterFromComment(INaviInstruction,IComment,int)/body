@@ -1,0 +1,22 @@
+{
+  if (comment.getNumberOfCommentLines() == 0) {
+    return;
+  }
+  String oldComment=comment.getComment();
+  if (oldComment.length() == index) {
+    return;
+  }
+  String newComment=oldComment.substring(0,index) + oldComment.substring(index + 1);
+  try {
+    if (newComment.length() == 0) {
+      commentAccessor.deleteInstructionComment(instruction,comment);
+    }
+ else {
+      commentAccessor.editInstructionComment(instruction,comment,newComment);
+    }
+  }
+ catch (  CouldntSaveDataException|CouldntDeleteException e) {
+    Logger.logException(e);
+  }
+  updateDataRepresentation();
+}

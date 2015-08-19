@@ -1,0 +1,10 @@
+{
+  try {
+    final byte[] data=parseData();
+    return new ModuleLoadedReply(packetId,0,MemoryModuleParser.parseModule(data),MemoryModuleParser.parseThreadId(data));
+  }
+ catch (  final MessageParserException exception) {
+    CUtilityFunctions.logException(exception);
+    return new ModuleLoadedReply(0,PARSER_ERROR,null,null);
+  }
+}

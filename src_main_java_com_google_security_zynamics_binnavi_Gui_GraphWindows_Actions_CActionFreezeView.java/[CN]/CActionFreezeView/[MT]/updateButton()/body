@@ -1,0 +1,10 @@
+{
+  if (m_ParentButton != null) {
+    if (m_graph.getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+      selectButton();
+    }
+ else {
+      unselectButton();
+    }
+  }
+}

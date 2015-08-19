@@ -1,0 +1,5 @@
+{
+  final CModule newModule=m_provider.createModule(rawModule);
+  m_modules.add(newModule);
+  return newModule;
+}

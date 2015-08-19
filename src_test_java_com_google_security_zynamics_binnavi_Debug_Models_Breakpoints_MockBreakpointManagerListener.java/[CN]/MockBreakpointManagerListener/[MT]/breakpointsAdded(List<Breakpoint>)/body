@@ -1,0 +1,5 @@
+{
+  for (  final Breakpoint breakpoint : breakpoints) {
+    m_events.add(String.format("Add: %s",breakpoint.getAddress().getAddress().getAddress().toHexString()));
+  }
+}

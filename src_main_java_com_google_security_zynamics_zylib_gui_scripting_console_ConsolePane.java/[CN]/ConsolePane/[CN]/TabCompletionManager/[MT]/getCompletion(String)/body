@@ -1,0 +1,3 @@
+{
+  return getCompletionCandidate(candidates.toArray(new String[0]),str,m_completionIndex);
+}

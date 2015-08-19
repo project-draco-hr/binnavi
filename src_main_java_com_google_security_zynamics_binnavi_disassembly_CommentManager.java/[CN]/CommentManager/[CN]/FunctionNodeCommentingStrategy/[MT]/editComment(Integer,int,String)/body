@@ -1,0 +1,5 @@
+{
+  if (functionNode.isStored()) {
+    provider.editFunctionNodeComment(functionNode,id,userId,commentText);
+  }
+}

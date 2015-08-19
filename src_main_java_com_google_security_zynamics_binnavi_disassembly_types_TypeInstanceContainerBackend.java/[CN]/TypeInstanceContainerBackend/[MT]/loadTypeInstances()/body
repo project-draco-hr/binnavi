@@ -1,0 +1,23 @@
+{
+  final List<RawTypeInstance> rawInstances=provider.loadTypeInstances(module);
+  final HashMap<TypeInstance,Integer> instanceToComment=Maps.newHashMap();
+  for (  final RawTypeInstance rawInstance : rawInstances) {
+    final BaseType baseType=typeManager.getBaseType(rawInstance.getTypeId());
+    final Section section=sectionContainer.getSection(rawInstance.getSectionId());
+    final TypeInstance typeInstance=new TypeInstance(rawInstance.getId(),rawInstance.getName(),baseType,section,rawInstance.getSectionOffset(),module);
+    instanceToComment.put(typeInstance,rawInstance.getCommentId());
+    instancesById.put(typeInstance.getId(),typeInstance);
+  }
+  final Map<TypeInstance,Integer> typeInstanceWithComment=Maps.filterValues(instanceToComment,new Predicate<Integer>(){
+    @Override public boolean apply(    final Integer commentId){
+      return commentId != null;
+    }
+  }
+);
+  final CommentManager manager=CommentManager.get(provider);
+  final HashMap<Integer,ArrayList<IComment>> typeInstanceTocomments=provider.loadMultipleCommentsById(typeInstanceWithComment.values());
+  for (  final Entry<TypeInstance,Integer> entry : typeInstanceWithComment.entrySet()) {
+    manager.initializeTypeInstanceComment(entry.getKey(),typeInstanceTocomments.get(entry.getValue()));
+  }
+  return instanceToComment.keySet();
+}

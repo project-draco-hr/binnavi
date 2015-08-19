@@ -1,0 +1,12 @@
+{
+switch (columnIndex) {
+case NAME_COLUMN:
+    return m_useFullPaths ? getModules().get(rowIndex).getPath() : getModules().get(rowIndex).getName();
+case ADDRESS_COLUMN:
+  return getModules().get(rowIndex).getBaseAddress().getAddress().toHexString();
+case SIZE_COLUMN:
+return Long.valueOf(getModules().get(rowIndex).getSize());
+default :
+return null;
+}
+}

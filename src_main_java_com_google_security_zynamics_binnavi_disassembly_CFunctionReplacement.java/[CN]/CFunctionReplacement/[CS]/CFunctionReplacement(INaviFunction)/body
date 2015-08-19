@@ -1,0 +1,4 @@
+{
+  m_function=function;
+  m_function.addListener(m_listener);
+}

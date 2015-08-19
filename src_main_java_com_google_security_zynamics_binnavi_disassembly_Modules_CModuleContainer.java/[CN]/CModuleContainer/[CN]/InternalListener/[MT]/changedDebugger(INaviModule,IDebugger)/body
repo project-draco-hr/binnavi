@@ -1,0 +1,9 @@
+{
+  if (m_activeDebugger != null) {
+    m_debuggerProvider.removeDebugger(m_activeDebugger);
+  }
+  if (debugger != null) {
+    m_activeDebugger=debugger;
+    m_debuggerProvider.addDebugger(debugger);
+  }
+}

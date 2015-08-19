@@ -1,0 +1,5 @@
+{
+  final RegisterSetLatticeElement newstate=state.copy();
+  newstate.untaint(ins.getThirdOperand().getValue());
+  return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newstate,null);
+}

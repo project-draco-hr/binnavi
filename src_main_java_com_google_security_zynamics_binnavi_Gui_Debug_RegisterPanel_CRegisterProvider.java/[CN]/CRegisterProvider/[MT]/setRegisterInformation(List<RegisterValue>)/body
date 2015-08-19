@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(information,"IE01475: Information argument can not be null");
+  if (!information.isEmpty() && (m_information == null)) {
+    throw new IllegalStateException("IE01124: Can not set register values if no target information is given");
+  }
+  final RegisterInformationInternal[] oldRegisterInformation=registerInformation;
+  final RegisterInformationInternal[] newRegisterInformation=new RegisterInformationInternal[information.size()];
+  int counter=0;
+  if (!information.isEmpty()) {
+    Preconditions.checkNotNull(m_information,"IE01125: Target information should not be null at this point");
+    for (    final RegisterValue registerValue : information) {
+      final RegisterDescription regInfo=getDescription(registerValue.getName());
+      Preconditions.checkNotNull(regInfo,"IE01476: Unknown register");
+      newRegisterInformation[counter]=new RegisterInformationInternal(regInfo.getName(),regInfo.getSize());
+      newRegisterInformation[counter].setValue(registerValue.getValue());
+      highlightChangedRegister(counter,registerValue,oldRegisterInformation,newRegisterInformation);
+      counter++;
+    }
+  }
+  registerInformation=newRegisterInformation;
+  notifyRegisterChanged();
+}

@@ -1,0 +1,18 @@
+{
+  if (addresses.size() == 0) {
+    return;
+  }
+switch (type) {
+case REGULAR:
+    setBreakpointsStatus(addresses,newStatus,indexedBreakpointStorage);
+  break;
+case ECHO:
+setBreakpointsStatus(addresses,newStatus,echoBreakpointStorage);
+break;
+case STEP:
+setBreakpointsStatus(addresses,newStatus,stepBreakpointStorage);
+break;
+default :
+throw new IllegalStateException("IE00728: Invalid Breakpoint Type");
+}
+}

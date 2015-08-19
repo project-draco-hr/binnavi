@@ -1,0 +1,4 @@
+{
+  sortByName=sorted;
+  getTreeModel().nodeStructureChanged(CModuleContainerNode.this);
+}

@@ -1,0 +1,5 @@
+{
+  setSelectedItem(searchString);
+  m_searcher.clearResults();
+  searchFor(searchString,false,false);
+}

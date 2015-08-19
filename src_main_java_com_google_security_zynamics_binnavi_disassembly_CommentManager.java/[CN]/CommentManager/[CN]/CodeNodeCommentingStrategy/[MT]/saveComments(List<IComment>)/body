@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    globalCodeNodeCommentContainer.setComments(codeNode,comments);
+  }
+ else {
+    localCodeNodeCommentContainer.setComments(codeNode,comments);
+  }
+}

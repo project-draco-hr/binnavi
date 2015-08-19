@@ -1,0 +1,3 @@
+{
+  return baseUrl.endsWith("/") ? String.format("%s%s",baseUrl,databaseName) : String.format("%s/%s",baseUrl,databaseName);
+}

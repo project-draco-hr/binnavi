@@ -1,0 +1,7 @@
+{
+  assertEquals("Mock Space",addressSpace.getName());
+  assertEquals("Mock Space Description",addressSpace.getDescription());
+  assertEquals(creationDate,addressSpace.getCreationDate());
+  assertEquals(modificationDate,addressSpace.getModificationDate());
+  assertEquals("Address space Mock Space [unloaded, 0 modules]",addressSpace.toString());
+}

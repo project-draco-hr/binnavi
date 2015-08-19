@@ -1,0 +1,9 @@
+{
+  for (int i=0; i < m_parent.getChildCount(); i++) {
+    final CProjectTreeNode<?> child=(CProjectTreeNode<?>)m_parent.getChildAt(i);
+    if (child.getObject() == m_object) {
+      m_tree.setSelectionPath(new TreePath(child.getPath()));
+      return;
+    }
+  }
+}

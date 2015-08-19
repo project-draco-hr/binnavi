@@ -1,0 +1,13 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(threadState,"IE01075: Thread state argument can not be null");
+  }
+ else {
+    if (threadState != null) {
+      throw new IllegalArgumentException("IE01076: Thread state argument must be null");
+    }
+  }
+  threadId=tid;
+  this.threadState=threadState;
+}

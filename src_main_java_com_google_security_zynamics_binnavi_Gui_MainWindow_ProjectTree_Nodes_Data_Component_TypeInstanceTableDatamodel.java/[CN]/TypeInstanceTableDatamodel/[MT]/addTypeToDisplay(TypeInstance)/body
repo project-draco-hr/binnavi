@@ -1,0 +1,8 @@
+{
+  typesToDisplay.add(instance);
+  FormattedCharacterBuffer typeRendering=BaseTypeTableCellRenderer.renderType(instance,STANDARD_FONT,columns[TYPE_INDEX].getWidth(),false);
+  typeDeclarations.add(typeRendering);
+  int typeRenderingHeight=typeRendering.getNumberOfLines();
+  int numberOfReferences=typeContainer.getReferenceCount(instance);
+  currentNumberOfLines+=Math.max(typeRenderingHeight,numberOfReferences);
+}

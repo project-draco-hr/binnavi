@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.any(visited,new ICollectionFilter<ViewNodeAdapter>(){
+    @Override public boolean qualifies(    final ViewNodeAdapter adapter){
+      return adapter.getNode() == parentGroup;
+    }
+  }
+);
+}

@@ -1,0 +1,21 @@
+{
+  wrapper.setSupport(support);
+  if (!wrapper.acceptDrop()) {
+    return false;
+  }
+  try {
+    return createOrUpdateTypeSubstitution(wrapper);
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+catch (  final UnsupportedFlavorException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final int typeId=provider.createTypeMember(module,containingType.getId(),memberType.getId(),membeName,Optional.<Integer>absent(),Optional.<Integer>absent(),Optional.of(memberArgumentIndex));
+  return TypeMember.createFunctionPrototypeMember(typeId,containingType,memberType,membeName,memberArgumentIndex);
+}

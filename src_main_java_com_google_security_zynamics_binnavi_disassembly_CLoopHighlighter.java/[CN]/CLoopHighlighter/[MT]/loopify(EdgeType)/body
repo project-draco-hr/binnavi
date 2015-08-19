@@ -1,0 +1,12 @@
+{
+switch (type) {
+case JUMP_CONDITIONAL_FALSE:
+    return EdgeType.JUMP_CONDITIONAL_FALSE_LOOP;
+case JUMP_CONDITIONAL_TRUE:
+  return EdgeType.JUMP_CONDITIONAL_TRUE_LOOP;
+case JUMP_UNCONDITIONAL:
+return EdgeType.JUMP_UNCONDITIONAL_LOOP;
+default :
+return type;
+}
+}

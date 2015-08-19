@@ -1,0 +1,5 @@
+{
+  super(DebugCommandType.CMD_SELECT_FILE,packetId);
+  Preconditions.checkNotNull(filename,"IE01026: Filename argument can not be null");
+  addArgument(new DebugMessageRawArgument(filename.getBytes()));
+}

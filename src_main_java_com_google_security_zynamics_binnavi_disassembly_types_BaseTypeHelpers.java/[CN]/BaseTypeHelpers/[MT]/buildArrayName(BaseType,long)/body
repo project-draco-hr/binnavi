@@ -1,0 +1,7 @@
+{
+  final StringBuilder builder=new StringBuilder(BaseType.normalizeArrayName(arrayType));
+  builder.append('[');
+  builder.append(l);
+  builder.append(']');
+  return builder.toString();
+}

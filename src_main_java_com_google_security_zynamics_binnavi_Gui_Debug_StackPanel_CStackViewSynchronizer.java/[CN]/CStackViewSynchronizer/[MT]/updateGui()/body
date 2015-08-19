@@ -1,0 +1,13 @@
+{
+  final IDebugger activeDebugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread activeThread=activeDebugger == null ? null : activeDebugger.getProcessManager().getActiveThread();
+  if (activeThread == null) {
+    m_stackView.setDefinitionStatus(DefinitionStatus.UNDEFINED);
+    m_stackView.setEnabled(false);
+  }
+ else {
+    m_stackView.setDefinitionStatus(DefinitionStatus.DEFINED);
+    m_stackView.setEnabled(true);
+    m_stackView.gotoOffset(getStackPointer(activeThread));
+  }
+}

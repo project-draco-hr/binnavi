@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(width > 0,"Error: Width must be positive");
+  m_hexViewWidth=width;
+  repaint();
+}

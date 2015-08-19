@@ -1,0 +1,12 @@
+{
+  final List<RawTypeInstance> rawInstances=typeInstances.get(moduleId);
+  final RawTypeInstance rawInstance=Iterables.find(rawInstances,new Predicate<RawTypeInstance>(){
+    @Override public boolean apply(    final RawTypeInstance instance){
+      return instance.getId() == id;
+    }
+  }
+);
+  final RawTypeInstance newRawInstance=new RawTypeInstance(moduleId,id,name,rawInstance.getCommentId(),rawInstance.getTypeId(),rawInstance.getSectionId(),rawInstance.getSectionOffset());
+  typeInstances.remove(moduleId,rawInstance);
+  typeInstances.put(moduleId,newRawInstance);
+}

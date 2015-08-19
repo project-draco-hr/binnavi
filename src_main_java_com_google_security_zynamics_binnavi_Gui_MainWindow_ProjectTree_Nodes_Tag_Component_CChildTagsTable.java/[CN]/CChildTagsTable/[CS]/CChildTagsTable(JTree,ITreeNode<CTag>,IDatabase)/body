@@ -1,0 +1,3 @@
+{
+  super(projectTree,new CChildTagsModel(database,tag),new CChildTagsTableHelp());
+}

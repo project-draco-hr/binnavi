@@ -1,0 +1,6 @@
+{
+  if (stableTypeList.isEmpty()) {
+    stableTypeList.addAll(types);
+  }
+  return Collections.unmodifiableList(stableTypeList);
+}

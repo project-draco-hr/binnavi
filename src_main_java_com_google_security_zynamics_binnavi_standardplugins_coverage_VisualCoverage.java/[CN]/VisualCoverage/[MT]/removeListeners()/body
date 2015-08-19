@@ -1,0 +1,7 @@
+{
+  final Process process=debugger.getProcess();
+  process.removeListener(processListener);
+  for (  final Thread thread : process.getThreads()) {
+    thread.removeListener(threadListener);
+  }
+}

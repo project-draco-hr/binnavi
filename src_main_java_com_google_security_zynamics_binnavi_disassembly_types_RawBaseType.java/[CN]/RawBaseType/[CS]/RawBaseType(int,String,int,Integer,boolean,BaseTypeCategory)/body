@@ -1,0 +1,8 @@
+{
+  this.id=id;
+  this.name=Preconditions.checkNotNull(name,"Error: name can not be null.");
+  this.size=size;
+  this.pointerId=pointerId;
+  this.isSigned=isSigned;
+  this.category=category;
+}

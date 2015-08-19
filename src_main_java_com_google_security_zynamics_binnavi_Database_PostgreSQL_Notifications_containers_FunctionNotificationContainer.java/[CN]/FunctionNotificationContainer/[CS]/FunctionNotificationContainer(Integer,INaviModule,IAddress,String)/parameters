@@ -1,0 +1,4 @@
+Integer moduleId
+INaviModule module
+IAddress functionAddress
+String databaseOperation

@@ -1,0 +1,16 @@
+{
+  final StringBuffer whiteSpace=new StringBuffer();
+  final int line=rootElement.getElementIndex(offset);
+  int i=rootElement.getElement(line).getStartOffset();
+  while (true) {
+    final String temp=doc.getText(i,1);
+    if (temp.equals(" ") || temp.equals("\t")) {
+      whiteSpace.append(temp);
+      i++;
+    }
+ else {
+      break;
+    }
+  }
+  return "{\n" + whiteSpace.toString() + "\t\n"+ whiteSpace.toString()+ "}";
+}

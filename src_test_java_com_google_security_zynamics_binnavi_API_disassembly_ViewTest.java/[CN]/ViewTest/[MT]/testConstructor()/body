@@ -1,0 +1,16 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  assertEquals("View 'My View'",m_view.toString());
+  assertEquals("My View",m_view.getName());
+  assertEquals("My View Description",m_view.getDescription());
+  assertEquals(ViewType.NonNative,m_view.getType());
+  assertEquals(1,m_view.getNodeCount());
+  assertEquals(2,m_view.getEdgeCount());
+  m_view.addListener(listener);
+  m_view.load();
+  assertTrue(m_view.isLoaded());
+  assertTrue(m_view.close());
+  assertFalse(m_view.isLoaded());
+  assertEquals(listener.events,"closingView;closedView;");
+  m_view.removeListener(listener);
+}

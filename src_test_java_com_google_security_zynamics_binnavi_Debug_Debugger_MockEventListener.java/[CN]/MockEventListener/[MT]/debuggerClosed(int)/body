@@ -1,0 +1,3 @@
+{
+  events+="DEBUGGER_CLOSED/" + errorCode + ";";
+}

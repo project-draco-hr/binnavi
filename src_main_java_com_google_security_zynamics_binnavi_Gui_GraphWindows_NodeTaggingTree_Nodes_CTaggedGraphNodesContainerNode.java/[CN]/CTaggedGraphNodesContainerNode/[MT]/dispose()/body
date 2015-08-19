@@ -1,0 +1,4 @@
+{
+  getGraph().getRawView().removeListener(m_viewListener);
+  getGraph().removeListener(m_graphListener);
+}

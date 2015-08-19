@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(typeInstanceId,"Error: typeInstanceId argument can not be null");
+  final RawTypeInstance rawTypeInstance=provider.loadTypeInstance(module,typeInstanceId);
+  final BaseType baseType=typeManager.getBaseType(rawTypeInstance.getTypeId());
+  final Section section=sectionContainer.getSection(rawTypeInstance.getSectionId());
+  final TypeInstance typeInstance=new TypeInstance(rawTypeInstance.getId(),rawTypeInstance.getName(),baseType,section,rawTypeInstance.getSectionOffset(),module);
+  instancesById.put(typeInstance.getId(),typeInstance);
+  if (rawTypeInstance.getCommentId() != null) {
+    final CommentManager manager=CommentManager.get(provider);
+    final List<IComment> comments=provider.loadCommentById(rawTypeInstance.getCommentId());
+    manager.initializeTypeInstanceComment(typeInstance,comments);
+  }
+  return typeInstance;
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(instructions,"Error: Instructions argument can not be null");
+  for (  final ReilInstruction instruction : instructions) {
+    Preconditions.checkNotNull(instruction,"Error: Instructions list contains a null-element");
+  }
+  m_instructions=new ArrayList<ReilInstruction>(instructions);
+}

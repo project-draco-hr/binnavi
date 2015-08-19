@@ -1,0 +1,7 @@
+{
+  m_nodeSloppyThreshold=getPaintDetailThreshold();
+  m_edgeSloppyThreshold=0.2;
+  m_minEdgesForSloppyEdgeHiding=3000;
+  m_sloppyEdgeHidingThreshold=0.1;
+  setPaintDetailThreshold(0.0);
+}

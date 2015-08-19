@@ -1,0 +1,11 @@
+{
+  final CTag newTag=MockCreator.createViewTag(m_sql);
+  m_module.load();
+  m_module.getContent().getViewContainer().createView("Foo","Bar");
+  m_module.getContent().getViewContainer().createView("Foo","Bar");
+  m_module.getContent().getViewContainer().getViews().get(0).getConfiguration().tagView(newTag);
+  m_module.getContent().getViewContainer().getViews().get(1).getConfiguration().tagView(newTag);
+  assertEquals(m_module.getContent().getViewContainer().getViews().get(0),CViewFilter.getTaggedViews(m_module.getContent().getViewContainer().getViews()).get(0).first());
+  assertEquals(m_module.getContent().getViewContainer().getViews().get(1),CViewFilter.getTaggedViews(m_module.getContent().getViewContainer().getViews()).get(1).first());
+  assertEquals(2,CViewFilter.getTaggedViews(m_module.getContent().getViewContainer().getViews(),newTag).size());
+}

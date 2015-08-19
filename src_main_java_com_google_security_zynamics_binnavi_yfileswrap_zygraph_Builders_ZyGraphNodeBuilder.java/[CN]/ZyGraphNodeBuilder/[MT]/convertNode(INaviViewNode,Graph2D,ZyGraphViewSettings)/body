@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(node,"IE00909: Node argument can not be null");
+  Preconditions.checkNotNull(graph2D,"IE00910: Graph2D argument can not be null");
+  final Node yNode=createNode(graph2D,node);
+  final ZyLabelContent content=ZyGraphNodeBuilder.buildContent(node,graphSettings,null);
+  final IZyNodeRealizer realizer=createRealizer(node,content);
+  final NaviNode zyNode=new NaviNode(yNode,realizer,node);
+  realizer.setUserData(new ZyNodeData<NaviNode>(zyNode));
+  realizer.updateContentSelectionColor();
+  graph2D.setRealizer(yNode,realizer.getRealizer());
+  return new Pair<Node,NaviNode>(yNode,zyNode);
+}

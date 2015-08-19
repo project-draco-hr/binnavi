@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument(offset >= 0,"Error: Argument offset can't be less than 0");
+  final String negatedOverflow=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBisz(offset,OperandSize.BYTE,Helpers.OVERFLOW_FLAG,OperandSize.BYTE,negatedOverflow));
+  return new Pair<OperandSize,String>(OperandSize.BYTE,negatedOverflow);
+}

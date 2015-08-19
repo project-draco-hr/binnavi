@@ -1,0 +1,3 @@
+{
+  functionNodeCommentContainer.unsetComments(functionNode,comments);
+}

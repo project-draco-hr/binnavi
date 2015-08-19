@@ -1,0 +1,5 @@
+{
+  m_progressPanel.setMaximum(3);
+  m_progressPanel.start();
+  CGlobalProgressManager.instance().add(this);
+}

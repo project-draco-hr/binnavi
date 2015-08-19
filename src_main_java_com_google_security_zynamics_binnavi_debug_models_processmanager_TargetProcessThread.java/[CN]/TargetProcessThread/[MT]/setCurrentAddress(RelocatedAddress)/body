@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(address,"IE00763: Address argument can not be null");
+  final RelocatedAddress oldAddress=relocatedAddress;
+  relocatedAddress=address;
+  for (  final ThreadListener listener : listeners) {
+    try {
+      listener.instructionPointerChanged(this,oldAddress);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

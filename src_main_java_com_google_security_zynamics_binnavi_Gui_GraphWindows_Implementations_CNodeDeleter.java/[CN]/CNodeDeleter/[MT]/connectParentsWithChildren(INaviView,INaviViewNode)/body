@@ -1,0 +1,17 @@
+{
+  final List<INaviEdge> incomingEdges=node.getIncomingEdges();
+  final List<? extends INaviViewNode> children=node.getChildren();
+  for (  final INaviEdge incomingEdge : incomingEdges) {
+    if (incomingEdge.getSource() == node) {
+      continue;
+    }
+    for (    final INaviViewNode child : children) {
+      if (child == node) {
+        continue;
+      }
+      if (!hasEdge(incomingEdge.getSource(),child,incomingEdge.getType())) {
+        view.getContent().createEdge(incomingEdge.getSource(),child,incomingEdge.getType());
+      }
+    }
+  }
+}

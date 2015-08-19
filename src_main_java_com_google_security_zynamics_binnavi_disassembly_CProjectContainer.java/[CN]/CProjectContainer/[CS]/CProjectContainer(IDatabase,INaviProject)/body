@@ -1,0 +1,16 @@
+{
+  m_database=Preconditions.checkNotNull(database,"IE01785: database argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"IE01786: project argument can not be null");
+  m_addressSpace=null;
+  m_provider=new ProjectTraceProvider(m_project);
+  m_debuggerProvider=new DebuggerProvider(new ProjectTargetSettings(m_project));
+  if (m_project.isLoaded()) {
+    updateProjectDebuggers();
+  }
+  m_project.addListener(m_listener);
+  if (m_project.isLoaded()) {
+    for (    final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+      initializeAddressSpaceListeners(addressSpace);
+    }
+  }
+}

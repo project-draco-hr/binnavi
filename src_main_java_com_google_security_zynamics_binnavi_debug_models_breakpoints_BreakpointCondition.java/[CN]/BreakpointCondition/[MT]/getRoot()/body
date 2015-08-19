@@ -1,0 +1,6 @@
+{
+  if (root == null) {
+    throw new MaybeNullException();
+  }
+  return root;
+}

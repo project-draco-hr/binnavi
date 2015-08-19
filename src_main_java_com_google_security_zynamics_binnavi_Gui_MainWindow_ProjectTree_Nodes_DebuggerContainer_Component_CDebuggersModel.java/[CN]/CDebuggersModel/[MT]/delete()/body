@@ -1,0 +1,7 @@
+{
+  final DebuggerTemplateManager debuggerManager=m_database.getContent().getDebuggerTemplateManager();
+  debuggerManager.removeListener(m_debuggerManagerListener);
+  for (  final DebuggerTemplate debugger : debuggerManager) {
+    debugger.removeListener(m_debuggerListener);
+  }
+}

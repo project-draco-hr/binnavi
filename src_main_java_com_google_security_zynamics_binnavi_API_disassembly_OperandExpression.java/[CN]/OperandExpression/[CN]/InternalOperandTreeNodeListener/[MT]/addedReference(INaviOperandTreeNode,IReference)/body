@@ -1,0 +1,12 @@
+{
+  final Reference newReference=new Reference(reference);
+  m_references.add(newReference);
+  for (  final IOperandExpressionListener listener : m_listeners) {
+    try {
+      listener.addedReference(OperandExpression.this,newReference);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

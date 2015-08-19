@@ -1,0 +1,5 @@
+{
+  final ViewNotificationContainer container=new ViewNotificationContainer(view.getConfiguration().getId(),Optional.fromNullable(view),Optional.<Integer>absent(),Optional.<INaviModule>absent(),Optional.<INaviProject>absent(),"DELETE");
+  final PostgreSQLViewNotificationParser parser=new PostgreSQLViewNotificationParser();
+  parser.inform(Lists.<ViewNotificationContainer>newArrayList(container),provider);
+}

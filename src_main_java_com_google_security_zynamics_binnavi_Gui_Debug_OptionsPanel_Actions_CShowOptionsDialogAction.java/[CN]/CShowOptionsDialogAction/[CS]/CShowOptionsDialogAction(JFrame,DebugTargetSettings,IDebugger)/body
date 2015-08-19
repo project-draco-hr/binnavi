@@ -1,0 +1,9 @@
+{
+  super("Show Options");
+  Preconditions.checkNotNull(parent,"IE01471: Parent argument can not be null");
+  Preconditions.checkNotNull(debugTarget,"IE01472: Debug target argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01473: Options argument can not be null");
+  m_parent=parent;
+  m_debugTarget=debugTarget;
+  m_debugger=debugger;
+}

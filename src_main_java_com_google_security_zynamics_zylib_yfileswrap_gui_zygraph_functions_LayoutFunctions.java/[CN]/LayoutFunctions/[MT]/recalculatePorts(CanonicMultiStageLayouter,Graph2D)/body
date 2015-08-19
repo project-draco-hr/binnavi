@@ -1,0 +1,11 @@
+{
+  if (layouter instanceof CircularLayouter) {
+    LayoutTool.clipEdgesOnBB(graph);
+    final PortCalculator pc=new PortCalculator();
+    final NodeRealizerIntersectionCalculator nrics=new NodeRealizerIntersectionCalculator(graph,true);
+    graph.addDataProvider(IntersectionCalculator.SOURCE_INTERSECTION_CALCULATOR_DPKEY,nrics);
+    final NodeRealizerIntersectionCalculator nrict=new NodeRealizerIntersectionCalculator(graph,false);
+    graph.addDataProvider(IntersectionCalculator.TARGET_INTERSECTION_CALCULATOR_DPKEY,nrict);
+    pc.doLayout(graph);
+  }
+}

@@ -1,0 +1,6 @@
+SQLProvider provider
+INaviModule module
+Integer typeInstanceId
+BigInteger address
+Integer position
+Integer expressionId

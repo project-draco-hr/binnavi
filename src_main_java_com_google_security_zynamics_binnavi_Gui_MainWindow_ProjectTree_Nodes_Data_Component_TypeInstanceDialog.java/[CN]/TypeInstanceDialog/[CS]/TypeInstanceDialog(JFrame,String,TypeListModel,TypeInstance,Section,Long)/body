@@ -1,0 +1,6 @@
+{
+  super(owner,dialogTitle,true);
+  this.section=section;
+  createControls(model);
+  populateControls(instance,offset);
+}

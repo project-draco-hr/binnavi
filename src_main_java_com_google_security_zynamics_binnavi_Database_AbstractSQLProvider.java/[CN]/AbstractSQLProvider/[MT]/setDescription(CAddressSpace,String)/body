@@ -1,0 +1,3 @@
+{
+  PostgreSQLAddressSpaceFunctions.setDescription(this,addressSpace,description);
+}

@@ -1,0 +1,13 @@
+{
+  final ZyGraph graph=panel.getModel().getGraph();
+  final int result=CMessageBox.showYesNoCancelQuestion(parent,String.format("Do you want to save the view '%s' before closing?",CNameShortener.shorten(graph.getRawView())));
+  if (result == JOptionPane.YES_OPTION) {
+    if (graph.getRawView().getType() == ViewType.Native) {
+      saveNativeGraph(parent,panel);
+    }
+ else {
+      saveNonNativeGraph(parent,graph);
+    }
+  }
+  return (result == JOptionPane.YES_OPTION) || (result == JOptionPane.NO_OPTION);
+}

@@ -1,0 +1,3 @@
+{
+  return new StepBreakpointsRemovedReply(packetId,parseInteger(),new ArrayList<Pair<RelocatedAddress,Integer>>());
+}

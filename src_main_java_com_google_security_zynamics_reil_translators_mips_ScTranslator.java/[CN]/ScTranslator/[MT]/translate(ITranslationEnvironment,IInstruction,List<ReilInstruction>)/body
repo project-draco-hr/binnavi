@@ -1,0 +1,15 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sc");
+  final String sourceRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final OperandSize dw=OperandSize.DWORD;
+  final String extendedValue=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  final String jumpCondition=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBisz(offset++,dw,"LL",dw,jumpCondition));
+  final String jmpGoal=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 2);
+  instructions.add(ReilHelpers.createJcc(offset++,dw,jumpCondition,dw,jmpGoal));
+  instructions.add(ReilHelpers.createStm(offset++,dw,sourceRegister,dw,extendedValue));
+  instructions.add(ReilHelpers.createStr(offset,dw,"LL",dw,sourceRegister));
+}

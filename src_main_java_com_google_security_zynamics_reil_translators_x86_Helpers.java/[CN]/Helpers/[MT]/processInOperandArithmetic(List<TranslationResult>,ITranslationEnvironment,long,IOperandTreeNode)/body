@@ -1,0 +1,30 @@
+{
+  final String value=expression.getValue();
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize nextSize=TranslationHelpers.getNextSize(archSize);
+  TranslationResult finalResult=new TranslationResult("NEEDS_REPLACEMENT",archSize,TranslationResultType.REGISTER,"",new ArrayList<ReilInstruction>(),baseOffset);
+  if (value.equals("+") || (value.equals("*"))) {
+    ArrayList<ReilInstruction> allInstructions=new ArrayList<>();
+    for (    TranslationResult result : partialResults) {
+      allInstructions.addAll(result.getInstructions());
+    }
+    finalResult.updateBaseAndReil(baseOffset,allInstructions);
+    String source1=partialResults.get(0).getRegister();
+    String source2=partialResults.get(1).getRegister();
+    String currentTemporary=environment.getNextVariableString();
+    for (int index=2; index <= partialResults.size(); index++) {
+      addPlusOrTimesInOperandArithmetic(environment,value,source1,source2,currentTemporary,finalResult);
+      if (index < partialResults.size()) {
+        source1=partialResults.get(index).getRegister();
+        source2=currentTemporary;
+      }
+    }
+    final String truncationMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+    finalResult.addInstruction(ReilHelpers.createAnd(0,nextSize,currentTemporary,nextSize,truncationMask,archSize,currentTemporary));
+    finalResult.updateResult(currentTemporary,archSize,"",TranslationResultType.REGISTER);
+  }
+ else   if (value.equals(":")) {
+    throw new InternalTranslationException("Error: Don't know how to deal with 1234:ABCD1234 (segment:address) operands.");
+  }
+  return finalResult;
+}

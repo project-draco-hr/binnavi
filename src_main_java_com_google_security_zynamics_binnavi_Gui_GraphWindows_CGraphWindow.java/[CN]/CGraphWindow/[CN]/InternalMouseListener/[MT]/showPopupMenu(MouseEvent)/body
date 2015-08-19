@@ -1,0 +1,9 @@
+{
+  final int index=m_tabbedPane.indexAtLocation(event.getX(),event.getY());
+  if (index == -1) {
+    return;
+  }
+  final CGraphPanel child=(CGraphPanel)m_tabbedPane.getComponentAt(index);
+  final JPopupMenu menu=new JGraphTabMenu(m_tabbedPane,child);
+  menu.show(event.getComponent(),event.getX(),event.getY());
+}

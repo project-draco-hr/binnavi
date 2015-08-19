@@ -1,0 +1,3 @@
+{
+  PostgreSQLModuleFunctions.setImageBase(this,module,addr);
+}

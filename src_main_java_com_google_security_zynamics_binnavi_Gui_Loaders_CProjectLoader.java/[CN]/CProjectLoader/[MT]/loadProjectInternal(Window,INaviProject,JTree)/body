@@ -1,0 +1,25 @@
+{
+  final CProjectLoaderOperation operation=new CProjectLoaderOperation(project);
+  try {
+    project.load();
+    if (projectTree != null) {
+      new SwingInvoker(){
+        @Override protected void operation(){
+          CNodeExpander.expandNode(projectTree,project);
+        }
+      }
+.invokeLater();
+    }
+  }
+ catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00178: " + "Project data could not be loaded";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the project '%s'.",project.getConfiguration().getName()),new String[]{"The connection dropped while the data was loaded."},new String[]{"BinNavi can not open the project. To fix this situation try to " + "load the project again. Restart BinNavi if necessary and contact the " + "BinNavi support if the problem persists."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+catch (  final LoadCancelledException e) {
+  }
+ finally {
+    operation.stop();
+  }
+}

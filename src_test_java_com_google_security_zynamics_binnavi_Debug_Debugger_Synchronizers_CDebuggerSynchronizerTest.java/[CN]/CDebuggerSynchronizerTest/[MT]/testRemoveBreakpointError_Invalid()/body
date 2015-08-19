@@ -1,0 +1,5 @@
+{
+  debuggerSynchronizer.receivedEvent(new BreakpointsRemovedReply(0,5,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_456_RELOC,0))));
+  assertEquals(0,listener.exception);
+  assertEquals(0,breakpointManager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+}

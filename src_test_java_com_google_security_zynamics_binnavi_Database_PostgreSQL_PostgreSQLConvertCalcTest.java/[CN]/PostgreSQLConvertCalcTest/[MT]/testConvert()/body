@@ -1,0 +1,3 @@
+{
+  database.getContent().getModules().get(1).initialize();
+}

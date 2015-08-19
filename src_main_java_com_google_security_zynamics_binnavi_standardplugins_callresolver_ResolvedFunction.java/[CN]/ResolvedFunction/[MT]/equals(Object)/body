@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof ResolvedFunction) && ((ResolvedFunction)rhs).address.equals(address);
+}

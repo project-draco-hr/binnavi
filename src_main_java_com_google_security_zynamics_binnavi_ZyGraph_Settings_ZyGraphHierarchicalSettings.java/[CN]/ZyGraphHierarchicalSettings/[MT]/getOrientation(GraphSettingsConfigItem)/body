@@ -1,0 +1,9 @@
+{
+  try {
+    return HierarchicOrientation.parseInt(type.getHierarchicOrientation());
+  }
+ catch (  final IllegalStateException e) {
+    CUtilityFunctions.logException(e);
+    return HierarchicOrientation.VERTICAL;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  final ZyProximityNode<?> zyProxyNode=m_proximityMap.get(yProxyNode);
+  m_nodeListeners.remove(zyProxyNode);
+  m_proximityMap.remove(yProxyNode);
+  m_graph.getGraph().removeNode(yProxyNode);
+}

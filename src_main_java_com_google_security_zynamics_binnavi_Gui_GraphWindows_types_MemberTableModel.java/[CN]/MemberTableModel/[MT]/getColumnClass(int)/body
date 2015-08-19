@@ -1,0 +1,12 @@
+{
+switch (columndIndex) {
+case INDEX_COLUMN:
+    return Integer.class;
+case TYPE_COLUMN:
+  return BaseType.class;
+case NAME_COLUMN:
+return String.class;
+default :
+return null;
+}
+}

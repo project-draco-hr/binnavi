@@ -1,0 +1,3 @@
+{
+  m_graph.getSettings().getProximitySettings().setProximityBrowsing(!m_graph.getSettings().getProximitySettings().getProximityBrowsing());
+}

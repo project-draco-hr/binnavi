@@ -1,0 +1,8 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviFunction function1=module.getContent().getFunctionContainer().getFunctions().get(0);
+  final INaviFunction function2=module.getContent().getFunctionContainer().getFunctions().get(1);
+  PostgreSQLFunctionFunctions.resolveFunction((AbstractSQLProvider)getProvider(),function1,function2);
+  PostgreSQLFunctionFunctions.resolveFunction((AbstractSQLProvider)getProvider(),function1,null);
+}

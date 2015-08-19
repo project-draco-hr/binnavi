@@ -1,0 +1,5 @@
+IAddress address
+String mnemonic
+ReilOperand firstOperand
+ReilOperand secondOperand
+ReilOperand thirdOperand

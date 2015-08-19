@@ -1,0 +1,6 @@
+{
+  m_instruction=instruction;
+  m_firstOperand=new ReilOperand(instruction.getFirstOperand());
+  m_secondOperand=new ReilOperand(instruction.getSecondOperand());
+  m_thirdOperand=new ReilOperand(instruction.getThirdOperand());
+}

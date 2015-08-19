@@ -1,0 +1,4 @@
+{
+  final INaviGroupNode groupNode=setupGroupNode();
+  getProvider().appendGroupNodeComment(groupNode,null,null);
+}

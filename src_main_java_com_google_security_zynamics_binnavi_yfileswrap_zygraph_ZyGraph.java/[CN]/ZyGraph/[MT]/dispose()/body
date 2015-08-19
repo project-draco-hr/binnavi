@@ -1,0 +1,15 @@
+{
+  super.dispose();
+  m_synchronizer.dispose();
+  removeListeners();
+  iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      final IRealizerUpdater<?> updater=node.getRealizer().getUpdater();
+      if (updater != null) {
+        updater.dispose();
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    return MouseWheelAction.parseInt(type.getMouseWheelAction());
+  }
+ catch (  final ParseException e) {
+    CUtilityFunctions.logException(e);
+    return MouseWheelAction.ZOOM;
+  }
+}

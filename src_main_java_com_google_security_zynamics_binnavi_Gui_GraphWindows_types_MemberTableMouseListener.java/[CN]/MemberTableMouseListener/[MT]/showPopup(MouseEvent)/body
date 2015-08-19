@@ -1,0 +1,12 @@
+{
+  final JPopupMenu popupMenu=new JPopupMenu();
+  popupMenu.add(new AddMemberAction());
+  final int selectedRow=table.getSelectedRow();
+  if (selectedRow != -1) {
+    final MemberTableRowData row=table.getModel().getRow(selectedRow);
+    popupMenu.add(new InsertMemberBeforeAction(selectedRow,row.getName()));
+    popupMenu.add(new InsertMemberAfterAction(selectedRow,row.getName()));
+    popupMenu.add(new DeleteMemberAction(selectedRow,row.getName()));
+  }
+  popupMenu.show(event.getComponent(),event.getX(),event.getY());
+}

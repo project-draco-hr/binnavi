@@ -1,0 +1,24 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  new Processor(){
+    @Override protected String[] process(    final long offset,    final String[] firstTwo,    final String[] secondTwo){
+      final String sum1=environment.getNextVariableString();
+      final String diff1=environment.getNextVariableString();
+      final String diff1Sat=environment.getNextVariableString();
+      final String sum1Sat=environment.getNextVariableString();
+      long baseOffset=offset;
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[1],dw,secondTwo[0],dw,sum1));
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,firstTwo[0],dw,secondTwo[1],dw,diff1));
+      Helpers.signedSat(baseOffset,environment,instruction,instructions,dw,firstTwo[1],dw,secondTwo[0],dw,sum1,"ADD",sum1Sat,16L,"");
+      Helpers.signedSat(baseOffset,environment,instruction,instructions,dw,firstTwo[0],dw,secondTwo[1],dw,diff1,"SUB",diff1Sat,16L,"");
+      return new String[]{diff1Sat,sum1Sat};
+    }
+  }
+.generate(environment,baseOffset,16,sourceRegister1,sourceRegister2,targetRegister,instructions);
+}

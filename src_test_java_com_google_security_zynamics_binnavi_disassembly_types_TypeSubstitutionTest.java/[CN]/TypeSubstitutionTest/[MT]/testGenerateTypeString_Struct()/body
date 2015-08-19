@@ -1,0 +1,4 @@
+{
+  final String typeString=TypeSubstitution.generateTypeString(createSubstitution(typeSystem.nestedStruct,0),8);
+  Assert.assertEquals("NestedStruct.ns_simple_struct_member.ss_uint_member",typeString);
+}

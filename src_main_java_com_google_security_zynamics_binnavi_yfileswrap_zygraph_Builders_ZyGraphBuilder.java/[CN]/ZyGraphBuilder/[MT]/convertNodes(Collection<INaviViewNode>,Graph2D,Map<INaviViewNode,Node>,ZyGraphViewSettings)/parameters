@@ -1,0 +1,4 @@
+Collection<INaviViewNode> nodes
+Graph2D graph2D
+Map<INaviViewNode,Node> rawNodeToNodeMap
+ZyGraphViewSettings graphSettings

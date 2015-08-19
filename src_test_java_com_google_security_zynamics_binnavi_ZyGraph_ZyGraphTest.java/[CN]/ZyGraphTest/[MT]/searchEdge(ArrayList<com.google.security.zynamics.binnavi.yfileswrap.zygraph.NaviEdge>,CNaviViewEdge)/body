@@ -1,0 +1,8 @@
+{
+  for (  final com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge e : edges) {
+    if (e.getRawEdge() == edge) {
+      return e;
+    }
+  }
+  return null;
+}

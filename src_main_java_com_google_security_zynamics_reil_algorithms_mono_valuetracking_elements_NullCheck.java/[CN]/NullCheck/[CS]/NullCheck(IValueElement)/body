@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(!(element instanceof Undefined),"Error: Element of a NullCheck can not be undefined");
+  m_value=element.clone();
+}

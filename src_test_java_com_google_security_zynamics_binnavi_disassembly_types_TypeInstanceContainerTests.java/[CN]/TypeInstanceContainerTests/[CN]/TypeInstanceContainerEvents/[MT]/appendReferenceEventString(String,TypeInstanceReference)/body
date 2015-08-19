@@ -1,0 +1,3 @@
+{
+  events_.append(event).append(reference.getAddress().toHexString()).append(reference.getPosition()).append(reference.getTreeNode().isPresent() ? reference.getTreeNode().get().getId() : "").append(reference.getTypeInstance().getId()).append(reference.getView().getName());
+}

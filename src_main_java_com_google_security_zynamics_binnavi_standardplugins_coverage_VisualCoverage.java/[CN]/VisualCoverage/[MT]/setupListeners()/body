@@ -1,0 +1,6 @@
+{
+  final Process process=debugger.getProcess();
+  for (  final Thread thread : process.getThreads()) {
+    thread.addListener(threadListener);
+  }
+}

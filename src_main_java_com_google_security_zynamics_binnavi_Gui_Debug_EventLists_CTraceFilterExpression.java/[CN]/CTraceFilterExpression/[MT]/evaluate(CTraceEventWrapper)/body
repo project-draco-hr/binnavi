@@ -1,0 +1,14 @@
+{
+  final ITraceEvent event=element.unwrap();
+  final INaviModule currentModule=event.getOffset().getModule();
+  String functionName="";
+  String moduleName="";
+  if (currentModule != null) {
+    final INaviFunction function=currentModule.isLoaded() ? currentModule.getContent().getFunctionContainer().getFunction(event.getOffset().getAddress().getAddress()) : null;
+    if (function != null) {
+      functionName=function.getName();
+    }
+    moduleName=currentModule.getConfiguration().getName();
+  }
+  return String.valueOf(event.getThreadId()).contains(m_text) || event.getOffset().getAddress().getAddress().toHexString().contains(m_text) || moduleName.contains(m_text)|| functionName.contains(m_text);
+}

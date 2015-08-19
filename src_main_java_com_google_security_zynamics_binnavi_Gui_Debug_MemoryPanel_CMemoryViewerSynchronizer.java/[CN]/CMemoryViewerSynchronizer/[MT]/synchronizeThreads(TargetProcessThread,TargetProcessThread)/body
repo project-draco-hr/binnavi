@@ -1,0 +1,9 @@
+{
+  if (oldThread != null) {
+    oldThread.removeListener(m_threadListener);
+  }
+  if (newThread != null) {
+    newThread.addListener(m_threadListener);
+  }
+  updateGui();
+}

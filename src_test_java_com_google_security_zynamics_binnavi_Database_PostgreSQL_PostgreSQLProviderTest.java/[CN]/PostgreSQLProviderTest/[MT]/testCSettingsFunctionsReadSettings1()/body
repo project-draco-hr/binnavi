@@ -1,0 +1,4 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  PostgreSQLSettingsFunctions.readSetting((AbstractSQLProvider)getProvider(),(CModule)module,"key");
+}

@@ -1,0 +1,8 @@
+{
+  m_debugger.removeListener(m_debuglistener);
+  final ProcessManager processManager=m_debugger.getProcessManager();
+  processManager.removeListener(m_processListener);
+  for (  final TargetProcessThread thread : processManager.getThreads()) {
+    thread.removeListener(m_threadEventListener);
+  }
+}

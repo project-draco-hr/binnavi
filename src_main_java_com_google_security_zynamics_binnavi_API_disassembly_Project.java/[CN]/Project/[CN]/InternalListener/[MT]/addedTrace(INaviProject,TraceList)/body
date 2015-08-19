@@ -1,0 +1,12 @@
+{
+  final Trace newTrace=new Trace(trace);
+  m_traces.add(newTrace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedTrace(Project.this,newTrace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

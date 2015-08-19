@@ -1,0 +1,8 @@
+{
+  final ReilOperand inputOperand=instruction.getFirstOperand();
+  final ReilOperand outputOperand=instruction.getThirdOperand();
+  final Register outputRegister=new Register(outputOperand.getValue());
+  final IValueElement inputValue=getOperandValue(inputOperand,incomingState);
+  final IValueElement outputValue=getOutputValue(inputOperand,inputValue);
+  return incomingState.update(instruction,outputRegister,outputValue);
+}

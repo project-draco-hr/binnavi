@@ -1,0 +1,12 @@
+{
+  m_instructionMap.clear();
+  for (  final INaviViewNode node : m_graph.getRawView().getGraph()) {
+    if (node instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)node;
+      for (      final INaviInstruction instruction : cnode.getInstructions()) {
+        final IAddress address=instruction.getAddress();
+        m_instructionMap.put(address,instruction);
+      }
+    }
+  }
+}

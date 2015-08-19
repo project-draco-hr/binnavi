@@ -1,0 +1,7 @@
+{
+  final List<Pair<String,Object>> blist=new ArrayList<Pair<String,Object>>();
+  for (  final Map.Entry<String,Object> pair : bindings.entrySet()) {
+    blist.add(new Pair<String,Object>(pair.getKey(),pair.getValue()));
+  }
+  return blist;
+}

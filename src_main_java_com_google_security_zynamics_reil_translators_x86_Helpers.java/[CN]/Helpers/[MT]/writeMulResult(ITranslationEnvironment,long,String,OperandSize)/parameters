@@ -1,0 +1,4 @@
+ITranslationEnvironment environment
+long offset
+String result
+OperandSize size

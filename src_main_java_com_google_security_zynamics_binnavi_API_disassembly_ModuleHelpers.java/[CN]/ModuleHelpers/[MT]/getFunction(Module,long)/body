@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  if (address < 0) {
+    throw new IllegalArgumentException("Error: Address argument can not be negative");
+  }
+  for (  final Function function : module.getFunctions()) {
+    if (function.getAddress().toLong() == address) {
+      return function;
+    }
+  }
+  return null;
+}

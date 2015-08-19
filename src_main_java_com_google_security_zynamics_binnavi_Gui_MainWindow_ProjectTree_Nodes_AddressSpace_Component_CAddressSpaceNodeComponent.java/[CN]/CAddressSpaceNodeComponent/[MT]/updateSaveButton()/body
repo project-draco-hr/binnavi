@@ -1,0 +1,3 @@
+{
+  m_saveButton.setEnabled(!m_stdEditPanel.getNameString().equals(m_addressSpace.getConfiguration().getName()) || !m_stdEditPanel.getDescription().equals(m_addressSpace.getConfiguration().getDescription()) || (m_debuggerCombo.getSelectedDebugger() != m_addressSpace.getConfiguration().getDebuggerTemplate()));
+}

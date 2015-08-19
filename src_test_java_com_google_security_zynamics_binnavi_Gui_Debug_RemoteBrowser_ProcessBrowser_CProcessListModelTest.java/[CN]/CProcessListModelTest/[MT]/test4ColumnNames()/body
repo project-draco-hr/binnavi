@@ -1,0 +1,6 @@
+{
+  final ProcessList processList=ProcessList.parse("<foo></foo>".getBytes());
+  final CProcessListModel listModel=new CProcessListModel(processList);
+  assertEquals("PID",listModel.getColumnName(0));
+  assertEquals("Name",listModel.getColumnName(1));
+}

@@ -1,0 +1,26 @@
+{
+  final int row=rowAtPoint(event.getPoint());
+  final int column=columnAtPoint(event.getPoint());
+  int[] rows=getSelectedRows();
+  if ((rows.length == 0) || (rows.length == 1)) {
+    changeSelection(row,column,false,false);
+    rows=getSelectedRows();
+  }
+  final JPopupMenu menu=new JPopupMenu();
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteAction(m_debuggerProvider,rows))));
+  if (CBreakpointFunctions.allDisabled(m_debuggerProvider,rows)) {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CEnableAction(m_debuggerProvider,rows))));
+  }
+ else   if (CBreakpointFunctions.allNotDisabled(m_debuggerProvider,rows)) {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CDisableAction(m_debuggerProvider,rows))));
+  }
+  if (rows.length == 1) {
+    menu.addSeparator();
+    final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(m_debuggerProvider,rows[0]);
+    final BreakpointManager manager=breakpoint.first().getBreakpointManager();
+    final int breakpointIndex=breakpoint.second();
+    final BreakpointAddress address=manager.getBreakpoint(BreakpointType.REGULAR,breakpointIndex).getAddress();
+    menu.add(new JMenuItem(CActionProxy.proxy(new CZoomBreakpointAction(SwingUtilities.windowForComponent(this),m_graph,m_viewContainer,address))));
+  }
+  menu.show(event.getComponent(),event.getX(),event.getY());
+}

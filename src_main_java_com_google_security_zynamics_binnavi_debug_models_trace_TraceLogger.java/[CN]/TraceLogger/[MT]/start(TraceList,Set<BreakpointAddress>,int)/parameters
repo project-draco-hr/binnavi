@@ -1,0 +1,3 @@
+TraceList trace
+Set<BreakpointAddress> relocatedAddresses
+int maximumHits

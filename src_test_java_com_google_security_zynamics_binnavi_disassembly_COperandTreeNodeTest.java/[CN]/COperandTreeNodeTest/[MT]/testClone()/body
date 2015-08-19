@@ -1,0 +1,11 @@
+{
+  final COperandTreeNode node=new COperandTreeNode(1,1,"value",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  final COperandTreeNode child=new COperandTreeNode(1,1,"child",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  assertNotNull(node);
+  assertNotNull(child);
+  COperandTreeNode.link(node,child);
+  final INaviOperandTreeNodeListener listener=new CNaviOperandTreeNodeListenerAdapter();
+  node.addListener(listener);
+  final COperandTreeNode cloneNode=node.cloneNode();
+  assertEquals(cloneNode.getReplacement().toString(),node.getReplacement().toString());
+}

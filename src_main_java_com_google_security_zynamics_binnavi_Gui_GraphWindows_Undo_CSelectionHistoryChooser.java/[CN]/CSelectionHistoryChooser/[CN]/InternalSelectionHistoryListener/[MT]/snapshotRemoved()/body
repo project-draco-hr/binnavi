@@ -1,0 +1,6 @@
+{
+  final CSelectionHistoryTreeNode root=(CSelectionHistoryTreeNode)m_model.getRoot();
+  final int children=root.getChildCount();
+  final CSelectionHistoryTreeNode nodeToDelete=(CSelectionHistoryTreeNode)m_model.getChild(root,children - 1);
+  m_model.removeNodeFromParent(nodeToDelete);
+}

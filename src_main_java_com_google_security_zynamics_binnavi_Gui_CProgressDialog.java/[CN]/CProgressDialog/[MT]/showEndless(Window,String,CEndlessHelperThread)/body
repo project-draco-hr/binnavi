@@ -1,0 +1,7 @@
+{
+  final CEndlessProgressDialog dlg=new CEndlessProgressDialog(parent,Constants.DEFAULT_WINDOW_TITLE,description,thread);
+  CIconInitializer.initializeWindowIcons(dlg);
+  thread.start();
+  dlg.setVisible(true);
+  return dlg;
+}

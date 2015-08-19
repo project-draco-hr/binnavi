@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be larger then zero");
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkArgument(position >= 0,"Error: position must be larger or equal to zero");
+  Preconditions.checkArgument(expressionId >= 0,"Error: expression id must be larger or equal to zero");
+  final String function=" { call delete_expression_type_instance(?, ?, ?, ?) } ";
+  try {
+    final CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      deleteCommentStatement.setInt(1,moduleId);
+      deleteCommentStatement.setObject(2,address,Types.OTHER);
+      deleteCommentStatement.setInt(3,position);
+      deleteCommentStatement.setInt(4,expressionId);
+      deleteCommentStatement.execute();
+    }
+  finally {
+      deleteCommentStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

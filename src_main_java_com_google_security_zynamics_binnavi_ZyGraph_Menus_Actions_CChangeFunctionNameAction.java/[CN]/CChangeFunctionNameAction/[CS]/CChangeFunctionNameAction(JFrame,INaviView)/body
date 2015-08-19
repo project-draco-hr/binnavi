@@ -1,0 +1,5 @@
+{
+  super(String.format("Change function name '%s'",view.getName()));
+  m_window=window;
+  m_view=view;
+}

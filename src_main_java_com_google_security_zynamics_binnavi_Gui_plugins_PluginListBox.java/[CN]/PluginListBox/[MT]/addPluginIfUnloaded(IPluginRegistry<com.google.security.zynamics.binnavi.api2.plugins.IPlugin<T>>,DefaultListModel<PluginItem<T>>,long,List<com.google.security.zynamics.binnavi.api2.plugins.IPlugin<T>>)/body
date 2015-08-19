@@ -1,0 +1,9 @@
+{
+  for (  final Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,DisabledPluginReason> pluginPair : registry.getDisabledPlugins()) {
+    final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin=pluginPair.first();
+    if (guid == plugin.getGuid()) {
+      model.addElement(new PluginItem<T>(plugin));
+      added.add(plugin);
+    }
+  }
+}

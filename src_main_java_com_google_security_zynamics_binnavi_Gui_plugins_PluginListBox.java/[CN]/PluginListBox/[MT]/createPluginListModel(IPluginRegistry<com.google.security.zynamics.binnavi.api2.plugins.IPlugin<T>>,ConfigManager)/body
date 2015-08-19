@@ -1,0 +1,11 @@
+{
+  final DefaultListModel<PluginItem<T>> model=new DefaultListModel<PluginItem<T>>();
+  final ArrayList<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>> added=new ArrayList<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>>();
+  for (  final PluginConfigItem plugin : configFile.getGeneralSettings().getPlugins()) {
+    final long guid=plugin.getGUID();
+    addPluginIfLoaded(registry,model,guid,added);
+    addPluginIfUnloaded(registry,model,guid,added);
+  }
+  addUnmentionedPlugins(registry,model,added);
+  return model;
+}

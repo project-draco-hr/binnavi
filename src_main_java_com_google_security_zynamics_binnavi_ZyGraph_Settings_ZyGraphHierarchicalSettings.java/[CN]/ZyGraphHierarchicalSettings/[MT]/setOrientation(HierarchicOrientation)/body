@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(value,"IE00879: Orientation argument can't be null");
+  if (value == getOrientation()) {
+    return;
+  }
+  if (m_type == null) {
+    m_orientation=value;
+  }
+ else {
+    m_type.setHierarchicOrientation(value.ordinal());
+  }
+}

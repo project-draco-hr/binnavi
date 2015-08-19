@@ -1,0 +1,7 @@
+{
+  super("Unhide and select only");
+  Preconditions.checkNotNull(graph,"IE00948: Graph argument can't be null");
+  Preconditions.checkNotNull(node,"IE00949: Node argument can't be null");
+  m_graph=graph;
+  m_node=node;
+}

@@ -1,0 +1,7 @@
+{
+  final INaviModule module=findModule(name);
+  if (!module.isLoaded()) {
+    module.load();
+  }
+  return module;
+}

@@ -1,0 +1,4 @@
+{
+  source.outedges.remove(edge);
+  target.inedges.remove(edge);
+}

@@ -1,0 +1,9 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0x7FFF),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockInstruction instruction=new MockInstruction("cwde",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(2,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x7FFF),interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

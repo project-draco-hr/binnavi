@@ -1,0 +1,14 @@
+{
+  super(new BorderLayout());
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.setBorder(new TitledBorder(getBorderTitle()));
+  final JPanel infoPanel=new JPanel(new BorderLayout());
+  infoPanel.setBorder(new EmptyBorder(5,5,5,5));
+  m_infoField.setBackground(infoPanel.getBackground());
+  m_infoField.setLineWrap(true);
+  m_infoField.setWrapStyleWord(true);
+  m_infoField.setEditable(false);
+  infoPanel.add(m_infoField,BorderLayout.CENTER);
+  mainPanel.add(infoPanel,BorderLayout.CENTER);
+  add(mainPanel,BorderLayout.CENTER);
+}

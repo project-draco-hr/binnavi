@@ -1,0 +1,5 @@
+{
+  m_component.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_project,"m_listeners"),"m_listeners")) == null);
+}

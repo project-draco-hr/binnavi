@@ -1,0 +1,5 @@
+{
+  final CNodeEditState state=new CNodeEditState(this,m_graph,n);
+  m_factory.createNodeEditAction().execute(state,event);
+  return state;
+}

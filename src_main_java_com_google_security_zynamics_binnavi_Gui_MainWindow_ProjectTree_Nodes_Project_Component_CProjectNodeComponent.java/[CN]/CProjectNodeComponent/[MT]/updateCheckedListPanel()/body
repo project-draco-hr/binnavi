@@ -1,0 +1,16 @@
+{
+  m_checkedList.removeListSelectionListener(m_updateListener);
+  m_checkedListPanel.removeAll();
+  m_checkedList=new JCheckedListbox<>(getDebuggerVector(),false);
+  m_checkedList.addListSelectionListener(m_updateListener);
+  final JScrollPane debuggerScrollPane=new JScrollPane(m_checkedList);
+  m_checkedListPanel.add(debuggerScrollPane);
+  final Collection<DebuggerTemplate> debuggers=m_project.getConfiguration().getDebuggers();
+  final ListModel<DebuggerTemplate> model=m_checkedList.getModel();
+  for (int i=0; i < model.getSize(); ++i) {
+    final DebuggerTemplate debuggerId=model.getElementAt(i);
+    m_checkedList.setChecked(i,debuggers.contains(debuggerId));
+  }
+  m_checkedList.updateUI();
+  updateUI();
+}

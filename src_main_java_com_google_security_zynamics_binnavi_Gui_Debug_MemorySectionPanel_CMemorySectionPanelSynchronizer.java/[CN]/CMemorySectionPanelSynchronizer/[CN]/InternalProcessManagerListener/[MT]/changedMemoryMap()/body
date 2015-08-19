@@ -1,0 +1,22 @@
+{
+  updating=true;
+  final IAddress previousAddress=debugPerspectiveModel.getActiveAddress();
+  updateMemoryBox();
+  updateGui();
+  final IDebugger activeDebugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (activeDebugger != null) {
+    final MemoryMap memoryMap=activeDebugger.getProcessManager().getMemoryMap();
+    if (previousAddress == null) {
+      updating=false;
+      if (memoryMap.getNumberOfSections() != 0) {
+        final MemorySection firstSection=memoryMap.getSection(0);
+        debugPerspectiveModel.setActiveMemoryAddress(firstSection.getStart(),false);
+      }
+    }
+ else {
+      final MemorySection updatedSection=ProcessHelpers.getSectionWith(memoryMap,previousAddress);
+      memorySectionBox.setSelectedItem(updatedSection);
+      updating=false;
+    }
+  }
+}

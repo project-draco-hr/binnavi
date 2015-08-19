@@ -1,0 +1,4 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  getProvider().addDebugger(project,null);
+}

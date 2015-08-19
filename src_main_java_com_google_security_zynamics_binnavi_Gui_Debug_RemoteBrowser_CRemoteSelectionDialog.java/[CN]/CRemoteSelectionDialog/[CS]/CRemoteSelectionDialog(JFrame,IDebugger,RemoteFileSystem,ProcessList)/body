@@ -1,0 +1,28 @@
+{
+  super(parent,"Choose a file or a process",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(parent,"IE01489: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01490: Debugger argument can not be null");
+  Preconditions.checkNotNull(fileList,"IE01491: File list argument can not be null");
+  Preconditions.checkNotNull(processList,"IE01492: Process list argument can not be null");
+  setLayout(new BorderLayout());
+  new CDialogEscaper(this);
+  m_browser=new CRemoteFileBrowser(this,debugger,fileList){
+    @Override public void approveSelection(){
+      m_selectedFile=m_browser.getSelectedFile();
+      CRemoteSelectionDialog.this.dispose();
+    }
+    @Override public void cancelSelection(){
+      CRemoteSelectionDialog.this.dispose();
+    }
+  }
+;
+  m_browser.setControlButtonsAreShown(false);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.add(m_browser);
+  m_tabbedPane.addTab("File",innerPanel);
+  m_processPanel=new CProcessListPanel(processList);
+  m_tabbedPane.addTab("Process",m_processPanel);
+  add(m_tabbedPane);
+  add(new CPanelTwoButtons(new InternalListener(),"OK","Cancel"),BorderLayout.SOUTH);
+  pack();
+}

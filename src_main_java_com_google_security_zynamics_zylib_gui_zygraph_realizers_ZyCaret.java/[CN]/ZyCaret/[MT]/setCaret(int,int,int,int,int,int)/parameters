@@ -1,0 +1,6 @@
+int caretStartPos_X
+int mousePressed_X
+int mousePressed_Y
+int caretEndPos_X
+int mouseReleased_X
+int mouseReleased_Y

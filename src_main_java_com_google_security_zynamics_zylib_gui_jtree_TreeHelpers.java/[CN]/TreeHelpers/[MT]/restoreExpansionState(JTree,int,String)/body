@@ -1,0 +1,7 @@
+{
+  final StringTokenizer stok=new StringTokenizer(expansionState,",");
+  while (stok.hasMoreTokens()) {
+    final int token=row + Integer.parseInt(stok.nextToken());
+    tree.expandRow(token);
+  }
+}

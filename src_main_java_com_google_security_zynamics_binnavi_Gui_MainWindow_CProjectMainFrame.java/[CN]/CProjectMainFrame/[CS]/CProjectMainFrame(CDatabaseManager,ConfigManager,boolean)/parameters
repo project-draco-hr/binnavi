@@ -1,0 +1,3 @@
+CDatabaseManager databaseManager
+ConfigManager configFile
+boolean firstStart

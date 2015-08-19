@@ -1,0 +1,30 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"div");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a div instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree divisorOperand=operands.get(0);
+  final OperandSize size=Helpers.getOperandSize(divisorOperand);
+  final TranslationResult resultDividend=Helpers.loadFirstDivOperand(environment,offset,size);
+  instructions.addAll(resultDividend.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String dividend=resultDividend.getRegister();
+  final TranslationResult resultDivisor=Helpers.translateOperand(environment,offset,divisorOperand,true);
+  instructions.addAll(resultDivisor.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String divisor=resultDivisor.getRegister();
+  final String divResult=environment.getNextVariableString();
+  final String modResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createDiv(offset++,size,dividend,size,divisor,size,divResult));
+  instructions.add(ReilHelpers.createMod(offset++,size,dividend,size,divisor,size,modResult));
+  instructions.addAll(Helpers.writeDivResult(environment,offset++,divResult,modResult,size));
+  instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.AUXILIARY_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.SIGN_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.ZERO_FLAG));
+}

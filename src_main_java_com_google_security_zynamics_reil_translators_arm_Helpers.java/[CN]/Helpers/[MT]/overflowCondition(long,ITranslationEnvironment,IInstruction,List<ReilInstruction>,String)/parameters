@@ -1,0 +1,5 @@
+long offset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String firstOperand

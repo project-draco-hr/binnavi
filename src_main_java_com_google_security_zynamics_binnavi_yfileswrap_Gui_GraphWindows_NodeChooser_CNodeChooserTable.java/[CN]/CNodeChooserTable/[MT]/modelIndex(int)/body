@@ -1,0 +1,3 @@
+{
+  return convertRowIndexToModel(viewIndex);
+}

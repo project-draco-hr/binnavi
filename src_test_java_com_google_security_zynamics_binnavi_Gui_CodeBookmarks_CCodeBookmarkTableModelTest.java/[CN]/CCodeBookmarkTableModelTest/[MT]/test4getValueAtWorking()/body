@@ -1,0 +1,10 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  final CCodeBookmark bookmark=new CCodeBookmark(new MockModule(),new MockAddress(),"burzel");
+  bookmarkManager.addBookmark(bookmark);
+  final MockAddress mock=new MockAddress();
+  assertEquals("burzel",tableModel.getValueAt(0,2));
+  assertEquals(mock.toHexString(),tableModel.getValueAt(0,1));
+  assertEquals("Mock Module",tableModel.getValueAt(0,0));
+}

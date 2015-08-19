@@ -1,0 +1,19 @@
+{
+  final DragOverState state=getDragOverState(graph,location);
+  final NaviNode node=state.getNode();
+  if (node != null && state.getDragOverObject() != null) {
+    final Object object=state.getDragOverObject().getObject();
+    if (object instanceof INaviOperandTreeNode && ((INaviOperandTreeNode)object).getType() == ExpressionType.REGISTER) {
+      final int row=node.positionToRow(graph.getView().toWorldCoordY(location.y) - node.getY());
+      if (row != -1) {
+        clearHighlighting(node);
+        lastRow=row;
+        final ObjectWrapper wrapper=state.getDragOverObject();
+        node.setHighlighting(HIGHLIGHTING_LEVEL,row,wrapper.getStart(),wrapper.getLength(),HIGHLIGHTING_COLOR);
+      }
+    }
+  }
+ else {
+    clearHighlighting(null);
+  }
+}

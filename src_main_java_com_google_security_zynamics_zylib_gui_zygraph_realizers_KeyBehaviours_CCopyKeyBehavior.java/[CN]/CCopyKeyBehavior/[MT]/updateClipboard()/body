@@ -1,0 +1,4 @@
+{
+  final String clipboardText=getSelectedText();
+  ClipboardHelpers.copyToClipboard(clipboardText);
+}

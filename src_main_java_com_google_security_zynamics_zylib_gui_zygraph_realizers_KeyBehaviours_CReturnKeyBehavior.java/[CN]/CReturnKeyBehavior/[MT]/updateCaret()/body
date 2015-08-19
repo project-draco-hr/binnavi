@@ -1,0 +1,11 @@
+{
+  if ((m_caretY > -1) && isComment(getCaretEndPosX(),m_caretY)) {
+    final ZyLineContent nextLineContent=getLineContent(m_caretY);
+    final IZyEditableObject lineObject=nextLineContent.getLineFragmentObjectList().get(0);
+    int x=0;
+    if (lineObject != null) {
+      x=lineObject.getEnd();
+    }
+    setCaret(x,x,m_caretY,x,x,m_caretY);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.deleteDebuggers(getParentWindow(),m_database,getDebuggers(getSortSelectedRows()),new CEmptyUpdater());
+}

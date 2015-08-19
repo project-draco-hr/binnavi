@@ -1,0 +1,5 @@
+{
+  final Graph innerGraph=graph.getHierarchyManager().getInnerGraph(folderNode);
+  final NodeList subNodes=new NodeList(innerGraph.nodes());
+  graph.getHierarchyManager().unfoldSubgraph(innerGraph,subNodes);
+}

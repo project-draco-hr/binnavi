@@ -1,0 +1,8 @@
+{
+  super(nodeId,x,y,width,height,color,borderColor,selected,visible);
+  m_provider=Preconditions.checkNotNull(provider,"IE00209: SQL provider can not be can not be null");
+  m_tags=new HashSet<CTag>(Preconditions.checkNotNull(tags,"IE00210: Tags can not be null"));
+  for (  final CTag tag : m_tags) {
+    tag.addListener(m_tagListener);
+  }
+}

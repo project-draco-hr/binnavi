@@ -1,0 +1,6 @@
+{
+  this.provider=provider;
+  this.configuration=configuration;
+  this.content=content;
+  this.viewNodeTags=viewNodeTags;
+}

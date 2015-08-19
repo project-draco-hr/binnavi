@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  Preconditions.checkArgument(comment == null || !comment.isEmpty(),"Error: comment can either be null or a non empty string");
+  Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null");
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  Preconditions.checkArgument(sectionOffset >= 0,"Error: section offset must be greater or equal to zero");
+  Preconditions.checkArgument(!instancesByAddress.containsKey(new TypeInstanceAddress(section.getStartAddress(),sectionOffset)));
+  final TypeInstance instance=backend.createTypeInstance(name,comment,baseType,section,sectionOffset);
+  instancesByAddress.put(instance.getAddress(),instance);
+  instances.add(instance);
+  notifyInstanceAdded(instance);
+  return instance;
+}

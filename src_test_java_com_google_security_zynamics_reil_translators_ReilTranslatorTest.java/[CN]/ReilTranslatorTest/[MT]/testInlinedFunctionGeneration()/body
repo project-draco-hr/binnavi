@@ -1,0 +1,21 @@
+{
+  final MockBlockContainer container=new MockBlockContainer();
+  final MockCodeContainer block1=new MockCodeContainer();
+  block1.m_instructions.add(createMov(0x1000,"eax","1"));
+  final MockCodeContainer block2=new MockCodeContainer();
+  block2.m_instructions.add(createMov(0x1200,"ebx","eax"));
+  final MockCodeContainer block3=new MockCodeContainer();
+  block3.m_instructions.add(createMov(0x1001,"ecx","ebx"));
+  container.m_blocks.add(block1);
+  container.m_blocks.add(block2);
+  container.m_blocks.add(block3);
+  container.m_edges.add(new MockCodeEdge<MockCodeContainer>(block1,block2,EdgeType.ENTER_INLINED_FUNCTION));
+  container.m_edges.add(new MockCodeEdge<MockCodeContainer>(block2,block3,EdgeType.LEAVE_INLINED_FUNCTION));
+  final ReilFunction function=m_translator.translate(new StandardEnvironment(),container);
+  System.out.println(function.getGraph().getNodes());
+  System.out.println(function.getGraph().getEdges());
+  assertEquals(3,function.getGraph().getNodes().size());
+  assertEquals(2,function.getGraph().getEdges().size());
+  final MonoReilSolverResult<RegisterSetLatticeElement> result=RegisterTracker.track(function,Iterables.getFirst(block1.getInstructions(),null),"eax",new RegisterTrackingOptions(true,new HashSet<String>(),true,AnalysisDirection.DOWN));
+  System.out.println(result);
+}

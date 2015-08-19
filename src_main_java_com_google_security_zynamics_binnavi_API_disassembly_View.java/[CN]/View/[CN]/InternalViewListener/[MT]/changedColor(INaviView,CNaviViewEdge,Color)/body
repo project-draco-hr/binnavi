@@ -1,0 +1,14 @@
+{
+  final ViewEdge viewEdge=cachedEdges.get(edge);
+  if (!isConverted()) {
+    return;
+  }
+  for (  final IViewEdgeListener listener : viewEdge.getListeners()) {
+    try {
+      listener.changedColor(viewEdge,color);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

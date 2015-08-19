@@ -1,0 +1,9 @@
+{
+  final Trace trace=new Trace(new TraceList(1,"Name","Description",new MockSqlProvider()));
+  final MockTraceListener listener=new MockTraceListener();
+  trace.addListener(listener);
+  trace.setDescription("D1");
+  assertEquals("D1",trace.getDescription());
+  assertEquals("changedDescription;",listener.events);
+  trace.removeListener(listener);
+}

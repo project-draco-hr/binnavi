@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(connection,"Error: connection argument can not be null");
+  final StringBuilder builder=new StringBuilder("SELECT count(*) FROM pg_class WHERE relname in (");
+  for (  String tableName : tableNames) {
+    builder.append("'" + tableName + "',");
+  }
+  builder.deleteCharAt(builder.length() - 1);
+  builder.append(")");
+  try {
+    final ResultSet result=connection.executeQuery(builder.toString(),true);
+    try {
+      while (result.next()) {
+        return result.getInt("count");
+      }
+    }
+  finally {
+      result.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+  throw new IllegalStateException("Error: Could not retrieve table count from server");
+}

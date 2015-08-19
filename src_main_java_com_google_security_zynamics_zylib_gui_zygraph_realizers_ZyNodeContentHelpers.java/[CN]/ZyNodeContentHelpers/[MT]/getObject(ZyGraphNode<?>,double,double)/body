@@ -1,0 +1,4 @@
+{
+  final ObjectWrapper wrapper=getObjectWrapper(node,x,y);
+  return wrapper == null ? null : wrapper.getObject();
+}

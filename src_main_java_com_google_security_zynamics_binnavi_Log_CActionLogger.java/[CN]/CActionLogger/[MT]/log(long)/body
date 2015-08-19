@@ -1,0 +1,12 @@
+{
+  if (!m_countMap.containsKey(actionId)) {
+    m_countMap.put(actionId,0);
+  }
+  m_countMap.put(actionId,m_countMap.get(actionId) + 1);
+  try {
+    FileUtils.writeTextFile(m_actionsLogFile,mapToText());
+  }
+ catch (  final IOException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

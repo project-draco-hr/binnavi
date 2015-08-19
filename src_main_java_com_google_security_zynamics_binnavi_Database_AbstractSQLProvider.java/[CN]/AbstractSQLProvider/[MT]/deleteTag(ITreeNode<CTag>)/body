@@ -1,0 +1,3 @@
+{
+  PostgreSQLTagFunctions.deleteTag(this,tag);
+}

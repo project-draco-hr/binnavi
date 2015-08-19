@@ -1,0 +1,6 @@
+{
+  updatePreviousNode();
+  for (  final IVisualCoverageListener listener : new ArrayList<IVisualCoverageListener>(listeners)) {
+    listener.finishedCoverage();
+  }
+}

@@ -1,0 +1,3 @@
+Set<ReilInstruction> influences
+Map<IAloc,IValueElement> values
+Map<String,Set<IAddress>> lastWritten

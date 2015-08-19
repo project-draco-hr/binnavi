@@ -1,0 +1,12 @@
+{
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"b4");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,String.valueOf(0xCAFEBABEL)));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1);
+  final IInstruction instruction=new MockInstruction(0x00400044L,"j",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x00400044L));
+  assertEquals(1,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0xCAFEBABEL),interpreter.getVariableValue("$pc"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

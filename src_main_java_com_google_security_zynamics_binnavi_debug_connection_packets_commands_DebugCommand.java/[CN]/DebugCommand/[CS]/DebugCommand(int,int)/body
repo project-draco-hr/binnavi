@@ -1,0 +1,5 @@
+{
+  this.arguments=new ArrayList<>();
+  this.type=type;
+  this.packetId=packetId;
+}

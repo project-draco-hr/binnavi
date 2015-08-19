@@ -1,0 +1,4 @@
+{
+  this.backend=Preconditions.checkNotNull(backend,"IE02774: Backend can not be null.");
+  typesContainer=new TypesContainer(backend.loadRawBaseTypes(),backend.loadRawTypeMembers());
+}

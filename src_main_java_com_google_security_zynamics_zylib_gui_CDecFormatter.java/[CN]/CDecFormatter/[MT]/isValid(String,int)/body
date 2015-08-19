@@ -1,0 +1,21 @@
+{
+  if (((getFormattedTextField().getText().length() - selected) + string.length()) > m_maxChar) {
+    invalidEdit();
+    return false;
+  }
+  for (int i=0; i < string.length(); i++) {
+    final char ch=string.charAt(i);
+    if (Character.digit(ch,10) == -1) {
+      invalidEdit();
+      return false;
+    }
+  }
+  if ((m_minNumber != -1) && (m_maxNumber != -1)) {
+    final int value=Integer.parseInt(getFormattedTextField().getText() + string);
+    if ((value < m_minNumber) || (value > m_maxNumber)) {
+      invalidEdit();
+      return false;
+    }
+  }
+  return true;
+}

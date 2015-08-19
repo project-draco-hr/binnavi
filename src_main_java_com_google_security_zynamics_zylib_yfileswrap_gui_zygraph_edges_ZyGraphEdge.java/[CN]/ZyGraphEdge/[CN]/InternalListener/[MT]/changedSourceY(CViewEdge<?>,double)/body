@@ -1,0 +1,5 @@
+{
+  final YPoint point=m_realizer.getSourcePoint();
+  m_realizer.setSourcePoint(new YPoint(point.x,sourceY));
+  updateViews();
+}

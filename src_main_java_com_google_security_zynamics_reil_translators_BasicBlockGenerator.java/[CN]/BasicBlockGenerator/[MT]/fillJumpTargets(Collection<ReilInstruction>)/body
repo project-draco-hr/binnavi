@@ -1,0 +1,15 @@
+{
+  final HashSet<IAddress> jumpTargets=new HashSet<IAddress>();
+  for (  final ReilInstruction reilInstruction : reilInstructions) {
+    if (reilInstruction.getMnemonic().equals(ReilHelpers.OPCODE_JCC)) {
+      final String jumpTarget=reilInstruction.getThirdOperand().getValue();
+      if (Convert.isDecString(jumpTarget)) {
+        jumpTargets.add(toReilAddress(jumpTarget));
+      }
+ else       if (reilInstruction.getThirdOperand().getType() == OperandType.SUB_ADDRESS) {
+        jumpTargets.add(toReilAddress(jumpTarget.split("\\.")));
+      }
+    }
+  }
+  return jumpTargets;
+}

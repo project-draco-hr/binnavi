@@ -1,0 +1,15 @@
+{
+  final ColorsConfigItem colors=ConfigManager.instance().getColorSettings();
+  if (hasMemderef) {
+    styleRuns.add(new CStyleRunData(line.length(),1,colors.getMemRefColor()));
+    line.append(']');
+  }
+  if (hasExpressionList) {
+    styleRuns.add(new CStyleRunData(line.length(),1,colors.getExpressionListColor()));
+    line.append('}');
+  }
+  if (hasExclamationMark) {
+    styleRuns.add(new CStyleRunData(line.length(),1,colors.getOperatorColor()));
+    line.append('!');
+  }
+}

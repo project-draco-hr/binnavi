@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(type,"IE01527: Type argument can't be null");
+  m_layoutSettings=new ZyGraphLayoutSettings(type);
+  m_proximitySettings=new ZyGraphProximitySettings(type);
+  m_searchSettings=new ZyGraphSearchSettings(type);
+  m_edgeSettings=new ZyGraphEdgeSettings(type);
+  m_displaySettings=new ZyGraphDisplaySettings(type);
+  m_mouseSettings=new ZyGraphMouseSettings(type);
+}

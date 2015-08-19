@@ -1,0 +1,6 @@
+{
+  this.sourceAddress=sourceAddress;
+  this.sourceModuleId=sourceModuleId;
+  this.targetAddress=targetAddress;
+  this.targetModuleId=targetModuleId;
+}

@@ -1,0 +1,100 @@
+{
+  try {
+    new CModule(0,"Name","Comment",new Date(),new Date(),md5,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    new CModule(1,null,"Comment",new Date(),new Date(),md5,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name",null,new Date(),new Date(),md5,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",null,new Date(),md5,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),null,md5,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),null,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),"123456781234567812345678123456789",sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,null,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,"12345678123456781234567812345678123456789",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,sha1,-1,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,sha1,0,-1,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,sha1,0,0,null,new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,sha1,0,0,new CAddress(0),null,null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CModule(1,"Name","Comment",new Date(),new Date(),md5,sha1,0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  final MockSqlProvider sql=new MockSqlProvider();
+  final CModule module=new CModule(123,"Name","Comment",new Date(),new Date(),md5,sha1,55,66,new CAddress(0x555),new CAddress(0x666),new DebuggerTemplate(1,"Mock Debugger","localhaus",88,sql),null,Integer.MAX_VALUE,false,sql);
+  assertEquals(123,module.getConfiguration().getId());
+  assertEquals("Name",module.getConfiguration().getName());
+  assertEquals("Comment",module.getConfiguration().getDescription());
+  assertEquals(md5,module.getConfiguration().getMD5());
+  assertEquals(sha1,module.getConfiguration().getSha1());
+  assertEquals(55,module.getFunctionCount());
+  assertEquals(66,module.getCustomViewCount());
+  assertEquals("00000555",module.getConfiguration().getFileBase().toHexString());
+  assertEquals("00000666",module.getConfiguration().getImageBase().toHexString());
+  assertEquals("Mock Debugger",module.getConfiguration().getDebuggerTemplate().getName());
+  assertNotNull(module.getConfiguration().getDebugger());
+  assertTrue(module.inSameDatabase(sql));
+}

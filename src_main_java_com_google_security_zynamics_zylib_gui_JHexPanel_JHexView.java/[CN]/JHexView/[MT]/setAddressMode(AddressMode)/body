@@ -1,0 +1,5 @@
+{
+  m_addressMode=Preconditions.checkNotNull(mode,"Error: Address mode can't be null");
+  updateOffsetViewWidth();
+  updatePreferredSize();
+}

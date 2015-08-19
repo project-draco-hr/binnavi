@@ -1,0 +1,9 @@
+{
+  final TreePath path=typesTree.getSelectionPath();
+  if (path != null && path.getLastPathComponent() instanceof TypeMemberTreeNode) {
+    return ((TypeMemberTreeNode)path.getLastPathComponent()).getTypeMember();
+  }
+ else {
+    return null;
+  }
+}

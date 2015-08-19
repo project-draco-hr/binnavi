@@ -1,0 +1,8 @@
+{
+  m_model.setActiveDebugger(m_debugger);
+  m_debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  assertEquals(AddressMode.BIT32,m_hexView.getAddressMode());
+  m_debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(64,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  assertEquals(AddressMode.BIT64,m_hexView.getAddressMode());
+  m_synchronizer.dispose();
+}

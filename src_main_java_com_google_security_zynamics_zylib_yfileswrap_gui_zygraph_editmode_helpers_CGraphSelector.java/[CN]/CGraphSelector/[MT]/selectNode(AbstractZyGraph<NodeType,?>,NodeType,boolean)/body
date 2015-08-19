@@ -1,0 +1,21 @@
+{
+  final Collection<NodeType> toSelect=new ArrayList<NodeType>();
+  final Collection<NodeType> toUnselect=new ArrayList<NodeType>();
+  for (  final NodeType n : graph.getNodes()) {
+    if (n == node) {
+      if (node.isSelected()) {
+        toUnselect.add(n);
+      }
+ else {
+        toSelect.add(n);
+      }
+    }
+ else     if (n.isSelected() && addToSelection) {
+      toSelect.add(n);
+    }
+ else {
+      toUnselect.add(n);
+    }
+  }
+  graph.selectNodes(toSelect,toUnselect);
+}

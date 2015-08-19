@@ -1,0 +1,33 @@
+{
+  final List<Byte> data=new ArrayList<Byte>();
+  ConditionNodeSwitcher.process(root,new NodeSwitcher<Void>(){
+    @Override public Void process(    final ExpressionNode node){
+      addAll(data,node.getOperator().getBytes());
+      return null;
+    }
+    @Override public Void process(    final FormulaNode node){
+      addAll(data,node.getOperator().getBytes());
+      return null;
+    }
+    @Override public Void process(    final IdentifierNode node){
+      addAll(data,node.getName().getBytes());
+      return null;
+    }
+    @Override public Void process(    final MemoryNode node){
+      return null;
+    }
+    @Override public Void process(    final NumberNode node){
+      addAll(data,ByteHelpers.toBigEndianDword(node.getValue()));
+      return null;
+    }
+    @Override public Void process(    final RelationNode node){
+      addAll(data,node.getOperator().getBytes());
+      return null;
+    }
+    @Override public Void process(    final SubNode node){
+      return null;
+    }
+  }
+);
+  return data;
+}

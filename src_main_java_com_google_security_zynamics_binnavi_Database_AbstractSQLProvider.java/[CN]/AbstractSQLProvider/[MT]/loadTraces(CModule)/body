@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTracesLoader.loadTraces(this,CTableNames.MODULE_TRACES_TABLE,"module_id",module.getConfiguration().getId(),getModules());
+}

@@ -1,0 +1,6 @@
+{
+  m_apiManager.addBookmark(new Address(0x1233),"Fark");
+  m_apiManager.addBookmark(new Address(0x1234),"Fark");
+  m_apiManager.addBookmark(new Address(0x1235),"Fark");
+  assertEquals("Bookmark Manager (Managing 3 Bookmarks)",m_apiManager.toString());
+}

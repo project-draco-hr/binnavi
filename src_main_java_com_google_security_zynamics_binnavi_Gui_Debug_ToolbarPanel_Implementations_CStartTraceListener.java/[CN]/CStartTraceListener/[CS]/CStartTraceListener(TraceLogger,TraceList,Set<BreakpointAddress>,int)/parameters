@@ -1,0 +1,4 @@
+TraceLogger logger
+TraceList trace
+Set<BreakpointAddress> addresses
+int maximumHits

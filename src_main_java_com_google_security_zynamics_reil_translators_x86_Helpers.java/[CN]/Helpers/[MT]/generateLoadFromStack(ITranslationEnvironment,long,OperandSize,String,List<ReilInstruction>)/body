@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(target,"Error: Argument target can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  long offset=baseOffset;
+  final OperandSize archSize=environment.getArchitectureSize();
+  if (size == archSize) {
+    Helpers.generatePop(environment,offset,size,target,instructions);
+  }
+ else {
+    final String loadedReg=Helpers.generatePop(environment,offset,size,null,instructions);
+    offset=offset + instructions.size();
+    final String maskedReg=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAnd(offset,size,target,size,"4294901760",size,maskedReg));
+    instructions.add(ReilHelpers.createOr(offset + 1,size,loadedReg,size,maskedReg,size,target));
+  }
+}

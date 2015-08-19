@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(description,"IE02077: Description argument can not be null");
+  m_savedDescription=description;
+  m_descriptionField.setText(description);
+  updateSaveFields();
+}

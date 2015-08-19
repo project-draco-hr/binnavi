@@ -1,0 +1,6 @@
+{
+  if ((m_address & 0x8000000000000000L) == 0) {
+    return BigInteger.valueOf(m_address);
+  }
+  return new BigInteger(Long.toHexString(m_address),16);
+}

@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(name,"IE00049: Name argument can not be null");
+  if (m_name.equals(name)) {
+    return;
+  }
+  m_provider.setName(m_addressSpace,name);
+  m_name=name;
+  for (  final IAddressSpaceConfigurationListener listener : m_listeners) {
+    try {
+      listener.changedName(m_addressSpace,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

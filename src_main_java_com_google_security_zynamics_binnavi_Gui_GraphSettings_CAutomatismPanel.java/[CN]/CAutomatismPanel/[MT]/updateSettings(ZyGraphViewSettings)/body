@@ -1,0 +1,12 @@
+{
+  settings.getLayoutSettings().setAutomaticLayouting(m_cbAutolayout.getSelectedIndex() == 0);
+  settings.getProximitySettings().setProximityBrowsing(m_cbProximityBrowsing.getSelectedIndex() == 0);
+  if (m_isDefaultSettingsDialog) {
+    settings.getLayoutSettings().setDefaultGraphLayout(LayoutStyle.parseInt(m_cbDefaultLayoutStyle.getSelectedIndex()));
+  }
+  settings.getProximitySettings().setProximityBrowsingActivationThreshold(Integer.valueOf(m_tfProximityBrowsingActivationThres.getText()));
+  settings.getLayoutSettings().setAutolayoutActivisionThreshold(Integer.valueOf(m_tfAutolayoutDeactivationThres.getText()));
+  settings.getLayoutSettings().setLayoutCalculationTimeWarningThreshold(Integer.valueOf(m_tfLayoutProcessingDurationWarningThres.getText()));
+  settings.getLayoutSettings().setVisibilityWarningThreshold(Integer.valueOf(m_tfVisibilityWarningThres.getText()));
+  return false;
+}

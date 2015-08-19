@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(type,"IE02023: Type argument can't be null");
+  m_type=type;
+  m_circularSettings=new ZyGraphCircularSettings(type);
+  m_hierarchicalSettings=new ZyGraphHierarchicalSettings(type);
+  m_orthogonalSettings=new ZyGraphOrthogonalSettings(type);
+}

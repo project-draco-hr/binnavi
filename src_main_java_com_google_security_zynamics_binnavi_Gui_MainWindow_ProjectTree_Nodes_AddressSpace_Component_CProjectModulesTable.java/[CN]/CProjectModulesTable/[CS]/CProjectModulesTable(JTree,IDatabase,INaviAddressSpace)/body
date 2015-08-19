@@ -1,0 +1,9 @@
+{
+  super(projectTree,new CProjectModulesModel(addressSpace),new CModulesTableHelp());
+  m_database=Preconditions.checkNotNull(database,"IE02868: database argument can not be null");
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"IE02869: addressSpace argument can not be null");
+  setDefaultRenderer(Object.class,new ModuleLoadedRenderer());
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.LOAD_HK.getKeyStroke(),"LOAD");
+  getActionMap().put("LOAD",CActionProxy.proxy(new LoadModuleAction()));
+}

@@ -1,0 +1,3 @@
+{
+  m_graph.removeListener(m_visibilityListener);
+}

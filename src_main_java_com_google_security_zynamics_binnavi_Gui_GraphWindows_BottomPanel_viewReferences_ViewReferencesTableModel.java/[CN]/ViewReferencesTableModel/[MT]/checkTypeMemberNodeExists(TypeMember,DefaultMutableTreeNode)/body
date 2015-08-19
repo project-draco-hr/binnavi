@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < currentNode.getChildCount(); i++) {
+    if (currentNode.getChildAt(i) instanceof TypeMemberTreeNode) {
+      if (((TypeMemberTreeNode)currentNode.getChildAt(i)).getTypeMember().equals(typeMember)) {
+        return (TypeMemberTreeNode)currentNode.getChildAt(i);
+      }
+    }
+  }
+  return null;
+}

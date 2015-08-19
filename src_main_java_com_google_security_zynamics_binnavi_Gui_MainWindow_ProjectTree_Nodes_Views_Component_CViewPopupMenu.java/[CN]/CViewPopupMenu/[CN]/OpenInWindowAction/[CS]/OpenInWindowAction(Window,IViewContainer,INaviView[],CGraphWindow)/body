@@ -1,0 +1,7 @@
+{
+  super(createTitle(graphWindow));
+  parentWindow=Preconditions.checkNotNull(parent,"IE02380: parent argument can not be null");
+  viewContainer=Preconditions.checkNotNull(container,"IE02381: container argument can not be null");
+  this.views=Preconditions.checkNotNull(views.clone(),"Error: views.clone() argument can not be null");
+  this.graphWindow=Preconditions.checkNotNull(graphWindow,"IE02382: graphWindow argument can not be null");
+}

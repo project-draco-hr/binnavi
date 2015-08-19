@@ -1,0 +1,6 @@
+{
+  super("Append member");
+  this.owner=owner;
+  this.typeManager=typeManager;
+  this.selectedType=selectedType;
+}

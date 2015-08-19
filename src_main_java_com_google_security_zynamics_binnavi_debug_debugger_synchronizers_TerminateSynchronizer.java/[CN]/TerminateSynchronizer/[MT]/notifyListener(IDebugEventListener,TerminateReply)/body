@@ -1,0 +1,6 @@
+{
+  listener.receivedReply(reply);
+  if (reply.success()) {
+    listener.debuggerClosed(reply.getErrorCode());
+  }
+}

@@ -1,0 +1,5 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE01396: Parent argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01397: Debugger argument can not be null");
+  m_memoryView=Preconditions.checkNotNull(memoryView,"IE01398: Memory view argument can not be null");
+}

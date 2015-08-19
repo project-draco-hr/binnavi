@@ -1,0 +1,16 @@
+{
+  assertEquals(7,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(96,m_graph.getRawView().getNodeCount());
+  int visibilityCounter=0;
+  int totalCounter=0;
+  for (  final NaviNode node : GraphHelpers.getNodes(m_graph)) {
+    assertEquals(node.isVisible(),node.getRawNode().isVisible());
+    if (node.isVisible()) {
+      visibilityCounter++;
+    }
+    totalCounter++;
+  }
+  assertEquals(7,visibilityCounter);
+  assertEquals(96,totalCounter);
+}

@@ -1,0 +1,12 @@
+int nodeId
+INaviFunction function
+double x
+double y
+double width
+double height
+Color color
+boolean selected
+boolean visible
+List<IComment> localComments
+Set<CTag> tags
+SQLProvider provider

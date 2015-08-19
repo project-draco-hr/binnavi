@@ -1,0 +1,6 @@
+{
+  super("Add Bookmark");
+  m_manager=Preconditions.checkNotNull(manager,"IE01248: Manager argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"IE01249: Module argument can not be null");
+  m_address=Preconditions.checkNotNull(address,"IE01250: Address argument can not be null");
+}

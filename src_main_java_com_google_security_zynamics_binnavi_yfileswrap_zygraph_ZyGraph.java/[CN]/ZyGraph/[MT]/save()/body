@@ -1,0 +1,5 @@
+{
+  m_rawView.save();
+  CSettingsFunctions.saveSettings(m_rawView,getView(),m_settings);
+  return true;
+}

@@ -1,0 +1,7 @@
+{
+  final ViewPortConfigurator vpc=new ViewPortConfigurator();
+  vpc.setGraph2D(exportView.getGraph2D());
+  vpc.setClipType(ViewPortConfigurator.CLIP_GRAPH);
+  vpc.setSizeType(ViewPortConfigurator.SIZE_USE_ORIGINAL);
+  vpc.configure(exportView);
+}

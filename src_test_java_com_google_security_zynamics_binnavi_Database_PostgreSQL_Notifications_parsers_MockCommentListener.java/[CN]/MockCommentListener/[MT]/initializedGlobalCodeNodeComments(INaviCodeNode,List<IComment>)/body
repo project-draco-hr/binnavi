@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(INIT_GLOBAL_CODE_NODE_COMMENT);
+}

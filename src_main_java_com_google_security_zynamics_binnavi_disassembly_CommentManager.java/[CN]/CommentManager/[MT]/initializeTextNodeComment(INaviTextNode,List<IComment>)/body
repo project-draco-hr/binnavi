@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(textnode,"IE00096: text node argument can not be null");
+  initializeComment(new TextNodeCommentingStrategy(textnode),comments);
+}

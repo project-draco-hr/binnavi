@@ -1,0 +1,10 @@
+{
+  final Graph2DView view=new ZyGraph2DView(new Graph2D());
+  view.setScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+  final DefaultBackgroundRenderer backgroundRenderer=new DefaultBackgroundRenderer(view);
+  backgroundRenderer.setImage(BACKGROUND_IMAGE);
+  backgroundRenderer.setMode(DefaultBackgroundRenderer.CENTERED);
+  backgroundRenderer.setColor(Color.white);
+  view.setBackgroundRenderer(backgroundRenderer);
+  add(view,BorderLayout.CENTER);
+}

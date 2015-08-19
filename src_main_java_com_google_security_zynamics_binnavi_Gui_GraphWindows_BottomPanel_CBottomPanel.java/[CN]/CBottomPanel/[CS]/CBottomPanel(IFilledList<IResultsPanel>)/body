@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(panels,"IE01658: Panels can't be null");
+  m_factory=new FilledList<IResultsPanel>(panels);
+  for (  final IResultsPanel panel : panels) {
+    panel.addListener(m_internalPanelListener);
+  }
+  createGui();
+}

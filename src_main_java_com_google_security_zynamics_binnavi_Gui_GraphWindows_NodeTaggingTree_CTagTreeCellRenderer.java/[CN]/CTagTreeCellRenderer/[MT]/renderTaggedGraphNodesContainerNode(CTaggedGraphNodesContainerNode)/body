@@ -1,0 +1,15 @@
+{
+  final List<NaviNode> graphNodes=node.getGraphNodes();
+  if (!graphNodes.isEmpty()) {
+    if (isAllTaggedAndSelected(graphNodes)) {
+      setForeground(COLOR_TAGGED_SELECTED_ALL);
+    }
+ else     if (isAnyTaggedAndSelected(graphNodes)) {
+      setForeground(COLOR_TAGGED_SELECTED_ANY);
+    }
+ else     if (isAllTaggedAndInvisible(graphNodes)) {
+      setForeground(COLOR_TAGGED_INVISIBLE);
+    }
+    setToolTipText(buildToolTip(node));
+  }
+}

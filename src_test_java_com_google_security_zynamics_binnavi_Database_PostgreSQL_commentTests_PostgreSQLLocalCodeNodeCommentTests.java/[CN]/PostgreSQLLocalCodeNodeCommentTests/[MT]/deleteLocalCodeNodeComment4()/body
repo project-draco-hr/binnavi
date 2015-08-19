@@ -1,0 +1,16 @@
+{
+  final List<IComment> comments=codeNode.getComments().getLocalCodeNodeComment() == null ? new ArrayList<IComment>() : codeNode.getComments().getLocalCodeNodeComment();
+  final IComment lastComment=comments.size() == 0 ? null : Iterables.getLast(comments);
+  final String commentString=" TEST DELETE LOCAL CODE NODE COMMENT ";
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final int commentId=getProvider().appendLocalCodeNodeComment(codeNode,commentString,user.getUserId());
+  final IComment newComment=new CComment(commentId,user,lastComment,commentString);
+  final ArrayList<IComment> storedComments=getProvider().loadCommentById(commentId);
+  assertNotNull(storedComments);
+  assertEquals(comments.size() + 1,storedComments.size());
+  assertEquals(newComment,Iterables.getLast(storedComments));
+  getProvider().deleteLocalCodeNodeComment(codeNode,commentId,newComment.getUser().getUserId());
+  final ArrayList<IComment> commentsAfterDelete=getProvider().loadCommentById(commentId);
+  assertNotNull(commentsAfterDelete);
+  assertTrue(commentsAfterDelete.isEmpty());
+}

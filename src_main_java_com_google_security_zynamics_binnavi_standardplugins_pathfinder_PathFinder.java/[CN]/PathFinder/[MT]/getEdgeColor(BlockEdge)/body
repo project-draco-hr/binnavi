@@ -1,0 +1,10 @@
+{
+switch (edge.getType()) {
+case JumpConditionalTrue:
+    return DEFAULT_TRUE_JUMP_COLOR;
+case JumpConditionalFalse:
+  return DEFAULT_FALSE_JUMP_COLOR;
+default :
+return Color.BLACK;
+}
+}

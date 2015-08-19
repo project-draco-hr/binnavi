@@ -1,0 +1,3 @@
+{
+  return (node instanceof INaviCodeNode && CCodeNodeHelpers.containsAddress((INaviCodeNode)node,address.getAddress())) || (node instanceof INaviFunctionNode && ((INaviFunctionNode)node).getFunction().getAddress().equals(address.getAddress()));
+}

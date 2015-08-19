@@ -1,0 +1,14 @@
+{
+  final IGraphModel graphModel=new MockGraphModel();
+  final CDebugPerspectiveModel model=new CDebugPerspectiveModel(graphModel);
+  final JHexView hexView=new JHexView();
+  final CMemoryProvider provider=new CMemoryProvider();
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  model.setActiveDebugger(debugger);
+  final CMemoryViewerSynchronizer synchronizer=new CMemoryViewerSynchronizer(hexView,provider,model);
+  debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  assertEquals(AddressMode.BIT32,hexView.getAddressMode());
+  debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(64,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  assertEquals(AddressMode.BIT64,hexView.getAddressMode());
+  synchronizer.dispose();
+}

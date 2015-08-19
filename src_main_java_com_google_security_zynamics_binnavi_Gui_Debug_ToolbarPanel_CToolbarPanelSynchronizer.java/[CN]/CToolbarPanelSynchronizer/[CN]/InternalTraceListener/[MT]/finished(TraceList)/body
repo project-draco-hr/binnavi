@@ -1,0 +1,17 @@
+{
+  try {
+    list.save();
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    for (    final IToolbarPanelSynchronizerListener listener : m_listeners) {
+      try {
+        listener.errorSavingTrace(list);
+      }
+ catch (      final Exception e) {
+        CUtilityFunctions.logException(e);
+      }
+    }
+  }
+  m_toolBar.updateGui();
+}

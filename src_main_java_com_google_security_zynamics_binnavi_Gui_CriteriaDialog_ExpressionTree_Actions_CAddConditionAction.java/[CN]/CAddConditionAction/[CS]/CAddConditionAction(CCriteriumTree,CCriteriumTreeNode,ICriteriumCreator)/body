@@ -1,0 +1,6 @@
+{
+  super(condition.getCriteriumDescription());
+  m_tree=tree;
+  m_parent=parent;
+  m_condition=condition;
+}

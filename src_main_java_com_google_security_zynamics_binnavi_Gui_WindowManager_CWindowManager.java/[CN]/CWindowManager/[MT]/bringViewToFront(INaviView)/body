@@ -1,0 +1,11 @@
+{
+  for (  final CGraphWindow graphContainer : getOpenWindows()) {
+    for (    final IGraphPanel window : graphContainer) {
+      if (window.getModel().getGraph().getRawView() == view) {
+        graphContainer.activate(window);
+        graphContainer.toFront();
+        return;
+      }
+    }
+  }
+}

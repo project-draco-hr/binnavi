@@ -1,0 +1,5 @@
+JList<? extends TargetProcessThread> list
+TargetProcessThread thread
+int index
+boolean isSelected
+boolean cellHasFocus

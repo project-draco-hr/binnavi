@@ -1,0 +1,25 @@
+{
+  final INaviModule mockModule=new MockModule();
+  final DebugTargetSettings target=new ModuleTargetSettings(mockModule);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(mockModule));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0)))));
+  final Breakpoint breakPoint=debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0))));
+  @SuppressWarnings("unused") final CAddress address=new CAddress(0);
+  final BaseNode root=new BaseNode();
+  final BreakpointCondition bpCondition=new BreakpointCondition("foo",root);
+  breakPoint.setCondition(bpCondition);
+  breakPoint.setDescription("purzel");
+  debuggerProvider.addDebugger(debugger);
+  @SuppressWarnings("unused") final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+  final int[] rows={0};
+  final int[] rows2={1};
+  assertFalse(CBreakpointFunctions.allDisabled(debuggerProvider,rows));
+  try {
+    CBreakpointRemoveFunctions.disableBreakpoints(debuggerProvider,rows2);
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  CBreakpointRemoveFunctions.disableBreakpoints(debuggerProvider,rows);
+  assertTrue(CBreakpointFunctions.allDisabled(debuggerProvider,rows));
+}

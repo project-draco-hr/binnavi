@@ -1,0 +1,3 @@
+{
+  this(defaultText,listener,"...",0,0,0);
+}

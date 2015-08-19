@@ -1,0 +1,13 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviView view=module.getContent().getViewContainer().getViews().get(0);
+  PostgreSQLViewFunctions.setName((AbstractSQLProvider)getProvider(),view,"furzel");
+  view.load();
+  PostgreSQLViewSaver.save((AbstractSQLProvider)getProvider(),(CView)view);
+  module.close();
+  final INaviModule module2=getProvider().loadModules().get(0);
+  module2.load();
+  final INaviView view2=module2.getContent().getViewContainer().getViews().get(0);
+  assertEquals("furzel",view2.getName());
+}

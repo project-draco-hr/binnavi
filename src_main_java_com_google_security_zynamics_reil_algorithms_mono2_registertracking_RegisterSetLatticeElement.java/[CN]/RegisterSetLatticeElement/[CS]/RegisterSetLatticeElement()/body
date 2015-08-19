@@ -1,0 +1,7 @@
+{
+  m_taintedRegs=new TreeSet<String>();
+  m_newlyTaintedRegs=new TreeSet<String>();
+  m_untaintedRegs=new TreeSet<String>();
+  m_readRegs=new TreeSet<String>();
+  m_updatedRegs=new TreeSet<String>();
+}

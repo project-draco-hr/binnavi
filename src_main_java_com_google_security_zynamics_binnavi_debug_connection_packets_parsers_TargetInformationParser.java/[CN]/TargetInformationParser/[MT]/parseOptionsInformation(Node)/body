@@ -1,0 +1,61 @@
+{
+  final NodeList nodes=node.getChildNodes();
+  final DebuggerOptionsBuilder builder=new DebuggerOptionsBuilder();
+  for (int i=0; i < nodes.getLength(); ++i) {
+    final Node child=nodes.item(i);
+    final String name=getAttribute(child,"name");
+switch (TargetInformationDebuggerOptions.getEnum(name)) {
+case CAN_DETACH:
+      builder.canDetach(parseBooleanOption(child));
+    break;
+case CAN_ATTACH:
+  builder.canAttach(parseBooleanOption(child));
+break;
+case CAN_TERMINATE:
+builder.canTerminate(parseBooleanOption(child));
+break;
+case HAS_STACK:
+builder.stackAvailable(parseBooleanOption(child));
+break;
+case CAN_VALIDATE_MEMORY:
+builder.canValidateMemory(parseBooleanOption(child));
+break;
+case CAN_HALT:
+builder.canHalt(parseBooleanOption(child));
+break;
+case CAN_HALT_BEFORE_COMMUNICATING:
+builder.canHaltBeforeCommunicating(parseBooleanOption(child));
+break;
+case CAN_MULTI_THREAD:
+builder.canMultithread(parseBooleanOption(child));
+break;
+case CAN_SOFTWARE_BREAKPOINTS:
+builder.canSoftwareBreakpoints(parseBooleanOption(child));
+break;
+case BREAKPOINT_COUNT:
+builder.breakpointCounter(parseIntOption(child,"value"));
+break;
+case PAGE_SIZE:
+builder.pageSize(parseIntOption(child,"value"));
+break;
+case CAN_BREAK_ON_MODULE_LOAD:
+builder.canBreakOnModuleLoad(parseBooleanOption(child));
+break;
+case CAN_BREAK_ON_MODULE_UNLOAD:
+builder.canBreakOnModuleUnload(parseBooleanOption(child));
+break;
+case EXCEPTION:
+builder.addException(parseExceptionOption(child));
+break;
+case CAN_TRACE_COUNT:
+builder.canTraceCounts(parseBooleanOption(child));
+break;
+case CAN_MEMMAP:
+builder.canMemmap(parseBooleanOption(child));
+break;
+default :
+throw new MessageParserException(String.format("Invalid attribute '%s' found in debugger options string",name));
+}
+}
+return builder.build();
+}

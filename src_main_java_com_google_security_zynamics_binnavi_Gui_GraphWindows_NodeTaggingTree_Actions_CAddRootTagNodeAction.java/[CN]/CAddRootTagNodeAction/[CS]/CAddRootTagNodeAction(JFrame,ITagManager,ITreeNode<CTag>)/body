@@ -1,0 +1,6 @@
+{
+  super("Create Root Tag");
+  m_parent=Preconditions.checkNotNull(parent,"IE01780: Parent argument can not be null.");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE02309: Tag manager arguemnt can not be null");
+  m_parentTag=Preconditions.checkNotNull(parentTag,"IE02310: Parent tag arguemnt can not be null");
+}

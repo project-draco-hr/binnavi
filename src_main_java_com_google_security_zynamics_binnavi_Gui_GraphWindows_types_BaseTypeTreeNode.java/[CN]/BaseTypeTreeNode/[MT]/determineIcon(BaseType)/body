@@ -1,0 +1,18 @@
+{
+switch (baseType.getCategory()) {
+case ATOMIC:
+    return TypeSystemIcons.ATOMIC_ICON;
+case POINTER:
+  return TypeSystemIcons.POINTER_ICON;
+case ARRAY:
+return TypeSystemIcons.ARRAY_ICON;
+case STRUCT:
+return TypeSystemIcons.STRUCT_ICON;
+case UNION:
+return TypeSystemIcons.UNION_ICON;
+case FUNCTION_PROTOTYPE:
+return TypeSystemIcons.FUNCTION_POINTER_ICON;
+default :
+return null;
+}
+}

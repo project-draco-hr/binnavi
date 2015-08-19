@@ -1,0 +1,8 @@
+{
+  if (m_textArea.getSelectedText().isEmpty()) {
+    ClipboardHelpers.copyToClipboard(m_textArea.getText());
+  }
+ else {
+    ClipboardHelpers.copyToClipboard(m_textArea.getSelectedText());
+  }
+}

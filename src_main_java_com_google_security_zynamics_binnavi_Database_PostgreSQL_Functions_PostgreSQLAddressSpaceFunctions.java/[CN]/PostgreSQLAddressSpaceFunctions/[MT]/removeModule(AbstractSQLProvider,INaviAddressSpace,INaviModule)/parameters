@@ -1,0 +1,3 @@
+AbstractSQLProvider provider
+INaviAddressSpace addressSpace
+INaviModule module

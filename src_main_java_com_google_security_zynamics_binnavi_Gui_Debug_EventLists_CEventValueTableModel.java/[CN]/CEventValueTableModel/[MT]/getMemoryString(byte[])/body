@@ -1,0 +1,10 @@
+{
+  final StringBuffer stringBuffer=new StringBuffer();
+  for (int i=0; i < memory.length; i++) {
+    stringBuffer.append(String.format("%02X",memory[i]));
+    if (i != memory.length - 1) {
+      stringBuffer.append(' ');
+    }
+  }
+  return stringBuffer.toString();
+}

@@ -1,0 +1,3 @@
+{
+  CShowViewFunctions.showViewInNewWindow(getParentWindow(),viewContainer,getViews(getSortSelectedRows()));
+}

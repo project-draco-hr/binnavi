@@ -1,0 +1,9 @@
+{
+  try {
+    final TargetProcessThread thread=processManager.getThread(threadId);
+    processManager.setActiveThread(thread);
+  }
+ catch (  final MaybeNullException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

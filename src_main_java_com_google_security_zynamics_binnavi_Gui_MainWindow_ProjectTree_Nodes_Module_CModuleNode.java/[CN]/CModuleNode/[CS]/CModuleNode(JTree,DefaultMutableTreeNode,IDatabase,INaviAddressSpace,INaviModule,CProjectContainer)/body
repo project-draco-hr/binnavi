@@ -1,0 +1,15 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CModuleNodeComponent(projectTree,database,addressSpace,module,contextContainer);
+    }
+  }
+,new CModuleNodeMenuBuilder(projectTree,parentNode,database,addressSpace,new INaviModule[]{module},null),module);
+  Preconditions.checkNotNull(database,"IE01972: Database argument can't be null");
+  Preconditions.checkNotNull(addressSpace,"IE01973: Address space can't be null");
+  m_module=Preconditions.checkNotNull(module,"IE01974: Module can't be null");
+  m_contextContainer=contextContainer;
+  createChildren();
+  m_listener=new InternalModuleListener();
+  m_module.addListener(m_listener);
+}

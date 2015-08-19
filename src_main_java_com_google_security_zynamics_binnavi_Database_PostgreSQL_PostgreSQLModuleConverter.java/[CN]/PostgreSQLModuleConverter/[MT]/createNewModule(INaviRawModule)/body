@@ -1,0 +1,3 @@
+{
+  return PostgreSQLModuleCreator.createNewModule(m_provider.getConnection(),rawModule.getId());
+}

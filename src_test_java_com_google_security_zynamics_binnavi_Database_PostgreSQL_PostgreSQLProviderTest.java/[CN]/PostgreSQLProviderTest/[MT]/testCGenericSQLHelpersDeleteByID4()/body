@@ -1,0 +1,6 @@
+{
+  final AbstractSQLProvider connectionProvider=(AbstractSQLProvider)getProvider();
+  final CConnection connection=connectionProvider.getConnection();
+  final String tableName=CTableNames.ADDRESS_SPACES_TABLE;
+  PostgreSQLHelpers.deleteById(connection,tableName,0);
+}

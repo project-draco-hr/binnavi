@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(value,"IE00886: Mouse wheel action argument can't be null");
+  if (value == getMouseWheelAction()) {
+    return;
+  }
+  if (m_type == null) {
+    m_mouseWheelAction=value;
+  }
+ else {
+    m_type.setMouseWheelAction(value.ordinal());
+  }
+}

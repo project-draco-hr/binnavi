@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(backendInstance,"Error: backendInstance argument can not be null");
+  instancesById.remove(backendInstance);
+}

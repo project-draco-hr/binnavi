@@ -1,0 +1,9 @@
+{
+  super(owner,"Text Node Comments",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(owner,"IE02711: owner argument can not be null");
+  Preconditions.checkNotNull(textNode,"IE02712: textNode argument can not be null");
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  m_commentsPanel=new TextNodeCommentsPanel(textNode);
+  createGui();
+}

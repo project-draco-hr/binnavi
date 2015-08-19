@@ -1,0 +1,7 @@
+{
+  if (isBetaVersion() && hasExpired()) {
+    CMessageBox.showInformation(parent,String.format("Your beta version of %s has expired.",Constants.PROJECT_NAME_VERSION));
+    return false;
+  }
+  return true;
+}

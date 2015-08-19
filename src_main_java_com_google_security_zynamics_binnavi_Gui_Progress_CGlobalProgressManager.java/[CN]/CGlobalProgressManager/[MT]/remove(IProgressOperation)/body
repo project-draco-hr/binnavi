@@ -1,0 +1,11 @@
+{
+  m_operations.remove(operation);
+  for (  final IGlobalProgressManagerListener listener : m_listeners) {
+    try {
+      listener.removed(operation);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

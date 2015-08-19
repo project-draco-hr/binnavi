@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(notifications,"Error: notifications argument can not be null");
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  final Collection<TypeInstancesNotificationContainer> containers=Lists.newArrayList();
+  for (  final PGNotification notification : notifications) {
+    if (notification.getParameter().startsWith(CTableNames.TYPE_INSTANCE_TABLE)) {
+      containers.add(parseTypeInstanceNotification(notification));
+    }
+ else     if (notification.getParameter().startsWith(CTableNames.EXPRESSION_TYPE_INSTANCES_TABLE)) {
+      containers.add(parseExpressionTypeInstanceNotification(notification));
+    }
+ else {
+      throw new IllegalStateException("Error: Table name supplied in notification " + notification.getParameter() + " does not match tables where type instance notifications are accepted on.");
+    }
+  }
+  return containers;
+}

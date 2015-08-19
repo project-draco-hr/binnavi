@@ -1,0 +1,3 @@
+{
+  getProvider().deleteGlobalCodeNodeComment(codeNode,null,null);
+}

@@ -1,0 +1,17 @@
+{
+  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,hasFocus);
+  if (value instanceof JCriteriumTreeNode) {
+    final JCriteriumTreeNode node=(JCriteriumTreeNode)value;
+    final int count=node.getChildCount();
+    final ICriterium type=node.getCriterium();
+    if (!(type instanceof CConditionCriterium)) {
+      if (count == 1 && (type instanceof CNotCriterium || node.getLevel() == 0) || count > 1 && !(type instanceof CNotCriterium)) {
+        setForeground(VALID_NODE_FONT_COLOR);
+      }
+ else {
+        setForeground(INVALID_NODE_FONT_COLOR);
+      }
+    }
+  }
+  return this;
+}

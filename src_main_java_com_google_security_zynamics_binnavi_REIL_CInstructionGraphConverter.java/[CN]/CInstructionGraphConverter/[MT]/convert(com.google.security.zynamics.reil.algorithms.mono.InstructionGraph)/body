@@ -1,0 +1,16 @@
+{
+  final List<InstructionGraphNode> nodes=new ArrayList<InstructionGraphNode>();
+  final List<InstructionGraphEdge> edges=new ArrayList<InstructionGraphEdge>();
+  final Map<com.google.security.zynamics.reil.algorithms.mono.InstructionGraphNode,InstructionGraphNode> nodeMap=new HashMap<com.google.security.zynamics.reil.algorithms.mono.InstructionGraphNode,InstructionGraphNode>();
+  for (  final com.google.security.zynamics.reil.algorithms.mono.InstructionGraphNode node : graph) {
+    final InstructionGraphNode convertedNode=new InstructionGraphNode(new ReilInstruction(node.getInstruction()));
+    nodeMap.put(node,convertedNode);
+    nodes.add(convertedNode);
+  }
+  for (  final com.google.security.zynamics.reil.algorithms.mono.InstructionGraphEdge edge : graph.getEdges()) {
+    final InstructionGraphEdge convertedEdge=new InstructionGraphEdge(nodeMap.get(edge.getSource()),nodeMap.get(edge.getTarget()),EdgeType.convert(edge.getType()));
+    edges.add(convertedEdge);
+    InstructionGraphNode.link(nodeMap.get(edge.getSource()),nodeMap.get(edge.getTarget()),convertedEdge);
+  }
+  return new InstructionGraph(nodes,edges);
+}

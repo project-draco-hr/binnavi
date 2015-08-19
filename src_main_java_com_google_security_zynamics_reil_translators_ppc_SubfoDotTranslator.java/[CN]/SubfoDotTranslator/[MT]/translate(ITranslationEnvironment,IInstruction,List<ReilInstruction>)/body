@@ -1,0 +1,6 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"subfo.");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  SubGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"subfo.",registerOperand2.getValue(),registerOperand1.getValue(),true,true,false,false);
+}

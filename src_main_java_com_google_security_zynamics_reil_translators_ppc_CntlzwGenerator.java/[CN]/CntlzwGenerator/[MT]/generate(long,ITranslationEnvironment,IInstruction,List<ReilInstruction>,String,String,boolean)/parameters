@@ -1,0 +1,7 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String mnemonic
+String secondOperand
+boolean setCr

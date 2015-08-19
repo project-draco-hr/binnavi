@@ -1,0 +1,18 @@
+{
+  idaDirectory=properties.getString(IDA_DIRECTORY,IDA_DIRECTORY_DEFAULT);
+  defaultExporter=properties.getInteger(DEFAULT_EXPORTER,DEFAULT_EXPORTER_DEFAULT);
+  supportEmailAddress=properties.getString(SUPPORT_EMAIL_ADDRESS,SUPPORT_EMAIL_ADDRESS_DEFAULT);
+  showExpiringInformation=properties.getBoolean(SHOW_EXPIRING_INFORMATION,SHOW_EXPIRING_INFORMATION_DEFAULT);
+  showExpiredInformation=properties.getBoolean(SHOW_EXPIRED_INFORMATION,SHOW_EXPIRED_INFORMATION_DEFAULT);
+  maximizeWindow=properties.getBoolean(MAXIMIZE_WINDOW,MAXIMIZE_WINDOW_DEFAULT);
+  logLevel=properties.getInteger(LOG_LEVEL,LOG_LEVEL_DEFAULT);
+  defaultScriptingLanguage=properties.getString(DEFAULT_SCRIPTING_LANGUAGE,DEFAULT_SCRIPTING_LANGUAGE_DEFAULT);
+  lastOpenWindow.load(properties);
+  graphWindow.load(properties);
+  lastDirectory=properties.getString(LAST_DIRECTORY,LAST_DIRECTORY_DEFAULT);
+  for (int i=0; i < properties.getInteger(PLUGINS_COUNT,PLUGINS_COUNT_DEFAULT); i++) {
+    final PluginConfigItem plugin=new PluginConfigItem();
+    plugin.loadWithKeyPrefix(properties,PLUGINS_PREFIX + i + ".");
+    plugins.add(plugin);
+  }
+}

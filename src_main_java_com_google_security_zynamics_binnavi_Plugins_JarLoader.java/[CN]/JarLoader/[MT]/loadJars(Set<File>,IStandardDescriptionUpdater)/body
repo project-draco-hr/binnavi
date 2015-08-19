@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(jarFiles,"IE00700: JAR files argument can not be null");
+  Preconditions.checkNotNull(descriptionUpdater,"IE00701: Description updater argument can not be null");
+  descriptionUpdater.reset();
+  descriptionUpdater.setMaximum(jarFiles.size());
+  for (  final File file : jarFiles) {
+    descriptionUpdater.next();
+    descriptionUpdater.setDescription(String.format("Loading JAR file %s",file.getName()));
+    NaviLogger.info("Loading JAR file %s",file.getAbsolutePath());
+    ClassPathHacker.addFile(file);
+  }
+}

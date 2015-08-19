@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Set Debugger Event Settings\" message to the debug client");
+  return sendPacket(new SetDebuggerEventSettingsCommand(getMessageId(),eventSettings));
+}

@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  m_bookmarkManager=new CCodeBookmarkManager();
+  m_bookmarkTable=new CCodeBookmarkTable(m_bookmarkManager);
+  add(new JScrollPane(m_bookmarkTable),BorderLayout.CENTER);
+}

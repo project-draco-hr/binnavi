@@ -1,0 +1,3 @@
+{
+  return new EdgeCursorProxyIterator(m_Node,m_incoming);
+}

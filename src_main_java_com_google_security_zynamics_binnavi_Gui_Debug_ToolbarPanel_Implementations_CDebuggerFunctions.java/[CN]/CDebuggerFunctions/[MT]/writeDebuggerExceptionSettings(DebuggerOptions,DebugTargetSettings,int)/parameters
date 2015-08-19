@@ -1,0 +1,3 @@
+DebuggerOptions options
+DebugTargetSettings target
+int debuggerId

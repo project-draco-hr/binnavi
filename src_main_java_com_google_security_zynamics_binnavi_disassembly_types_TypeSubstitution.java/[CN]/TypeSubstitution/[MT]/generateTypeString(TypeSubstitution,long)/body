@@ -1,0 +1,17 @@
+{
+  final BaseType baseType=typeSubstitution.getBaseType();
+  final int totaBitOffset=(int)(operandValue) * 8 + typeSubstitution.getOffset();
+switch (baseType.getCategory()) {
+case STRUCT:
+    return renderStruct(baseType,totaBitOffset);
+case UNION:
+  return renderUnion(baseType,typeSubstitution.getMemberPath(),totaBitOffset);
+case ARRAY:
+return renderArray(baseType,totaBitOffset);
+case ATOMIC:
+case POINTER:
+return renderAtomic(baseType,totaBitOffset);
+default :
+return "";
+}
+}

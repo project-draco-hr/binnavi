@@ -1,0 +1,6 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"andi.");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode literalOperand1=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  AndGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"andi.",registerOperand1.getValue(),literalOperand1.getValue(),true,false,false);
+}

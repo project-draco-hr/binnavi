@@ -1,0 +1,8 @@
+{
+  for (  final NodeType node : all) {
+    Preconditions.checkNotNull(node,"Error: The list of nodes to show contained an invalid node");
+    if (!((IViewNode<?>)node.getRawNode()).isVisible()) {
+      ((IViewNode<?>)node.getRawNode()).setVisible(true);
+    }
+  }
+}

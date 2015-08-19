@@ -1,0 +1,3 @@
+{
+  openDatabaseThreaded(SwingUtilities.getWindowAncestor(projectTree),projectTree,database);
+}

@@ -1,0 +1,2 @@
+ReilGraph graph
+Map<ReilBlock,Pair<List<OperandGraphNode>,List<OperandGraphEdge>>> graphMap

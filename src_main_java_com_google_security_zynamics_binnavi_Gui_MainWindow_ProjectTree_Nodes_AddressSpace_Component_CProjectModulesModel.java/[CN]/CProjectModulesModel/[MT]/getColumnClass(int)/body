@@ -1,0 +1,16 @@
+{
+switch (columnIndex) {
+case NAME_COLUMN:
+    return String.class;
+case DESCRIPTION_COLUMN:
+  return String.class;
+case VIEWS_COLUMN:
+return Integer.class;
+case CREATION_DATE_COLUMN:
+return Date.class;
+case MODIFICATION_DATE_COLUMN:
+return Date.class;
+default :
+throw new IllegalArgumentException(String.format("Unexpected column index retrieved while determining column classes: %d",columnIndex));
+}
+}

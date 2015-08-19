@@ -1,0 +1,4 @@
+SQLProvider provider
+INaviOperandTreeNode rootNode
+int parent
+Set<INaviOperandTreeNode> nodes

@@ -1,0 +1,3 @@
+{
+  typeSystem.uintType.setSize(-1);
+}

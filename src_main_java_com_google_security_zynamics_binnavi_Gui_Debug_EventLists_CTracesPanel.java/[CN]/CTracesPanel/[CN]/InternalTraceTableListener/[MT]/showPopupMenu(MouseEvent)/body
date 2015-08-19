@@ -1,0 +1,15 @@
+{
+  final int mouseRow=m_traceTable.rowAtPoint(event.getPoint());
+  if (mouseRow != -1) {
+    final int[] rows=m_traceTable.getSelectedRows();
+    if (Ints.asList(rows).indexOf(mouseRow) != -1) {
+      m_traceTable.setRowSelectionInterval(mouseRow,mouseRow);
+    }
+  }
+  final int minIndex=m_traceTable.getSelectionModel().getMinSelectionIndex();
+  if (minIndex != -1) {
+    final CTagsTree tagsTree=m_graphPanel.getTagsTree();
+    final JPopupMenu popupMenu=new CEventListTableMenu((JFrame)SwingUtilities.getWindowAncestor(CTracesPanel.this),m_traceTable,m_graph,m_traceProvider,tagsTree);
+    popupMenu.show(m_traceTable,event.getX(),event.getY());
+  }
+}

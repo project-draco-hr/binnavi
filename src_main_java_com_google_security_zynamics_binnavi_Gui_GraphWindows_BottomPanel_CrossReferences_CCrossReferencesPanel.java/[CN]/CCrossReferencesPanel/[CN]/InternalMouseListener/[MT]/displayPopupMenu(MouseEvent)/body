@@ -1,0 +1,8 @@
+{
+  final int selectedIndex=m_table.rowAtPoint(event.getPoint());
+  if (selectedIndex != -1) {
+    final CCrossReference reference=m_crossReferences.get(selectedIndex);
+    final CCrossReferencesTableMenu popupMenu=new CCrossReferencesTableMenu(m_parent,m_viewContainer,reference.getCallingFunction());
+    popupMenu.show(m_table,event.getX(),event.getY());
+  }
+}

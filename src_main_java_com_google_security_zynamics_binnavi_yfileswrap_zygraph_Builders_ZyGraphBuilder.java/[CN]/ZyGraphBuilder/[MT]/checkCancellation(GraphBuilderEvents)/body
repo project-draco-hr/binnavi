@@ -1,0 +1,5 @@
+{
+  if (!m_loadReporter.report(event)) {
+    throw new LoadCancelledException();
+  }
+}

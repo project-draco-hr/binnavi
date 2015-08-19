@@ -1,0 +1,3 @@
+{
+  return "This table shows the views that contain instructions that were hit by events in the selected trace.\n\nType: Type of the view\nName: Name of the view\nDescription: Description of the view\nNodes: Number of nodes in the view\nEdges: Number of edges in the view\nCreation Date: Date when the view was created\nModification Date: Date when the view was last modified";
+}

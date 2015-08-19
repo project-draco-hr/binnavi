@@ -1,0 +1,5 @@
+{
+  m_graph.removeListener(m_graphSelectionListener);
+  m_graph.selectNodes(toUnselect,false);
+  m_graph.addListener(m_graphSelectionListener);
+}

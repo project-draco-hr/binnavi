@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(imageBase,"IE00201: Image base argument can not be null");
+  if (imageBase.equals(m_imageBase)) {
+    return;
+  }
+  m_provider.setImageBase(m_module,imageBase);
+  m_imageBase=imageBase;
+  if (m_debugger != null) {
+    m_debugger.setAddressTranslator(m_module,m_fileBase,m_imageBase);
+  }
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedImageBase(m_module,imageBase);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

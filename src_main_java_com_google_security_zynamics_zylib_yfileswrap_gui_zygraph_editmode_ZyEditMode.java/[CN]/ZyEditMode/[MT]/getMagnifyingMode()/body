@@ -1,0 +1,8 @@
+{
+  for (final Iterator<?> iter=m_graph.getView().getViewModes(); iter.hasNext(); ) {
+    if (iter.next() == m_magifierViewMode) {
+      return true;
+    }
+  }
+  return false;
+}

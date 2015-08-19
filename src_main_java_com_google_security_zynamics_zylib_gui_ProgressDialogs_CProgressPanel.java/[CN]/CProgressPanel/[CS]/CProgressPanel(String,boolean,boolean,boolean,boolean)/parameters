@@ -1,0 +1,5 @@
+String description
+boolean indeterminate
+boolean showSeconds
+boolean border
+boolean showCancelButton

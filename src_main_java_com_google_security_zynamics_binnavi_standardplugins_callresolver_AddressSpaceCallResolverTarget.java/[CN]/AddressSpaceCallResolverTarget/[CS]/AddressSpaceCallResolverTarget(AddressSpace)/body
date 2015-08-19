@@ -1,0 +1,4 @@
+{
+  this.addressSpace=addressSpace;
+  addressSpace.addListener(internalAddressSpaceListener);
+}

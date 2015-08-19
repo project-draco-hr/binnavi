@@ -1,0 +1,31 @@
+{
+switch (edge.getType()) {
+case JUMP_CONDITIONAL_FALSE:
+    realizer.setLineType(LineType.LINE_2);
+  return;
+case JUMP_CONDITIONAL_FALSE_LOOP:
+realizer.setLineType(LineType.DASHED_DOTTED_2);
+return;
+case JUMP_CONDITIONAL_TRUE:
+realizer.setLineType(LineType.LINE_2);
+return;
+case JUMP_CONDITIONAL_TRUE_LOOP:
+realizer.setLineType(LineType.DASHED_DOTTED_2);
+return;
+case JUMP_UNCONDITIONAL_LOOP:
+realizer.setLineType(LineType.DASHED_DOTTED_2);
+return;
+case ENTER_INLINED_FUNCTION:
+realizer.setLineType(LineType.DASHED_2);
+return;
+case LEAVE_INLINED_FUNCTION:
+realizer.setLineType(LineType.DASHED_2);
+return;
+case TEXTNODE_EDGE:
+realizer.setArrow(Arrow.WHITE_DIAMOND);
+return;
+default :
+realizer.setLineType(LineType.LINE_2);
+return;
+}
+}

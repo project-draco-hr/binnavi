@@ -1,0 +1,6 @@
+{
+  mockDebugger.connect();
+  debuggerSynchronizer.receivedEvent(new ProcessClosedReply(0,0));
+  assertFalse(mockDebugger.isConnected());
+  assertEquals("PROCESS_CLOSED;",listener.events);
+}

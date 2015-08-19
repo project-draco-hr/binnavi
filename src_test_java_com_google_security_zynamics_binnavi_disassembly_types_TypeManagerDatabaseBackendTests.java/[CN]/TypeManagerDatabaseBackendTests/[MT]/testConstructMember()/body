@@ -1,0 +1,16 @@
+{
+  final BaseType intType=backend.createType("test_int",32,true,null,BaseTypeCategory.ATOMIC);
+  final BaseType structType=backend.createType("test_struct",500,false,null,BaseTypeCategory.STRUCT);
+  final String memberName="test_member";
+  final Optional<Integer> offset=Optional.of(0);
+  final Optional<Integer> numberElements=Optional.<Integer>absent();
+  final TypeMember member=backend.createStructureMember(structType,intType,memberName,offset.get());
+  final RawTypeMember rawMember=mockProvider.loadTypeMember(mockModule,member.getId());
+  Assert.assertEquals(member.getId(),rawMember.getId());
+  Assert.assertEquals(intType.getId(),rawMember.getBaseTypeId());
+  Assert.assertEquals(numberElements,rawMember.getNumberOfElements());
+  Assert.assertEquals(Optional.<Integer>absent(),rawMember.getArgumentIndex());
+  Assert.assertEquals(memberName,rawMember.getName());
+  Assert.assertEquals(offset,rawMember.getOffset());
+  Assert.assertEquals((Integer)structType.getId(),rawMember.getParentId());
+}

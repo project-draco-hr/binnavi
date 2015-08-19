@@ -1,0 +1,19 @@
+{
+  assertTrue(BreakpointHelpers.getBreakpoints(m_debugger,m_node).isEmpty());
+  m_debugger.getBreakpointManager().getNative().addBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x1234)))));
+  final List<Address> breakpoints=BreakpointHelpers.getBreakpoints(m_debugger,m_node);
+  assertEquals(1,breakpoints.size());
+  assertEquals(0x1234,breakpoints.get(0).toLong());
+  try {
+    BreakpointHelpers.getBreakpoints(null,m_node);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    BreakpointHelpers.getBreakpoints(m_debugger,(CodeNode)null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+}

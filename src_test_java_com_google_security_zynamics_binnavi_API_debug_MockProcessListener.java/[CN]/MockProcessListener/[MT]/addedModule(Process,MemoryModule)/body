@@ -1,0 +1,3 @@
+{
+  events+=String.format("addedModule/%s;",module.getName());
+}

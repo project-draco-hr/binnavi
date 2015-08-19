@@ -1,0 +1,3 @@
+MouseWheelEvent event
+boolean zoomOut
+boolean centerSelected

@@ -1,0 +1,3 @@
+{
+  return view.getType() == ViewType.Native ? loadNativeSettings(view) : loadNonNativeSettings(view);
+}

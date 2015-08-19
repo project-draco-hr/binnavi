@@ -1,0 +1,27 @@
+{
+  for (  final com.google.security.zynamics.binnavi.debug.models.breakpoints.Breakpoint breakpoint : breakpoints) {
+    final Breakpoint newBreakpoint=new Breakpoint(breakpoint);
+    if (breakpoint.getType() == BreakpointType.REGULAR) {
+      breakpointMap.put(breakpoint,newBreakpoint);
+      for (      final IBreakpointManagerListener listener : listeners) {
+        try {
+          listener.addedBreakpoint(BreakpointManager.this,newBreakpoint);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+ else     if (breakpoint.getType() == BreakpointType.ECHO) {
+      echoBreakpointMap.put(breakpoint,newBreakpoint);
+      for (      final IBreakpointManagerListener listener : listeners) {
+        try {
+          listener.addedEchoBreakpoint(BreakpointManager.this,newBreakpoint);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+JTree jtree
+CCriteriumTree criteriumTree
+List<ICriteriumCreator> criteria

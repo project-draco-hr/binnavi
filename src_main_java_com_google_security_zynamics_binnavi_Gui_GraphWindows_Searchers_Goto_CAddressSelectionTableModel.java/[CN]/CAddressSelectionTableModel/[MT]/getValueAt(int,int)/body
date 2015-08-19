@@ -1,0 +1,13 @@
+{
+  if ((row >= 0) && (row < m_modules.size())) {
+switch (col) {
+case 0:
+      return m_modules.get(row);
+default :
+    throw new IllegalArgumentException("IE01394: Unknown column");
+}
+}
+ else {
+throw new IllegalStateException("IE01122: Unknown row");
+}
+}

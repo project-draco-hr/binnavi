@@ -1,0 +1,10 @@
+{
+  for (  final IMemoryListener listener : m_listeners) {
+    try {
+      listener.clearedMemory(Memory.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

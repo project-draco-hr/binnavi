@@ -1,0 +1,3 @@
+INaviView view
+IViewNode<?> node
+boolean visible

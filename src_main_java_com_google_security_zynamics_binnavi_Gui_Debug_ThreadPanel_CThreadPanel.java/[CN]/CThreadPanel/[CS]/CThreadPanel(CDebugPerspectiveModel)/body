@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01518: Debug perspective model argument can not be null");
+  setBorder(new TitledBorder(""));
+  final JLabel threadLabel=new JLabel("Thread ID");
+  threadLabel.setBorder(BorderFactory.createEmptyBorder(0,0,0,5));
+  add(threadLabel,BorderLayout.WEST);
+  add(m_tidBox,BorderLayout.CENTER);
+  m_synchronizer=new CThreadPanelSynchronizer(m_tidBox,debugPerspectiveModel);
+}

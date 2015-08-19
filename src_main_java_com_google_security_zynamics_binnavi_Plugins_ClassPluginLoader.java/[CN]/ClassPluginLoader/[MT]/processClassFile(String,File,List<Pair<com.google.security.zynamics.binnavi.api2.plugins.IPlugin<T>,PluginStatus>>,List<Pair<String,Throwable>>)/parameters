@@ -1,0 +1,4 @@
+String directory
+File pluginFile
+List<Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>> loadedPlugins
+List<Pair<String,Throwable>> failedPlugins

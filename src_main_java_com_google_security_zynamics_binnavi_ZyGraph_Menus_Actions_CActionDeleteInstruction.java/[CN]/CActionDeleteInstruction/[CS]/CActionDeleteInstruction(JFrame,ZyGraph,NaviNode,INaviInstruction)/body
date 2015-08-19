@@ -1,0 +1,7 @@
+{
+  super("Delete Instruction");
+  m_parent=Preconditions.checkNotNull(parent,"IE00926: Parent argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE00927: Graph argument can not be null");
+  m_codeNode=Preconditions.checkNotNull(codeNode,"IE00928: Code node argument can't be null");
+  m_instruction=Preconditions.checkNotNull(instruction,"IE00929: Instruction argument can't be null");
+}

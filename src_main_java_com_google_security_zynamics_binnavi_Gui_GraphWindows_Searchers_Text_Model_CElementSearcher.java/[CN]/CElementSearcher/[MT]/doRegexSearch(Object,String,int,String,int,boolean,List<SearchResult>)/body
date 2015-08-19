@@ -1,0 +1,22 @@
+{
+  final Pattern pattern=caseSensitive ? Pattern.compile(localSearchString) : Pattern.compile(localSearchString,Pattern.CASE_INSENSITIVE);
+  final Matcher matcher=pattern.matcher(lineText);
+  final boolean found=matcher.find(startPosition);
+  if (found) {
+    final int start=matcher.start();
+    final int end=matcher.end();
+    if (start != end) {
+      results.add(new SearchResult(element,lineCounter,start,end - start));
+    }
+    if (matcher.end() == lineText.length()) {
+      return -1;
+    }
+    if (start == end) {
+      return end + 1;
+    }
+    return end;
+  }
+ else {
+    return -1;
+  }
+}

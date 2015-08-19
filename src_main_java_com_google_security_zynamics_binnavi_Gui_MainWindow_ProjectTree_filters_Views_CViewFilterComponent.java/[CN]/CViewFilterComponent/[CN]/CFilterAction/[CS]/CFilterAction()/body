@@ -1,0 +1,3 @@
+{
+  super("",new ImageIcon(CMain.class.getResource("data/funnel.png")));
+}

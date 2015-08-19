@@ -1,0 +1,5 @@
+{
+  super(DebugCommandType.CMD_LIST_FILES_PATH,packetId);
+  Preconditions.checkNotNull(path,"IE01010: Path argument can not be null");
+  addArgument(new DebugMessageRawArgument(path.getBytes()));
+}

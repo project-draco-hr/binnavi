@@ -1,0 +1,6 @@
+{
+  properties.setInteger(TOP,top);
+  properties.setInteger(LEFT,left);
+  properties.setInteger(HEIGHT,height);
+  properties.setInteger(WIDTH,width);
+}

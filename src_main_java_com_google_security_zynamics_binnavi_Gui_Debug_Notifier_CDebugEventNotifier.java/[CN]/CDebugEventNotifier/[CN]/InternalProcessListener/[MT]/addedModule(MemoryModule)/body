@@ -1,0 +1,3 @@
+{
+  CRelocationNotifier.checkBaseAddresses(m_parent,m_debugger,m_viewContainer,Lists.newArrayList(module));
+}

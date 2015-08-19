@@ -1,0 +1,7 @@
+{
+  final long value=readDWord(inputStream);
+  if (value != expectedValue) {
+    NaviLogger.severe("Error: Received value does not match expected value");
+  }
+  return value;
+}

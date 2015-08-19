@@ -1,0 +1,5 @@
+JFrame parent
+String topic
+ZyGraphViewSettings settings
+boolean isDefaultSettingsDialog
+boolean isCallgraph

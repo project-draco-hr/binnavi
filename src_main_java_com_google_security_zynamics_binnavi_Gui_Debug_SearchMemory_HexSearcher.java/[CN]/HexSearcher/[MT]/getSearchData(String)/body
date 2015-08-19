@@ -1,0 +1,3 @@
+{
+  return com.google.security.zynamics.zylib.general.Convert.hexStringToBytes(text);
+}

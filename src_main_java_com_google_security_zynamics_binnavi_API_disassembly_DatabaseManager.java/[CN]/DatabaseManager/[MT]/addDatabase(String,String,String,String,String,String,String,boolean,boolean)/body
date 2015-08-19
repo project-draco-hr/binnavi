@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(description,"Error: description argument can not be null");
+  Preconditions.checkNotNull(driver,"Error: driver argument can not be null");
+  Preconditions.checkNotNull(host,"Error: host argument can not be null");
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  final IDatabase newDatabase=m_manager.addDatabase(new CDatabase(description,driver,host,name,user,password,identity,savePassword,autoConnect));
+  return ObjectFinders.getObject(newDatabase,m_databases);
+}

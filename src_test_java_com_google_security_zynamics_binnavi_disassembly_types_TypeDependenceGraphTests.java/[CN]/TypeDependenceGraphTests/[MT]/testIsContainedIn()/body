@@ -1,0 +1,5 @@
+{
+  assertTrue(dependenceGraph.isTypeContainedIn(typeSystem.simpleStruct,typeSystem.intType));
+  assertTrue(dependenceGraph.isTypeContainedIn(typeSystem.simpleStruct,typeSystem.uintType));
+  assertTrue(dependenceGraph.isTypeContainedIn(typeSystem.simpleStruct,typeSystem.uintArrayType));
+}

@@ -1,0 +1,26 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(firstOperand,"Error: Argument firstOperand can't be null");
+  Preconditions.checkNotNull(secondOperand,"Error: Argument secondOperand can't be null");
+  Preconditions.checkNotNull(resultOperand,"Error: Argument resultOperand can't be null");
+  Preconditions.checkArgument(size != 0,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize wd=OperandSize.WORD;
+  final String msbVara=environment.getNextVariableString();
+  final String msbVarb=environment.getNextVariableString();
+  final String msbVarr=environment.getNextVariableString();
+  final String tmpVar3=environment.getNextVariableString();
+  final String tmpVar4=environment.getNextVariableString();
+  final String shiftValue="-" + String.valueOf(size - 1);
+  long baseOffset=offset;
+  instructions.add(ReilHelpers.createBsh(baseOffset++,firstOperandSize,firstOperand,wd,shiftValue,bt,msbVara));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,secondOperandSize,secondOperand,wd,shiftValue,bt,msbVarb));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,resultOperandSize,resultOperand,wd,shiftValue,bt,msbVarr));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,msbVara,bt,String.valueOf(1),bt,msbVara));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,msbVarb,bt,String.valueOf(1),bt,msbVarb));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,msbVarr,bt,String.valueOf(1),bt,msbVarr));
+  instructions.add(ReilHelpers.createXor(baseOffset++,bt,msbVara,bt,msbVarr,bt,tmpVar4));
+  instructions.add(ReilHelpers.createXor(baseOffset++,bt,msbVarb,bt,msbVarr,bt,tmpVar3));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar4,bt,tmpVar3,bt,overflow));
+}

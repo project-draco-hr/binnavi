@@ -1,0 +1,9 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviView view=module.getContent().getViewContainer().getViews().get(223);
+  view.load();
+  final CView newView=getProvider().createView(module,view,"Module View Name","Module View Description");
+  assertEquals("Module View Name",newView.getName());
+  assertEquals("Module View Description",newView.getConfiguration().getDescription());
+}

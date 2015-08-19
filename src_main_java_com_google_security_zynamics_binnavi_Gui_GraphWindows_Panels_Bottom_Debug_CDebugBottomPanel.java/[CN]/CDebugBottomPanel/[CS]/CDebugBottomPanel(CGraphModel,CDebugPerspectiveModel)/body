@@ -1,0 +1,7 @@
+{
+  super(getPanels(model,debugPerspectiveModel));
+  m_debuggerBox=new CDebuggerControlPanel(model.getParent(),debugPerspectiveModel);
+  add(m_debuggerBox,BorderLayout.NORTH);
+  m_statusLabel=new CStatusPanel(model.getDebuggerProvider());
+  add(m_statusLabel,BorderLayout.SOUTH);
+}

@@ -1,0 +1,9 @@
+{
+  for (  final TypeInstance instance : backend.loadTypeInstances()) {
+    instancesByAddress.put(instance.getAddress(),instance);
+    instances.add(instance);
+  }
+  for (  final TypeInstanceReference reference : backend.loadTypeInstanceReferences()) {
+    referencesByInstance.put(reference.getTypeInstance(),reference);
+  }
+}

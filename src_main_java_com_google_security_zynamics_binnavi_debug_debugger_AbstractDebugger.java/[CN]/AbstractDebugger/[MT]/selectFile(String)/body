@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    connection.sendSelectFileMessage(name);
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

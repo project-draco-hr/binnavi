@@ -1,0 +1,19 @@
+{
+  final INaviModule module=getProvider().loadModules().get(1);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction("SetCommState");
+  final INaviView view=module.getContent().getViewContainer().getView(function);
+  view.load();
+  final INaviCodeNode codeNode=view.getContent().getBasicBlocks().get(5);
+  final INaviTextNode textNode=view.getContent().createTextNode(null);
+  view.getContent().createEdge(codeNode,textNode,EdgeType.TEXTNODE_EDGE);
+  final ZyGraph graph=CGraphBuilder.buildGraph(view);
+  globalView=graph.saveAs(new CModuleContainer(getDatabase(),module)," TEST TEXT NODE COMMENTS "," TESTING TEXT NODE COMMENTS ");
+  INaviTextNode savedTextNode=null;
+  for (  final INaviViewNode node : globalView.getGraph().getNodes()) {
+    if (node instanceof INaviTextNode) {
+      savedTextNode=(INaviTextNode)node;
+    }
+  }
+  return savedTextNode;
+}

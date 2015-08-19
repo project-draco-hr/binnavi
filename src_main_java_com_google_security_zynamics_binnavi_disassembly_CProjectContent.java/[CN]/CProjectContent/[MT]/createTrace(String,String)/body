@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(name,"IE00242: Name argument can't be null");
+  Preconditions.checkNotNull(description,"IE00246: Description argument can't be null");
+  final TraceList trace=m_provider.createTrace(m_project,name,description);
+  m_traces.add(trace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedTrace(m_project,trace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_project.getConfiguration().updateModificationDate();
+  return trace;
+}

@@ -1,0 +1,10 @@
+{
+  super("Load Address Space");
+  m_tree=Preconditions.checkNotNull(tree,"IE01898: Tree argument can not be null");
+  m_spaces=Preconditions.checkNotNull(spaces,"IE01899: Address spaces argument can't be null").clone();
+  for (  final INaviAddressSpace addressSpace : spaces) {
+    Preconditions.checkNotNull(addressSpace,"IE01900: Address spaces list contains a null-element");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.LOAD_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_LOAD_ADDRESS_SPACE".charAt(0));
+}

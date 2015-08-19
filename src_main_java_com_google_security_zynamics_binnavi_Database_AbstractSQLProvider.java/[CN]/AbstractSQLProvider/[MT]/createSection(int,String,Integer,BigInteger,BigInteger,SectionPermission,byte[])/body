@@ -1,0 +1,3 @@
+{
+  return PostgreSQLSectionFunctions.createSection(getConnection().getConnection(),moduleId,name,commentId,startAddress,endAddress,permission,data);
+}

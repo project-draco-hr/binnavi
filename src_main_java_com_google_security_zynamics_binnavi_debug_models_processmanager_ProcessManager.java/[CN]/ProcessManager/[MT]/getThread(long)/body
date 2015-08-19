@@ -1,0 +1,8 @@
+{
+  for (  final TargetProcessThread thread : activeProcessThreads) {
+    if (thread.getThreadId() == tid) {
+      return thread;
+    }
+  }
+  throw new MaybeNullException();
+}

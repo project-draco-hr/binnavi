@@ -1,0 +1,3 @@
+{
+  CGraphGrouper.toggleSelectedGroups(m_graph);
+}

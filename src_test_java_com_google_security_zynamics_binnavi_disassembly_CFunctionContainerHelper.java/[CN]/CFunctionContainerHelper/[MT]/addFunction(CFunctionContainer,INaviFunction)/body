@@ -1,0 +1,6 @@
+{
+  final FilledList<INaviFunction> functions=(FilledList<INaviFunction>)ReflectionHelpers.getField(CFunctionContainer.class,container,"m_functions");
+  final Map<IAddress,INaviFunction> functionMap=(Map<IAddress,INaviFunction>)ReflectionHelpers.getField(CFunctionContainer.class,container,"m_functionMap");
+  functions.add(function);
+  functionMap.put(function.getAddress(),function);
+}

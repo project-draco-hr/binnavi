@@ -1,0 +1,4 @@
+{
+  m_operator=operator;
+  m_indegree=indegree;
+}

@@ -1,0 +1,19 @@
+{
+  final TreePath path=tree.getPathForLocation(dge.getDragOrigin().x,dge.getDragOrigin().y);
+  if (path != null) {
+    draggedNode=(DefaultMutableTreeNode)path.getLastPathComponent();
+    draggedNodeParent=(DefaultMutableTreeNode)draggedNode.getParent();
+    if (drawImage) {
+      final Rectangle pathBounds=tree.getPathBounds(path);
+      final JComponent lbl=(JComponent)tree.getCellRenderer().getTreeCellRendererComponent(tree,draggedNode,false,tree.isExpanded(path),((DefaultTreeModel)tree.getModel()).isLeaf(path.getLastPathComponent()),0,false);
+      lbl.setBounds(pathBounds);
+      image=new BufferedImage(lbl.getWidth(),lbl.getHeight(),java.awt.image.BufferedImage.TYPE_INT_ARGB_PRE);
+      final Graphics2D graphics=image.createGraphics();
+      graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f));
+      lbl.setOpaque(false);
+      lbl.paint(graphics);
+      graphics.dispose();
+    }
+    dragSource.startDrag(dge,DragSource.DefaultMoveNoDrop,image,new Point(0,0),new TransferableNode(draggedNode),this);
+  }
+}

@@ -1,0 +1,3 @@
+String idbFile
+String idaDirectory
+IDatabase database

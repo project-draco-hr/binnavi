@@ -1,0 +1,4 @@
+{
+  @SuppressWarnings("unchecked") final T result=(T)attachedNode.getRawNode();
+  return result;
+}

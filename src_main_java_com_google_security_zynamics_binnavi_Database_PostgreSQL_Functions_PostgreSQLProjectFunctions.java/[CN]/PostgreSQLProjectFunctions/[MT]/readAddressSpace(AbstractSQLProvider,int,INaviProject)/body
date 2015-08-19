@@ -1,0 +1,17 @@
+{
+  final String query="SELECT name, description, creation_date, modification_date " + " FROM " + CTableNames.ADDRESS_SPACES_TABLE + " WHERE id = "+ addressSpaceId;
+  final ResultSet resultSet=provider.getConnection().executeQuery(query,true);
+  try {
+    while (resultSet.next()) {
+      final String name=PostgreSQLHelpers.readString(resultSet,"name");
+      final String description=PostgreSQLHelpers.readString(resultSet,"description");
+      final Timestamp creationDate=resultSet.getTimestamp("creation_date");
+      final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+      return new CAddressSpace(addressSpaceId,name,description == null ? "" : description,creationDate,modificationDate,new HashMap<INaviModule,IAddress>(),null,provider,project);
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  return null;
+}

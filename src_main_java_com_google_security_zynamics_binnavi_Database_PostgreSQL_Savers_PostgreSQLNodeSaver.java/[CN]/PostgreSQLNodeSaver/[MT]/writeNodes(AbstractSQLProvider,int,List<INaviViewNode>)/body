@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(provider,"IE01992: Provider argument can not be null");
+  Preconditions.checkArgument(newViewId > 0,"IE01993: New View ID argument must be greater then zero");
+  Preconditions.checkNotNull(nodes,"IE01994: Nodes argument can not be null");
+  if (nodes.isEmpty()) {
+    return;
+  }
+  final ArrayList<Integer> functionNodeIndices=new ArrayList<Integer>();
+  final ArrayList<Integer> codeNodeIndices=new ArrayList<Integer>();
+  final ArrayList<Integer> textNodeIndices=new ArrayList<Integer>();
+  final ArrayList<Integer> groupNodeIndices=new ArrayList<Integer>();
+  final BiMap<Integer,INaviGroupNode> groupNodeMap=HashBiMap.create();
+  final int firstNode=saveNodes(provider,newViewId,nodes,functionNodeIndices,codeNodeIndices,textNodeIndices,groupNodeIndices,groupNodeMap);
+  PostgreSQLNodeSaver.updateNodeIds(nodes,firstNode);
+  PostgreSQLNodeSaver.saveGroupNodes(provider,nodes,firstNode,PostgreSQLNodeSaver.sortGroupNodes(groupNodeIndices,groupNodeMap));
+  PostgreSQLNodeSaver.saveFunctionNodes(provider,nodes,firstNode,functionNodeIndices);
+  PostgreSQLNodeSaver.saveCodeNodes(provider,nodes,firstNode,codeNodeIndices);
+  PostgreSQLNodeSaver.saveTextNodes(provider,nodes,firstNode,textNodeIndices);
+  final CConnection connection=provider.getConnection();
+  PostgreSQLNodeSaver.saveParentGroups(connection,nodes,firstNode,groupNodeMap);
+  PostgreSQLNodeSaver.saveTags(connection,nodes,firstNode);
+}

@@ -1,0 +1,21 @@
+{
+  final JPanel typePanel=new JPanel(new BorderLayout());
+  final JPanel typeEditorPanel=TypeEditorPanel.CreateDefaultTypeEditor(parent,typeManager);
+  if (isFunctionFlowgraph(model)) {
+    final JSplitPane splitPaneTop=new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+    splitPaneTop.setBorder(BorderFactory.createEmptyBorder());
+    splitPaneTop.setOneTouchExpandable(true);
+    final JSplitPane splitPaneBottom=new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+    splitPaneBottom.setBorder(BorderFactory.createEmptyBorder());
+    splitPaneBottom.setOneTouchExpandable(true);
+    splitPaneTop.setTopComponent(createPrototypePanel(parent,model,typeManager));
+    splitPaneTop.setBottomComponent(createStackFramePanel(parent,model,typeManager));
+    splitPaneBottom.setTopComponent(splitPaneTop);
+    splitPaneBottom.setBottomComponent(typeEditorPanel);
+    typePanel.add(splitPaneBottom);
+  }
+ else {
+    typePanel.add(typeEditorPanel,BorderLayout.CENTER);
+  }
+  return typePanel;
+}

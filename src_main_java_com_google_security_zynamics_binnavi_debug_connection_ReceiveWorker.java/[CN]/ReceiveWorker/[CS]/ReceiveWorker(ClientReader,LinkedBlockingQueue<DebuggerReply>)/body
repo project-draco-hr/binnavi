@@ -1,0 +1,5 @@
+{
+  workerInputStream=Preconditions.checkNotNull(inputStream,"IE00743: Input stream can not be null");
+  this.eventQueue=Preconditions.checkNotNull(eventQueue,"IE00744: Event queue can't be null");
+  parserFactory=new ParserFactory(inputStream);
+}

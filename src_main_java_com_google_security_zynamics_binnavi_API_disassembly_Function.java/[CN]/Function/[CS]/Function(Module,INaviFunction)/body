@@ -1,0 +1,8 @@
+{
+  m_module=Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  m_function=Preconditions.checkNotNull(function,"Error: Function argument can't be null");
+  if (function.isLoaded()) {
+    convertData();
+  }
+  function.addListener(m_listener);
+}

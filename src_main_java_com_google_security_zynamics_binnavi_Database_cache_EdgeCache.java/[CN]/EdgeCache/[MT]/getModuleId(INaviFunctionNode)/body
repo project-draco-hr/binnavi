@@ -1,0 +1,3 @@
+{
+  return node.getFunction().getModule().getConfiguration().getId();
+}

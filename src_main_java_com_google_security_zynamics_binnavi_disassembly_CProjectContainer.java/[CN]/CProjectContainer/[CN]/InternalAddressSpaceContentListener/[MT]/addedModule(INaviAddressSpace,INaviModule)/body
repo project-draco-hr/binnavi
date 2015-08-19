@@ -1,0 +1,6 @@
+{
+  final List<INaviModule> modules=getModules();
+  if (CollectionHelpers.count(modules,module) == 1) {
+    initializeModuleListeners(module);
+  }
+}

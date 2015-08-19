@@ -1,0 +1,3 @@
+{
+  return (size == 8 ? 0xFF : 0xFFFF) << (bytePosition * size);
+}

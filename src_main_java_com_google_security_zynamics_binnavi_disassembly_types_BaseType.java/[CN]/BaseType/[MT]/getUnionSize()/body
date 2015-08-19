@@ -1,0 +1,9 @@
+{
+  int maxSize=0;
+  for (  TypeMember member : members) {
+    if (maxSize < member.getBitSize()) {
+      maxSize=member.getBitSize();
+    }
+  }
+  return maxSize;
+}

@@ -1,0 +1,9 @@
+{
+  final List<INaviProject> unloadedProjects=new ArrayList<INaviProject>();
+  for (  final INaviProject project : iNaviProjects) {
+    if (!project.isLoaded()) {
+      unloadedProjects.add(project);
+    }
+  }
+  return unloadedProjects.toArray(new CProject[]{});
+}

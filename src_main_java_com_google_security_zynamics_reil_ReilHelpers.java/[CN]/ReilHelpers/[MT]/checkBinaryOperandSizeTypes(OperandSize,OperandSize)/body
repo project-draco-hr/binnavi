@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(first,"Error: First size argument can not be null.");
+  Preconditions.checkNotNull(second,"Error: Second size argument can not be null.");
+  Preconditions.checkArgument(first != OperandSize.ADDRESS,"Error: The size for the first argument can not be of type ADDRESS.");
+  Preconditions.checkArgument(second != OperandSize.ADDRESS,"Error: The size for the second argument can not be of type ADDRESS.");
+}

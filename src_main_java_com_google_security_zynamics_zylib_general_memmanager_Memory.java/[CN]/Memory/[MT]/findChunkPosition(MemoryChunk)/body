@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(chunk,"Error: Memory chunk can't be null");
+  final long address=chunk.getAddress();
+  for (int i=0; i < getNumberOfChunks(); i++) {
+    if (address < m_chunks.get(i).getAddress()) {
+      return i;
+    }
+  }
+  return m_chunks.size();
+}

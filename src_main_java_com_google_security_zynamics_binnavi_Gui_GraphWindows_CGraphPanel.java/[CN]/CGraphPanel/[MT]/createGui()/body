@@ -1,0 +1,29 @@
+{
+  m_graphSplitter=new JideSplitPane(){
+    private static final long serialVersionUID=-4363828908016863289L;
+    @Override public void updateUI(){
+    }
+  }
+;
+  m_graphSplitter.setOrientation(JideSplitPane.VERTICAL_SPLIT);
+  m_graphSplitter.addPane(m_centerPanel);
+  m_graphSplitter.addPane(m_bottomPanel);
+  m_graphTaggingSplitter=new JideSplitPane(){
+    private static final long serialVersionUID=-9037540212052390552L;
+    @Override public void updateUI(){
+    }
+  }
+;
+  m_graphTaggingSplitter.setOrientation(JideSplitPane.HORIZONTAL_SPLIT);
+  m_graphTaggingSplitter.addPane(m_leftPanel);
+  m_graphTaggingSplitter.addPane(m_graphSplitter);
+  m_graphTaggingSplitter.addPane(m_rightPanel);
+  m_graphTaggingSplitter.setDoubleBuffered(true);
+  m_graphTaggingSplitter.setOneTouchExpandable(true);
+  m_graphTaggingSplitter.setMinimumSize(new Dimension(0,0));
+  m_graphSplitter.setDoubleBuffered(true);
+  m_graphSplitter.setOneTouchExpandable(true);
+  m_graphSplitter.setMinimumSize(new Dimension(0,0));
+  add(m_graphTaggingSplitter);
+  add(m_toolBar,BorderLayout.NORTH);
+}

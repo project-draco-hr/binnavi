@@ -1,0 +1,10 @@
+{
+  module.load();
+  final TypeInstance typeInstance=module.getContent().getTypeInstanceContainer().getTypeInstances().get(0);
+  final TypeInstanceAddress address=typeInstance.getAddress();
+  provider.setTypeInstanceName(module.getConfiguration().getId(),typeInstance.getId()," SUPER NEW NAME ");
+  module.close();
+  module.load();
+  final TypeInstance loadedInstance=module.getContent().getTypeInstanceContainer().getTypeInstance(address);
+  Assert.assertEquals(" SUPER NEW NAME ",loadedInstance.getName());
+}

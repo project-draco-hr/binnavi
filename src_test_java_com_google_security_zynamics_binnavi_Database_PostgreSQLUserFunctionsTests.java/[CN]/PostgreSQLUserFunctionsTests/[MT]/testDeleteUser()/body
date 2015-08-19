@@ -1,0 +1,7 @@
+{
+  final IUser user=CGenericSQLUserFunctions.addUser(getProvider(),"TEST USER FOR DELETE TEST");
+  assertNotNull(user);
+  assertEquals("TEST USER FOR DELETE TEST",user.getUserName());
+  assertNotNull(user.getUserId());
+  CGenericSQLUserFunctions.deleteUser(getProvider(),user);
+}

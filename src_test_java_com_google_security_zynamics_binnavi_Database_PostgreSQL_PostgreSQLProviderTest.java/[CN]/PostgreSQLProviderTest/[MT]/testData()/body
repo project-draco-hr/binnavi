@@ -1,0 +1,9 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.setData(new byte[1024 * 1024]);
+  module.saveData();
+  module.setData(new byte[0]);
+  module.loadData();
+  final byte[] data=module.getData();
+  assertEquals(1024 * 1024,data.length);
+}

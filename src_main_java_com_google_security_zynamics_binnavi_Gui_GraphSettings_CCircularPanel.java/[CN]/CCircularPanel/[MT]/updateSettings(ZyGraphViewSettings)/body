@@ -1,0 +1,6 @@
+{
+  final boolean needsLayouting=(Integer.valueOf(m_tfCircularMinNodeDistance.getText()) != settings.getLayoutSettings().getCircularSettings().getMinimumNodeDistance()) || (CircularStyle.parseInt(m_cbCircularLayoutStyle.getSelectedIndex()) != settings.getLayoutSettings().getCircularSettings().getStyle());
+  settings.getLayoutSettings().getCircularSettings().setMinimumNodeDistance(Integer.valueOf(m_tfCircularMinNodeDistance.getText()));
+  settings.getLayoutSettings().getCircularSettings().setStyle(CircularStyle.parseInt(m_cbCircularLayoutStyle.getSelectedIndex()));
+  return needsLayouting;
+}

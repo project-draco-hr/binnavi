@@ -1,0 +1,3 @@
+{
+  this.name=Preconditions.checkNotNull(name,"IE00769: Name argument can not be null");
+}

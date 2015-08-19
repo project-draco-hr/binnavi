@@ -1,0 +1,12 @@
+{
+  setLayout(new BorderLayout());
+  final JTextArea field=new JTextArea("The debugger stopped at an instruction that does not belong to any open graphs.\nPlease select a graph from the list to continue debugging.");
+  field.setEditable(false);
+  add(field,BorderLayout.NORTH);
+  m_table=new JTable(new CGraphSelectionTableModel(views));
+  m_table.addMouseListener(m_listener);
+  add(new JScrollPane(m_table),BorderLayout.CENTER);
+  final CPanelTwoButtons panel=new CPanelTwoButtons(m_listener,"OK","Cancel");
+  add(panel,BorderLayout.SOUTH);
+  setSize(500,300);
+}

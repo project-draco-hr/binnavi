@@ -1,0 +1,22 @@
+{
+  final INaviModule module=provider.findModule(container.getModuleId());
+  final TypeManager typeManager=module.getTypeManager();
+  final INaviOperandTreeNode node=findOperandTreeNode(provider,container.getModuleId(),new CAddress(container.getAddress().get()),container.position().get(),container.expressionId().get());
+  if (node == null) {
+    return;
+  }
+  if (container.getDatabaseOperation().equals("INSERT")) {
+    final RawTypeSubstitution rawSubstitution=provider.loadTypeSubstitution(module,container.getAddress().get(),container.position().get(),container.expressionId().get());
+    typeManager.initializeTypeSubstitution(node,rawSubstitution);
+  }
+ else   if (container.getDatabaseOperation().equals("UPDATE")) {
+    final RawTypeSubstitution rawSubstitution=provider.loadTypeSubstitution(module,container.getAddress().get(),container.position().get(),container.expressionId().get());
+    typeManager.updateTypeSubstitution(node,rawSubstitution.getBaseTypeId(),rawSubstitution.getPath(),rawSubstitution.getOffset());
+  }
+ else   if (container.getDatabaseOperation().equals("DELETE")) {
+    typeManager.removeTypeSubstitutionInstance(node.getTypeSubstitution());
+  }
+ else {
+    throw new IllegalStateException("Error: the database operation " + container.getDatabaseOperation() + " is currently not supported.");
+  }
+}

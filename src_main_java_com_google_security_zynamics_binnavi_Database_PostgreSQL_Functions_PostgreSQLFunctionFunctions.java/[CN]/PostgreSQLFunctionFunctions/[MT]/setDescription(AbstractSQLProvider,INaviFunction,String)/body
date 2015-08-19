@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(provider,"IE00448: Provider argument can not be null");
+  Preconditions.checkNotNull(function,"IE00449: Function argument can not be null");
+  Preconditions.checkNotNull(description,"IE00450: Comment argument can not be null");
+  Preconditions.checkArgument(function.inSameDatabase(provider),"IE00451: Function is not part of this database");
+  final CConnection connection=provider.getConnection();
+  final int module=function.getModule().getConfiguration().getId();
+  final IAddress address=function.getAddress();
+  final String query="UPDATE " + CTableNames.FUNCTIONS_TABLE + " SET description = ? WHERE module_id = ? AND address = ?";
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    try {
+      statement.setString(1,description);
+      statement.setInt(2,module);
+      statement.setObject(3,address.toBigInteger(),Types.BIGINT);
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

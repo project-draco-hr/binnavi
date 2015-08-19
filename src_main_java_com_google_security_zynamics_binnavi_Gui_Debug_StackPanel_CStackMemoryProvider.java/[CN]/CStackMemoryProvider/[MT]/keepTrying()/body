@@ -1,0 +1,3 @@
+{
+  return m_debugger != null && m_debugger.isConnected();
+}

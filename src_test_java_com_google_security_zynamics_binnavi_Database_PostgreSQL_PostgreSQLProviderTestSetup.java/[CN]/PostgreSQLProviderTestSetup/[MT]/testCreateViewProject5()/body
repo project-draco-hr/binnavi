@@ -1,0 +1,9 @@
+{
+  final INaviModule module=getKernel32Module();
+  module.load();
+  final INaviView view=module.getContent().getViewContainer().getViews().get(200);
+  view.load();
+  final CView newView=getProvider().createView(loadProject(),view,"View Name","View Description");
+  assertEquals("View Name",newView.getName());
+  assertEquals("View Description",newView.getConfiguration().getDescription());
+}

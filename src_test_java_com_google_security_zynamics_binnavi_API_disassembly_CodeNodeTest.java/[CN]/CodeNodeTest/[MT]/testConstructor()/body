@@ -1,0 +1,9 @@
+{
+  assertEquals(0x123,m_node.getAddress().toLong());
+  assertNotNull(m_node.getLocalComments());
+  assertEquals(1,m_node.getLocalComments().size());
+  assertEquals(new CComment(null,CommonTestObjects.TEST_USER_1,null,"Global Comment"),m_node.getLocalComments().get(0));
+  assertEquals(1,m_node.getInstructions().size());
+  assertEquals("123  nop \n",m_node.toString());
+  assertNotNull(m_node.getReilCode());
+}

@@ -1,0 +1,4 @@
+{
+  debuggerSynchronizer.receivedEvent(new TargetInformationReply(0,5,null));
+  assertEquals(0,listener.exception);
+}

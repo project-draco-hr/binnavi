@@ -1,0 +1,35 @@
+{
+  final CRemoteFile remoteFile=new CRemoteFile("C",true);
+  try {
+    remoteFile.canExecute();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  try {
+    remoteFile.canRead();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  try {
+    remoteFile.listFiles();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  assertFalse(remoteFile.canWrite());
+  final File foo=new File("foo");
+  assertFalse(remoteFile.renameTo(foo));
+  assertTrue(remoteFile.exists());
+  assertEquals("C",remoteFile.getAbsolutePath());
+  final File second=remoteFile.getAbsoluteFile();
+  assertEquals(second.getAbsolutePath(),remoteFile.getAbsolutePath());
+  assertTrue(second.isDirectory());
+  final File third=remoteFile.getCanonicalFile();
+  assertEquals(third.getCanonicalPath(),remoteFile.getCanonicalPath());
+  assertTrue(third.isDirectory());
+  assertEquals(null,remoteFile.getParentFile());
+  assertEquals(0,remoteFile.lastModified());
+  assertEquals(0,remoteFile.length());
+}

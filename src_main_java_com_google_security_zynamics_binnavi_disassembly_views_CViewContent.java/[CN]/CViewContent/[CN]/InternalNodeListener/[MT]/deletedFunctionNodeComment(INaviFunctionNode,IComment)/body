@@ -1,0 +1,10 @@
+{
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.deletedLocalFunctionNodeComment(view,node,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

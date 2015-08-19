@@ -1,0 +1,5 @@
+{
+  final InputMap windowImap=button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  windowImap.put(keyStroke,name);
+  button.getActionMap().put(name,action);
+}

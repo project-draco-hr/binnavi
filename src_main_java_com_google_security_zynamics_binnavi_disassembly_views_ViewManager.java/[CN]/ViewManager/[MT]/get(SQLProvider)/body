@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(provider,"IE02807: provider argument can not be null");
+  if (!managers.containsKey(provider)) {
+    managers.put(provider,new ViewManager(provider));
+  }
+  return managers.get(provider);
+}

@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(debugger,"IE01514: Debugger argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01515: Graph argument can not be null");
+  m_debugger=debugger;
+  m_graph=graph;
+  synchronizeThreads(null,debugger.getProcessManager().getActiveThread());
+  debugger.getProcessManager().addListener(m_processManagerListener);
+}

@@ -1,0 +1,5 @@
+String columnName
+int columnWidth
+Color fontColor
+Color backgroundColor
+Font headerFont

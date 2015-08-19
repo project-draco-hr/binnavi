@@ -1,0 +1,6 @@
+String databaseOperation
+Integer moduleId
+Integer typeInstanceId
+Optional<BigInteger> address
+Optional<Integer> position
+Optional<Integer> expressionId

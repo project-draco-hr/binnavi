@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < passedRegisters.length; i++) {
+    final RegisterInformation register=passedRegisters[i];
+    Preconditions.checkNotNull(register.getRegisterName(),"Error: register.getRegisterName() argument can not be null");
+    Preconditions.checkArgument(registerMap.containsKey(register.getRegisterName()),"Error: Duplicate register name " + register.getRegisterName());
+    final RegisterInformationInternal internalRegister=new RegisterInformationInternal(register.getRegisterName(),register.getRegisterSize());
+    this.registers[i]=internalRegister;
+    this.registerMap.put(register.getRegisterName(),internalRegister);
+  }
+}

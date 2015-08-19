@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(comment,"IE02682: comment argument can not be null");
+  Preconditions.checkNotNull(newCommentText,"IE02683: newCommentText argument can not be null");
+  groupNode.editComment(comment,newCommentText);
+  return null;
+}

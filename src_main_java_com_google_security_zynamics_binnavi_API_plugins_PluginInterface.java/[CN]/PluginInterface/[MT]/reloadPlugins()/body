@@ -1,0 +1,17 @@
+{
+  registry.getNative().unloadAll();
+  NaviLogger.info("Loading built-in plugins...");
+  final Collection<IPlugin<IPluginInterface>> plugins=new PluginLoader().getPlugins();
+  for (  final IPlugin<IPluginInterface> plugin : plugins) {
+    registry.addPlugin(plugin);
+  }
+  CPluginLoader.loadPlugins(mainWindow.getFrame(),this,registry.getNative(),startPath,ConfigManager.instance());
+  for (  final IPluginInterfaceListener listener : listeners) {
+    try {
+      listener.loadedPlugins();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

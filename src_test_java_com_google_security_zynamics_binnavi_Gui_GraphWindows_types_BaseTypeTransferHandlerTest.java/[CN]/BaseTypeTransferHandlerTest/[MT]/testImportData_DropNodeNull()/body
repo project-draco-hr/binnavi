@@ -1,0 +1,5 @@
+{
+  when(wrapper.acceptDrop()).thenReturn(true);
+  when(wrapper.determineDropNode()).thenReturn(null);
+  assertFalse(new BaseTypeTransferHandler(manager,wrapper).importData(null));
+}

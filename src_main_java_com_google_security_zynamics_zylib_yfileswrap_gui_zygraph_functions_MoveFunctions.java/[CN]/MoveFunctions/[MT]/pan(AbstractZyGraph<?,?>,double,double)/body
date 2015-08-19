@@ -1,0 +1,36 @@
+{
+  final double amount=(50.0 * 1.0) / graph.getView().getZoom();
+  dx*=amount;
+  dy*=amount;
+  final Point2D.Double p=(Point2D.Double)graph.getView().getCenter();
+  double newXCenter=p.getX() + dx;
+  double newYCenter=p.getY() + dy;
+  if (dx < 0) {
+    dx=(int)Math.floor(dx);
+  }
+ else {
+    dx=(int)Math.ceil(dx) + 2;
+  }
+  if (dy < 0) {
+    dy=(int)Math.floor(dy);
+  }
+ else {
+    dy=(int)Math.ceil(dy) + 2;
+  }
+  final Rectangle worldRect=graph.getView().getWorldRect();
+  final Rectangle visibleRect=graph.getView().getVisibleRect();
+  if ((visibleRect.x + (int)dx) < worldRect.x) {
+    newXCenter+=worldRect.x - (visibleRect.x + (int)dx);
+  }
+ else   if ((visibleRect.x + visibleRect.width + (int)dx) > (worldRect.x + worldRect.width)) {
+    newXCenter-=(visibleRect.x + visibleRect.width + (int)dx) - (worldRect.x + worldRect.width);
+  }
+  if ((visibleRect.y + (int)dy) < worldRect.y) {
+    newYCenter+=worldRect.y - (visibleRect.y + (int)dy);
+  }
+ else   if ((visibleRect.y + visibleRect.height + (int)dy) > (worldRect.y + worldRect.height)) {
+    newYCenter-=(visibleRect.y + visibleRect.height + (int)dy) - (worldRect.y + worldRect.height);
+  }
+  graph.getView().setCenter(newXCenter,newYCenter);
+  graph.updateViews();
+}

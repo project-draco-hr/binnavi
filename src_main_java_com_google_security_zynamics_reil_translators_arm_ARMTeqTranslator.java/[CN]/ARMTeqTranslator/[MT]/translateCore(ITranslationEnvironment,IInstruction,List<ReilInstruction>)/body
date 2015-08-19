@@ -1,0 +1,17 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode shifter=instruction.getOperands().get(1).getRootNode();
+  final String sourceRegister=(registerOperand1.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String tmpVar1=environment.getNextVariableString();
+  final Pair<String,String> shifterPair=AddressingModeOneGenerator.generate(baseOffset,environment,instruction,instructions,shifter);
+  baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String shifterOperand=shifterPair.first();
+  final String shifterCarryOut=shifterPair.second();
+  instructions.add(ReilHelpers.createXor(baseOffset++,dw,sourceRegister,dw,shifterOperand,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(-31L),bt,"N"));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,dw,tmpVar1,bt,"Z"));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,shifterCarryOut,bt,"C"));
+}

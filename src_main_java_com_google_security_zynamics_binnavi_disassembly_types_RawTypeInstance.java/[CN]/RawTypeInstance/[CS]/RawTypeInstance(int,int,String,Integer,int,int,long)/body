@@ -1,0 +1,10 @@
+{
+  this.moduleId=moduleId;
+  this.id=id;
+  this.name=Preconditions.checkNotNull(name,"Error: name can not be null");
+  this.commentId=commentId;
+  this.typeId=typeId;
+  this.sectionId=sectionId;
+  Preconditions.checkArgument(sectionOffset >= 0,"Error: section offset can not be negative.");
+  this.sectionOffset=sectionOffset;
+}

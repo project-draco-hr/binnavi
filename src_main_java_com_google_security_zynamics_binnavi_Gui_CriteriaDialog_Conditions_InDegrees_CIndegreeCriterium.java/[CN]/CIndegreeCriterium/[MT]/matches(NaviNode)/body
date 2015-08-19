@@ -1,0 +1,3 @@
+{
+  return CIndegreeEvaluator.matches(node,m_panel.getOperator(),m_panel.getIndegree());
+}

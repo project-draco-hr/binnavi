@@ -1,0 +1,12 @@
+{
+  final INaviModule module=m_database.getContent().getModules().get(0);
+  module.load();
+  final INaviView view=module.getViewsWithAddresses(Lists.newArrayList(new UnrelocatedAddress(new CAddress(0x10044BB))),true).get(0);
+  assertEquals(0x10044BB,module.getContent().getViewContainer().getFunction(view).getAddress().toLong());
+  view.load();
+  final ReilTranslator<INaviInstruction> translator=new ReilTranslator<INaviInstruction>();
+  final ReilFunction reilFunction=translator.translate(new StandardEnvironment(),view);
+  assertEquals(0,reilFunction.getGraph().getEdges().size());
+  final IStateVector<InstructionGraphNode,ValueTrackerElement> result=ValueTracker.track(reilFunction);
+  System.out.println(result);
+}

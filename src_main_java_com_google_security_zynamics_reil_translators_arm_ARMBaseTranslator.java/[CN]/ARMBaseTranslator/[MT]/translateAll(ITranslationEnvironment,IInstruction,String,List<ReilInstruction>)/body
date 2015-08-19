@@ -1,0 +1,10 @@
+{
+  final long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final int conditionInstructions=countConditionInstructions(instruction,prefix);
+  final int totalInstructions=conditionInstructions + countInnerInstructions(instruction);
+  translateCondition(environment,instruction,prefix,instructions,totalInstructions);
+  translateCore(environment,instruction,instructions);
+  if (conditionInstructions != 0) {
+    instructions.add(ReilHelpers.createNop(baseOffset + totalInstructions));
+  }
+}

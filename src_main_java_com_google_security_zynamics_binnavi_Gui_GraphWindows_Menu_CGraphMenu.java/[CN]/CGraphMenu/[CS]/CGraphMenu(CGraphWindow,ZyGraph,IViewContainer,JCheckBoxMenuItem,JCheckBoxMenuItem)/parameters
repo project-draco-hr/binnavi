@@ -1,0 +1,5 @@
+CGraphWindow parent
+ZyGraph graph
+IViewContainer container
+JCheckBoxMenuItem proximityBrowsingMenu
+JCheckBoxMenuItem autoLayoutMenu

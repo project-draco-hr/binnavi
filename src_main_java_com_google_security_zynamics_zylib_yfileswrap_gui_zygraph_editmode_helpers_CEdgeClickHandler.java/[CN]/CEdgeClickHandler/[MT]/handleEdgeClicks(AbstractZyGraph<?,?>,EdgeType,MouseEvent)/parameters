@@ -1,0 +1,3 @@
+AbstractZyGraph<?,?> graph
+EdgeType edge
+MouseEvent event

@@ -1,0 +1,5 @@
+{
+  add(commentsPanel,BorderLayout.CENTER);
+  add(new OKButtonPanel(this),BorderLayout.SOUTH);
+  pack();
+}

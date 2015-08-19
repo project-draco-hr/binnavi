@@ -1,0 +1,34 @@
+{
+switch (edge.getType()) {
+case JUMP_CONDITIONAL_FALSE:
+    edge.setColor(ConfigManager.instance().getColorSettings().getConditionalJumpFalseColor());
+  return;
+case JUMP_CONDITIONAL_FALSE_LOOP:
+edge.setColor(ConfigManager.instance().getColorSettings().getConditionalJumpFalseColor());
+return;
+case JUMP_CONDITIONAL_TRUE:
+edge.setColor(ConfigManager.instance().getColorSettings().getConditionalJumpTrueColor());
+return;
+case JUMP_CONDITIONAL_TRUE_LOOP:
+edge.setColor(ConfigManager.instance().getColorSettings().getConditionalJumpTrueColor());
+return;
+case JUMP_UNCONDITIONAL_LOOP:
+edge.setColor(ConfigManager.instance().getColorSettings().getUnconditionalJumpColor());
+return;
+case ENTER_INLINED_FUNCTION:
+edge.setColor(ConfigManager.instance().getColorSettings().getEnterInlinedJumpColor());
+return;
+case LEAVE_INLINED_FUNCTION:
+edge.setColor(ConfigManager.instance().getColorSettings().getLeaveInlinedJumpColor());
+return;
+case TEXTNODE_EDGE:
+edge.setColor(ConfigManager.instance().getColorSettings().getTextEdgeColor());
+return;
+case JUMP_SWITCH:
+edge.setColor(ConfigManager.instance().getColorSettings().getSwitchJumpColor());
+return;
+default :
+edge.setColor(ConfigManager.instance().getColorSettings().getUnconditionalJumpColor());
+return;
+}
+}

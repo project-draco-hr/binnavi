@@ -1,0 +1,3 @@
+{
+  CGraphProximityBrowser.toggleProximityBrowsing(m_parent,m_graph);
+}

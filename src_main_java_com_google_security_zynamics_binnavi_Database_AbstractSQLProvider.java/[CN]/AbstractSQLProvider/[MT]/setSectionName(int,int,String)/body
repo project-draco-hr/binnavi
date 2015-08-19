@@ -1,0 +1,3 @@
+{
+  PostgreSQLSectionFunctions.setSectionName(this.getConnection().getConnection(),moduleId,sectionId,name);
+}

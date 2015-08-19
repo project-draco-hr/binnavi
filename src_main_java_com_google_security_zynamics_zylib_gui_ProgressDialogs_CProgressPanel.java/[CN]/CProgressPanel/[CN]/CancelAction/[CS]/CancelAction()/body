@@ -1,0 +1,3 @@
+{
+  super("",new ImageIcon(Constants.class.getResource("cancel.png")));
+}

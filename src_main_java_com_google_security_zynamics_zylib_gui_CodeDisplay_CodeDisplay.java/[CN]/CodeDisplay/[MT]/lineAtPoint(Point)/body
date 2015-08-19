@@ -1,0 +1,5 @@
+{
+  CodeDisplayCoordinate coordinate=new CodeDisplayCoordinate(0,0,0,0);
+  fillCoordinateFromXY(point.x,point.y,coordinate);
+  return coordinate.getLine();
+}

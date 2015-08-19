@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(source,"IE00007: Source argument can not be null");
+  Preconditions.checkNotNull(target,"IE00020: Target argument can not be null");
+  Preconditions.checkArgument(source.isLoaded(),"IE00974: Source view must be loaded");
+  Preconditions.checkArgument(target.isLoaded(),"IE00978: Target view must be loaded");
+  final IDirectedGraph<INaviViewNode,INaviEdge> graph=source.getGraph();
+  final Map<INaviViewNode,INaviViewNode> map=createNodes(target,graph.getNodes());
+  createEdges(target,graph.getEdges(),map);
+  createGroupNodes(target,graph.getNodes(),map);
+}

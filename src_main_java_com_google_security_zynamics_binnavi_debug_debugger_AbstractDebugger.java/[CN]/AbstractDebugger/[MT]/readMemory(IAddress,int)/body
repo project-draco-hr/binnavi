@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(offset,"IE00794: Address argument can not be null");
+  ensureConnection();
+  try {
+    return connection.sendReadMemoryMessage(offset,size);
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

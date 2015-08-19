@@ -1,0 +1,9 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"oris");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode literalOperand1=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final String tmpLiteralValue=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(baseOffset++,OperandSize.DWORD,String.valueOf(Long.valueOf(literalOperand1.getValue()) << 16),OperandSize.DWORD,tmpLiteralValue));
+  OrGenerator.generate(baseOffset,environment,instruction,instructions,"oris",registerOperand1.getValue(),tmpLiteralValue,false,false,false);
+}

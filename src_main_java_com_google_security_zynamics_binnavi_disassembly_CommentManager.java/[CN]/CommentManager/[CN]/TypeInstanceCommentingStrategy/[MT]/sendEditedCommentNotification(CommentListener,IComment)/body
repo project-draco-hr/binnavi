@@ -1,0 +1,3 @@
+{
+  listener.editedTypeInstanceComment(typeInstance,comment);
+}

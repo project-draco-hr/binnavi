@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02766: Base type can not be null.");
+  final Node containedTypeNode=containedRelationMap.get(baseType);
+  Preconditions.checkNotNull(containedTypeNode,"Unable to delete type: corresponding node not found in the dependence graph.");
+  final ImmutableSet<BaseType> affectedTypes=determineDependentTypes(baseType);
+  containedRelation.removeNode(containedTypeNode);
+  containedRelationMap.remove(baseType);
+  return affectedTypes;
+}

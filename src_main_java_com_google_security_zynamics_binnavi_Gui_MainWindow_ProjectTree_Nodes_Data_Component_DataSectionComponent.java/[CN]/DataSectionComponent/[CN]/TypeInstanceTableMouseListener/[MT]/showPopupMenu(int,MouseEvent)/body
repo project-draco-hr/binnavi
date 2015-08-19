@@ -1,0 +1,13 @@
+{
+  final JPopupMenu popupMenu=new JPopupMenu();
+  final JFrame owner=(JFrame)SwingUtilities.getAncestorOfClass(JFrame.class,DataSectionComponent.this);
+  final TypeInstanceContainer instanceContainer=module.getContent().getTypeInstanceContainer();
+  final TypeManager typeManager=module.getTypeManager();
+  popupMenu.add(new CreateTypeInstanceAction(owner,instanceContainer,typeManager,currentSection));
+  if (rowIndex != -1) {
+    final TypeInstance existingInstance=typeDataModel.getTypeAtRow(rowIndex);
+    popupMenu.add(new EditTypeInstanceAction(owner,typeManager,existingInstance,instanceContainer));
+    popupMenu.add(new DeleteTypeInstanceAction(owner,existingInstance,instanceContainer));
+  }
+  popupMenu.show(event.getComponent(),event.getX(),event.getY());
+}

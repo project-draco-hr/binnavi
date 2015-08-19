@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(edge,"Error: edge argument can not be null");
+  if (m_nodeToEdges.get(edge.getSource()) != null) {
+    m_nodeToEdges.get(edge.getSource()).add(edge);
+  }
+ else {
+    throw new IllegalStateException("Error: The given edge has a source node which is not known to the graph.");
+  }
+  if (m_nodeToEdges.get(edge.getTarget()) != null) {
+    m_nodeToEdges.get(edge.getTarget()).add(edge);
+  }
+ else {
+    throw new IllegalStateException("Error: the given edge has a target node which is not known to the graph.");
+  }
+}

@@ -1,0 +1,8 @@
+{
+  for (  final INaviView view : views) {
+    if (view.getType() != ViewType.NonNative) {
+      return false;
+    }
+  }
+  return true;
+}

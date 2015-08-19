@@ -1,0 +1,12 @@
+{
+  final OperandGraphNode node=new OperandGraphNode(instruction,index);
+  nodes.add(node);
+  final String operandString=node.getValue();
+  if (defines.containsKey(node)) {
+    final OperandGraphNode source=defines.get(operandString);
+    final OperandGraphEdge edge=new OperandGraphEdge(source,node);
+    edges.add(edge);
+    OperandGraphNode.link(source,node);
+  }
+  return node;
+}

@@ -1,0 +1,3 @@
+{
+  typeManager.updateArray(existingType,getSelectedType(),getNumberElements());
+}

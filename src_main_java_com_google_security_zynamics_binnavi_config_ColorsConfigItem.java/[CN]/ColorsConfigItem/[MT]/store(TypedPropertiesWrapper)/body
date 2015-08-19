@@ -1,0 +1,33 @@
+{
+  properties.setColor(ADDRESS_COLOR,addressColor);
+  properties.setColor(MNEMONIC_COLOR,mnemonicColor);
+  properties.setColor(STRING_COLOR,stringColor);
+  properties.setColor(MEM_REF_COLOR,memRefColor);
+  properties.setColor(OPERATOR_COLOR,operatorColor);
+  properties.setColor(PREFIX_COLOR,prefixColor);
+  properties.setColor(IMMEDIATE_COLOR,immediateColor);
+  properties.setColor(REGISTER_COLOR,registerColor);
+  properties.setColor(FUNCTION_COLOR,functionColor);
+  properties.setColor(VARIABLE_COLOR,variableColor);
+  properties.setColor(EXPRESSION_LIST_COLOR,expressionListColor);
+  properties.setColor(NO_TYPE_COLOR,noTypeColor);
+  properties.setColor(INVALID_TYPE_COLOR,invalidTypeColor);
+  properties.setColor(OPERAND_SEPARATOR_COLOR,operandSeperatorColor);
+  properties.setColor(GLOBAL_COMMENT_COLOR,globalCommentColor);
+  properties.setColor(LOCAL_COMMENT_COLOR,localCommentColor);
+  properties.setColor(NORMAL_FUNCTION_COLOR,normalFunctionColor);
+  properties.setColor(LIBRARY_FUNCTION_COLOR,libraryFunctionColor);
+  properties.setColor(IMPORTED_FUNCTION_COLOR,importedFunctionColor);
+  properties.setColor(THUNK_FUNCTION_COLOR,thunkFunctionColor);
+  properties.setColor(ADJUSTOR_THUNK_FUNCTION_COLOR,adjustorThunkFunctionColor);
+  properties.setColor(UNKNOWN_FUNCTION_COLOR,unknownFunctionColor);
+  properties.setColor(BASIC_BLOCKS_COLOR,basicBlocksColor);
+  properties.setColor(CONDITIONAL_JUMP_TRUE_COLOR,conditionalJumpTrueColor);
+  properties.setColor(CONDITIONAL_JUMP_FALSE_COLOR,conditionalJumpFalseColor);
+  properties.setColor(UNCONDITIONAL_JUMP_COLOR,unconditionalJumpColor);
+  properties.setColor(SWITCH_JUMP_COLOR,switchJumpColor);
+  properties.setColor(TEXT_EDGE_COLOR,textEdgeColor);
+  properties.setColor(ENTER_INLINED_JUMP_COLOR,enterInlinedJumpColor);
+  properties.setColor(LEAVE_INLINED_JUMP_COLOR,leaveInlinedJumpColor);
+  properties.setColor(TAG_COLOR,tagColor);
+}

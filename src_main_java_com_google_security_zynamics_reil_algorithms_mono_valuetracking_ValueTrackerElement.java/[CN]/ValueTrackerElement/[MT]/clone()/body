@@ -1,0 +1,3 @@
+{
+  return new ValueTrackerElement(m_influences,m_values,m_lastWritten);
+}

@@ -1,0 +1,5 @@
+{
+  super(rows.length == 1 ? "Disable Breakpoint" : "Disable Breakpoints");
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01345: Debugger provider argument can not be null");
+  m_rows=rows.clone();
+}

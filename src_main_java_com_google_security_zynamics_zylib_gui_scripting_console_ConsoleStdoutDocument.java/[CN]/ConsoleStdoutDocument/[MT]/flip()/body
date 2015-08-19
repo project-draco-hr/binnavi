@@ -1,0 +1,4 @@
+{
+  outputAttr=flipflop ? outputAttrA : outputAttrB;
+  flipflop=!flipflop;
+}

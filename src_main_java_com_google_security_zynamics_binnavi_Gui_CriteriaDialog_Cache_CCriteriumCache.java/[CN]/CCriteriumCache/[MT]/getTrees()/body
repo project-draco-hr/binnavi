@@ -1,0 +1,3 @@
+{
+  return new FilledList<CCachedExpressionTree>(m_trees);
+}

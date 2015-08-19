@@ -1,0 +1,3 @@
+{
+  CSettingsDialogFunctions.showFlowgraphSettingsDialog(m_parent);
+}

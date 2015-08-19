@@ -1,0 +1,6 @@
+{
+  if (m_modules.length == 1) {
+    m_container.dispose();
+    m_modules[0].removeListener(m_listener);
+  }
+}

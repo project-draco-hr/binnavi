@@ -1,0 +1,16 @@
+{
+  m_graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      ((IViewNode<?>)node.getRawNode()).setVisible(true);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  m_graph.iterateEdges(new IEdgeCallback<EdgeType>(){
+    @Override public IterationMode nextEdge(    final EdgeType edge){
+      edge.getRawEdge().setVisible(true);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

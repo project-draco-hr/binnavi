@@ -1,0 +1,3 @@
+{
+  getProvider().editGlobalInstructionComment(instruction,null,null,null);
+}

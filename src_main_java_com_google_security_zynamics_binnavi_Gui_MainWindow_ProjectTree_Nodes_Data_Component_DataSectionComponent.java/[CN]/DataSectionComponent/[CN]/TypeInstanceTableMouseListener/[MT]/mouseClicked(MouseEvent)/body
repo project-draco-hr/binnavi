@@ -1,0 +1,13 @@
+{
+  if (event.getClickCount() == 2 && (event.getButton() == MouseEvent.BUTTON1) && (typeDisplay.columnAtPoint(event.getPoint()) == TypeInstanceTableDatamodel.XREFS_INDEX)) {
+    final int row=typeDisplay.rowAtPoint(event.getPoint());
+    final int line=typeDisplay.lineAtPoint(event.getPoint());
+    final TypeInstanceReference reference=typeDataModel.getTypeInstanceReference(row,line);
+    if (reference == null) {
+      return;
+    }
+    final JFrame owner=(JFrame)SwingUtilities.getAncestorOfClass(JFrame.class,DataSectionComponent.this);
+    final javax.swing.Action actionProxy=CActionProxy.proxy(new OpenInLastWindowAndZoomToAddressAction(owner,container,new INaviView[]{reference.getView()},reference));
+    actionProxy.actionPerformed(null);
+  }
+}

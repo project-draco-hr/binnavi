@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  m_editable=editable;
+  m_showColorText=showColorText;
+  setColor(color);
+  setBackground(color);
+  m_textLabel.setHorizontalAlignment(SwingConstants.CENTER);
+  add(m_textLabel,BorderLayout.CENTER);
+  setBorder(new LineBorder(Color.BLACK));
+  setPreferredSize(new Dimension(100,20));
+  addMouseListener(new InternalListener());
+  updateUI();
+}

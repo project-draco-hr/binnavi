@@ -1,0 +1,5 @@
+BaseType baseType
+String name
+int size
+boolean isSigned
+INaviModule module

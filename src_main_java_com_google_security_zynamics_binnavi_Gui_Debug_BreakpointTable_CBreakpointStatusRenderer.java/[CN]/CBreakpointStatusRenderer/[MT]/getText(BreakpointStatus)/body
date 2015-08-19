@@ -1,0 +1,20 @@
+{
+switch (breakpointStatus) {
+case BREAKPOINT_ACTIVE:
+    return "Active";
+case BREAKPOINT_INACTIVE:
+  return "Inactive";
+case BREAKPOINT_ENABLED:
+return "Enabled";
+case BREAKPOINT_DISABLED:
+return "Disabled";
+case BREAKPOINT_HIT:
+return "Hit";
+case BREAKPOINT_INVALID:
+return "Invalid";
+case BREAKPOINT_DELETING:
+return "Deleting";
+default :
+throw new IllegalStateException("IE01117: Unknown breakpoint status");
+}
+}

@@ -1,0 +1,6 @@
+{
+  final int start=component.getSelectionStart();
+  insert(component,start,string);
+  component.setSelectionStart(start + string.length());
+  component.setSelectionEnd(start + string.length());
+}

@@ -1,0 +1,6 @@
+{
+  super("Edit Member");
+  this.typeManager=typeManager;
+  this.selectedMember=selectedMember;
+  this.owner=owner;
+}

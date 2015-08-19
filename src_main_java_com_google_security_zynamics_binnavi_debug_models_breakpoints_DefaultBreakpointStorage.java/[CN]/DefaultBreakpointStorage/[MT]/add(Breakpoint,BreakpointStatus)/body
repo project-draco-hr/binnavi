@@ -1,0 +1,5 @@
+{
+  moduleToBreakpoint.put(breakpoint.getAddress().getModule(),breakpoint);
+  breakpointAddressToBreakpoint.put(breakpoint.getAddress(),breakpoint);
+  breakpointAddressToStatus.put(breakpoint.getAddress(),status);
+}

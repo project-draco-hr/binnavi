@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(connection,"IE00403: Connection argument can not be null");
+  final String query=" { call colorize_module_nodes(?) } ";
+  final CallableStatement colorizeNodes=connection.getConnection().prepareCall(query);
+  colorizeNodes.setInt(1,moduleId);
+  colorizeNodes.execute();
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(codeNode,"IE00094: Code node argument can not be null");
+  initializeComment(new CodeNodeCommentingStrategy(codeNode,CommentScope.GLOBAL),comments);
+}

@@ -1,0 +1,10 @@
+{
+  Preconditions.checkArgument(start >= 0,"Error: Address can't be less than 0");
+  Preconditions.checkArgument(length > 0,"Error: Length must be positive");
+  try {
+    return m_memory.getData(start,length);
+  }
+ catch (  final IllegalArgumentException exception) {
+    throw new MissingDataException(String.format("Memory data between %d and %d is not available",start,start + length - 1));
+  }
+}

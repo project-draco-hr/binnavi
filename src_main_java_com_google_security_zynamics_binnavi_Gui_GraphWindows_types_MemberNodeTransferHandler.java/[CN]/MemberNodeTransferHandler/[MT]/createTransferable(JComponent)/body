@@ -1,0 +1,15 @@
+{
+  final TypesTree tree=(TypesTree)component;
+  final Object node=tree.getSelectionPath().getLastPathComponent();
+  if (node instanceof BaseTypeTreeNode) {
+    return new TransferableBaseType(((BaseTypeTreeNode)node).getBaseType());
+  }
+ else   if (node instanceof TypeMemberTreeNode) {
+    final List<TypeMemberTreeNode> nodes=getSelectedNodesSorted((TypesTree)component);
+    if (!nodes.isEmpty()) {
+      selectedNodes=nodes;
+      return new TransferableMemberNodes(nodes);
+    }
+  }
+  return null;
+}

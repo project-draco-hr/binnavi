@@ -1,0 +1,3 @@
+{
+  getProvider().createView(new MockProject(),null,"View Name","View Description");
+}

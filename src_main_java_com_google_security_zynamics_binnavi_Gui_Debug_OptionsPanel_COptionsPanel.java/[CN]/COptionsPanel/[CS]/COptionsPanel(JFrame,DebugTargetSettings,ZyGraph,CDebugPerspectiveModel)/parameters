@@ -1,0 +1,4 @@
+JFrame parent
+DebugTargetSettings debugTarget
+ZyGraph graph
+CDebugPerspectiveModel debugModel

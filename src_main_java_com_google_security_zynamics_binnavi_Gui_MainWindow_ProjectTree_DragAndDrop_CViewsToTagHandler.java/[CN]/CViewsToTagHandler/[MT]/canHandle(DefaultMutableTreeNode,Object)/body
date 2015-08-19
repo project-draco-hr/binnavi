@@ -1,0 +1,13 @@
+{
+  if (parentNode instanceof CTagNode) {
+    final List<INaviView> views=(List<INaviView>)data;
+    final CTag tag=((CTagNode)parentNode).getObject().getObject();
+    for (    final INaviView view : views) {
+      if (!view.getConfiguration().isTagged(tag) && view.inSameDatabase(tag)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return false;
+}

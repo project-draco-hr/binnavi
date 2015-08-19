@@ -1,0 +1,13 @@
+{
+  super(nodes,edges);
+  for (  final Object block : nodes) {
+    if (!(block instanceof BasicBlock)) {
+      throw new IllegalArgumentException("Error: Block list contains objects that are not BasicBlock objects");
+    }
+  }
+  for (  final Object block : edges) {
+    if (!(block instanceof BlockEdge)) {
+      throw new IllegalArgumentException("Error: Edge list contains objects that are not BlockEdge objects");
+    }
+  }
+}

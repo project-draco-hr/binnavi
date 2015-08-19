@@ -1,0 +1,7 @@
+{
+  final List<JComponent> additionalMenus=new ArrayList<JComponent>();
+  final VisualCoverageAction action=new VisualCoverageAction(graphFrame);
+  createdActions.add(action);
+  additionalMenus.add(new JMenuItem(action));
+  return additionalMenus;
+}

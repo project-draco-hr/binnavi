@@ -1,0 +1,8 @@
+{
+  if (m_activeWindow != window) {
+    window.getGlassPane().setVisible(true);
+    window.getGlassPane().addMouseListener(m_listener);
+    window.setCursor(m_helpCursor);
+    m_activeWindow=window;
+  }
+}

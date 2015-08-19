@@ -1,0 +1,9 @@
+{
+  super.setHorizontalAlignment(CENTER);
+  final BreakpointStatus breakpointStatus=(BreakpointStatus)object;
+  setForeground(Color.BLACK);
+  setBackground(BreakpointManager.getBreakpointColor(breakpointStatus));
+  setText(getText(breakpointStatus));
+  setBorder(BorderFactory.createMatteBorder(2,5,2,5,isSelected ? table.getSelectionBackground() : table.getBackground()));
+  return this;
+}

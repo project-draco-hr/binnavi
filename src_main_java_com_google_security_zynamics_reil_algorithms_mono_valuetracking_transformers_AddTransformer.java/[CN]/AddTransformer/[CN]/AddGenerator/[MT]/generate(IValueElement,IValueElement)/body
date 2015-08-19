@@ -1,0 +1,3 @@
+{
+  return new Addition(lhs,rhs).getSimplified();
+}

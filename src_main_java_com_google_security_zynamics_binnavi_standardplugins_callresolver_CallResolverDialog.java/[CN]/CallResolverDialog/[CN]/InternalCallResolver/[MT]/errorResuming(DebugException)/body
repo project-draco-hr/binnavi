@@ -1,0 +1,3 @@
+{
+  appendOutput("Error: Debugger could not be resumed after a breakpoint was hit.");
+}

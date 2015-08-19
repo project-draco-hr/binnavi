@@ -1,0 +1,6 @@
+{
+  if (viewIndex >= 0) {
+    return getViewToModel()[viewIndex].modelIndex;
+  }
+  return 0;
+}

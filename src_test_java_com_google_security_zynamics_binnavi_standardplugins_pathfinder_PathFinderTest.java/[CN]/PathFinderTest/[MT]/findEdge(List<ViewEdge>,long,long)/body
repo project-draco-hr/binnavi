@@ -1,0 +1,8 @@
+{
+  for (  final ViewEdge edge : edges) {
+    if ((((CodeNode)edge.getSource()).getAddress().toLong() == source) && (((CodeNode)edge.getTarget()).getAddress().toLong() == target)) {
+      return edge;
+    }
+  }
+  return null;
+}

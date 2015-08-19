@@ -1,0 +1,7 @@
+{
+  super(new CProjectsTable(projectTree,database),new CProjectFilterCreator(),new CProjectFilterHelp());
+  m_database=database;
+  m_listener=new InternalDatabaseListener();
+  m_database.addListener(m_listener);
+  updateBorderText(getBorderText());
+}

@@ -1,0 +1,3 @@
+{
+  m_currentLayouter=Preconditions.checkNotNull(layouter,"IE02249: Layouter argument can't be null");
+}

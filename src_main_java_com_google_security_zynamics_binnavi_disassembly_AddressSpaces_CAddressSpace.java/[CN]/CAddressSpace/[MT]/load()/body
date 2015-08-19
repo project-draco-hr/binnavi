@@ -1,0 +1,38 @@
+{
+synchronized (m_loadReporter) {
+    if (isLoaded()) {
+      return;
+    }
+    m_isLoading=true;
+    try {
+      if (!m_loadReporter.report(AddressSpaceLoadEvents.Starting)) {
+        throw new LoadCancelledException();
+      }
+      if (!m_loadReporter.report(AddressSpaceLoadEvents.LoadingModules)) {
+        throw new LoadCancelledException();
+      }
+      final List<Pair<IAddress,INaviModule>> modules=m_provider.loadModules(this);
+      m_content=new CAddressSpaceContent(this,m_provider,modules);
+    }
+ catch (    final CouldntLoadDataException e) {
+      m_isLoading=false;
+      throw e;
+    }
+catch (    final LoadCancelledException e) {
+      m_isLoading=false;
+      throw e;
+    }
+ finally {
+      m_loadReporter.report(AddressSpaceLoadEvents.Finished);
+    }
+    for (    final IAddressSpaceListener listener : m_listeners) {
+      try {
+        listener.loaded(this);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+    m_isLoading=false;
+  }
+}

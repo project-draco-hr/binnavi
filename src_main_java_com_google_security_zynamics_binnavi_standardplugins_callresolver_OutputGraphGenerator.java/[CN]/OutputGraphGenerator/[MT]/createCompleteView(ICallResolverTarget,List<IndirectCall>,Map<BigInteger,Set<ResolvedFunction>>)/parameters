@@ -1,0 +1,3 @@
+ICallResolverTarget target
+List<IndirectCall> indirectCallAddresses
+Map<BigInteger,Set<ResolvedFunction>> resolvedAddresses

@@ -1,0 +1,4 @@
+{
+  final Object dropTarget=ZyGraphDragAndDropSupport.getDragOverState(graph,support.getDropLocation().getDropPoint()).getDragOverObject().getObject();
+  return (dropTarget instanceof INaviOperandTreeNode) ? (INaviOperandTreeNode)dropTarget : null;
+}

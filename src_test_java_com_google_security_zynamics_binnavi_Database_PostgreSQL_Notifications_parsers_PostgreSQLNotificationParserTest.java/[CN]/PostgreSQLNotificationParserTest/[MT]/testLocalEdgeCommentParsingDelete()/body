@@ -1,0 +1,12 @@
+{
+  new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  MockPGNotification notification=new MockPGNotification("comment_changes","bn_edges UPDATE 4444 null");
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processEdgeLocalCommentNotification(notification,provider);
+  assertNotNull(result);
+  final EdgeCommentNotificationContainer container=(EdgeCommentNotificationContainer)result;
+  final INaviEdge edge=container.getEdge();
+  assertEquals(4444,edge.getId());
+  assertEquals(CommentOperation.DELETE,container.getOperation());
+  assertNull(container.getCommentId());
+  assertEquals(CommentScope.LOCAL,container.getScope());
+}

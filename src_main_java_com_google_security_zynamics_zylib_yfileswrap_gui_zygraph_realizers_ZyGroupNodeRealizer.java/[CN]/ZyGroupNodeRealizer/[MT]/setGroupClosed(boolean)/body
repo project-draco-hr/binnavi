@@ -1,0 +1,7 @@
+{
+  super.setGroupClosed(collapsed);
+  if (collapsed) {
+    final Rectangle2D bounds=m_content.getBounds();
+    setSize(bounds.getWidth(),bounds.getHeight());
+  }
+}

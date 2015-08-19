@@ -1,0 +1,8 @@
+{
+  super("Search View");
+  checkArguments(parent);
+  m_container=Preconditions.checkNotNull(container,"IE01149: Project argument can not be null");
+  m_parent=null;
+  m_parentComponent=parent;
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_SEARCH_VIEW".charAt(0));
+}

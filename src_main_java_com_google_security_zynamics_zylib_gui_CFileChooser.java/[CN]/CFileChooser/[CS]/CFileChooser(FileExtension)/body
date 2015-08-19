@@ -1,0 +1,9 @@
+{
+  super();
+  Preconditions.checkNotNull(extensions,"File extensions can't be null.");
+  for (  final FileExtension ext : extensions) {
+    final CFileNameExtensionFilter fileFilter=new CFileNameExtensionFilter(Arrays.asList(ext.m_extensions),ext.m_description);
+    m_fileFilters.add(fileFilter);
+    addChoosableFileFilter(fileFilter);
+  }
+}

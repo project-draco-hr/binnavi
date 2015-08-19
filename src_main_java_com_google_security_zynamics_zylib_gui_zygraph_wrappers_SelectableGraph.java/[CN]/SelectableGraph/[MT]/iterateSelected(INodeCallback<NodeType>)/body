@@ -1,0 +1,3 @@
+{
+  IteratorFunctions.iterateSelected(m_graph,callback);
+}

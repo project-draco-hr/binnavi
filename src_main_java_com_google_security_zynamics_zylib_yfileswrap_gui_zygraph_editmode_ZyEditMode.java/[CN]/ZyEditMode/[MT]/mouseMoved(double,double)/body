@@ -1,0 +1,9 @@
+{
+  m_inMouseMoved=true;
+  try {
+    super.mouseMoved(x,y);
+  }
+  finally {
+    m_inMouseMoved=false;
+  }
+}

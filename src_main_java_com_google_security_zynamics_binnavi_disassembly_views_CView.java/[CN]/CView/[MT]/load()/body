@@ -1,0 +1,37 @@
+{
+synchronized (m_loadReporter) {
+    if (isLoaded()) {
+      throw new IllegalStateException("IE01110: View is already loaded");
+    }
+    m_loadReporter.start();
+    if (!m_loadReporter.report(ViewLoadEvents.Started)) {
+      throw new LoadCancelledException();
+    }
+    try {
+      final MutableDirectedGraph<INaviViewNode,INaviEdge> graph=m_configuration.isStored() ? m_provider.loadView(this) : new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),new ArrayList<INaviEdge>());
+      m_content=new CViewContent(this,m_listeners,m_provider,graph);
+      if (!m_loadReporter.report(ViewLoadEvents.Finished)) {
+        throw new LoadCancelledException();
+      }
+      if (this.getType().equals(ViewType.Native)) {
+        colorNodes();
+      }
+      if (getContent().getGraphType().equals(GraphType.FLOWGRAPH)) {
+        colorLoops();
+      }
+      colorEdges();
+      ((CViewContent)getContent()).setModified(false);
+      for (      final INaviViewListener listener : m_listeners) {
+        try {
+          listener.loadedView(this);
+        }
+ catch (        final IllegalArgumentException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  finally {
+      m_loadReporter.stop();
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  for (  final MemorySection section : map) {
+    if (address.toLong() >= section.getStart().toLong() && address.toLong() < section.getEnd().toLong()) {
+      return section;
+    }
+  }
+  return null;
+}

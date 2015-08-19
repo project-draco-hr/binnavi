@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(type,"IE00178: Type argument can not be null");
+  Preconditions.checkNotNull(breakpoints,"IE00179: breakpoints argument can not be null");
+  if (breakpoints.size() == 0) {
+    return;
+  }
+switch (type) {
+case REGULAR:
+    removeBreakpoints(breakpoints,indexedBreakpointStorage);
+  break;
+case ECHO:
+removeBreakpoints(breakpoints,echoBreakpointStorage);
+break;
+case STEP:
+removeBreakpoints(breakpoints,stepBreakpointStorage);
+break;
+default :
+throw new IllegalStateException(String.format("Invalid breakpoint type '%s'",type));
+}
+}

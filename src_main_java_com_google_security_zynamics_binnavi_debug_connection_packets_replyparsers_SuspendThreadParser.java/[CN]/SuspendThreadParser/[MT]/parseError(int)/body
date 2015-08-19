@@ -1,0 +1,5 @@
+{
+  final int errorCode=parseInteger();
+  final long threadId=parseThreadId();
+  return new SuspendThreadReply(packetId,errorCode,threadId);
+}

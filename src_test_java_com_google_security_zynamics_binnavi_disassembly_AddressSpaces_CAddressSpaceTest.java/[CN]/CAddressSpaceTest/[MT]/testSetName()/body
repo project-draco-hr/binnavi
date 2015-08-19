@@ -1,0 +1,14 @@
+{
+  try {
+    m_addressSpace.getConfiguration().setName(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_addressSpace.getConfiguration().setName("New Name");
+  assertEquals("changedName;changedModificationDate;",m_listener.events);
+  assertEquals("New Name",m_addressSpace.getConfiguration().getName());
+  m_addressSpace.getConfiguration().setName("New Name");
+  assertEquals("changedName;changedModificationDate;",m_listener.events);
+  assertEquals("New Name",m_addressSpace.getConfiguration().getName());
+}

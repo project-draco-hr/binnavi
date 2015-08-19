@@ -1,0 +1,4 @@
+{
+  threadState=Preconditions.checkNotNull(state,"IE00823: Invalid state");
+  threadId=tid;
+}

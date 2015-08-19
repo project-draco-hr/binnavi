@@ -1,0 +1,5 @@
+{
+  final int width=m_offsetViewWidth + m_hexElementWidth + (18 * m_charWidth);
+  setPreferredSize(new Dimension(width,getHeight()));
+  revalidate();
+}

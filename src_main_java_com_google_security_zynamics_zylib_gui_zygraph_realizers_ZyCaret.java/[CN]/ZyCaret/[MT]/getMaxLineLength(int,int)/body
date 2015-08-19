@@ -1,0 +1,16 @@
+{
+  int max=0;
+  if (startY > endY) {
+    final int temp=startY;
+    startY=endY;
+    endY=temp;
+  }
+  for (int lineIndex=startY; lineIndex <= endY; ++lineIndex) {
+    final ZyLineContent lineContent=m_content.getLineContent(lineIndex);
+    final int length=lineContent.getText().length();
+    if (max < length) {
+      max=length;
+    }
+  }
+  return max;
+}

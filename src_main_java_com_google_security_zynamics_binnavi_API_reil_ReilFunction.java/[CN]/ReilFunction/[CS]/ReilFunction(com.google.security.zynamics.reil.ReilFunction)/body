@@ -1,0 +1,4 @@
+{
+  m_function=function;
+  m_graph=ReilGraphConverter.createReilGraph(function.getGraph());
+}

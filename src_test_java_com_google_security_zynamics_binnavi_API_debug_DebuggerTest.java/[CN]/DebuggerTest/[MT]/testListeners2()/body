@@ -1,0 +1,21 @@
+{
+  final DebuggerListener listener=new DebuggerListener();
+  debugger.addListener(listener);
+  mockDebugger.connect();
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(1,ThreadState.RUNNING));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointConditionSetReply(0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointConditionSetReply(0,1));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointHitReply(0,0,1,new RegisterValues(Lists.<ThreadRegisters>newArrayList(new ThreadRegisters(1,Lists.newArrayList(new RegisterValue("eip",BigInteger.ONE,new byte[0],true,false)))))));
+  mockDebugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123_SET);
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,0))));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,1))));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointsRemovedReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,0))));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new BreakpointsRemovedReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,1))));
+  mockDebugger.getBreakpointManager().removeBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123_SET);
+  mockDebugger.connection.m_synchronizer.receivedEvent(new DebuggerClosedUnexpectedlyReply());
+  mockDebugger.connection.m_synchronizer.receivedEvent(new DetachReply(0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new DetachReply(0,1));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new EchoBreakpointHitReply(0,0,1,new RegisterValues(Lists.<ThreadRegisters>newArrayList(new ThreadRegisters(1,Lists.newArrayList(new RegisterValue("eip",BigInteger.ONE,new byte[0],false,false)))))));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new EchoBreakpointHitReply(0,0,1,new RegisterValues(Lists.<ThreadRegisters>newArrayList(new ThreadRegisters(1,Lists.newArrayList(new RegisterValue("eip",BigInteger.ONE,new byte[0],true,false)))))));
+  debugger.removeListener(listener);
+}

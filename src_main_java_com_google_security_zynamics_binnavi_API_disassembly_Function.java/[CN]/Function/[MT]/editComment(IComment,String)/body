@@ -1,0 +1,8 @@
+{
+  try {
+    return m_function.editGlobalComment(comment,newComment);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

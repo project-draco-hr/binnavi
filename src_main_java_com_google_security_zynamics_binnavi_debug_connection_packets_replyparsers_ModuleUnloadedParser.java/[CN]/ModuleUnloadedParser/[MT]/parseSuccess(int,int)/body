@@ -1,0 +1,9 @@
+{
+  try {
+    return new ModuleUnloadedReply(packetId,0,MemoryModuleParser.parseModule(parseData()));
+  }
+ catch (  final MessageParserException exception) {
+    CUtilityFunctions.logException(exception);
+    return new ModuleUnloadedReply(0,PARSER_ERROR,null);
+  }
+}

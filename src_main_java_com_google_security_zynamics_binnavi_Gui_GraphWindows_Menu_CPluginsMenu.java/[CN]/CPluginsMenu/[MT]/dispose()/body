@@ -1,0 +1,3 @@
+{
+  PluginInterface.instance().removeListener(m_listener);
+}

@@ -1,0 +1,30 @@
+{
+  super(owner,"Tutorial Selection",true);
+  Preconditions.checkNotNull(owner,"IE02080: Owner argument can not be null");
+  Preconditions.checkNotNull(tutorials,"IE02081: Tutorials argument can not be null");
+  new CDialogEscaper(this);
+  final JPanel panel=new JPanel(new BorderLayout());
+  panel.setBorder(new TitledBorder("Please select the tutorial you want to run"));
+  tutorialList=new JList<CTutorial>(tutorials.toArray(new CTutorial[tutorials.size()]));
+  tutorialList.addListSelectionListener(new InternalSelectionListener());
+  tutorialDescription.setBorder(new TitledBorder(""));
+  tutorialDescription.setContentType("text/html");
+  tutorialDescription.setEditable(false);
+  if (!tutorials.isEmpty()) {
+    tutorialList.setSelectedIndex(0);
+  }
+  final JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,new JScrollPane(tutorialList),new JScrollPane(tutorialDescription));
+  splitPane.setDividerLocation(200);
+  panel.add(splitPane);
+  final JPanel bottomPanel=new JPanel(new BorderLayout());
+  final JPanel buttonPanel=new JPanel();
+  final JButton closeButton=new JButton(new CancelAction());
+  final JButton startButton=new JButton(new StartAction());
+  buttonPanel.add(closeButton);
+  buttonPanel.add(startButton);
+  bottomPanel.add(buttonPanel,BorderLayout.EAST);
+  add(panel);
+  add(bottomPanel,BorderLayout.SOUTH);
+  setSize(new Dimension(600,400));
+  GuiHelper.centerChildToParent(owner,this,true);
+}

@@ -1,0 +1,33 @@
+{
+  final ArrayList<COperandTreeNode> realNodes=new ArrayList<COperandTreeNode>();
+  final HashMap<COperandTreeNode,OperandTreeNode> realToRawMapping=new HashMap<COperandTreeNode,OperandTreeNode>();
+  final HashMap<Integer,COperandTreeNode> idToRealMapping=new HashMap<Integer,COperandTreeNode>();
+  COperandTreeNode root=null;
+  final TypeManager typeManager=module.getTypeManager();
+  final TypeInstanceContainer instanceContainer=module.getContent().getTypeInstanceContainer();
+  for (  final OperandTreeNode rawNode : rawTree.getNodes()) {
+    final COperandTreeNode node=new COperandTreeNode(rawNode.getId(),rawNode.getType(),rawNode.getValue(),rawNode.getReplacement(),rawNode.getReferences(),provider,typeManager,instanceContainer);
+    if (rawNode.getTypeSubstitution() != null) {
+      typeManager.initializeTypeSubstitution(node,rawNode.getTypeSubstitution());
+    }
+    if (rawNode.getTypeInstanceId() != null) {
+      instanceContainer.initializeTypeInstanceReference(rawNode.getAddress(),rawNode.getPosition(),rawNode.getId(),node);
+    }
+    realToRawMapping.put(node,rawNode);
+    idToRealMapping.put(rawNode.getId(),node);
+    if (rawNode.getParentId() == null) {
+      root=node;
+    }
+    realNodes.add(node);
+  }
+  for (  final COperandTreeNode realNode : realNodes) {
+    final OperandTreeNode rawNode=realToRawMapping.get(realNode);
+    final Integer parentId=rawNode.getParentId();
+    if (parentId == null) {
+      continue;
+    }
+    final COperandTreeNode realParent=idToRealMapping.get(parentId);
+    COperandTreeNode.link(realParent,realNode);
+  }
+  return new COperandTree(root,provider,typeManager,instanceContainer);
+}

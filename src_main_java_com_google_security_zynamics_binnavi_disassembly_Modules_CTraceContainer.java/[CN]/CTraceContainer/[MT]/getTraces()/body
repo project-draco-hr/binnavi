@@ -1,0 +1,3 @@
+{
+  return new ArrayList<TraceList>(m_traces);
+}

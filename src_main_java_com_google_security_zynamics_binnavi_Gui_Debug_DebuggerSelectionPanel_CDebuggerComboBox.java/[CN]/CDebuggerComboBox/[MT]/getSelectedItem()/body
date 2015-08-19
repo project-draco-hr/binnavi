@@ -1,0 +1,3 @@
+{
+  return (CDebuggerWrapper)super.getSelectedItem();
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(parent,"IE02135: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE02136: Graph argument can not be null");
+  Preconditions.checkNotNull(edge,"IE02137: Edge argument can not be null");
+  add(CActionProxy.proxy(new CZoomSourceTargetAction(graph,edge)));
+  add(CActionProxy.proxy(new CZoomSourceAction(graph,edge)));
+  add(CActionProxy.proxy(new CZoomTargetAction(graph,edge)));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionDeleteEdge(graph.getRawView(),edge.getRawEdge())));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionEditEdgeComments(parent,edge)));
+}

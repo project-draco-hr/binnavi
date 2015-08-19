@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(provider,"IE00630: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE00631: Module argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00632: Module is not part of this database");
+  Preconditions.checkNotNull(flowgraphs,"IE00633: Flowgraphs argument can not be null");
+  for (  final IFlowgraphView view : flowgraphs) {
+    Preconditions.checkNotNull(view,"IE00634: View list contains a null-element");
+    Preconditions.checkArgument(view.inSameDatabase(provider),"IE00635: View is not part of this database");
+  }
+  Preconditions.checkNotNull(functions,"IE00636: Functions argument can not be null");
+  for (  final INaviFunction function : functions) {
+    Preconditions.checkNotNull(function,"IE00637: Function list contains a null-element");
+    Preconditions.checkArgument(function.inSameDatabase(provider),"IE00638: Function is not part of this database");
+  }
+}

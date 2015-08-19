@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(parent,"IE01198: Parent argument can not be null");
+  Preconditions.checkNotNull(table,"IE01199: Table argument can not be null");
+  final CTableSearcher searcher=new CTableSearcher(parent,"",table,0);
+  String searchText="";
+  do {
+    searchText=(String)JOptionPane.showInputDialog(parent,"Search",Constants.DEFAULT_WINDOW_TITLE,JOptionPane.QUESTION_MESSAGE,null,null,searchText);
+    if ((searchText != null) && (searchText.length() > 0) && !searcher.search(searchText)) {
+      JOptionPane.showMessageDialog(parent,"Search string not found",Constants.DEFAULT_WINDOW_TITLE,JOptionPane.ERROR_MESSAGE);
+    }
+  }
+ while ((searchText != null) && (searchText.length() > 0));
+}

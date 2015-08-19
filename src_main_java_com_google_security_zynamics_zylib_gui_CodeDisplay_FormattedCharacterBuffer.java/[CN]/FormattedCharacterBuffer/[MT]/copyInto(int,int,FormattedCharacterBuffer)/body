@@ -1,0 +1,16 @@
+{
+  if ((lineNum + other.getNumberOfLines() > numberOfLinesInBuffer) || (columnNum + other.getNumberOfColumns() > numberOfColumnsInBuffer)) {
+    return false;
+  }
+  for (int lineIndex=0; lineIndex < other.getNumberOfLines(); lineIndex++) {
+    for (int columnIndex=0; columnIndex < other.getNumberOfColumns(); columnIndex++) {
+      int readIndex=(lineIndex * other.getNumberOfColumns()) + columnIndex;
+      char value=other.charBuffer[readIndex];
+      Font font=other.perCharFonts[readIndex];
+      Color foreground=other.perCharForegroundColor[readIndex];
+      Color background=other.perCharBackgroundColor[readIndex];
+      setAt(lineNum + lineIndex,columnNum + columnIndex,value,font,foreground,background);
+    }
+  }
+  return true;
+}

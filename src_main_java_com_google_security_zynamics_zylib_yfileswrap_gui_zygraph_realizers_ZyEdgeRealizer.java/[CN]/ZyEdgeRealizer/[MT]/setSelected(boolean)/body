@@ -1,0 +1,6 @@
+{
+  super.setSelected(selected);
+  for (int i=0; i < bendCount(); ++i) {
+    getBend(i).setSelected(selected);
+  }
+}

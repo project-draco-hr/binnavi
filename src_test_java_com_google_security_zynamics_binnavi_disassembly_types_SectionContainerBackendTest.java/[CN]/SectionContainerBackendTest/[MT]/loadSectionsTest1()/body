@@ -1,0 +1,16 @@
+{
+  final SectionContainerBackend sectionContainerBackend=new SectionContainerBackend(provider,module);
+  final int numberOfSections=sectionContainerBackend.loadSections().size();
+  Assert.assertNotNull(sectionContainerBackend);
+  sectionContainerBackend.createSection(".data2",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0xFF,(byte)0x00});
+  final List<Section> sectionList=sectionContainerBackend.loadSections();
+  Assert.assertEquals(numberOfSections + 1,sectionList.size());
+  final Section section=Iterables.find(sectionList,new Predicate<Section>(){
+    @Override public final boolean apply(    final Section section){
+      return section.getName().equals(".data2");
+    }
+  }
+);
+  Assert.assertNotNull(section);
+  Assert.assertTrue(sectionList.contains(section));
+}

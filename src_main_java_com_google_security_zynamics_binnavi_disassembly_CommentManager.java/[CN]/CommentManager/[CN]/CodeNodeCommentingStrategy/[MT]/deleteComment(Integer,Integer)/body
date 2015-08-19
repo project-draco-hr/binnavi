@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    provider.deleteGlobalCodeNodeComment(codeNode,commentId,userId);
+  }
+ else {
+    provider.deleteLocalCodeNodeComment(codeNode,commentId,userId);
+  }
+}

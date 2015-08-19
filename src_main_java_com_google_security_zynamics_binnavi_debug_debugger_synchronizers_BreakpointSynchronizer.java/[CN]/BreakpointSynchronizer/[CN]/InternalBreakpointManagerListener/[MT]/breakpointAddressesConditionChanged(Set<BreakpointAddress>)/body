@@ -1,0 +1,5 @@
+{
+  for (  final BreakpointAddress address : regularBreakpointAddressesToAdd) {
+    enableSingleBPCondition(manager.getBreakpoint(BreakpointType.REGULAR,address));
+  }
+}

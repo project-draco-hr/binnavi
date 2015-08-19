@@ -1,0 +1,3 @@
+{
+  PostgreSQLProjectFunctions.removeDebugger(this,project,debugger);
+}

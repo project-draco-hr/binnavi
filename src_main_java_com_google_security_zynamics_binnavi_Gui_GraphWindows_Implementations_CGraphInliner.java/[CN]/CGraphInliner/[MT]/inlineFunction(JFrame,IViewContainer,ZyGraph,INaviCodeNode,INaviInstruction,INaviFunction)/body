@@ -1,0 +1,23 @@
+{
+  final INaviFunction inlineFunction=prepareFunctionInlining(parent,node,instruction,function,viewContainer);
+  if (inlineFunction == null) {
+    CMessageBox.showError(parent,"Could not inline the function because it is forwarded to an unknown function.");
+  }
+ else   if (inlineFunction.getBasicBlockCount() == 0) {
+    CMessageBox.showError(parent,"Could not inline the function because it has 0 basic blocks.");
+  }
+ else {
+    try {
+      if (!inlineFunction.isLoaded()) {
+        inlineFunction.load();
+      }
+      CInliningHelper.inlineCodeNode(graph.getRawView(),node,instruction,inlineFunction);
+      if (graph.getSettings().getLayoutSettings().getAutomaticLayouting()) {
+        CGraphLayouter.refreshLayout(parent,graph);
+      }
+    }
+ catch (    final CouldntLoadDataException e) {
+      exceptionDialog(parent,inlineFunction,e);
+    }
+  }
+}

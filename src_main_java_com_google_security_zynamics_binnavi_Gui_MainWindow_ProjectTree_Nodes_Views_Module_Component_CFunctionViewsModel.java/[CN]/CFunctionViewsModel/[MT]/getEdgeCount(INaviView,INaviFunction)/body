@@ -1,0 +1,17 @@
+{
+  if (view.isLoaded() || (function.getForwardedFunctionAddress() == null)) {
+    return view.getEdgeCount();
+  }
+ else {
+    final INaviModule forwardedModule=m_database.getContent().getModule(function.getForwardedFunctionModuleId());
+    Preconditions.checkNotNull(forwardedModule,"IE01186: Unknown forwarded module");
+    if (forwardedModule.isLoaded()) {
+      final INaviFunction forwardedFunction=forwardedModule.getContent().getFunctionContainer().getFunction(function.getForwardedFunctionAddress());
+      Preconditions.checkNotNull(forwardedFunction,"IE01185: Unknown forwarded function");
+      return forwardedFunction.getEdgeCount();
+    }
+ else {
+      return 0;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (object == null) {
+    return false;
+  }
+  if (getClass() != object.getClass()) {
+    return false;
+  }
+  final RawBaseType other=(RawBaseType)object;
+  return Objects.equals(id,other.id) && Objects.equals(name,other.name) && Objects.equals(pointerId,other.pointerId)&& Objects.equals(size,other.size)&& Objects.equals(isSigned,other.isSigned)&& Objects.equals(category,other.category);
+}

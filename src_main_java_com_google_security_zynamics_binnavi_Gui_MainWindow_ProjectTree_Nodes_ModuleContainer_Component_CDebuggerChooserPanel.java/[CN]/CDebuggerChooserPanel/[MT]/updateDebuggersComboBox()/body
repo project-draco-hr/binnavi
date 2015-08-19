@@ -1,0 +1,5 @@
+{
+  if (m_debuggerCombo != null) {
+    m_debuggerCombo.setSelectedDebugger(m_module.getConfiguration().getDebuggerTemplate());
+  }
+}

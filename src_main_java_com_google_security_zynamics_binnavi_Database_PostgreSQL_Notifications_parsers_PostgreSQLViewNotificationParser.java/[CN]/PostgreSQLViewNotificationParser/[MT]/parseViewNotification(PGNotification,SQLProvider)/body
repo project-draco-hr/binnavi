@@ -1,0 +1,10 @@
+{
+  final Matcher matcher=viewNotificationPattern.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    throw new IllegalStateException("IE02742: compiled pattern: " + viewNotificationPattern.toString() + " did not match notification: "+ notification.getParameter());
+  }
+  final Integer viewId=Integer.parseInt(matcher.group(3));
+  final Optional<INaviView> view=Optional.fromNullable(ViewManager.get(provider).getView(viewId));
+  final String databaseOperation=matcher.group(2);
+  return new ViewNotificationContainer(viewId,view,Optional.<Integer>absent(),Optional.<INaviModule>absent(),Optional.<INaviProject>absent(),databaseOperation);
+}

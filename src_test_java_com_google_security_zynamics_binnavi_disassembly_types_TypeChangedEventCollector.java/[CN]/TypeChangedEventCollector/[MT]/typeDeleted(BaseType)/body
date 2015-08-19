@@ -1,0 +1,3 @@
+{
+  events.add(getEventString(TYPE_DELETED_STRING,baseType.getId(),baseType.getName()));
+}

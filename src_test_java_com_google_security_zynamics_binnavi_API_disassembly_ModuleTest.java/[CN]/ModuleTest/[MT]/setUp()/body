@@ -1,0 +1,12 @@
+{
+  ConfigManager.instance().read();
+  final MockSqlProvider provider=new MockSqlProvider();
+  final Date creationDate=new Date();
+  final Date modificationDate=new Date();
+  final CModule internalModule=new CModule(123,"Name","Comment",creationDate,modificationDate,"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate(1,"Mock Debugger","localhaus",88,provider),null,Integer.MAX_VALUE,false,provider);
+  internalModule.load();
+  final TagManager nodeTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider));
+  final TagManager viewTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.VIEW_TAG,provider))),TagType.VIEW_TAG,provider));
+  final Database db=new Database(new MockDatabase());
+  m_module=new Module(db,internalModule,nodeTagManager,viewTagManager);
+}

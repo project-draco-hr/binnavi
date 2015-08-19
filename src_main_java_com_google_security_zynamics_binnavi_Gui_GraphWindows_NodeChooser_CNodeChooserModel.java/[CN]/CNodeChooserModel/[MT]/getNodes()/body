@@ -1,0 +1,6 @@
+{
+  if (m_nodeCache != null) {
+    return m_nodeCache;
+  }
+  return m_graph.getRawView().getGraph().getNodes();
+}

@@ -1,0 +1,7 @@
+{
+  m_model=new JCriteriumTreeModel(this,ctree,criteria);
+  setRootVisible(true);
+  setModel(m_model);
+  setCellRenderer(new CTreeNodeRenderer());
+  addMouseListener(m_mouseListener);
+}

@@ -1,0 +1,5 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  final CView view=(CView)module.getContent().getViewContainer().getViews().get(224);
+  getProvider().removeTag(view,null);
+}

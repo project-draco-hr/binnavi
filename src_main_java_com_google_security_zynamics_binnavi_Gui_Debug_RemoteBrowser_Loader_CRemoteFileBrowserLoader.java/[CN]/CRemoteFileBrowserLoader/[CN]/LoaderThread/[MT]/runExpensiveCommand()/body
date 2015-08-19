@@ -1,0 +1,7 @@
+{
+  m_fileSystemRequest=m_debugger.requestFileSystem();
+  m_processRequest=m_debugger.requestProcessList();
+  while (keepWaiting()) {
+    Thread.sleep(100);
+  }
+}

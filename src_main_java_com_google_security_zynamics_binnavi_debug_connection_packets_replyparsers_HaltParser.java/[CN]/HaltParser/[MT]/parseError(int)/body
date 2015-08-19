@@ -1,0 +1,3 @@
+{
+  return new HaltReply(packetId,0,parseInteger());
+}

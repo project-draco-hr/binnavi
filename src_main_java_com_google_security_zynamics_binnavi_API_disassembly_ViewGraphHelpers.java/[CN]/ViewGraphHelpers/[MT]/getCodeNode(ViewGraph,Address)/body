@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  for (  final ViewNode node : graph) {
+    if (node instanceof CodeNode) {
+      final CodeNode cnode=(CodeNode)node;
+      if (cnode.getAddress().equals(address)) {
+        return cnode;
+      }
+    }
+  }
+  return null;
+}

@@ -1,0 +1,6 @@
+{
+  super(listData);
+  m_selected=new boolean[listData.size()];
+  setCellRenderer(new CheckedListboxRenderer<T>());
+  addMouseListener(new InternalListener());
+}

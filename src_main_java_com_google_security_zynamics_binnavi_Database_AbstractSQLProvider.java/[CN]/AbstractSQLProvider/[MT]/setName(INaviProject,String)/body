@@ -1,0 +1,3 @@
+{
+  PostgreSQLProjectFunctions.setName(this,project,name);
+}

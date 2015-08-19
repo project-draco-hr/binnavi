@@ -1,0 +1,18 @@
+{
+  final int MAXIMUM_LIST_SIZE=5;
+  final Set<String> selectedDirectories=new LinkedHashSet<String>();
+  for (  final File file : selectedFiles) {
+    selectedDirectories.add(file.getParent());
+    if (selectedDirectories.size() == MAXIMUM_LIST_SIZE) {
+      break;
+    }
+  }
+  for (  final String lastDirectory : lastDirectories) {
+    selectedDirectories.add(lastDirectory);
+    if (selectedDirectories.size() == MAXIMUM_LIST_SIZE) {
+      break;
+    }
+  }
+  lastDirectories.clear();
+  lastDirectories.addAll(selectedDirectories);
+}

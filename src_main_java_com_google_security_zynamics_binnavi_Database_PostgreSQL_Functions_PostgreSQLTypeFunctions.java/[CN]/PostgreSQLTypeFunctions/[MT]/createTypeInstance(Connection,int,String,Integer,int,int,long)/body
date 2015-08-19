@@ -1,0 +1,38 @@
+{
+  Preconditions.checkNotNull(connection,"Error: connection argument can not be null");
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be greater than zero");
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  Preconditions.checkArgument(typeId >= 0,"Error: type id must be greater than zero");
+  Preconditions.checkArgument(sectionId >= 0,"Error: section id must be larger than zero");
+  Preconditions.checkArgument(sectionOffset >= 0,"Error: section offset must be larger or equal to zero");
+  try {
+    final String query=" { ? = call create_type_instance(?, ?, ?, ?, ?, ?) } ";
+    final CallableStatement procedure=connection.prepareCall(query);
+    try {
+      procedure.registerOutParameter(1,Types.INTEGER);
+      procedure.setInt(2,moduleId);
+      procedure.setString(3,name);
+      if (commentId == null) {
+        procedure.setNull(4,Types.INTEGER);
+      }
+ else {
+        procedure.setInt(4,commentId);
+      }
+      procedure.setInt(5,typeId);
+      procedure.setInt(6,sectionId);
+      procedure.setLong(7,sectionOffset);
+      procedure.execute();
+      final int typeInstanceId=procedure.getInt(1);
+      if (procedure.wasNull()) {
+        throw new CouldntSaveDataException("Error: the type instance id returned from the database was null");
+      }
+      return typeInstanceId;
+    }
+  finally {
+      procedure.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

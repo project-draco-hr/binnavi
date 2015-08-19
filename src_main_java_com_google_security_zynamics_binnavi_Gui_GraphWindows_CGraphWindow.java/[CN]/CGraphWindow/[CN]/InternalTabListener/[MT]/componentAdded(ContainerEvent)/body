@@ -1,0 +1,10 @@
+{
+  for (  final IGraphWindowListener listener : m_graphPanelListener) {
+    try {
+      listener.graphPanelOpened((CGraphPanel)event.getChild());
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

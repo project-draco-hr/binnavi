@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(reference,"IE00223: Reference argument can not be null");
+  Preconditions.checkArgument(references.contains(reference),"IE00224: No such reference at this node");
+  provider.deleteReference(this,reference.getTarget(),reference.getType());
+  references.remove(reference);
+  for (  final INaviOperandTreeNodeListener listener : listeners) {
+    try {
+      listener.removedReference(this,reference);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final DebuggerTemplate newTemplate=ObjectFinders.getObject(debugger,m_database.getDebuggerTemplateManager().getDebuggerTemplates());
+  m_debuggerTemplates.add(newTemplate);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedDebuggerTemplate(Project.this,newTemplate);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

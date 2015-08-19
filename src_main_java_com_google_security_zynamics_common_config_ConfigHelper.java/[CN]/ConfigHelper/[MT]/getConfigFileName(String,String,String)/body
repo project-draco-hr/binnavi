@@ -1,0 +1,3 @@
+{
+  return getConfigurationDirectory(companyName,productName) + configFileName;
+}

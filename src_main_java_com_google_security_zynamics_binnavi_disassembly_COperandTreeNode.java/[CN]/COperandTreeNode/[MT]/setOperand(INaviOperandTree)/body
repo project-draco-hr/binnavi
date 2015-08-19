@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(this.operandTree == null,"IE00220: Operand tree was already initialized");
+  this.operandTree=operandTree;
+}

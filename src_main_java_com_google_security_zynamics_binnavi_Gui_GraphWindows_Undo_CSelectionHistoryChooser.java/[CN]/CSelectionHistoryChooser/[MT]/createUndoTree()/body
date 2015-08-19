@@ -1,0 +1,9 @@
+{
+  final CSelectionHistoryTreeNode rootNode=new CSelectionHistoryTreeNode("Selection History");
+  final JTree tree=new CUndoTree(rootNode);
+  m_model=(DefaultTreeModel)tree.getModel();
+  tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  tree.setRootVisible(true);
+  tree.setCellRenderer(new CSelectionTreeCellRenderer());
+  return tree;
+}

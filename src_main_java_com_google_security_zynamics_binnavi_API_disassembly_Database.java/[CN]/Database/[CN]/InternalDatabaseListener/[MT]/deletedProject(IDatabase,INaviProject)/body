@@ -1,0 +1,13 @@
+{
+  final Project deletedProject=ObjectFinders.getObject(project,m_projects);
+  deletedProject.dispose();
+  m_projects.remove(deletedProject);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.deletedProject(Database.this,deletedProject);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

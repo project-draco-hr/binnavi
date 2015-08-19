@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(register,"Error: register argument can not be null");
+  Preconditions.checkArgument(registers.containsKey(register),"Error: Register has no value");
+  return registers.get(register).getValue();
+}

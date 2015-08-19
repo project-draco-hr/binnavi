@@ -1,0 +1,3 @@
+JComponent parent
+IDatabase database
+INaviAddressSpace addressSpace

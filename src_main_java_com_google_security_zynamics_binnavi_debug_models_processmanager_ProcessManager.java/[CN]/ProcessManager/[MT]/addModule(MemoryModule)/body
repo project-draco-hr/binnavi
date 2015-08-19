@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(module,"IE00756: Module argument can not be null");
+  if (addressSpaceModules.contains(module)) {
+    throw new IllegalStateException("IE00757: Module can not be added twice");
+  }
+  addressSpaceModules.add(module);
+  moduleAddresses.add(module.getBaseAddress().getAddress());
+  moduleByAddress.put(module.getBaseAddress().getAddress(),module);
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.addedModule(module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

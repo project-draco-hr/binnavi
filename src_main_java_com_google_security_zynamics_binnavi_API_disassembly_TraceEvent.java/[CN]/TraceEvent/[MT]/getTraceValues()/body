@@ -1,0 +1,7 @@
+{
+  final ArrayList<TraceRegister> registers=new ArrayList<TraceRegister>();
+  for (  final com.google.security.zynamics.binnavi.debug.models.trace.TraceRegister register : m_event.getRegisterValues()) {
+    registers.add(new TraceRegister(register));
+  }
+  return registers;
+}

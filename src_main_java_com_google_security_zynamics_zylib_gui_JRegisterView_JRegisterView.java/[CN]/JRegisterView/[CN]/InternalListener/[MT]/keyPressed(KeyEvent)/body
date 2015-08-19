@@ -1,0 +1,43 @@
+{
+  if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
+    if (m_caretPosition != (2 * m_registerModel.getRegisterInformation(m_editedRegister).getRegisterSize())) {
+      m_caretPosition++;
+    }
+    event.consume();
+    m_caret.setVisible(true);
+    repaint();
+  }
+ else   if (event.getKeyCode() == KeyEvent.VK_LEFT) {
+    if (m_caretPosition != 0) {
+      m_caretPosition--;
+    }
+    event.consume();
+    m_caret.setVisible(true);
+    repaint();
+  }
+ else   if (event.getKeyCode() == KeyEvent.VK_ENTER) {
+    if (m_editedRegister == -1) {
+      if (m_highlightedRegister != -1) {
+        enterEditMode(m_highlightedRegister);
+      }
+    }
+ else {
+      leaveEditMode(true);
+    }
+    repaint();
+  }
+ else   if (isHexChar(event.getKeyChar())) {
+    final int regSize=m_registerModel.getRegisterInformation(m_editedRegister).getRegisterSize();
+    if (m_caretPosition == (2 * regSize)) {
+      return;
+    }
+    final long val=hexToValue(event.getKeyChar());
+    final long relevantBits=(regSize * 8) - 4 - (m_caretPosition * 4);
+    final long mask=0xFL << relevantBits;
+    final long shiftedNew=val << relevantBits;
+    m_editValue=m_editValue.and(BigInteger.valueOf(~mask)).or(BigInteger.valueOf(shiftedNew));
+    m_caretPosition++;
+    m_caret.setVisible(true);
+    repaint();
+  }
+}

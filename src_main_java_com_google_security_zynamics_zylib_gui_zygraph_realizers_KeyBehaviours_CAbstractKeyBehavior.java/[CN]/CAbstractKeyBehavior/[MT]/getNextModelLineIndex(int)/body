@@ -1,0 +1,9 @@
+{
+  final ZyLineContent lineContent=getNextModelLineContent(lineYPos);
+  for (int index=lineYPos + 1; index < m_labelContent.getLineCount(); ++index) {
+    if ((lineContent != null) && !lineContent.getLineObject().isPlaceholder()) {
+      return getLabelContent().getLineIndex(lineContent);
+    }
+  }
+  return -1;
+}

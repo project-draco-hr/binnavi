@@ -1,0 +1,3 @@
+{
+  PostgreSQLTraceFunctions.setDescription(this,traceList,description);
+}

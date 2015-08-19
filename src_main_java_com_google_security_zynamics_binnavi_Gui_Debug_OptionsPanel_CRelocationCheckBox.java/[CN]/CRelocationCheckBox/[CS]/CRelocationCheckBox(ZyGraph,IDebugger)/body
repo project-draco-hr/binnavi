@@ -1,0 +1,9 @@
+{
+  super("Show Relocated Offsets");
+  Preconditions.checkNotNull(graph,"IE01469: Graph argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01470: Debugger argument can not be null");
+  m_graph=graph;
+  m_debugger=debugger;
+  addItemListener(m_internalItemListener);
+  graph.getSettings().getDisplaySettings().addListener(m_internalSettingsListener);
+}

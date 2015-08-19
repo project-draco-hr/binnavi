@@ -1,0 +1,3 @@
+{
+  CModuleStaringFunctions.toggleStars(m_parent,m_modules);
+}

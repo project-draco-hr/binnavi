@@ -1,0 +1,3 @@
+{
+  return isAddressExpression(treeNode) && (ProcessHelpers.getSectionWith(debugger.getProcessManager().getMemoryMap(),new CAddress(expressionAddress)) != null);
+}

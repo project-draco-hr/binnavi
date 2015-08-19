@@ -1,0 +1,8 @@
+{
+  final Iterator<CTag> it=m_node.getTagsIterator();
+  while (it.hasNext()) {
+    it.next().removeListener(m_listener);
+  }
+  m_node.removeListener(m_internalViewNodeListener);
+  m_node.removeGroupListener(m_internalGroupNodeListener);
+}

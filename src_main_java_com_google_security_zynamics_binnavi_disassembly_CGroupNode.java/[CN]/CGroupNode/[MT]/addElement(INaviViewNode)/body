@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(node,"IE00107: Node argument can not be null");
+  Preconditions.checkArgument(!m_elements.contains(node),"IE00102: Can not add node more than once");
+  Preconditions.checkArgument(node.getParentGroup() == null,"IE00103: Node already belongs to a group");
+  m_elements.add(node);
+  node.setParentGroup(this);
+  for (  final INaviGroupNodeListener listener : m_listeners) {
+    try {
+      listener.addedElement(this,node);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

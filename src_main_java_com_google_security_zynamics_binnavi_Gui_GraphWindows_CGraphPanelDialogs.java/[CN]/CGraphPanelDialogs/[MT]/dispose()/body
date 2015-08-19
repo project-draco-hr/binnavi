@@ -1,0 +1,4 @@
+{
+  m_scriptingDlg.dispose();
+  m_criteriaDlg.delete();
+}

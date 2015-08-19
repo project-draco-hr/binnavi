@@ -1,0 +1,14 @@
+{
+  if (multiStageLayouter instanceof HierarchicLayouter) {
+    final HierarchicLayouter layouter=(HierarchicLayouter)multiStageLayouter;
+    layouter.setLayeringStrategy(HierarchicLayouter.LAYERING_HIERARCHICAL_OPTIMAL);
+    final OrientationLayouter ol=(OrientationLayouter)layouter.getOrientationLayouter();
+    layouter.setDrawer(new AlignmentDrawer(layouter.getDrawer()));
+    graph.addDataProvider(AlignmentDrawer.NODE_ALIGNMENT_POINT_DPKEY,ol.getOrientation() == OrientationLayouter.TOP_TO_BOTTOM ? new AlignmentDrawer.TopAlignmentDataProvider() : new AlignmentDrawer.LeftAlignmentDataProvider());
+  }
+ else   if (multiStageLayouter instanceof IncrementalHierarchicLayouter) {
+    final IncrementalHierarchicLayouter layouter=(IncrementalHierarchicLayouter)multiStageLayouter;
+    layouter.setFromScratchLayeringStrategy(IncrementalHierarchicLayouter.LAYERING_STRATEGY_HIERARCHICAL_OPTIMAL);
+    layouter.getNodeLayoutDescriptor().setLayerAlignment(0);
+  }
+}

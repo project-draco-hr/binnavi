@@ -1,0 +1,56 @@
+{
+  try {
+    while (!shutDown) {
+      int messageType=0;
+      int messageId=0;
+      try {
+        messageType=(int)DebugProtocolHelper.readDWord(workerInputStream);
+        if (waitingForAuthentication) {
+          waitingForAuthentication=false;
+          if (messageType == 0x4E415649) {
+            continue;
+          }
+ else {
+            eventQueue.put(new AuthenticationFailedReply());
+            break;
+          }
+        }
+        messageId=(int)DebugProtocolHelper.readDWord(workerInputStream);
+        if (messageType != DebugCommandType.RESP_READ_MEMORY_SUCCESS) {
+          NaviLogger.info(String.format("Debug message of type %d %s arrived",messageType,DebugCommandType.getMessageName(messageType)));
+        }
+      }
+ catch (      final IOException ex) {
+        if (!peacefulShutdown) {
+          eventQueue.put(new DebuggerClosedUnexpectedlyReply());
+        }
+        break;
+      }
+      final AbstractReplyParser<? extends DebuggerReply> parser=parserFactory.getParser(messageType);
+      final DebuggerReply message=parser.parse(messageType,messageId);
+      eventQueue.add(message);
+      if (isPeacefulShutdownEvent(message)) {
+        peacefulShutdown=true;
+      }
+    }
+  }
+ catch (  final IOException e) {
+    NaviLogger.severe("Shutting down receive worker because of an IO exception");
+    try {
+      eventQueue.put(new DebuggerClosedUnexpectedlyReply());
+    }
+ catch (    final InterruptedException e1) {
+      java.lang.Thread.currentThread().interrupt();
+    }
+  }
+catch (  final InterruptedException e) {
+    NaviLogger.severe("Shutting down receive worker because of an interrupted exception");
+    try {
+      eventQueue.put(new DebuggerClosedUnexpectedlyReply());
+    }
+ catch (    final InterruptedException e1) {
+      CUtilityFunctions.logException(e1);
+      java.lang.Thread.currentThread().interrupt();
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  m_ParentButton.setSelected(false);
+  putValue(Action.NAME,"Unfreeze Proximitry Browsing. Selection changes will change graph visibility");
+  putValue(Action.SHORT_DESCRIPTION,"Frozen Proximitry Browsing. Selection changes do not change graph visibility");
+  m_ParentButton.setIcon(new ImageIcon(CMain.class.getResource("data/viewnavi_up.jpg")));
+  m_ParentButton.setRolloverIcon(new ImageIcon(CMain.class.getResource("data/viewnavi_hover.jpg")));
+  m_ParentButton.setPressedIcon(new ImageIcon(CMain.class.getResource("data/viewlock_down.jpg")));
+}

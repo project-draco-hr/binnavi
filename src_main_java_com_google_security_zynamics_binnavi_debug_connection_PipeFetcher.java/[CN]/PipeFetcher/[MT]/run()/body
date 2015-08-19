@@ -1,0 +1,13 @@
+{
+  while (m_run) {
+    try {
+      notifyEventListeners(eventQueue.take());
+    }
+ catch (    final InterruptedException ie) {
+      java.lang.Thread.currentThread().interrupt();
+    }
+catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

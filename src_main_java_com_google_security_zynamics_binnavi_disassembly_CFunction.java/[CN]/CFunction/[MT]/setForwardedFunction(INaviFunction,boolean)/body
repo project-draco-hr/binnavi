@@ -1,0 +1,17 @@
+{
+  Preconditions.checkArgument(CFunctionHelpers.isForwardableFunction(this),"IE00082: Only imported functions can be forwarded");
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  Preconditions.checkArgument(function.getType() != FunctionType.IMPORT,"IE00083: Imported functions can not be target functions");
+  Preconditions.checkArgument(function.inSameDatabase(provider),"IE00084: Function and target function are not in the same database");
+  if (function.getAddress().equals(forwardedFunctionAddress) && (function.getModule().getConfiguration().getId() == forwardedFunctionModuleId)) {
+    return;
+  }
+  if (saveToDatabase) {
+    provider.forwardFunction(this,function);
+  }
+  forwardedFunctionAddress=function.getAddress();
+  forwardedFunctionModuleId=function.getModule().getConfiguration().getId();
+  for (  final IFunctionListener<IComment> listener : functionListeners) {
+    listener.changedForwardedFunction(this);
+  }
+}

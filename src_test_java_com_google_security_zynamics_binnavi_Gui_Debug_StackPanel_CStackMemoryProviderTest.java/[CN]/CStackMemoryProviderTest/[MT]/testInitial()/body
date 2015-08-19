@@ -1,0 +1,10 @@
+{
+  m_provider.setDebugger(m_debugger);
+  assertEquals(0,m_provider.getNumberOfEntries());
+  assertFalse(m_provider.keepTrying());
+  assertEquals(-1,m_provider.getStartAddress());
+  assertEquals(-1,m_provider.getStackPointer());
+  m_debugger.connect();
+  assertEquals(0,m_provider.getNumberOfEntries());
+  assertTrue(m_provider.keepTrying());
+}

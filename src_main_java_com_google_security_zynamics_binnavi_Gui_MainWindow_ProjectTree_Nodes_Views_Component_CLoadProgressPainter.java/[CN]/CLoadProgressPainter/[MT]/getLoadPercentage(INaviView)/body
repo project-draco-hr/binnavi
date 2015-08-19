@@ -1,0 +1,16 @@
+{
+  final int totalSteps=ViewLoadEvents.values().length + GraphBuilderEvents.values().length;
+  final int loadState=view.getLoadState();
+  if (loadState == IDatabaseLoadProgressReporter.INACTIVE) {
+    try {
+      final ZyGraphBuilder builder=ZyGraphBuilderManager.instance().getBuilder(view);
+      return (1.0 * (ViewLoadEvents.values().length + builder.getBuildStep())) / totalSteps;
+    }
+ catch (    final MaybeNullException exception) {
+      return 0;
+    }
+  }
+ else {
+    return (1.0 * view.getLoadState()) / totalSteps;
+  }
+}

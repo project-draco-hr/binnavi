@@ -1,0 +1,15 @@
+{
+  for (  final SearchResult result : m_results) {
+    if (result.getObject() instanceof NaviNode) {
+      ((NaviNode)result.getObject()).setBackgroundColor(result.getLine(),result.getPosition(),result.getLength(),null);
+    }
+ else     if (result.getObject() instanceof NaviEdge) {
+      final NaviEdge edge=(NaviEdge)result.getObject();
+      final ZyLabelContent content=edge.getLabelContent();
+      content.getLineContent(result.getLine()).setBackgroundColor(result.getPosition(),result.getLength(),null);
+    }
+  }
+  m_results.clear();
+  m_cursor.clear();
+  m_changed=false;
+}

@@ -1,0 +1,17 @@
+{
+  if (event.getButton() == MouseEvent.BUTTON1) {
+    if (!event.isShiftDown() && !event.isControlDown()) {
+      m_proximityFunctions.showHiddenNodes(m_model.getParent(),m_model.getGraph(),(ZyProximityNode<INaviViewNode>)proximityNode);
+    }
+ else     if (event.isShiftDown()) {
+      m_proximityFunctions.unhideAndSelect(m_model.getGraph(),(ZyProximityNode<INaviViewNode>)proximityNode);
+    }
+ else     if (event.isControlDown()) {
+      m_proximityFunctions.unhideAndSelectOnly(m_model.getGraph(),(ZyProximityNode<INaviViewNode>)proximityNode);
+    }
+  }
+ else   if (event.getButton() == MouseEvent.BUTTON3) {
+    final JPopupMenu menu=new CProximityNodeMenu(m_model.getParent(),m_model.getGraph(),(ZyProximityNode<INaviViewNode>)proximityNode);
+    menu.show(m_model.getGraph().getView(),event.getX(),event.getY());
+  }
+}

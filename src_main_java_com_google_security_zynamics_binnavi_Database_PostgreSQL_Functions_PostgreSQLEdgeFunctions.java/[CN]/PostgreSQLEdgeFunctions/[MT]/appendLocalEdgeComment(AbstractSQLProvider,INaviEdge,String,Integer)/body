@@ -1,0 +1,29 @@
+{
+  Preconditions.checkNotNull(provider,"IE00486: provider argument can not be null");
+  Preconditions.checkNotNull(edge,"IE00502: edge argument can not be null");
+  Preconditions.checkNotNull(commentText,"IE00503: comment argument can not be null");
+  Preconditions.checkNotNull(userId,"IE00504: userId argument can not be null");
+  final Connection connection=provider.getConnection().getConnection();
+  final String function="{ ? = call append_local_edge_comment( ?, ?, ?) }";
+  try {
+    final CallableStatement appendCommentFunction=connection.prepareCall(function);
+    try {
+      appendCommentFunction.registerOutParameter(1,Types.INTEGER);
+      appendCommentFunction.setInt(2,edge.getId());
+      appendCommentFunction.setInt(3,userId);
+      appendCommentFunction.setString(4,commentText);
+      appendCommentFunction.execute();
+      final int commentId=appendCommentFunction.getInt(1);
+      if (appendCommentFunction.wasNull()) {
+        throw new CouldntSaveDataException("Error: Database returned null for comment id");
+      }
+      return commentId;
+    }
+  finally {
+      appendCommentFunction.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

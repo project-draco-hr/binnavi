@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(instruction,"Error: instruction argument can not be null");
+  Preconditions.checkNotNull(incomingState,"Error: incomingState argument can not be null");
+  if (inputOperandsAreLiterals(instruction)) {
+    return transformLiterals(instruction,incomingState,generator);
+  }
+ else   if (inputOperandsAreRegisters(instruction)) {
+    return transformRegisters(instruction,incomingState,generator);
+  }
+ else   if (inputOperandsAreRegisterLiteral(instruction) || inputOperandsAreLiteralRegister(instruction)) {
+    return transformRegisterLiteral(instruction,incomingState,generator);
+  }
+  throw new IllegalStateException("Not yet implemented");
+}

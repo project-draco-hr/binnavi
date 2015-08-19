@@ -1,0 +1,11 @@
+{
+  super(new GridLayout(3 + (isCallgraph ? 1 : 0),1));
+  Preconditions.checkNotNull(settings,"IE01590: Settings argument can not be null");
+  setBorder(new TitledBorder("Miscellaneous"));
+  CSettingsPanelBuilder.addComboBox(this,gradientBackgroundBox,"Gradient Background" + ":","Toggles between gradient backgrounds and solid white backgrounds in graph windows.",settings.getDisplaySettings().getGradientBackground());
+  CSettingsPanelBuilder.addComboBox(this,layoutAnimationBox,"Layout Animation" + ":","If enabled, a small layout animation is shown when graphs are layouted.",settings.getLayoutSettings().getAnimateLayout());
+  CSettingsPanelBuilder.addDoubleSlider(this,m_tfAnimationSpeed,"Animation Speed" + ":","Specifies the animation speed if layout operations are animated.",(25 - settings.getDisplaySettings().getAnimationSpeed()) / 5);
+  if (isCallgraph) {
+    CSettingsPanelBuilder.addComboBox(this,functionInformationBox,"Function Information" + ":","If enabled, statistical information about functions is shown in function nodes.",settings.getDisplaySettings().getFunctionNodeInformation());
+  }
+}

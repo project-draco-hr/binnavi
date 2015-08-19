@@ -1,0 +1,16 @@
+def actionPerformed(self, e):
+    reilGraph = self.frame.view2D.view.reilCode
+    graph = InstructionGraph.create(reilGraph.graph)
+    lattice = SkeletonLattice()
+    startVector = generateStartVector(graph)
+    transformationProvider = SkeletonTransformationProvider()
+    walker = DownWalker()
+    solver = MonotoneSolver(graph, lattice, startVector, transformationProvider, walker)
+    results = solver.solve()
+    used_register_set = Set()
+    for node in graph:
+        used_register_set = used_register_set.union(results.getState(node).written_registers)
+    register_list = list(used_register_set)
+    register_list.sort()
+    joinedString = ', '.join(register_list)
+    MessageBox.showInformation(self.frame.window.frame, ('This function modifies the registers %s.' % joinedString))

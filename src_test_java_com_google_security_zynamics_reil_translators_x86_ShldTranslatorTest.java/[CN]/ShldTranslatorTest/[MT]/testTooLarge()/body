@@ -1,0 +1,26 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0x80000000L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ebx",BigInteger.valueOf(0x80000000L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"word");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ax"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"word");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"bx"));
+  final MockOperandTree operandTree3=new MockOperandTree();
+  operandTree3.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree3.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"17"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2,operandTree3);
+  final IInstruction instruction=new MockInstruction("shld",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  System.out.println(instructions);
+  long counter=0x10000;
+  for (  final ReilInstruction inst : instructions) {
+    assertEquals(counter,inst.getAddress().toLong());
+    counter++;
+  }
+  assertEquals(2,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x80000000L),interpreter.getVariableValue("ebx"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

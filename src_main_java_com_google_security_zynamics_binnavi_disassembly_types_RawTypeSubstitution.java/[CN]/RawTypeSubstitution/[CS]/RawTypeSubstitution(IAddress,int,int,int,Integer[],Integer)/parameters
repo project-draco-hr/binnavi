@@ -1,0 +1,6 @@
+IAddress address
+int position
+int expressionId
+int baseTypeId
+Integer[] path
+Integer offset

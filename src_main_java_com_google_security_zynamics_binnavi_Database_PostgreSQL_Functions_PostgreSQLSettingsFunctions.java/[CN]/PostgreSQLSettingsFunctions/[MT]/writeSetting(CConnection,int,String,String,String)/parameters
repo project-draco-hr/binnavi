@@ -1,0 +1,5 @@
+CConnection connection
+int containerId
+String key
+String value
+String table

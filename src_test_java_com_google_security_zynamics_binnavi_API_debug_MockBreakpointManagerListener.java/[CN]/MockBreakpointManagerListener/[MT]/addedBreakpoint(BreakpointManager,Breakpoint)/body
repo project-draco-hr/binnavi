@@ -1,0 +1,3 @@
+{
+  events+="addedBreakpoint/" + breakpoint.getAddress().toHexString() + ";";
+}

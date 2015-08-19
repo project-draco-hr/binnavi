@@ -1,0 +1,6 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    updateName();
+  }
+  dispose();
+}

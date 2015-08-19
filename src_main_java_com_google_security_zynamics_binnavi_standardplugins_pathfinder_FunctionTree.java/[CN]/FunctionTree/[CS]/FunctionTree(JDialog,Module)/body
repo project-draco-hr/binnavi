@@ -1,0 +1,6 @@
+{
+  setModel(new FilteredTreeModel(parent,module));
+  setRootVisible(false);
+  setCellRenderer(new IconNodeRenderer());
+  addMouseListener(new InternalMouseListener());
+}

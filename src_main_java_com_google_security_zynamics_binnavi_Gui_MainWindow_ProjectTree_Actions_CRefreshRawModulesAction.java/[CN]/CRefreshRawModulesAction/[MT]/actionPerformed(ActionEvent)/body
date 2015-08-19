@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.refreshRawModules(m_parent,m_database);
+}

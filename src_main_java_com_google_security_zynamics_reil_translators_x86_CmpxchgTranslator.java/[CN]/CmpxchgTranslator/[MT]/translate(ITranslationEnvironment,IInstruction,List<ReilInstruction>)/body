@@ -1,0 +1,50 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmpxchg");
+  Preconditions.checkArgument(instruction.getOperands().size() == 2,"Error: Argument instruction is not a cmp instruction (invalid number of operands)");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree targetOperand=operands.get(0);
+  final IOperandTree sourceOperand=operands.get(1);
+  final TranslationResult targetResult=Helpers.translateOperand(environment,offset,targetOperand,true);
+  instructions.addAll(targetResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult sourceResult=Helpers.translateOperand(environment,offset,sourceOperand,true);
+  instructions.addAll(sourceResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  String xaxRegister;
+switch (targetResult.getSize()) {
+case BYTE:
+    xaxRegister="al";
+  break;
+case WORD:
+xaxRegister="ax";
+break;
+case DWORD:
+xaxRegister="eax";
+break;
+default :
+throw new InternalTranslationException("Error: The first operand has to be BYTE/WORD/DWORD !");
+}
+String comparisonResult=environment.getNextVariableString();
+OperandSize currentSize=targetResult.getSize();
+instructions.add(ReilHelpers.createSub(baseOffset + instructions.size(),currentSize,xaxRegister,currentSize,targetResult.getRegister(),currentSize,comparisonResult));
+instructions.add(ReilHelpers.createBisz(baseOffset + instructions.size(),currentSize,comparisonResult,OperandSize.BYTE,Helpers.ZERO_FLAG));
+final List<ReilInstruction> firstWriteBack=new ArrayList<ReilInstruction>();
+Helpers.writeBack(environment,baseOffset + instructions.size() + 1,targetOperand,sourceResult.getRegister(),sourceResult.getSize(),targetResult.getAddress(),targetResult.getType(),firstWriteBack);
+final long secondWriteBackOffset=instructions.size() + firstWriteBack.size() + 3;
+final String secondWriteBackGoal=String.format("%d.%d",instruction.getAddress().toLong(),secondWriteBackOffset);
+instructions.add(ReilHelpers.createJcc(baseOffset + instructions.size(),currentSize,comparisonResult,OperandSize.ADDRESS,secondWriteBackGoal));
+instructions.addAll(firstWriteBack);
+ReilOperandNode xAXOperandRoot=new ReilOperandNode(currentSize.toSizeString(),ExpressionType.SIZE_PREFIX);
+ReilOperandNode xAXOperandLeaf=new ReilOperandNode(xaxRegister,ExpressionType.REGISTER);
+ReilOperandNode.link(xAXOperandRoot,xAXOperandLeaf);
+ReilOperand xAXOperand=new ReilOperand(xAXOperandRoot);
+final List<ReilInstruction> secondWriteBack=new ArrayList<ReilInstruction>();
+Helpers.writeBack(environment,baseOffset + instructions.size() + 1,xAXOperand,targetResult.getRegister(),currentSize,null,TranslationResultType.REGISTER,secondWriteBack);
+final long terminatingNopOffset=instructions.size() + secondWriteBack.size() + 2;
+final String terminatingNopGoal=String.format("%d.%d",instruction.getAddress().toLong(),terminatingNopOffset);
+instructions.add(ReilHelpers.createJcc(baseOffset + instructions.size(),OperandSize.BYTE,"1",OperandSize.ADDRESS,terminatingNopGoal));
+instructions.addAll(secondWriteBack);
+instructions.add(ReilHelpers.createNop(baseOffset + instructions.size()));
+}

@@ -1,0 +1,5 @@
+{
+  interpreter.setRegister("XEROV",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("XERSO",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("XERCA",BigInteger.ONE,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+}

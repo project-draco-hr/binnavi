@@ -1,0 +1,7 @@
+{
+  final HashSet<CTag> tags=new HashSet<CTag>();
+  for (  final INaviViewNode node : graph) {
+    tags.addAll(node.getTags());
+  }
+  return tags;
+}

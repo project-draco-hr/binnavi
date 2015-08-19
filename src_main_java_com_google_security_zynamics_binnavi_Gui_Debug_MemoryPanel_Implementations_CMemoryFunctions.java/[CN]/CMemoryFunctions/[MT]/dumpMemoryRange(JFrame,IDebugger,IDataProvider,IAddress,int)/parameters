@@ -1,0 +1,5 @@
+JFrame parent
+IDebugger debugger
+IDataProvider dataProvider
+IAddress offset
+int size

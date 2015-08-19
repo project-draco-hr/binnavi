@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(bookmark,"IE00382: Bookmark can not be null");
+  Preconditions.checkArgument(getBookmark(bookmark.getAddress()) == null,"IE00383: Bookmark already exists at offset %s",bookmark.getAddress().toHexString());
+  m_bookmarks.add(bookmark);
+  for (  final IBookmarkManagerListener listener : m_listeners) {
+    try {
+      listener.addedBookmark(this,bookmark);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

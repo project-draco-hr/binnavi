@@ -1,0 +1,4 @@
+String idaExe
+File idcPath
+String idbFileName
+String outputDirectory

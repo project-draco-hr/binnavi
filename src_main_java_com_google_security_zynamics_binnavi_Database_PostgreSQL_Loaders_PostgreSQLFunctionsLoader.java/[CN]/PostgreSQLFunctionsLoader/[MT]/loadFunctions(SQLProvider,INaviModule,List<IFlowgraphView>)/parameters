@@ -1,0 +1,3 @@
+SQLProvider provider
+INaviModule module
+List<IFlowgraphView> views

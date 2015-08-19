@@ -1,0 +1,8 @@
+{
+  super("Select by Criteria");
+  m_panel=Preconditions.checkNotNull(navi,"IE02829: navi argument can not be null");
+  if (showIcon) {
+    putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/selcriteria_up.jpg")));
+  }
+  putValue(Action.SHORT_DESCRIPTION,"Select by Criteria");
+}

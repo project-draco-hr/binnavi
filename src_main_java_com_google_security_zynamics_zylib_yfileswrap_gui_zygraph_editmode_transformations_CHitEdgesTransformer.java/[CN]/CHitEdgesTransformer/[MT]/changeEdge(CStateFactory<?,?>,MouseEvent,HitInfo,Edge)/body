@@ -1,0 +1,10 @@
+{
+  final Edge edge=hitInfo.getHitEdge();
+  if (edge == oldEdge) {
+    return new CStateChange(m_factory.createEdgeHoverState(edge,event),true);
+  }
+ else {
+    m_factory.createEdgeExitState(oldEdge,event);
+    return new CStateChange(m_factory.createEdgeEnterState(edge,event),true);
+  }
+}

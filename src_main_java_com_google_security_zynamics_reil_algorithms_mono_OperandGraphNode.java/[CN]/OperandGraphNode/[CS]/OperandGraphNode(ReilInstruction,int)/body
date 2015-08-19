@@ -1,0 +1,4 @@
+{
+  m_instruction=instruction;
+  m_index=index;
+}

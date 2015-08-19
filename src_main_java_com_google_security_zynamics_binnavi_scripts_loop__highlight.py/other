@@ -1,0 +1,15 @@
+'\nCopyright 2014 Google Inc. All Rights Reserved.\n\nLicensed under the Apache License, Version 2.0 (the "License");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an "AS IS" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n'
+import sys
+from java.lang import Thread
+from javax.swing import JMenuItem as JMenuItem
+from javax.swing import AbstractAction as AbstractAction
+from com.google.security.zynamics.binnavi.API.disassembly import CouldntSaveDataException as CouldntSaveDataException
+from com.google.security.zynamics.binnavi.API.disassembly import EdgeType as EdgeType
+from com.google.security.zynamics.binnavi.API.helpers import MessageBox as MessageBox
+from com.google.security.zynamics.binnavi.API.helpers import GraphAlgorithms as GraphAlgorithms
+from com.google.security.zynamics.binnavi.API.plugins import IGraphMenuPlugin as IGraphMenuPlugin
+from com.google.security.zynamics.binnavi.API.helpers import Logger as Logger
+from com.google.security.zynamics.binnavi.API.helpers import TreeAlgorithms as TreeAlgorithms
+import java.awt.Color
+loopHighLighter = LoopHighlightPlugin()
+navi.getPluginRegistry().addPlugin(loopHighLighter)

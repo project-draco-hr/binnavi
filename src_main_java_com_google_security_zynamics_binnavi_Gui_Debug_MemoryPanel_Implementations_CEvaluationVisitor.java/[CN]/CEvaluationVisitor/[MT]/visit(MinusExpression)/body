@@ -1,0 +1,20 @@
+{
+  BigInteger value=null;
+  for (  final MemoryExpressionElement child : expression.getChildren()) {
+    child.visit(this);
+    final BigInteger childValue=getValue(child);
+    if (childValue == null) {
+      return;
+    }
+    if (value == null) {
+      value=getValue(child);
+      if (value == null) {
+        return;
+      }
+    }
+ else {
+      value=value.subtract(getValue(child));
+    }
+  }
+  m_partialEvaluationMap.put(expression,value);
+}

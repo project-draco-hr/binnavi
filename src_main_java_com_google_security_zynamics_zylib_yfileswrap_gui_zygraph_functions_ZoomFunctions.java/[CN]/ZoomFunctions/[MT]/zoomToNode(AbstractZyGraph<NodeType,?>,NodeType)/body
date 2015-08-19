@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can't be null");
+  final NodeRealizer realizer=graph.getGraph().getRealizer(node.getNode());
+  Preconditions.checkNotNull(realizer,"Error: Node does not belong to the graph");
+  if (!node.isVisible()) {
+    graph.showNode(node,true);
+  }
+  final double oldZoom=graph.getView().getZoom();
+  final Point2D oldViewPoint=graph.getView().getViewPoint2D();
+  graph.getView().zoomToArea(realizer.getCenterX() - realizer.getWidth(),realizer.getCenterY() - realizer.getHeight(),realizer.getWidth() * 2,realizer.getHeight() * 2);
+  ZoomHelpers.keepZoomValid(graph.getView());
+  final double newZoom=graph.getView().getZoom();
+  final Point2D newCenter=graph.getView().getCenter();
+  graph.getView().setZoom(oldZoom);
+  graph.getView().setViewPoint((int)oldViewPoint.getX(),(int)oldViewPoint.getY());
+  graph.getView().focusView(newZoom,newCenter,graph.getSettings().getLayoutSettings().getAnimateLayout());
+  graph.updateViews();
+}

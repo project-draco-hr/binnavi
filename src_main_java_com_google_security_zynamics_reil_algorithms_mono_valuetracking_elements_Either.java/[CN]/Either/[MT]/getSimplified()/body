@@ -1,0 +1,11 @@
+{
+  if (m_lhs.equals(m_rhs)) {
+    return m_lhs.clone();
+  }
+ else   if ((m_lhs instanceof Undefined) || (m_rhs instanceof Undefined)) {
+    return new Undefined();
+  }
+ else {
+    return this;
+  }
+}

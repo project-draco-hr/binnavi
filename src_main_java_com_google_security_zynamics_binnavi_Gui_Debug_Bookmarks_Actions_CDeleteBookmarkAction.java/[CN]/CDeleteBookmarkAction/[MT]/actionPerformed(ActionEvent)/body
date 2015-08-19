@@ -1,0 +1,3 @@
+{
+  CBookmarkFunctions.deleteBookmarks(m_actionProvider,m_rows);
+}

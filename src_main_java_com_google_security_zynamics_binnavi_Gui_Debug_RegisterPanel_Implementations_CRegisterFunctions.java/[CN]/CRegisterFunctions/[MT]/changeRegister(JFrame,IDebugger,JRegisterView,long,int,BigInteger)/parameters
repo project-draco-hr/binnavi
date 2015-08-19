@@ -1,0 +1,6 @@
+JFrame parent
+IDebugger debugger
+JRegisterView registerView
+long currentTid
+int registerIndex
+BigInteger value

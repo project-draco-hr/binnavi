@@ -1,0 +1,12 @@
+{
+  if (column == DESCRIPTION_COLUMN) {
+    final INaviView view=m_module.getContent().getViewContainer().getNativeCallgraphView();
+    try {
+      view.getConfiguration().setDescription((String)value);
+      fireTableDataChanged();
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

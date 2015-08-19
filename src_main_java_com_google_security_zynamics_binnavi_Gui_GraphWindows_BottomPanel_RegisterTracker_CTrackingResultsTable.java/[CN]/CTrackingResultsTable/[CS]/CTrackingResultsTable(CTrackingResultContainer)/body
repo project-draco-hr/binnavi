@@ -1,0 +1,13 @@
+{
+  m_container=Preconditions.checkNotNull(container,"IE01691: Container argument can not be null");
+  m_model=new CTrackingResultsTableModel(container);
+  setModel(m_model);
+  m_sorter=new TableRowSorter<TableModel>(m_model);
+  setRowSorter(m_sorter);
+  m_sorter.setComparator(ADDRESS_COLUMN,new LexicalComparator());
+  getColumnModel().getColumn(STATUS_COLUMN).setCellRenderer(new CStatusColumnRenderer());
+  getColumnModel().getColumn(INSTRUCTION_COLUMN).setCellRenderer(new CMonospaceRenderer());
+  final InternalSelectionListener listener=new InternalSelectionListener();
+  getSelectionModel().addListSelectionListener(listener);
+  addMouseListener(listener);
+}

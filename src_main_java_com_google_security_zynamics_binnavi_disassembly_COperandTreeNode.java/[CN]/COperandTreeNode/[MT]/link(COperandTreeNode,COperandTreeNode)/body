@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(child,"IE00218: Child argument can not be null");
+  Preconditions.checkNotNull(parent,"IE00217: Parent argument can not be null");
+  parent.children.add(child);
+  child.parent=parent;
+}

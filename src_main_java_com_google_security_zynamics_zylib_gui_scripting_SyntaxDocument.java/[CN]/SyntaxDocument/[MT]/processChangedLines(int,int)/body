@@ -1,0 +1,15 @@
+{
+  final String content=doc.getText(0,doc.getLength());
+  final int startLine=rootElement.getElementIndex(offset);
+  final int endLine=rootElement.getElementIndex(offset + length);
+  setMultiLineComment(commentLinesBefore(content,startLine));
+  for (int i=startLine; i <= endLine; i++) {
+    applyHighlighting(content,i);
+  }
+  if (isMultiLineComment()) {
+    commentLinesAfter(content,endLine);
+  }
+ else {
+    highlightLinesAfter(content,endLine);
+  }
+}

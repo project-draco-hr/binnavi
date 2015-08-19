@@ -1,0 +1,8 @@
+{
+  for (  final ViewNode node : nodes) {
+    if (((CodeNode)node).getAddress().toLong() == address) {
+      return node;
+    }
+  }
+  return null;
+}

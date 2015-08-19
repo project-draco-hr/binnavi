@@ -1,0 +1,4 @@
+{
+  final Bend b=hitInfo.getHitBend();
+  return new CStateChange(m_factory.createBendEnterState(b,event),true);
+}

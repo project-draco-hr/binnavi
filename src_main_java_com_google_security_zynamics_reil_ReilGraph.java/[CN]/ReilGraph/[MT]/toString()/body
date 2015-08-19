@@ -1,0 +1,13 @@
+{
+  final StringBuilder stringBuilder=new StringBuilder();
+  stringBuilder.append("{\n");
+  for (  final ReilBlock block : this) {
+    stringBuilder.append(block + "\n");
+    for (    final ReilEdge edge : block.getOutgoingEdges()) {
+      stringBuilder.append(block.getAddress() + " [" + Enum.valueOf(EdgeType.class,edge.getType().toString())+ "]-> "+ edge.getTarget().getAddress());
+      stringBuilder.append("\n");
+    }
+  }
+  stringBuilder.append("}\n");
+  return stringBuilder.toString();
+}

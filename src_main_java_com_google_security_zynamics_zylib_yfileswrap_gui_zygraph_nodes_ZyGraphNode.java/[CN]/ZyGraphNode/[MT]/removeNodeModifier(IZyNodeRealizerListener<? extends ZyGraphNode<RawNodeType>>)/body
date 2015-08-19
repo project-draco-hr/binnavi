@@ -1,0 +1,3 @@
+{
+  m_realizer.removeListener(listener);
+}

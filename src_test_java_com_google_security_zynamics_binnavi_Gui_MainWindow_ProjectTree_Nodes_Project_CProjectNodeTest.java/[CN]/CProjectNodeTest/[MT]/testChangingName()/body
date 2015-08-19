@@ -1,0 +1,6 @@
+{
+  final CProjectNode node=new CProjectNode(m_tree,new DefaultMutableTreeNode(),m_database,m_project,new CProjectContainer(m_database,m_project));
+  assertEquals("Name (0)",node.toString());
+  m_project.getConfiguration().setName("Hannes");
+  assertEquals("Hannes (0)",node.toString());
+}

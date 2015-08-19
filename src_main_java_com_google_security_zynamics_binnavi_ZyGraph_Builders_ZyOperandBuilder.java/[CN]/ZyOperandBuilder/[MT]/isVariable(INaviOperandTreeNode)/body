@@ -1,0 +1,3 @@
+{
+  return (node.getType() == ExpressionType.IMMEDIATE_INTEGER) && (node.getReplacement() != null) && (node.getDisplayStyle() == OperandDisplayStyle.OFFSET);
+}

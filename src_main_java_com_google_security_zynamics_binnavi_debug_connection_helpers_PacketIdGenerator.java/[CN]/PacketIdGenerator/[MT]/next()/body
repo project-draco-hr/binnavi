@@ -1,0 +1,6 @@
+{
+  packetSemaphore.acquireUninterruptibly();
+  final int packet=packetIds++;
+  packetSemaphore.release();
+  return packet;
+}

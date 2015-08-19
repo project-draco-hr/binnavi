@@ -1,0 +1,16 @@
+{
+  super((JFrame)null,"Global Plugin Log");
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  m_textArea.setEditable(false);
+  m_textArea.setFont(GuiHelper.MONOSPACED_FONT);
+  add(new JScrollPane(m_textArea));
+  final JPanel bottomPanel=new JPanel(new BorderLayout());
+  bottomPanel.add(new JButton(new ClearAction()),BorderLayout.WEST);
+  bottomPanel.add(new JButton(new CloseAction()),BorderLayout.EAST);
+  add(bottomPanel,BorderLayout.SOUTH);
+  setAlwaysOnTop(true);
+  setJMenuBar(new CLogConsoleMenuBar());
+  m_textArea.addMouseListener(new InternalMouseListener());
+  setSize(600,400);
+}

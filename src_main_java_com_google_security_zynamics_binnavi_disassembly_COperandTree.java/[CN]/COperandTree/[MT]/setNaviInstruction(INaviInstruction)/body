@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(this.instruction == null,"IE00213: Instruction already initialized");
+  this.instruction=instruction;
+}

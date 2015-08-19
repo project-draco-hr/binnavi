@@ -1,0 +1,5 @@
+{
+  for (  CommentNotification notification : notifications) {
+    informNotification(notification,provider);
+  }
+}

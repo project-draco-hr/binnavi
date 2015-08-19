@@ -1,0 +1,12 @@
+{
+  if (node.getCriterium() == criterium) {
+    return node;
+  }
+  for (  final CCriteriumTreeNode child : node.getChildren()) {
+    final CCriteriumTreeNode childNode=findNode(child,criterium);
+    if (childNode != null) {
+      return childNode;
+    }
+  }
+  return null;
+}

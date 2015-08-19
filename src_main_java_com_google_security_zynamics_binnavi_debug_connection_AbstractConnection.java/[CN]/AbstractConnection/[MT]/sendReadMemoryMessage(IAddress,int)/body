@@ -1,0 +1,4 @@
+{
+  NaviLogger.info(String.format("Sending \"Read Memory %s/%X\" message to the debug client",address.toHexString(),length));
+  return sendPacket(new RequestMemoryCommand(getMessageId(),address,new CAddress(length)));
+}

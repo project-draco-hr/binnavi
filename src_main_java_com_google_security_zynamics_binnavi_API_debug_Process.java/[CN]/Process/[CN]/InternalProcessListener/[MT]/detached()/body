@@ -1,0 +1,15 @@
+{
+  targetInformation=null;
+  modules.clear();
+  threads.clear();
+  memoryMap=new MemoryMap(new com.google.security.zynamics.binnavi.debug.models.processmanager.MemoryMap(new FilledList<com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection>()));
+  memory=new Memory(new com.google.security.zynamics.zylib.general.memmanager.Memory());
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.detached(Process.this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super(new BorderLayout());
+  add(new CGotoPanel(hexView),BorderLayout.NORTH);
+  add(new CSearchPanel(hexView));
+}

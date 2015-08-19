@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(type,"IE02200: Type argument cannot be null");
+switch (type) {
+case ADJUSTOR_THUNK:
+    return ConfigManager.instance().getColorSettings().getAdjustorThunkFunctionColor();
+case IMPORT:
+  return ConfigManager.instance().getColorSettings().getImportedFunctionColor();
+case LIBRARY:
+return ConfigManager.instance().getColorSettings().getLibraryFunctionColor();
+case NORMAL:
+return ConfigManager.instance().getColorSettings().getNormalFunctionColor();
+case THUNK:
+return ConfigManager.instance().getColorSettings().getThunkFunctionColor();
+case UNKNOWN:
+return ConfigManager.instance().getColorSettings().getUnknownFunctionColor();
+default :
+throw new IllegalStateException(String.format("IE00908: Unknown function type %s",type));
+}
+}

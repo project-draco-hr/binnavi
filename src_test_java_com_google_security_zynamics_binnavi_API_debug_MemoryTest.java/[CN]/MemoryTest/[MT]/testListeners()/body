@@ -1,0 +1,9 @@
+{
+  final MockMemoryListener mockListener=new MockMemoryListener();
+  m_apiMemory.addListener(mockListener);
+  m_internalMemory.store(0,new byte[]{1,2,3,4});
+  assertEquals("changedMemory/0/4;",mockListener.events);
+  m_internalMemory.clear();
+  assertEquals("changedMemory/0/4;clearedMemory;",mockListener.events);
+  m_apiMemory.removeListener(mockListener);
+}

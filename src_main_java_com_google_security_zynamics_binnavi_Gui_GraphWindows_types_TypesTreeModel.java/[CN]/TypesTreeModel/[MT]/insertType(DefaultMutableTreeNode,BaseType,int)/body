@@ -1,0 +1,6 @@
+{
+  final BaseTypeTreeNode newNode=new BaseTypeTreeNode(baseType);
+  parentNode.insert(newNode,index);
+  createTypeNodes(newNode,baseType);
+  return new ChildNodeDescriptor(newNode,index);
+}

@@ -1,0 +1,23 @@
+{
+  final INaviModule module=getProvider().loadModules().get(1);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunctions().get(1800);
+  function.load();
+  final IBlockNode basicBlock=function.getBasicBlocks().get(0);
+  final INaviInstruction instruction=Iterables.get(basicBlock.getInstructions(),1);
+  final COperandTree tree=instruction.getOperands().get(0);
+  final INaviOperandTreeNode node=tree.getRootNode();
+  final IAddress address=instruction.getAddress();
+  final ReferenceType type=ReferenceType.DATA;
+  final int references=node.getReferences().size();
+  PostgreSQLInstructionFunctions.addReference(getProvider(),node,address,type);
+  final INaviModule module2=getProvider().loadModules().get(1);
+  module2.load();
+  final INaviFunction function2=module2.getContent().getFunctionContainer().getFunctions().get(1800);
+  function2.load();
+  final IBlockNode basicBlock2=function2.getBasicBlocks().get(0);
+  final INaviInstruction instruction2=Iterables.get(basicBlock2.getInstructions(),1);
+  final COperandTree tree2=instruction2.getOperands().get(0);
+  final INaviOperandTreeNode node2=tree2.getRootNode();
+  assertEquals(references + 1,node2.getReferences().size());
+}

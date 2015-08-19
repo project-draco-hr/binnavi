@@ -1,0 +1,56 @@
+{
+  final Integer mnemonic=instruction.getMnemonicCode();
+switch (mnemonic) {
+case ReilHelpers._OPCODE_ADD:
+    interpretAdd(instruction);
+  break;
+case ReilHelpers._OPCODE_AND:
+interpretAnd(instruction);
+break;
+case ReilHelpers._OPCODE_BISZ:
+interpretBisz(instruction);
+break;
+case ReilHelpers._OPCODE_BSH:
+interpretBsh(instruction);
+break;
+case ReilHelpers._OPCODE_DIV:
+interpretDiv(instruction);
+break;
+case ReilHelpers._OPCODE_JCC:
+interpretJcc(instruction,programCounter);
+break;
+case ReilHelpers._OPCODE_LDM:
+interpretLdm(instruction);
+break;
+case ReilHelpers._OPCODE_MOD:
+interpretMod(instruction);
+break;
+case ReilHelpers._OPCODE_MUL:
+interpretMul(instruction);
+break;
+case ReilHelpers._OPCODE_NOP:
+break;
+case ReilHelpers._OPCODE_OR:
+interpretOr(instruction);
+break;
+case ReilHelpers._OPCODE_STM:
+interpretStm(instruction);
+break;
+case ReilHelpers._OPCODE_STR:
+interpretStr(instruction);
+break;
+case ReilHelpers._OPCODE_SUB:
+interpretSub(instruction);
+break;
+case ReilHelpers._OPCODE_UNDEF:
+interpretUndef(instruction);
+break;
+case ReilHelpers._OPCODE_UNKNOWN:
+break;
+case ReilHelpers._OPCODE_XOR:
+interpretXor(instruction);
+break;
+default :
+throw new IllegalArgumentException("invalid Mnemonic in REIL interpreting loop");
+}
+}

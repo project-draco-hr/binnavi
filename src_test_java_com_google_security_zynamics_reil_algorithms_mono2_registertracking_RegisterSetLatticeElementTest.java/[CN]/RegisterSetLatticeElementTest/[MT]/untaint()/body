@@ -1,0 +1,6 @@
+{
+  m_fullRegisterSetLatticeElement.untaint("eax");
+  Assert.assertFalse(m_fullRegisterSetLatticeElement.getTaintedRegisters().contains("eax"));
+  m_fullRegisterSetLatticeElement.onInstructionExit();
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getUntaintedRegisters().contains("eax"));
+}

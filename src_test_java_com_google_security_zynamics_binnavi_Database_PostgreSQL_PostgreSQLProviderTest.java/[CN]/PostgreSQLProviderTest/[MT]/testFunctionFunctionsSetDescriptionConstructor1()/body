@@ -1,0 +1,3 @@
+{
+  getProvider().setDescription((INaviFunction)null,null);
+}

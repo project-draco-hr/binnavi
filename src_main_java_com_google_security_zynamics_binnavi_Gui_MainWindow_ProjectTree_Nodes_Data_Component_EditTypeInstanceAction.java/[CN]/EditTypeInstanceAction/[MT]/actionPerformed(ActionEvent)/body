@@ -1,0 +1,16 @@
+{
+  final TypeInstanceDialog dlg=TypeInstanceDialog.instantiateEditTypeInstanceDialog(owner,typeManager,instance);
+  GuiHelper.centerChildToParent(owner,dlg,true);
+  dlg.setVisible(true);
+  if (dlg.wasOkClicked()) {
+    try {
+      instanceContainer.setInstanceName(instance,dlg.getInstanceName());
+    }
+ catch (    final CouldntSaveDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+catch (    final CouldntLoadDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

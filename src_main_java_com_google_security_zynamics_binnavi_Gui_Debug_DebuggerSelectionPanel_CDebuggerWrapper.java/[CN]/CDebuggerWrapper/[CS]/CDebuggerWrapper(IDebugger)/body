@@ -1,0 +1,4 @@
+{
+  super(debugger);
+  Preconditions.checkNotNull(debugger,"IE01368: Debugger can not be null");
+}

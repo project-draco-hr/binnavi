@@ -1,0 +1,11 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  assertFalse(container.containsModule(new MockModule()));
+  assertTrue(container.containsModule(m_module));
+  try {
+    container.containsModule(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

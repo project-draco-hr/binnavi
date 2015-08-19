@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(containingType,"Error: containing type argument can not be null");
+  Preconditions.checkNotNull(memberType,"Error: member type can not be null");
+  Preconditions.checkArgument(containingType.getCategory() == BaseTypeCategory.FUNCTION_PROTOTYPE,"Error: the base type category is not of type function prototype");
+  Preconditions.checkNotNull(memberName,"Error: name argument can not be null");
+  Preconditions.checkArgument(!memberName.isEmpty(),"Error: name argument can not be empty");
+  Preconditions.checkArgument(memberArgumentIndex >= 0,"Error: argument index argument can not be smaller than zero");
+  if (typesContainer.willTypeCreateCyclicReference(containingType,memberType)) {
+    return null;
+  }
+  final TypeMember member=backend.createFunctionPrototypeMember(containingType,memberType,memberName,memberArgumentIndex);
+  notifyMemberCreation(member,typesContainer.addMember(member));
+  return member;
+}

@@ -1,0 +1,23 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sahf");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a sahf instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final String shiftedEaxToCf=environment.getNextVariableString();
+  final String shiftedEaxToPf=environment.getNextVariableString();
+  final String shiftedEaxToAf=environment.getNextVariableString();
+  final String shiftedEaxToZf=environment.getNextVariableString();
+  final String shiftedEaxToSf=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(baseOffset,archSize,"eax",archSize,"-8",archSize,shiftedEaxToCf));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 1,archSize,shiftedEaxToCf,archSize,"1",OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 2,archSize,"eax",archSize,"-10",archSize,shiftedEaxToPf));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 3,archSize,shiftedEaxToPf,archSize,"1",OperandSize.BYTE,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 4,archSize,"eax",archSize,"-12",archSize,shiftedEaxToAf));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 5,archSize,shiftedEaxToAf,archSize,"1",OperandSize.BYTE,Helpers.AUXILIARY_FLAG));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 6,archSize,"eax",archSize,"-14",archSize,shiftedEaxToZf));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 7,archSize,shiftedEaxToZf,archSize,"1",OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 8,archSize,"eax",archSize,"-15",archSize,shiftedEaxToSf));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 9,archSize,shiftedEaxToSf,archSize,"1",OperandSize.BYTE,Helpers.SIGN_FLAG));
+}

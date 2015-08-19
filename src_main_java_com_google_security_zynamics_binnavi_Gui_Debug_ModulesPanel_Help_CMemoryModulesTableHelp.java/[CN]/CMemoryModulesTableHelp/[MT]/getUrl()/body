@@ -1,0 +1,3 @@
+{
+  return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+}

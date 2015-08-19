@@ -1,0 +1,6 @@
+{
+  final FilledList<UnrelocatedAddress> addresses=new FilledList<UnrelocatedAddress>();
+  addresses.add(new UnrelocatedAddress(new CAddress(12345678)));
+  m_module.load();
+  assertNotNull(m_module.getViewsWithAddresses(addresses,true));
+}

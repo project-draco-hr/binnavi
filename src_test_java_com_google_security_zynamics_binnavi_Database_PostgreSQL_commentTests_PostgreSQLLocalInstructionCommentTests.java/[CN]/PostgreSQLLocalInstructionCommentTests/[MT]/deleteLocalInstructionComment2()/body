@@ -1,0 +1,3 @@
+{
+  getProvider().deleteLocalInstructionComment(codeNode,null,null,null);
+}

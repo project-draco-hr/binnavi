@@ -1,0 +1,7 @@
+{
+  final CGraphNodeTaggedFilter filter=new CGraphNodeTaggedFilter(Sets.newHashSet(m_tag.getObject()));
+  if (filter.qualifies(node)) {
+    add(new CTaggedGraphNodeNode(getGraph(),node));
+    m_model.nodeStructureChanged(m_model.getRoot());
+  }
+}

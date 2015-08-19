@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(commentable,"Error: commentable argument can not be null");
+  Preconditions.checkNotNull(commentId,"Error: commentId argument can not be null");
+  Preconditions.checkNotNull(userId,"Error: userId argument can not be null");
+  final ArrayList<IComment> currentComments=comments.containsKey(commentable) ? comments.get(commentable) : new ArrayList<IComment>();
+  int index=-1;
+  for (  final IComment comment : currentComments) {
+    if (Objects.equals(comment.getId(),commentId)) {
+      if (comment.getUser().getUserId() == userId) {
+        index=currentComments.indexOf(comment);
+      }
+ else {
+        throw new IllegalStateException("Error: the supplied user id is not the owner of the comment");
+      }
+    }
+  }
+  if (index == -1) {
+    throw new IllegalArgumentException("Error: comment with this id not known to the storage system");
+  }
+  currentComments.remove(index);
+  comments.put(commentable,currentComments);
+}

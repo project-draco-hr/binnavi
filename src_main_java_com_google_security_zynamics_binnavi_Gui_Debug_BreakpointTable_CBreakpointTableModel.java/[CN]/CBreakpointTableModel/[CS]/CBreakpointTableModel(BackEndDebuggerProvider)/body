@@ -1,0 +1,3 @@
+{
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01339: Debugger provider can't be null");
+}

@@ -1,0 +1,14 @@
+{
+  final ViewNode viewNode=cachedNodes.get(node);
+  if (!isConverted()) {
+    return;
+  }
+  for (  final IViewNodeListener listener : viewNode.getListeners()) {
+    try {
+      listener.changedColor(viewNode,color);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

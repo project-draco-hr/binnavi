@@ -1,0 +1,3 @@
+{
+  this.eventQueue=Preconditions.checkNotNull(eventQueue,"IE00742: Event queue can't be null");
+}

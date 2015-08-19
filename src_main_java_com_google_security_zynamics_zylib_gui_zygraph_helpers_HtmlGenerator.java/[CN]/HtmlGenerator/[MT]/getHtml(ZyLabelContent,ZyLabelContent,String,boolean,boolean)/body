@@ -1,0 +1,32 @@
+{
+  final StringBuilder html=new StringBuilder(String.format("<html><font face=\"%s\" size=\"3\" color=\"000000\">",fontname));
+  for (int i=0; i < contentOne.getLineCount(); ++i) {
+    final String text=contentOne.getLineContent(i).getText();
+    if (eliminateEmptyLines) {
+      if ((text.length() < 1) || text.equals("\n") || text.equals("\r")|| text.equals("\t")) {
+        continue;
+      }
+    }
+    html.append(boldFirstLine && (i == 0) ? "<b>" : "");
+    html.append(escapeHtml(contentOne.getLineContent(i).getText()));
+    html.append(boldFirstLine && (i == 0) ? "</b>" : "");
+    html.append("<br>");
+  }
+  html.append("</font>");
+  html.append("<hr></hr>");
+  html.append(String.format("<font face=\"%s\" size=\"3\" color=\"000000\">",fontname));
+  for (int i=0; i < contentTwo.getLineCount(); ++i) {
+    final String text=contentTwo.getLineContent(i).getText();
+    if (eliminateEmptyLines) {
+      if ((text.length() < 1) || text.equals("\n") || text.equals("\r")|| text.equals("\t")) {
+        continue;
+      }
+    }
+    html.append(boldFirstLine && (i == 0) ? "<b>" : "");
+    html.append(escapeHtml(contentTwo.getLineContent(i).getText()));
+    html.append(boldFirstLine && (i == 0) ? "</b>" : "");
+    html.append("<br>");
+  }
+  html.append("</font></html>");
+  return html.toString();
+}

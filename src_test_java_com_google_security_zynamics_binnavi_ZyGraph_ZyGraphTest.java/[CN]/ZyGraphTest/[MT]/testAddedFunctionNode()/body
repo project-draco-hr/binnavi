@@ -1,0 +1,37 @@
+{
+  assertEquals(7,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(96,m_graph.getRawView().getNodeCount());
+  final CFunctionNode functionNode=m_graph.getRawView().getContent().createFunctionNode(new MockFunction(m_provider));
+  assertEquals(8,m_graph.visibleNodeCount());
+  assertEquals(89,NodeFunctions.getInvisibleNodes(m_graph).size());
+  assertEquals(97,m_graph.getRawView().getNodeCount());
+  final List<NaviNode> nodes=GraphHelpers.getNodes(m_graph);
+  final NaviNode cnn=searchNode(nodes,functionNode);
+  assertTrue(functionNode.isVisible());
+  assertEquals(functionNode.isVisible(),cnn.isVisible());
+  functionNode.setVisible(false);
+  assertFalse(functionNode.isVisible());
+  assertEquals(functionNode.isVisible(),cnn.isVisible());
+  functionNode.setVisible(true);
+  assertTrue(functionNode.isVisible());
+  assertEquals(functionNode.isVisible(),cnn.isVisible());
+  assertFalse(functionNode.isSelected());
+  assertEquals(functionNode.isSelected(),cnn.isSelected());
+  functionNode.setSelected(false);
+  assertFalse(functionNode.isSelected());
+  assertEquals(functionNode.isSelected(),cnn.isSelected());
+  functionNode.setSelected(true);
+  assertTrue(functionNode.isSelected());
+  assertEquals(functionNode.isSelected(),cnn.isSelected());
+  assertEquals(functionNode.getColor(),cnn.getRealizer().getFillColor());
+  functionNode.setColor(Color.GREEN);
+  assertEquals(Color.GREEN,functionNode.getColor());
+  assertEquals(functionNode.getColor(),cnn.getRealizer().getFillColor());
+  functionNode.setX(100);
+  assertEquals(100,functionNode.getX(),0.1);
+  assertEquals(functionNode.getX(),cnn.getX(),0.1);
+  functionNode.setY(200);
+  assertEquals(200,functionNode.getY(),0.1);
+  assertEquals(functionNode.getY(),cnn.getY(),0.1);
+}

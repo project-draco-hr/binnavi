@@ -1,0 +1,4 @@
+{
+  final INaviTextNode textNode=setupTextNode();
+  getProvider().editTextNodeComment(textNode,null,1,"");
+}

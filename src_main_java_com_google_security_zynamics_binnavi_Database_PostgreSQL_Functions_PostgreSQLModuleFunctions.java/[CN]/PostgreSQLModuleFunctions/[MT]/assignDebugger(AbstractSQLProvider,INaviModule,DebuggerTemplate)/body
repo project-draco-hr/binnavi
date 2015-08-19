@@ -1,0 +1,15 @@
+{
+  checkArguments(provider,module);
+  if ((debugger != null) && !debugger.inSameDatabase(provider)) {
+    throw new IllegalArgumentException("IE00491: Debugger is not part of this database");
+  }
+  final CConnection connection=provider.getConnection();
+  try {
+    final String query=String.format("update %s set debugger_id = %s where id = %d",CTableNames.MODULES_TABLE,debugger == null ? "NULL" : String.valueOf(debugger.getId()),module.getConfiguration().getId());
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.MODULES_TABLE,module.getConfiguration().getId());
+}

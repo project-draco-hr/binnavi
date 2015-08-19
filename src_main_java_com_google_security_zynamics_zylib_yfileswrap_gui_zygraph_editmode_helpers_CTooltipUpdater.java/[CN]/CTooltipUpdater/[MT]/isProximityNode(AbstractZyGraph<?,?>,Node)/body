@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
+  Preconditions.checkNotNull(node,"Node argument can not be null");
+  return graph.getGraph().getRealizer(node) instanceof ZyProximityNodeRealizer<?>;
+}

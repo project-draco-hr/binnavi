@@ -1,0 +1,19 @@
+{
+  final ArrayList<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  final String parentRegister=getParentRegister(subRegister);
+  final OperandSize archSize=environment.getArchitectureSize();
+  if (isHigher8BitRegister(subRegister)) {
+    final String maskResult=environment.getNextVariableString();
+    final String shiftResult=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAnd(offset,archSize,parentRegister,OperandSize.WORD,"65280",OperandSize.WORD,maskResult));
+    instructions.add(ReilHelpers.createBsh(offset + 1,OperandSize.WORD,maskResult,OperandSize.WORD,"-8",OperandSize.BYTE,shiftResult));
+    return new TranslationResult(shiftResult,OperandSize.BYTE,TranslationResultType.REGISTER,null,instructions,offset);
+  }
+ else {
+    final OperandSize subRegisterSize=getRegisterSize(subRegister);
+    final String mask=String.valueOf(TranslationHelpers.getAllBitsMask(subRegisterSize));
+    final String result=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAnd(offset,archSize,parentRegister,subRegisterSize,mask,subRegisterSize,result));
+    return new TranslationResult(result,subRegisterSize,TranslationResultType.REGISTER,null,instructions,offset);
+  }
+}

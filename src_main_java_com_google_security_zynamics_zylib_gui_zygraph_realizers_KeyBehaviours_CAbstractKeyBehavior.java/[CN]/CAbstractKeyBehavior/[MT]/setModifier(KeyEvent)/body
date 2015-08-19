@@ -1,0 +1,26 @@
+{
+  m_ctrl=false;
+  m_shift=false;
+  m_alt=false;
+  if (event.getModifiersEx() == (InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK)) {
+    m_ctrl=true;
+    m_shift=true;
+  }
+ else   if (event.getModifiersEx() == (InputEvent.CTRL_DOWN_MASK | InputEvent.ALT_DOWN_MASK)) {
+    m_ctrl=true;
+    m_alt=true;
+  }
+ else   if (event.getModifiersEx() == (InputEvent.ALT_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK)) {
+    m_alt=true;
+    m_shift=true;
+  }
+ else   if (event.isAltDown()) {
+    m_alt=true;
+  }
+ else   if (event.isControlDown()) {
+    m_ctrl=true;
+  }
+ else   if (event.isShiftDown()) {
+    m_shift=true;
+  }
+}

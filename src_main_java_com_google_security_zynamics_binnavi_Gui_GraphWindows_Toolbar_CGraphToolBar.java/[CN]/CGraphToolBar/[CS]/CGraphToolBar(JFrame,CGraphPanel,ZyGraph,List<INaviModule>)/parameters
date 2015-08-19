@@ -1,0 +1,4 @@
+JFrame parent
+CGraphPanel graphPanel
+ZyGraph graph
+List<INaviModule> modules

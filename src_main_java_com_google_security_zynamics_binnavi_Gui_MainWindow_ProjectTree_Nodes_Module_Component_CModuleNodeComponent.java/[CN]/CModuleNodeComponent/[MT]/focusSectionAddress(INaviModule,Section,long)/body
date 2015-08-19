@@ -1,0 +1,14 @@
+{
+  final CModuleNodeComponent component=lookup.get(module);
+  final JTabbedPane tabbedPane=component.tabbedPane;
+  final Window window=SwingUtilities.getWindowAncestor(tabbedPane);
+  EventQueue.invokeLater(new Runnable(){
+    @Override public void run(){
+      window.toFront();
+      window.repaint();
+      tabbedPane.setSelectedIndex(4);
+      component.dataPanel.getDataSectionComponent().scrollToSectionAddress(section,address);
+    }
+  }
+);
+}

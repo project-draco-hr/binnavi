@@ -1,0 +1,9 @@
+{
+  final TypeManager manager=module.getTypeManager();
+  final BaseType baseType=manager.createAtomicType(TypeName,32,true);
+  manager.updateType(baseType,UpdatedTypeName,64,true);
+  final List<RawBaseType> foundTypes=findRawTypes(UpdatedTypeName,getProvider().loadTypes(module));
+  Assert.assertTrue(foundTypes.size() == 1);
+  matchType(baseType,foundTypes.get(0));
+  manager.deleteType(baseType);
+}

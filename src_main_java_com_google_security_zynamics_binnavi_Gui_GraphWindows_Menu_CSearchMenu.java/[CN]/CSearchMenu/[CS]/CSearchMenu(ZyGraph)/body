@@ -1,0 +1,17 @@
+{
+  super("Search");
+  final ZyGraphSearchSettings settings=graph.getSettings().getSearchSettings();
+  setMnemonic("HK_MENU_SEARCH".charAt(0));
+  final JCheckBoxMenuItem searchVisibleMenu=new JCheckBoxMenuItem(new CActionSearchOnlyVisibleNodes(graph));
+  searchVisibleMenu.setSelected(settings.getSearchVisibleNodesOnly());
+  add(searchVisibleMenu);
+  final JCheckBoxMenuItem searchSelectedOnly=new JCheckBoxMenuItem(new CActionSearchOnlySelectedNodes(graph));
+  searchSelectedOnly.setSelected(settings.getSearchSelectedNodesOnly());
+  add(searchSelectedOnly);
+  final JCheckBoxMenuItem searchCaseSensitiveMenu=new JCheckBoxMenuItem(new CActionSearchCaseSensitive(graph));
+  searchCaseSensitiveMenu.setSelected(settings.getSearchCaseSensitive());
+  add(searchCaseSensitiveMenu);
+  final JCheckBoxMenuItem searchRegexMenu=new JCheckBoxMenuItem(new CActionSearchRegEx(graph));
+  searchRegexMenu.setSelected(settings.getSearchRegEx());
+  add(searchRegexMenu);
+}

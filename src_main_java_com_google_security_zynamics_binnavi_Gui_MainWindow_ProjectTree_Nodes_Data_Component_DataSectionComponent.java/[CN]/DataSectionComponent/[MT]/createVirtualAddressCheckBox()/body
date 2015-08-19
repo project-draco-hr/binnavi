@@ -1,0 +1,18 @@
+{
+  virtualAddresses=new JCheckBox("Show Virtual Addresses");
+  virtualAddresses.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      if (virtualAddresses.isSelected()) {
+        hexView.setBaseAddress(currentSection.getStartAddress().toLong());
+        addressRenderer.showVirtualAddress(true);
+      }
+ else {
+        hexView.setBaseAddress(0);
+        addressRenderer.showVirtualAddress(false);
+      }
+      initializeHighlighting(hexView,virtualAddresses.isSelected(),module.getContent().getTypeInstanceContainer().getTypeInstances(currentSection));
+    }
+  }
+);
+  return virtualAddresses;
+}

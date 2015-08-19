@@ -1,0 +1,10 @@
+{
+  final CDebuggerWrapper mapper=m_debuggerBox.getSelectedItem();
+  if (mapper == null) {
+    m_debugPerspectiveModel.setActiveDebugger(null);
+  }
+ else {
+    final IDebugger debugger=m_debuggerBox.getSelectedItem().getObject();
+    m_debugPerspectiveModel.setActiveDebugger(debugger);
+  }
+}

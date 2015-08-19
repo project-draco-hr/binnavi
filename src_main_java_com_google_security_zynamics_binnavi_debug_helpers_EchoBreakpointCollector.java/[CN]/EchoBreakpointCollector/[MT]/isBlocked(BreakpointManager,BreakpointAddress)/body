@@ -1,0 +1,3 @@
+{
+  return (manager.hasBreakpoint(BreakpointType.REGULAR,address) && (manager.getBreakpointStatus(address,BreakpointType.REGULAR) != BreakpointStatus.BREAKPOINT_DISABLED)) || manager.hasBreakpoint(BreakpointType.ECHO,address) || manager.hasBreakpoint(BreakpointType.STEP,address);
+}

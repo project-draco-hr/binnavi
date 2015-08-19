@@ -1,0 +1,13 @@
+{
+  try {
+    notifier.start();
+    debugger.connect();
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    notifier.stop();
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00082: " + "Could not attach to the debug client";
+    final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not attach to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The debugger process was not started yet. You can try to debug " + "the client again once you resolved the connection problems."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+  }
+}

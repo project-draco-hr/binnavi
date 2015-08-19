@@ -1,0 +1,5 @@
+{
+  if (groupNode.isStored()) {
+    provider.deleteGroupNodeComment(groupNode,commentId,userId);
+  }
+}

@@ -1,0 +1,2 @@
+ClientReader inputStream
+LinkedBlockingQueue<DebuggerReply> eventQueue

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"Error: Bookmark addresses can't be null");
+  m_bookmarkManager.addBookmark(new CBookmark(new CAddress(address.toLong()),description));
+}

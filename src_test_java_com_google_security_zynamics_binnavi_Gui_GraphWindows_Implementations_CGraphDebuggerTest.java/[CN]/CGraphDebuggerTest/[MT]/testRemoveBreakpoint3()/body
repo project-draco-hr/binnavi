@@ -1,0 +1,8 @@
+{
+  final Set<BreakpointAddress> breakpointAddresses=Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x1123))),new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x1124))));
+  m_debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,breakpointAddresses);
+  m_debugger.getBreakpointManager().setBreakpointStatus(BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_ACTIVE,1);
+  CGraphDebugger.removeBreakpoint(m_debugger.getBreakpointManager(),m_module,new UnrelocatedAddress(new CAddress(0x1123)));
+  CGraphDebugger.removeBreakpoint(m_debugger.getBreakpointManager(),m_module,new UnrelocatedAddress(new CAddress(0x1124)));
+  assertEquals(0,m_debugger.getBreakpointManager().getNumberOfBreakpoints(BreakpointType.REGULAR));
+}

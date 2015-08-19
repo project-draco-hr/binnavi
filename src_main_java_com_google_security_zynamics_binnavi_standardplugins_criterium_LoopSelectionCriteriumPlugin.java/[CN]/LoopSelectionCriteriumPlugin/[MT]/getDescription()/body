@@ -1,0 +1,3 @@
+{
+  return "Extends the Select by Criteria dialog to offer the option to select all nodes that are inside loops.";
+}

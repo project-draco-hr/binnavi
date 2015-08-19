@@ -1,0 +1,3 @@
+{
+  return ObjectFinders.getObject(m_database,PluginInterface.instance().getDatabaseManager().getDatabases());
+}

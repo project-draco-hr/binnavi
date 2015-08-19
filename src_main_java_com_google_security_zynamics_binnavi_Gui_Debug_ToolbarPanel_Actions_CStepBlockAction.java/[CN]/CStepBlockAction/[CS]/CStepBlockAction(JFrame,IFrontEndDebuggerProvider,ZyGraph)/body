@@ -1,0 +1,6 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE00306: Parent argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01108: Debugger argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE01542: Graph argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Step to next basic block");
+}

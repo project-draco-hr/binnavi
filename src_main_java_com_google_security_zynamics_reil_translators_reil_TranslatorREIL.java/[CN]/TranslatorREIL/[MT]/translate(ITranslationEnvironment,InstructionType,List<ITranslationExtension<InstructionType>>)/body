@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  final IAddress offset=ReilHelpers.toReilAddress(instruction.getAddress());
+  final String mnemonic=instruction.getMnemonic();
+  final ReilOperand firstOperand=convert(instruction.getOperands().get(0));
+  final ReilOperand secondOperand=convert(instruction.getOperands().get(1));
+  final ReilOperand thirdOperand=convert(instruction.getOperands().get(2));
+  return Lists.newArrayList(new ReilInstruction(offset,mnemonic,firstOperand,secondOperand,thirdOperand));
+}

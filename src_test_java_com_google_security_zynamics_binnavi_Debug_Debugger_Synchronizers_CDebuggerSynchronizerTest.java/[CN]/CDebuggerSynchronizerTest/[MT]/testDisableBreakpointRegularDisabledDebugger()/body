@@ -1,0 +1,6 @@
+{
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.REGULAR));
+  breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED);
+  assertEquals("",mockDebugger.requests);
+}

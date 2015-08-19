@@ -1,0 +1,12 @@
+{
+  boolean update=false;
+  for (  final ZyLineContent line : content) {
+    if (line.equals(lineContent)) {
+      update|=line.setHighlighting(1,color);
+    }
+ else {
+      update|=line.clearHighlighting(1);
+    }
+  }
+  return update;
+}

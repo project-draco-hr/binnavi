@@ -1,0 +1,3 @@
+{
+  return "This table shows information about the individual events of recorded traces.\nThread ID: Thread ID of the thread that triggered the event\nModule: Module in which the event happened\nAddress: Address where the event happened";
+}

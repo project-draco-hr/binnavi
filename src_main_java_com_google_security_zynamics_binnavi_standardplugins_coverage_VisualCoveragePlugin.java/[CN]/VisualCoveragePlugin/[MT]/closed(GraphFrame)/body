@@ -1,0 +1,9 @@
+{
+  for (  final VisualCoverageAction action : createdActions) {
+    if (action.getFrame() == graphFrame) {
+      action.dispose();
+      createdActions.remove(action);
+      return;
+    }
+  }
+}

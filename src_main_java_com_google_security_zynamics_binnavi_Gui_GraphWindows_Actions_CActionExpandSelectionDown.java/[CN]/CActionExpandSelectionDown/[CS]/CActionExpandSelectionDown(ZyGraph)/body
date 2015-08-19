@@ -1,0 +1,4 @@
+{
+  super("Expand Selection Down");
+  m_graph=graph;
+}

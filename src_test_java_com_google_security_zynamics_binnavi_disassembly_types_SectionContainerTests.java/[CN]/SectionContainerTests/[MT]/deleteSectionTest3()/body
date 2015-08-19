@@ -1,0 +1,6 @@
+{
+  final Section section=new Section(1,"Foo",CommentManager.get(provider),module,new CAddress("100",100),new CAddress("200",16),SectionPermission.EXECUTE,null);
+  final SectionContainer sectionContainer2=new SectionContainer(backend);
+  Assert.assertNotNull(sectionContainer2);
+  sectionContainer2.deleteSection(section);
+}

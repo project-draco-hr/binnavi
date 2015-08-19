@@ -1,0 +1,4 @@
+{
+  m_type=type;
+  m_root=new TreeNode<CTag>(new CTag(0,"Hannes","",m_type,new MockSqlProvider()));
+}

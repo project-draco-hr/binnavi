@@ -1,0 +1,30 @@
+{
+  Preconditions.checkNotNull(provider,"IE02618: provider argument can not be null");
+  Preconditions.checkNotNull(project,"IE02619: project argument can not be null");
+  Preconditions.checkNotNull(viewId,"IE02620: viewId argument can not be null");
+  final CConnection connection=provider.getConnection();
+  final String query=" SELECT * FROM load_project_flowGraph(?,?) ";
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    statement.setInt(1,project.getConfiguration().getId());
+    statement.setInt(2,viewId);
+    final ResultSet resultSet=statement.executeQuery();
+    while (resultSet.next()) {
+      final int databaseViewId=resultSet.getInt("view_id");
+      final String name=PostgreSQLHelpers.readString(resultSet,"name");
+      final String description=PostgreSQLHelpers.readString(resultSet,"description");
+      final ViewType viewType=resultSet.getString("type").equalsIgnoreCase("native") ? ViewType.Native : ViewType.NonNative;
+      final Timestamp creationDate=resultSet.getTimestamp("creation_date");
+      final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+      final boolean isStared=resultSet.getBoolean("stared");
+      final int nodeCount=resultSet.getInt("bbcount");
+      final int edgeCount=resultSet.getInt("edgecount");
+      final ImmutableNaviViewConfiguration viewConfiguration=new ImmutableNaviViewConfiguration(databaseViewId,name,description,viewType,creationDate,modificationDate,isStared,nodeCount,edgeCount);
+      return viewConfiguration;
+    }
+    return null;
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

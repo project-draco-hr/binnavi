@@ -1,0 +1,7 @@
+{
+  final Builder<BaseType,Integer> builder=ImmutableMap.<BaseType,Integer>builder();
+  for (  BaseType baseType : typeSystem.getTypes()) {
+    builder.put(baseType,baseType.getBitSize());
+  }
+  return builder.build();
+}

@@ -1,0 +1,69 @@
+{
+  if (m_wasUneditableSelection) {
+    return;
+  }
+  int x=getCaretEndPosX();
+  final int y=getCaretMouseReleasedY();
+  m_caretY=y + 1;
+  if (isComment(x,y)) {
+    final ZyLineContent lineContent=getLineContent(y);
+    IZyEditableObject lineObject=lineContent.getLineFragmentObjectAt(x);
+    if (lineObject.isCommentDelimiter()) {
+      x=lineObject.getEnd();
+      lineObject=lineContent.getLineFragmentObjectAt(x);
+    }
+    int textCursor=x - lineObject.getStart();
+    final String text=lineContent.getText().substring(lineObject.getStart(),lineObject.getEnd());
+    if (text.endsWith("\r") && (textCursor == text.length())) {
+      --textCursor;
+    }
+    String changedLine=String.format("%s%s%s",text.substring(0,textCursor),"\n",text.substring(textCursor));
+    changedLine=getMultilineComment(y,changedLine);
+    final IZyEditableObject editableObject=lineContent.getLineObject();
+    if (editableObject == null) {
+      return;
+    }
+    if (isAboveLineComment(y)) {
+      editableObject.updateComment(changedLine,ECommentPlacement.ABOVE_LINE);
+    }
+ else     if (isBehindLineComment(x,y)) {
+      editableObject.updateComment(changedLine,ECommentPlacement.BEHIND_LINE);
+    }
+ else     if (isLabelComment(y)) {
+      editableObject.update(changedLine);
+    }
+    getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),editableObject.getPersistentModel());
+  }
+ else {
+    final ZyLineContent lineContent=getLineContent(y);
+    final ZyLineContent nextModelLineContent=getNextModelLineContent(y);
+    m_caretY=getNextModelLineIndex(y);
+    if ((x == lineContent.getText().length()) && (y != 0)) {
+      m_caretY=y;
+      final IZyEditableObject editableObject=lineContent.getLineObject();
+      if (editableObject != null) {
+        editableObject.updateComment("\r",ECommentPlacement.BEHIND_LINE);
+        getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),editableObject.getPersistentModel());
+      }
+    }
+ else     if ((nextModelLineContent != null) && (nextModelLineContent.getLineObject() != null) && !isLabelComment(m_caretY)) {
+      String changedComment="\r";
+      if (isComment(0,m_caretY)) {
+        changedComment="\n" + getMultiLineComment(m_caretY);
+      }
+      nextModelLineContent.getLineObject().updateComment(changedComment,ECommentPlacement.ABOVE_LINE);
+      getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),nextModelLineContent.getLineObject().getPersistentModel());
+    }
+ else     if ((nextModelLineContent != null) && isLabelComment(m_caretY)) {
+      String changedComment="\n";
+      changedComment+=getMultiLineComment(m_caretY);
+      getLabelContent().getModel().update(changedComment);
+      getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),getLabelContent().getModel().getPersistentModel());
+    }
+ else {
+      m_caretY=y + 1;
+      getLabelContent().getModel().update("\r");
+      getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),getLabelContent().getModel().getPersistentModel());
+    }
+  }
+}

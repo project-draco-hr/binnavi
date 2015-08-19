@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(targets,"IE01261: Targets argument can not be null");
+  for (  final Pair<IDebugger,INaviFunction> target : targets) {
+    if (target.second().getType() == FunctionType.IMPORT) {
+      continue;
+    }
+    CGraphDebugger.setBreakpoint(target.first().getBreakpointManager(),target.second().getModule(),new UnrelocatedAddress(target.second().getAddress()));
+  }
+}

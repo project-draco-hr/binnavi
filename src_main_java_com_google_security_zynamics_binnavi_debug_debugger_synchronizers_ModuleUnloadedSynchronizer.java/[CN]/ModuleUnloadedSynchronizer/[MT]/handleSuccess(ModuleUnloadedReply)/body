@@ -1,0 +1,21 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  final MemoryModule replyModule=reply.getModule();
+  final MemoryModule existingModule=processManager.getModule(replyModule.getBaseAddress());
+  if (existingModule == null) {
+    processManager.removeNonExistingModule(replyModule);
+  }
+ else {
+    processManager.removeModule(existingModule);
+    CBreakpointModuleSynchronizer.disableEchoBreakpoints(getDebugger(),existingModule);
+    CBreakpointModuleSynchronizer.disableRegularBreakpoints(getDebugger(),existingModule);
+  }
+  if (needsResume()) {
+    try {
+      getDebugger().resume();
+    }
+ catch (    final DebugExceptionWrapper e) {
+      NaviLogger.severe("Error: Could not resume the debugger. Exception: %s",e);
+    }
+  }
+}

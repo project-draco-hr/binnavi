@@ -1,0 +1,11 @@
+int viewId
+INaviProject project
+String name
+String description
+ViewType type
+Date creationDate
+Date modificationDate
+MutableDirectedGraph<INaviViewNode,INaviEdge> graph
+Set<CTag> tags
+boolean isStared
+SQLProvider provider

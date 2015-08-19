@@ -1,0 +1,17 @@
+{
+  final List<INaviViewNode> nodes=new ArrayList<INaviViewNode>();
+  PostgreSQLGroupNodeLoader.load(provider,view,nodes);
+  PostgreSQLFunctionNodeLoader.load(provider,view,nodes);
+  PostgreSQLCodeNodeLoader.load(provider,view,nodes,modules);
+  PostgreSQLTextNodeLoader.load(provider,view,nodes);
+  Collections.sort(nodes,new Comparator<INaviViewNode>(){
+    @Override public int compare(    final INaviViewNode lhs,    final INaviViewNode rhs){
+      return lhs.getId() - rhs.getId();
+    }
+  }
+);
+  final CConnection connection=provider.getConnection();
+  PostgreSQLGroupNodeLoader.setupGroupNodes(connection,view,nodes);
+  loadNodeTags(connection,nodes,nodeTagManager);
+  return nodes;
+}

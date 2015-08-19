@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(container,"Error: container argument can not be null");
+  Preconditions.checkNotNull(graph,"Error: graph argument can not be null");
+  Preconditions.checkNotNull(pluginInterface,"Error: pluginInterface argument can not be null");
+  if (!container.isLoaded()) {
+    throw new IllegalStateException("View container is not loaded");
+  }
+  m_database=database;
+  m_container=container;
+  m_graph=graph;
+  m_view=findView(database,graph.getRawView(),pluginInterface.getDatabaseManager().getDatabases());
+  m_apiContainer=findContainer(database,container,pluginInterface.getDatabaseManager().getDatabases());
+  Preconditions.checkNotNull(m_apiContainer,"Error: Can not determine view container");
+  m_pluginInterface=pluginInterface;
+  for (  final ViewNode node : m_view.getGraph().getNodes()) {
+    m_nodeMap.put(node.getNative(),node);
+  }
+  m_graph.addListener(m_listener);
+}

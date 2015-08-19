@@ -1,0 +1,3 @@
+{
+  CCriteriumFunctions.appendCriterium(m_ctree,m_parent,new COrCriterium());
+}

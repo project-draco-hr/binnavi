@@ -1,0 +1,13 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.changedGraphType(View.this,GraphType.convert(type));
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

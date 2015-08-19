@@ -1,0 +1,16 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      for (int i=0; i < getChildCount(); i++) {
+        final CModuleNode node=(CModuleNode)getChildAt(i);
+        if (node.getObject() == module) {
+          node.dispose();
+          remove(node);
+          break;
+        }
+      }
+      getTreeModel().nodeStructureChanged(CAddressSpaceNode.this);
+    }
+  }
+.invokeAndWait();
+}

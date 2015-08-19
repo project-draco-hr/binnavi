@@ -1,0 +1,7 @@
+{
+  final List<com.google.security.zynamics.reil.ReilInstruction> convertedInstructions=new ArrayList<com.google.security.zynamics.reil.ReilInstruction>();
+  for (  final ReilInstruction reilInstruction : instructions) {
+    convertedInstructions.add(reilInstruction.getNative());
+  }
+  return convertedInstructions;
+}

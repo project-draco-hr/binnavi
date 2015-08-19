@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(reference,"Error: reference argument can not be null");
+  referencesByInstance.remove(reference.getTypeInstance(),reference);
+  backend.deleteInstanceReference(reference);
+  notifyReferenceRemoved(reference);
+}

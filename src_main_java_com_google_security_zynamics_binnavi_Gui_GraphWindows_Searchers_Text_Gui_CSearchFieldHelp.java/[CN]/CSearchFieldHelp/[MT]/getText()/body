@@ -1,0 +1,3 @@
+{
+  return "Use this field to search for text in the graph.\n\nHotkey: CTRL-F";
+}

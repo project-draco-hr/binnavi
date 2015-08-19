@@ -1,0 +1,8 @@
+{
+  super("Create type instance");
+  this.owner=owner;
+  this.typeManager=typeManager;
+  this.instanceContainer=instanceContainer;
+  this.section=section;
+  this.sectionOffset=sectionOffset;
+}

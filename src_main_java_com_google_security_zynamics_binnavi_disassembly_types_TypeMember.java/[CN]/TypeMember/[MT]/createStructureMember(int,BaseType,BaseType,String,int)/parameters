@@ -1,0 +1,5 @@
+int id
+BaseType parentType
+BaseType baseType
+String name
+int structureOffset

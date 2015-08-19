@@ -1,0 +1,7 @@
+{
+  final Collection<T> returnList=new ArrayList<T>();
+  for (  final Collection<T> collection : second) {
+    returnList.addAll(collection);
+  }
+  return returnList;
+}

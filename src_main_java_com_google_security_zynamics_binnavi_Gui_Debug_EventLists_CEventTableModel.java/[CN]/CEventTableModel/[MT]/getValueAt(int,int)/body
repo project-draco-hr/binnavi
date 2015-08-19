@@ -1,0 +1,29 @@
+{
+  final ITraceEvent debugEvent=getEvents().get(row);
+  final BreakpointAddress address=debugEvent.getOffset();
+switch (col) {
+case INDEX_COLUMN:
+    return row + 1;
+case THREAD_COLUMN:
+  return Long.valueOf(debugEvent.getThreadId());
+case MODULE_COLUMN:
+return address.getModule() == null ? "-" : address.getModule().getConfiguration().getName();
+case ADDRESS_COLUMN:
+{
+if (address.getModule() == null) {
+  return address.getAddress().getAddress().toHexString();
+}
+ else {
+  final INaviFunction function=address.getModule().isLoaded() ? address.getModule().getContent().getFunctionContainer().getFunction(address.getAddress().getAddress()) : null;
+  if (function == null) {
+    return address.getAddress().getAddress().toHexString();
+  }
+ else {
+    return function.getName();
+  }
+}
+}
+default :
+throw new IllegalStateException("IE01121: Unknown column");
+}
+}

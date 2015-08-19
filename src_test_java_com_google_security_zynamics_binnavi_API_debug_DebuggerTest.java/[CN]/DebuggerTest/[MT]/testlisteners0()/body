@@ -1,0 +1,33 @@
+{
+  mockDebugger.connect();
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(0,ThreadState.RUNNING));
+  mockDebugger.getProcessManager().setTargetInformation(new TargetInformation(5,Lists.newArrayList(new RegisterDescription("eax",4,true),new RegisterDescription("ebx",4,false)),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  mockDebugger.connection.m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(CommonTestObjects.MEMORY_MODULE));
+  mockDebugger.getProcessManager().getThread(0).setCurrentAddress(new RelocatedAddress(new CAddress(0)));
+  mockDebugger.getBreakpointManager().addBreakpoints(BreakpointType.ECHO,CommonTestObjects.BP_ADDRESS_123_SET);
+  final ArrayList<Pair<RelocatedAddress,Integer>> list=new ArrayList<Pair<RelocatedAddress,Integer>>();
+  mockDebugger.connection.m_synchronizer.receivedEvent(new EchoBreakpointSetReply(0,0,list));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new EchoBreakpointSetReply(0,0,list));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new EchoBreakpointsRemovedReply(0,0,list));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new EchoBreakpointsRemovedReply(0,0,list));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ExceptionOccurredReply(0,0,0,0,new RelocatedAddress(new CAddress(0)),"Test exception"));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new HaltReply(0,0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new HaltReply(0,0,1));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ListFilesReply(0,0,RemoteFileSystem.parse("<foo></foo>".getBytes())));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ListFilesReply(0,1,null));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ListProcessesReply(0,0,ProcessList.parse("<foo></foo>".getBytes())));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ListProcessesReply(0,1,null));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new MemoryMapReply(0,0,new MemoryMap(new ArrayList<MemorySection>())));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new MemoryMapReply(0,1,null));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ModuleLoadedReply(0,0,new MemoryModule("XXX","YYYXXX",new RelocatedAddress(new CAddress(0)),0),new TargetProcessThread(123,ThreadState.SUSPENDED)));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ModuleUnloadedReply(0,0,new MemoryModule("XXX","YYYXXX",new RelocatedAddress(new CAddress(0)),0)));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ProcessClosedReply(0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ReadMemoryReply(0,0,new CAddress(0),new byte[8]));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ReadMemoryReply(0,1,null,null));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new RegistersReply(0,0,new RegisterValues(new FilledList<ThreadRegisters>())));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new RegistersReply(0,1,null));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new RequestTargetReply(0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new RequestTargetReply(0,1));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ResumeReply(0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new ResumeReply(0,1));
+}

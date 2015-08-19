@@ -1,0 +1,5 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  assertTrue(CColorEvaluator.evaluate(node,Color.red));
+  assertFalse(CColorEvaluator.evaluate(node,Color.green));
+}

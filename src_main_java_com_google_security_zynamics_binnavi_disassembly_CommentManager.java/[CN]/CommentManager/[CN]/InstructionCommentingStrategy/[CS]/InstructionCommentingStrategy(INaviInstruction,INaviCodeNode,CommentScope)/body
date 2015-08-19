@@ -1,0 +1,6 @@
+{
+  instruction=Preconditions.checkNotNull(currentInstruction,"Error: currentInstruction argument can not be null");
+  scope=Preconditions.checkNotNull(currentScope,"IE02610: currentScope argument can not be null");
+  Preconditions.checkArgument(currentScope.equals(CommentScope.GLOBAL) || (node != null),"Error: a local comment scope requires a valid code node argument");
+  codeNode=node;
+}

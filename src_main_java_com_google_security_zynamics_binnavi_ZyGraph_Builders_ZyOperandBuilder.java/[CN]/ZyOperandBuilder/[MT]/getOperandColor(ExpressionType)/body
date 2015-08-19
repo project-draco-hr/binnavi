@@ -1,0 +1,22 @@
+{
+switch (type) {
+case IMMEDIATE_INTEGER:
+    return ConfigManager.instance().getColorSettings().getImmediateColor();
+case MEMDEREF:
+  return ConfigManager.instance().getColorSettings().getMemRefColor();
+case OPERATOR:
+return ConfigManager.instance().getColorSettings().getOperatorColor();
+case SIZE_PREFIX:
+return ConfigManager.instance().getColorSettings().getPrefixColor();
+case SYMBOL:
+return ConfigManager.instance().getColorSettings().getStringColor();
+case REGISTER:
+return ConfigManager.instance().getColorSettings().getRegisterColor();
+case EXPRESSION_LIST:
+return ConfigManager.instance().getColorSettings().getExpressionListColor();
+case IMMEDIATE_FLOAT:
+return ConfigManager.instance().getColorSettings().getImmediateColor();
+default :
+throw new IllegalStateException("IE02247: Unknown expression type");
+}
+}

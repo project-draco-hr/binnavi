@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Cancel Target Selection\" message to the debug client");
+  return sendPacket(new CancelTargetSelectionCommand(getMessageId()));
+}

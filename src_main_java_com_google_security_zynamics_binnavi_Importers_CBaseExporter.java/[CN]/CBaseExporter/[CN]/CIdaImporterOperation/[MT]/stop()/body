@@ -1,0 +1,4 @@
+{
+  m_progressBar.stop();
+  CGlobalProgressManager.instance().remove(this);
+}

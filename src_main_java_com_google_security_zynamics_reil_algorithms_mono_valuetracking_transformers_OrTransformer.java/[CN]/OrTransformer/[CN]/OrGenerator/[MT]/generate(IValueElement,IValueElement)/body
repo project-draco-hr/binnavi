@@ -1,0 +1,8 @@
+{
+  if (lhs.equals(rhs)) {
+    return lhs.clone();
+  }
+ else {
+    return new BitwiseOr(lhs,rhs).getSimplified();
+  }
+}

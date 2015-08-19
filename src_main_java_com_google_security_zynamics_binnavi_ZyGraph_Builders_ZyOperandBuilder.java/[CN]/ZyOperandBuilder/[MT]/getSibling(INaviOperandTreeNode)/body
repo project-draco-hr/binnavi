@@ -1,0 +1,9 @@
+{
+  final INaviOperandTreeNode parent=node.getParent();
+  if (parent.getChildren().size() != 2) {
+    return null;
+  }
+ else {
+    return parent.getChildren().get(0) == node ? parent.getChildren().get(1) : parent.getChildren().get(0);
+  }
+}

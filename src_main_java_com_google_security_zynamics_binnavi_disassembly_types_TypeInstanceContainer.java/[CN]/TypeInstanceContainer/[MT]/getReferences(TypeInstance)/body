@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(typeInstance,"Error: typeInstance argument can not be null.");
+  return Collections.unmodifiableList((List<TypeInstanceReference>)referencesByInstance.get(typeInstance));
+}

@@ -1,0 +1,11 @@
+{
+  if (offs < 0) {
+    return;
+  }
+  try {
+    super.insertString(offs,str,normal);
+  }
+ catch (  final Exception ex) {
+    ex.printStackTrace();
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    listener.initializedGlobalInstructionComments(instruction,comments);
+  }
+ else {
+    listener.initializedLocalInstructionComments(codeNode,instruction,comments);
+  }
+}

@@ -1,0 +1,29 @@
+{
+  Preconditions.checkArgument(getType() == ViewType.NonNative,"IE00314: Native views can not be saved");
+  Preconditions.checkState(isLoaded(),"IE00315: View must be loaded before it can be saved");
+  if (m_configuration.isStored()) {
+    m_provider.save(this);
+  }
+ else {
+    CView newView;
+    final INaviModule naviModule=m_configuration.getModule();
+    if (naviModule == null) {
+      newView=m_provider.createView(m_configuration.getProject(),this,getName(),m_configuration.getDescription());
+    }
+ else {
+      newView=m_provider.createView(naviModule,this,getName(),m_configuration.getDescription());
+    }
+    m_configuration.setId(newView.getConfiguration().getId());
+  }
+  final IDirectedGraph<INaviViewNode,INaviEdge> graph=m_content.getGraph();
+  m_bbcount=graph.nodeCount();
+  m_edgecount=graph.edgeCount();
+  for (  final INaviViewListener listener : m_listeners) {
+    listener.savedView(this);
+  }
+  m_configuration.updateModificationDate();
+  m_content.save();
+  m_lastGraphType=m_content.getGraphType();
+  NodeCache.get(m_provider).addNodes(graph.getNodes());
+  EdgeCache.get(m_provider).addEdges(graph.getEdges());
+}

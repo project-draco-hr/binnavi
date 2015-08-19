@@ -1,0 +1,5 @@
+Object element
+ZyLabelContent content
+String searchString
+boolean regEx
+boolean caseSensitive

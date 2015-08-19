@@ -1,0 +1,9 @@
+{
+  final IZyNodeRealizer realizer=node.getRealizer();
+  boolean update=false;
+  for (  final ZyLineContent line : realizer.getNodeContent()) {
+    update|=line.clearHighlighting(1);
+  }
+  m_lastHoveredLine=null;
+  return update;
+}

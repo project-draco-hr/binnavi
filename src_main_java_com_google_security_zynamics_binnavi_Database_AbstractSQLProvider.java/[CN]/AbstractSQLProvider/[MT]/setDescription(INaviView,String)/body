@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewFunctions.setDescription(this,view,description);
+}

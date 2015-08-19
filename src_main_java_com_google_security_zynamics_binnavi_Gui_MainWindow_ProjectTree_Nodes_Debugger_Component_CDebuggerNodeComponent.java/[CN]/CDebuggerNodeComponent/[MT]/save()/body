@@ -1,0 +1,29 @@
+{
+  try {
+    m_debugger.setName(m_nameTextField.getText());
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00053: " + "Could not save the new debugger name";
+    final String description=CUtilityFunctions.createDescription("The new debugger name could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the debugger name was saved"},new String[]{"The debugger name was not saved. Please try to find out what went wrong with the database connection and try to save the debugger name again."});
+    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),message,description,exception);
+  }
+  try {
+    m_debugger.setHost(m_hostTextField.getText());
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00158: " + "Could not save the new debugger description";
+    final String description=CUtilityFunctions.createDescription("The new debugger description could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the debugger description was saved"},new String[]{"The debugger description was not saved. Please try to find out what went wrong with the database connection and try to save the debugger description again."});
+    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),message,description,exception);
+  }
+  try {
+    m_debugger.setPort(Integer.parseInt(m_portTextField.getText()));
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00159: " + "Could not save the new debugger port";
+    final String description=CUtilityFunctions.createDescription("The new debugger port could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the debugger port was saved"},new String[]{"The debugger port was not saved. Please try to find out what went wrong with the database connection and try to save the debugger port again."});
+    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),message,description,exception);
+  }
+}

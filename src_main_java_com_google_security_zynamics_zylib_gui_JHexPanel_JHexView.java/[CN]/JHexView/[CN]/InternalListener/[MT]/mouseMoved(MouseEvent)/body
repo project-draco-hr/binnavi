@@ -1,0 +1,5 @@
+{
+  m_lastMouseX=event.getX();
+  m_lastMouseY=event.getY();
+  repaint();
+}

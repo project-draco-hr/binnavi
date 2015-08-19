@@ -1,0 +1,26 @@
+{
+  Preconditions.checkNotNull(style,"Internal Error: Layout style can't be null");
+  Preconditions.checkArgument(minNodeDist >= 0,"Internal Error: Minimum node distance can't be negative");
+  final CircularLayouter layouter=new CircularLayouter();
+switch (style) {
+case COMPACT:
+    layouter.setLayoutStyle(CircularLayouter.BCC_COMPACT);
+  break;
+case ISOLATED:
+layouter.setLayoutStyle(CircularLayouter.BCC_ISOLATED);
+break;
+case SINGLE_CIRCLE:
+layouter.setLayoutStyle(CircularLayouter.SINGLE_CYCLE);
+break;
+default :
+throw new IllegalStateException("Internal Error: Unknown layout style");
+}
+layouter.setPartitionLayoutStyle(CircularLayouter.PARTITION_LAYOUTSTYLE_CYCLIC);
+final SingleCycleLayouter cycleLayouter=layouter.getSingleCycleLayouter();
+cycleLayouter.setAutomaticRadius(true);
+cycleLayouter.setMinimalNodeDistance((int)minNodeDist);
+final BalloonLayouter bl=layouter.getBalloonLayouter();
+bl.setMinimalEdgeLength((int)minNodeDist);
+bl.setAllowOverlaps(false);
+return layouter;
+}

@@ -1,0 +1,18 @@
+{
+  if (m_modules != null) {
+    for (    final Module module : m_modules) {
+      module.dispose();
+    }
+    for (    final Project project : m_projects) {
+      project.dispose();
+    }
+    if (m_debuggerTemplateManager != null) {
+      m_debuggerTemplateManager.dispose();
+    }
+    m_viewTagManager=null;
+    m_nodeTagManager=null;
+    m_modules.clear();
+    m_projects.clear();
+    m_debuggerTemplateManager=null;
+  }
+}

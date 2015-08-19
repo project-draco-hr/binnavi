@@ -1,0 +1,17 @@
+{
+  if (isEnabled()) {
+    g.setColor(m_fontColorOffsets);
+  }
+ else {
+    g.setColor(m_disabledColor != m_bgColorOffset ? m_disabledColor : Color.WHITE);
+  }
+  final int x=(-m_firstColumn * m_charWidth) + 10;
+  final int bytesToDraw=getMaximumVisibleBytes();
+  final String formatString=m_addressMode == AddressMode.BIT32 ? "%08X" : "%016X";
+  for (int i=0; i < bytesToDraw; i+=m_bytesPerRow) {
+    final long address=m_baseAddress + (m_firstRow * m_bytesPerRow) + i;
+    final String offsetString=String.format(formatString,address);
+    final int currentRow=i / m_bytesPerRow;
+    g.drawString(offsetString,x,m_paddingTop + (currentRow * m_rowHeight));
+  }
+}

@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
+  Preconditions.checkNotNull(node,"Node argument can not be null");
+  if (isProximityNode(graph,node)) {
+    return TooltipGenerator.createTooltip(graph,node);
+  }
+  if (graph.getView() instanceof ZyGraph2DView) {
+    if (((ZyGraph2DView)graph.getView()).isNodeSloppyPaintMode()) {
+      return TooltipGenerator.createTooltip(graph,node);
+    }
+  }
+  return null;
+}

@@ -1,0 +1,72 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final OperandSize bt=OperandSize.BYTE;
+  final String tmpVar1=environment.getNextVariableString();
+  final String tmpVar2=environment.getNextVariableString();
+  final String tmpVar3=environment.getNextVariableString();
+  final String jumpCondition=environment.getNextVariableString();
+  long baseOffset=offset;
+  final String[] meta=new String[0];
+  if (extension.compareTo("EQ") == 0) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"Z",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("NE") == 0) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,bt,"Z",bt,jumpCondition));
+  }
+ else   if ((extension.compareTo("CS") == 0) || (extension.compareTo("HS") == 0)) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"C",bt,jumpCondition));
+  }
+ else   if ((extension.compareTo("CC") == 0) || (extension.compareTo("LO") == 0)) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,bt,"C",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("MI") == 0) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"N",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("PL") == 0) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,bt,"N",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("VS") == 0) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"V",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("VC") == 0) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,bt,"V",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("HI") == 0) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"C",bt,tmpVar1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar1,bt,"Z",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("LS") == 0) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"Z",bt,tmpVar1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar1,bt,"C",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("GE") == 0) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,bt,"N",bt,"V",bt,tmpVar1));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,tmpVar1,bt,jumpCondition));
+  }
+ else   if (extension.compareTo("LT") == 0) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,bt,"N",bt,"V",bt,tmpVar1));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,tmpVar1,bt,jumpCondition));
+  }
+ else   if (extension.compareTo("GT") == 0) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,bt,"N",bt,"V",bt,tmpVar1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar1,bt,"Z",bt,jumpCondition));
+  }
+ else   if (extension.compareTo("LE") == 0) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,bt,"N",bt,"V",bt,tmpVar1));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,tmpVar1,bt,tmpVar3));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,"Z",bt,tmpVar2));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar3,bt,tmpVar2,bt,jumpCondition));
+  }
+ else   if (extension.compareTo("AL") == 0) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,bt,String.valueOf(0L),bt,jumpCondition));
+  }
+ else   if (extension.compareTo("NV") == 0) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,bt,String.valueOf(1L),bt,jumpCondition));
+  }
+ else {
+    throw new InternalTranslationException("ERROR: unknown condition " + extension);
+  }
+  instructions.add(ReilHelpers.createJcc(baseOffset++,bt,jumpCondition,OperandSize.ADDRESS,jumpGoal,meta));
+}

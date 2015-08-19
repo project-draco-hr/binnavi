@@ -1,0 +1,8 @@
+{
+  if (m_message == null) {
+    super.startConnection(m_reader=new CMockReader(true));
+  }
+ else {
+    super.startConnection(m_reader=new CMockReader(m_message));
+  }
+}

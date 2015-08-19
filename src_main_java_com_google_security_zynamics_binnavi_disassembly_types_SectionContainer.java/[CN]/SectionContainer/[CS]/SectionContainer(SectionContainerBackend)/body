@@ -1,0 +1,8 @@
+{
+  this.backend=Preconditions.checkNotNull(backend,"Error: backend argument can not be null");
+  sections=backend.loadSections();
+  Collections.sort(sections,new SectionComparator());
+  for (  final Section section : sections) {
+    sectionsById.put(section.getId(),section);
+  }
+}

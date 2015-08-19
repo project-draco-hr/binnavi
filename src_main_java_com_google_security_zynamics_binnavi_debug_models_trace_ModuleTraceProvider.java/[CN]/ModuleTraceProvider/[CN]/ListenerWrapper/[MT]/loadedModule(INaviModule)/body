@@ -1,0 +1,4 @@
+{
+  listener.loaded();
+  module.getContent().getTraceContainer().addListener(this);
+}

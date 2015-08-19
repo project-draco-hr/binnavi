@@ -1,0 +1,3 @@
+GraphWindow window
+View2D view2d
+BackEndDebuggerProvider debuggerProvider

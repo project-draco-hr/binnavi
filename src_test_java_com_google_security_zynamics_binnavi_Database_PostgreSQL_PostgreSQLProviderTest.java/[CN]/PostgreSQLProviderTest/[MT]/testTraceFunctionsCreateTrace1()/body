@@ -1,0 +1,11 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final String name="Very new trace";
+  final String description="Very new trace description";
+  PostgreSQLTraceFunctions.createTrace((AbstractSQLProvider)getProvider(),module,name,description);
+  module.close();
+  final INaviModule module2=getProvider().loadModules().get(0);
+  module2.load();
+  assertEquals("Very new trace description",module2.getContent().getTraceContainer().getTraces().get(module2.getContent().getTraceContainer().getTraceCount() - 1).getDescription());
+}

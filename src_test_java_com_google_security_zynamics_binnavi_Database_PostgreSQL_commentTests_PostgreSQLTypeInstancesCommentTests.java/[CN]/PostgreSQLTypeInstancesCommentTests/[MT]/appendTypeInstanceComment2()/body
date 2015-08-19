@@ -1,0 +1,3 @@
+{
+  getProvider().appendTypeInstanceComment(1,1," FAIL ",null);
+}

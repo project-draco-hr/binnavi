@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(connection,"IE01870: connection argument can not be null");
+  final String query=" { call create_native_callgraph_edges(?, ?) } ";
+  final CallableStatement call=connection.getConnection().prepareCall(query);
+  call.setInt(1,rawModuleId);
+  call.setInt(2,moduleId);
+  call.execute();
+}

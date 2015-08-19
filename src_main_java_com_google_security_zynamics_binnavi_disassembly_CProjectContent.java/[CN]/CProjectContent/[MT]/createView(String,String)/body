@@ -1,0 +1,19 @@
+{
+  final Date date=new Date();
+  final CProjectViewGenerator generator=new CProjectViewGenerator(m_provider,m_project);
+  final CView view=generator.generate(-1,name,description,ViewType.NonNative,GraphType.MIXED_GRAPH,date,date,0,0,new HashSet<CTag>(),new HashSet<CTag>(),false);
+  try {
+    view.load();
+  }
+ catch (  final CouldntLoadDataException e) {
+    CUtilityFunctions.logException(e);
+  }
+catch (  final CPartialLoadException e) {
+    CUtilityFunctions.logException(e);
+  }
+catch (  final LoadCancelledException e) {
+    CUtilityFunctions.logException(e);
+  }
+  addView(view);
+  return view;
+}

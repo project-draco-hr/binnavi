@@ -1,0 +1,3 @@
+{
+  return PostgreSQLDataFunctions.loadData(this,module);
+}

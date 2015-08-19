@@ -1,0 +1,4 @@
+JFrame parent
+ITagManager tagManager
+TreeNode<CTag> parentTag
+String name

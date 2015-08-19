@@ -1,0 +1,9 @@
+{
+  final List<IDropHandler> handlers=new ArrayList<IDropHandler>();
+  handlers.add(new CViewsToProjectHandler(parent));
+  handlers.add(new CViewsToTagHandler(parent));
+  handlers.add(new CModulesToAddressSpaceHandler(parent));
+  handlers.add(new CDatabaseSortingHandler(databaseManager));
+  handlers.add(new CTagSortingHandler());
+  new CDefaultTransferHandler(tree,DnDConstants.ACTION_COPY_OR_MOVE,handlers);
+}

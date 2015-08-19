@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"RBIT");
+  translateAll(environment,instruction,"RBIT",instructions);
+}

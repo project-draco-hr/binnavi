@@ -1,0 +1,15 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  if (m_editedRegister != -1) {
+    g.setColor(m_bgColorEdit);
+    final Rectangle r=getRegisterBounds(m_editedRegister);
+    g.fillRect(r.x,r.y,r.width,r.height);
+  }
+ else   if (m_highlightedRegister != -1) {
+    g.setColor(m_bgColorHighlight);
+    final Rectangle r=getRegisterBounds(m_highlightedRegister);
+    g.fillRect(r.x,r.y,r.width,r.height);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  CGraphExporter.exportAsSvg(m_parent,m_graph);
+}

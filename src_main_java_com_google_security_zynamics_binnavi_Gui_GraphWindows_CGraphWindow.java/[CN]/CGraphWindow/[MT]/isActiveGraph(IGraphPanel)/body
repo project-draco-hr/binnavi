@@ -1,0 +1,3 @@
+{
+  return m_tabbedPane.getSelectedComponent() == panel.getPanel();
+}

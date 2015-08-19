@@ -1,0 +1,4 @@
+{
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01325: Bookmarks manager can't be null");
+  initializeListeners();
+}

@@ -1,0 +1,5 @@
+{
+  if (m_drawBends && !m_isSloppyPainting) {
+    super.paintHighlightedBends(gfx);
+  }
+}

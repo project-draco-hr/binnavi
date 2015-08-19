@@ -1,0 +1,3 @@
+{
+  updateStructureMember(updatedMember,newMemberBaseType,newMemberName,0);
+}

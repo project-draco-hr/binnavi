@@ -1,0 +1,14 @@
+{
+  for (  final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+    initializeAddressSpaceListeners(addressSpace);
+  }
+  updateProjectDebuggers();
+  for (  final IViewContainerListener listener : m_listeners) {
+    try {
+      listener.loaded(CProjectContainer.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

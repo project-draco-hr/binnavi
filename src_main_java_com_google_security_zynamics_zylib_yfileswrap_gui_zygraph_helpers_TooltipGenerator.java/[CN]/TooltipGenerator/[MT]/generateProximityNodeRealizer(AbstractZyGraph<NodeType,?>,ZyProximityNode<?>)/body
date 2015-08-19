@@ -1,0 +1,42 @@
+{
+  final Set<String> strings=new LinkedHashSet<String>();
+  final List<? extends Object> nodes=node.isIncoming() ? ((IGraphNode<?>)node.getRawNode().getAttachedNode()).getChildren() : ((IGraphNode<?>)node.getRawNode().getAttachedNode()).getParents();
+  boolean cutoff=false;
+  int counter=0;
+  final int invisibleNodesCount=CollectionHelpers.countIf(nodes,new ICollectionFilter<Object>(){
+    @Override public boolean qualifies(    final Object item){
+      return !((IViewNode<?>)item).isVisible();
+    }
+  }
+);
+  for (  final Object child : nodes) {
+    final IViewNode<?> childNode=(IViewNode<?>)child;
+    if (childNode.isVisible()) {
+      continue;
+    }
+    final IZyNodeRealizer realizer=(IZyNodeRealizer)graph.getGraph().getRealizer(graph.getYNode(child));
+    final ZyLabelContent content=realizer.getNodeContent();
+    if (child instanceof IFunctionNode<?,?>) {
+      final IFunctionNode<?,?> fnode=(IFunctionNode<?,?>)child;
+      strings.add("F: " + fnode.getFunction().getName());
+    }
+ else     if (child instanceof ICodeNode<?,?,?>) {
+      final ICodeNode<?,?,?> cnode=(ICodeNode<?,?,?>)child;
+      strings.add("B: " + cnode.getAddress().toHexString());
+    }
+ else {
+      if (content.getLineCount() > 0) {
+        strings.add(content.getLineContent(0).getText());
+      }
+    }
+    ++counter;
+    if (strings.size() == 25) {
+      cutoff=counter != invisibleNodesCount;
+      break;
+    }
+  }
+  if (cutoff) {
+    strings.add("...");
+  }
+  return HtmlGenerator.getHtml(strings,GuiHelper.getMonospaceFont(),false);
+}

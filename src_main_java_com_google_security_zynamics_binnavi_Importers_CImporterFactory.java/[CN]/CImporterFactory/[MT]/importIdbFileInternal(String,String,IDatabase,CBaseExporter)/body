@@ -1,0 +1,14 @@
+{
+  try {
+    exporter.importModule(idbFile,idaDirectory,database);
+  }
+ catch (  final ConfigFileException exception) {
+    throw new ImportFailedException(String.format("Could not create the IDA2SQL temp file." + "\n" + "Importing project failed."));
+  }
+catch (  final IdaException exception) {
+    throw new ImportFailedException(String.format("Could not start IDA Pro." + "\n" + "Importing project failed."));
+  }
+catch (  final ExporterException exception) {
+    throw new ImportFailedException(exception.getLocalizedMessage());
+  }
+}

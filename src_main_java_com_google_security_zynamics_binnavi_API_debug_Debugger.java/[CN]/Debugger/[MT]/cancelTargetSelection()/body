@@ -1,0 +1,9 @@
+{
+  try {
+    m_debugger.cancelTargetSelection();
+    m_debugger.setTerminated();
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    throw new DebugException(exception);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final AddressSpace deletedAddressSpace=ObjectFinders.getObject(addressSpace,m_addressSpaces);
+  m_addressSpaces.remove(deletedAddressSpace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.deletedAddressSpace(Project.this,deletedAddressSpace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

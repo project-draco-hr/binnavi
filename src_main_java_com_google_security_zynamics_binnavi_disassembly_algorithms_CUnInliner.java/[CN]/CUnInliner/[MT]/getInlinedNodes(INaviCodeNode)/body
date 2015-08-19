@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(node,"IE02750: node argument can not be null");
+  final INaviCodeNode startNode=searchForSourceNodeOfEnterInlinedEdge(node);
+  final INaviCodeNode endNode=getEndNode(node);
+  if (startNode == null || endNode == null) {
+    return null;
+  }
+  if (hasDifferentParentFunctions(startNode,endNode)) {
+    NaviLogger.info("Uninlining yielded almost certainly incorrect results.");
+  }
+  final Set<INaviViewNode> preds=GraphAlgorithms.getPredecessorsUpToNode(endNode,startNode);
+  final Set<INaviViewNode> succs=GraphAlgorithms.getSuccessorsDownToNode(startNode,endNode);
+  preds.retainAll(succs);
+  return new CInlinedNodes(startNode,endNode,ImmutableList.copyOf(preds));
+}

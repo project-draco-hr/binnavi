@@ -1,0 +1,3 @@
+{
+  return String.format("Text Node with: '%d' comments.",m_node.getComments().size());
+}

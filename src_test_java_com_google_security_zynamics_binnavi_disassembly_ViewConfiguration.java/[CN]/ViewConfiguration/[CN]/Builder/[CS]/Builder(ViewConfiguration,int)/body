@@ -1,0 +1,17 @@
+{
+  provider=configuration.provider;
+  view=configuration.view;
+  type=configuration.type;
+  this.viewId=viewId;
+  name=configuration.name;
+  description=configuration.description;
+  modificationDate=configuration.modificationDate;
+  creationDate=configuration.creationDate;
+  module=configuration.module;
+  project=configuration.project;
+  viewTags=configuration.viewTags;
+  staredState=configuration.staredState;
+  edgeCount=configuration.edgeCount;
+  nodeCount=configuration.nodeCount;
+  graphType=configuration.graphType;
+}

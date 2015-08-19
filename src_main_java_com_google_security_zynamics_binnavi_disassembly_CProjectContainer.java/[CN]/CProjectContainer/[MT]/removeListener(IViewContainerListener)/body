@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(listener,"IE02220: Listener argument can not be null");
+  m_listeners.removeListener(listener);
+}

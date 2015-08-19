@@ -1,0 +1,8 @@
+{
+  try {
+    Preconditions.checkNotNull(function,"Error: function arugment can not be null.");
+    setForwardedFunction(function,false);
+  }
+ catch (  final CouldntSaveDataException exception) {
+  }
+}

@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(database,"IE00694: Database argument can't be null");
+  Preconditions.checkArgument(!m_databases.contains(database),"IE00695: Database object can't be added more than once");
+  m_databases.add(database);
+  for (  final DatabaseManagerListener listener : m_listeners) {
+    try {
+      listener.addedDatabase(this,database);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return database;
+}

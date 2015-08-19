@@ -1,0 +1,11 @@
+{
+  if (m_root) {
+    return ICON_ROOT;
+  }
+  final Pair<Integer,Integer> result=CNodeTypeCounter.count(m_snapshot.getSelection());
+  final int countAll=m_snapshot.getSelection().size();
+  final int selected=result.first();
+  final int unselected=countAll - selected;
+  final int invisible=result.second();
+  return getIcon(countAll,selected,unselected,invisible);
+}

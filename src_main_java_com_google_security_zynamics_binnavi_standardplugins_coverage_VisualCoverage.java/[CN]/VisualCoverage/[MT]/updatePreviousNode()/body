@@ -1,0 +1,27 @@
+{
+  if ((previousNodeAddress == null) || !myBreakpoints.contains(previousNodeAddress)) {
+    return;
+  }
+  final ViewNode node=nodeMap.get(previousNodeAddress);
+  final int count=breakpointCounter.get(previousNodeAddress);
+  if (count < 5) {
+    node.setColor(COLOR_FEW_HITS);
+  }
+ else   if (count < 10) {
+    node.setColor(COLOR_SEVERAL_HITS);
+  }
+ else {
+    node.setColor(COLOR_MANY_HITS);
+    final BreakpointManager breakpointManager=debugger.getBreakpointManager();
+    if (breakpointManager.hasBreakpoint(null,previousNodeAddress)) {
+      breakpointManager.removeBreakpoint(null,previousNodeAddress);
+      myBreakpoints.remove(previousNodeAddress);
+    }
+  }
+  try {
+    java.lang.Thread.sleep(100);
+  }
+ catch (  final InterruptedException e) {
+    java.lang.Thread.currentThread().interrupt();
+  }
+}

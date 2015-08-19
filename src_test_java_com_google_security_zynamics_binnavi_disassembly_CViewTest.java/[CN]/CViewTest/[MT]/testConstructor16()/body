@@ -1,0 +1,111 @@
+{
+  final MutableDirectedGraph<INaviViewNode,INaviEdge> graph=new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),new ArrayList<INaviEdge>());
+  final Set<CTag> tags=new HashSet<CTag>();
+  final MockSqlProvider provider=new MockSqlProvider();
+  final MockModule module=new MockModule();
+  final CView view=new CView(2,module,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+  assertEquals(2,view.getConfiguration().getId());
+  assertEquals("View",view.getName());
+  assertEquals("Description",view.getConfiguration().getDescription());
+  assertEquals(ViewType.Native,view.getType());
+  assertEquals(0,view.getNodeCount());
+  assertEquals(0,view.getEdgeCount());
+  try {
+    new CView(-2,module,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),(CModule)null,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,null,"Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"Description",null,ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"stuuf","Description",null,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"stuuf","Description",ViewType.Native,null,new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"stuuf","Description",ViewType.Native,new Date(12345),null,graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"stuuf","Description",ViewType.Native,new Date(12345),new Date(12345),null,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"stuuf","Description",ViewType.Native,new Date(12345),new Date(12345),graph,null,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"stuuf","Description",ViewType.Native,new Date(12345),new Date(12345),graph,tags,false,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  final CTag tag1=new CTag(1,"Tag1","Tag1 Tag1",TagType.VIEW_TAG,provider);
+  final CTag tag2=new CTag(2,"Tag2","Tag2 Tag2",TagType.VIEW_TAG,provider);
+  final CTag tag3=new CTag(3,"Tag3","Tag3 Tag3",TagType.VIEW_TAG,provider);
+  final CTag tag4=new CTag(4,"Tag4","Tag4 Tag4",TagType.VIEW_TAG,provider);
+  tags.add(tag1);
+  tags.add(tag2);
+  tags.add(tag3);
+  tags.add(tag4);
+  new CView(new BigInteger(31,random).intValue(),module,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+  tags.add(null);
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  tags.clear();
+  tags.add(tag1);
+  tags.add(tag2);
+  tags.add(tag3);
+  tags.add(tag4);
+  final CTag tag5=new CTag(5,"Tag1","Tag1 Tag1",TagType.NODE_TAG,provider);
+  tags.add(tag5);
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  tags.clear();
+  final CTag tagWrongDB=new CTag(new BigInteger(31,random).intValue(),"Tag4","Tag4 Tag4",TagType.VIEW_TAG,new MockSqlProvider());
+  tags.add(tagWrongDB);
+  try {
+    new CView(new BigInteger(31,random).intValue(),module,"View","Description",ViewType.Native,new Date(1234),new Date(12345),graph,tags,false,provider);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+}

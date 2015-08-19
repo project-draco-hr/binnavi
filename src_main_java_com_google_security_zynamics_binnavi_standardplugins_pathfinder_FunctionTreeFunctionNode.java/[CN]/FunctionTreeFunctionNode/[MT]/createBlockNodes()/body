@@ -1,0 +1,8 @@
+{
+  if (m_function.isLoaded()) {
+    final List<BasicBlock> blocks=m_function.getGraph().getNodes();
+    for (    final BasicBlock block : blocks) {
+      add(new FunctionTreeBlockNode(block));
+    }
+  }
+}

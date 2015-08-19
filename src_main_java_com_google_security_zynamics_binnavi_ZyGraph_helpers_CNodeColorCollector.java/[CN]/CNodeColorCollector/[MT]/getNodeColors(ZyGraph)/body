@@ -1,0 +1,11 @@
+{
+  final Set<Color> colors=new HashSet<Color>();
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode item){
+      colors.add(item.getRawNode().getColor());
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return new ArrayList<Color>(colors);
+}

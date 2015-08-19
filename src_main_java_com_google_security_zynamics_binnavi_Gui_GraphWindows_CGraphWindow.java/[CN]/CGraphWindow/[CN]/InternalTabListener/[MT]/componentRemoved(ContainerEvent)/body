@@ -1,0 +1,26 @@
+{
+  final IGraphPanel removedPanel=(IGraphPanel)event.getChild();
+  final ZyGraph graph=removedPanel.getModel().getGraph();
+  graph.removeListener(m_graphListener);
+  removedPanel.dispose();
+  if (viewOpenCount(graph.getRawView()) == 0) {
+    graph.getRawView().removeListener(m_viewListener);
+  }
+  if (m_tabbedPane.getTabCount() == 0) {
+    closeWindow();
+  }
+ else {
+    updateWindow();
+  }
+  for (  final IGraphWindowListener listener : m_graphPanelListener) {
+    try {
+      listener.graphPanelClosed();
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+  if (m_tabbedPane.getTabCount() == 0) {
+    closeWindow();
+  }
+}

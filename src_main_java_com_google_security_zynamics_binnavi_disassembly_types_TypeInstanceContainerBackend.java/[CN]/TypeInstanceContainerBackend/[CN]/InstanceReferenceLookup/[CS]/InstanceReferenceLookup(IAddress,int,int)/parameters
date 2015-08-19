@@ -1,0 +1,3 @@
+IAddress address
+int operandPosition
+int expressionId

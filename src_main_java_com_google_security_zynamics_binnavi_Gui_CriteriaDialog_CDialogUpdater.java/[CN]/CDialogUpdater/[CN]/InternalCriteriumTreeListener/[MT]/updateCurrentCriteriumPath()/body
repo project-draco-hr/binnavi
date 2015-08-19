@@ -1,0 +1,9 @@
+{
+  if (m_jtree.getSelectionPath() == null) {
+    m_jtree.setCurrentCriteriumPath(m_jtree.getPathForRow(0));
+  }
+ else {
+    m_jtree.setCurrentCriteriumPath(m_jtree.getSelectionPath());
+  }
+  updateDefineConditionPanel((JCriteriumTreeNode)m_jtree.getCurrentCriteriumPath().getLastPathComponent());
+}

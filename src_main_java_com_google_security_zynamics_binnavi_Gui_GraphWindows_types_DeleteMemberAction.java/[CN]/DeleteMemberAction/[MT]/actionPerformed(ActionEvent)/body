@@ -1,0 +1,17 @@
+{
+  final ImmutableList<TypeMember> members=typeEditor.getSelectedMembers();
+  if (members.isEmpty() || CMessageBox.showYesNoQuestion(owner,"Do you really want to delete these member(s)?") != JOptionPane.YES_OPTION) {
+    return;
+  }
+  try {
+    for (    final TypeMember member : members) {
+      typeManager.deleteMember(member);
+    }
+  }
+ catch (  final CouldntDeleteException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

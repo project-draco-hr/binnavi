@@ -1,0 +1,10 @@
+{
+  for (  final INaviView view : views) {
+    try {
+      view.getConfiguration().untagView(tag);
+    }
+ catch (    final CouldntSaveDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

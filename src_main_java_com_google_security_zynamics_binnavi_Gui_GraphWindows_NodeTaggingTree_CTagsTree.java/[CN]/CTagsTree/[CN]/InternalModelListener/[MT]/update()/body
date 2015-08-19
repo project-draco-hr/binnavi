@@ -1,0 +1,22 @@
+{
+  if (m_lastValidSelectedNode == null) {
+    validate();
+  }
+ else {
+    final Integer tagId=(Integer)m_lastValidSelectedNode.getUserObject();
+    final Enumeration<?> nodes=m_rootNode.breadthFirstEnumeration();
+    while (nodes.hasMoreElements()) {
+      final DefaultMutableTreeNode node=(DefaultMutableTreeNode)nodes.nextElement();
+      if (Objects.equals(node.getUserObject(),tagId)) {
+        new SwingInvoker(){
+          @Override protected void operation(){
+            m_lastValidSelectionPath=new TreePath(getModel().getPathToRoot(node));
+            getSelectionModel().setSelectionPath(m_lastValidSelectionPath);
+          }
+        }
+;
+        return;
+      }
+    }
+  }
+}

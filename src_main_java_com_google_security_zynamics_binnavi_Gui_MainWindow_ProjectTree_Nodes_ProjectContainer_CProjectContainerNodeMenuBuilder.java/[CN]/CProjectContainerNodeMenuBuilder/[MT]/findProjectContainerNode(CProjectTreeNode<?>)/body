@@ -1,0 +1,15 @@
+{
+  final List<CProjectTreeNode<?>> nodes=Lists.newArrayList();
+  nodes.add(databaseNode);
+  while (!nodes.isEmpty()) {
+    final CProjectTreeNode<?> current=nodes.get(0);
+    nodes.remove(0);
+    if (current instanceof CProjectContainerNode) {
+      return current;
+    }
+    for (final Enumeration<?> e=current.children(); e.hasMoreElements(); ) {
+      nodes.add((CProjectTreeNode<?>)e.nextElement());
+    }
+  }
+  throw new IllegalStateException("IE01203: Project container node not found");
+}

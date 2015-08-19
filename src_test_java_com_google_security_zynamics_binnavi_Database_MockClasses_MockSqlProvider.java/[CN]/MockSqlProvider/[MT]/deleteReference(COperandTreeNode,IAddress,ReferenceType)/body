@@ -1,0 +1,5 @@
+{
+  if (references.containsKey(target)) {
+    references.remove(target);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (m_selectionLength >= 0) {
+    return (m_baseAddress + m_selectionStart) / 2;
+  }
+ else {
+    return (m_baseAddress + m_selectionStart + m_selectionLength) / 2;
+  }
+}

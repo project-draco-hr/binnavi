@@ -1,0 +1,10 @@
+{
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(archSize);
+  if (value.equals("+")) {
+    finalResult.addInstruction(ReilHelpers.createAdd(0,archSize,source1,archSize,source2,resultSize,destination));
+  }
+ else   if (value.equals("*")) {
+    finalResult.addInstruction(ReilHelpers.createMul(0,archSize,source1,archSize,source2,resultSize,destination));
+  }
+}

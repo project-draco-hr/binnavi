@@ -1,0 +1,3 @@
+{
+  new RawTypeInstanceReference(MODULE_ID,VIEW_ID,null,OPERAND_POSITION,EXPRESSION_ID,TYPE_INSTANCE_ID);
+}

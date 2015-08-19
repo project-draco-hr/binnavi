@@ -1,0 +1,4 @@
+INaviCodeNode node
+INaviInstruction instruction
+IComment comment
+String commentText

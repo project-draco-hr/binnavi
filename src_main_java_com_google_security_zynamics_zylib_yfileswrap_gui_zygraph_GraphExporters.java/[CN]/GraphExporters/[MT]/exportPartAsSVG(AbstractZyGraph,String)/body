@@ -1,0 +1,5 @@
+{
+  Graph2DView view=zygraph.getView();
+  final SVGIOHandler svg=new SVGIOHandler();
+  exportGraphPartToImageFileFormat(view.getGraph2D(),svg,filename);
+}

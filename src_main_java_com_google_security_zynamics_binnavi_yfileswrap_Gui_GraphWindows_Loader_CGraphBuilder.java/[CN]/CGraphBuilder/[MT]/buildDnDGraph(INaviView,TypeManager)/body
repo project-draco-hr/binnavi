@@ -1,0 +1,6 @@
+{
+  final ZyGraph graph=buildGraph(view);
+  final ZyGraphDragAndDropSupport dndSupport=new ZyGraphDragAndDropSupport(graph,new BaseTypeTransferHandler(typeManager,new DragAndDropSupportWrapper(graph)));
+  dndSupport.enableDndSupport();
+  return graph;
+}

@@ -1,0 +1,7 @@
+{
+  final List<INaviView> views=m_project.getContent().getViews();
+  int count=CViewFilter.getCallgraphViewCount(views);
+  count+=CViewFilter.getFlowgraphViewCount(views);
+  count+=CViewFilter.getMixedgraphViewCount(views);
+  return String.format("Project Views (%d)",count);
+}

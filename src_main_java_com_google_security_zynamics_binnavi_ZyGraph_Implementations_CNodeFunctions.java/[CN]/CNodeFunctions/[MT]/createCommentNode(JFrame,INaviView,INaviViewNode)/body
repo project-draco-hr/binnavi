@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(parent,"IE02128: Parent argument can not be null");
+  Preconditions.checkNotNull(view,"IE02129: View argument can not be null");
+  Preconditions.checkNotNull(node,"IE01726: Node argument can not be null");
+  final CTextNode source=view.getContent().createTextNode(null);
+  final CNaviViewEdge edge=view.getContent().createEdge(source,node,EdgeType.TEXTNODE_EDGE);
+  final DialogTextNodeComment dlg=new DialogTextNodeComment(parent,source);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  final List<IComment> newComment=dlg.getComment();
+  if (newComment == null) {
+    view.getContent().deleteEdge(edge);
+    view.getContent().deleteNode(source);
+  }
+}

@@ -1,0 +1,95 @@
+{
+  if (isSelection() && isDeleteableSelection()) {
+    int mouseStartX=Math.min(getCaretMousePressedX(),getCaretMouseReleasedX());
+    final int mouseEndX=Math.max(getCaretMousePressedX(),getCaretMouseReleasedX());
+    int mouseStartY=Math.min(getCaretMousePressedY(),getCaretMouseReleasedY());
+    final int mouseEndY=Math.max(getCaretMousePressedY(),getCaretMouseReleasedY());
+    int caretStartX=Math.min(getCaretStartPosX(),getCaretEndPosX());
+    final int firstModelLine=m_labelContent.getFirstLineIndexOfModelAt(mouseStartY);
+    final int noneCommentLine=m_labelContent.getNonPureCommentLineIndexOfModelAt(mouseStartY);
+    final int lastModelLine=m_labelContent.getLastLineIndexOfModelAt(mouseStartY);
+    int firstObjectLine=firstModelLine;
+    int lastObjectLine=lastModelLine;
+    if (noneCommentLine != -1) {
+      if (mouseStartY < noneCommentLine) {
+        lastObjectLine=noneCommentLine - 1;
+      }
+ else {
+        firstObjectLine=noneCommentLine;
+      }
+    }
+    StringBuilder changedText=new StringBuilder();
+    ZyLineContent lineContent=getLineContent(mouseStartY);
+    IZyEditableObject editObject=lineContent.getLineFragmentObjectAt(mouseStartX);
+    if (editObject == null) {
+      for (int lineIndex=firstObjectLine; lineIndex <= lastObjectLine; ++lineIndex) {
+        final ZyLineContent curLineContent=getLineContent(lineIndex);
+        editObject=curLineContent.getLineFragmentObjectAt(mouseStartX);
+        if (editObject != null) {
+          break;
+        }
+      }
+    }
+    if ((firstObjectLine == lastObjectLine) && !isComment(caretStartX,mouseStartY)) {
+      if (editObject.isCommentDelimiter()) {
+        mouseStartX=editObject.getEnd();
+        caretStartX=editObject.getEnd();
+        editObject=lineContent.getLineFragmentObjectAt(caretStartX);
+      }
+      final String text=lineContent.getText();
+      changedText=new StringBuilder(String.format("%s%s",text.substring(editObject.getStart(),mouseStartX),text.substring(mouseEndX)));
+    }
+ else {
+      for (int lineIndex=firstObjectLine; lineIndex <= lastObjectLine; ++lineIndex) {
+        final ZyLineContent curLineContent=getLineContent(lineIndex);
+        IZyEditableObject curEditObject=curLineContent.getLineFragmentObjectAt(mouseStartX);
+        if (curEditObject == null) {
+          curEditObject=curLineContent.getLineFragmentObjectAt(getLastLineXPos(lineIndex));
+        }
+        int tempMouseStartX=mouseStartX;
+        int tempMouseEndX=mouseEndX;
+        if (curEditObject.isCommentDelimiter()) {
+          curEditObject=curLineContent.getLineFragmentObjectAt(curEditObject.getEnd());
+          tempMouseStartX=curEditObject.getStart();
+          if (mouseEndX < tempMouseStartX) {
+            tempMouseEndX=tempMouseStartX;
+          }
+        }
+        final String text=curLineContent.getText();
+        final int curEndX=Math.min(text.length(),tempMouseEndX);
+        if ((lineIndex >= mouseStartY) && (lineIndex <= mouseEndY) && (text.length() > tempMouseStartX)) {
+          final String afterDeletion=String.format("%s%s",text.substring(curEditObject.getStart(),tempMouseStartX),text.substring(curEndX));
+          if (!afterDeletion.equals("\n") && !afterDeletion.equals("\r")) {
+            changedText.append(afterDeletion);
+          }
+        }
+ else {
+          changedText.append(curLineContent.getText(curEditObject));
+        }
+      }
+    }
+    if (changedText.toString().endsWith("\n")) {
+      changedText=new StringBuilder(changedText.substring(0,changedText.length() - 1));
+    }
+    if (!changedText.toString().endsWith("\r")) {
+      changedText.append("\r");
+    }
+    if ((editObject != null) && editObject.isCommentDelimiter()) {
+      caretStartX=editObject.getEnd();
+      mouseStartX=editObject.getEnd();
+    }
+    for (int lineIndex=firstObjectLine; lineIndex <= lastObjectLine; ++lineIndex) {
+      lineContent=getLineContent(lineIndex);
+      if ((lineContent.getText().length() >= mouseStartX) && (mouseStartY <= lineIndex)) {
+        mouseStartY=lineIndex;
+        caretStartX=mouseStartX;
+        break;
+      }
+    }
+    if (editObject != null) {
+      editObject.update(changedText.toString());
+      getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),editObject.getPersistentModel());
+    }
+    setCaret(caretStartX,mouseStartX,mouseStartY,caretStartX,mouseStartX,mouseStartY);
+  }
+}

@@ -1,0 +1,31 @@
+{
+  setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,new HashSet<KeyStroke>());
+  final InputMap inputMap=this.getInputMap();
+  final ActionMap actionMap=getActionMap();
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0),"LEFT");
+  actionMap.put("LEFT",m_leftAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,InputEvent.SHIFT_DOWN_MASK),"shift LEFT");
+  actionMap.put("shift LEFT",m_leftAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0),"RIGHT");
+  actionMap.put("RIGHT",m_rightAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,InputEvent.SHIFT_DOWN_MASK),"shift RIGHT");
+  actionMap.put("shift RIGHT",m_rightAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0),"UP");
+  actionMap.put("UP",m_upAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,InputEvent.SHIFT_DOWN_MASK),"shift UP");
+  actionMap.put("shift UP",m_upAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0),"DOWN");
+  actionMap.put("DOWN",m_downAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,InputEvent.SHIFT_DOWN_MASK),"shift DOWN");
+  actionMap.put("shift DOWN",m_downAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN,0),"PAGE_DOWN");
+  actionMap.put("PAGE_DOWN",m_pageDownAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_DOWN,InputEvent.SHIFT_DOWN_MASK),"shift PAGE_DOWN");
+  actionMap.put("shift PAGE_DOWN",m_pageDownAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP,0),"PAGE_UP");
+  actionMap.put("PAGE_UP",m_pageUpAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_PAGE_UP,InputEvent.SHIFT_DOWN_MASK),"shift PAGE_UP");
+  actionMap.put("shift PAGE_UP",m_pageUpAction);
+  inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0),"TAB");
+  actionMap.put("TAB",m_tabAction);
+}

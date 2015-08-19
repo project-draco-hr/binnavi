@@ -1,0 +1,73 @@
+{
+  Preconditions.checkArgument(isConnected(),"IE00686: Not connected to the database");
+  try {
+    if (!loadReporter.report(LoadEvents.LOADING_DATABASE)) {
+      throw new LoadCancelledException();
+    }
+    if (!loadReporter.report(LoadEvents.DETERMINING_DATABASE_VERSION)) {
+      throw new LoadCancelledException();
+    }
+    final DatabaseVersion databaseVersion=provider.getDatabaseVersion();
+    final DatabaseVersion currentVersion=new DatabaseVersion(Constants.PROJECT_VERSION);
+    if ((databaseVersion.compareTo(currentVersion) != 0) && currentVersion.needsUpgrading(databaseVersion)) {
+      throw new InvalidDatabaseVersionException(databaseVersion);
+    }
+    if (!loadReporter.report(LoadEvents.LOADING_USERS)) {
+      throw new LoadCancelledException();
+    }
+    loadUserManager();
+    if (!loadReporter.report(LoadEvents.LOADING_VIEW_TAGS)) {
+      throw new LoadCancelledException();
+    }
+    final CTagManager viewTagManager=loadViewTagManager();
+    if (!loadReporter.report(LoadEvents.LOADING_NODE_TAGS)) {
+      throw new LoadCancelledException();
+    }
+    final CTagManager nodeTagManager=loadNodeTagManager();
+    if (!loadReporter.report(LoadEvents.LOADING_DEBUGGERS)) {
+      throw new LoadCancelledException();
+    }
+    final DebuggerTemplateManager debuggerDescriptionManager=provider.loadDebuggers();
+    if (!loadReporter.report(LoadEvents.LOADING_PROJECTS)) {
+      throw new LoadCancelledException();
+    }
+    final List<INaviProject> projects=provider.loadProjects();
+    if (!loadReporter.report(LoadEvents.LOADING_RAW_MODULES)) {
+      throw new LoadCancelledException();
+    }
+    final List<INaviRawModule> rawModules=provider.loadRawModules();
+    if (!loadReporter.report(LoadEvents.LOADING_MODULES)) {
+      throw new LoadCancelledException();
+    }
+    final List<INaviModule> modules=provider.loadModules();
+    debuggerDescriptionManager.addListener(internalDebuggerTemplateListener);
+    content=new CDatabaseContent(provider,this,listeners,projects,modules,rawModules,viewTagManager,nodeTagManager,debuggerDescriptionManager);
+  }
+ catch (  final CouldntLoadDataException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    close();
+    throw exception;
+  }
+catch (  final InvalidDatabaseVersionException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+catch (  final LoadCancelledException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    close();
+    throw exception;
+  }
+ finally {
+    isLoading=false;
+  }
+  content.initializeRawModules(content.getModules(),content.getRawModules());
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      listener.loadedDatabase(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  loadReporter.report(LoadEvents.LOADING_FINISHED);
+}

@@ -1,0 +1,7 @@
+{
+  for (  TypeInstanceReference typeInstanceReference : typeInstanceReferences) {
+    final BaseType baseType=typeInstanceReference.getTypeInstance().getBaseType();
+    addBaseType(baseType);
+    insertNodeInto(multiIndex.putTypeReference(typeInstanceReference,instruction),baseTypeToTreeNode.get(baseType),baseTypeToTreeNode.get(baseType).getChildCount());
+  }
+}

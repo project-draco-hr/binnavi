@@ -1,0 +1,15 @@
+{
+  if (!m_graph.getSettings().getProximitySettings().getProximityBrowsing() || m_graph.getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+    return;
+  }
+  final Collection<NodeType> selectedNodes=SelectedVisibleFilter.filter(m_graph.getSelectedNodes());
+  if (selectedNodes.equals(m_lastSelectedNodes)) {
+    return;
+  }
+  m_lastSelectedNodes=selectedNodes;
+  if (!selectedNodes.isEmpty()) {
+    final List<NodeType> allNodes=GraphHelpers.getNodes(m_graph);
+    allNodes.removeAll(selectedNodes);
+    showNodes(selectedNodes,allNodes);
+  }
+}

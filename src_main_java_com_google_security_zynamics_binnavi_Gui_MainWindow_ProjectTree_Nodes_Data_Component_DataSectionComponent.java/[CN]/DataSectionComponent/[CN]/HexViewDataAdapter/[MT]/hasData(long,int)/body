@@ -1,0 +1,3 @@
+{
+  return (start - hexView.getBaseAddress() + length) <= getDataLength();
+}

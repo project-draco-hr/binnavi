@@ -1,0 +1,4 @@
+{
+  this(label);
+  this.url=url;
+}

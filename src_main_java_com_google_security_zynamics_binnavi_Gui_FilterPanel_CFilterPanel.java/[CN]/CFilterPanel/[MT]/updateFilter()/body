@@ -1,0 +1,19 @@
+{
+  IFilter<T> filter;
+  try {
+    filter=m_filterFactory.createFilter(m_inputField.getText());
+    m_inputField.setBackground(Color.WHITE);
+  }
+ catch (  final RecognitionException e) {
+    m_inputField.setBackground(Color.RED.brighter().brighter());
+    return;
+  }
+  for (  final IFilterPanelListener<T> listener : m_listeners) {
+    try {
+      listener.changedFilter(this,filter);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

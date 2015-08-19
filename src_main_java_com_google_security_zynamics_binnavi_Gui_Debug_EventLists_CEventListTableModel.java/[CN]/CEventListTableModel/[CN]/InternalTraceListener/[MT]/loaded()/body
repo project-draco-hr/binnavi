@@ -1,0 +1,7 @@
+{
+  for (  final TraceList traceList : m_traceProvider) {
+    traceList.addListener(m_listener);
+  }
+  m_cachedValues=null;
+  fireTableDataChanged();
+}

@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(name,"IE00240: The value null is illegal for address space names");
+  final CAddressSpace space=m_provider.createAddressSpace(m_project,name);
+  m_addressSpaces.add(space);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedAddressSpace(m_project,space);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_project.getConfiguration().updateModificationDate();
+  return space;
+}

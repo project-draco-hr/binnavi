@@ -1,0 +1,7 @@
+{
+  for (  final Breakpoint breakpoint : breakpointToStatus.keySet()) {
+    if (newStatus == BreakpointStatus.BREAKPOINT_HIT) {
+      m_label.setText(String.format("Breakpoint hit at address %s",breakpoint.getAddress().getAddress().getAddress().toHexString()));
+    }
+  }
+}

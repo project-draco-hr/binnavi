@@ -1,0 +1,8 @@
+{
+  try {
+    return getEndNode(node,node.getParentFunction(),new HashSet<INaviCodeNode>());
+  }
+ catch (  final MaybeNullException e) {
+    return null;
+  }
+}

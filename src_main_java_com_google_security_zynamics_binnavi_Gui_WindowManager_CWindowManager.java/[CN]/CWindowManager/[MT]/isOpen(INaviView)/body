@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(view,"IE01297: View argument can not be null");
+  for (  final IGraphContainerWindow graphContainer : getOpenWindows()) {
+    for (    final IGraphPanel window : graphContainer) {
+      if (window.getModel().getGraph().getRawView() == view) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

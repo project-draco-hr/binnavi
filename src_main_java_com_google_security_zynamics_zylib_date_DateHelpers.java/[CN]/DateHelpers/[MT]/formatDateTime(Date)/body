@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(date,"Error: Date argument can't be null.");
+  return DateFormat.getDateTimeInstance().format(date);
+}

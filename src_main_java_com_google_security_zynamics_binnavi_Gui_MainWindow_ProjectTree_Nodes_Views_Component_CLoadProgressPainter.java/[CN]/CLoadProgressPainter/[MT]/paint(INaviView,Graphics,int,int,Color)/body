@@ -1,0 +1,7 @@
+{
+  graphics.setColor(background);
+  graphics.fillRect(0,0,width,height);
+  final GradientPaint paint=new GradientPaint(0,0,Color.WHITE,width,height,new Color(0,128,0));
+  ((Graphics2D)graphics).setPaint(paint);
+  graphics.fillRect(0,0,(int)(getLoadPercentage(view) * width),height);
+}

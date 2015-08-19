@@ -1,0 +1,7 @@
+{
+  for (  final IResultsPanel panel : m_factory) {
+    m_tabbedPane.addTab(panel.getTitle(),panel.getComponent());
+  }
+  add(m_tabbedPane,BorderLayout.CENTER);
+  m_tabbedPane.setVisible(true);
+}

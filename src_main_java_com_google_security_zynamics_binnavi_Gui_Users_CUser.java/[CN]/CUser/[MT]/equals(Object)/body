@@ -1,0 +1,10 @@
+{
+  if (object == null) {
+    return false;
+  }
+  if (getClass() != object.getClass()) {
+    return false;
+  }
+  final CUser other=(CUser)object;
+  return Objects.equals(this.m_id,other.m_id) && Objects.equals(this.m_userName,other.m_userName);
+}

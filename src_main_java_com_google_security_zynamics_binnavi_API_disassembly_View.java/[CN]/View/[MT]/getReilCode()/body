@@ -1,0 +1,8 @@
+{
+  try {
+    return new ReilFunction(naviView.getContent().getReilCode());
+  }
+ catch (  final com.google.security.zynamics.reil.translators.InternalTranslationException e) {
+    throw new InternalTranslationException(e,InstructionFinders.findInstruction(this,e.getInstruction()));
+  }
+}

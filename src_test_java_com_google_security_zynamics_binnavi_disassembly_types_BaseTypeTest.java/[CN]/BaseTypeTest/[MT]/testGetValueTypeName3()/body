@@ -1,0 +1,3 @@
+{
+  assertEquals(typeSystem.intType.getName(),BaseType.getValueTypeName(typeSystem.intType));
+}

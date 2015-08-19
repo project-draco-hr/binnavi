@@ -1,0 +1,28 @@
+{
+  new Thread(){
+    @Override public void run(){
+      boolean loadRequired=true;
+      while (database.isLoading() || database.isConnecting()) {
+        loadRequired=false;
+        try {
+          Thread.sleep(100);
+        }
+ catch (        final InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
+      }
+      if (loadRequired) {
+        CDatabaseLoader.loadDatabase(parent,database);
+      }
+      if ((projectTree != null) && database.isConnected()) {
+        new SwingInvoker(){
+          @Override protected void operation(){
+            CNodeExpander.expandNode(projectTree,database);
+          }
+        }
+.invokeLater();
+      }
+    }
+  }
+.start();
+}

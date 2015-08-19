@@ -1,0 +1,8 @@
+{
+  m_view.getConfiguration().setDescription("New Description");
+  assertEquals("changedDescription/changedModificationDate/",m_listener.eventList);
+  assertEquals("New Description",m_view.getConfiguration().getDescription());
+  m_view.getConfiguration().setDescription("New Description");
+  assertEquals("changedDescription/changedModificationDate/",m_listener.eventList);
+  assertEquals("New Description",m_view.getConfiguration().getDescription());
+}

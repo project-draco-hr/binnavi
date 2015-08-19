@@ -1,0 +1,4 @@
+{
+  PostgresSQLDebuggerFunctions.loadDebuggers(this,getDebuggerManager());
+  return getDebuggerManager();
+}

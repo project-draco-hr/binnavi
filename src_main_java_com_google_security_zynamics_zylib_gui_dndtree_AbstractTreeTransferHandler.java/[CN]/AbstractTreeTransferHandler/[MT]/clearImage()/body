@@ -1,0 +1,3 @@
+{
+  tree.paintImmediately(rect2D.getBounds());
+}

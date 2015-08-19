@@ -1,0 +1,21 @@
+{
+  CMouseCursorHelper.setHandCursor(state.getGraph());
+  moveToFront((ZyGraphLayeredRenderer<?>)state.getGraph().getView().getGraph2DRenderer(),state.getNode());
+  final AbstractZyGraph<NodeType,EdgeType> graph=state.getGraph();
+  final Set<Bend> movedBends=new HashSet<Bend>();
+  final NodeType draggedNode=graph.getNode(state.getNode());
+  final ZyLabelContent labelContent=draggedNode.getRealizer().getNodeContent();
+  if (graph.getEditMode().getLabelEventHandler().isActiveLabel(labelContent)) {
+    CEditNodeHelper.setCaretEnd(graph,state.getNode(),event);
+    CEditNodeHelper.select(graph,state.getNode(),event);
+  }
+ else   if (draggedNode.isSelected()) {
+    for (    final NodeType n : graph.getSelectedNodes()) {
+      CNodeMover.moveNode(graph,n,state.getDistanceX(),state.getDistanceY(),movedBends);
+    }
+  }
+ else {
+    CNodeMover.moveNode(graph,draggedNode,state.getDistanceX(),state.getDistanceY(),movedBends);
+  }
+  graph.updateViews();
+}

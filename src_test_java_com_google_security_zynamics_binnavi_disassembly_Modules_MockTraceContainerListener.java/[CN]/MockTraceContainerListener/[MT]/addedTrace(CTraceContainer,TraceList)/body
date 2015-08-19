@@ -1,0 +1,4 @@
+{
+  eventList+="addedTrace/";
+  addedTraces.add(trace);
+}

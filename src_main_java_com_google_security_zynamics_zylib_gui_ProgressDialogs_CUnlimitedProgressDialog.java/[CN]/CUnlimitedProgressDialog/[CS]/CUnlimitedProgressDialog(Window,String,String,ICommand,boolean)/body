@@ -1,0 +1,24 @@
+{
+  super(parent,title,ModalityType.DOCUMENT_MODAL);
+  Preconditions.checkNotNull(command,"Error: Comand can't be null.");
+  m_isCancelable=isCancelable;
+  addWindowListener(m_windowListener);
+  setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+  m_command=command;
+  m_progressPanel=createProgressPanel(description,isCancelable,m_windowListener);
+  m_progressPanel.setBorder(new EmptyBorder(15,15,15,15));
+  m_progressPanel.start();
+  setSubDescription("Please wait...");
+  add(m_progressPanel);
+  setSize(400,getPreferredSize().height);
+  setMinimumSize(new Dimension(400,getPreferredSize().height));
+  setMaximumSize(new Dimension(Math.max(400,getPreferredSize().width),getPreferredSize().height));
+  pack();
+  setSubDescription("Please wait...");
+  if (parent != null) {
+    GuiHelper.centerChildToParent(parent,this,true);
+  }
+ else {
+    GuiHelper.centerOnScreen(this);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.raisedException(exception);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

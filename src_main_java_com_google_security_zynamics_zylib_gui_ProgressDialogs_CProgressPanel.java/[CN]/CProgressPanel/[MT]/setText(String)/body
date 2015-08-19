@@ -1,0 +1,12 @@
+{
+  m_description=description;
+  String text=convertTextToHtml(description);
+  text=fitTextToLabel(text);
+  m_label.setText(text);
+  new SwingInvoker(){
+    @Override public void operation(){
+      m_label.updateUI();
+    }
+  }
+.invokeLater();
+}

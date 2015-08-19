@@ -1,0 +1,13 @@
+{
+  m_graph=graph;
+  m_nodeMap=Maps.newHashMap(nodeMap);
+  m_rawNodeMap=Maps.newHashMap();
+  m_edgeMap=Maps.newHashMap(edgeMap);
+  m_rawEdgeMap=Maps.newHashMap();
+  for (  final EdgeType e : edgeMap.values()) {
+    m_rawEdgeMap.put(e.getRawEdge(),e);
+  }
+  for (  final NodeType n : nodeMap.values()) {
+    m_rawNodeMap.put(n.getRawNode(),n);
+  }
+}

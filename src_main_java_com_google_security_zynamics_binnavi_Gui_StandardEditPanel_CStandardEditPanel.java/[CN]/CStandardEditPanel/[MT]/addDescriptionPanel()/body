@@ -1,0 +1,9 @@
+{
+  final JPanel descriptionPanel=new JPanel(new BorderLayout());
+  descriptionPanel.setMinimumSize(new Dimension(descriptionPanel.getPreferredSize().width,50));
+  descriptionPanel.add(new JScrollPane(m_descriptionField));
+  descriptionPanel.setBorder(new TitledBorder("Description" + ":"));
+  descriptionPanel.setMinimumSize(new Dimension(0,146));
+  descriptionPanel.setPreferredSize(new Dimension(0,146));
+  add(descriptionPanel,BorderLayout.CENTER);
+}

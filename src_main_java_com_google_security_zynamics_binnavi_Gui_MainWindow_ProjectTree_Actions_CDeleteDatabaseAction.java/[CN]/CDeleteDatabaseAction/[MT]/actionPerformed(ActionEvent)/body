@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.removeDatabase(m_parent,m_database,m_updater);
+}

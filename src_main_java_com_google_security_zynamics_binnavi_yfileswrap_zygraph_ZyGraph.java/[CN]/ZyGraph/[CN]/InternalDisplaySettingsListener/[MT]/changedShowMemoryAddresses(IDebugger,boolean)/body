@@ -1,0 +1,6 @@
+{
+  for (  final NaviNode node : getMappings().getNodes()) {
+    (((ZyNodeRealizer<?>)getGraph().getRealizer(node.getNode()))).regenerate();
+  }
+  updateViews();
+}

@@ -1,0 +1,3 @@
+{
+  return CElementSearcher.search(node,node.getRealizer().getNodeContent(),searchString,regEx,caseSensitive);
+}

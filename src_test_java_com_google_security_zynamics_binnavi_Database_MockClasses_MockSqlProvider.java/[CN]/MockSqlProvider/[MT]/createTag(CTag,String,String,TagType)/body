@@ -1,0 +1,5 @@
+{
+  final CTag newTag=new CTag(tagIdCounter,name,description,type,this);
+  tagIdCounter++;
+  return newTag;
+}

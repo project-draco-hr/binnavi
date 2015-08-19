@@ -1,0 +1,6 @@
+{
+  target.writeSetting("show_debugger_options","1");
+  for (  final DebuggerException pe : options.getExceptions()) {
+    target.writeSetting(DebuggerException.getSettingKey(pe,debuggerId),Integer.toString(pe.getExceptionAction().getValue()));
+  }
+}

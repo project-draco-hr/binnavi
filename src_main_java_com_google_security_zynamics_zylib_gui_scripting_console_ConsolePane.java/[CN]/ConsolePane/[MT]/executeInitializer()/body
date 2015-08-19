@@ -1,0 +1,21 @@
+{
+  if (m_libraryPath == null) {
+    return;
+  }
+  final List<String> extensions=engine.getFactory().getExtensions();
+  for (  final String extension : extensions) {
+    final String initFile=m_libraryPath + File.separator + "init."+ extension;
+    if (FileUtils.exists(initFile)) {
+      try {
+        engine.eval(FileUtils.readTextfile(initFile));
+        getOutputPane().setText(console.getOutput());
+      }
+ catch (      final ScriptException e) {
+        getOutputPane().setText(e.getLocalizedMessage());
+      }
+catch (      final IOException e) {
+        getOutputPane().setText(e.getLocalizedMessage());
+      }
+    }
+  }
+}

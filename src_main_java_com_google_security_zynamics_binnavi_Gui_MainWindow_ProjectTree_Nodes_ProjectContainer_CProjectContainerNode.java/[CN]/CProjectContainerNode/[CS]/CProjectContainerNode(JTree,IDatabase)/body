@@ -1,0 +1,13 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CProjectContainerNodeComponent(projectTree,database);
+    }
+  }
+,new CProjectContainerNodeMenuBuilder(projectTree,database));
+  Preconditions.checkNotNull(database,"IE01988: Database can't be null");
+  m_database=database;
+  createChildren();
+  m_listener=new InternalDatabaseListener();
+  database.addListener(m_listener);
+}

@@ -1,0 +1,3 @@
+{
+  CGraphSelecter.invertSelection(m_graph);
+}

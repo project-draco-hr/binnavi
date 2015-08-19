@@ -1,0 +1,9 @@
+{
+  if (event.getSource() == m_scrollbar) {
+    m_firstRow=event.getValue();
+  }
+ else {
+    m_firstColumn=event.getValue();
+  }
+  repaint();
+}

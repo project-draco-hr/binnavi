@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTypeFunctions.loadRawTypeMember(this,module,typeMemberId);
+}

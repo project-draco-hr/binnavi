@@ -1,0 +1,6 @@
+{
+  final JPanel parentPanel=new JPanel(new BorderLayout());
+  parentPanel.add(panel,BorderLayout.NORTH);
+  tab.addTab(tabHeader,new JScrollPane(parentPanel));
+  m_settingsPanel.add(panel);
+}

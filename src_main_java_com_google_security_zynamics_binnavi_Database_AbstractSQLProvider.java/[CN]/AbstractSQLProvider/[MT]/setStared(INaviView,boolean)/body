@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewFunctions.starView(this,view,isStared);
+}

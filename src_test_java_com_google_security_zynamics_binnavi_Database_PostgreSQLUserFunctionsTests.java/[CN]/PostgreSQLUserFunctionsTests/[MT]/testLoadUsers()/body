@@ -1,0 +1,29 @@
+{
+  final IUser user1=CGenericSQLUserFunctions.addUser(getProvider(),"1");
+  final IUser user2=CGenericSQLUserFunctions.addUser(getProvider(),"2");
+  final IUser user3=CGenericSQLUserFunctions.addUser(getProvider(),"3");
+  final IUser user4=CGenericSQLUserFunctions.addUser(getProvider(),"4");
+  final IUser user5=CGenericSQLUserFunctions.addUser(getProvider(),"5");
+  final IUser user6=CGenericSQLUserFunctions.addUser(getProvider(),"6");
+  final IUser user7=CGenericSQLUserFunctions.addUser(getProvider(),"7");
+  final IUser user8=CGenericSQLUserFunctions.addUser(getProvider(),"8");
+  final IUser user9=CGenericSQLUserFunctions.addUser(getProvider(),"9");
+  final IUser user10=CGenericSQLUserFunctions.addUser(getProvider(),"10");
+  final IUser user11=CGenericSQLUserFunctions.addUser(getProvider(),"11");
+  final IUser user12=CGenericSQLUserFunctions.addUser(getProvider(),"12");
+  final List<IUser> users=CGenericSQLUserFunctions.loadUsers(getProvider());
+  assertNotNull(users);
+  assertTrue(users.size() >= 12);
+  assertEquals(true,users.contains(user1));
+  assertEquals(true,users.contains(user2));
+  assertEquals(true,users.contains(user3));
+  assertEquals(true,users.contains(user4));
+  assertEquals(true,users.contains(user5));
+  assertEquals(true,users.contains(user6));
+  assertEquals(true,users.contains(user7));
+  assertEquals(true,users.contains(user8));
+  assertEquals(true,users.contains(user9));
+  assertEquals(true,users.contains(user10));
+  assertEquals(true,users.contains(user11));
+  assertEquals(true,users.contains(user12));
+}

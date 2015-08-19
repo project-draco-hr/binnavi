@@ -1,0 +1,3 @@
+{
+  return memoryData == null ? null : memoryData.clone();
+}

@@ -1,0 +1,3 @@
+{
+  manager.deleteEdgeComment(edge,comment,getScope());
+}

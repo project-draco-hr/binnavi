@@ -1,0 +1,6 @@
+{
+  if (n == 0) {
+    return "";
+  }
+  return String.format("%1$-" + n + "s",s);
+}

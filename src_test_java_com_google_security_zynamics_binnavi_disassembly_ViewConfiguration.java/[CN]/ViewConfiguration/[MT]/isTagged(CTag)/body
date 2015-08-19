@@ -1,0 +1,8 @@
+{
+  return Iterables.tryFind(viewTags,new Predicate<CTag>(){
+    @Override public boolean apply(    final CTag currentTag){
+      return currentTag.getId() == tag.getId();
+    }
+  }
+).isPresent();
+}

@@ -1,0 +1,42 @@
+{
+  final String query="INSERT INTO " + CTableNames.EDGES_TABLE + "(source_node_id, target_node_id, x1, y1, x2, y2, type, "+ "color, visible, selected, comment_id) VALUES "+ "( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+  final PreparedStatement preparedStatement=connection.getConnection().prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+  try {
+    for (    final INaviEdge edge : edges) {
+      preparedStatement.setInt(1,edge.getSource().getId());
+      preparedStatement.setInt(2,edge.getTarget().getId());
+      preparedStatement.setDouble(3,edge.getX1());
+      preparedStatement.setDouble(4,edge.getY1());
+      preparedStatement.setDouble(5,edge.getX2());
+      preparedStatement.setDouble(6,edge.getY2());
+      preparedStatement.setObject(7,edge.getType().toString().toLowerCase(),Types.OTHER);
+      preparedStatement.setInt(8,edge.getColor().getRGB());
+      preparedStatement.setBoolean(9,edge.isVisible());
+      preparedStatement.setBoolean(10,edge.isSelected());
+      if (edge.getLocalComment() == null) {
+        preparedStatement.setNull(11,Types.INTEGER);
+      }
+ else {
+        preparedStatement.setInt(11,Iterables.getLast(edge.getLocalComment()).getId());
+      }
+      preparedStatement.addBatch();
+    }
+    preparedStatement.executeBatch();
+    final ResultSet resultSet=preparedStatement.getGeneratedKeys();
+    for (    final INaviEdge edge : edges) {
+      if (resultSet.next()) {
+        edge.setId(resultSet.getInt(1));
+      }
+ else {
+        throw new IllegalStateException("Error: The number of keys generated does not match the number of edges");
+      }
+    }
+  }
+ catch (  final SQLException exception) {
+    CUtilityFunctions.logException(exception);
+    CUtilityFunctions.logException(exception.getNextException());
+  }
+ finally {
+    preparedStatement.close();
+  }
+}

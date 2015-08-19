@@ -1,0 +1,18 @@
+{
+  super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  setHorizontalAlignment(CENTER);
+switch (column) {
+case CRelocationTableModel.NAME_COLUMN:
+    setBackground(NAME_COLUMN_BACKGROUND_COLOR);
+  break;
+case CRelocationTableModel.SPECIFIED_COLUMN:
+setBackground(SPECIFIED_COLUMN_BACKGROUND_COLOR);
+break;
+case CRelocationTableModel.REAL_COLUMN:
+setBackground(REAL_COLUMN_BACKGROUND_COLOR);
+break;
+default :
+throw new IllegalStateException("IE01924: Unknown column");
+}
+return this;
+}

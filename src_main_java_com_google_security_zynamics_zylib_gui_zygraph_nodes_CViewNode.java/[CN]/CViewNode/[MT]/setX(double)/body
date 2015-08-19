@@ -1,0 +1,14 @@
+{
+  if (m_x == xpos) {
+    return;
+  }
+  m_x=xpos;
+  for (  final IViewNodeListener listener : m_listeners) {
+    try {
+      listener.xposChanged(this,xpos);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

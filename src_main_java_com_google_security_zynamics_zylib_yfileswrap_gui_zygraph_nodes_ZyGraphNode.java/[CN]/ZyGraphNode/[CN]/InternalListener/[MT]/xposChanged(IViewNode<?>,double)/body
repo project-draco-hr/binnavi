@@ -1,0 +1,6 @@
+{
+  if (m_realizer.getX() != xpos) {
+    m_realizer.setX(xpos);
+    updateViews();
+  }
+}

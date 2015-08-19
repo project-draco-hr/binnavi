@@ -1,0 +1,15 @@
+{
+  final MockDebuggerTemplateListener listener=new MockDebuggerTemplateListener();
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate internalTemplate=new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate(1,"Name","Host",123,new MockSqlProvider());
+  final DebuggerTemplate template=new DebuggerTemplate(internalTemplate);
+  template.addListener(listener);
+  template.setHost("Hannes");
+  assertEquals("Hannes",template.getHost());
+  assertEquals("Hannes",internalTemplate.getHost());
+  assertEquals("changedHost;",listener.events);
+  internalTemplate.setHost("Hannes 2");
+  assertEquals("Hannes 2",template.getHost());
+  assertEquals("Hannes 2",internalTemplate.getHost());
+  assertEquals("changedHost;changedHost;",listener.events);
+  template.removeListener(listener);
+}

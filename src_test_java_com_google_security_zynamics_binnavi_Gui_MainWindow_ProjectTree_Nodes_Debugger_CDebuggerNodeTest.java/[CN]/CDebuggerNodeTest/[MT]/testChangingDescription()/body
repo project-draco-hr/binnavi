@@ -1,0 +1,6 @@
+{
+  final CDebuggerNode node=new CDebuggerNode(m_tree,new DefaultMutableTreeNode(),m_database,m_template);
+  assertEquals("My Debugger",node.toString());
+  m_template.setName("Hannes");
+  assertEquals("Hannes",node.toString());
+}

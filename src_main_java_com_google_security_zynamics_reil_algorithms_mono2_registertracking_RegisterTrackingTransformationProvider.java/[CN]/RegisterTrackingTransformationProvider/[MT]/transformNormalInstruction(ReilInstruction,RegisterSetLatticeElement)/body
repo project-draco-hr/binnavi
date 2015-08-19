@@ -1,0 +1,8 @@
+{
+  if (m_trackingOptions.getAnalysisDirection() == AnalysisDirection.UP) {
+    return transformNormalInstructionBackward(ins,state);
+  }
+ else {
+    return transformNormalInstructionForward(ins,state);
+  }
+}

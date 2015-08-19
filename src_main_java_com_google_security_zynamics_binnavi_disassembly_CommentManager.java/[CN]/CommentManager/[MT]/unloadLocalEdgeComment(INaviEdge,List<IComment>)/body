@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(edge,"Error: edge argument can not be null");
+  unloadComment(new EdgeCommentingStrategy(edge,CommentScope.LOCAL),comments);
+}

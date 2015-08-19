@@ -1,0 +1,14 @@
+{
+  final int visibleRows=m_panel.getNumberOfVisibleRows();
+  final int totalRows=m_model.getNumberOfEntries();
+  int scrollRange=(2 + totalRows) - visibleRows;
+  if (scrollRange < 0) {
+    scrollRange=0;
+    m_scrollbar.setValue(0);
+    m_scrollbar.setEnabled(false);
+  }
+ else {
+    m_scrollbar.setEnabled(true);
+  }
+  m_scrollbar.setMaximum(scrollRange);
+}

@@ -1,0 +1,6 @@
+{
+  final DefaultMutableTreeNode root=createModel();
+  final BaseType newType=typeManager.createAtomicType("new_type",32,true);
+  Assert.assertTrue(hasBaseTypeChildNode(root,newType));
+  verifySorted(root);
+}

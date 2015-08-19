@@ -1,0 +1,6 @@
+{
+  if (super.getFillColor() != color) {
+    super.setFillColor(color);
+    updateContentSelectionColor();
+  }
+}

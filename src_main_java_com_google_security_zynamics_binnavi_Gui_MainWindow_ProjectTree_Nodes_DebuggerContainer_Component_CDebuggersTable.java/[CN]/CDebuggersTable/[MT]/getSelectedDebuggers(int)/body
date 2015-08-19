@@ -1,0 +1,11 @@
+{
+  final int[] sortSelectedRows=getSortSelectedRows();
+  if (Ints.asList(sortSelectedRows).indexOf(sortedRow) != -1) {
+    return getDebuggers(sortSelectedRows);
+  }
+ else {
+    final int viewRow=convertRowIndexToView(sortedRow);
+    setRowSelectionInterval(viewRow,viewRow);
+    return new DebuggerTemplate[]{m_database.getContent().getDebuggerTemplateManager().getDebugger(sortedRow)};
+  }
+}

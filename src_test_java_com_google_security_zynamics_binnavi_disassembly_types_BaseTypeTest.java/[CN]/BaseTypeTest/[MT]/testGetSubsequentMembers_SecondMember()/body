@@ -1,0 +1,5 @@
+{
+  final ImmutableList<TypeMember> members=typeSystem.simpleStruct.getSubsequentMembersInclusive(typeSystem.ssUintMember.getBitOffset().get());
+  final ImmutableList<TypeMember> expectedMembers=ImmutableList.<TypeMember>of(typeSystem.ssUintMember,typeSystem.ssArrayMember);
+  assertEquals(expectedMembers,members);
+}

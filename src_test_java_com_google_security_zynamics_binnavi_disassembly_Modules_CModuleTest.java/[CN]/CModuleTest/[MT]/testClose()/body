@@ -1,0 +1,13 @@
+{
+  m_module.load();
+  m_listener.canClose=false;
+  assertFalse(m_module.close());
+  m_listener.canClose=true;
+  assertTrue(m_module.close());
+  try {
+    m_module.close();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

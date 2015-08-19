@@ -1,0 +1,6 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  final DebuggerTemplate debuggerTemplate=getProvider().loadDebuggers().getDebugger(0);
+  getProvider().assignDebugger(module,debuggerTemplate);
+  getProvider().assignDebugger(module,null);
+}

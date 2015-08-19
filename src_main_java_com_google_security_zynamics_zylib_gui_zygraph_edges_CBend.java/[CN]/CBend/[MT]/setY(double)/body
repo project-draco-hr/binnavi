@@ -1,0 +1,9 @@
+{
+  if (Double.compare(m_y,y) == 0) {
+    return;
+  }
+  m_y=y;
+  for (  final IBendListener listener : m_listeners) {
+    listener.changedY(this,y);
+  }
+}

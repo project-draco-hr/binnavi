@@ -1,0 +1,19 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode immediateOperand1=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final IOperandTreeNode immediateOperand2=instruction.getOperands().get(3).getRootNode().getChildren().get(0);
+  final String sourceRegister=registerOperand2.getValue();
+  final String destinationRegister=registerOperand1.getValue();
+  final String tempVar1=environment.getNextVariableString();
+  final String tempVar2=environment.getNextVariableString();
+  final String tempVar3=environment.getNextVariableString();
+  final long oneMask=TranslationHelpers.generateOneMask(0,Integer.parseInt(immediateOperand2.getValue()),OperandSize.DWORD);
+  final long zeroMask=TranslationHelpers.generateZeroMask(Integer.parseInt(immediateOperand1.getValue()),Integer.parseInt(immediateOperand2.getValue()),OperandSize.DWORD);
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,sourceRegister,dw,String.valueOf(oneMask),dw,tempVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tempVar1,dw,immediateOperand1.getValue(),dw,tempVar2));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,destinationRegister,dw,String.valueOf(zeroMask),dw,tempVar3));
+  instructions.add(ReilHelpers.createOr(baseOffset++,dw,tempVar2,dw,tempVar3,dw,destinationRegister));
+}

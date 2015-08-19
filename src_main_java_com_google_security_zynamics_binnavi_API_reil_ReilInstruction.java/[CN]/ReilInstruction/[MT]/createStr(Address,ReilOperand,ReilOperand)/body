@@ -1,0 +1,3 @@
+{
+  return new ReilInstruction(address,ReilMnemonics.STR,storeValue,ReilOperand.EMPTY_OPERAND,storeTarget);
+}

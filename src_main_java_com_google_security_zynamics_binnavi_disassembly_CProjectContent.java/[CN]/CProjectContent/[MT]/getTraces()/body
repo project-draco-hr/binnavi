@@ -1,0 +1,4 @@
+{
+  Preconditions.checkState(isLoaded(),"IE00248: Project must be loaded first");
+  return new ArrayList<TraceList>(m_traces);
+}

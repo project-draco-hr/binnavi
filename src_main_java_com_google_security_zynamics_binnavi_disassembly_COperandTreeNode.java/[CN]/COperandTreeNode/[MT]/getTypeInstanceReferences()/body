@@ -1,0 +1,8 @@
+{
+  if (instanceReferences == null) {
+    return new ArrayList<TypeInstanceReference>();
+  }
+ else {
+    return instanceReferences;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  CModuleFunctions.loadModules(getProjectTree(),getUnloadedModules(getModules(getSortSelectedRows())));
+}

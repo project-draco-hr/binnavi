@@ -1,0 +1,3 @@
+{
+  return (NIBBLES_PER_BYTE * m_bytesPerColumn * m_charWidth) + m_columnSpacing;
+}

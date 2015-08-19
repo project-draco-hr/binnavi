@@ -1,0 +1,2 @@
+ITagTreeManager manager
+ITreeNode<CTag> tag

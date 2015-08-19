@@ -1,0 +1,5 @@
+{
+  super("Remove function forwarding");
+  parentWindow=parent;
+  this.function=function;
+}

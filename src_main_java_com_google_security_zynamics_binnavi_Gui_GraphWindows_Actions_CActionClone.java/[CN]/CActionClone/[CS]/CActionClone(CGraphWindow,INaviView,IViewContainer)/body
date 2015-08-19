@@ -1,0 +1,6 @@
+{
+  super("Clone View");
+  m_parent=Preconditions.checkNotNull(parent,"IE01641: Parent can't be null");
+  m_view=Preconditions.checkNotNull(view,"IE01642: View argument can not be null");
+  m_container=Preconditions.checkNotNull(container,"IE01643: Container argument can not be null");
+}

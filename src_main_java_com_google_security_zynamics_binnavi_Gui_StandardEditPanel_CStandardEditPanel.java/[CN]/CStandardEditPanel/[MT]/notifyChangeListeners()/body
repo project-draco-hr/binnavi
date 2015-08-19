@@ -1,0 +1,10 @@
+{
+  for (  final IInputPanelListener listener : m_listeners) {
+    try {
+      listener.changedInput();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

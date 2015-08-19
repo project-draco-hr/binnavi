@@ -1,0 +1,19 @@
+{
+  super(projectTree);
+  Preconditions.checkNotNull(projectTree,"IE01943: Project tree argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE01944: Database argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"IE01945: Project argument can't be null");
+  Preconditions.checkNotNull(addressSpaces,"IE01946: Address space argument can't be null");
+  for (  final INaviAddressSpace addressSpace : addressSpaces) {
+    Preconditions.checkNotNull(addressSpace,"IE01947: Address spaces list contains a null-element");
+  }
+  m_parentNode=parentNode;
+  m_addressSpaces=addressSpaces.clone();
+  m_table=table;
+  m_container=container;
+  m_loadAddressSpaceAction=CActionProxy.proxy(new CLoadAddressSpaceAction(projectTree,m_addressSpaces));
+  if (addressSpaces.length == 1) {
+    updateActions(m_addressSpaces[0]);
+    m_addressSpaces[0].addListener(m_listener);
+  }
+}

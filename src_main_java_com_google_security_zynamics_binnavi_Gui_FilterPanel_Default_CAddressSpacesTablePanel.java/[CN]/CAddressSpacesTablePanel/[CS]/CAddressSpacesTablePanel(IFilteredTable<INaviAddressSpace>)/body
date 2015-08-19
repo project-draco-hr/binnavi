@@ -1,0 +1,4 @@
+{
+  super(table,new CAddressSpaceFilterCreator(),new CAddressSpaceFilterHelp());
+  addListener(m_fieldListener);
+}

@@ -1,0 +1,4 @@
+{
+  m_toolBar.updateFromDebuggerOptions(options);
+  m_threadPanel.setVisible(options.canMultithread());
+}

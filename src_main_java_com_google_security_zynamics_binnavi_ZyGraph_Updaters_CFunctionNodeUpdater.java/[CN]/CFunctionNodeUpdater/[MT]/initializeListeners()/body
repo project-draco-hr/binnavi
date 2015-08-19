@@ -1,0 +1,3 @@
+{
+  m_node.getFunction().addListener(m_functionListener);
+}

@@ -1,0 +1,11 @@
+{
+  final long tid=parseThreadId();
+  final RelocatedAddress address=new RelocatedAddress(parseAddress());
+  try {
+    final RegisterValues registerValues=RegisterValuesParser.parse(parseData());
+    return new SingleStepReply(packetId,0,tid,address,registerValues);
+  }
+ catch (  final MessageParserException e) {
+    return new SingleStepReply(packetId,PARSER_ERROR,tid,address,null);
+  }
+}

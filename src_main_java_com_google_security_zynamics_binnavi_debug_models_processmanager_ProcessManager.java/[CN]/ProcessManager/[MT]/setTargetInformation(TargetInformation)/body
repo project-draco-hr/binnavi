@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(targetInformation,"IE00761: Target information argument can not be null");
+  this.targetInformation=targetInformation;
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.changedTargetInformation(this.targetInformation);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

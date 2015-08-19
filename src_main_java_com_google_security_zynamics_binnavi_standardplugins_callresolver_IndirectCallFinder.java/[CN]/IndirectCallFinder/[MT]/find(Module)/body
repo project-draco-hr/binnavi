@@ -1,0 +1,34 @@
+{
+  final Set<Address> importedFunctionCalls=getDirectFunctionCalls(module);
+  final Map<Address,Function> functionMap=new HashMap<Address,Function>();
+  for (  final Function function : module.getFunctions()) {
+    functionMap.put(function.getAddress(),function);
+  }
+  final String callMnemonics="'call', " + "'bal', 'bgezal', 'bgezall', 'bltzal', 'bltzall', 'jal', 'jalr', " + "'bl', 'blx', "+ "'bcctrl', 'bcctr'";
+  final String registerOrdinal=String.valueOf(ExpressionType.Register.ordinal() + 1);
+  final String dereferenceOrdinal=String.valueOf(ExpressionType.MemDeref.ordinal() + 1);
+  final String query="SELECT ft.address AS faddress, it.address AS iaddress " + " FROM " + TableNames.FUNCTIONS_TABLE + " AS ft "+ " JOIN "+ TableNames.FUNCTION_VIEWS_TABLE+ " AS fvt ON ft.address = fvt.function "+ " AND ft.module_id = fvt.module_id"+ " JOIN "+ TableNames.NODES_TABLE+ " AS nt ON fvt.view_id = nt.view_id "+ " JOIN "+ TableNames.CODENODE_INSTRUCTIONS_TABLE+ " AS cit ON nt.id = cit.node_id "+ " AND cit.module_id = ft.module_id "+ " JOIN "+ TableNames.INSTRUCTIONS_TABLE+ " AS it ON it.address = cit.address "+ " AND it.module_id = cit.module_id"+ " JOIN "+ TableNames.OPERANDS_TABLE+ " AS ot ON it.address = ot.address "+ " AND it.module_id = ot.module_id"+ " JOIN "+ TableNames.EXPRESSION_TREE_MAPPING_TABLE+ " AS etm ON ot.expression_tree_id = etm.tree_id "+ " AND etm.module_id = ft.module_id"+ " JOIN "+ TableNames.EXPRESSION_TREE_TABLE+ " AS et ON et.id = etm.tree_node_id "+ " AND et.module_id = ft.module_id"+ " WHERE ft.module_id = "+ module.getId()+ " and mnemonic in ("+ callMnemonics+ ") "+ " AND (et.type in ("+ registerOrdinal+ ", "+ dereferenceOrdinal+ "))"+ " GROUP BY faddress, iaddress";
+  final List<IndirectCall> addresses=new ArrayList<IndirectCall>();
+  try {
+    final ResultSet resultSet=module.getDatabase().executeQuery(query);
+    try {
+      while (resultSet.next()) {
+        final Address address=new Address(resultSet.getLong("iaddress"));
+        if (importedFunctionCalls.contains(address)) {
+          continue;
+        }
+        final Address faddress=new Address(resultSet.getLong("faddress"));
+        final Function function=functionMap.get(faddress);
+        addresses.add(new IndirectCall(module,function,address));
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+    return addresses;
+  }
+ catch (  final SQLException exception) {
+    exception.printStackTrace();
+    return new ArrayList<IndirectCall>();
+  }
+}

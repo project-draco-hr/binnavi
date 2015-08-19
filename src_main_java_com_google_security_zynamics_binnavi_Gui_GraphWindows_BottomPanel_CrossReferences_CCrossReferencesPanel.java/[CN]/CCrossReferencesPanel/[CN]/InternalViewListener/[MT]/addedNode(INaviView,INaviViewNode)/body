@@ -1,0 +1,5 @@
+{
+  if (processNewNode(node)) {
+    m_tableModel.setCrossReferences(m_crossReferences);
+  }
+}

@@ -1,0 +1,18 @@
+{
+  m_debugger.connect();
+  m_debugger.getProcessManager().setAttached(true);
+  final MockMemoryViewerSynchronizerListener listener=new MockMemoryViewerSynchronizerListener();
+  m_synchronizer.addListener(listener);
+  final TargetProcessThread thread=new TargetProcessThread(1,ThreadState.RUNNING);
+  m_debugger.getProcessManager().addThread(thread);
+  m_debugger.getProcessManager().setActiveThread(thread);
+  thread.setState(ThreadState.SUSPENDED);
+  thread.setState(ThreadState.RUNNING);
+  final MockDebugger debugger2=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  m_model.setActiveDebugger(debugger2);
+  m_model.setActiveDebugger(m_debugger);
+  m_debugger.getProcessManager().removeThread(thread);
+  m_debugger.getProcessManager().setAttached(false);
+  m_synchronizer.removeListener(listener);
+  m_synchronizer.dispose();
+}

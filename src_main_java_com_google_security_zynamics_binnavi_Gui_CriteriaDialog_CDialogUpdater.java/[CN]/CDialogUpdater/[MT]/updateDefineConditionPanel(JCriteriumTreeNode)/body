@@ -1,0 +1,14 @@
+{
+  final Component component=node.getCriterium().getCriteriumPanel();
+  m_defineConditionPanel.removeAll();
+  m_defineConditionPanel.setBorder(null);
+  if (component == null) {
+    final JPanel defaultPanel=new JPanel(new BorderLayout());
+    defaultPanel.setBorder(new TitledBorder("Define Condition"));
+    m_defineConditionPanel.add(defaultPanel,BorderLayout.CENTER);
+  }
+ else {
+    m_defineConditionPanel.add(component);
+  }
+  m_defineConditionPanel.updateUI();
+}

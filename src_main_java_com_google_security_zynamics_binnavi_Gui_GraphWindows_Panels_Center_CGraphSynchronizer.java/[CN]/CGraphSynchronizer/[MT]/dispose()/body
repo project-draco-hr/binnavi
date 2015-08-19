@@ -1,0 +1,4 @@
+{
+  m_debugPerspective.removeListener(m_debugListener);
+  synchronizeDebugger(m_debugPerspective.getCurrentSelectedDebugger(),null);
+}

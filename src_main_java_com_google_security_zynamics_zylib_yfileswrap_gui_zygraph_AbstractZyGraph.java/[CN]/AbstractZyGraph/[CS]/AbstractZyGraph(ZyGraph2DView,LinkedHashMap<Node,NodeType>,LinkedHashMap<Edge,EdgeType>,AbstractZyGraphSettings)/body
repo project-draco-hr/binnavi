@@ -1,0 +1,14 @@
+{
+  m_view=Preconditions.checkNotNull(view,"Error: View argument can't be null");
+  Preconditions.checkNotNull(nodeMap,"Error: Node map argument can't be null");
+  m_graph=m_view.getGraph2D();
+  m_view.setGraph2DRenderer(new ZyGraphLayeredRenderer<ZyGraph2DView>(m_view));
+  m_settings=settings;
+  m_mappings=new ZyGraphMappings<NodeType,EdgeType>(m_graph,nodeMap,edgeMap);
+  setProximityBrowser(new ZyDefaultProximityBrowser<NodeType,EdgeType>(this,m_settings));
+  m_editMode=createEditMode();
+  m_settingsSynchronizer=new CGraphSettingsSynchronizer(m_editMode,m_settings);
+  initializeListeners();
+  initializeView();
+  setupHierarchyManager();
+}

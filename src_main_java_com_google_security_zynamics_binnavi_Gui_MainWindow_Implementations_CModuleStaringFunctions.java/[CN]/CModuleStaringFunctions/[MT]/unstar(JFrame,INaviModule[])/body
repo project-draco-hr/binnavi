@@ -1,0 +1,13 @@
+{
+  for (  final INaviModule module : modules) {
+    try {
+      module.getConfiguration().setStared(false);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00081: " + "Module could not be unstared";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The module '%s' could not be unstared.",module.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The module star was not updated."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

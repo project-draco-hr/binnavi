@@ -1,0 +1,11 @@
+{
+  final CEventValueTableModel model=new CEventValueTableModel();
+  final INaviModule mockModule=new MockModule();
+  final TraceEvent event=new TraceEvent(77,new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0x123))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{05,06,07})));
+  assertEquals(0,model.getRowCount());
+  model.setEvent(event);
+  assertEquals(1,model.getRowCount());
+  assertEquals("eax",model.getValueAt(0,0));
+  assertEquals("00000123",model.getValueAt(0,1));
+  assertEquals("05 06 07",model.getValueAt(0,2));
+}

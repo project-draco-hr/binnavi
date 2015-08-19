@@ -1,0 +1,10 @@
+{
+  final StringBuilder ret=new StringBuilder();
+  for (  final MemoryExpressionElement child : children) {
+    ret.append(child.toString());
+    if (child != Iterables.getLast(children)) {
+      ret.append('+');
+    }
+  }
+  return ret.toString();
+}

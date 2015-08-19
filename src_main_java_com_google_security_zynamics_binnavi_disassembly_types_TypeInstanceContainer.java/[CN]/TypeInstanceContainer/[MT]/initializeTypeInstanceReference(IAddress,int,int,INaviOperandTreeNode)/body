@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  final TypeInstanceReference reference=backend.lookupReference(address,operandPosition,expressionId);
+  if (reference != null) {
+    reference.setTreeNode(node);
+    node.addInstanceReference(reference);
+    notifyReferenceChanged(reference);
+  }
+}

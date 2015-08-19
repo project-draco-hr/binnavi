@@ -1,0 +1,59 @@
+{
+  final ZyLabelContent labelContent=getLabelContent();
+  int caretStartPos_X=getCaretStartPosX();
+  int mousePressed_X=getCaretMousePressedX();
+  int mousePressed_Y=getCaretMousePressedY();
+  int caretEndPos_X=getCaretEndPosX();
+  int mouseReleased_X=getCaretMouseReleasedX();
+  int mouseReleased_Y=getCaretMouseReleasedY();
+  if (isSelection() && (xdelta != 0) && (ydelta == 0)) {
+    if ((mousePressed_Y <= mouseReleased_Y) && (mousePressed_X <= mouseReleased_X)) {
+      if (xdelta < 0) {
+        mouseReleased_X=mousePressed_X;
+        caretEndPos_X=caretStartPos_X;
+        mouseReleased_Y=mousePressed_Y;
+      }
+ else {
+        mousePressed_X=mouseReleased_X;
+        caretStartPos_X=mouseReleased_X;
+        mousePressed_Y=mouseReleased_Y;
+      }
+    }
+ else {
+      if (xdelta > 0) {
+        mouseReleased_X=mousePressed_X;
+        caretEndPos_X=caretStartPos_X;
+        mouseReleased_Y=mousePressed_Y;
+      }
+ else {
+        mousePressed_X=mouseReleased_X;
+        caretStartPos_X=mouseReleased_X;
+        mousePressed_Y=mouseReleased_Y;
+      }
+    }
+  }
+ else {
+    mousePressed_X=mouseReleased_X;
+    mousePressed_Y=mouseReleased_Y;
+    mousePressed_Y+=ydelta;
+    if (mousePressed_Y < 0) {
+      mousePressed_Y=0;
+    }
+    if (mousePressed_Y > (labelContent.getLineCount() - 1)) {
+      mousePressed_Y=labelContent.getLineCount() - 1;
+    }
+    mouseReleased_Y=mousePressed_Y;
+    mousePressed_X+=xdelta;
+    if (mousePressed_X < 0) {
+      mousePressed_X=0;
+    }
+    if (mousePressed_X > (labelContent.getLineContent(mouseReleased_Y).getTextLayout().getCharacterCount() - 1)) {
+      mousePressed_X=labelContent.getLineContent(mouseReleased_Y).getTextLayout().getCharacterCount();
+    }
+    caretEndPos_X=mousePressed_X;
+    mouseReleased_X=mousePressed_X;
+    caretStartPos_X=caretEndPos_X;
+  }
+  mouseReleased_X=correctMouseReleasedX(mouseReleased_X,mouseReleased_Y,mousePressed_Y);
+  setCaret(caretStartPos_X,mousePressed_X,mousePressed_Y,caretEndPos_X,mouseReleased_X,mouseReleased_Y);
+}

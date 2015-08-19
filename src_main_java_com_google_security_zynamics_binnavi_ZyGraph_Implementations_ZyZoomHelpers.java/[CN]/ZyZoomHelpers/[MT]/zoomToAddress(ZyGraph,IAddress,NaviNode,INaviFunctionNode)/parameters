@@ -1,0 +1,4 @@
+ZyGraph graph
+IAddress address
+NaviNode node
+INaviFunctionNode functionNode

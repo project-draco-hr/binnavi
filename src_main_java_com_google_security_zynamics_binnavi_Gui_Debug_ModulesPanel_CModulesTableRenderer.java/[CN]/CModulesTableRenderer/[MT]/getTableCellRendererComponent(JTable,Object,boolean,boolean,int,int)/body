@@ -1,0 +1,7 @@
+{
+  super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  final MemoryModule module=((CModulesTable)table).getTreeTableModel().getModules().get(table.convertRowIndexToModel(row));
+  final Color color=m_colorGenerator.getColor(module);
+  setBackground(color == null ? Color.WHITE : color);
+  return this;
+}

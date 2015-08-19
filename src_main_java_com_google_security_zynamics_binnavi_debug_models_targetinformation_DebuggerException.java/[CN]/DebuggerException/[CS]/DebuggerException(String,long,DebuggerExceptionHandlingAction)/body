@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(!exceptionName.isEmpty(),"IE00181: Exception name can not be empty");
+  this.name=Preconditions.checkNotNull(exceptionName,"IE00047: exceptionName argument can not be null");
+  this.exceptionCode=exceptionCode;
+  this.exceptionAction=Preconditions.checkNotNull(exceptionAction,"IE02119: exceptionAction argument can not be null");
+}

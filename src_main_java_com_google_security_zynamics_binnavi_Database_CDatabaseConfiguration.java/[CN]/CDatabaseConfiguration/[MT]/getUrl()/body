@@ -1,0 +1,3 @@
+{
+  return String.format("jdbc:postgresql://%s/%s",m_host,m_name);
+}

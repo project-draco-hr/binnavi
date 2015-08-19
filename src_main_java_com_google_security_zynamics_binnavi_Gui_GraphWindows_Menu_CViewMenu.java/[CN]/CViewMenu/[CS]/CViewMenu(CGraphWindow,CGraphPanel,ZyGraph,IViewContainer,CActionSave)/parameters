@@ -1,0 +1,5 @@
+CGraphWindow parent
+CGraphPanel graphPanel
+ZyGraph graph
+IViewContainer container
+CActionSave actionSave

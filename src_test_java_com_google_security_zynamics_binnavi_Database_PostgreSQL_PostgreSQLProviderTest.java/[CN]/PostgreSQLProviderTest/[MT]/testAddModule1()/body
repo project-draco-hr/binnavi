@@ -1,0 +1,14 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  final CProject project=getProvider().createProject("FOOBAR_PROJECT");
+  getProvider().createAddressSpace(project,"FOOBAR_ADDRESS_SPACE");
+  final CAddressSpace as=getProvider().loadAddressSpaces(project).get(0);
+  getProvider().addModule(as,module);
+  try {
+    getProvider().addModule(as,module);
+    fail();
+  }
+ catch (  final CouldntSaveDataException exception) {
+    getProvider().removeModule(as,module);
+  }
+}

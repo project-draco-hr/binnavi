@@ -1,0 +1,3 @@
+BreakpointManager manager
+int breakpointIndex
+String formula

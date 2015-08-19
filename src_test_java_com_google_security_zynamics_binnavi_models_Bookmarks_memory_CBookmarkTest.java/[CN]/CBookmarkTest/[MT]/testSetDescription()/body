@@ -1,0 +1,5 @@
+{
+  final CBookmark bookmark=new CBookmark(new CAddress(BigInteger.valueOf(123)),"MyDescription");
+  bookmark.setDescription("MySecondDescription");
+  assertEquals("MySecondDescription",bookmark.getDescription());
+}

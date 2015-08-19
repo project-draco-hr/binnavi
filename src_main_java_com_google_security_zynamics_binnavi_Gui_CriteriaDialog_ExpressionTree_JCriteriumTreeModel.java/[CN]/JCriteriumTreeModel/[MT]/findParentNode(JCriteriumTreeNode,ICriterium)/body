@@ -1,0 +1,13 @@
+{
+  if (node.getCriterium() == criterium) {
+    return node;
+  }
+  for (int i=0; i < node.getChildCount(); i++) {
+    final JCriteriumTreeNode child=(JCriteriumTreeNode)node.getChildAt(i);
+    final JCriteriumTreeNode parent=findParentNode(child,criterium);
+    if (parent != null) {
+      return parent;
+    }
+  }
+  return null;
+}

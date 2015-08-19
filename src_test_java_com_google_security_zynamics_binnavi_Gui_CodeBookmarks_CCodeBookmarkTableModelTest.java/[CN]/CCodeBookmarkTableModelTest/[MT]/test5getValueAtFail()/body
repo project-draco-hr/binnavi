@@ -1,0 +1,12 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  final CCodeBookmark bookmark=new CCodeBookmark(new MockModule(),new MockAddress(),"burzel");
+  bookmarkManager.addBookmark(bookmark);
+  try {
+    tableModel.getValueAt(0,4);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+}

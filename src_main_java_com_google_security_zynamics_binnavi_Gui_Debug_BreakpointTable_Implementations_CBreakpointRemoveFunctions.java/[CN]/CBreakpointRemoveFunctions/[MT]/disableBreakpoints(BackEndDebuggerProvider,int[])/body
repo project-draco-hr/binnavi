@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01919: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(rows,"IE02254: Rows argument can't be null");
+  for (  final int row : rows) {
+    final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(debuggerProvider,row);
+    final BreakpointManager manager=breakpoint.first().getBreakpointManager();
+    final int breakpointIndex=breakpoint.second();
+    manager.setBreakpointStatus(BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED,breakpointIndex);
+  }
+}

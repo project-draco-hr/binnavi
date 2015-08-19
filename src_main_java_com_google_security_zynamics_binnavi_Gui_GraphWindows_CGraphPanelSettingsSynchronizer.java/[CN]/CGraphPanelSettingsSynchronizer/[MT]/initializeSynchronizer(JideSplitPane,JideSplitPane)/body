@@ -1,0 +1,21 @@
+{
+  final GeneralSettingsConfigItem.GraphWindowConfigItem settings=ConfigManager.instance().getGeneralSettings().getGraphWindow();
+  graphSplitter.addPropertyChangeListener(JSplitPane.DIVIDER_LOCATION_PROPERTY,new PropertyChangeListener(){
+    @Override public void propertyChange(    final PropertyChangeEvent evt){
+      settings.setSizeBottomPanel(graphSplitter.getDividerLocation(0));
+    }
+  }
+);
+  graphTaggingSplitter.addPropertyChangeListener(JSplitPane.DIVIDER_LOCATION_PROPERTY,new PropertyChangeListener(){
+    @Override public void propertyChange(    final PropertyChangeEvent evt){
+      settings.setSizeLeftPanel(graphTaggingSplitter.getDividerLocation(0));
+    }
+  }
+);
+  graphTaggingSplitter.addPropertyChangeListener(JSplitPane.DIVIDER_LOCATION_PROPERTY,new PropertyChangeListener(){
+    @Override public void propertyChange(    final PropertyChangeEvent evt){
+      settings.setSizeRightPanel(graphTaggingSplitter.getDividerLocation(1));
+    }
+  }
+);
+}

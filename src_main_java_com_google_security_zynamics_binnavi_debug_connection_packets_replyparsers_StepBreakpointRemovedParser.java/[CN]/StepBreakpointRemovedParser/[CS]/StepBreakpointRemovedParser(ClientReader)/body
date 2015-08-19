@@ -1,0 +1,3 @@
+{
+  super(clientReader,DebugCommandType.RESP_BPS_REM_SUCCESS);
+}

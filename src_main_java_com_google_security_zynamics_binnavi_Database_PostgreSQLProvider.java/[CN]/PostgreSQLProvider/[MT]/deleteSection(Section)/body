@@ -1,0 +1,3 @@
+{
+  PostgreSQLSectionFunctions.deleteSection(this,section);
+}

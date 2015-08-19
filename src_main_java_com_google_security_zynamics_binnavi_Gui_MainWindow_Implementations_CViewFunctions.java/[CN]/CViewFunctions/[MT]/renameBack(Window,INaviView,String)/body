@@ -1,0 +1,11 @@
+{
+  try {
+    view.getConfiguration().setName(originalName);
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00063: " + "View name could not be changed";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The view name of view '%s' could not be changed.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view was not updated and the new view name is lost."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+  }
+}

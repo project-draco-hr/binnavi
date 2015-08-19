@@ -1,0 +1,11 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CDebuggerContainerNodeComponent(projectTree,database);
+    }
+  }
+,new CDebuggerContainerNodeMenuBuilder(projectTree,database));
+  m_database=Preconditions.checkNotNull(database,"IE01968: Database can't be null");
+  m_database.getContent().getDebuggerTemplateManager().addListener(m_debuggerManagerListener);
+  createChildren();
+}

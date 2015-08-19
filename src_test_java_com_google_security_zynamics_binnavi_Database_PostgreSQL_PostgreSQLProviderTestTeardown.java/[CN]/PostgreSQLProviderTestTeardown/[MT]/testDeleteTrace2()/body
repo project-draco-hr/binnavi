@@ -1,0 +1,3 @@
+{
+  getProvider().deleteTrace(getNotepadModule().getContent().getTraceContainer().getTraces().get(0));
+}

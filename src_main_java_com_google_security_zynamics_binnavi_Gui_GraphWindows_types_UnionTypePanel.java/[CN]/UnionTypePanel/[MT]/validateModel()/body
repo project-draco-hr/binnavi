@@ -1,0 +1,14 @@
+{
+  final MemberTableModel model=members.getModel();
+  for (int i=0; i < model.getRowCount(); i++) {
+    if (!validateTableRow(i)) {
+      CMessageBox.showError(parent,"Please assign a valid name and base type, and set the offset to zero for unions.");
+      return false;
+    }
+  }
+  if (name.getText().isEmpty()) {
+    CMessageBox.showError(parent,"Please enter a valid name for the union.");
+    name.requestFocusInWindow();
+  }
+  return true;
+}

@@ -1,0 +1,14 @@
+{
+  assertEquals("00000555",m_module.getConfiguration().getFileBase().toHexString());
+  m_module.getConfiguration().setFileBase(new CAddress(0x02000000));
+  assertEquals("changedFileBase=02000000/",m_listener.eventList);
+  assertEquals("02000000",m_module.getConfiguration().getFileBase().toHexString());
+  m_module.getConfiguration().setFileBase(new CAddress(0x02000000));
+  assertEquals("changedFileBase=02000000/",m_listener.eventList);
+  assertEquals("00000666",m_module.getConfiguration().getImageBase().toHexString());
+  m_module.getConfiguration().setImageBase(new CAddress(0xFFFFFFFFL));
+  assertEquals("changedFileBase=02000000/changedImageBase=FFFFFFFF/",m_listener.eventList);
+  assertEquals("FFFFFFFF",m_module.getConfiguration().getImageBase().toHexString());
+  m_module.getConfiguration().setImageBase(new CAddress(0xFFFFFFFFL));
+  assertEquals("changedFileBase=02000000/changedImageBase=FFFFFFFF/",m_listener.eventList);
+}

@@ -1,0 +1,3 @@
+{
+  return new CProject(123,"Name","Comment",new Date(),new Date(),55,new FilledList<DebuggerTemplate>(),new MockSqlProvider());
+}

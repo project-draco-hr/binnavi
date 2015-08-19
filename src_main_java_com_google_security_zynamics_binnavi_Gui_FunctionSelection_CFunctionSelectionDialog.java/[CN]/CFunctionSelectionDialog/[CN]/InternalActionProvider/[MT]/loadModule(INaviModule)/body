@@ -1,0 +1,3 @@
+{
+  CModuleLoader.loadModule(CFunctionSelectionDialog.this,module);
+}

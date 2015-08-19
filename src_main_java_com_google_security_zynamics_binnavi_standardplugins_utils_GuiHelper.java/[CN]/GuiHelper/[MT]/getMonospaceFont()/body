@@ -1,0 +1,10 @@
+{
+  final GraphicsEnvironment env=GraphicsEnvironment.getLocalGraphicsEnvironment();
+  final Font[] allfonts=env.getAllFonts();
+  for (  final Font font : allfonts) {
+    if (font.getName().equals("Courier New")) {
+      return "Courier New";
+    }
+  }
+  return Font.MONOSPACED;
+}

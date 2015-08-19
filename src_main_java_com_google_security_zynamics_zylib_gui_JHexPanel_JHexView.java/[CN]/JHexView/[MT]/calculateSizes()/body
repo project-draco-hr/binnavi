@@ -1,0 +1,5 @@
+{
+  m_rowHeight=getRowHeight(bufferGraphics);
+  m_charHeight=getCharHeight(bufferGraphics);
+  m_charWidth=getCharacterWidth(bufferGraphics);
+}

@@ -1,0 +1,5 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  final TargetProcessThread thread=new TargetProcessThread(reply.getThreadId(),reply.getThreadState());
+  processManager.addThread(thread);
+}

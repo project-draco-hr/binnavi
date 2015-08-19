@@ -1,0 +1,10 @@
+{
+  m_module.removeListener(m_moduleListener);
+  m_debuggerPanel.removeListener(m_internalDebuggerPanelListener);
+  m_debuggerPanel.dispose();
+  if (m_addressSpace == null) {
+    m_debuggerContainer.dispose();
+  }
+  m_bottomPanel.dispose();
+  m_middlePanel.dispose();
+}

@@ -1,0 +1,18 @@
+{
+  IComment editedComment=null;
+  try {
+    editedComment=m_node.editLocalFunctionComment(comment,commentText);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  for (  final IFunctionNodeListener listener : m_listeners) {
+    try {
+      listener.editedComment(this,editedComment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return editedComment;
+}

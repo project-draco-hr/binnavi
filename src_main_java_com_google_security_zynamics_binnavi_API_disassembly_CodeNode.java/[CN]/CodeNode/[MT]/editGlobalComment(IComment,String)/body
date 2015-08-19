@@ -1,0 +1,9 @@
+{
+  try {
+    m_node.getComments().editGlobalCodeNodeComment(comment,newComment);
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  return null;
+}

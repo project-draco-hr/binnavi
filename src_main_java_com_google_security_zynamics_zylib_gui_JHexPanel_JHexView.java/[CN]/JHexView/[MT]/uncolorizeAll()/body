@@ -1,0 +1,5 @@
+{
+  for (  final ColoredRangeManager coloredRange : m_coloredRanges) {
+    coloredRange.clear();
+  }
+}

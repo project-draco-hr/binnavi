@@ -1,0 +1,11 @@
+{
+  checkArguments(graph);
+  final SelectableGraph<NaviNode> selectableGraph=SelectableGraph.wrap(graph);
+  if (graph.getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+    GraphHelpers.expandSelectionUp(selectableGraph);
+  }
+ else {
+    final Collection<INaviViewNode> rawNodes=GraphConverters.convert(graph.getSelectedNodes());
+    graph.selectNodes(GraphConverters.convert(graph,GraphAlgorithms.getPredecessors(rawNodes,1)),true);
+  }
+}

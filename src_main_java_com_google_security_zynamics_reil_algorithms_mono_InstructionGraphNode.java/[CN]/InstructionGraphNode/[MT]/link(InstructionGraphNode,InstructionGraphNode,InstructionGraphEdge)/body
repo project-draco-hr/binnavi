@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(source,"Error: Source argument can not be null");
+  Preconditions.checkNotNull(target,"Error: Target argument can not be null");
+  Preconditions.checkNotNull(edge,"Error: Edge argument can not be null");
+  source.outgoingEdges.add(edge);
+  target.incomingEdges.add(edge);
+}

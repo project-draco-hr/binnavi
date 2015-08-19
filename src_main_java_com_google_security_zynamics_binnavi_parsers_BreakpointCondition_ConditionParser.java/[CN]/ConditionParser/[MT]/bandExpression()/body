@@ -1,0 +1,52 @@
+{
+  final ConditionParser.bandExpression_return retval=new ConditionParser.bandExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token B_AND19=null;
+  ConditionParser.shiftExpression_return shiftExpression18=null;
+  ConditionParser.shiftExpression_return shiftExpression20=null;
+  Object B_AND19_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_shiftExpression_in_bandExpression454);
+      shiftExpression18=shiftExpression();
+      state._fsp--;
+      adaptor.addChild(root_0,shiftExpression18.getTree());
+      loop5:       do {
+        int alt5=2;
+        final int LA5_0=input.LA(1);
+        if ((LA5_0 == B_AND)) {
+          alt5=1;
+        }
+switch (alt5) {
+case 1:
+{
+            B_AND19=(Token)match(input,B_AND,FOLLOW_B_AND_in_bandExpression457);
+            B_AND19_tree=(Object)adaptor.create(B_AND19);
+            root_0=(Object)adaptor.becomeRoot(B_AND19_tree,root_0);
+            pushFollow(FOLLOW_shiftExpression_in_bandExpression460);
+            shiftExpression20=shiftExpression();
+            state._fsp--;
+            adaptor.addChild(root_0,shiftExpression20.getTree());
+          }
+        break;
+default :
+      break loop5;
+  }
+}
+ while (true);
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException re) {
+reportError(re);
+recover(input,re);
+retval.tree=(Object)adaptor.errorNode(input,retval.start,input.LT(-1),re);
+}
+ finally {
+}
+return retval;
+}

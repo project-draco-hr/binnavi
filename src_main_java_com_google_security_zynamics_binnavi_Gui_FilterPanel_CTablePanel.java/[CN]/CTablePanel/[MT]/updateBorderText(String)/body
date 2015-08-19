@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(text,"IE01842: Text argument can not be null");
+  m_titledBorder.setTitle(text);
+  updateUI();
+}

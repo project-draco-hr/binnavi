@@ -1,0 +1,13 @@
+{
+  super(nodes,edges);
+  for (  final Object block : nodes) {
+    if (!(block instanceof ViewNode)) {
+      throw new IllegalArgumentException("Error: Node list contains objects that are not ViewNode objects");
+    }
+  }
+  for (  final Object block : edges) {
+    if (!(block instanceof ViewEdge)) {
+      throw new IllegalArgumentException("Error: Edge list contains objects that are not ViewEdge objects");
+    }
+  }
+}

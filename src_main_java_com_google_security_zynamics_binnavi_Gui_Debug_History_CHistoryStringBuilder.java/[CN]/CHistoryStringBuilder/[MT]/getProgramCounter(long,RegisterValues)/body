@@ -1,0 +1,12 @@
+{
+  for (  final ThreadRegisters threadRegisters : registerValues) {
+    if (threadRegisters.getTid() == threadId) {
+      for (      final RegisterValue registerValue : threadRegisters) {
+        if (registerValue.isPc()) {
+          return new CAddress(registerValue.getValue());
+        }
+      }
+    }
+  }
+  throw new MaybeNullException();
+}

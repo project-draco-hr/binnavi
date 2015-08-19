@@ -1,0 +1,43 @@
+{
+  final Style structNameStyle=createDeclarationStyle(document);
+  final Style structMemberStyle=document.addStyle("STRUCTMEMBERSTYLE",structNameStyle);
+  StyleConstants.setForeground(structMemberStyle,Color.GRAY);
+  final Style structContentStyle=document.addStyle("STRUCTCONTENTSTYLE",structNameStyle);
+  StyleConstants.setForeground(structContentStyle,Color.BLUE);
+  StyleConstants.setAlignment(structNameStyle,StyleConstants.ALIGN_RIGHT);
+  final BaseType baseType=instance.getBaseType();
+  int maxMemberLength=0;
+  for (  final TypeMember member : baseType) {
+    if (member.getBaseType().getName().length() > maxMemberLength) {
+      maxMemberLength=member.getBaseType().getName().length();
+    }
+  }
+  int maxNameLength=0;
+  for (  final TypeMember member : baseType) {
+    if (member.getName().length() > maxNameLength) {
+      maxNameLength=member.getName().length();
+    }
+  }
+  try {
+    document.remove(0,document.getLength());
+    appendString(document,"struct " + baseType.getName() + " {\n",structNameStyle);
+    long memberOffset=0;
+    for (    final TypeMember member : baseType) {
+      appendString(document,"  " + member.getBaseType().getName(),structNameStyle);
+      final String separator=Strings.repeat(" ",maxMemberLength - member.getBaseType().getName().length() + 1);
+      appendString(document,separator + member.getName(),structMemberStyle);
+      appendString(document,";",structMemberStyle);
+      if (renderData) {
+        final String dataSeperator=Strings.repeat(".",maxNameLength - member.getName().length() + 1);
+        appendString(document,dataSeperator,structNameStyle);
+        appendString(document,renderInstanceData(member.getBaseType(),instance.getAddress().getOffset() + memberOffset,instance.getSection()),createDataStyle(document));
+        memberOffset+=member.getBaseType().getByteSize();
+      }
+      appendString(document,"\n",structMemberStyle);
+    }
+    appendString(document,"};",structNameStyle);
+  }
+ catch (  final BadLocationException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

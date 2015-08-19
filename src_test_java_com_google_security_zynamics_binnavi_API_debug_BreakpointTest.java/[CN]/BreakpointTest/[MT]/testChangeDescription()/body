@@ -1,0 +1,6 @@
+{
+  m_apiBreakpoint.setDescription(null);
+  m_apiBreakpoint.setDescription("Fork");
+  assertEquals("Fork",m_apiBreakpoint.getDescription());
+  assertEquals("Fork",m_internalBreakpoint.getDescription());
+}

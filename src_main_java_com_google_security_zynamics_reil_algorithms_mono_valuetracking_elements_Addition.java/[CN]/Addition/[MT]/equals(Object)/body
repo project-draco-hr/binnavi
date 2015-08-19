@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Addition) && ((Addition)rhs).m_lhs.equals(m_lhs) && ((Addition)rhs).m_rhs.equals(m_rhs);
+}

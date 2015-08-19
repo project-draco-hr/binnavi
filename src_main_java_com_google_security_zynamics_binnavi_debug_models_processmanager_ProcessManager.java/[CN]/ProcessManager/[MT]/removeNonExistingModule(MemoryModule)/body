@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(module,"IE02256: E00084: Module argument can not be null");
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.removedNonExistingModule(module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

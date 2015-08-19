@@ -1,0 +1,19 @@
+{
+  final int normalizedX=x - (getAsciiViewLeft() + m_paddingAsciiLeft);
+  if (normalizedX < 0) {
+    return -1;
+  }
+  final int row=(y - (m_paddingTop - m_charHeight)) / m_rowHeight;
+  final int earlierPositions=2 * getEarlierBytes();
+  if ((normalizedX / m_charWidth) >= m_bytesPerRow) {
+    return -1;
+  }
+  final int character=2 * (normalizedX / m_charWidth);
+  final int position=earlierPositions + (2 * row * m_bytesPerRow) + character;
+  if (position >= (2 * m_dataProvider.getDataLength())) {
+    return -1;
+  }
+ else {
+    return position;
+  }
+}

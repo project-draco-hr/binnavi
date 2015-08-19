@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(parentNode,"Error: parent node can't be null");
+  Preconditions.checkNotNull(maximumChildNode,"Error: maximumChildNode argument can not be null");
+  final Set<NodeType> successors=new HashSet<NodeType>();
+  final Set<NodeType> visited=new HashSet<NodeType>();
+  getSuccessors(parentNode,successors,visited);
+  return successors;
+}

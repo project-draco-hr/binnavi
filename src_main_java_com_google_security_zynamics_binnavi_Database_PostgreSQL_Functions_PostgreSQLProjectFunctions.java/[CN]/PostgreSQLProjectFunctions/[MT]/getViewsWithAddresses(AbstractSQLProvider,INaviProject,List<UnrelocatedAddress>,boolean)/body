@@ -1,0 +1,38 @@
+{
+  checkArguments(provider,project);
+  Preconditions.checkNotNull(addresses,"IE00523: Addresses argument can not be null");
+  final StringBuilder queryBuilder=new StringBuilder();
+  if (addresses.size() == 0) {
+    return new ArrayList<INaviView>();
+  }
+ else   if (addresses.size() == 1) {
+    queryBuilder.append("SELECT " + CTableNames.PROJECT_VIEWS_TABLE + ".project_id, "+ CTableNames.PROJECT_VIEWS_TABLE+ ".view_id "+ " FROm "+ CTableNames.PROJECT_VIEWS_TABLE+ " JOIN "+ CTableNames.NODES_TABLE+ " ON "+ CTableNames.PROJECT_VIEWS_TABLE+ ".view_id = "+ CTableNames.NODES_TABLE+ ".view_id "+ " JOIN "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ " ON "+ CTableNames.NODES_TABLE+ ".id = "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ ".node_id "+ " WHERE project_id = "+ project.getConfiguration().getId()+ " AND "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ ".address = "+ addresses.get(0).getAddress().toBigInteger().toString());
+  }
+ else   if (all) {
+    boolean needsComma=false;
+    int counter=0;
+    queryBuilder.append("select view_id from ");
+    for (    final UnrelocatedAddress address : addresses) {
+      if (needsComma) {
+        queryBuilder.append(" inner join ");
+      }
+      needsComma=true;
+      queryBuilder.append("(select " + CTableNames.PROJECT_VIEWS_TABLE + ".project_id, "+ CTableNames.PROJECT_VIEWS_TABLE+ ".view_id "+ " from "+ CTableNames.PROJECT_VIEWS_TABLE+ " "+ " join "+ CTableNames.NODES_TABLE+ " on "+ CTableNames.PROJECT_VIEWS_TABLE+ ".view_id = "+ CTableNames.NODES_TABLE+ ".view_id "+ " join "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ " on "+ CTableNames.NODES_TABLE+ ".id = "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ ".node_id "+ " where "+ CTableNames.PROJECT_VIEWS_TABLE+ ".project_id = "+ project.getConfiguration().getId()+ " "+ " and "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ ".address = "+ address.getAddress().toLong()+ ") as t"+ counter);
+      counter++;
+    }
+    queryBuilder.append(" using (view_id)");
+  }
+ else {
+    queryBuilder.append("select " + CTableNames.PROJECT_VIEWS_TABLE + ".project_id, "+ CTableNames.PROJECT_VIEWS_TABLE+ ".view_id from "+ CTableNames.PROJECT_VIEWS_TABLE+ " join "+ CTableNames.NODES_TABLE+ " on "+ CTableNames.PROJECT_VIEWS_TABLE+ ".view_id = "+ CTableNames.NODES_TABLE+ ".view_id join "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ " on "+ CTableNames.NODES_TABLE+ ".id = "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ ".node_id where "+ CTableNames.PROJECT_VIEWS_TABLE+ ".project_id = "+ project.getConfiguration().getId()+ " and "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ ".address in (");
+    boolean needsComma=false;
+    for (    final UnrelocatedAddress address : addresses) {
+      if (needsComma) {
+        queryBuilder.append(", ");
+      }
+      needsComma=true;
+      queryBuilder.append(address.getAddress().toLong());
+    }
+    queryBuilder.append(") group by " + CTableNames.PROJECT_VIEWS_TABLE + ".view_id, "+ CTableNames.PROJECT_VIEWS_TABLE+ ".project_id");
+  }
+  return PostgreSQLHelpers.getViewsWithAddress(provider.getConnection(),queryBuilder.toString(),"project_id",new CProjectViewFinder(provider));
+}

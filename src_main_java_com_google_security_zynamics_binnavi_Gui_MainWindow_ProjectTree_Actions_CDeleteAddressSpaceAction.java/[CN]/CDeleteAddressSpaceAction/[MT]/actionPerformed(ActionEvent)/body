@@ -1,0 +1,3 @@
+{
+  CProjectFunctions.removeAddressSpace(m_parent,m_project,m_addressSpace,m_updater);
+}

@@ -1,0 +1,25 @@
+{
+  final ReilOperand thirdOperand=instruction.getThirdOperand();
+  final Register targetRegister=new Register(thirdOperand.getValue());
+  if (isTruncateMask(previousAnd.getLhs(),firstOperand.getSize())) {
+    final IValueElement newAddition=generator.generate(previousAnd.getRhs(),new Literal(new BigInteger(secondOperand.getValue())));
+    final BitwiseAnd newBitwiseAnd=new BitwiseAnd(new Literal(newAddition.evaluate()),previousAnd.getLhs());
+    return state.update(instruction,targetRegister,newBitwiseAnd);
+  }
+ else   if (isTruncateMask(previousAnd.getRhs(),firstOperand.getSize())) {
+    final IValueElement previousLhs=previousAnd.getLhs();
+    if (previousLhs instanceof Undefined) {
+      return state.update(instruction,targetRegister,new Undefined());
+    }
+ else {
+      final IValueElement newAddition=generator.generate(previousLhs,new Literal(new BigInteger(secondOperand.getValue())));
+      final BitwiseAnd newBitwiseAnd=new BitwiseAnd(newAddition.getSimplified(),previousAnd.getRhs());
+      return state.update(instruction,targetRegister,newBitwiseAnd);
+    }
+  }
+ else {
+    final IValueElement previousState=state.getState(firstOperand.getValue());
+    final IValueElement addition=generator.generate(previousState,new Literal(new BigInteger(secondOperand.getValue())));
+    return state.update(instruction,targetRegister,addition);
+  }
+}

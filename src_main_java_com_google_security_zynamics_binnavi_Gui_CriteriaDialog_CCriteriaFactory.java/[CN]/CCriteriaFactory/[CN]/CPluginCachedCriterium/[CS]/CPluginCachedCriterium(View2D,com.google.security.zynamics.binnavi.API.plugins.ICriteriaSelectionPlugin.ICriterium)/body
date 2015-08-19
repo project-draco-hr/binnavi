@@ -1,0 +1,5 @@
+{
+  m_view2D=view2D;
+  m_plugin=plugin;
+  m_value=plugin.getFixedCriterium();
+}

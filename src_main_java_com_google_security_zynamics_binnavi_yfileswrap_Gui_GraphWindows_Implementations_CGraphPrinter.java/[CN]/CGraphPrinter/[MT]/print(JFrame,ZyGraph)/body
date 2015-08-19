@@ -1,0 +1,39 @@
+{
+  final String[] area={"Print the visible part of the graph only","Print the whole graph"};
+  final OptionHandler printOptions=new OptionHandler("Print Options");
+  printOptions.addInt("Poster rows",1);
+  printOptions.addInt("Poster columns",1);
+  printOptions.addBool("Add poster coordinates",false);
+  printOptions.addEnum("Print Area",area,1);
+  final Graph2DPrinter gprinter=new Graph2DPrinter(graph.getView());
+  if (!printOptions.showEditor()) {
+    return;
+  }
+  gprinter.setPosterRows(printOptions.getInt("Poster rows"));
+  gprinter.setPosterColumns(printOptions.getInt("Poster columns"));
+  gprinter.setPrintPosterCoords(printOptions.getBool("Add poster coordinates"));
+  if (printOptions.get("Print Area").equals("Print the whole graph")) {
+    gprinter.setClipType(Graph2DPrinter.CLIP_GRAPH);
+  }
+ else {
+    gprinter.setClipType(Graph2DPrinter.CLIP_VIEW);
+  }
+  final PrinterJob printJob=PrinterJob.getPrinterJob();
+  PageFormat pageFormat=printJob.defaultPage();
+  final PageFormat pageFormat2=printJob.pageDialog(pageFormat);
+  if (pageFormat2 == pageFormat) {
+    return;
+  }
+  pageFormat=pageFormat2;
+  printJob.setPrintable(gprinter,pageFormat);
+  if (printJob.printDialog()) {
+    try {
+      printJob.print();
+    }
+ catch (    final PrinterException exception) {
+      final String innerMessage="E00119: " + "Graph could not be printed";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The graph '%s' could not be printed because there was a problem with the printer.",graph.getRawView().getName()),new String[]{"There was a problem with the printer."},new String[]{"The print operation could not be completed."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    }
+  }
+}

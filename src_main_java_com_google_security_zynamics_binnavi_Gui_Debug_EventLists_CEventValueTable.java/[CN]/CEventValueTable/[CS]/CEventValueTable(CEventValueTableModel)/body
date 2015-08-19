@@ -1,0 +1,6 @@
+{
+  super(model);
+  m_model=model;
+  setRowSorter(new TableRowSorter<CEventValueTableModel>(model));
+  setFont(GuiHelper.MONOSPACED_FONT);
+}

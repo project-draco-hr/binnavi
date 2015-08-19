@@ -1,0 +1,3 @@
+{
+  cTaggedGraphNodesContainerNode.add(new CTaggedGraphNodeNode(getGraph(),getGraph().getNode(node)));
+}

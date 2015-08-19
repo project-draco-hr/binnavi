@@ -1,0 +1,13 @@
+{
+  final String notification=table + " " + databaseOperation+ " "+ moduleId+ " "+ address;
+  notifications.add(new MockPGNotification("function_changes",notification));
+  final PostgreSQLFunctionNotificationParser parser=new PostgreSQLFunctionNotificationParser();
+  final Collection<FunctionNotificationContainer> result=parser.parse(notifications,provider);
+  assertNotNull(result);
+  assertTrue(!result.isEmpty());
+  assertTrue(result.size() == 1);
+  final FunctionNotificationContainer container=Iterables.getFirst(result,null);
+  assertNotNull(container);
+  assertEquals(databaseOperation,container.getDatabaseOperation());
+  assertEquals(new CAddress(address,10),container.getFunctionAddress());
+}

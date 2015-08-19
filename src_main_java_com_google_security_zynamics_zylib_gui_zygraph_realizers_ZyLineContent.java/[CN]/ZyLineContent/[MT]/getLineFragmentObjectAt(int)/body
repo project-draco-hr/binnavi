@@ -1,0 +1,13 @@
+{
+  for (  final IZyEditableObject object : m_lineObjects) {
+    if ((xPos >= object.getStart()) && (xPos < (object.getStart() + object.getLength()))) {
+      return object;
+    }
+  }
+  for (  final IZyEditableObject object : m_lineObjects) {
+    if ((xPos >= object.getStart()) && ((xPos - 1) < (object.getStart() + object.getLength()))) {
+      return object;
+    }
+  }
+  return null;
+}

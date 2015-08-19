@@ -1,0 +1,14 @@
+{
+  if (!isLoaded()) {
+    try {
+      load();
+    }
+ catch (    final CouldntLoadDataException e) {
+      return new ArrayList<Project>();
+    }
+catch (    final InvalidDatabaseVersionException e) {
+      return new ArrayList<Project>();
+    }
+  }
+  return new ArrayList<Project>(m_projects);
+}

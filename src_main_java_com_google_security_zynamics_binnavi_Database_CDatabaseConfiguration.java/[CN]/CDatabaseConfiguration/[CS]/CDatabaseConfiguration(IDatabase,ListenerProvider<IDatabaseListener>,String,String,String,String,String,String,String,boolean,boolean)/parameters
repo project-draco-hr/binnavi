@@ -1,0 +1,11 @@
+IDatabase database
+ListenerProvider<IDatabaseListener> listeners
+String description
+String driver
+String host
+String name
+String user
+String password
+String identity
+boolean autoConnect
+boolean savePassword

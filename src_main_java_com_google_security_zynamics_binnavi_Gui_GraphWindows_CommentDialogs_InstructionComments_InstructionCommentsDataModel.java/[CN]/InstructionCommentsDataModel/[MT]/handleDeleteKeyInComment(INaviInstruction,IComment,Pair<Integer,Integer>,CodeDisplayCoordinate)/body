@@ -1,0 +1,6 @@
+{
+  if (coordinate.getFieldIndex() > (indices.second() - indices.first())) {
+    return;
+  }
+  deleteCharacterFromComment(instruction,comment,indices.first() + coordinate.getFieldIndex());
+}

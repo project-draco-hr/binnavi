@@ -1,0 +1,12 @@
+{
+  final TypeSubstitution typeSubstitution=operandNode.getTypeSubstitution();
+  final BaseTypeCategory category=typeSubstitution.getBaseType().getCategory();
+  if (category == BaseTypeCategory.STRUCT || category == BaseTypeCategory.ARRAY || category == BaseTypeCategory.UNION) {
+    addCompoundTypeSubstitutionToTree(operandNode,instruction,typeSubstitution);
+  }
+ else {
+    addBaseType(typeSubstitution.getBaseType());
+    BaseTypeTreeNode currentNode=baseTypeToTreeNode.get(typeSubstitution.getBaseType());
+    insertNodeInto(multiIndex.putTypeSubstitution(typeSubstitution,instruction),currentNode,currentNode.getChildCount());
+  }
+}

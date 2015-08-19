@@ -1,0 +1,12 @@
+{
+  try {
+    final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin=loadClassFile(pluginFile,directory);
+    if (plugin == null) {
+      return;
+    }
+    loadedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.Valid));
+  }
+ catch (  final Exception e) {
+    failedPlugins.add(new Pair<String,Throwable>(pluginFile.getAbsolutePath(),e));
+  }
+}

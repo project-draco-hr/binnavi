@@ -1,0 +1,4 @@
+ZyGraphNode<?> source
+ZyGraphNode<?> target
+Edge edge
+ZyEdgeRealizer<ZyInfoEdge> r

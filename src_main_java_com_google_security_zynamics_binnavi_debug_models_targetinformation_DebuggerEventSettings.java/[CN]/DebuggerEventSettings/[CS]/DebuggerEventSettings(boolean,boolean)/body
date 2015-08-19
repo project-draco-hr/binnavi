@@ -1,0 +1,4 @@
+{
+  this.breakOnDllLoad=breakOnDllLoad;
+  this.breakOnDllUnload=breakOnDllUnload;
+}

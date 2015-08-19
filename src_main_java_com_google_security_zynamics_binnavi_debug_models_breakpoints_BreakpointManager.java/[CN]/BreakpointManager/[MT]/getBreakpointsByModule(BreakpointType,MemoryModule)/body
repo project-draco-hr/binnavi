@@ -1,0 +1,12 @@
+{
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.getByModule(module);
+case ECHO:
+  return echoBreakpointStorage.getByModule(module);
+case STEP:
+return stepBreakpointStorage.getByModule(module);
+default :
+throw new IllegalStateException(String.format("IE00725: Invalid breakpoint type '%s'",type));
+}
+}

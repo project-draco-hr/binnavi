@@ -1,0 +1,18 @@
+{
+  final Set<INaviView> views=new HashSet<INaviView>();
+  if (m_project.isLoaded()) {
+    for (    final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+      if (addressSpace.isLoaded()) {
+        for (        final INaviModule module : addressSpace.getContent().getModules()) {
+          if (module.isLoaded()) {
+            views.addAll(module.getContent().getViewContainer().getViews());
+          }
+        }
+      }
+    }
+  }
+  if (m_project.isLoaded()) {
+    views.addAll(m_project.getContent().getViews());
+  }
+  return new ArrayList<INaviView>(views);
+}

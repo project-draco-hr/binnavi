@@ -1,0 +1,2 @@
+TypeMember member
+ImmutableSet<BaseType> affectedTypes

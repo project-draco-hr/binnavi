@@ -1,0 +1,2 @@
+Collection<NaviNode> selectedNodes
+Collection<NaviNode> unselectedNodes

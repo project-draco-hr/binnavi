@@ -1,0 +1,24 @@
+{
+  super(new BorderLayout(5,5));
+  Preconditions.checkNotNull(headline,"IE02072: Headline argument can not be null");
+  Preconditions.checkNotNull(name,"IE02073: Name argument can not be null");
+  Preconditions.checkNotNull(description,"IE02074: Description argument can not be null");
+  Preconditions.checkNotNull(creationDate,"IE02075: Creation date argument can not be null");
+  Preconditions.checkNotNull(modificationDate,"IE02076: Modification date argument can not be null");
+  m_savedName=name.getValue();
+  m_savedDescription=description.getValue();
+  setBorder(new EmptyBorder(0,0,0,0));
+  m_nameTextField=new CHelpSaveField(name.getHelp());
+  m_nameTextField.setDocument(new JTextFieldLimit());
+  m_nameTextField.setText(name.getValue());
+  m_creationDateValueLabel=new CHelpLabel(DateHelpers.formatDateTime(creationDate.getValue()),creationDate.getHelp());
+  m_modificationDateValueLabel=new CHelpLabel(DateHelpers.formatDateTime(modificationDate.getValue()),modificationDate.getHelp());
+  m_descriptionField=new CHelpSavePane(description.getHelp());
+  m_descriptionField.setDocument(new JTextFieldLimit());
+  m_descriptionField.setText(description.getValue());
+  addNameDatesPanel(headline,name,creationDate,modificationDate);
+  addDescriptionPanel();
+  final UpdateListener updateListener=new UpdateListener();
+  m_nameTextField.getDocument().addDocumentListener(updateListener);
+  m_descriptionField.getDocument().addDocumentListener(updateListener);
+}

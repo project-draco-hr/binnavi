@@ -1,0 +1,19 @@
+{
+  setFont(INSTRUCTION_FONT);
+  setText(value.toString());
+  if (isSelected) {
+    setBackground(table.getSelectionBackground());
+    if (selectedBorder == null) {
+      selectedBorder=BorderFactory.createMatteBorder(2,5,2,5,table.getSelectionBackground());
+    }
+    setBorder(selectedBorder);
+  }
+ else {
+    setBackground(Color.WHITE);
+    if (unselectedBorder == null) {
+      unselectedBorder=BorderFactory.createMatteBorder(2,5,2,5,table.getBackground());
+    }
+    setBorder(unselectedBorder);
+  }
+  return this;
+}

@@ -1,0 +1,5 @@
+CGraphModel model
+NaviNode node
+Object clickedObject
+double y
+List<ICodeNodeExtension> extensions

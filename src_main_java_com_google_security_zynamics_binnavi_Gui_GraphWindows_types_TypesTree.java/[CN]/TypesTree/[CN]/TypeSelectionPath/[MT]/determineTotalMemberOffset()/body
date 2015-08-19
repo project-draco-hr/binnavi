@@ -1,0 +1,10 @@
+{
+  if (containsBaseTypeOnly()) {
+    return 0;
+  }
+  int offset=0;
+  for (  final TypeMember member : members) {
+    offset+=member.getBitOffset().get();
+  }
+  return offset;
+}

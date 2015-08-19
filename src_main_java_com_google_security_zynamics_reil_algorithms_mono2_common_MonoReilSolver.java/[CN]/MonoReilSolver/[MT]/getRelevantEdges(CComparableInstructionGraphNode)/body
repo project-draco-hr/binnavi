@@ -1,0 +1,6 @@
+{
+  if (m_direction == AnalysisDirection.DOWN) {
+    return m_graph.getIncomingEdges(node.getNode());
+  }
+  return m_graph.getOutgoingEdges(node.getNode());
+}

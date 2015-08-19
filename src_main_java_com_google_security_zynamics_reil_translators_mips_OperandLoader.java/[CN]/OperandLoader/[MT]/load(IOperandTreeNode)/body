@@ -1,0 +1,13 @@
+{
+  final IOperandTreeNode base=root.getChildren().get(0);
+  if (base.getType() == ExpressionType.MEMDEREF) {
+    return new Pair<IOperandTreeNode,IOperandTreeNode>(base.getChildren().get(0),null);
+  }
+  if (base.getType() != ExpressionType.OPERATOR) {
+    throw new InternalTranslationException("Malformed operand");
+  }
+  if (base.getChildren().size() != 2) {
+    throw new InternalTranslationException("Malformed operand");
+  }
+  return new Pair<IOperandTreeNode,IOperandTreeNode>(base.getChildren().get(0),base.getChildren().get(1));
+}

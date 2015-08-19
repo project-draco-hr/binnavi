@@ -1,0 +1,16 @@
+{
+  final List<Pair<INaviModule,MemoryModule>> wronglyPlacedModules=new ArrayList<Pair<INaviModule,MemoryModule>>();
+  final List<INaviModule> modules=viewContainer.getModules();
+  for (  final INaviModule module : modules) {
+    for (    final MemoryModule memoryModule : memoryModules) {
+      if (module.getConfiguration().getName().equalsIgnoreCase(memoryModule.getName())) {
+        final RelocatedAddress assumedAddress=debugger.fileToMemory(module,new UnrelocatedAddress(module.getConfiguration().getFileBase()));
+        final IAddress memoryAddress=memoryModule.getBaseAddress().getAddress();
+        if (!assumedAddress.getAddress().equals(memoryAddress)) {
+          wronglyPlacedModules.add(new Pair<INaviModule,MemoryModule>(module,memoryModule));
+        }
+      }
+    }
+  }
+  return wronglyPlacedModules;
+}

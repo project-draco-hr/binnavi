@@ -1,0 +1,4 @@
+{
+  this.isValid=isValid;
+  this.affectedTypes=affectedTypes;
+}

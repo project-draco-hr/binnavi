@@ -1,0 +1,12 @@
+{
+  if (e.getActionCommand().equals("OK")) {
+    startBlock=getSelectedBlock(startBlockTree);
+    endBlock=getSelectedBlock(endBlockTree);
+    startFunction=getSelectedFunction(startBlockTree);
+    endFunction=getSelectedFunction(endBlockTree);
+    wasCancelled=false;
+  }
+  startBlockTree.dispose();
+  endBlockTree.dispose();
+  dispose();
+}

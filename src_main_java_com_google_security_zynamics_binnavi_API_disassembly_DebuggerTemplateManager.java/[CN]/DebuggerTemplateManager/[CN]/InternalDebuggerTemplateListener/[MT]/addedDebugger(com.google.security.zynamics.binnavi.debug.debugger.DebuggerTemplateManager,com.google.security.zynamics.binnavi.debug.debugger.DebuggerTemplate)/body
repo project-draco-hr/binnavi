@@ -1,0 +1,12 @@
+{
+  final DebuggerTemplate newTemplate=new DebuggerTemplate(debugger);
+  m_debuggerTemplates.add(newTemplate);
+  for (  final IDebuggerTemplateManagerListener listener : m_listeners) {
+    try {
+      listener.addedDebuggerTemplate(DebuggerTemplateManager.this,newTemplate);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

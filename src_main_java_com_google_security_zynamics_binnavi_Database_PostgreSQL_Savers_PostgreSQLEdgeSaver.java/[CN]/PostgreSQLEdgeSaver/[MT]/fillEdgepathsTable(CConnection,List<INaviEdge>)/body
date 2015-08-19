@@ -1,0 +1,23 @@
+{
+  final String query="INSERT INTO " + CTableNames.EDGE_PATHS_TABLE + "(edge_id, position, x, y) VALUES (?, ?, ?, ?)";
+  final PreparedStatement preparedStatement=connection.getConnection().prepareStatement(query);
+  try {
+    for (    final INaviEdge edge : edges) {
+      for (      final CBend bend : edge.getBends()) {
+        preparedStatement.setInt(1,edge.getId());
+        preparedStatement.setInt(2,edge.getBends().indexOf(bend));
+        preparedStatement.setDouble(3,bend.getX());
+        preparedStatement.setDouble(4,bend.getY());
+        preparedStatement.addBatch();
+      }
+    }
+    preparedStatement.executeBatch();
+  }
+ catch (  final SQLException exception) {
+    CUtilityFunctions.logException(exception);
+    CUtilityFunctions.logException(exception.getNextException());
+  }
+ finally {
+    preparedStatement.close();
+  }
+}

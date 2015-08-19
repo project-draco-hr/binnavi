@@ -1,0 +1,10 @@
+{
+  super("Search View");
+  checkArguments(parent);
+  Preconditions.checkNotNull(container,"IE01918: Container argument can not be null");
+  m_parent=parent;
+  m_parentComponent=null;
+  m_container=container;
+  m_address=address;
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_SEARCH_VIEW".charAt(0));
+}

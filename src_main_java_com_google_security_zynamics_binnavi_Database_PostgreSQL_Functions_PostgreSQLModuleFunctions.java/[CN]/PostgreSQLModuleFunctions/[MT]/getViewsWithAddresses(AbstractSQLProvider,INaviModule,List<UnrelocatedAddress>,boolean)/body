@@ -1,0 +1,39 @@
+{
+  checkArguments(provider,module);
+  Preconditions.checkNotNull(addresses,"IE00492: Addresses argument can not be null");
+  final StringBuilder queryBuilder=new StringBuilder();
+  final int moduleID=module.getConfiguration().getId();
+  if (addresses.size() == 0) {
+    return new ArrayList<INaviView>();
+  }
+ else   if (addresses.size() == 1) {
+    queryBuilder.append("SELECT mvt.module_id, mvt.view_id FROM " + CTableNames.MODULE_VIEWS_TABLE + " AS mvt JOIN "+ CTableNames.NODES_TABLE+ " AS nt ON mvt.view_id = nt.view_id AND mvt.module_id = "+ moduleID+ " JOIN "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ " AS cit ON nt.id = cit.node_id AND cit.module_id = "+ moduleID+ " JOIN "+ CTableNames.INSTRUCTIONS_TABLE+ " AS it ON it.address = cit.address AND it.module_id = "+ moduleID+ " WHERE it.address = "+ addresses.get(0).getAddress().toLong());
+  }
+ else   if (all) {
+    boolean needsComma=false;
+    int counter=0;
+    queryBuilder.append("select view_id from ");
+    for (    final UnrelocatedAddress address : addresses) {
+      if (needsComma) {
+        queryBuilder.append(" inner join ");
+      }
+      needsComma=true;
+      queryBuilder.append("(SELECT mvt.module_id, mvt.view_id FROM " + CTableNames.MODULE_VIEWS_TABLE + " AS mvt JOIN "+ CTableNames.NODES_TABLE+ " AS nt ON mvt.view_id = nt.view_id AND mvt.module_id = "+ moduleID+ " JOIN "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ " AS cit ON nt.id = cit.node_id AND cit.module_id = "+ moduleID+ " JOIN "+ CTableNames.INSTRUCTIONS_TABLE+ " AS it ON it.address = cit.address AND it.module_id = "+ moduleID+ " WHERE it.address = "+ address.getAddress().toLong()+ ") AS t"+ counter);
+      counter++;
+    }
+    queryBuilder.append(" USING (view_id)");
+  }
+ else {
+    queryBuilder.append("SELECT mvt.module_id, mvt.view_id FROM " + CTableNames.MODULE_VIEWS_TABLE + " AS mvt JOIN "+ CTableNames.NODES_TABLE+ " AS nt ON mvt.view_id = nt.view_id AND mvt.module_id = "+ moduleID+ " JOIN "+ CTableNames.CODENODE_INSTRUCTIONS_TABLE+ " AS cit ON nt.id = cit.node_id AND cit.module_id = "+ moduleID+ " JOIN "+ CTableNames.INSTRUCTIONS_TABLE+ " AS it ON it.address = cit.address AND it.module_id = "+ moduleID+ " WHERE it.address IN (");
+    boolean needsComma=false;
+    for (    final UnrelocatedAddress address : addresses) {
+      if (needsComma) {
+        queryBuilder.append(", ");
+      }
+      needsComma=true;
+      queryBuilder.append(address.getAddress().toLong());
+    }
+    queryBuilder.append(") GROUP BY mvt.view_id, mvt.module_id");
+  }
+  return PostgreSQLHelpers.getViewsWithAddress(provider.getConnection(),queryBuilder.toString(),"module_id",new CModuleViewFinder(provider));
+}

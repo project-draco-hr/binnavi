@@ -1,0 +1,6 @@
+{
+  super(packetId,errorCode);
+  this.threadId=threadId;
+  this.address=address;
+  this.registerValues=registerValues;
+}

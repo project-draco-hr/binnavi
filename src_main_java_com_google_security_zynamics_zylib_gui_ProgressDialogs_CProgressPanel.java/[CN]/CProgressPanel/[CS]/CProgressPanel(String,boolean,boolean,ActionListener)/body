@@ -1,0 +1,6 @@
+{
+  m_externalCancelButtonListener=Preconditions.checkNotNull(cancelButtonListener,"Error: Cancel button listener can't be null.");
+  m_description=description;
+  m_showSeconds=showSeconds;
+  createPanel(indeterminate,showSeconds,true,true);
+}

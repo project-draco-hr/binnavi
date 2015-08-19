@@ -1,0 +1,3 @@
+{
+  return PostgreSQLAddressSpaceLoader.loadAddressSpaces(this,project,getDebuggerManager(),getModules());
+}

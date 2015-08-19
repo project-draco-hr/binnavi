@@ -1,0 +1,3 @@
+{
+  getProvider().appendLocalEdgeComment(edge," FAIL ",null);
+}

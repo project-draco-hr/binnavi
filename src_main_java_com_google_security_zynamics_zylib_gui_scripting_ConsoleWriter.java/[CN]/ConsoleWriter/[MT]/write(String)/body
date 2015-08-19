@@ -1,0 +1,11 @@
+{
+  super.write(s);
+  for (  final IScriptConsoleListener listener : m_listeners) {
+    try {
+      listener.changedOutput(this);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

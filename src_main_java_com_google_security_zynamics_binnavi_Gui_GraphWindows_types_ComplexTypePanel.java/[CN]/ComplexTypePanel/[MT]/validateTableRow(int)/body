@@ -1,0 +1,4 @@
+{
+  final MemberTableRowData row=members.getModel().getRow(members.convertRowIndexToModel(rowIndex));
+  return (!row.getName().isEmpty() && row.getBaseType() != null);
+}

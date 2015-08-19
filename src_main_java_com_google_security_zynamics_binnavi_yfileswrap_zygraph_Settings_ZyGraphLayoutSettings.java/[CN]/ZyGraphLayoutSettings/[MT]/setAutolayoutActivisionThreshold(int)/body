@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00901: Threshold value must not be negative");
+  if (value == getAutolayoutDeactivationThreshold()) {
+    return;
+  }
+  if (m_type == null) {
+    m_autoLayoutDeactivationThreshold=value;
+  }
+ else {
+    m_type.setAnimationSpeed(value);
+  }
+}

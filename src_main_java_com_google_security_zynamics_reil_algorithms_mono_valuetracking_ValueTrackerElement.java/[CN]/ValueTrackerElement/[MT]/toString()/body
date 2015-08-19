@@ -1,0 +1,45 @@
+{
+  final StringBuilder sb=new StringBuilder();
+  final List<Map.Entry<IAloc,IValueElement>> entries=new ArrayList<Map.Entry<IAloc,IValueElement>>(m_values.entrySet());
+  Collections.sort(entries,new Comparator<Map.Entry<IAloc,IValueElement>>(){
+    @Override public int compare(    final Entry<IAloc,IValueElement> o1,    final Entry<IAloc,IValueElement> o2){
+      final IAloc lhs=o1.getKey();
+      final IAloc rhs=o2.getKey();
+      if ((lhs instanceof Register) && (rhs instanceof Register) && ReilHelpers.isTemporaryRegister(((Register)lhs).getName())&& ReilHelpers.isTemporaryRegister(((Register)rhs).getName())) {
+        return ((Register)lhs).getName().compareToIgnoreCase(((Register)rhs).getName());
+      }
+ else       if ((lhs instanceof Register) && (rhs instanceof Register) && ReilHelpers.isTemporaryRegister(((Register)lhs).getName())&& !ReilHelpers.isTemporaryRegister(((Register)rhs).getName())) {
+        return 1;
+      }
+ else       if ((lhs instanceof Register) && (rhs instanceof Register) && !ReilHelpers.isTemporaryRegister(((Register)lhs).getName())&& ReilHelpers.isTemporaryRegister(((Register)rhs).getName())) {
+        return -1;
+      }
+ else       if ((lhs instanceof Register) && (rhs instanceof Register) && !ReilHelpers.isTemporaryRegister(((Register)lhs).getName())&& !ReilHelpers.isTemporaryRegister(((Register)rhs).getName())) {
+        return ((Register)lhs).getName().compareTo(((Register)rhs).getName());
+      }
+ else       if ((lhs instanceof MemoryCell) && (rhs instanceof MemoryCell)) {
+        return ((MemoryCell)lhs).toString().compareTo(((MemoryCell)rhs).toString());
+      }
+ else       if ((lhs instanceof MemoryCell) && (rhs instanceof Register)) {
+        return 1;
+      }
+ else       if ((lhs instanceof Register) && (rhs instanceof MemoryCell)) {
+        return -1;
+      }
+ else {
+        System.out.println(lhs);
+        System.out.println(rhs);
+        throw new IllegalStateException();
+      }
+    }
+  }
+);
+  for (  final Map.Entry<IAloc,IValueElement> element : entries) {
+    sb.append("[");
+    sb.append(element.getKey());
+    sb.append(" -> ");
+    sb.append(element.getValue());
+    sb.append("]");
+  }
+  return sb.toString();
+}

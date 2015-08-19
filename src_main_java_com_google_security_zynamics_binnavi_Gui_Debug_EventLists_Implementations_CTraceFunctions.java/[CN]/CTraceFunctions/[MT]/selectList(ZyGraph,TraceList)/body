@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(graph,"IE01384: Graph argument can not be null");
+  Preconditions.checkNotNull(list,"IE01385: List argument can not be null");
+  graph.selectNodes(CTraceNodeFinder.getTraceNodes(graph,list),true);
+}

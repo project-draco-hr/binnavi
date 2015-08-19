@@ -1,0 +1,5 @@
+{
+  final List<String> registerList=new ArrayList<String>(registers);
+  Collections.sort(registerList);
+  return Commafier.commafy(registerList);
+}

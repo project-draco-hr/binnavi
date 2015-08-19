@@ -1,0 +1,7 @@
+{
+  final COperandTreeNode clonedNode=new COperandTreeNode(id,expressionType,expressionValue,replacement == null ? null : replacement.cloneReplacement(),references,provider);
+  for (  final COperandTreeNode child : children) {
+    COperandTreeNode.link(clonedNode,child.cloneNode());
+  }
+  return clonedNode;
+}

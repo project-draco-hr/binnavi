@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(table,"IE01927: Table argument can't be null");
+  m_table=table;
+}

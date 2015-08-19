@@ -1,0 +1,5 @@
+{
+  final RegisterSetLatticeElement element=new RegisterSetLatticeElement();
+  element.taint("eax");
+  element.taint("eax");
+}

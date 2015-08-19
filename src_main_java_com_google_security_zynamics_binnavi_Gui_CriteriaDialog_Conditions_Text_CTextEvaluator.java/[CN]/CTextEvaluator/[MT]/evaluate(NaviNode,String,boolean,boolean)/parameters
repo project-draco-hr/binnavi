@@ -1,0 +1,4 @@
+NaviNode node
+String text
+boolean regularExpression
+boolean caseSensitive

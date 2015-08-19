@@ -1,0 +1,5 @@
+{
+  final BaseType prototypeType=instantiateType(null,0,false,null,BaseTypeCategory.FUNCTION_PROTOTYPE);
+  notifyTypeAdded(prototypeType);
+  return prototypeType;
+}

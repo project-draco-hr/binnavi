@@ -1,0 +1,3 @@
+{
+  return getCurrentActiveUser().getUserId() == comment.getUser().getUserId();
+}

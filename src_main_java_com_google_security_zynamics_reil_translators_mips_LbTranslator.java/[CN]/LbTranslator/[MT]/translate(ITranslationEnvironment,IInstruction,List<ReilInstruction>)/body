@@ -1,0 +1,15 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"lb");
+  final String rt=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String result=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize bt=OperandSize.BYTE;
+  final String loadedByte=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createLdm(offset++,dw,result,bt,loadedByte));
+  final String extendedByte=SignExtendGenerator.extendFromByte(offset,environment,loadedByte,instructions);
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createStr(offset,dw,extendedByte,dw,rt));
+}

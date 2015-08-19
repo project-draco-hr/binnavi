@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(graph,"IE02186: Graph argument can not be null");
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      final INaviViewNode rawNode=node.getRawNode();
+      if (rawNode instanceof ICodeNode) {
+        final INaviCodeNode codeNode=(INaviCodeNode)rawNode;
+        for (        final INaviInstruction instruction : codeNode.getInstructions()) {
+          node.clearHighlighting(CHighlightLayers.PROGRAM_COUNTER_LAYER,CCodeNodeHelpers.instructionToLine(codeNode,instruction));
+        }
+      }
+ else       if (rawNode instanceof INaviFunctionNode) {
+        node.clearHighlighting(CHighlightLayers.PROGRAM_COUNTER_LAYER,1);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

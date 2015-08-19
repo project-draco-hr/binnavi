@@ -1,0 +1,3 @@
+{
+  this.path=Preconditions.checkNotNull(path,"IE00768: Path argument can not be null");
+}

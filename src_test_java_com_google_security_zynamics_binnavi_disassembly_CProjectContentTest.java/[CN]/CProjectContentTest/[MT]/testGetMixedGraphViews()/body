@@ -1,0 +1,6 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  @SuppressWarnings("unused") final INaviView view=new MockView(m_provider);
+  @SuppressWarnings("unused") final INaviView view2=projectContent.createView("Name","description");
+  assertNotNull(CViewFilter.getMixedgraphViewCount(projectContent.getViews()));
+}

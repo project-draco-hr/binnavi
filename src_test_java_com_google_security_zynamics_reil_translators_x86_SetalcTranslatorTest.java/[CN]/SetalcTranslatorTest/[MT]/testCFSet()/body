@@ -1,0 +1,9 @@
+{
+  interpreter.setRegister("CF",BigInteger.valueOf(1),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("eax",BigInteger.valueOf(0x80808080L),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  final MockInstruction instruction=new MockInstruction("setalc",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(3,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x808080FFL),interpreter.getVariableValue("eax"));
+}

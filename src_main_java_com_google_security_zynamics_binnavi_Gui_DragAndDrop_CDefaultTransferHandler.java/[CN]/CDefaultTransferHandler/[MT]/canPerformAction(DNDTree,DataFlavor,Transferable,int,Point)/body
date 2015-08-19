@@ -1,0 +1,9 @@
+{
+  for (  final IDropHandler handler : m_handlers) {
+    if (handler.canHandle(target,transferable,flavor,location.x,location.y)) {
+      m_activeHandler=handler;
+      return true;
+    }
+  }
+  return false;
+}

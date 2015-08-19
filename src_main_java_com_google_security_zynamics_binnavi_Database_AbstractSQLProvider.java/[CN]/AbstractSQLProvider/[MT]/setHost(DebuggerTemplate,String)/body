@@ -1,0 +1,3 @@
+{
+  PostgresSQLDebuggerFunctions.setHost(this,debugger,host);
+}

@@ -1,0 +1,7 @@
+{
+  final int line=rootElement.getElementIndex(offset);
+  final Element lineElement=rootElement.getElement(line);
+  final int start=lineElement.getStartOffset();
+  final int end=lineElement.getEndOffset();
+  return content.substring(start,end - 1);
+}

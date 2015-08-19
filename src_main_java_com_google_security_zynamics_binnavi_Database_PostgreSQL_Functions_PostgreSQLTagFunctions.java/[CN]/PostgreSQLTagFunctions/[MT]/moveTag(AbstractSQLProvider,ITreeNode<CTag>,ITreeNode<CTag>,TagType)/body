@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(provider,"IE02083: Provider argument can not be null");
+  Preconditions.checkNotNull(newParentNode,"IE02190: Parent argument can not be null");
+  Preconditions.checkNotNull(movedNode,"IE02191: Child argument can not be null");
+  final List<Integer> childIds=new ArrayList<Integer>();
+  for (  final ITreeNode<CTag> childChild : movedNode.getChildren()) {
+    childIds.add(childChild.getObject().getId());
+  }
+  try {
+    final String childParentId=movedNode.getParent().getObject().getId() == 0 ? "null" : String.valueOf(movedNode.getParent().getObject().getId());
+    if (!childIds.isEmpty()) {
+      provider.getConnection().executeUpdate("update " + CTableNames.TAGS_TABLE + " set parent_id = "+ childParentId+ " where id in ("+ Commafier.commafy(childIds)+ ") and type = '"+ tagToString(type)+ "'",true);
+    }
+    provider.getConnection().executeUpdate("update " + CTableNames.TAGS_TABLE + " set parent_id = "+ newParentNode.getObject().getId()+ " where id = "+ movedNode.getObject().getId()+ " and type = '"+ tagToString(type)+ "'",true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

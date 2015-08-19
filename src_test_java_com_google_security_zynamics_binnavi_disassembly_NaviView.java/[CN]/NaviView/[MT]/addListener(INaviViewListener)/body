@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(listener,"Error: listener argument can not be null");
+  listeners.addListener(listener);
+}

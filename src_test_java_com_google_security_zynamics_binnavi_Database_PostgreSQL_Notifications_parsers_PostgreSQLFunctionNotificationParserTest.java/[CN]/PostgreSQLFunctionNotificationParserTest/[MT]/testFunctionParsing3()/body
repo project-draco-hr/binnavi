@@ -1,0 +1,3 @@
+{
+  testParser(CTableNames.FUNCTIONS_TABLE,"DELETE",String.valueOf(function.getAddress().toLong()),String.valueOf(module.getConfiguration().getId()));
+}

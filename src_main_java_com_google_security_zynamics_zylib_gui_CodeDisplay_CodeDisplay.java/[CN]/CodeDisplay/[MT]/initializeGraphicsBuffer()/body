@@ -1,0 +1,4 @@
+{
+  bufferedImage=new BufferedImage(((codeModel.getTotalWidthInCharacters() + 1) * fontCharWidth),(currentlyVisibleLines + 10) * fontLineHeight,BufferedImage.TYPE_INT_RGB);
+  bufferedGraphics=(Graphics2D)bufferedImage.getGraphics();
+}

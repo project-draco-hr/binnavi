@@ -1,0 +1,5 @@
+{
+  final CEdgeEnterState state=new CEdgeEnterState(this,m_graph,e);
+  m_factory.createEdgeEnterAction().execute(state,event);
+  return state;
+}

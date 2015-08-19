@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01251: Debug perspective model argument can not be null");
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  add(new CModulesCheckBoxPanel(m_table.getTreeTableModel()),BorderLayout.NORTH);
+  add(new CTablePanel<MemoryModule>(m_table,new CMemoryModuleFilterCreator(),new CMemoryModuleFilterHelp()));
+  m_synchronizer=new CModulesTableModelSynchronizer(m_table,debugPerspectiveModel);
+  m_table.addMouseListener(new InternalMouseListener());
+}

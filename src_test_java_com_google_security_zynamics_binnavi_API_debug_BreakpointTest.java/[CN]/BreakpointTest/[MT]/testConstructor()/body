@@ -1,0 +1,4 @@
+{
+  assertEquals(0x123,m_apiBreakpoint.getAddress().toLong());
+  assertEquals("Breakpoint 123",m_apiBreakpoint.toString());
+}

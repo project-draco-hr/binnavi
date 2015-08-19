@@ -1,0 +1,12 @@
+{
+  if ("!".equals(treeNode.getValue())) {
+    return true;
+  }
+  if ("dword".equals(treeNode.getValue())) {
+    return true;
+  }
+  if (hasExpressionList && (treeNode.getType() == ExpressionType.EXPRESSION_LIST)) {
+    return true;
+  }
+  return false;
+}

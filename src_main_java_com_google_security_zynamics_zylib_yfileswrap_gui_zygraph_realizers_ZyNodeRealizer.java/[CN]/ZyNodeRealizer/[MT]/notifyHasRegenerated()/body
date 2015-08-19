@@ -1,0 +1,9 @@
+{
+  for (  final IZyNodeRealizerListener<?> listener : m_listeners) {
+    try {
+      listener.regenerated(this);
+    }
+ catch (    final Exception exception) {
+    }
+  }
+}

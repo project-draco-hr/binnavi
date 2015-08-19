@@ -1,0 +1,19 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent=module.getContent();
+  try {
+    moduleContent.getViewContainer().getFunction((INaviView)null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  moduleContent.getViewContainer().getFunction(module.getContent().getViewContainer().getViews().get(0));
+  module.close();
+  try {
+    moduleContent.getViewContainer().getFunction(module.getContent().getViewContainer().getViews().get(0));
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

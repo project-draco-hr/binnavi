@@ -1,0 +1,8 @@
+{
+  try {
+    m_module.getConfiguration().setImageBase(new CAddress(address.toLong()));
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

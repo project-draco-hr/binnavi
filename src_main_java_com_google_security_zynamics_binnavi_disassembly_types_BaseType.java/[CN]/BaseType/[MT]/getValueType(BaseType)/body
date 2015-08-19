@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: base type argument can not be null.");
+  while (baseType.pointsTo != null) {
+    baseType=baseType.pointsTo;
+  }
+  return baseType;
+}

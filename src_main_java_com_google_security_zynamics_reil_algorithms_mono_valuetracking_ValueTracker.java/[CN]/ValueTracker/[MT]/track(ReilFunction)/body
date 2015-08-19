@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  final InstructionGraph instructionGraph=createInitialGraph(function);
+  final StateVector<InstructionGraphNode,ValueTrackerElement> stateVector=createInitialStateVector(instructionGraph);
+  final ValueTrackerSolver tracker=new ValueTrackerSolver(instructionGraph,stateVector);
+  return tracker.solve();
+}

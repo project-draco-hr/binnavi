@@ -1,0 +1,9 @@
+{
+  if (nameField.getText().isEmpty()) {
+    CMessageBox.showWarning(parent,"Please enter a non-empty variable name.");
+    return false;
+  }
+ else {
+    return true;
+  }
+}

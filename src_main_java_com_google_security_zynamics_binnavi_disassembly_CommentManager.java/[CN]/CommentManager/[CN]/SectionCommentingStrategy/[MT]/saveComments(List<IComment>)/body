@@ -1,0 +1,3 @@
+{
+  sectionCommentContainer.setComments(section,comments);
+}

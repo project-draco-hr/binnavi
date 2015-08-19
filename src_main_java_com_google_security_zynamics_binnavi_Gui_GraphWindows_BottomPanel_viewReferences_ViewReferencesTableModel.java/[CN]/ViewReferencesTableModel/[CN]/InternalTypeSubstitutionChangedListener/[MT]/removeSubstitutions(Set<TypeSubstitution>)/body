@@ -1,0 +1,5 @@
+{
+  for (  TypeSubstitution typeSubstitution : ImmutableSet.<TypeSubstitution>copyOf((Sets.intersection(multiIndex.typeSubstitutions.keySet(),substitutions)))) {
+    removeFromTree(multiIndex.getInstructionNode(typeSubstitution));
+  }
+}

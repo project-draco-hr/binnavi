@@ -1,0 +1,21 @@
+{
+  final Enumeration<?> nodes=((JCriteriumTreeNode)m_jtree.getModel().getRoot()).breadthFirstEnumeration();
+  while (nodes.hasMoreElements()) {
+    final JCriteriumTreeNode node=(JCriteriumTreeNode)nodes.nextElement();
+    final JPanel panel=node.getCriterium().getCriteriumPanel();
+    if (panel instanceof CAbstractOperatorPanel) {
+      final int count=node.getChildCount();
+      final ICriterium criterium=node.getCriterium();
+      final JTextArea infoField=((CAbstractOperatorPanel)panel).getInfoField();
+      if (count == 1 && (criterium instanceof CNotCriterium || node.getLevel() == 0) || count > 1 && !(criterium instanceof CNotCriterium)) {
+        infoField.setForeground(VALID_OPERATOR_COLOR);
+        infoField.setText(((CAbstractOperatorPanel)panel).getValidInfoString());
+      }
+ else {
+        infoField.setForeground(INVALID_OPERATOR_COLOR);
+        infoField.setText(((CAbstractOperatorPanel)panel).getInvalidInfoString());
+      }
+    }
+    panel.updateUI();
+  }
+}

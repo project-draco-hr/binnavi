@@ -1,0 +1,21 @@
+{
+  T rootNode=null;
+  final ArrayList<Set<T>> resultList=new ArrayList<Set<T>>();
+  for (  final T currentNode : graph.getNodes()) {
+    if (currentNode.getParents().size() == 0) {
+      rootNode=currentNode;
+      break;
+    }
+  }
+  if (rootNode == null) {
+    return null;
+  }
+  final HashMap<T,ArrayList<T>> nodeToBackEdges=getBackEdges(graph,rootNode);
+  for (  final T graphNode : graph.getNodes()) {
+    final ArrayList<T> nodesBackEdges=nodeToBackEdges.get(graphNode);
+    for (    final T backEdgeNode : nodesBackEdges) {
+      resultList.add(getLoopNodes(graphNode,backEdgeNode));
+    }
+  }
+  return resultList;
+}

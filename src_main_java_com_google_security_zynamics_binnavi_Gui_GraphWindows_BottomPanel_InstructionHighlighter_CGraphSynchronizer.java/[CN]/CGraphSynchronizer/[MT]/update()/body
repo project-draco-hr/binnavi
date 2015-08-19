@@ -1,0 +1,5 @@
+{
+  updateInstructionMap();
+  m_model.setInstructions(updateInstructions());
+  CTypeResultsHighlighter.updateHighlighting(m_graph,m_model.getInstructions());
+}

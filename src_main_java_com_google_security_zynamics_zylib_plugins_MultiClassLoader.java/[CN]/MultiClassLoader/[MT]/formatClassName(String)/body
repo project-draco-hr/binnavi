@@ -1,0 +1,8 @@
+{
+  if (classNameReplacementChar == '\u0000') {
+    return className.replace('.','/') + ".class";
+  }
+ else {
+    return className.replace('.',classNameReplacementChar) + ".class";
+  }
+}

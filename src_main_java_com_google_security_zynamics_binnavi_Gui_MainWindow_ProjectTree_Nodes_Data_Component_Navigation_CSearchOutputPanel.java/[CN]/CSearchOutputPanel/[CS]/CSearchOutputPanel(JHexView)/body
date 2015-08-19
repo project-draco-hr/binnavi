@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  m_hexView=hexView;
+  m_table=new JTable(new CSearchResultModel());
+  m_table.getSelectionModel().addListSelectionListener(new InternalSelectionListener());
+  add(new JScrollPane(m_table));
+}

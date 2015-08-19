@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01336: Debugger provider argument can't be null");
+  Preconditions.checkArgument(row >= 0,"IE01337: Row arguments can not be negative");
+  int breakpoints=0;
+  for (  final IDebugger debugger : debuggerProvider.getDebuggers()) {
+    if ((row >= breakpoints) && (row < breakpoints + debugger.getBreakpointManager().getNumberOfBreakpoints(BreakpointType.REGULAR))) {
+      return new Pair<IDebugger,Integer>(debugger,row - breakpoints);
+    }
+ else {
+      breakpoints+=debugger.getBreakpointManager().getNumberOfBreakpoints(BreakpointType.REGULAR);
+    }
+  }
+  throw new IllegalArgumentException("IE01338: Invalid row number");
+}

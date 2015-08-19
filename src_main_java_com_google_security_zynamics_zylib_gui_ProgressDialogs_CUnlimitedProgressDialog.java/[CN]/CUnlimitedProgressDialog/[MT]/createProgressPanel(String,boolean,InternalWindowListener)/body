@@ -1,0 +1,6 @@
+{
+  if (isCancelable) {
+    return new CProgressPanel(description,true,true,windowListener);
+  }
+  return new CProgressPanel(description,true,true,true,false);
+}

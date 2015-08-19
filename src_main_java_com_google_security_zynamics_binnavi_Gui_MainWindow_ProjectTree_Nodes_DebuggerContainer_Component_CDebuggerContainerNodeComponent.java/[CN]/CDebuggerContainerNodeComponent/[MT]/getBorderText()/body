@@ -1,0 +1,3 @@
+{
+  return String.format("%d Debuggers in Database '%s'",m_database.getContent().getDebuggerTemplateManager().debuggerCount(),m_database.getConfiguration().getDescription());
+}

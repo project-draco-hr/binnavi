@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(text,"Error: Text argument can not be null");
+  Preconditions.checkNotNull(elements,"Error: Elements argument can not be null");
+  final List<INaviViewNode> nodes=new ArrayList<INaviViewNode>();
+  for (  final ViewNode element : elements) {
+    Preconditions.checkNotNull(element,"Error: Elements list contains a null-element");
+    nodes.add(element.getNative());
+  }
+  final CGroupNode newGroupNode=naviView.getContent().createGroupNode(nodes);
+  return (GroupNode)cachedNodes.get(newGroupNode);
+}

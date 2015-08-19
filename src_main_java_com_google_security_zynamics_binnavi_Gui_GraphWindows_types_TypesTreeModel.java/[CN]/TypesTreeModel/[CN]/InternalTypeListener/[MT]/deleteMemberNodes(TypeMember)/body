@@ -1,0 +1,13 @@
+{
+  nestedStructNodes.get(member.getBaseType()).removeAll(memberNodes.get(member));
+  final Set<TreeNode> parentsToUpdate=new HashSet<TreeNode>();
+  for (  final TypeMemberTreeNode node : memberNodes.get(member)) {
+    final MutableTreeNode parent=(MutableTreeNode)node.getParent();
+    parentsToUpdate.add(parent);
+    parent.remove(node);
+  }
+  for (  final TreeNode parent : parentsToUpdate) {
+    nodeStructureChanged(parent);
+  }
+  memberNodes.removeAll(member);
+}

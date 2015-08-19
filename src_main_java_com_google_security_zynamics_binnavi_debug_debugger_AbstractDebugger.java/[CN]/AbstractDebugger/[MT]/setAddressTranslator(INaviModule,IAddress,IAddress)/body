@@ -1,0 +1,4 @@
+{
+  baseAddresses.put(module,imageBase);
+  addressConverters.put(module,new DefaultAddressConverter(imageBase,fileBase));
+}

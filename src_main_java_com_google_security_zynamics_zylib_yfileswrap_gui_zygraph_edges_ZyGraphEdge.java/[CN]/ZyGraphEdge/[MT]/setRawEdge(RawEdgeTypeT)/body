@@ -1,0 +1,5 @@
+{
+  m_rawEdge.removeListener(m_listener);
+  m_rawEdge=rawEdge;
+  m_rawEdge.addListener(m_listener);
+}

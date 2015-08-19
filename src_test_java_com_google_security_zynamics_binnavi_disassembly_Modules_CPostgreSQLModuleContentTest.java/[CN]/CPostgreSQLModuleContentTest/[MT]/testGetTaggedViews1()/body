@@ -1,0 +1,17 @@
+{
+  final CModule module5=(CModule)getDatabase().getContent().getModules().get(0);
+  module5.load();
+  final CModuleContent moduleContent5=module5.getContent();
+  CViewFilter.getTaggedViews(moduleContent5.getViewContainer().getViews());
+  try {
+    CViewFilter.getTaggedViews(moduleContent5.getViewContainer().getViews(),null);
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  try {
+    CViewFilter.getTaggedViews(moduleContent5.getViewContainer().getViews(),new CTag(0,"foo","bar",TagType.NODE_TAG,new MockSqlProvider()));
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  module5.close();
+}

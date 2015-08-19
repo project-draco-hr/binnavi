@@ -1,0 +1,18 @@
+{
+  final int size=getRenderDataLength(baseType);
+  final StringBuilder builder=new StringBuilder();
+  builder.append("[");
+  final byte[] data=section.getData();
+  final int strideLength=(baseType.getCategory() == BaseTypeCategory.ARRAY) ? BaseTypeHelpers.getArrayElementByteSize(baseType) : size;
+  for (long currentOffset=offset; currentOffset < offset + size; ++currentOffset) {
+    if ((currentOffset - offset) != 0 && ((currentOffset - offset) % strideLength == 0)) {
+      builder.append(", ");
+    }
+    builder.append(String.format("%02X",data[(int)currentOffset]));
+  }
+  if (size == THRESHOLD) {
+    builder.append("...");
+  }
+  builder.append(']');
+  return builder.toString();
+}

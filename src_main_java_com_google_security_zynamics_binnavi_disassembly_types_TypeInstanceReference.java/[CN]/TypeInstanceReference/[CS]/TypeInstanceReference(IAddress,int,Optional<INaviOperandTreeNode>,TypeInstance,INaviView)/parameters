@@ -1,0 +1,5 @@
+IAddress address
+int position
+Optional<INaviOperandTreeNode> node
+TypeInstance typeInstance
+INaviView view

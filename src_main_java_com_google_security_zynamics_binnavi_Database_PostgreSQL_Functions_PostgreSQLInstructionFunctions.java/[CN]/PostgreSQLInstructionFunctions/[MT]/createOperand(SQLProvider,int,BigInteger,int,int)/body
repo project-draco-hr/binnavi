@@ -1,0 +1,4 @@
+{
+  final String query=String.format("insert into " + CTableNames.OPERANDS_TABLE + "(module_id, address, position, expression_tree_id) values(%d, %d, %d, %d)",moduleId,address,position,expressionTreeId);
+  provider.getConnection().executeUpdate(query,true);
+}

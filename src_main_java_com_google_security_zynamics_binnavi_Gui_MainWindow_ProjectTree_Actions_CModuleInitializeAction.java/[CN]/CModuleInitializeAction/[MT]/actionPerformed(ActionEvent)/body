@@ -1,0 +1,5 @@
+{
+  for (  final INaviModule module : m_modules) {
+    CModuleInitializationFunctions.initializeModule(m_projectTree,module);
+  }
+}

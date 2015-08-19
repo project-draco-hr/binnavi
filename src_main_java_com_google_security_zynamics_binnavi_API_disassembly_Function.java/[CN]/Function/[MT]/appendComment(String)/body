@@ -1,0 +1,11 @@
+{
+  try {
+    return m_function.appendGlobalComment(comment);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntLoadDataException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  view.addListener(viewListener);
+  view.getConfiguration().getModule().getTypeManager().addListener(typeSubstitutionChangedListener);
+  view.getConfiguration().getModule().getTypeManager().addListener(typeChangedListener);
+  view.getConfiguration().getModule().getContent().getTypeInstanceContainer().addListener(typeInstanceContainerListener);
+}

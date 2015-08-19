@@ -1,0 +1,5 @@
+{
+  for (  final IOperandTree operandTree : operands) {
+    verifyNode(operandTree.getRootNode());
+  }
+}

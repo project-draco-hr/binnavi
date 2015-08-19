@@ -1,0 +1,13 @@
+{
+  return CollectionHelpers.map(traces,new ICollectionMapper<TraceList,Collection<BreakpointAddress>>(){
+    @Override public Collection<BreakpointAddress> map(    final TraceList item){
+      return CollectionHelpers.map(item.getEvents(),new ICollectionMapper<ITraceEvent,BreakpointAddress>(){
+        @Override public BreakpointAddress map(        final ITraceEvent item){
+          return item.getOffset();
+        }
+      }
+);
+    }
+  }
+);
+}

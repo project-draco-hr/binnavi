@@ -1,0 +1,19 @@
+{
+  setBounds(100,100,588,529);
+  setLayout(new BorderLayout());
+  setBorder(new TitledBorder(new LineBorder(Color.LIGHT_GRAY,1,true),caption));
+  contentPanel.setBorder(new EmptyBorder(5,5,5,5));
+  add(new TypeEditorSearchPanel(typesTree),BorderLayout.NORTH);
+  add(contentPanel,BorderLayout.CENTER);
+  contentPanel.setLayout(new BorderLayout(0,0));
+{
+    final JScrollPane scrollPane=new JScrollPane();
+    contentPanel.add(scrollPane,BorderLayout.CENTER);
+{
+      typesTree.addMouseListener(new TypeEditorMouseHandler(owner,typesTree,typeManager,this));
+      typesTree.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE,0,true),"delete_types_or_members");
+      typesTree.getActionMap().put("delete_types_or_members",new DeleteTypeOrMemberAction(owner,typeManager,this));
+      scrollPane.setViewportView(typesTree);
+    }
+  }
+}

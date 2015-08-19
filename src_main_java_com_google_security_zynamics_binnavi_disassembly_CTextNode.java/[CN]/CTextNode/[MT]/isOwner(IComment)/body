@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02612: comment argument can not be null");
+  return CUserManager.get(m_provider).getCurrentActiveUser().equals(comment.getUser());
+}

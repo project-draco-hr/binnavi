@@ -1,0 +1,15 @@
+{
+  final ArrayList<NodeType> deselect=new ArrayList<NodeType>();
+  graph.iterateSelected(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      if (areAllParentsDeselected(node)) {
+        if (!deselect.contains(node)) {
+          deselect.add(node);
+        }
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  graph.selectNodes(deselect,false);
+}

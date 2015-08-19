@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(content,"IE01180: Content argument can't be null");
+  Preconditions.checkNotNull(comments,"IE01181: Comment argument can not be null");
+  Preconditions.checkNotNull(color,"IE01183: Color argument can not be null");
+  Preconditions.checkNotNull(object,"IE01191: Object argument can not be null");
+  for (  final IComment comment : comments) {
+    final CommentContainer currentCommentContainer=new CommentContainer(comment);
+    for (    final String commentString : currentCommentContainer.getCommentingString()) {
+      final ZyLineContent lineContent=new ZyLineContent(commentString,ITALIC_FONT,null);
+      lineContent.setTextColor(Color.BLACK);
+      lineContent.setObject(0,commentString.length(),object);
+      if (commentString.equals(currentCommentContainer.getCommentingString().get(0))) {
+        lineContent.setTextColor(0,currentCommentContainer.getCommentUserNameLength(),currentCommentContainer.getCommentColor());
+      }
+      content.addLineContent(lineContent);
+    }
+  }
+}

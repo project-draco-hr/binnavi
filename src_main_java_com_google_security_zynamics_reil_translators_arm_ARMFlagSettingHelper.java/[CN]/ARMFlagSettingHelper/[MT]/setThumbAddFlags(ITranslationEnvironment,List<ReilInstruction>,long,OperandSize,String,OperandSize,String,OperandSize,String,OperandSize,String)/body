@@ -1,0 +1,7 @@
+{
+  long offset=baseOffset;
+  instructions.add(ReilHelpers.createBsh(offset++,resultSize,resultOperand,OperandSize.WORD,String.valueOf(-31L),OperandSize.BYTE,"N"));
+  instructions.add(ReilHelpers.createBisz(offset++,resultSize,resultOperand,OperandSize.BYTE,"Z"));
+  instructions.add(ReilHelpers.createBsh(offset++,trueResultSize,trueResult,OperandSize.WORD,String.valueOf(-32L),OperandSize.BYTE,"C"));
+  Helpers.addOverflow(offset,environment,instructions,addOperand1Size,addOperand1,addOperand2Size,addOperand2,trueResultSize,trueResult,"V",32);
+}

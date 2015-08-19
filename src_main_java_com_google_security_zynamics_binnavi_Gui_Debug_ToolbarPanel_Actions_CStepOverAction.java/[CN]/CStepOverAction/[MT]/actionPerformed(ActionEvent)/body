@@ -1,0 +1,6 @@
+{
+  final IDebugger debugger=m_debugger.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    CDebuggerFunctions.stepOver(m_parent,debugger,m_graph);
+  }
+}

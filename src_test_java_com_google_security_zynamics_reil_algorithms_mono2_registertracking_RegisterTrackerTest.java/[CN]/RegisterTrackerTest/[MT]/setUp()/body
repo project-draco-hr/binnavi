@@ -1,0 +1,30 @@
+{
+  final MockOperandTree operandTreeFirst1=new MockOperandTree();
+  operandTreeFirst1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTreeFirst1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ecx"));
+  final MockOperandTree operandTreeFirst2=new MockOperandTree();
+  operandTreeFirst2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTreeFirst2.root.m_children.add(new MockOperandTreeNode(ExpressionType.MEMDEREF,"["));
+  operandTreeFirst2.root.m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.OPERATOR,"+"));
+  operandTreeFirst2.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ebp"));
+  operandTreeFirst2.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"5"));
+  final List<MockOperandTree> operandsFirst=Lists.newArrayList(operandTreeFirst1,operandTreeFirst2);
+  m_movInstruction=new MockInstruction(Long.parseLong("5"),"mov",operandsFirst);
+  final MockOperandTree operandTreeSecond1=new MockOperandTree();
+  operandTreeSecond1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTreeSecond1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ecx"));
+  final MockOperandTree operandTreeSecond2=new MockOperandTree();
+  operandTreeSecond2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTreeSecond2.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"edx"));
+  final MockOperandTree operandTreesecond3=new MockOperandTree();
+  operandTreesecond3.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"byte");
+  operandTreesecond3.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"9"));
+  final List<MockOperandTree> operandsSecond=Lists.newArrayList(operandTreeSecond1,operandTreeSecond2,operandTreesecond3);
+  m_shldInstruction=new MockInstruction(Long.parseLong("8"),"shld",operandsSecond);
+  final MockCodeContainer block=new MockCodeContainer();
+  block.m_instructions.add(m_movInstruction);
+  block.m_instructions.add(m_shldInstruction);
+  final ReilTranslator<MockInstruction> reilTranslator=new ReilTranslator<MockInstruction>();
+  m_graph=reilTranslator.translate(environment,block);
+  m_function=new ReilFunction("REGISTER_TRACKER_TEST",m_graph);
+}

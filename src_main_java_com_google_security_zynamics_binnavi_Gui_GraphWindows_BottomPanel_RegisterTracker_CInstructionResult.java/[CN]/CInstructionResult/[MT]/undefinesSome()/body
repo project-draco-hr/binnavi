@@ -1,0 +1,3 @@
+{
+  return (getUndefinedRegisters().size() != 0) && (getDefinedRegisters().size() != 0);
+}

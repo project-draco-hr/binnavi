@@ -1,0 +1,13 @@
+{
+  final ReilInstruction reilInstruction=m_nodesMap.get(destinationNode).getReilInstruction();
+  boolean isExitEdge=false;
+  if (reilInstruction != null) {
+    final IAddress reilInstructionAddress=reilInstruction.getAddress();
+    if ((reilInstructionAddress.toLong() & 0xFF) == 0) {
+      isExitEdge=true;
+    }
+  }
+  final Edge edge=m_internalGraph.createEdge(sourceNode,destinationNode);
+  m_edgesMap.put(edge,new ReilInstructionGraphEdge(isTrueEdge,isExitEdge));
+  return edge;
+}

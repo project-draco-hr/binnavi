@@ -1,0 +1,2 @@
+TypeInstance typeInstance
+List<IComment> comments

@@ -1,0 +1,3 @@
+{
+  updateType(baseType,newName,baseType.getBitSize(),baseType.isSigned());
+}

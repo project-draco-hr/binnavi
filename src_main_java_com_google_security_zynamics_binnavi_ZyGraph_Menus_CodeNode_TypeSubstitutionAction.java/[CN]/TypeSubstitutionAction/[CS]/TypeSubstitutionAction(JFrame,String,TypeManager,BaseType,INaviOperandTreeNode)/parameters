@@ -1,0 +1,5 @@
+JFrame owner
+String title
+TypeManager typeManager
+BaseType stackFrame
+INaviOperandTreeNode selectedNode

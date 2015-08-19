@@ -1,0 +1,7 @@
+{
+  super.setEnabled(enabled);
+  if (additionalComponent != null) {
+    additionalComponent.setEnabled(enabled);
+  }
+  textLabel.setEnabled(enabled);
+}

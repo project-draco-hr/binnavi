@@ -1,0 +1,35 @@
+{
+  try {
+    codeNode.getParentFunction().addListener(functionUpdater);
+    codeNode.getParentFunction().getModule().addListener(moduleUpdater);
+  }
+ catch (  final MaybeNullException exception) {
+  }
+  final HashMap<INaviInstruction,INaviFunction> referenceMap=CReferenceFinder.getCodeReferenceMap(codeNode);
+  for (  final INaviFunction functionReference : Sets.newHashSet(referenceMap.values())) {
+    functionReference.addListener(functionUpdater);
+  }
+  codeNode.addListener(codeNodeListener);
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    instruction.addListener(instructionUpdater);
+    for (    final COperandTree tree : instruction.getOperands()) {
+      for (      final INaviOperandTreeNode currentNode : tree.getNodes()) {
+        currentNode.addListener(operandTreeUpdater);
+      }
+    }
+  }
+  final Iterator<CTag> it=codeNode.getTagsIterator();
+  while (it.hasNext()) {
+    it.next().addListener(tagUpdater);
+  }
+  for (  final IDebugger debugger : provider.getDebuggers()) {
+    debugger.getProcessManager().addListener(debuggerUpdater);
+  }
+  provider.addListener(debuggerProviderListener);
+  graph.getSettings().getDisplaySettings().addListener(settingsUpdater);
+  try {
+    codeNode.getParentFunction().getModule().getTypeManager().addListener(substitutionsUpdater);
+  }
+ catch (  final MaybeNullException exception) {
+  }
+}

@@ -1,0 +1,6 @@
+{
+  mockDebugger.connect();
+  debuggerSynchronizer.receivedEvent(new DebuggerClosedUnexpectedlyReply());
+  assertFalse(mockDebugger.isConnected());
+  assertEquals("DEBUGGER_CLOSED/0;",listener.events);
+}

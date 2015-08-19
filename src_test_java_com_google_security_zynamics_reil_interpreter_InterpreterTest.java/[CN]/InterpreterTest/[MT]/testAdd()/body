@@ -1,0 +1,7 @@
+{
+  final ReilInterpreter interpreter=new ReilInterpreter(Endianness.LITTLE_ENDIAN,new CpuPolicyX86(),new EmptyInterpreterPolicy());
+  final HashMap<BigInteger,List<ReilInstruction>> instructions=new HashMap<BigInteger,List<ReilInstruction>>();
+  instructions.put(BigInteger.ZERO,Lists.newArrayList(ReilHelpers.createAdd(0,OperandSize.DWORD,"2147483647",OperandSize.DWORD,"1",OperandSize.QWORD,"t0")));
+  interpreter.interpret(instructions,BigInteger.ZERO);
+  assertEquals(BigInteger.valueOf(0x80000000L),interpreter.getVariableValue("t0"));
+}

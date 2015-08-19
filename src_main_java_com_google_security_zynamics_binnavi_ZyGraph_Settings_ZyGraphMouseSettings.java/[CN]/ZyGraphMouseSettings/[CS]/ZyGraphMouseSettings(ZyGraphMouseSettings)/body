@@ -1,0 +1,6 @@
+{
+  m_type=null;
+  m_mouseWheelAction=settings.getMouseWheelAction();
+  m_scrollSensitivity=settings.getScrollSensitivity();
+  m_zoomSensitivity=settings.getZoomSensitivity();
+}

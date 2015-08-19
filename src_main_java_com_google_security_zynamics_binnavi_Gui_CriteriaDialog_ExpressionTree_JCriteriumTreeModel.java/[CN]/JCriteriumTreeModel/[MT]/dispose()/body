@@ -1,0 +1,3 @@
+{
+  m_criteriumTree.removeListener(m_internalTreeListener);
+}

@@ -1,0 +1,6 @@
+{
+  super("Delete instance");
+  this.owner=owner;
+  this.instance=instance;
+  this.instanceContainer=instanceContainer;
+}

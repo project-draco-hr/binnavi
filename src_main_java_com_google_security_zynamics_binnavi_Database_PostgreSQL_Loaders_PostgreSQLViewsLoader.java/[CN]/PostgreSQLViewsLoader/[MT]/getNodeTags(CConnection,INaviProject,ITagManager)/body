@@ -1,0 +1,24 @@
+{
+  final Map<Integer,Set<CTag>> tagMap=new HashMap<Integer,Set<CTag>>();
+  final String query=" SELECT * FROM load_project_node_tags(?) ";
+  final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+  statement.setInt(1,project.getConfiguration().getId());
+  final ResultSet resultSet=statement.executeQuery();
+  try {
+    while (resultSet.next()) {
+      final int viewId=resultSet.getInt("view_id");
+      final int tagId=resultSet.getInt("tag_id");
+      if (!tagMap.containsKey(viewId)) {
+        tagMap.put(viewId,new HashSet<CTag>());
+      }
+      final CTag tag=CTagHelpers.findTag(nodeTagManager.getRootTag(),tagId);
+      if (tag != null) {
+        tagMap.get(viewId).add(tag);
+      }
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  return tagMap;
+}

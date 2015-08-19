@@ -1,0 +1,13 @@
+{
+  final JPanel projectTreePanel=new JPanel(new BorderLayout());
+  projectTreePanel.setBorder(null);
+  projectTreePanel.setBackground(Color.WHITE);
+  m_projectTree.setBorder(new EmptyBorder(2,4,2,2));
+  m_projectTree.addTreeSelectionListener(new InternalTreeSelectionListener());
+  final JScrollPane pane=new JScrollPane(m_projectTree);
+  pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+  pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  pane.setBorder(null);
+  projectTreePanel.add(pane,BorderLayout.CENTER);
+  return projectTreePanel;
+}

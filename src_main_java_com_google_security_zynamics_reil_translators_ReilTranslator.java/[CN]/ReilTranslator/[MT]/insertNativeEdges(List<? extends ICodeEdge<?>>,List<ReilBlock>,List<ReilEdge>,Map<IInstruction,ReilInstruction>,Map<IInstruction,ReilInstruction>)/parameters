@@ -1,0 +1,5 @@
+List<? extends ICodeEdge<?>> nativeEdges
+List<ReilBlock> nodes
+List<ReilEdge> edges
+Map<IInstruction,ReilInstruction> firstMap
+Map<IInstruction,ReilInstruction> lastMap

@@ -1,0 +1,11 @@
+{
+  final List<INaviOperandTreeNode> children=node.getChildren();
+  if (children.size() == 2) {
+    final INaviOperandTreeNode child0=children.get(0);
+    final INaviOperandTreeNode child1=children.get(1);
+    return isVariable(child0) ^ isVariable(child1);
+  }
+ else {
+    return false;
+  }
+}

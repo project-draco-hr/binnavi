@@ -1,0 +1,15 @@
+{
+  final MockDatabaseListener listener=new MockDatabaseListener();
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  database.addListener(listener);
+  database.setDriver("Fark 1");
+  assertEquals("changedDriver;",listener.events);
+  assertEquals("Fark 1",database.getDriver());
+  assertEquals("Fark 1",mockDatabase.getConfiguration().getDriver());
+  mockDatabase.getConfiguration().setDriver("Fark 2");
+  assertEquals("changedDriver;changedDriver;",listener.events);
+  assertEquals("Fark 2",database.getDriver());
+  assertEquals("Fark 2",mockDatabase.getConfiguration().getDriver());
+  database.removeListener(listener);
+}

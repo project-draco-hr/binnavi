@@ -1,0 +1,4 @@
+CTag parent
+String name
+String description
+TagType type

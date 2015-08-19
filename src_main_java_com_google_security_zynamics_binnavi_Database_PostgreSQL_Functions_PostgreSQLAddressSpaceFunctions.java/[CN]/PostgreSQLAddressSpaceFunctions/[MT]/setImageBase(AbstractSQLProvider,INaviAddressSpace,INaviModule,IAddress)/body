@@ -1,0 +1,15 @@
+{
+  checkArguments(provider,addressSpace);
+  Preconditions.checkNotNull(module,"IE00396: Module argument can not be null");
+  Preconditions.checkNotNull(address,"IE00397: Address argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00398: Module is not part of this database");
+  final CConnection connection=provider.getConnection();
+  try {
+    final String query=String.format("UPDATE %s SET image_base = %s " + " WHERE module_id = %d AND address_space_id = %d",CTableNames.SPACE_MODULES_TABLE,address.toBigInteger().toString(),module.getConfiguration().getId(),addressSpace.getConfiguration().getId());
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

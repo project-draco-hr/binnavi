@@ -1,0 +1,11 @@
+{
+  convertData();
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      listener.loadedAddressSpace(AddressSpace.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

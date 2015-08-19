@@ -1,0 +1,3 @@
+{
+  return PostgreSQLFunctionsLoader.loadFunction(this,module,functionAddress);
+}

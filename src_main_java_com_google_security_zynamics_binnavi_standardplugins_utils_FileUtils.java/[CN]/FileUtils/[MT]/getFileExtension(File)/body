@@ -1,0 +1,4 @@
+{
+  final String filename=file.getAbsolutePath();
+  return filename.substring(filename.lastIndexOf(".") + 1);
+}

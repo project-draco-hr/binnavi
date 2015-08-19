@@ -1,0 +1,4 @@
+{
+  m_nodeChooser.dispose();
+  m_undoHistory.dispose();
+}

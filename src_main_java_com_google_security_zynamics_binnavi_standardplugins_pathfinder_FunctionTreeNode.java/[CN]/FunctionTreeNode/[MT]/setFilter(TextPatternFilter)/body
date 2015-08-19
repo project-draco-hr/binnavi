@@ -1,0 +1,8 @@
+{
+  m_filter=filter;
+  m_cachedVisibility.clear();
+  for (int i=0; i < super.getChildCount(); i++) {
+    final FunctionTreeNode node=(FunctionTreeNode)super.getChildAt(i);
+    node.setFilter(filter);
+  }
+}

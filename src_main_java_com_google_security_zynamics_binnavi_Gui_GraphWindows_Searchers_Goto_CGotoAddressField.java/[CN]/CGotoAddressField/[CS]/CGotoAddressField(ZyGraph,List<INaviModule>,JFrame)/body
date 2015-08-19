@@ -1,0 +1,28 @@
+{
+  super(20);
+  m_graph=Preconditions.checkNotNull(graph,"IE01811: Graph argument can't be null");
+  m_modules=Preconditions.checkNotNull(modules,"IE01176: Modules argument can not be null");
+  m_parent=Preconditions.checkNotNull(parent,"IE02845: parent argument can not be null");
+  m_textField.setPreferredSize(getPreferredSize());
+  m_textField.setBorder(((JTextField)new JComboBox().getEditor().getEditorComponent()).getBorder());
+  setEditor(new BasicComboBoxEditor(){
+    @Override protected JTextField createEditorComponent(){
+      return m_textField;
+    }
+  }
+);
+  ((JTextField)getEditor().getEditorComponent()).getInputMap().put(HotKeys.GRAPH_SEARCH_NEXT_KEY.getKeyStroke(),"ZOOM");
+  ((JTextField)getEditor().getEditorComponent()).getActionMap().put("ZOOM",new AbstractAction(){
+    private static final long serialVersionUID=4721578747969744911L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      if (m_modules.size() == 1) {
+        zoomToAddress();
+      }
+ else {
+        buildAddressSelectionPopUp();
+      }
+    }
+  }
+);
+  addActionListener(m_listener);
+}

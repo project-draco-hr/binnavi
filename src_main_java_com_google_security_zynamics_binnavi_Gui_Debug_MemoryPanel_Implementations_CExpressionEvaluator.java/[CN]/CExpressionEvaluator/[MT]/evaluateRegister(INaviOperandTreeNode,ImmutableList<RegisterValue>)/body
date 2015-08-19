@@ -1,0 +1,8 @@
+{
+  for (  final RegisterValue registerValue : registers) {
+    if (registerValue.getName().equalsIgnoreCase(node.getValue())) {
+      return registerValue.getValue();
+    }
+  }
+  throw new CExpressionEvaluationException(String.format("Value of register %s could not be determined",node.getValue()));
+}

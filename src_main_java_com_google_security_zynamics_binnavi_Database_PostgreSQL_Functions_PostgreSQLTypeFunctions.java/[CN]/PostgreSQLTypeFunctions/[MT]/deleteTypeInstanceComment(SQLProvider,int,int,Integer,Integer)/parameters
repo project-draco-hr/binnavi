@@ -1,0 +1,5 @@
+SQLProvider provider
+int moduleId
+int instanceId
+Integer commentId
+Integer userId

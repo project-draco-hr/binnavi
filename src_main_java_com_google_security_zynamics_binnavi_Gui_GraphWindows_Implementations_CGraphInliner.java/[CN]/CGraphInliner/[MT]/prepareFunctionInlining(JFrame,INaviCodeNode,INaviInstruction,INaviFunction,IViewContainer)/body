@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(parent,"IE00825: Parent argument can not be null");
+  Preconditions.checkNotNull(viewContainer,"IE00915: View container argument can not be null");
+  Preconditions.checkNotNull(node,"IE00916: Node argument can't be null");
+  Preconditions.checkNotNull(instruction,"IE01153: Instruction argument can't be null");
+  Preconditions.checkNotNull(function,"IE01173: Function argument can't be null");
+  final int forwarderModuleId=function.getForwardedFunctionModuleId();
+  final IAddress forwarderAddress=function.getForwardedFunctionAddress();
+  return getFunctionToInline(parent,viewContainer,function,forwarderModuleId,forwarderAddress);
+}

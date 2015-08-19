@@ -1,0 +1,11 @@
+{
+  m_project=project;
+  m_listeners=listeners;
+  m_provider=provider;
+  m_id=projectId;
+  m_name=name;
+  m_description=description;
+  m_creationDate=new Date(creationDate.getTime());
+  m_modificationDate=new Date(modificationDate.getTime());
+  m_assignedDebuggers=new ArrayList<DebuggerTemplate>(assignedDebuggers);
+}

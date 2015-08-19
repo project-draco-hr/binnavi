@@ -1,0 +1,17 @@
+{
+  final Long address=new Long(Long.parseLong("3F7D114",16));
+  interpreter.setRegister("Z",BigInteger.ONE,bt,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister(("PC"),BigInteger.valueOf(address),dw,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister(("LR"),BigInteger.valueOf(0xFFFFFFFFL),dw,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"b4");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"0x3f7cd44"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1);
+  final IInstruction instruction=new MockInstruction(address,"BLNE",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(address));
+  assertEquals(BigInteger.valueOf(address),interpreter.getVariableValue(("PC")));
+  assertEquals(BigInteger.valueOf(0xFFFFFFFFL),interpreter.getVariableValue(("LR")));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(3,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+}

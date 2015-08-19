@@ -1,0 +1,3 @@
+{
+  return ImmutableList.<TypeMember>of(uintArrayTypeMember,ssIntMember,ssUintMember,ssArrayMember,nsIntMember,nsSimpleStructMember,dnsNestedStructMember,dnsIntMember,dnsPointerMember,suIntMember,suUintMember,suArraymember,cuIntMember,cuSimpleStructMember,cuDoubleNestedStructMember);
+}

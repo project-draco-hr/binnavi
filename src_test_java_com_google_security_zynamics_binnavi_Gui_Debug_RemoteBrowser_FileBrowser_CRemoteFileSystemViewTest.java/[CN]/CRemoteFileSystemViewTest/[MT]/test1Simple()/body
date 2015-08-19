@@ -1,0 +1,4 @@
+{
+  final RemoteFileSystem fileSystem=RemoteFileSystem.parse("<foo><Drives><Drive name='C' /></Drives><Directories><Directory name='Directory' /></Directories><Directory name='Directory' /><Files><File name='File' /></Files></foo>".getBytes());
+  @SuppressWarnings("unused") final CRemoteFileSystemView remoteFileSystemView=new CRemoteFileSystemView(fileSystem);
+}

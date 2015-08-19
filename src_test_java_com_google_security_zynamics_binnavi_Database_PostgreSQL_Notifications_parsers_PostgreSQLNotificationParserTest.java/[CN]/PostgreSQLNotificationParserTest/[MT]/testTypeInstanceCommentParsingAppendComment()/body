@@ -1,0 +1,14 @@
+{
+  final INaviModule module=new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  module.getContent().getSections().createSection("A",new CAddress(0),new CAddress(1234),SectionPermission.READ,null);
+  final TypeInstance fakeInstance=module.getContent().getTypeInstanceContainer().createInstance("TYPE INSTANCE",null,module.getTypeManager().getTypes().get(0),module.getContent().getSections().getSection(0),0);
+  MockPGNotification notification=new MockPGNotification("comment_changes","bn_type_instances UPDATE 1 " + fakeInstance.getId() + " 3333");
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processTypeInstanceCommentNotification(notification,provider);
+  assertNotNull(result);
+  final TypeInstanceCommentNotificationContainer container=(TypeInstanceCommentNotificationContainer)result;
+  assertNotNull(container);
+  final TypeInstance instance=container.getInstance();
+  assertEquals(fakeInstance.getId(),instance.getId());
+  assertEquals(CommentOperation.APPEND,container.getOperation());
+  assertEquals(new Integer(3333),container.getCommentId());
+}

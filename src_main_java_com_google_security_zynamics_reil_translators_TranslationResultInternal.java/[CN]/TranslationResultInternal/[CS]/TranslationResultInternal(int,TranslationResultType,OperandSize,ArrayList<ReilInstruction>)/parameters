@@ -1,0 +1,4 @@
+int nextVariable
+TranslationResultType resultType
+OperandSize resultSize
+ArrayList<ReilInstruction> instructions

@@ -1,0 +1,19 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"retn");
+  if (instruction.getOperands().size() > 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a retn instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final long offset=baseOffset;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize nextSize=TranslationHelpers.getNextSize(archSize);
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String returnAddress=environment.getNextVariableString();
+  final String adjustedStack=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createLdm(offset,archSize,"esp",archSize,returnAddress));
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String stackMovement=operands.size() == 0 ? String.valueOf(archSize.getByteSize()) : String.valueOf(archSize.getByteSize() + Long.valueOf(Helpers.getLeafValue(operands.get(0).getRootNode())));
+  instructions.add(ReilHelpers.createAdd(offset + 1,archSize,"esp",archSize,stackMovement,nextSize,adjustedStack));
+  instructions.add(ReilHelpers.createAnd(offset + 2,nextSize,adjustedStack,nextSize,truncateMask,archSize,"esp"));
+  instructions.add(ReilHelpers.createJcc(offset + 3,archSize,"1",archSize,returnAddress));
+}

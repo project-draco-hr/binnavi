@@ -1,0 +1,7 @@
+{
+  if (reply.success()) {
+  }
+ else {
+    events+="ERROR_SINGLE_STEP/" + reply.getErrorCode() + ";";
+  }
+}

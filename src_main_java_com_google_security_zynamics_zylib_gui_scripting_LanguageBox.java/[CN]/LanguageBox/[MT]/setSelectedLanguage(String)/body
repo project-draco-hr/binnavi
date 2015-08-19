@@ -1,0 +1,9 @@
+{
+  for (int i=0; i < getModel().getSize(); i++) {
+    final String element=getItemAt(i).toString();
+    if (element.equals(language)) {
+      setSelectedIndex(i);
+      return;
+    }
+  }
+}

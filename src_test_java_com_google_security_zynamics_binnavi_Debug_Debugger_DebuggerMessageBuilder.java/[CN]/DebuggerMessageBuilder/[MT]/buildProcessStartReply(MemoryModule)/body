@@ -1,0 +1,4 @@
+{
+  final TargetProcessThread thread=new TargetProcessThread(CommonTestObjects.THREAD_ID,ThreadState.RUNNING);
+  return new ProcessStartReply(0,0,new ProcessStart(thread,module));
+}

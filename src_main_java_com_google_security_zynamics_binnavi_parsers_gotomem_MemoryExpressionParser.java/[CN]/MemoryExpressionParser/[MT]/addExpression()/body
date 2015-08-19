@@ -1,0 +1,77 @@
+{
+  final MemoryExpressionParser.addExpression_return retval=new MemoryExpressionParser.addExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token OPERAND_PLUS5=null;
+  Token OPERAND_MINUS6=null;
+  MemoryExpressionParser.multExpression_return multExpression4=null;
+  MemoryExpressionParser.multExpression_return multExpression7=null;
+  Object OPERAND_PLUS5_tree=null;
+  Object OPERAND_MINUS6_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_multExpression_in_addExpression211);
+      multExpression4=multExpression();
+      state._fsp--;
+      adaptor.addChild(root_0,multExpression4.getTree());
+      loop2:       do {
+        int alt2=2;
+        final int LA2_0=input.LA(1);
+        if (((LA2_0 >= OPERAND_PLUS && LA2_0 <= OPERAND_MINUS))) {
+          alt2=1;
+        }
+switch (alt2) {
+case 1:
+{
+            int alt1=2;
+            final int LA1_0=input.LA(1);
+            if ((LA1_0 == OPERAND_PLUS)) {
+              alt1=1;
+            }
+ else             if ((LA1_0 == OPERAND_MINUS)) {
+              alt1=2;
+            }
+ else {
+              final NoViableAltException nvae=new NoViableAltException("",1,0,input);
+              throw nvae;
+            }
+switch (alt1) {
+case 1:
+{
+                OPERAND_PLUS5=(Token)match(input,OPERAND_PLUS,FOLLOW_OPERAND_PLUS_in_addExpression215);
+                OPERAND_PLUS5_tree=(Object)adaptor.create(OPERAND_PLUS5);
+                root_0=(Object)adaptor.becomeRoot(OPERAND_PLUS5_tree,root_0);
+              }
+            break;
+case 2:
+{
+            OPERAND_MINUS6=(Token)match(input,OPERAND_MINUS,FOLLOW_OPERAND_MINUS_in_addExpression220);
+            OPERAND_MINUS6_tree=(Object)adaptor.create(OPERAND_MINUS6);
+            root_0=(Object)adaptor.becomeRoot(OPERAND_MINUS6_tree,root_0);
+          }
+        break;
+    }
+    pushFollow(FOLLOW_multExpression_in_addExpression224);
+    multExpression7=multExpression();
+    state._fsp--;
+    adaptor.addChild(root_0,multExpression7.getTree());
+  }
+break;
+default :
+break loop2;
+}
+}
+ while (true);
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException e) {
+throw e;
+}
+ finally {
+}
+return retval;
+}

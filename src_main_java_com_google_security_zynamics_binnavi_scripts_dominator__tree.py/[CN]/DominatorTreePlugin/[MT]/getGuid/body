@@ -1,0 +1,2 @@
+def getGuid(self):
+    return 945436890432

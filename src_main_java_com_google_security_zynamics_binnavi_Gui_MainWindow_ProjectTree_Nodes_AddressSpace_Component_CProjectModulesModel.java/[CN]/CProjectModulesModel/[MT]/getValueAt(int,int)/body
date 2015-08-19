@@ -1,0 +1,17 @@
+{
+  final INaviModule module=getModules().get(row);
+switch (col) {
+case NAME_COLUMN:
+    return module.getConfiguration().getName();
+case DESCRIPTION_COLUMN:
+  return module.getConfiguration().getDescription();
+case VIEWS_COLUMN:
+return module.isLoaded() ? module.getContent().getViewContainer().getViews().size() : module.getCustomViewCount() + module.getFunctionCount() + 1;
+case CREATION_DATE_COLUMN:
+return module.getConfiguration().getCreationDate();
+case MODIFICATION_DATE_COLUMN:
+return module.getConfiguration().getModificationDate();
+default :
+throw new IllegalStateException("IE01160: Invalid column");
+}
+}

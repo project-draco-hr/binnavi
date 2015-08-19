@@ -1,0 +1,11 @@
+{
+  m_viewTagManager=Preconditions.checkNotNull(viewTagManager,"IE00051: View tag manager can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE00053: Database content provider can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE00390: Database can not be null");
+  m_listeners=Preconditions.checkNotNull(listeners,"IE00391: Database listeners can not be null");
+  m_projects=Preconditions.checkNotNull(projects,"IE00410: Projects can not be null");
+  m_modules=Preconditions.checkNotNull(modules,"IE00412: Modules can not be null");
+  m_rawModules=Preconditions.checkNotNull(rawModules,"IE00420: Raw modules can not be null");
+  m_nodeTagManager=Preconditions.checkNotNull(nodeTagManager,"IE00441: Node tag manager can not be null");
+  m_debuggerDescriptionManager=Preconditions.checkNotNull(debuggerDescriptionManager,"IE00442: Debugger descriptor manager can not be null");
+}

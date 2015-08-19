@@ -1,0 +1,2 @@
+def getDescription(self):
+    return 'This plugin creates an IDC file which can then be executed in IDA Pro to port the function names from BinNavi back to an IDA Pro IDB file.'

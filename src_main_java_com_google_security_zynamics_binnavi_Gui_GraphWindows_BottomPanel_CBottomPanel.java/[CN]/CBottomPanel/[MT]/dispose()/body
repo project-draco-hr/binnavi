@@ -1,0 +1,7 @@
+{
+  for (  final IResultsPanel panel : m_factory) {
+    panel.removeListener(m_internalPanelListener);
+    panel.dispose();
+  }
+  disposeInternal();
+}

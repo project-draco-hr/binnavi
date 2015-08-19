@@ -1,0 +1,9 @@
+{
+  DebuggerEventSettings settings=null;
+  try {
+    settings=new DebuggerEventSettingsStorage(getDebugger(),getDebugger().getDebugTargetSettings()).deserialize();
+  }
+ catch (  final CouldntLoadDataException e) {
+  }
+  return ((settings == null) || !settings.getBreakOnDllUnload()) && getDebugger().getProcessManager().getTargetInformation().getDebuggerOptions().canBreakOnModuleUnload();
+}

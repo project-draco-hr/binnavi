@@ -1,0 +1,6 @@
+{
+  super(new CGraphWindowHotkeyTableModel());
+  setShowVerticalLines(false);
+  getColumnModel().setColumnMargin(0);
+  setEnabled(false);
+}

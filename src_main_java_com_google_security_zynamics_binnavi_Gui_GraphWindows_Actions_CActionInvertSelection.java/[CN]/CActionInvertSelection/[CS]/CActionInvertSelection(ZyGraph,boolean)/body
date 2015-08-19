@@ -1,0 +1,8 @@
+{
+  super("Invert selection");
+  m_graph=Preconditions.checkNotNull(graph,"IE02823: graph argument can not be null");
+  if (showIcon) {
+    putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/selinvert_up.jpg")));
+  }
+  putValue(Action.SHORT_DESCRIPTION,"Invert Selection");
+}

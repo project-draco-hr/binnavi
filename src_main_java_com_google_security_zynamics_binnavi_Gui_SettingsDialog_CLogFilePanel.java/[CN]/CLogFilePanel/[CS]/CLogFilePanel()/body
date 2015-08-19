@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  final JTextField fileLabel=new JTextField(ConfigHelper.getConfigurationDirectory(Constants.COMPANY_NAME,Constants.PROJECT_NAME));
+  fileLabel.setEditable(false);
+  fileLabel.setCaretPosition(0);
+  add(fileLabel);
+  final JButton button=new JButton(new COpenAction());
+  add(button,BorderLayout.EAST);
+}

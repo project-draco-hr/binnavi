@@ -1,0 +1,7 @@
+{
+  final com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection internalSection=new com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection(new CAddress(0x200),new CAddress(0x400));
+  final MemorySection section=new MemorySection(internalSection);
+  assertEquals(0x200,section.getStart().toLong());
+  assertEquals(0x400,section.getEnd().toLong());
+  assertEquals("Memory Section [200 - 400]",section.toString());
+}

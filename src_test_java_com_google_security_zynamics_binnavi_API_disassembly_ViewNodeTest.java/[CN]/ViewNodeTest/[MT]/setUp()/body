@@ -1,0 +1,34 @@
+{
+  ConfigManager.instance().read();
+  final MockSqlProvider provider=new MockSqlProvider();
+  final Database database=new Database(new MockDatabase());
+  final CModule internalModule=new CModule(123,"Name","Comment",new Date(),new Date(),CommonTestObjects.MD5,CommonTestObjects.SHA1,55,66,new CAddress(0x555),new CAddress(0x666),new DebuggerTemplate(1,"Mock Debugger","localhaus",88,provider),null,Integer.MAX_VALUE,false,provider);
+  internalModule.load();
+  final CTagManager mockTagManager=new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Root","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider);
+  m_nodeTagManager=new TagManager(mockTagManager);
+  final TagManager viewTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.VIEW_TAG));
+  final CFunction parentFunction=new CFunction(internalModule,new MockView(),new CAddress(0x123),"Mock Function","Mock Function","Mock Description",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,provider);
+  final Function function=new Function(ModuleFactory.get(),parentFunction);
+  final Module module=new Module(database,internalModule,m_nodeTagManager,viewTagManager){
+    @Override public Function getFunction(    final INaviFunction internalFunction){
+      return function;
+    }
+    @Override public boolean isLoaded(){
+      return true;
+    }
+  }
+;
+  final CFunction internalFunction=new CFunction(internalModule,new MockView(),new CAddress(0x123),"","","",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,provider);
+  final ITreeNode<CTag> tag=mockTagManager.addTag(mockTagManager.getRootTag(),"Initial Tag");
+  m_initialTag=m_nodeTagManager.getRootTags().get(0);
+  final CView internalView=internalModule.getContent().getViewContainer().createView("","");
+  final CFunctionNode node=internalView.getContent().createFunctionNode(internalFunction);
+  node.setColor(Color.MAGENTA);
+  node.setX(10);
+  node.setY(20);
+  node.tagNode(tag.getObject());
+  m_view=module.getViews().get(2);
+  m_node=(FunctionNode)m_view.getGraph().getNodes().get(0);
+  final CFunctionNode node2=internalView.getContent().createFunctionNode(internalFunction);
+  internalView.getContent().createEdge(node,node2,EdgeType.INTER_MODULE);
+}

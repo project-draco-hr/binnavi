@@ -1,0 +1,4 @@
+{
+  m_colormap=Preconditions.checkNotNull(colormap,"Error: colormap argument can not be null");
+  repaint();
+}

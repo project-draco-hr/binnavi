@@ -1,0 +1,3 @@
+{
+  super(clientReader,DebugCommandType.RESP_SET_BREAKPOINT_CONDITION_SUCC);
+}

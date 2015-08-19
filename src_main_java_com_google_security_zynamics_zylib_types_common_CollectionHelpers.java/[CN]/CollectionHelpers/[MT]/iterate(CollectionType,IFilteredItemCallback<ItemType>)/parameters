@@ -1,0 +1,2 @@
+CollectionType collection
+IFilteredItemCallback<ItemType> callback

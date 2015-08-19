@@ -1,0 +1,4 @@
+{
+  final ITreeNode<CTag> rootNode=m_database.getContent().getViewTagManager().getRootTag();
+  menu.add(new JMenuItem(CActionProxy.proxy(new CAddTagAction(getParent(),m_database.getContent().getViewTagManager(),rootNode,"New Tag"))));
+}

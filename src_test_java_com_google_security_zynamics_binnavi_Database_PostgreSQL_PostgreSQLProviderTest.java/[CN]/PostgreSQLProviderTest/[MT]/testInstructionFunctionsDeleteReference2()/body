@@ -1,0 +1,3 @@
+{
+  PostgreSQLInstructionFunctions.deleteReference(getProvider(),null,null,null);
+}

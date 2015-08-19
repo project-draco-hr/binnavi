@@ -1,0 +1,3 @@
+{
+  return (address != null) && (m_address == address.m_address);
+}

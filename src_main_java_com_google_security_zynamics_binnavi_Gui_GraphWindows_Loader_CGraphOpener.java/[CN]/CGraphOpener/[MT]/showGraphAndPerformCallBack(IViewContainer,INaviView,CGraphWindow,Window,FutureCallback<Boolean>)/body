@@ -1,0 +1,6 @@
+{
+  CWindowManager.instance().bringViewToFront(view);
+  final ListeningExecutorService service=MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
+  final ListenableFuture<Boolean> loader=service.submit(generateViewLoader(view,container,window,parent));
+  Futures.addCallback(loader,callBack);
+}

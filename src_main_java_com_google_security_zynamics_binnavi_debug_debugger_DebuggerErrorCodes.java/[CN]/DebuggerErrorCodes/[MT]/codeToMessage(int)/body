@@ -1,0 +1,6 @@
+{
+  if (code >= 0 && code < ERROR_MESSAGES.length) {
+    return ERROR_MESSAGES[code];
+  }
+  return String.format("Unknown error (Code %d)",code);
+}

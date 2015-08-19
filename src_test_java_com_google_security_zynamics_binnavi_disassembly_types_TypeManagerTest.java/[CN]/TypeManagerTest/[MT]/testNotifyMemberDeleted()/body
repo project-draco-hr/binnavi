@@ -1,0 +1,9 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  typeManager.deleteMember(typeSystem.ssIntMember);
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.typesUpdated(Sets.<BaseType>newHashSet(typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.complexUnion));
+  expectedEvents.memberDeleted(typeSystem.ssIntMember);
+  Assert.assertEquals(expectedEvents,events);
+}

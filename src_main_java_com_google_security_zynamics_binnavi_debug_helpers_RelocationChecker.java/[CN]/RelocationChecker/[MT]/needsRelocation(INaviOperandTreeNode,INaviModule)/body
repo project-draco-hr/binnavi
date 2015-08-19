@@ -1,0 +1,9 @@
+{
+  final List<IReference> references=treeNode.getReferences();
+  for (  final IReference reference : references) {
+    if (needsRelocation(reference,Long.valueOf(treeNode.getValue()),module)) {
+      return true;
+    }
+  }
+  return false;
+}

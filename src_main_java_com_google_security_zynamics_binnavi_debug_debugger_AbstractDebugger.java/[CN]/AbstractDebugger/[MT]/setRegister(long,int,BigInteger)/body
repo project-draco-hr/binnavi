@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    return connection.sendSetRegisterMessage(tid,index,value);
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

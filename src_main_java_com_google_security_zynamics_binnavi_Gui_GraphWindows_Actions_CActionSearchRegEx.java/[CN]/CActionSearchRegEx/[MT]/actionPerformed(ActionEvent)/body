@@ -1,0 +1,3 @@
+{
+  CGraphSearcher.toggleRegularExpressionSearch(m_graph);
+}

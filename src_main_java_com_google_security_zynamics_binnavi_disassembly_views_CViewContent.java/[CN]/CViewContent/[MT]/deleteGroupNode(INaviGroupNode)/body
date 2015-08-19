@@ -1,0 +1,10 @@
+{
+  final List<INaviViewNode> elements=groupNode.getElements();
+  groupNode.setCollapsed(false);
+  for (  final INaviViewNode node : elements) {
+    groupNode.removeElement(node);
+    if (groupNode.getParentGroup() != null) {
+      groupNode.getParentGroup().addElement(node);
+    }
+  }
+}

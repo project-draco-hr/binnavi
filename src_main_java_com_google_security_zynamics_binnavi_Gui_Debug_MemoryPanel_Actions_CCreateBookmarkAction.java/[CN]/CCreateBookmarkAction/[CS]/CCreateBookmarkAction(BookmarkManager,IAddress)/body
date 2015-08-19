@@ -1,0 +1,5 @@
+{
+  super(String.format("Create bookmark at offset %s",offset.toHexString()));
+  m_manager=Preconditions.checkNotNull(manager,"IE01410: Manager argument can not be null");
+  m_offset=Preconditions.checkNotNull(offset,"IE02289: Offset arguemnt can not be null");
+}

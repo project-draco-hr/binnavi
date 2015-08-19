@@ -1,0 +1,7 @@
+{
+  if (!m_cachedTagListeners.containsKey(tag)) {
+    m_cachedTagListeners.put(tag,0);
+    tag.addListener(m_internalTagListener);
+  }
+  m_cachedTagListeners.put(tag,m_cachedTagListeners.get(tag) + 1);
+}

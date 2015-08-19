@@ -1,0 +1,6 @@
+{
+  final CUndoHistory undoHistory=getUndoHistory();
+  if (undoHistory != null) {
+    undoHistory.redo();
+  }
+}

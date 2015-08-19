@@ -1,0 +1,4 @@
+{
+  m_realizer.getNodeContent().getLineContent(line).setBackgroundColor(position,length,color);
+  updateViews();
+}

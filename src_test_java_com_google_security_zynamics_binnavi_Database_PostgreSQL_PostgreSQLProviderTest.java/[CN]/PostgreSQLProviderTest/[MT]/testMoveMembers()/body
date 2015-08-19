@@ -1,0 +1,9 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final int baseTypeId=getProvider().createType(module.getConfiguration().getId(),"int_type",32,null,false,BaseTypeCategory.ATOMIC);
+  final int containingTypeId=getProvider().createType(module.getConfiguration().getId(),"struct_type",64,null,false,BaseTypeCategory.STRUCT);
+  final int member0=getProvider().createTypeMember(module,containingTypeId,baseTypeId,"member",Optional.of(0),Optional.<Integer>absent(),Optional.<Integer>absent());
+  final int member1=getProvider().createTypeMember(module,containingTypeId,baseTypeId,"member",Optional.of(32),Optional.<Integer>absent(),Optional.<Integer>absent());
+  getProvider().updateMemberOffsets(Lists.newArrayList(member0),32,Lists.newArrayList(member1),-32,module);
+}

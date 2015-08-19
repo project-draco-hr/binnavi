@@ -1,0 +1,4 @@
+{
+  final BaseType baseType=(BaseType)value;
+  setText((baseType == null) ? "" : baseType.getName());
+}

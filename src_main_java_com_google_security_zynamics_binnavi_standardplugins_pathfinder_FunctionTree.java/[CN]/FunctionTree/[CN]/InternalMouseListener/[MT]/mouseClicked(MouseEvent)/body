@@ -1,0 +1,5 @@
+{
+  if ((event.getClickCount() == 2) && (event.getButton() == MouseEvent.BUTTON1)) {
+    handleDoubleClick(event);
+  }
+}

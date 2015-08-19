@@ -1,0 +1,7 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  final MockUserManagerListener listener=new MockUserManagerListener();
+  manager.addListener(listener);
+  assertEquals(1,Iterators.size(manager.getListeners()));
+  assertTrue(Iterators.contains(manager.getListeners(),listener));
+}

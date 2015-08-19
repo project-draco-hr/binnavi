@@ -1,0 +1,9 @@
+{
+  try {
+    BreakpointConditionParser.evaluate(inputField.getText());
+    inputField.setBackground(Color.WHITE);
+  }
+ catch (  final InvalidFormulaException e) {
+    inputField.setBackground(Color.RED);
+  }
+}

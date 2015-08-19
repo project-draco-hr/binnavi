@@ -1,0 +1,4 @@
+{
+  add(new JMenuItem(new CActionClose(child)));
+  add(new JMenuItem(new CActionCloseOthers(tab,child)));
+}

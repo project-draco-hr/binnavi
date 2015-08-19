@@ -1,0 +1,9 @@
+{
+  int commentIndex=lineAndIndexToCommentIndex(comment,lineNumber,index);
+  if (commentIndex < 0) {
+    return null;
+  }
+  String commentString=comment.getComment();
+  String newComment=commentString.substring(0,commentIndex) + string + commentString.substring(commentIndex);
+  return editComment(comment,newComment);
+}

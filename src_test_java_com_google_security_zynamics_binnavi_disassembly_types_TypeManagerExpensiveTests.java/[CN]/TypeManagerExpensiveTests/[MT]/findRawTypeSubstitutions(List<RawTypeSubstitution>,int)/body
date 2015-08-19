@@ -1,0 +1,9 @@
+{
+  final List<RawTypeSubstitution> foundSubstitutions=new ArrayList<RawTypeSubstitution>();
+  for (  final RawTypeSubstitution substitution : substitutions) {
+    if (substitution.getExpressionId() == expressionId) {
+      foundSubstitutions.add(substitution);
+    }
+  }
+  return foundSubstitutions;
+}

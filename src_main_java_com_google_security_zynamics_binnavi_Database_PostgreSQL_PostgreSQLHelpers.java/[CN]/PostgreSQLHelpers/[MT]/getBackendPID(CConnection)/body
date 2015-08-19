@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(connection,"IE02410: connection argument can not be null");
+  try {
+    final String query="SELECT pg_backend_pid() AS pid";
+    final ResultSet pidResult=connection.executeQuery(query,true);
+    try {
+      while (pidResult.next()) {
+        return pidResult.getInt("pid");
+      }
+    }
+  finally {
+      pidResult.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  throw new IllegalStateException("IE02411: Could not retrieve backend PID from server");
+}

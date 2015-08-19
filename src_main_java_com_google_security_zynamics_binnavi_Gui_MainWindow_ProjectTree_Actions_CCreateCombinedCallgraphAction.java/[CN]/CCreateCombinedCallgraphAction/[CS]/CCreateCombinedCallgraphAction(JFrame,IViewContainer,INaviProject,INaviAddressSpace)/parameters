@@ -1,0 +1,4 @@
+JFrame frame
+IViewContainer container
+INaviProject project
+INaviAddressSpace addressSpace

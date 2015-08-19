@@ -1,0 +1,3 @@
+{
+  return other instanceof TypeInstanceContainerEvents && ((TypeInstanceContainerEvents)other).events_.toString().equals(events_.toString());
+}

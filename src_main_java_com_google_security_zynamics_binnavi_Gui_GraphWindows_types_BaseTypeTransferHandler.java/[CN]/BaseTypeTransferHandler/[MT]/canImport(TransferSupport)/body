@@ -1,0 +1,4 @@
+{
+  wrapper.setSupport(support);
+  return wrapper.acceptDrop();
+}

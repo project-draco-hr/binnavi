@@ -1,0 +1,3 @@
+{
+  return MnemonicCodeMap.inverse().get(code);
+}

@@ -1,0 +1,31 @@
+{
+  final FutureCallback<Boolean> callBack=new FutureCallback<Boolean>(){
+    @Override public void onFailure(    final Throwable t){
+      CUtilityFunctions.logException(t);
+    }
+    @Override public void onSuccess(    final Boolean result){
+      ZyGraph graph=null;
+      final List<CGraphWindow> windows=CWindowManager.instance().getOpenWindows();
+      for (      final CGraphWindow graphContainer : windows) {
+        for (        final IGraphPanel window : graphContainer) {
+          if (reference.getView().equals(window.getModel().getGraph().getRawView())) {
+            graph=window.getModel().getGraph();
+          }
+        }
+      }
+      for (      final NaviNode node : graph.getNodes()) {
+        if (node.getRawNode() instanceof INaviCodeNode) {
+          final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+          for (          final INaviInstruction instruction : codeNode.getInstructions()) {
+            if (instruction.getAddress().equals(reference.getAddress())) {
+              ZyZoomHelpers.zoomToAddress(graph,reference.getAddress());
+              CrossReferencePainter.paintCrossReference(node,codeNode,reference,instruction);
+            }
+          }
+        }
+      }
+    }
+  }
+;
+  CShowViewFunctions.showViewsAndPerformCallBack(m_parent,m_container,m_views,CWindowManager.instance().getLastWindow(),callBack);
+}

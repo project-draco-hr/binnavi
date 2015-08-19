@@ -1,0 +1,9 @@
+{
+  for (  final ViewNode viewNode : m_elements) {
+    if (viewNode.getNative() == element) {
+      m_elements.remove(viewNode);
+      return viewNode;
+    }
+  }
+  return null;
+}

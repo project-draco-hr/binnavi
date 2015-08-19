@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(block,"Error: Block argument can't be null");
+  try {
+    return ReilGraphConverter.createReilGraph(m_translator.translate(new StandardEnvironment(),block.getNative()));
+  }
+ catch (  final com.google.security.zynamics.reil.translators.InternalTranslationException e) {
+    throw new InternalTranslationException(e,InstructionFinders.findInstruction(block,e.getInstruction()));
+  }
+}

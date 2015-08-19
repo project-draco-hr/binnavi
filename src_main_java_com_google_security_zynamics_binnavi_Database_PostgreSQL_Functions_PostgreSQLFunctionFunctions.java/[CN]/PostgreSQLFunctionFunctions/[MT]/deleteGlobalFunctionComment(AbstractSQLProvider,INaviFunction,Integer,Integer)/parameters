@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviFunction function
+Integer commentId
+Integer userId

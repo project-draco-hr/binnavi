@@ -1,0 +1,9 @@
+{
+  final FileOutputStream fos=new FileOutputStream(file);
+  try {
+    fos.write(data);
+  }
+  finally {
+    fos.close();
+  }
+}

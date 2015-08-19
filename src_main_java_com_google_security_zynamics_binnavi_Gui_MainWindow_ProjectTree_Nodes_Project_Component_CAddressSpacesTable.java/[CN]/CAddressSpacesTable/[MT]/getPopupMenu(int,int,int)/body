@@ -1,0 +1,4 @@
+{
+  final CAddressSpaceNodeMenuBuilder menu=new CAddressSpaceNodeMenuBuilder(getProjectTree(),null,this,m_database,m_project,getSelectedAddressSpaces(row),m_container);
+  return menu.getPopupMenu();
+}

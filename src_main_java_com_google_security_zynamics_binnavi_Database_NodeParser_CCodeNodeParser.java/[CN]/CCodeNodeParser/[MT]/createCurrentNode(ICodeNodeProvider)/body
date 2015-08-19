@@ -1,0 +1,42 @@
+{
+  final int nodeId=resultSet.getNodeId();
+  final int moduleId=resultSet.getModule();
+  final IAddress parentFunction=resultSet.getParentFunction();
+  final INaviModule module=modules.get(moduleId);
+  if (module == null) {
+    throw new ParserException(String.format("Node with ID %d has unknown parent module with ID %d",nodeId,moduleId));
+  }
+  if (!module.isLoaded()) {
+    try {
+      module.load();
+    }
+ catch (    final CouldntLoadDataException e) {
+      throw new CPartialLoadException("E00066: The view could not be loaded because not all modules that form the view could be loaded",module);
+    }
+catch (    final LoadCancelledException e) {
+      throw new CPartialLoadException("E00067: The view could not be loaded because it was cancelled",module);
+    }
+  }
+  final INaviFunction function=parentFunction == null ? null : module.getContent().getFunctionContainer().getFunction(parentFunction);
+  if ((parentFunction != null) && (function == null)) {
+    throw new ParserException(String.format("Node with ID %d has unknown parent function with address %s",nodeId,parentFunction.toHexString()));
+  }
+  final double x=resultSet.getX();
+  final double y=resultSet.getY();
+  final double width=resultSet.getWidth();
+  final double height=resultSet.getHeight();
+  final Color color=new Color(resultSet.getColor());
+  final Color bordercolor=new Color(resultSet.getBorderColor());
+  final boolean selected=resultSet.isSelected();
+  final boolean visible=resultSet.isVisible();
+  final Integer localCodeNodeCommentId=resultSet.getLocalNodeCommentId();
+  final Integer globalCodeNodeCommentId=resultSet.getGlobalNodeCommentId();
+  final CCodeNode codeNode=new CCodeNode(nodeId,x,y,width,height,color,bordercolor,selected,visible,null,function,new HashSet<CTag>(),sqlProvider);
+  if (localCodeNodeCommentId != null) {
+    localCommentIdToCodeNode.put(localCodeNodeCommentId,codeNode);
+  }
+  if (globalCodeNodeCommentId != null) {
+    globalCommentIdToCodeNode.put(globalCodeNodeCommentId,codeNode);
+  }
+  return codeNode;
+}

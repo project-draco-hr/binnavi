@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01350: Manager argument can not be null");
+  Preconditions.checkNotNull(view,"IE01351: View argument can not be null");
+  m_debuggerProvider=debuggerProvider;
+  m_view=view;
+  putValue(Action.SHORT_DESCRIPTION,"Enable all view breakpoints");
+}

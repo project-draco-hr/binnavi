@@ -1,0 +1,11 @@
+{
+  if (getDefaultGraphLayout() == LayoutStyle.HIERARCHIC) {
+    setCurrentLayouter(ZyLayoutCreator.getHierarchicLayout(this));
+  }
+ else   if (getDefaultGraphLayout() == LayoutStyle.ORTHOGONAL) {
+    setCurrentLayouter(ZyLayoutCreator.getOrthogonalLayout(this));
+  }
+ else {
+    setCurrentLayouter(ZyLayoutCreator.getCircularLayout(this));
+  }
+}

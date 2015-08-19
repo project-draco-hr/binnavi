@@ -1,0 +1,15 @@
+{
+  final CCachedExpressionTree cachedTree=new CCachedExpressionTree();
+  final CCachedExpressionTree cachedTree2=new CCachedExpressionTree();
+  final CCachedExpressionTreeNode node=new CCachedExpressionTreeNode(new CCachedTextCriterium("foo",false,false));
+  CCachedExpressionTreeNode.append(cachedTree.getRoot(),node);
+  final CCachedExpressionTreeNode node2=new CCachedExpressionTreeNode(new CCachedTextCriterium("foo",false,false));
+  CCachedExpressionTreeNode.append(cachedTree2.getRoot(),node2);
+  final CCriteriumCache criteriumCache=new CCriteriumCache();
+  criteriumCache.addListener(m_listener);
+  assertEquals(0,criteriumCache.getTrees().size());
+  criteriumCache.add(cachedTree);
+  assertEquals(1,criteriumCache.getTrees().size());
+  criteriumCache.add(cachedTree2);
+  assertEquals(1,criteriumCache.getTrees().size());
+}

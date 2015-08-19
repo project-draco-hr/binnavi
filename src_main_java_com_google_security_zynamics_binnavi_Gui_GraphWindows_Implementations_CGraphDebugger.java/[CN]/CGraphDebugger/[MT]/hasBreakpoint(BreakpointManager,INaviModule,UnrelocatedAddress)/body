@@ -1,0 +1,4 @@
+{
+  final BreakpointAddress address=new BreakpointAddress(module,unrelocatedAddress);
+  return manager.hasBreakpoint(BreakpointType.REGULAR,address);
+}

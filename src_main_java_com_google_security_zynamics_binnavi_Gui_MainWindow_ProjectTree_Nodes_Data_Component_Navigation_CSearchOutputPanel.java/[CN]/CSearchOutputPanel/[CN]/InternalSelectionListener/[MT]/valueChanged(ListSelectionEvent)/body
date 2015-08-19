@@ -1,0 +1,13 @@
+{
+  if (event.getValueIsAdjusting()) {
+    return;
+  }
+  final int selectedIndex=m_table.getSelectedRow();
+  if (selectedIndex == -1) {
+    return;
+  }
+  final CSearchResult result=getTableModel().getResult(selectedIndex);
+  m_hexView.uncolorizeAll();
+  m_hexView.colorize(5,result.m_offset,result.m_length,Color.BLACK,Color.YELLOW);
+  m_hexView.gotoOffset(result.m_offset);
+}

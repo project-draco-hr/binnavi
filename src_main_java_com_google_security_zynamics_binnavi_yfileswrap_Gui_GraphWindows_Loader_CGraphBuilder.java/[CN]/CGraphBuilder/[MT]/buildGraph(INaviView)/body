@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(view,"IE01763: View argument can't be null");
+  final Pair<Map<String,String>,ZyGraphViewSettings> viewSettings=loadSettings(view);
+  final Map<String,String> rawSettings=viewSettings.first();
+  final ZyGraphViewSettings graphSettings=viewSettings.second();
+  graphSettings.rawSettings=rawSettings;
+  final ZyGraphBuilder builder=new ZyGraphBuilder();
+  ZyGraphBuilderManager.instance().setBuilder(view,builder);
+  final Graph2D graph=builder.convert(view.getGraph().getNodes(),view.getGraph().getEdges(),graphSettings,view.getType() == ViewType.Native);
+  final ZyGraph2DView graphView=new ZyGraph2DView(graph);
+  final ZyGraph zyGraph=new ZyGraph(view,builder.getNodeMap(),builder.getEdgeMap(),graphSettings,graphView);
+  zyGraph.getView().setCenter(CViewSettingsGenerator.createDoubleSetting(rawSettings,"view_center_x",0),CViewSettingsGenerator.createDoubleSetting(rawSettings,"view_center_y",0));
+  zyGraph.getView().setWorldRect(CViewSettingsGenerator.createIntegerSetting(rawSettings,"world_rect_x",0),CViewSettingsGenerator.createIntegerSetting(rawSettings,"world_rect_y",0),CViewSettingsGenerator.createIntegerSetting(rawSettings,"world_rect_width",800),CViewSettingsGenerator.createIntegerSetting(rawSettings,"world_rect_height",600));
+  zyGraph.getView().setZoom(CViewSettingsGenerator.createDoubleSetting(rawSettings,"zoom",1));
+  ZyGraphBuilderManager.instance().removeBuilder(view);
+  return zyGraph;
+}

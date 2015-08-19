@@ -1,0 +1,3 @@
+{
+  return CViewFilter.getTaggedViews(m_project.getContent().getViews(),object);
+}

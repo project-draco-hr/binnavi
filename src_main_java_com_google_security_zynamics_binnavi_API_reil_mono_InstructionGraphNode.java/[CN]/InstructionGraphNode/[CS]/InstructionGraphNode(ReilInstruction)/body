@@ -1,0 +1,6 @@
+{
+  if (instruction == null) {
+    throw new IllegalArgumentException("Error: Instruction argument can not be null");
+  }
+  this.instruction=instruction;
+}

@@ -1,0 +1,3 @@
+{
+  return getBaseAddress() + m_dataProvider.getDataLength();
+}

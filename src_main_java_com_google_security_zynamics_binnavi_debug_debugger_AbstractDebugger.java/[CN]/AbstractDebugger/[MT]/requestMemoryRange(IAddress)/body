@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    connection.sendMemoryRangeMessage(address);
+  }
+ catch (  final IOException exception) {
+    throw new DebugExceptionWrapper(exception);
+  }
+}

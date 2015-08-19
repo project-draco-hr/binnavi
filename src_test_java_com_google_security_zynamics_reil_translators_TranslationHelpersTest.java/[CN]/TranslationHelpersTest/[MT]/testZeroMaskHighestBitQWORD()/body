@@ -1,0 +1,4 @@
+{
+  final long mask=TranslationHelpers.generateZeroMask(63,1,OperandSize.QWORD);
+  assertEquals(0x7FFFFFFFFFFFFFFFL,mask);
+}

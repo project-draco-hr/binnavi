@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(registerView,"IE01479: Register view argument can not be null");
+  Preconditions.checkNotNull(dataProvider,"IE01480: Data provider argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01481: Debug perspective model argument can not be null");
+  m_registerView=registerView;
+  m_dataProvider=dataProvider;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  final IDebugger activeDebugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  synchronizeDebugger(null,activeDebugger);
+  debugPerspectiveModel.addListener(m_debugListener);
+}

@@ -1,0 +1,3 @@
+{
+  return FunctionType.convert(m_function.getType());
+}

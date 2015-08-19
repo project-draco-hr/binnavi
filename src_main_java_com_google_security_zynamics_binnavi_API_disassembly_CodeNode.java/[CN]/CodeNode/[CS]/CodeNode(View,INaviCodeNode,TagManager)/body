@@ -1,0 +1,8 @@
+{
+  super(view,node,tagManager);
+  m_node=node;
+  for (  final INaviInstruction instruction : m_node.getInstructions()) {
+    m_instructions.add(new Instruction(instruction));
+  }
+  node.addListener(m_internalListener);
+}

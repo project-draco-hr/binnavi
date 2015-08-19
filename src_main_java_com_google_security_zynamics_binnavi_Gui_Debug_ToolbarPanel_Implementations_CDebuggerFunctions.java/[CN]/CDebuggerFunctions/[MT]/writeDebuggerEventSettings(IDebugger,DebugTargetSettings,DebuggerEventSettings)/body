@@ -1,0 +1,4 @@
+{
+  final DebuggerEventSettingsStorage eventSettingsStorage=new DebuggerEventSettingsStorage(debugger,debugTarget);
+  eventSettingsStorage.serialize(eventSettings);
+}

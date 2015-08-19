@@ -1,0 +1,10 @@
+int viewId
+String name
+String description
+ViewType type
+Date creationDate
+Date modificationDate
+IDirectedGraph<INaviViewNode,INaviEdge> iDirectedGraph
+Set<CTag> tags
+boolean isStared
+SQLProvider provider

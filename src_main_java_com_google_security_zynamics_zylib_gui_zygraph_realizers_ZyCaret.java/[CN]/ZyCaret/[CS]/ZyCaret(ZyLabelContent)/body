@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(content,"Error: Label content can't be null.");
+  m_content=content;
+}

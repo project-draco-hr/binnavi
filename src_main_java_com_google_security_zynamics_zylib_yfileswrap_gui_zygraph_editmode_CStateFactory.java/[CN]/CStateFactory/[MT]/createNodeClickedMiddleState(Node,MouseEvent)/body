@@ -1,0 +1,5 @@
+{
+  final CNodeClickedMiddleState state=new CNodeClickedMiddleState(this,m_graph,n);
+  m_factory.createNodeClickedMiddleAction().execute(state,event);
+  return state;
+}

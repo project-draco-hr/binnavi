@@ -1,0 +1,4 @@
+{
+  m_exporter=ExporterSelection.BinExport;
+  return checkExporterInstall(getParent());
+}

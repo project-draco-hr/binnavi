@@ -1,0 +1,8 @@
+{
+  if (isLoaded(row)) {
+    setFont(NORMAL_BOLD_FONT);
+  }
+ else {
+    setFont(NORMAL_FONT);
+  }
+}

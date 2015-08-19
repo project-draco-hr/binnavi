@@ -1,0 +1,18 @@
+{
+  final ReilCreationThread thread=new ReilCreationThread(module,view);
+  CProgressDialog.showEndless(parent,"Creating REIL graph" + " ...",thread);
+  final Exception exception=thread.getException();
+  if (exception != null) {
+    if (exception instanceof CouldntSaveDataException) {
+      CUtilityFunctions.logException(exception);
+    }
+ else {
+      CUtilityFunctions.logException(exception);
+      final String innerMessage="E00111: Could not translate view to REIL";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not create the REIL code of view '%s'.",view.getName()),new String[]{"An error occurred in the REIL translator code."},new String[]{"This is an internal error which you can not fix yourself. " + "Please report the bug to the zynamics support team."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription);
+    }
+    return;
+  }
+  CViewOpener.showView(parent,viewContainer,thread.getReilView(),parent);
+}

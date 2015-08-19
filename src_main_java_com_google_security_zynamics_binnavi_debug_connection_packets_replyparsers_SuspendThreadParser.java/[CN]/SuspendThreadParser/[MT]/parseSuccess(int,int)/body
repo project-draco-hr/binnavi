@@ -1,0 +1,3 @@
+{
+  return new SuspendThreadReply(packetId,0,parseInteger());
+}

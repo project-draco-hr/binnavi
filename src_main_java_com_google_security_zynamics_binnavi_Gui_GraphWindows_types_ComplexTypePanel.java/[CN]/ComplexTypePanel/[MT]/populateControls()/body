@@ -1,0 +1,10 @@
+{
+  if (existingType == null) {
+    return;
+  }
+  name.setText(existingType.getName());
+  final MemberTableModel model=members.getModel();
+  for (  final TypeMember member : existingType) {
+    model.addRow(new MemberTableRowData(member));
+  }
+}

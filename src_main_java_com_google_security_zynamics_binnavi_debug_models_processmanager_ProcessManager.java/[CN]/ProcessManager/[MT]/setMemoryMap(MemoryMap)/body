@@ -1,0 +1,11 @@
+{
+  this.memoryMap=Preconditions.checkNotNull(memoryMap,"IE00760: Memory map can't be null");
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.changedMemoryMap();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  m_separator=separator;
+  for (  final Object element : elements) {
+    append(element);
+  }
+}

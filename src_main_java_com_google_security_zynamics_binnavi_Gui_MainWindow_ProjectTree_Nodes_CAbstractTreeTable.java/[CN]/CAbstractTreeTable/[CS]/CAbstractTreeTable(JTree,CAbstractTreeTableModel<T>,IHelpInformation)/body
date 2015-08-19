@@ -1,0 +1,13 @@
+{
+  super(model,helpInfo);
+  treeTableModel=Preconditions.checkNotNull(model,"IE01939: Model argument can't be null");
+  tree=Preconditions.checkNotNull(projectTree,"IE02343: Project tree argument can not be null");
+  addMouseListener(mouseListener);
+  setDefaultRenderer(String.class,new CProjectTreeTableRenderer());
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.SEARCH_HK.getKeyStroke(),"SEARCH");
+  getActionMap().put("SEARCH",CActionProxy.proxy(new SearchAction()));
+  windowImap.put(HotKeys.DELETE_HK.getKeyStroke(),"DELETE");
+  getActionMap().put("DELETE",CActionProxy.proxy(new DeleteAction()));
+  updateUI();
+}

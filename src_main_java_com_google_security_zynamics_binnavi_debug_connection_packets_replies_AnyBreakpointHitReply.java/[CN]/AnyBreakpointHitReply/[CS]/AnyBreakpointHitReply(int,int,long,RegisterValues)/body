@@ -1,0 +1,22 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(registerValues,"IE01054: Register values argument can not be null");
+    boolean foundThread=false;
+    for (    final ThreadRegisters threadRegisters : registerValues) {
+      if (threadRegisters.getTid() == tid) {
+        foundThread=true;
+      }
+    }
+    if (!foundThread) {
+      throw new IllegalArgumentException("IE01301: Invalid thread ID");
+    }
+  }
+ else {
+    if (registerValues != null) {
+      throw new IllegalArgumentException("IE01055: Register values argument must be null");
+    }
+  }
+  this.threadId=tid;
+  this.registerValues=registerValues;
+}

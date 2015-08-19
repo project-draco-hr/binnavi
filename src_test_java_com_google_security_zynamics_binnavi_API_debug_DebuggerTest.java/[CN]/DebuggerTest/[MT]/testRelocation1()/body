@@ -1,0 +1,7 @@
+{
+  final INaviModule nativeModule=new MockModule();
+  mockDebugger.setAddressTranslator(nativeModule,new CAddress(100),new CAddress(200));
+  final Module module=ModuleFactory.get(nativeModule);
+  assertEquals(250,debugger.toImagebase(module,new Address(150)).toLong());
+  assertEquals(150,debugger.toFilebase(module,new Address(250)).toLong());
+}

@@ -1,0 +1,13 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CRootNodeComponent();
+    }
+  }
+,new CRootNodeMenuBuilder(projectTree));
+  Preconditions.checkNotNull(databaseManager,"IE01995: Database manager can't be null");
+  m_databaseManager=databaseManager;
+  createChildren();
+  m_listener=new InternalDatabaseManagerListener();
+  m_databaseManager.addListener(m_listener);
+}

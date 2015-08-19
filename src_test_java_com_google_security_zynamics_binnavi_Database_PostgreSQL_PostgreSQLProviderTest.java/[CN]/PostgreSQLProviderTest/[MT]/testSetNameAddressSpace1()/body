@@ -1,0 +1,6 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  getProvider().createAddressSpace(project,"SEPPEL");
+  final CAddressSpace addressSpace=getProvider().loadAddressSpaces(getProvider().loadProjects().get(0)).get(0);
+  getProvider().setName(addressSpace,"New Name");
+}

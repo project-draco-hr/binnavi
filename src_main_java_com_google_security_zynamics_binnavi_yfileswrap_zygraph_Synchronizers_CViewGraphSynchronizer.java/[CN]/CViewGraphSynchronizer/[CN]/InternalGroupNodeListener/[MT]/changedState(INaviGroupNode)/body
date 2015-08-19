@@ -1,0 +1,11 @@
+{
+  if (node.isCollapsed()) {
+    YHelpers.closeGroup(m_graph.getGraph(),m_mappings.getNode(node).getNode());
+  }
+ else {
+    YHelpers.openFolder(m_graph.getGraph(),m_mappings.getNode(node).getNode());
+  }
+  if (m_graph.getSettings().getLayoutSettings().getAutomaticLayouting()) {
+    m_graph.doLayout();
+  }
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLTraceFunctions.createTrace((AbstractSQLProvider)getProvider(),new MockModule(new MockSqlProvider()),"",null);
+}

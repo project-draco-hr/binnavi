@@ -1,0 +1,6 @@
+{
+  m_object=object;
+  m_line=line;
+  m_index=index;
+  m_length=length;
+}

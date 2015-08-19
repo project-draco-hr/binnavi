@@ -1,0 +1,13 @@
+{
+  final CThreadInformationTable table=new CThreadInformationTable();
+  final TargetProcessThread thread=new TargetProcessThread(0,ThreadState.RUNNING);
+  assertEquals(0,table.getModel().getRowCount());
+  table.getModel().addThread(thread);
+  assertEquals(1,table.getModel().getRowCount());
+  for (int column=0; column < table.getModel().getColumnCount(); column++) {
+    table.getModel().getValueAt(0,column);
+  }
+  table.getModel().removeThread(thread);
+  assertEquals(0,table.getModel().getRowCount());
+  table.getModel().reset();
+}

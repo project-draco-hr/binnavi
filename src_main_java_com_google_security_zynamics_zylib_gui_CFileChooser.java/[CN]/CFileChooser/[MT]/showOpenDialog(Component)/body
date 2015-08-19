@@ -1,0 +1,7 @@
+{
+  if (!SystemHelpers.isRunningMacOSX()) {
+    return super.showOpenDialog(parent);
+  }
+  setDialogType(OPEN_DIALOG);
+  return showNativeFileDialog(this);
+}

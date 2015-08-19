@@ -1,0 +1,7 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"movsb");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a movsb instruction (invalid number of operands)");
+  }
+  new MovsGenerator().generate(environment,ReilHelpers.toReilAddress(instruction.getAddress()).toLong(),OperandSize.BYTE,instructions);
+}

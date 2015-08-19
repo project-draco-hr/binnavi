@@ -1,0 +1,3 @@
+{
+  provider.updateType(baseType,name,size,isSigned,module);
+}

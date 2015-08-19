@@ -1,0 +1,7 @@
+{
+  bend.removeListener(m_listener);
+  if (m_realizer.bendCount() == m_rawEdge.getBendCount()) {
+    return;
+  }
+  m_realizer.removeBend(m_realizer.getBend(index));
+}

@@ -1,0 +1,5 @@
+{
+  debugger.connect();
+  debugger.readRegisters();
+  assertEquals("CONNECT;READREGS;",mockDebugger.requests);
+}

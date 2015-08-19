@@ -1,0 +1,4 @@
+{
+  final Integer commentId=scope.equals(CommentScope.GLOBAL) ? provider.appendGlobalEdgeComment(edge,commentText,userId) : provider.appendLocalEdgeComment(edge,commentText,userId);
+  return provider.loadCommentById(commentId);
+}

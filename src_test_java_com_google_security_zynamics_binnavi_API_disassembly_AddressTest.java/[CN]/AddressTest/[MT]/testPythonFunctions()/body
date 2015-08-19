@@ -1,0 +1,33 @@
+{
+  final Address address1=new Address(100);
+  final Address address2=new Address(50);
+  assertEquals(100 + 50,address1.__add__(address2).toLong());
+  assertEquals(100 + 50,address1.__add__(50).toLong());
+  assertEquals(100 + 50,address1.__add__(BigInteger.valueOf(50)).toLong());
+  assertEquals(100 & 50,address1.__and__(address2).toLong());
+  assertFalse(address1.__eq__(address2));
+  assertTrue(address1.__eq__(100));
+  assertTrue(address1.__ge__(address2));
+  assertFalse(address1.__ge__(200));
+  assertTrue(address1.__gt__(address2));
+  assertFalse(address1.__gt__(address1));
+  assertFalse(address1.__le__(address2));
+  assertTrue(address1.__le__(address1));
+  assertFalse(address1.__lt__(address2));
+  assertTrue(address1.__lt__(200));
+  assertEquals(100,address1.__long__());
+  assertEquals(100 << 1,address1.__lshift__(1).toLong());
+  assertEquals(100 * 50,address1.__mul__(address2).toLong());
+  assertTrue(address1.__ne__(address2));
+  assertFalse(address1.__ne__(address1));
+  assertEquals(100 | 50,address1.__or__(address2).toLong());
+  assertEquals(100 + 50,address1.__radd__(address2).toLong());
+  assertEquals(100 & 50,address1.__rand__(address2).toLong());
+  assertEquals(100 * 50,address1.__rmul__(address2).toLong());
+  assertEquals(100 | 50,address1.__ror__(address2).toLong());
+  assertEquals(100 >> 1,address1.__rshift__(1).toLong());
+  assertEquals(-50,address1.__rsub__(address2).toLong());
+  assertEquals(50,address1.__sub__(address2).toLong());
+  assertEquals(100 ^ 50,address1.__xor__(address2).toLong());
+  assertEquals(100 ^ 50,address1.__rxor__(address2).toLong());
+}

@@ -1,0 +1,9 @@
+{
+  final ArrayList<ICodeEdge<?>> nodes=new ArrayList<ICodeEdge<?>>();
+  for (  final INaviEdge node : graph.getEdges()) {
+    if ((node.getSource() instanceof ICodeContainer) && (node.getTarget() instanceof ICodeContainer)) {
+      nodes.add(node);
+    }
+  }
+  return nodes;
+}

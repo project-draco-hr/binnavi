@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.filter(edges,new ICollectionFilter<NaviEdge>(){
+    @Override public boolean qualifies(    final NaviEdge edge){
+      return (!onlySelected || edge.isSelected()) && (!onlyVisible || edge.isVisible());
+    }
+  }
+);
+}

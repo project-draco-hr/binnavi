@@ -1,0 +1,9 @@
+{
+  final TypeInstance typeInstance=typeInstanceContainer.createInstance("TYPEINSTANCE",null,baseType,section,0);
+  expectedEvents.addedTypeInstance(typeInstance);
+  final TypeInstanceReference typeInstanceReference=typeInstanceContainer.createReference(new CAddress("41000",16),0,new MockOperandTreeNode(),typeInstance,view);
+  expectedEvents.addedTypeInstanceReference(typeInstanceReference);
+  typeInstanceContainer.deactivateTypeInstanceReference(typeInstanceReference);
+  expectedEvents.changedTypeInstanceReference(typeInstanceReference);
+  Assert.assertEquals(expectedEvents,listener);
+}

@@ -1,0 +1,4 @@
+{
+  m_progressPanel.stop();
+  CGlobalProgressManager.instance().remove(this);
+}

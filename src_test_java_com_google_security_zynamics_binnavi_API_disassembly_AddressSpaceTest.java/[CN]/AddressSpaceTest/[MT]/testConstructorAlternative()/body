@@ -1,0 +1,18 @@
+{
+  final MockSqlProvider provider=new MockSqlProvider();
+  final MockDatabase mockDb=new MockDatabase(provider);
+  final Database database=new Database(mockDb);
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate template=new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate(1,"","",0,provider);
+  mockDb.getContent().getDebuggerTemplateManager().addDebugger(template);
+  final CModule internalModule=new CModule(123,"Name","Comment",new Date(),new Date(),"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate(1,"Mock Debugger","localhaus",88,provider),null,Integer.MAX_VALUE,false,provider);
+  mockDb.getContent().addModule(internalModule);
+  final CAddressSpace internalAddressSpace=new CAddressSpace(1,"Mock Space","Mock Space Description",new Date(),new Date(),new LinkedHashMap<INaviModule,IAddress>(),null,provider,new MockProject());
+  internalAddressSpace.load();
+  internalAddressSpace.getConfiguration().setDebuggerTemplate(template);
+  internalAddressSpace.getContent().addModule(internalModule);
+  final Project project=ProjectFactory.get();
+  final AddressSpace addressSpace=new AddressSpace(database,project,internalAddressSpace);
+  assertEquals(1,addressSpace.getModules().size());
+  assertNotNull(addressSpace.getDebuggerTemplate());
+  assertNotNull(addressSpace.getDebugger());
+}

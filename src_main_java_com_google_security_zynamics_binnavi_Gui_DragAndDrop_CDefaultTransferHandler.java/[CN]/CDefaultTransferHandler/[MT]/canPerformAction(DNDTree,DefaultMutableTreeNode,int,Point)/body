@@ -1,0 +1,16 @@
+{
+  final TreePath pathTarget=target.getPathForLocation(location.x,location.y);
+  if (pathTarget == null) {
+    target.setSelectionPath(null);
+    return false;
+  }
+  target.setSelectionPath(pathTarget);
+  final DefaultMutableTreeNode parentNode=(DefaultMutableTreeNode)pathTarget.getLastPathComponent();
+  for (  final IDropHandler handler : m_handlers) {
+    if (handler.canHandle(parentNode,draggedNode)) {
+      m_activeHandler=handler;
+      return true;
+    }
+  }
+  return false;
+}

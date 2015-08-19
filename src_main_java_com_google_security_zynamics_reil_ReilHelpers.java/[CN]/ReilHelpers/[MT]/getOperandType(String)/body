@@ -1,0 +1,14 @@
+{
+  if (Convert.isDecString(value) || value.startsWith("-")) {
+    return ExpressionType.IMMEDIATE_INTEGER;
+  }
+ else   if (value.startsWith("t")) {
+    return ExpressionType.SYMBOL;
+  }
+ else   if (OperandSize.isSizeString(value)) {
+    return ExpressionType.SIZE_PREFIX;
+  }
+ else {
+    return ExpressionType.REGISTER;
+  }
+}

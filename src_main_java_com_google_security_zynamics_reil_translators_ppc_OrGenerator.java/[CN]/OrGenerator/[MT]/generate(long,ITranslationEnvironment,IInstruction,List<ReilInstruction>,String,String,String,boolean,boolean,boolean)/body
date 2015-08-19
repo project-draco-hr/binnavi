@@ -1,0 +1,26 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,mnemonic);
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final String targetRegister=registerOperand1.getValue();
+  final String crTemp=setCr ? environment.getNextVariableString() : null;
+  final String norVar=isNor ? environment.getNextVariableString() : null;
+  final String complementVar=withComplement ? environment.getNextVariableString() : null;
+  if (isNor) {
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,secondOperand,OperandSize.DWORD,norVar));
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,norVar,OperandSize.DWORD,"4294967295",OperandSize.DWORD,targetRegister));
+  }
+ else   if (withComplement) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,secondOperand,OperandSize.DWORD,"4294967295",OperandSize.DWORD,complementVar));
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,complementVar,OperandSize.DWORD,targetRegister));
+  }
+ else {
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,secondOperand,OperandSize.QWORD,targetRegister));
+  }
+  if (setCr) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.BYTE,Helpers.CR0_EQUAL));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.WORD,"-31",OperandSize.BYTE,Helpers.CR0_LESS_THEN));
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,Helpers.CR0_EQUAL,OperandSize.BYTE,Helpers.CR0_LESS_THEN,OperandSize.BYTE,crTemp));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.BYTE,crTemp,OperandSize.BYTE,Helpers.CR0_GREATER_THEN));
+    instructions.add(ReilHelpers.createStr(baseOffset,OperandSize.BYTE,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.BYTE,Helpers.CRO_SUMMARY_OVERFLOW));
+  }
+}

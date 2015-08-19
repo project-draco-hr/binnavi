@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SSAT16");
+  translateAll(environment,instruction,"SSAT16",instructions);
+}

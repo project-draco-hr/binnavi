@@ -1,0 +1,12 @@
+int viewId
+String name
+String description
+ViewType viewType
+GraphType graphType
+java.util.Date creationDate
+java.util.Date modificationDate
+int blockCount
+int edgeCount
+Set<CTag> tags
+Set<CTag> nodeTags
+boolean starState

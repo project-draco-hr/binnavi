@@ -1,0 +1,7 @@
+{
+  final List<MemorySection> sections=new ArrayList<>();
+  for (  final com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection section : memoryMap) {
+    sections.add(new MemorySection(section));
+  }
+  return sections;
+}

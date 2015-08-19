@@ -1,0 +1,17 @@
+{
+  m_content=m_updater.generateContent(this);
+  removeLabel(getLabel());
+  if (m_content.getLineCount() > 0) {
+    addLabel(new ZyEdgeLabel(m_content));
+  }
+  for (  final IZyEdgeRealizerListener<EdgeType> listener : m_listeners) {
+    try {
+      listener.regenerated(this);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+  getLabel().repaint();
+  repaint();
+}

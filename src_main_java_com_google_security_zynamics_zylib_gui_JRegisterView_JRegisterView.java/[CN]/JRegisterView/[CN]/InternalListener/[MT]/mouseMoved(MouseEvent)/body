@@ -1,0 +1,4 @@
+{
+  m_highlightedRegister=getRegisterNumber(event.getX(),event.getY());
+  repaint();
+}

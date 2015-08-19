@@ -1,0 +1,3 @@
+{
+  m_rawModule=new CRawModule(1,"",0,false,provider);
+}

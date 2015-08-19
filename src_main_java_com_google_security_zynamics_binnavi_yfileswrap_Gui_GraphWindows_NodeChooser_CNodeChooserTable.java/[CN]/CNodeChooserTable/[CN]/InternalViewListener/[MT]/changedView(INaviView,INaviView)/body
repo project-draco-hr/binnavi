@@ -1,0 +1,4 @@
+{
+  removeViewListeners(oldView);
+  initializeViewListeners(newView);
+}

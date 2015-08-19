@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument(offset >= 0,"Error: Argument offset can't be less than 0");
+  final String ecxZero=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBisz(offset,OperandSize.BYTE,"ecx",OperandSize.BYTE,ecxZero));
+  return new Pair<OperandSize,String>(OperandSize.BYTE,ecxZero);
+}

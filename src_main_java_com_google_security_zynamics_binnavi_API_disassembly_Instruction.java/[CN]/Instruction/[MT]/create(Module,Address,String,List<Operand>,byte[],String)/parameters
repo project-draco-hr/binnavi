@@ -1,0 +1,6 @@
+Module module
+Address address
+String mnemonic
+List<Operand> operands
+byte[] data
+String architecture

@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTypeFunctions.loadRawTypeInstanceReference(this,module,typeInstanceId,address,position,expressionId);
+}

@@ -1,0 +1,8 @@
+{
+  this.name=Preconditions.checkNotNull(name,"IE01031: Name argument can not be null");
+  if (!isValidSize(size)) {
+    throw new IllegalArgumentException(String.format("IE01032: Invalid register size %d",size));
+  }
+  byteSize=size;
+  isEditable=editable;
+}

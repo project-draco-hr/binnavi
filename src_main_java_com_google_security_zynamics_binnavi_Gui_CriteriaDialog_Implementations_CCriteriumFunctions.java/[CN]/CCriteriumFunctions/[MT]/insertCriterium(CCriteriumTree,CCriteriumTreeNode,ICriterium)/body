@@ -1,0 +1,3 @@
+{
+  tree.insertNode(parent,new CCriteriumTreeNode(criterium));
+}

@@ -1,0 +1,19 @@
+{
+  if (value == getSearchCaseSensitive()) {
+    return;
+  }
+  if (m_type == null) {
+    m_searchCaseSensitive=value;
+  }
+ else {
+    m_type.setCaseSensitiveSearch(value);
+  }
+  for (  final IZyGraphSearchSettingsListener listener : m_listeners) {
+    try {
+      listener.changedSearchCaseSensitive(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

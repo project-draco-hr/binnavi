@@ -1,0 +1,14 @@
+{
+  final CTrackingResult result=m_container.getResult();
+  if (result == null) {
+    return;
+  }
+  final List<INaviInstruction> keptInstructions=new ArrayList<INaviInstruction>();
+  for (  final CInstructionResult instructionResult : result.getResults()) {
+    if ((instructionResult.getInstruction() == result.getStartInstruction()) || instructionResult.uses() || instructionResult.undefinesAll()) {
+      keptInstructions.add(instructionResult.getInstruction());
+    }
+  }
+  final INaviView view=CViewPruner.prune(m_container.getViewContainer(),m_container.getGraph().getRawView(),keptInstructions);
+  m_extender.openView(m_container.getViewContainer(),view);
+}

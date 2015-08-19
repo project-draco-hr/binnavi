@@ -1,0 +1,35 @@
+{
+  final Iterable<INaviInstruction> oldInstructions=originalNode.getInstructions();
+  if (instruction == Iterables.getLast(oldInstructions)) {
+    return;
+  }
+  final List<INaviInstruction> upperInstructions=new ArrayList<INaviInstruction>();
+  final List<INaviInstruction> lowerInstructions=new ArrayList<INaviInstruction>();
+  List<INaviInstruction> currentInstructions=upperInstructions;
+  for (  final INaviInstruction oldInstruction : oldInstructions) {
+    currentInstructions.add(oldInstruction);
+    if (oldInstruction == instruction) {
+      currentInstructions=lowerInstructions;
+    }
+  }
+  INaviFunction parentFunction=null;
+  try {
+    parentFunction=originalNode.getParentFunction();
+  }
+ catch (  final MaybeNullException e) {
+  }
+  final INaviCodeNode newNode1=view.getContent().createCodeNode(parentFunction,upperInstructions);
+  final INaviCodeNode newNode2=view.getContent().createCodeNode(parentFunction,lowerInstructions);
+  newNode1.setColor(originalNode.getColor());
+  newNode1.setBorderColor(originalNode.getBorderColor());
+  newNode2.setColor(originalNode.getColor());
+  transferLocalCodeNodeComments(originalNode,newNode1,newNode2);
+  view.getContent().createEdge(newNode1,newNode2,EdgeType.JUMP_UNCONDITIONAL);
+  for (  final INaviEdge incomingEdge : originalNode.getIncomingEdges()) {
+    view.getContent().createEdge(incomingEdge.getSource(),newNode1,incomingEdge.getType());
+  }
+  for (  final INaviEdge outgoingEdge : originalNode.getOutgoingEdges()) {
+    view.getContent().createEdge(newNode2,outgoingEdge.getTarget(),outgoingEdge.getType());
+  }
+  view.getContent().deleteNode(originalNode);
+}

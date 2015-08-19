@@ -1,0 +1,5 @@
+{
+  final ZyGraphViewSettings settings=new ZyGraphViewSettings(new CallGraphSettingsConfigItem());
+  settings.getLayoutSettings().setDefaultGraphLayout(LayoutStyle.CIRCULAR);
+  return settings;
+}

@@ -1,0 +1,28 @@
+{
+  final SectionContainer sectionContainer=new SectionContainer(backend);
+  Assert.assertNotNull(sectionContainer);
+  final int numberOfSections=sectionContainer.getSections().size();
+  final List<Section> checkForFirstSearch=sectionContainer.findSections(new CAddress("100",16));
+  final List<Section> checkForSecondSearch=sectionContainer.findSections(new CAddress("200",16));
+  final int numberOfFoundSectionsFirstSearch=checkForFirstSearch.size();
+  final Section section1=sectionContainer.createSection("SECTION1",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  final Section section2=sectionContainer.createSection("SECTION2",new CAddress("199",16),new CAddress("299",16),SectionPermission.READ,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  final Section section3=sectionContainer.createSection("SECTION3",new CAddress("300",16),new CAddress("400",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  final Section section4=sectionContainer.createSection("SECTION4",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  final Section section5=sectionContainer.createSection("SECTION5",new CAddress("0",16),new CAddress("800",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  final List<Section> secondSectionSearch=sectionContainer.findSections(new CAddress("100",16));
+  Assert.assertEquals(numberOfSections + 5,sectionContainer.getSections().size());
+  Assert.assertEquals(numberOfFoundSectionsFirstSearch + 3,secondSectionSearch.size());
+  Assert.assertTrue(secondSectionSearch.contains(section1));
+  Assert.assertFalse(secondSectionSearch.contains(section2));
+  Assert.assertFalse(secondSectionSearch.contains(section3));
+  Assert.assertTrue(secondSectionSearch.contains(section4));
+  Assert.assertTrue(secondSectionSearch.contains(section5));
+  final List<Section> thirdSectionSearch=sectionContainer.findSections(new CAddress("200",16));
+  Assert.assertEquals(checkForSecondSearch.size() + 4,thirdSectionSearch.size());
+  Assert.assertTrue(thirdSectionSearch.contains(section1));
+  Assert.assertTrue(thirdSectionSearch.contains(section2));
+  Assert.assertFalse(thirdSectionSearch.contains(section3));
+  Assert.assertTrue(thirdSectionSearch.contains(section4));
+  Assert.assertTrue(thirdSectionSearch.contains(section5));
+}

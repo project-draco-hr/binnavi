@@ -1,0 +1,16 @@
+{
+  final MockProcessListener listener=new MockProcessListener();
+  final ProcessManager manager=new ProcessManager();
+  manager.addModule(new MemoryModule("Hannes","C:\\Hannes.dll",new RelocatedAddress(new CAddress(0x100)),0x100));
+  final Process process=new Process(manager);
+  assertEquals(1,process.getModules().size());
+  process.addListener(listener);
+  final MemoryModule dll=new MemoryModule("Foobert.dll","C:\\Foobert.dll",new RelocatedAddress(new CAddress(0x100)),0x100);
+  manager.addModule(dll);
+  assertEquals("addedModule/Foobert.dll;",listener.events);
+  assertEquals(2,process.getModules().size());
+  manager.removeModule(dll);
+  assertEquals("addedModule/Foobert.dll;removedModule/Foobert.dll;",listener.events);
+  assertEquals(1,process.getModules().size());
+  process.removeListener(listener);
+}

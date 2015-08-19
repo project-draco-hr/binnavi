@@ -1,0 +1,21 @@
+{
+  final List<INaviViewNode> nodes=new ArrayList<INaviViewNode>();
+  final List<INaviEdge> edges=new ArrayList<INaviEdge>();
+  final MutableDirectedGraph<INaviViewNode,INaviEdge> graph=new MutableDirectedGraph<INaviViewNode,INaviEdge>(nodes,edges);
+  final int viewId=new BigInteger(31,new SecureRandom()).intValue();
+  final INaviView internalView=new CView(viewId,internalModule,"My View","My View Description",com.google.security.zynamics.zylib.disassembly.ViewType.NonNative,m_creationDate,m_modificationDate,graph,new HashSet<CTag>(),false,m_provider);
+  final INaviFunction internalFunction=internalModule.getContent().getFunctionContainer().getFunctions().get(0);
+  final CCodeNode codeNode=internalView.getContent().createCodeNode(internalFunction,Lists.newArrayList(new MockInstruction()));
+  final CFunctionNode functionNode=internalView.getContent().createFunctionNode(internalFunction);
+  @SuppressWarnings("unused") final CTextNode textNode=internalView.getContent().createTextNode(Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null,"Foo")));
+  @SuppressWarnings("unused") final CGroupNode groupNode=internalView.getContent().createGroupNode(internalView.getGraph().getNodes());
+  internalView.getContent().createEdge(codeNode,functionNode,com.google.security.zynamics.zylib.gui.zygraph.edges.EdgeType.JUMP_UNCONDITIONAL);
+  final TagManager tagManager=new TagManager(new MockTagManager(TagType.NODE_TAG));
+  final MockViewListener listener=new MockViewListener();
+  final View view=new View(module,internalView,tagManager,m_viewTagManager);
+  view.addListener(listener);
+  assertEquals(4,view.getGraph().getNodes().size());
+  assertEquals(1,view.getGraph().getEdges().size());
+  internalView.getContent().deleteNodes(internalView.getContent().getGraph().getNodes());
+  assertEquals("deletedEdge;deletedNode;deletedNode;deletedNode;",listener.events);
+}

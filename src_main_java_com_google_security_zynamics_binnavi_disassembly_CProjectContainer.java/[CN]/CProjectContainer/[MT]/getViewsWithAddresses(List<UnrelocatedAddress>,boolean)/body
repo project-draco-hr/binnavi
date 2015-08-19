@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(addresses,"IE02219: Addresses argument can not be null");
+  return m_project.getViewsWithAddresses(addresses,all);
+}

@@ -1,0 +1,25 @@
+{
+  m_options=new RegisterTrackingOptions(true,new HashSet<String>(),false,AnalysisDirection.UP);
+  final String trackedRegister="ecx";
+  final MonoReilSolverResult<RegisterSetLatticeElement> result=RegisterTracker.track(m_function,m_shldInstruction,trackedRegister,m_options);
+  final Map<IAddress,RegisterSetLatticeElement> resultMap=result.generateAddressToStateMapping(m_shldInstruction,m_options.trackIncoming());
+  for (  final Entry<IAddress,RegisterSetLatticeElement> resultEntry : resultMap.entrySet()) {
+    if ((resultEntry.getKey().toLong() >> 8) == 5) {
+      final RegisterSetLatticeElement movInstructionResult=resultEntry.getValue();
+      Assert.assertTrue(movInstructionResult.getNewlyTaintedRegisters().isEmpty());
+      Assert.assertTrue(movInstructionResult.getReadRegisters().contains("ecx"));
+      Assert.assertTrue(movInstructionResult.getTaintedRegisters().contains("edx"));
+      Assert.assertTrue(movInstructionResult.getUntaintedRegisters().contains("ecx"));
+      Assert.assertTrue(movInstructionResult.getUpdatedRegisters().isEmpty());
+    }
+    if ((resultEntry.getKey().toLong() >> 8) == 8) {
+      final RegisterSetLatticeElement shldInstructionResult=resultEntry.getValue();
+      Assert.assertTrue(shldInstructionResult.getNewlyTaintedRegisters().contains("edx"));
+      Assert.assertTrue(shldInstructionResult.getReadRegisters().contains("ecx"));
+      Assert.assertTrue(shldInstructionResult.getTaintedRegisters().contains("ecx"));
+      Assert.assertTrue(shldInstructionResult.getTaintedRegisters().contains("edx"));
+      Assert.assertTrue(shldInstructionResult.getUntaintedRegisters().contains("ecx"));
+      Assert.assertTrue(shldInstructionResult.getUpdatedRegisters().contains("ecx"));
+    }
+  }
+}

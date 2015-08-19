@@ -1,0 +1,4 @@
+{
+  typeInstanceContainer.createInstance("TYPEINSTANCE",null,baseType,section,0);
+  typeInstanceContainer.createInstance("TYPEINSTANCE2",null,baseType,section,0);
+}

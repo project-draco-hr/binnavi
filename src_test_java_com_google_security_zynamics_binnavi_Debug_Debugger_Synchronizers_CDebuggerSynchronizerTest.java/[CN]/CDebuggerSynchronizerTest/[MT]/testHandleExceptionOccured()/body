@@ -1,0 +1,11 @@
+{
+  mockDebugger.connect();
+  final TargetProcessThread thread=new TargetProcessThread(18,ThreadState.RUNNING);
+  mockDebugger.getProcessManager().addThread(thread);
+  debuggerSynchronizer.receivedEvent(new ExceptionOccurredReply(0,0,18,5,CommonTestObjects.BP_ADDRESS_123_RELOC,"Test exception"));
+  assertEquals(thread,mockDebugger.getProcessManager().getActiveThread());
+  assertEquals(ThreadState.RUNNING,mockDebugger.getProcessManager().getThread(18).getState());
+  assertEquals(CommonTestObjects.BP_ADDRESS_123_RELOC,mockDebugger.getProcessManager().getThread(18).getCurrentAddress());
+  assertEquals("CONNECT;READREGS;",mockDebugger.requests);
+  assertEquals("EXCEPTION_OCCURRED/5;",listener.events);
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(editabeObject,"Error: editabeObject argument can not be null");
+  final int start=editabeObject.getStart();
+  int end=editabeObject.getEnd();
+  if (start >= m_text.length()) {
+    return "";
+  }
+  if (end >= m_text.length()) {
+    end=m_text.length();
+  }
+  return m_text.substring(start,end);
+}

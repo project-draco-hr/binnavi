@@ -1,0 +1,6 @@
+Component parent
+String title
+boolean modal
+CColorChooser chooserPane
+ActionListener okListener
+ActionListener cancelListener

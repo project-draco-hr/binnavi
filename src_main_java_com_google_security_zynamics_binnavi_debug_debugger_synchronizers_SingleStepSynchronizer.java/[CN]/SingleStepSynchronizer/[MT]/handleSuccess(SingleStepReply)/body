@@ -1,0 +1,13 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  final long tid=reply.getThreadId();
+  try {
+    final TargetProcessThread thread=processManager.getThread(tid);
+    processManager.setActiveThread(thread);
+    setRegisterValues(reply.getRegisterValues());
+    updateHitBreakpoints(DebuggerHelpers.getBreakpointAddress(getDebugger(),thread.getCurrentAddress()));
+  }
+ catch (  final MaybeNullException e) {
+    NaviLogger.info("Error: Process manager could not get thread. Exception %s",e);
+  }
+}

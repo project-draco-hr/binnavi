@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(flowgraph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  for (  final BasicBlock node : flowgraph) {
+    for (    final Instruction instruction : node.getInstructions()) {
+      if (instruction.getAddress().equals(address)) {
+        return instruction;
+      }
+    }
+  }
+  return null;
+}

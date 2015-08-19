@@ -1,0 +1,7 @@
+{
+  if (!(rhs instanceof ReilInstruction)) {
+    return false;
+  }
+  final ReilInstruction rhsInstruction=(ReilInstruction)rhs;
+  return address.equals(rhsInstruction.getAddress()) && rhsInstruction.getMnemonic().equals(mnemonic) && firstOperand.equals(rhsInstruction.getFirstOperand())&& secondOperand.equals(rhsInstruction.getSecondOperand())&& thirdOperand.equals(rhsInstruction.getThirdOperand())&& metaData.equals(rhsInstruction.getMetaData());
+}

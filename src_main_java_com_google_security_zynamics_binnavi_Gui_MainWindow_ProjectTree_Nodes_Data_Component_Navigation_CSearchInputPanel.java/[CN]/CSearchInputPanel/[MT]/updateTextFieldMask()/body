@@ -1,0 +1,8 @@
+{
+  if (m_modeBox.getSelectedIndex() == 0) {
+    m_inputField.setFormatterFactory(new DefaultFormatterFactory());
+  }
+ else {
+    m_inputField.setFormatterFactory(new DefaultFormatterFactory(new CHexFormatter(8)));
+  }
+}

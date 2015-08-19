@@ -1,0 +1,6 @@
+{
+  super(nodeId,x,y,width,height,color,borderColor,selected,visible,tags,provider);
+  m_parentFunction=parentFunction;
+  m_provider=provider;
+  m_comments=new CCodeNodeComments(this,m_parentFunction,localComment,m_listeners,m_provider);
+}

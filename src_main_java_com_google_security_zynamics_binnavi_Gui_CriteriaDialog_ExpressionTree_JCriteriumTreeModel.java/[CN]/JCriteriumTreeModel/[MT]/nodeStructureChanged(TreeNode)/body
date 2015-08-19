@@ -1,0 +1,19 @@
+{
+  final Set<ICriterium> criteriumSet=new HashSet<ICriterium>();
+  final Enumeration<TreePath> expandedPaths=m_jtree.getExpandedDescendants(new TreePath(getRoot()));
+  if (expandedPaths != null) {
+    while (expandedPaths.hasMoreElements()) {
+      final TreePath path=expandedPaths.nextElement();
+      final JCriteriumTreeNode expandedNode=(JCriteriumTreeNode)path.getLastPathComponent();
+      criteriumSet.add(expandedNode.getCriterium());
+    }
+  }
+  super.nodeStructureChanged(node);
+  final Enumeration<?> nodes=((JCriteriumTreeNode)getRoot()).breadthFirstEnumeration();
+  while (nodes.hasMoreElements()) {
+    final JCriteriumTreeNode nextNode=(JCriteriumTreeNode)nodes.nextElement();
+    if (criteriumSet.contains(nextNode.getCriterium())) {
+      m_jtree.expandPath(new TreePath(nextNode.getPath()));
+    }
+  }
+}

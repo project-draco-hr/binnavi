@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(tag,"IE00859: Tag argument can't be null");
+  Preconditions.checkNotNull(tag.getObject(),"IE00860: Tag object can't be null");
+  Preconditions.checkArgument(tag.getObject().getType() == m_type,"IE00861: Tag has an incorrect type");
+  Preconditions.checkArgument(hasTag(tag),"IE00862: Tag is not managed by this manager");
+}

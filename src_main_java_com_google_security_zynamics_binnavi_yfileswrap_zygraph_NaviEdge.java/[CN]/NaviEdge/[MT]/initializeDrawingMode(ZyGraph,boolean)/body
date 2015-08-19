@@ -1,0 +1,5 @@
+{
+  final ZyEdgeRealizer<NaviEdge> realizer=getRealizer();
+  realizer.setDrawBends(graph.getSettings().getEdgeSettings().getDrawSelectedBends());
+  realizer.setDrawSloppyEdges(drawSloppyEdges);
+}

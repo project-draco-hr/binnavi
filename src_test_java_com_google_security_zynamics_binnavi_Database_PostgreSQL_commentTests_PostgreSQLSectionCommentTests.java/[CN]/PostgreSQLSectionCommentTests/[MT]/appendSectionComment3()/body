@@ -1,0 +1,4 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().appendSectionComment(1,1,null,user.getUserId());
+}

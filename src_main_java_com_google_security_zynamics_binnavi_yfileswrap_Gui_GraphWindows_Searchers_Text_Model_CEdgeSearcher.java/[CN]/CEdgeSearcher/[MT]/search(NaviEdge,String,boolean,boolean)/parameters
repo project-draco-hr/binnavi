@@ -1,0 +1,4 @@
+NaviEdge edge
+String searchString
+boolean regEx
+boolean caseSensitive

@@ -1,0 +1,11 @@
+{
+  activeProcessThreads.remove(thread);
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.removedThread(thread);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

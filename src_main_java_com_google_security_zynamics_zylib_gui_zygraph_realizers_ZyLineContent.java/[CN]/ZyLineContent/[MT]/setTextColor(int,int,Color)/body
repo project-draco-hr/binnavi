@@ -1,0 +1,8 @@
+{
+  if (!isEmpty()) {
+    final int realLength=calculateRealLength(position,length);
+    validatePartialLineArguments(position,realLength);
+    m_atext.addAttribute(TextAttribute.FOREGROUND,color,position,position + realLength);
+    m_textLayout=new TextLayout(m_atext.getIterator(),m_fontContext);
+  }
+}

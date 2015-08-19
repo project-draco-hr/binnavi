@@ -1,0 +1,4 @@
+{
+  super("Search");
+  m_tableSearcher=Preconditions.checkNotNull(tableSearcher,"Internal Error: Table Searcher can't be null");
+}

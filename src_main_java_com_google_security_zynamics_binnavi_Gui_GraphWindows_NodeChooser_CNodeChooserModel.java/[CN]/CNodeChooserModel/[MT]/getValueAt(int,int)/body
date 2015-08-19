@@ -1,0 +1,13 @@
+{
+switch (columnIndex) {
+case COLUMN_ADDRESS:
+    return getNodeAddress(m_nodeCache.get(rowIndex));
+case COLUMN_COLOR:
+  return m_nodeCache.get(rowIndex).getColor().getRGB();
+case COLUMN_IN:
+return m_nodeCache.get(rowIndex).getIncomingEdges().size();
+case COLUMN_OUT:
+return m_nodeCache.get(rowIndex).getOutgoingEdges().size();
+}
+return null;
+}

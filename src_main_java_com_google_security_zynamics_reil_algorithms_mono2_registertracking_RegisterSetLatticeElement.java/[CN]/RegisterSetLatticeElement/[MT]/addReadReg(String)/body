@@ -1,0 +1,3 @@
+{
+  m_readRegs.add(Preconditions.checkNotNull(reg,"Error: Register argument can not be null"));
+}

@@ -1,0 +1,4 @@
+{
+  m_provider=Preconditions.checkNotNull(provider,"IE00071: provider argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"IE00072: module argument can not be null");
+}

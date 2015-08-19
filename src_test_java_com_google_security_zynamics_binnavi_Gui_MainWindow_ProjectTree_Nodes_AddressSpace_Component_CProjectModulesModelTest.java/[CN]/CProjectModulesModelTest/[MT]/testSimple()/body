@@ -1,0 +1,15 @@
+{
+  m_database=new MockDatabase(m_provider);
+  m_project=new CProject(1,"Mock Project","Mock Project Description",new Date(),new Date(),0,new ArrayList<DebuggerTemplate>(),m_provider);
+  m_project.load();
+  m_addressSpace=m_project.getContent().createAddressSpace("Address Space");
+  m_addressSpace.load();
+  final CModule module1=new CModule(1,"Name 1","Comment",new Date(),new Date(),"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new DebuggerTemplate(1,"Mock Debugger","localhaus",88,m_provider),null,Integer.MAX_VALUE,false,m_provider);
+  m_addressSpace.getContent().addModule(module1);
+  final CModule module2=new CModule(2,"Name 2","Comment",new Date(),new Date(),"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new DebuggerTemplate(1,"Mock Debugger","localhaus",88,m_provider),null,Integer.MAX_VALUE,false,m_provider);
+  m_addressSpace.getContent().addModule(module2);
+  final CProjectModulesModel model=new CProjectModulesModel(m_addressSpace);
+  assertEquals(2,model.getRowCount());
+  assertEquals("Name 1",model.getValueAt(0,0));
+  assertEquals("Name 2",model.getValueAt(1,0));
+}

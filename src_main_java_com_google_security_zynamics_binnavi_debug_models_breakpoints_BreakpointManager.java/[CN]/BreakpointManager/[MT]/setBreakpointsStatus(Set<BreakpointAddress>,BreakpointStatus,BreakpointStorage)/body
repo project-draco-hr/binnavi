@@ -1,0 +1,18 @@
+{
+  if (storage.getBreakPointsByAddress(addresses).isEmpty()) {
+    return;
+  }
+  final Map<Breakpoint,BreakpointStatus> breakpointToStatus=Maps.newHashMap();
+  for (  final BreakpointAddress breakpointAddress : addresses) {
+    breakpointToStatus.put(storage.get(breakpointAddress),storage.getBreakpointStatus(breakpointAddress));
+    storage.setBreakpointStatus(breakpointAddress,newStatus);
+  }
+  for (  final BreakpointManagerListener listener : listeners) {
+    try {
+      listener.breakpointsStatusChanged(breakpointToStatus,newStatus);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

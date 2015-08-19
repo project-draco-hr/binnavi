@@ -1,0 +1,7 @@
+{
+  try {
+    updateTypesTree(event.getDocument().getText(0,event.getDocument().getLength()));
+  }
+ catch (  final BadLocationException exception) {
+  }
+}

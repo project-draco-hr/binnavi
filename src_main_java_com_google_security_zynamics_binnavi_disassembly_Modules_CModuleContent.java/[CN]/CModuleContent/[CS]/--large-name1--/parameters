@@ -1,0 +1,12 @@
+INaviModule module
+SQLProvider provider
+ListenerProvider<IModuleListener> listeners
+CCallgraph callgraph
+List<INaviFunction> functions
+ICallgraphView nativeCallgraph
+ImmutableList<IFlowgraphView> nativeFlowgraphs
+List<INaviView> customViews
+ImmutableBiMap<INaviView,INaviFunction> viewFunctionMap
+List<TraceList> traces
+SectionContainer sections
+TypeInstanceContainer instanceContainer

@@ -1,0 +1,11 @@
+{
+  if (instanceReferences == null) {
+    return;
+  }
+  for (  final TypeInstanceReference reference : instanceReferences) {
+    if (instance == reference.getTypeInstance()) {
+      notifyListeners();
+      return;
+    }
+  }
+}

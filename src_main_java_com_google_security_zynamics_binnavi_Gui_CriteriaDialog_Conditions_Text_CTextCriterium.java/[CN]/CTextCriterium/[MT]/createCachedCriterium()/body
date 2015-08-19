@@ -1,0 +1,3 @@
+{
+  return new CCachedTextCriterium(m_panel.getText(),m_panel.isRegularExpression(),m_panel.isCaseSensitive());
+}

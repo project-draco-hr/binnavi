@@ -1,0 +1,15 @@
+{
+  final String settingString=rawSettings.get(settingName);
+  if (settingString == null) {
+    return defaultValue;
+  }
+ else {
+    try {
+      return Boolean.parseBoolean(settingString);
+    }
+ catch (    final NumberFormatException exception) {
+      CUtilityFunctions.logException(exception);
+      return defaultValue;
+    }
+  }
+}

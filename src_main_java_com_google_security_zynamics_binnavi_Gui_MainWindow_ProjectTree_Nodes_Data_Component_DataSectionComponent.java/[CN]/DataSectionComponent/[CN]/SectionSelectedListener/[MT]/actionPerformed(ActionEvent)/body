@@ -1,0 +1,5 @@
+{
+  final SectionComboBox comboBox=(SectionComboBox)e.getSource();
+  final Section section=(Section)comboBox.getSelectedItem();
+  sectionChanged(section);
+}

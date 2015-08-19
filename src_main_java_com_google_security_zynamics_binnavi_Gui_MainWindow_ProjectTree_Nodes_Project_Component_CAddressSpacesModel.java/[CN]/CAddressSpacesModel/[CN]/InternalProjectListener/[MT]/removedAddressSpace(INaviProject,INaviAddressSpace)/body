@@ -1,0 +1,6 @@
+{
+  m_cachedValues=null;
+  space.removeListener(m_addressSpaceListener);
+  space.getConfiguration().removeListener(m_addressSpaceConfigurationListener);
+  fireTableDataChanged();
+}

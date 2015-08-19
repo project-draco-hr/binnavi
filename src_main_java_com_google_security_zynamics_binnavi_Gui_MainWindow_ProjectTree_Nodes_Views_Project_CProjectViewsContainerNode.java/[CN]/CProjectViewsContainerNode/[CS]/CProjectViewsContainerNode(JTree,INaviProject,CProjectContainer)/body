@@ -1,0 +1,12 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CProjectViewsContainerComponent(projectTree,project,container);
+    }
+  }
+,new CRootNodeMenuBuilder(projectTree),project);
+  Preconditions.checkNotNull(project,"IE02051: Project can't be null");
+  m_project=project;
+  m_project.addListener(m_listener);
+  createChildren();
+}

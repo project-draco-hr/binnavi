@@ -1,0 +1,5 @@
+{
+  final IAddress start=parseAddress();
+  final IAddress end=parseAddress();
+  return new ValidateMemoryReply(packetId,0,start,end);
+}

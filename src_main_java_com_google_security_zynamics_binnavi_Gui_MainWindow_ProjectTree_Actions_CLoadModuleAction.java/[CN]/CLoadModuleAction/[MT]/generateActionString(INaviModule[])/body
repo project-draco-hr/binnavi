@@ -1,0 +1,27 @@
+{
+  if (modules.length == 1) {
+    final INaviModule module=modules[0];
+    return generateActionString(module);
+  }
+ else {
+    boolean allLoad=true;
+    boolean allInitialize=true;
+    for (    final INaviModule module : modules) {
+      if (module.isInitialized()) {
+        allInitialize=false;
+      }
+ else {
+        allLoad=false;
+      }
+    }
+    if (allLoad) {
+      return "Load Modules";
+    }
+ else     if (allInitialize) {
+      return "Initialize & Load Modules";
+    }
+ else {
+      return "Load / Initialize & Load Modules";
+    }
+  }
+}

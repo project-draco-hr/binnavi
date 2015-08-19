@@ -1,0 +1,3 @@
+{
+  add(new JMenuItem(new CActionCopyReilCode(textArea)));
+}

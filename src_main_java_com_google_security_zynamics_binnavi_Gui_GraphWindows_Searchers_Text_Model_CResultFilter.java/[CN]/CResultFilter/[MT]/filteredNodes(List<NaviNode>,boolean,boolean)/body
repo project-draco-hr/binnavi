@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.filter(nodes,new ICollectionFilter<NaviNode>(){
+    @Override public boolean qualifies(    final NaviNode node){
+      return (!onlySelected || node.isSelected()) && (!onlyVisible || node.isVisible());
+    }
+  }
+);
+}

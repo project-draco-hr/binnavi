@@ -1,0 +1,3 @@
+CConnection connection
+TraceList traceList
+List<? extends INaviModule> modules

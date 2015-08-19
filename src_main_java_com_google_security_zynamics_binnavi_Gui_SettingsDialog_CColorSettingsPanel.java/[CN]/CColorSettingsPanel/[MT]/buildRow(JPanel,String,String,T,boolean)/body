@@ -1,0 +1,9 @@
+{
+  component.setPreferredSize(new Dimension(COLORPANEL_WIDTH,COLORPANEL_HEIGHT));
+  final JPanel rowPanel=new JPanel(new BorderLayout());
+  rowPanel.setBorder(new EmptyBorder(0,2,isLast ? 2 : 0,2));
+  rowPanel.add(new JLabel(labelText),BorderLayout.CENTER);
+  rowPanel.add(CHintCreator.createHintPanel(component,hint),BorderLayout.EAST);
+  panel.add(rowPanel);
+  return component;
+}

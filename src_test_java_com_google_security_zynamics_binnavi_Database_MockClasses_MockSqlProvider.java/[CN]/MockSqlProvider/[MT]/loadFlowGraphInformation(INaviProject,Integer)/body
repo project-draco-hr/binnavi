@@ -1,0 +1,3 @@
+{
+  return new ImmutableNaviViewConfiguration(viewId,"DB PROJECT VIEW NAME","DB PROJECT VIEW DESCRIPTION",ViewType.NonNative,new Date(),new Date(),false,1,1);
+}

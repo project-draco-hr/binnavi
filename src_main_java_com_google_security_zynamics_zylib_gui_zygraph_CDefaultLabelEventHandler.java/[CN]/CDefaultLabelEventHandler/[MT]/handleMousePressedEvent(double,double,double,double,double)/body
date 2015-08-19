@@ -1,0 +1,6 @@
+{
+  final ZyCaret caret=getActiveLabelContent().getCaret();
+  caret.setCaretStart(labelParentX,labelParentY,mouseX,mouseY,zoomFactor);
+  caret.setCaretEnd(labelParentX,labelParentY,mouseX,mouseY,zoomFactor);
+  m_activeRealizer.repaint();
+}

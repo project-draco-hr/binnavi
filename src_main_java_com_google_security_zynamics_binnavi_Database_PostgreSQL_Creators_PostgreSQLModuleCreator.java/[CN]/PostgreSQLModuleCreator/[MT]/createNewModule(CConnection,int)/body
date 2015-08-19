@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(connection,"IE01857: Connection argument can not be null");
+  final String query=" { ? = call create_module(?) } ";
+  final CallableStatement call=connection.getConnection().prepareCall(query);
+  call.registerOutParameter(1,Types.INTEGER);
+  call.setInt(2,rawModuleId);
+  call.execute();
+  return call.getInt(1);
+}

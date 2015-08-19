@@ -1,0 +1,6 @@
+{
+  assertTrue(TEST_COMMENT_1.equals(TEST_COMMENT_1));
+  assertFalse(TEST_COMMENT_1.equals(null));
+  assertFalse(TEST_COMMENT_1.equals(TEST_COMMENT_2));
+  assertTrue(TEST_COMMENT_2.equals(new CComment(null,CommonTestObjects.TEST_USER_2,TEST_COMMENT_1,"TEST COMMENT 2")));
+}

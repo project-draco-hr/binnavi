@@ -1,0 +1,6 @@
+{
+  final RawTypeMember rawMember=findMember(member,module);
+  if (rawMember != null) {
+    members.remove(module,rawMember);
+  }
+}

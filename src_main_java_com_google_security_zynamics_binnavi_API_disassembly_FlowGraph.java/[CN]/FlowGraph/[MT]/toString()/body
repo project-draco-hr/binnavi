@@ -1,0 +1,3 @@
+{
+  return String.format("Flow graph [%d nodes, %d edges]",nodeCount(),edgeCount());
+}

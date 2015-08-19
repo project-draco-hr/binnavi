@@ -1,0 +1,7 @@
+{
+  debugger.connect();
+  debugger.detach();
+  assertEquals("CONNECT;DETACH;",mockDebugger.requests);
+  debugger.detach();
+  assertEquals("CONNECT;DETACH;DETACH;",mockDebugger.requests);
+}

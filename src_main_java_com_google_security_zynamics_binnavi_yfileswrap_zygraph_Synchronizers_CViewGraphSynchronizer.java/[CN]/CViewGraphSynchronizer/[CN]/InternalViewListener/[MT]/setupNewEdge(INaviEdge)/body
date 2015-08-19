@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(m_graph.getYNode(edge.getSource()),"Unknown source node");
+  Preconditions.checkNotNull(m_graph.getYNode(edge.getTarget()),String.format("Unknown target node '%s'",edge.getTarget()));
+  edge.getSource().setVisible(true);
+  edge.getTarget().setVisible(true);
+  final Pair<Edge,NaviEdge> result=ZyEdgeBuilder.convertEdge(edge,m_mappings.getNode(edge.getSource()),m_mappings.getNode(edge.getTarget()),m_graph.getGraph(),true);
+  @SuppressWarnings("unchecked") final ZyEdgeRealizer<NaviEdge> realizer=(ZyEdgeRealizer<NaviEdge>)m_graph.getGraph().getRealizer(result.first());
+  realizer.setDrawBends(m_graph.getSettings().getEdgeSettings().getDrawSelectedBends());
+  realizer.setDrawSloppyEdges(CEdgeDrawingFunctions.calcDrawSloppyEdges(m_graph));
+  m_mappings.addEdge(result.first(),result.second());
+  m_edgeDrawingSynchronizer.updateEdgeDrawingState();
+}

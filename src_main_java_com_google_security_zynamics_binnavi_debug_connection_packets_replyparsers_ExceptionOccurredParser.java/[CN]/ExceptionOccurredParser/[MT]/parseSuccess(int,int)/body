@@ -1,0 +1,23 @@
+{
+  Preconditions.checkArgument(argumentCount == 1,"IE00068: Unexpected number of argument while parsing exception occured packet");
+  final byte[] data=parseData();
+  Preconditions.checkNotNull(data,"IE00095: Data argument can not be null");
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  try {
+    final DocumentBuilder builder=factory.newDocumentBuilder();
+    final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+    final Node node=document.getFirstChild();
+    final long threadId=Long.valueOf(node.getAttributes().getNamedItem("threadId").getNodeValue());
+    final RelocatedAddress address=new RelocatedAddress(new CAddress(new BigInteger(node.getAttributes().getNamedItem("address").getNodeValue())));
+    final long exceptionCode=Long.valueOf(node.getAttributes().getNamedItem("exceptionCode").getNodeValue());
+    String exceptionName=node.getAttributes().getNamedItem("exceptionName").getNodeValue();
+    if (exceptionName.isEmpty()) {
+      exceptionName="Unknown exception";
+    }
+    return new ExceptionOccurredReply(packetId,0,threadId,exceptionCode,address,exceptionName);
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    throw new IllegalStateException("IE00097: Unexpected error while parsing exception occured packet");
+  }
+}

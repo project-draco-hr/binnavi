@@ -1,0 +1,14 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CAddressSpaceNodeComponent(projectTree,database,project,addressSpace);
+    }
+  }
+,new CAddressSpaceNodeMenuBuilder(projectTree,parentNode,null,database,project,new INaviAddressSpace[]{addressSpace},container),addressSpace);
+  m_project=Preconditions.checkNotNull(project,"IE01941: Project can't be null");
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"IE01942: Address space can't be null");
+  m_database=Preconditions.checkNotNull(database,"IE02344: Database argument can not be null");
+  createChildren();
+  m_addressSpace.addListener(m_addrSpaceListener);
+  m_addressSpace.getConfiguration().addListener(m_addrSpaceConfigurationListener);
+}

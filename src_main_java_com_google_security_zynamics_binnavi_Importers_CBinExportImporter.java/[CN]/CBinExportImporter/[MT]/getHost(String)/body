@@ -1,0 +1,7 @@
+{
+  final int colonIndex=host.indexOf(':');
+  if (colonIndex == -1) {
+    return host;
+  }
+  return host.substring(0,colonIndex);
+}

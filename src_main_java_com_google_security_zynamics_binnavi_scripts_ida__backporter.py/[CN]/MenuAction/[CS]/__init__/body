@@ -1,0 +1,4 @@
+def __init__(self, pi, module):
+    AbstractAction.__init__(self, 'Port names to IDA Pro')
+    self.pi = pi
+    self.module = module

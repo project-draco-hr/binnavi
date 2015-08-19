@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Select File\" message to the debug client");
+  sendPacket(new SelectFileCommand(getMessageId(),name));
+}

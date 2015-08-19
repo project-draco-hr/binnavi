@@ -1,0 +1,5 @@
+{
+  m_startNode=Preconditions.checkNotNull(startNode,"IE02752: startNode argument can not be null");
+  m_endNode=Preconditions.checkNotNull(endNode,"IE02753: endNode argument can not be null");
+  m_inlinedNodes=Preconditions.checkNotNull(inlinedNodes,"IE02754: inlinedNodes argument can not be null");
+}

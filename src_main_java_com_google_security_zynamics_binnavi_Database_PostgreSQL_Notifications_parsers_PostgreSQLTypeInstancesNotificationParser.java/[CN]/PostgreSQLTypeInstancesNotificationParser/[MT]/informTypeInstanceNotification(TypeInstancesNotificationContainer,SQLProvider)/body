@@ -1,0 +1,15 @@
+{
+  final TypeInstanceContainer typeContainer=provider.findModule(container.getModuleId()).getContent().getTypeInstanceContainer();
+  if (container.getDatabaseOperation().equals("INSERT")) {
+    typeContainer.loadInstance(container.getTypeInstanceId());
+  }
+ else   if (container.getDatabaseOperation().equals("UPDATE")) {
+    typeContainer.reloadInstance(container.getTypeInstanceId());
+  }
+ else   if (container.getDatabaseOperation().equals("DELETE")) {
+    typeContainer.deleteInstance(container.getTypeInstanceId());
+  }
+ else {
+    throw new IllegalStateException("Error: the database operation " + container.getDatabaseOperation() + " is currently not supported.");
+  }
+}

@@ -1,0 +1,8 @@
+{
+  final MockThreadListener listener=new MockThreadListener();
+  m_thread.addListener(listener);
+  m_internalThread.setRegisterValues(Lists.newArrayList(new RegisterValue("eax",BigInteger.TEN,new byte[0],false,false)));
+  assertEquals("changedRegisters;",listener.events);
+  assertEquals(1,m_thread.getRegisters().size());
+  m_thread.removeListener(listener);
+}

@@ -1,0 +1,8 @@
+{
+  final CColorChooser pane=new CColorChooser(initialColor,recentColors);
+  final SelectedColorActionListener ok=pane.new SelectedColorActionListener();
+  final JDialog dlg=createDialog(parent,title,true,pane,ok,null);
+  dlg.setVisible(true);
+  dlg.dispose();
+  return ok.getColor();
+}

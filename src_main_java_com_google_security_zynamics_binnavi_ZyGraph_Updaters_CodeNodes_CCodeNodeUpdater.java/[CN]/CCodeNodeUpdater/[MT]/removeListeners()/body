@@ -1,0 +1,21 @@
+{
+  try {
+    codeNode.getParentFunction().removeListener(functionUpdater);
+    codeNode.getParentFunction().getModule().removeListener(moduleUpdater);
+  }
+ catch (  final MaybeNullException exception) {
+  }
+  codeNode.removeListener(codeNodeListener);
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    instruction.removeListener(instructionUpdater);
+  }
+  final Iterator<CTag> it=codeNode.getTagsIterator();
+  while (it.hasNext()) {
+    it.next().removeListener(tagUpdater);
+  }
+  for (  final IDebugger debugger : provider.getDebuggers()) {
+    debugger.getProcessManager().removeListener(debuggerUpdater);
+  }
+  provider.removeListener(debuggerProviderListener);
+  graph.getSettings().getDisplaySettings().removeListener(settingsUpdater);
+}

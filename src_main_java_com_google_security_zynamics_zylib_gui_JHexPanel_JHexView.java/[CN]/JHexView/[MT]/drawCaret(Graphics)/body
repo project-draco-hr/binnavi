@@ -1,0 +1,15 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  if ((getCurrentOffset() < getFirstVisibleByte()) || (getCurrentColumn() > (getFirstVisibleByte() + getMaximumVisibleBytes()))) {
+    return;
+  }
+  final int characterSize=getCharacterWidth(g);
+  if (m_activeView == Views.HEX_VIEW) {
+    drawCaretHexWindow(g,characterSize,m_rowHeight);
+  }
+ else {
+    drawCaretAsciiWindow(g,characterSize,m_rowHeight);
+  }
+}

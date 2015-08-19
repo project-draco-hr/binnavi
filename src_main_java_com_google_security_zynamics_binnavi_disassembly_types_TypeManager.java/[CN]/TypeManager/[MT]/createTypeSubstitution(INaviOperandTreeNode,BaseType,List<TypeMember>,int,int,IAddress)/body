@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(node,"IE02782: Operand tree node can not be null.");
+  Preconditions.checkNotNull(baseType,"IE02783: Base type can not be null.");
+  Preconditions.checkArgument(offset >= 0,"Offset can not be negative.");
+  Preconditions.checkNotNull(address,"IE02784: Address can not be null.");
+  final TypeSubstitution substitution=backend.createTypeSubstitution(node,baseType,membersToIds(memberPath),position,offset,address);
+  typesContainer.addTypeSubstitution(substitution);
+  node.setTypeSubstitution(substitution);
+  notifySubstitutionAdded(substitution);
+  return substitution;
+}

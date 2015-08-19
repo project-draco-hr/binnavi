@@ -1,0 +1,15 @@
+{
+  final String settingString=rawSettings.get(settingName);
+  if ((settingString != null) && Convert.isDecString(settingString)) {
+    try {
+      return Integer.parseInt(settingString);
+    }
+ catch (    final NumberFormatException exception) {
+      CUtilityFunctions.logException(exception);
+      return defaultValue;
+    }
+  }
+ else {
+    return defaultValue;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  addressSpace.getContent().addListener(m_internalContentListener);
+  final List<INaviModule> modules=addressSpace.getContent().getModules();
+  final List<INaviModule> allModules=getModules();
+  for (  final INaviModule module : modules) {
+    if (CollectionHelpers.count(allModules,module) == 1) {
+      initializeModuleListeners(module);
+    }
+  }
+}

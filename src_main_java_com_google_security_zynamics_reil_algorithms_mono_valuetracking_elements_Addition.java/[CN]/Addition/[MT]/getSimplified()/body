@@ -1,0 +1,28 @@
+{
+  final IValueElement simplifiedLhs=m_lhs.getSimplified();
+  final IValueElement simplifiedRhs=m_rhs.getSimplified();
+  if (simplifiedRhs instanceof Literal) {
+    if (simplifiedLhs instanceof Literal) {
+      return new Literal(((Literal)simplifiedLhs).getValue().add(((Literal)simplifiedRhs).getValue()));
+    }
+ else     if ((simplifiedLhs instanceof Addition) && (((Addition)simplifiedLhs).getRhs() instanceof Literal)) {
+      return new Addition(((Addition)simplifiedLhs).getLhs(),new Literal(((Literal)((Addition)simplifiedLhs).getRhs()).getValue().add(((Literal)simplifiedRhs).getValue())));
+    }
+ else     if ((simplifiedLhs instanceof Subtraction) && (((Subtraction)simplifiedLhs).getRhs() instanceof Literal)) {
+      final Literal litRhs=(Literal)simplifiedRhs;
+      final Subtraction subLhs=(Subtraction)simplifiedLhs;
+      final Literal leftLiteral=(Literal)subLhs.getRhs();
+      final BigInteger result=leftLiteral.getValue().negate().add(litRhs.getValue());
+      if (result.compareTo(BigInteger.ZERO) == 0) {
+        return subLhs.getLhs();
+      }
+ else       if (result.compareTo(BigInteger.ZERO) == -1) {
+        return new Subtraction(subLhs.getLhs(),new Literal(result.negate()));
+      }
+ else {
+        return new Addition(subLhs.getLhs(),new Literal(result));
+      }
+    }
+  }
+  return new Addition(simplifiedLhs,simplifiedRhs);
+}

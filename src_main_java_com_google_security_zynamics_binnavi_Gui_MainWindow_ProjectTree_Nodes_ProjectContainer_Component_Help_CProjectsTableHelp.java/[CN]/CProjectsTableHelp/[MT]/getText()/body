@@ -1,0 +1,3 @@
+{
+  return "This table shows information about the known projects.\nName: Name of the project\nDescription: Description of the project\nCreation Date: Date when the project was created\nModification Date: Date when the project was last modified";
+}

@@ -1,0 +1,7 @@
+int moduleId
+String name
+Integer commentId
+BigInteger startAddress
+BigInteger endAddress
+SectionPermission permission
+byte[] data

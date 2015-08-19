@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"Address argument can not be null");
+  m_address=address.m_address;
+}

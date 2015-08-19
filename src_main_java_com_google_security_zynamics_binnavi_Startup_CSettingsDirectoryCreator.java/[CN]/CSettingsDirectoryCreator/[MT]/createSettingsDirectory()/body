@@ -1,0 +1,10 @@
+{
+  if (createZynamicsDirectory()) {
+    if (!createNaviDirectory()) {
+      showDirectoryCreationError(ConfigHelper.getConfigurationDirectory(Constants.COMPANY_NAME,Constants.PROJECT_NAME));
+    }
+  }
+ else {
+    showDirectoryCreationError(ConfigHelper.getZynamicsDirectory(Constants.COMPANY_NAME));
+  }
+}

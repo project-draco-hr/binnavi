@@ -1,0 +1,9 @@
+{
+  if (event.getButton() == MouseEvent.BUTTON1) {
+    final ColorPanel panel=(ColorPanel)event.getSource();
+    final Color color=panel.getColor();
+    if (color != null) {
+      m_selectedColorPanel.setColor(color);
+    }
+  }
+}

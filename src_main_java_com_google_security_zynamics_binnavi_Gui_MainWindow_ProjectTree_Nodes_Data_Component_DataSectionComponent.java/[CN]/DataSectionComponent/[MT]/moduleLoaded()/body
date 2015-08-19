@@ -1,0 +1,14 @@
+{
+  final List<Section> sectionList=module.getContent().getSections().getSections();
+  if (sectionList.isEmpty()) {
+    return;
+  }
+  currentSection=sectionList.get(0);
+  hexViewData=new HexViewDataAdapter(currentSection);
+  hexView.setData(hexViewData);
+  final Collection<TypeInstance> instances=module.getContent().getTypeInstanceContainer().getTypeInstances(currentSection);
+  initializeHighlighting(hexView,virtualAddresses.isSelected(),instances);
+  sections.setSections(sectionList);
+  typeDataModel.setTypeInstanceContainer(module.getContent().getTypeInstanceContainer());
+  typeDataModel.setSection(currentSection);
+}

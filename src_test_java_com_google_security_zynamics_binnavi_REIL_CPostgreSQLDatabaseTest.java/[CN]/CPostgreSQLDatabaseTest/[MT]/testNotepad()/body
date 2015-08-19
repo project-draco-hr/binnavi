@@ -1,0 +1,10 @@
+{
+  final INaviModule notepad=m_database.getContent().getModule(1);
+  notepad.load();
+  for (  final INaviFunction function : notepad.getContent().getFunctionContainer().getFunctions()) {
+    function.load();
+    m_translator.translate(new StandardEnvironment(),function);
+    function.close();
+  }
+  notepad.close();
+}

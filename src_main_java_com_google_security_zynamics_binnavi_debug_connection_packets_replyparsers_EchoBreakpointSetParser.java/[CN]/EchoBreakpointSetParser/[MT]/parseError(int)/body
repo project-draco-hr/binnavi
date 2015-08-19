@@ -1,0 +1,4 @@
+{
+  final int errorCode=parseInteger();
+  return new EchoBreakpointSetReply(packetId,errorCode,new ArrayList<Pair<RelocatedAddress,Integer>>());
+}

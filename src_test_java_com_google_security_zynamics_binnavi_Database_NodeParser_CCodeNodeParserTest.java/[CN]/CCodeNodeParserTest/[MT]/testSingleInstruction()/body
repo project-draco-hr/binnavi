@@ -1,0 +1,10 @@
+{
+  final MockCodeNodeProvider cnProvider=new MockCodeNodeProvider();
+  cnProvider.data.add(new MockCodeNodeData());
+  final MockSqlProvider provider=new MockSqlProvider();
+  final MockModule module=new MockModule();
+  CFunctionContainerHelper.addFunction(module.getContent().getFunctionContainer(),new MockFunction(0));
+  final CCodeNodeParser p=new CCodeNodeParser(cnProvider,Lists.newArrayList(module),provider);
+  final List<CCodeNode> result=p.parse();
+  assertEquals(1,result.size());
+}

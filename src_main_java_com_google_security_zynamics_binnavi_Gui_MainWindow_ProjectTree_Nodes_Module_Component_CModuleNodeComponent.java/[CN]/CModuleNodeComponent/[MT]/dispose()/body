@@ -1,0 +1,9 @@
+{
+  module.removeListener(internalModuleListener);
+  overviewPanel.dispose();
+  functionsPanel.dispose();
+  viewsPanel.dispose();
+  tracesPanel.dispose();
+  dataPanel.dispose();
+  lookup.remove(module);
+}

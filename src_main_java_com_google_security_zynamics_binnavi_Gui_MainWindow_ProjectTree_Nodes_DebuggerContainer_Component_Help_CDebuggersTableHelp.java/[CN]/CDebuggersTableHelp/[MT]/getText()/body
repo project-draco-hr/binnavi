@@ -1,0 +1,3 @@
+{
+  return "This table shows information about the configured debuggers.\nName: Name of the debugger\nHost: Location of the debugger\nPort: Port the debugger is listening on";
+}

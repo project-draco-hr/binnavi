@@ -1,0 +1,9 @@
+{
+  JPanel panel=new JPanel(new BorderLayout());
+  CodeDisplayModelExample example=new CodeDisplayModelExample();
+  panel.add(new CodeDisplay(example),BorderLayout.CENTER);
+  JButton ok=new JButton("OK");
+  ok.addActionListener(new ShowDialog(frame));
+  panel.add(ok,BorderLayout.SOUTH);
+  frame.getContentPane().add(panel);
+}

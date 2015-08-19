@@ -1,0 +1,23 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(groupNode,"Error: Group node argument can not be null");
+  final HierarchyManager hierarchy=graph.getHierarchyManager();
+  final double w=graph.getWidth(groupNode);
+  final double h=graph.getHeight(groupNode);
+  final NodeList groupNodes=new NodeList();
+  groupNodes.add(groupNode);
+  graph.firePreEvent();
+  for (final NodeCursor nc=groupNodes.nodes(); nc.ok(); nc.next()) {
+    hierarchy.closeGroup(nc.node());
+  }
+  graph.firePostEvent();
+  if ((w != graph.getWidth(groupNode)) || (h != graph.getHeight(groupNode))) {
+    for (final EdgeCursor ec=groupNode.outEdges(); ec.ok(); ec.next()) {
+      graph.setSourcePointRel(ec.edge(),YPoint.ORIGIN);
+    }
+    for (final EdgeCursor ec=groupNode.inEdges(); ec.ok(); ec.next()) {
+      graph.setTargetPointRel(ec.edge(),YPoint.ORIGIN);
+    }
+  }
+  graph.updateViews();
+}

@@ -1,0 +1,17 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final MockAddress mockAddress=new MockAddress();
+  final MockModule mockModule=new MockModule();
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  assertEquals(8,bookmarkManager.size());
+  final int[] rows={1,2,3,4,5,6,7};
+  CBookmarkFunctions.deleteBookmarks(bookmarkManager,rows);
+  assertEquals(1,bookmarkManager.size());
+}

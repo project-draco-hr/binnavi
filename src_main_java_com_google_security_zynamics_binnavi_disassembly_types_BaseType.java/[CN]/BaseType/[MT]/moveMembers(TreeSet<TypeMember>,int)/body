@@ -1,0 +1,23 @@
+{
+  Preconditions.checkArgument(moveMembers.first().getBitOffset().get() + moveDelta >= 0,"Cannot move members to negative offset.");
+  Preconditions.checkArgument(moveMembers.last().getBitOffset().get() + moveDelta <= members.last().getBitOffset().get() + members.last().getBitSize(),"Cannot move members behind last member.");
+  Preconditions.checkArgument(areMembersConsecutive(moveMembers),"Cannot move members that are not consecutive to each other.");
+  final TypeMember firstMember=moveMembers.first();
+  final TypeMember lastMember=moveMembers.last();
+  final boolean moveTowardsBeginning=moveDelta < 0;
+  final int startOffset=moveTowardsBeginning ? firstMember.getBitOffset().get() + moveDelta : members.higher(lastMember).getBitOffset().get();
+  final int endOffset=moveTowardsBeginning ? firstMember.getBitOffset().get() : members.higher(lastMember).getBitOffset().get() + moveDelta;
+  final List<TypeMember> implicitlyMoved=getMembers(startOffset,endOffset,members);
+  final int implicitMoveDelta=moveTowardsBeginning ? determineOccupiedSize(moveMembers) : -determineOccupiedSize(moveMembers);
+  members.removeAll(moveMembers);
+  members.removeAll(implicitlyMoved);
+  for (  final TypeMember member : implicitlyMoved) {
+    member.setOffset(Optional.<Integer>of(member.getBitOffset().get() + implicitMoveDelta));
+  }
+  for (  final TypeMember member : moveMembers) {
+    member.setOffset(Optional.<Integer>of(member.getBitOffset().get() + moveDelta));
+  }
+  members.addAll(moveMembers);
+  members.addAll(implicitlyMoved);
+  return new MemberMoveResult(implicitlyMoved,implicitMoveDelta);
+}

@@ -1,0 +1,10 @@
+{
+  m_lastShown=new HashSet<NodeType>();
+  final Collection<NodeType> selectedNodes=SelectedVisibleFilter.filter(m_graph.getSelectedNodes());
+  if (!selectedNodes.isEmpty()) {
+    final List<NodeType> allNodes=GraphHelpers.getNodes(m_graph);
+    allNodes.removeAll(selectedNodes);
+    m_graph.showNodes(selectedNodes,allNodes);
+    updateViews();
+  }
+}

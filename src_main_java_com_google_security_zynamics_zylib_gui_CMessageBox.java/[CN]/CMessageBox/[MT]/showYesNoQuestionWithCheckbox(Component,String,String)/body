@@ -1,0 +1,13 @@
+{
+  JCheckBox checkbox=null;
+  Object params;
+  if (checkBoxTitle != null) {
+    checkbox=new JCheckBox(checkBoxTitle);
+    params=new Object[]{msg,checkbox};
+  }
+ else {
+    params=msg;
+  }
+  final int option=JOptionPane.showConfirmDialog(isIconified(parent) ? null : parent,params,System.getProperty(DEFAULT_WINDOW_TITLE_PROPERTY),JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+  return Pair.make(option,checkBoxTitle != null ? checkbox.isSelected() : false);
+}

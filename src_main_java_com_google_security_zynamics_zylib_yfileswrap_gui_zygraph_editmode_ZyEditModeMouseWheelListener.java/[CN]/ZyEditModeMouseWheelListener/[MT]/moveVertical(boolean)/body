@@ -1,0 +1,8 @@
+{
+  if (scrollDirection) {
+    MoveFunctions.pan(m_zyGraph,SCROLL_SUB_FACTOR * m_zyGraph.getSettings().getMouseSettings().getScrollSensitivity(),0);
+  }
+ else {
+    MoveFunctions.pan(m_zyGraph,-SCROLL_SUB_FACTOR * m_zyGraph.getSettings().getMouseSettings().getScrollSensitivity(),0);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  name=properties.getString(NAME,NAME_DEFAULT);
+  guid=properties.getLong(GUID,GUID_DEFAULT);
+  load=properties.getBoolean(LOAD,LOAD_DEFAULT);
+}

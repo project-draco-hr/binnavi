@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(parent,"IE01566: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01567: Debugger argument can not be null");
+  Preconditions.checkNotNull(logger,"IE01568: Logger argument can not be null");
+}

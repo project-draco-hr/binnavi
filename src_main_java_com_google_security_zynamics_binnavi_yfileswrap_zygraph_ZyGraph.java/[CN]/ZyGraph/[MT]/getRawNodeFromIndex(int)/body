@@ -1,0 +1,3 @@
+{
+  return getNode(getRawView().getGraph().getNodes().get(index));
+}

@@ -1,0 +1,52 @@
+{
+  final FilterParser.andExpression_return retval=new FilterParser.andExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token AND6=null;
+  FilterParser.primaryExpression_return primaryExpression5=null;
+  FilterParser.primaryExpression_return primaryExpression7=null;
+  Object AND6_tree=null;
+  try {
+{
+      root_0=adaptor.nil();
+      pushFollow(FOLLOW_primaryExpression_in_andExpression161);
+      primaryExpression5=primaryExpression();
+      state._fsp--;
+      adaptor.addChild(root_0,primaryExpression5.getTree());
+      loop2:       do {
+        int alt2=2;
+        final int LA2_0=input.LA(1);
+        if ((LA2_0 == AND)) {
+          alt2=1;
+        }
+switch (alt2) {
+case 1:
+{
+            AND6=(Token)match(input,AND,FOLLOW_AND_in_andExpression164);
+            AND6_tree=adaptor.create(AND6);
+            root_0=adaptor.becomeRoot(AND6_tree,root_0);
+            pushFollow(FOLLOW_primaryExpression_in_andExpression167);
+            primaryExpression7=primaryExpression();
+            state._fsp--;
+            adaptor.addChild(root_0,primaryExpression7.getTree());
+          }
+        break;
+default :
+      break loop2;
+  }
+}
+ while (true);
+}
+retval.stop=input.LT(-1);
+retval.tree=adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException re) {
+reportError(re);
+recover(input,re);
+retval.tree=adaptor.errorNode(input,retval.start,input.LT(-1),re);
+}
+ finally {
+}
+return retval;
+}

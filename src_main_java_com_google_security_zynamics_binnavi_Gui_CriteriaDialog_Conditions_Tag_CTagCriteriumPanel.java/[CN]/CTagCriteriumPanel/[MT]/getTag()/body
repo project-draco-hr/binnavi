@@ -1,0 +1,4 @@
+{
+  final TreePath path=m_tagTree.getSelectionPath();
+  return path == null ? null : ((CTagTreeNode)path.getLastPathComponent()).getTag();
+}

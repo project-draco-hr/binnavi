@@ -1,0 +1,3 @@
+SQLProvider sql
+ViewType type
+Integer viewId

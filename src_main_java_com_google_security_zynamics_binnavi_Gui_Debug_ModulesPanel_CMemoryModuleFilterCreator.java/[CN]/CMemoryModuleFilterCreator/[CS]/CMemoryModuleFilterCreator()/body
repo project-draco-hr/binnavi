@@ -1,0 +1,3 @@
+{
+  super(Lists.newArrayList((IPredicateGenerator<CMemoryModuleWrapper>)new CNameDescriptionGenerator<CMemoryModuleWrapper>()));
+}

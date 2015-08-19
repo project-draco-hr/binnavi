@@ -1,0 +1,7 @@
+{
+  for (  final NaviNode node : graph.getSelectedNodes()) {
+    if (node.getRawNode() instanceof INaviGroupNode) {
+      graph.getRawView().getContent().deleteNode(node.getRawNode());
+    }
+  }
+}

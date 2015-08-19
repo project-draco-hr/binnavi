@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(parent,"IE01750: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01751: Graph argument can not be null");
+  if (graph.getSettings().getProximitySettings().getProximityBrowsing()) {
+    CProgressDialog.showEndless(parent,"Switching off proximity browsing",new ProximityWaiter(graph));
+  }
+ else {
+    CProgressDialog.showEndless(parent,"Switching on proximity browsing",new ProximityWaiter(graph));
+  }
+}

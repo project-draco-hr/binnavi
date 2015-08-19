@@ -1,0 +1,7 @@
+{
+  final Object node=referencesTable.getLastSelectedPathComponent();
+  if (node instanceof InstructionNode) {
+    final InstructionNode vnode=(InstructionNode)node;
+    ZyZoomHelpers.zoomToInstruction(graphModel.getGraph(),vnode.getInstruction());
+  }
+}

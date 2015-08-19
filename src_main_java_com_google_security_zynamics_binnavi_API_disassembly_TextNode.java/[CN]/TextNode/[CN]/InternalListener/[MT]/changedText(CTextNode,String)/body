@@ -1,0 +1,10 @@
+{
+  for (  final ITextNodeListener listener : m_listeners) {
+    try {
+      listener.changedText(TextNode.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

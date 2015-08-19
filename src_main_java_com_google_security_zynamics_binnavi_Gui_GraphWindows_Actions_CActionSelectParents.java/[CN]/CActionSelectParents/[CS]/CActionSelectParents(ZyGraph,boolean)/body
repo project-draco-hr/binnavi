@@ -1,0 +1,8 @@
+{
+  super("Select ancestors of selection");
+  m_graph=Preconditions.checkNotNull(graph,"IE02831: graph argument can not be null");
+  if (showIcon) {
+    putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/selparent_up.jpg")));
+  }
+  putValue(Action.SHORT_DESCRIPTION,"Select ancestors of selection");
+}

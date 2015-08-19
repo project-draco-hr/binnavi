@@ -1,0 +1,16 @@
+boolean canDetach
+boolean canAttach
+boolean canTerminate
+boolean canMemmap
+boolean stackAvailable
+boolean canValidMemory
+boolean canHalt
+boolean haltBeforeCommunicating
+boolean canMultithread
+boolean canSoftwareBreakpoints
+int breakpointCounter
+int pageSize
+List<DebuggerException> exceptions
+boolean canBreakOnModuleLoad
+boolean canBreakOnModuleUnload
+boolean canTraceCount

@@ -1,0 +1,5 @@
+{
+  final List<INaviView> views=new ArrayList<INaviView>();
+  views.add(m_module.getContent().getViewContainer().getNativeCallgraphView());
+  return views;
+}

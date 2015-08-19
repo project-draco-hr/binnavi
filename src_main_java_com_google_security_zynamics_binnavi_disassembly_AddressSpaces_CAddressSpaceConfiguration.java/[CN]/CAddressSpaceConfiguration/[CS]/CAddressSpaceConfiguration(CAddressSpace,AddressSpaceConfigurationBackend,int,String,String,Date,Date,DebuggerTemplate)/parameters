@@ -1,0 +1,8 @@
+CAddressSpace addressSpace
+AddressSpaceConfigurationBackend provider
+int addressSpaceId
+String name
+String description
+Date creationDate
+Date modificationDate
+DebuggerTemplate debuggerTemplate

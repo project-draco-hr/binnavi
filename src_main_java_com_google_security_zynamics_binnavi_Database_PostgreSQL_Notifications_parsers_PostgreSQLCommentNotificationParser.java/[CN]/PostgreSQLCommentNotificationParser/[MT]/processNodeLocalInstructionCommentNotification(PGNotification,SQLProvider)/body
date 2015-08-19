@@ -1,0 +1,26 @@
+{
+  final Matcher instructionMatcher=INSTRUCTION_LOCAL_PATTERN.matcher(notification.getParameter());
+  final boolean instructionMatchFound=instructionMatcher.find();
+  if (!instructionMatchFound) {
+    return null;
+  }
+  final Integer moduleId=Integer.parseInt(instructionMatcher.group(3));
+  final Integer nodeId=Integer.parseInt(instructionMatcher.group(4));
+  final BigInteger notificationInstructionAddress=new BigInteger(instructionMatcher.group(6));
+  final Integer commentId=instructionMatcher.group(7).equals("null") ? null : Integer.parseInt(instructionMatcher.group(7));
+  final INaviModule module=provider.findModule(moduleId);
+  if ((module == null) || !module.isLoaded()) {
+    return null;
+  }
+  final IAddress address=new CAddress(notificationInstructionAddress);
+  final INaviInstruction instruction=InstructionCache.get(provider).getInstructionByAddress(address,module.getConfiguration().getId());
+  if (instruction == null) {
+    return null;
+  }
+  final INaviCodeNode codeNode=(INaviCodeNode)NodeCache.get(provider).getNodeById(nodeId);
+  if (codeNode == null) {
+    return null;
+  }
+  final CommentOperation operation=commentId == null ? CommentOperation.DELETE : CommentOperation.APPEND;
+  return new InstructionCommentNotificationContainer(instruction,codeNode,operation,CommentScope.LOCAL,commentId);
+}

@@ -1,0 +1,8 @@
+{
+  final int row=y / squareSize;
+  final int col=x / squareSize;
+  if (((row * m_columns) + col) < m_colors.size()) {
+    return m_colors.get((row * m_columns) + col);
+  }
+  return null;
+}

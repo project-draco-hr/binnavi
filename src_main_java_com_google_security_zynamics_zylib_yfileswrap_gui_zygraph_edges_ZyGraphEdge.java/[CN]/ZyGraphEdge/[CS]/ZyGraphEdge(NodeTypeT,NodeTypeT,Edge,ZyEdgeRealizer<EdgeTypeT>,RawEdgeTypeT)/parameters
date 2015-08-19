@@ -1,0 +1,5 @@
+NodeTypeT source
+NodeTypeT target
+Edge edge
+ZyEdgeRealizer<EdgeTypeT> realizer
+RawEdgeTypeT rawEdge

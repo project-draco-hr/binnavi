@@ -1,0 +1,18 @@
+{
+  final CRemoteFile[] files=CollectionHelpers.map(m_fileSystem.getFiles(),new ICollectionMapper<com.google.security.zynamics.binnavi.debug.models.remotebrowser.RemoteFile,File>(){
+    @Override public File map(    final com.google.security.zynamics.binnavi.debug.models.remotebrowser.RemoteFile item){
+      return new CRemoteFile(m_fileSystem.getDirectory().getName() + "/" + item.getName(),false);
+    }
+  }
+).toArray(new CRemoteFile[0]);
+  final CRemoteFile[] directories=CollectionHelpers.map(m_fileSystem.getDirectories(),new ICollectionMapper<RemoteDirectory,File>(){
+    @Override public File map(    final RemoteDirectory item){
+      return new CRemoteFile(m_fileSystem.getDirectory().getName() + "/" + item.getName()+ "/",true);
+    }
+  }
+).toArray(new CRemoteFile[0]);
+  final File[] combined=new File[files.length + directories.length];
+  System.arraycopy(files,0,combined,0,files.length);
+  System.arraycopy(directories,0,combined,files.length,directories.length);
+  return combined;
+}

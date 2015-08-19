@@ -1,0 +1,13 @@
+{
+  final CAddress fromPrimitiveLong=new CAddress(0x87654321L);
+  assertEquals(fromPrimitiveLong.toLong(),0x87654321L);
+  final IAddress anIAddress=new MockAddress();
+  final CAddress fromIAddress=new CAddress(anIAddress);
+  assertEquals(fromIAddress.toLong(),0x100);
+  final CAddress fromCAddress=new CAddress(new CAddress(0x87654321L));
+  assertEquals(fromCAddress.toLong(),0x87654321L);
+  final CAddress fromBigInteger=new CAddress(new BigInteger("87654321",16));
+  assertEquals(fromBigInteger.toLong(),0x87654321L);
+  final CAddress fromString=new CAddress("87654321",16);
+  assertEquals(fromString.toLong(),0x87654321L);
+}

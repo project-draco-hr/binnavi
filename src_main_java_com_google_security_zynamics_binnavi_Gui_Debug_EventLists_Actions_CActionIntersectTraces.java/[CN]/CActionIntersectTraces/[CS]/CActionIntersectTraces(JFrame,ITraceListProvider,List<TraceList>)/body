@@ -1,0 +1,6 @@
+{
+  super("Intersection");
+  m_parent=parent;
+  m_traceProvider=traceProvider;
+  m_traces=new ArrayList<TraceList>(traces);
+}

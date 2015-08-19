@@ -1,0 +1,7 @@
+int moduleId
+int id
+String name
+Integer commentId
+int typeId
+int sectionId
+long sectionOffset

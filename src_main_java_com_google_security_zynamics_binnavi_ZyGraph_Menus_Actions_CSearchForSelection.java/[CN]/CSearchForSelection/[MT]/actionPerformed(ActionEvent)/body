@@ -1,0 +1,4 @@
+{
+  final String searchString=m_node.getRealizer().getNodeContent().getSelectedText();
+  m_searchField.searchFor(searchString);
+}

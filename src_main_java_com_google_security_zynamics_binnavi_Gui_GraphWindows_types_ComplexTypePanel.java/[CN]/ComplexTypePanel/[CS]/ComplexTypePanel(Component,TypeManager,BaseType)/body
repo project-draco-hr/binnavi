@@ -1,0 +1,5 @@
+{
+  super(parent,typeManager,existingType);
+  createControls(typeManager.getTypes());
+  populateControls();
+}

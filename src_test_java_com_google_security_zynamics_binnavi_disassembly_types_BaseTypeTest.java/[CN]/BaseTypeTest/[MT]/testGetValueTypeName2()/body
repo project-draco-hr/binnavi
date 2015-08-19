@@ -1,0 +1,4 @@
+{
+  BaseType.appendToPointerHierarchy(typeSystem.uintType,typeSystem.intType);
+  assertEquals(typeSystem.uintType.getName(),BaseType.getValueTypeName(typeSystem.intType));
+}

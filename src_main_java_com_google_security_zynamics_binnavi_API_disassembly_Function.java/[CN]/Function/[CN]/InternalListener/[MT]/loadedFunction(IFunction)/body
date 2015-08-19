@@ -1,0 +1,11 @@
+{
+  convertData();
+  for (  final IFunctionListener listener : m_listeners) {
+    try {
+      listener.loadedFunction(Function.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

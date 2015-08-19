@@ -1,0 +1,8 @@
+{
+  for (  final IDebugger debugger : debuggers) {
+    if (debugger.canDebug(module)) {
+      return debugger;
+    }
+  }
+  return null;
+}

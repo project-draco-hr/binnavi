@@ -1,0 +1,4 @@
+{
+  m_specialityType=specialityType;
+  m_instruction=instruction;
+}

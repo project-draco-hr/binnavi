@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(data,"IE00057: Data argument can not be null");
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  try {
+    final DocumentBuilder builder=factory.newDocumentBuilder();
+    final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+    final Node node=document.getFirstChild();
+    final long threadId=Long.valueOf(getAttribute(node,"threadid"));
+    return new TargetProcessThread(threadId,ThreadState.SUSPENDED);
+  }
+ catch (  final Exception exception) {
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+}

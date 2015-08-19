@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(node,"Node argument can not be null");
+  m_nodes.add(node);
+  m_nodeToEdges.put(node,new ArrayList<EdgeType>());
+}

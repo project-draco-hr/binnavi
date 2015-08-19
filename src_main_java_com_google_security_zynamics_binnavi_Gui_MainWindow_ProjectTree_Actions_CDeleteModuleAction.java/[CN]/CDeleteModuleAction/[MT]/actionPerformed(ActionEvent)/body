@@ -1,0 +1,3 @@
+{
+  CModuleFunctions.deleteModules(m_parent,m_database,m_modules,m_updater);
+}

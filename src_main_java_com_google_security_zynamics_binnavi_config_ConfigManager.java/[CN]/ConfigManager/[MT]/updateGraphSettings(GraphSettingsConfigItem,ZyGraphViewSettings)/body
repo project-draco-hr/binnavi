@@ -1,0 +1,32 @@
+{
+  graphSettings.setAutomaticLayouting(settings.getLayoutSettings().getAutomaticLayouting());
+  graphSettings.setProximityBrowsing(settings.getProximitySettings().getProximityBrowsing());
+  graphSettings.setProximityBrowsingThreshold(settings.getProximitySettings().getProximityBrowsingActivationThreshold());
+  graphSettings.setAutoLayoutDeactivationThreshold(settings.getLayoutSettings().getAutolayoutDeactivationThreshold());
+  graphSettings.setLayoutCalculationThreshold(settings.getLayoutSettings().getLayoutCalculationTimeWarningThreshold());
+  graphSettings.setVisibilityWarningThreshold(settings.getLayoutSettings().getVisibilityWarningTreshold());
+  graphSettings.setHierarchicMinimumLayerDistance(settings.getLayoutSettings().getHierarchicalSettings().getMinimumLayerDistance());
+  graphSettings.setHierarchicMinimumNodeDistance(settings.getLayoutSettings().getHierarchicalSettings().getMinimumNodeDistance());
+  graphSettings.setHierarchicMinimumEdgeDistance(settings.getLayoutSettings().getHierarchicalSettings().getMinimumEdgeDistance());
+  graphSettings.setHierarchicEdgeRoutingStyle(settings.getLayoutSettings().getHierarchicalSettings().getStyle().ordinal());
+  graphSettings.setHierarchicOrientation(settings.getLayoutSettings().getHierarchicalSettings().getOrientation().ordinal());
+  graphSettings.setOrthogonalMinimumNodeDistance(settings.getLayoutSettings().getOrthogonalSettings().getMinimumNodeDistance());
+  graphSettings.setOrthogonalLayoutStyle(settings.getLayoutSettings().getOrthogonalSettings().getStyle().ordinal());
+  graphSettings.setOrthogonalOrientation(settings.getLayoutSettings().getOrthogonalSettings().getOrientation().ordinal());
+  graphSettings.setCircularMinimumNodeDistance(settings.getLayoutSettings().getCircularSettings().getMinimumNodeDistance());
+  graphSettings.setCircularLayoutStyle(settings.getLayoutSettings().getCircularSettings().getStyle().ordinal());
+  graphSettings.setDefaultGraphLayout(settings.getLayoutSettings().getDefaultGraphLayout().ordinal());
+  graphSettings.setScrollSensitivity(settings.getMouseSettings().getScrollSensitivity());
+  graphSettings.setZoomSensitivity(settings.getMouseSettings().getZoomSensitivity());
+  graphSettings.setLayoutAnimation(settings.getLayoutSettings().getAnimateLayout());
+  graphSettings.setAnimationSpeed(settings.getDisplaySettings().getAnimationSpeed());
+  graphSettings.setGradientBackground(settings.getDisplaySettings().getGradientBackground());
+  graphSettings.setFunctionNodeInformation(settings.getDisplaySettings().getFunctionNodeInformation());
+  graphSettings.setAnimationSpeed(settings.getDisplaySettings().getAnimationSpeed());
+  graphSettings.setMouseWheelAction(settings.getMouseSettings().getMouseWheelAction().ordinal());
+  graphSettings.setProximityBrowsingChildren(settings.getProximitySettings().getProximityBrowsingChildren());
+  graphSettings.setProximityBrowsingParents(settings.getProximitySettings().getProximityBrowsingParents());
+  graphSettings.setEdgeHidingMode(settings.getEdgeSettings().getEdgeHidingMode().ordinal());
+  graphSettings.setEdgeHidingThreshold(settings.getEdgeSettings().getEdgeHidingThreshold());
+  graphSettings.setDrawBends(settings.getEdgeSettings().getDrawSelectedBends());
+}

@@ -1,0 +1,5 @@
+CAddress cAddress
+String mnemonic
+ArrayList<COperandTree> operands
+ArrayList<IComment> globalComment
+INaviModule module

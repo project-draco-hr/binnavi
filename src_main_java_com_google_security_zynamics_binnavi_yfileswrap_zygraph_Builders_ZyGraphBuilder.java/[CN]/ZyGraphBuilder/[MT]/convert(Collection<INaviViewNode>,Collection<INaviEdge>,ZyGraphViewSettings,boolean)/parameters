@@ -1,0 +1,4 @@
+Collection<INaviViewNode> nodes
+Collection<INaviEdge> edges
+ZyGraphViewSettings graphSettings
+boolean adjustColors

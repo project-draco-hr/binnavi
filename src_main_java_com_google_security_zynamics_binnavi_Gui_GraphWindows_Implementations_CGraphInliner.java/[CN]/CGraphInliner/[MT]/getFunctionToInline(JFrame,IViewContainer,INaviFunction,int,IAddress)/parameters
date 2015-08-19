@@ -1,0 +1,5 @@
+JFrame parent
+IViewContainer viewContainer
+INaviFunction function
+int forwarderModuleId
+IAddress forwarderAddress

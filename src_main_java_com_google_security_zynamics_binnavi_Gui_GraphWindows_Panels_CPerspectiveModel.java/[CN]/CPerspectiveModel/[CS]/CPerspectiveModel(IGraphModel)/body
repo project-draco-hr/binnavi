@@ -1,0 +1,3 @@
+{
+  m_models.put(PerspectiveType.DebugPerspective,new CDebugPerspectiveModel(model));
+}

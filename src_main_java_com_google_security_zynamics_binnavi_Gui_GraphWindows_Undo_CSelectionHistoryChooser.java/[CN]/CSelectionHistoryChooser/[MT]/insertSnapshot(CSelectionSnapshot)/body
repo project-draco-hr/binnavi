@@ -1,0 +1,8 @@
+{
+  final CSelectionHistoryTreeNode selection=new CSelectionHistoryTreeNode(snapshot,m_stateIndex);
+  for (  final NaviNode node : snapshot.getSelection()) {
+    selection.add(new CNodeNode(node));
+  }
+  m_stateIndex++;
+  m_model.insertNodeInto(selection,(CSelectionHistoryTreeNode)m_model.getRoot(),0);
+}

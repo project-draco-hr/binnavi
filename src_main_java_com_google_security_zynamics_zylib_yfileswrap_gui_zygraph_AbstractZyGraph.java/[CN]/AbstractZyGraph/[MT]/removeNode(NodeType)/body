@@ -1,0 +1,19 @@
+{
+  if (node.getNode().getGraph() == null) {
+    m_graph.reInsertNode(node.getNode());
+  }
+  final HierarchyManager manager=m_graph.getHierarchyManager();
+  final Node n=node.getNode();
+  if (manager.isNormalNode(n)) {
+    m_graph.removeNode(node.getNode());
+  }
+ else   if (getGraph().getHierarchyManager().isFolderNode(node.getNode())) {
+    GroupHelpers.extractFolder(m_graph,node.getNode());
+    m_graph.removeNode(node.getNode());
+  }
+ else   if (getGraph().getHierarchyManager().isGroupNode(node.getNode())) {
+    GroupHelpers.extractGroup(m_graph,node.getNode());
+    m_graph.removeNode(node.getNode());
+  }
+  m_mappings.removeNode(node);
+}

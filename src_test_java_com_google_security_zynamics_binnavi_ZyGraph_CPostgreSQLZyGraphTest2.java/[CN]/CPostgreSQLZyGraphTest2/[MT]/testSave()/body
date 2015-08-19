@@ -1,0 +1,20 @@
+{
+  m_view.getGraph().getNodes().get(0).setSelected(true);
+  m_view.getGraph().getNodes().get(1).setColor(new Color(123));
+  m_view.getGraph().getNodes().get(2).setX(456);
+  m_view.getGraph().getNodes().get(3).setY(789);
+  final INaviView newView=m_graph.saveAs(new CModuleContainer(m_database,m_module),"New View","New View Description");
+  m_database2.connect();
+  m_database2.load();
+  final INaviModule module=m_database2.getContent().getModules().get(0);
+  module.load();
+  final Iterable<INaviView> views=CViewFilter.getFlowgraphViews(module.getContent().getViewContainer().getViews());
+  final INaviView loadedNewView=Iterables.getLast(views);
+  loadedNewView.load();
+  assertEquals(loadedNewView.getNodeCount(),newView.getNodeCount());
+  assertEquals(true,loadedNewView.getGraph().getNodes().get(0).isSelected());
+  assertEquals(0xFF00007B,loadedNewView.getGraph().getNodes().get(1).getColor().getRGB());
+  assertEquals(456,loadedNewView.getGraph().getNodes().get(2).getX(),0);
+  assertEquals(789,loadedNewView.getGraph().getNodes().get(3).getY(),0);
+  m_database2.close();
+}

@@ -1,0 +1,8 @@
+{
+  if (enable) {
+    m_graph.getSettings().getProximitySettings().addListener(m_settingsListener);
+  }
+ else {
+    m_graph.getSettings().getProximitySettings().removeListener(m_settingsListener);
+  }
+}

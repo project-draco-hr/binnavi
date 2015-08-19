@@ -1,0 +1,3 @@
+{
+  return new TypeSubstitution(mock(INaviOperandTreeNode.class),baseType,0,0,offset,new CAddress(123));
+}

@@ -1,0 +1,12 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  @SuppressWarnings("unused") final INaviView view=new MockView(m_provider);
+  final INaviView view2=projectContent.createView("Name","description");
+  assertNotNull(view2);
+  try {
+    projectContent.createView(null,"description");
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

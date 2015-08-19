@@ -1,0 +1,33 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  final HashMap<Section,Integer> sections=Maps.newHashMap();
+  try {
+    final String query="SELECT * FROM get_sections(?)";
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    try {
+      final ResultSet result=statement.executeQuery();
+      while (result.next()) {
+        final int id=result.getInt("id");
+        final String name=result.getString("name");
+        Integer commentId=result.getInt("comment_id");
+        if (result.wasNull()) {
+          commentId=null;
+        }
+        final IAddress startAddress=new CAddress(result.getLong("start_address"));
+        final IAddress endAddress=new CAddress(result.getLong("end_address"));
+        final SectionPermission permission=SectionPermission.valueOf(result.getString("permission"));
+        final byte[] data=result.getBytes("data");
+        sections.put(new Section(id,name,CommentManager.get(provider),module,startAddress,endAddress,permission,data),commentId);
+      }
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return sections;
+}

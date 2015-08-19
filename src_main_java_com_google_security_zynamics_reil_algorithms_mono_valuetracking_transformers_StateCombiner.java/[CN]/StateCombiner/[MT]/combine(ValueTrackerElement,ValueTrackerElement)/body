@@ -1,0 +1,38 @@
+{
+  final Map<IAloc,IValueElement> values1=state1.getStates();
+  final Map<IAloc,IValueElement> values2=state2.getStates();
+  final Map<IAloc,IValueElement> combinedState=new HashMap<IAloc,IValueElement>();
+  final Set<ReilInstruction> combinedInfluences=state1.getInfluences();
+  combinedInfluences.addAll(state2.getInfluences());
+  final Map<String,Set<IAddress>> combinedWritten=new HashMap<String,Set<IAddress>>();
+  combinedWritten.putAll(state1.getLastWritten());
+  for (  final Map.Entry<String,Set<IAddress>> lastWritten : state2.getLastWritten().entrySet()) {
+    if (combinedWritten.containsKey(lastWritten.getKey())) {
+      combinedWritten.get(lastWritten.getKey()).addAll(lastWritten.getValue());
+    }
+ else {
+      combinedWritten.put(lastWritten.getKey(),new HashSet<IAddress>(lastWritten.getValue()));
+    }
+  }
+  for (  final Map.Entry<IAloc,IValueElement> entry : values1.entrySet()) {
+    final IAloc aloc=entry.getKey();
+    if (values2.containsKey(aloc)) {
+      final IValueElement lhs=entry.getValue();
+      final IValueElement rhs=values2.get(aloc);
+      combinedState.put(aloc,combine(lhs,rhs));
+    }
+ else {
+      combinedState.put(aloc,new Undefined());
+    }
+  }
+  for (  final Map.Entry<IAloc,IValueElement> entry : values2.entrySet()) {
+    final IAloc aloc=entry.getKey();
+    if (!values1.containsKey(aloc)) {
+      combinedState.put(aloc,new Undefined());
+    }
+  }
+  if ((combinedState.size() < state1.getStates().size()) || (combinedState.size() < state2.getStates().size())) {
+    throw new IllegalStateException();
+  }
+  return new ValueTrackerElement(combinedInfluences,combinedState,combinedWritten);
+}

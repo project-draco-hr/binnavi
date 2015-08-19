@@ -1,0 +1,5 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  final IUser user=manager.addUser(" TEST SET CURRENT ACTIVE USER ");
+  manager.setCurrentActiveUser(user);
+}

@@ -1,0 +1,13 @@
+{
+  final int registerListLength=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().size();
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String tmpAddress=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(baseOffset++,dw,("SP"),dw,String.valueOf(4 * registerListLength),dw,tmpAddress));
+  for (int i=0; i < registerListLength; i++) {
+    instructions.add(ReilHelpers.createStm(baseOffset++,dw,(instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(i).getValue()),dw,tmpAddress));
+    instructions.add(ReilHelpers.createAdd(baseOffset++,dw,tmpAddress,bt,String.valueOf(4L),dw,tmpAddress));
+  }
+  instructions.add(ReilHelpers.createSub(baseOffset++,dw,("SP"),dw,String.valueOf(4 * registerListLength),dw,("SP")));
+}

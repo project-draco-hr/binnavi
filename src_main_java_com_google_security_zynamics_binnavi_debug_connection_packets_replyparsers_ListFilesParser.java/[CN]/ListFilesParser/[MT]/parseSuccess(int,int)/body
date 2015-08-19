@@ -1,0 +1,10 @@
+{
+  try {
+    final RemoteFileSystem fileSystem=RemoteFileSystem.parse(parseData());
+    return new ListFilesReply(packetId,0,fileSystem);
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    return new ListFilesReply(packetId,PARSER_ERROR,null);
+  }
+}

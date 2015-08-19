@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(graph,"IE01742: Graph argument can not be null");
+  final SelectableGraph<NaviNode> selectableGraph=SelectableGraph.wrap(graph);
+  if (graph.getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+    GraphHelpers.selectPredecessorsOfSelection(selectableGraph);
+  }
+ else {
+    final Collection<INaviViewNode> rawNodes=GraphConverters.convert(graph.getSelectedNodes());
+    graph.selectNodes(GraphConverters.convert(graph,GraphAlgorithms.getPredecessors(rawNodes)),true);
+  }
+}

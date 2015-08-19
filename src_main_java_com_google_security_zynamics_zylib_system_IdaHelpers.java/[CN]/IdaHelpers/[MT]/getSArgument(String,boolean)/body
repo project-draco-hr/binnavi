@@ -1,0 +1,3 @@
+{
+  return isRunningWindows ? "-S\\\"" + idcFile + "\\\"" : "-S\"" + idcFile + "\"";
+}

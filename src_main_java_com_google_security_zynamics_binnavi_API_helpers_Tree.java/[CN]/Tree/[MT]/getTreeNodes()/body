@@ -1,0 +1,17 @@
+{
+  TreeNode<ObjectType> currentNode=m_rootNode;
+  final List<TreeNode<ObjectType>> nodeList=new ArrayList<TreeNode<ObjectType>>();
+  nodeList.add(m_rootNode);
+  final Stack<TreeNode<ObjectType>> nodesToVisit=new Stack<TreeNode<ObjectType>>();
+  for (  final TreeNode<ObjectType> treeNode : m_rootNode.getChildren()) {
+    nodesToVisit.push(treeNode);
+  }
+  while (!nodesToVisit.isEmpty()) {
+    currentNode=nodesToVisit.pop();
+    nodeList.add(currentNode);
+    for (    final TreeNode<ObjectType> treeNode : currentNode.getChildren()) {
+      nodesToVisit.push(treeNode);
+    }
+  }
+  return nodeList;
+}

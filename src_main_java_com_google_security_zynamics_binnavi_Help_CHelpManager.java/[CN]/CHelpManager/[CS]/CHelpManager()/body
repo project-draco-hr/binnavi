@@ -1,0 +1,11 @@
+{
+  final Image cursorImage=Toolkit.getDefaultToolkit().getImage(CMain.class.getResource("data/help.png"));
+  final java.awt.Point cursorHotSpot=new java.awt.Point(0,0);
+  m_helpCursor=Toolkit.getDefaultToolkit().createCustomCursor(cursorImage,cursorHotSpot,"helpCursor");
+  Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener(){
+    @Override public void eventDispatched(    final AWTEvent event){
+      handleEvent(event);
+    }
+  }
+,AWTEvent.MOUSE_EVENT_MASK);
+}

@@ -1,0 +1,7 @@
+{
+  if (uhOhFont == null) {
+    uhOhFont=normalFont.deriveFont(Font.ITALIC);
+  }
+  setFont(uhOhFont);
+  setText(uhOhText);
+}

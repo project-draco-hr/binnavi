@@ -1,0 +1,14 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final BaseType baseType=typeSystem.intType;
+  typeManager.updateType(baseType,"newName",64,true);
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.typesUpdated(Sets.<BaseType>newHashSet(typeSystem.intType,typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.simpleUnion,typeSystem.complexUnion));
+  expectedEvents.memberUpdated(typeSystem.ssUintMember);
+  expectedEvents.memberUpdated(typeSystem.ssArrayMember);
+  expectedEvents.memberUpdated(typeSystem.nsSimpleStructMember);
+  expectedEvents.memberUpdated(typeSystem.dnsIntMember);
+  expectedEvents.memberUpdated(typeSystem.dnsPointerMember);
+  Assert.assertEquals(expectedEvents,events);
+}

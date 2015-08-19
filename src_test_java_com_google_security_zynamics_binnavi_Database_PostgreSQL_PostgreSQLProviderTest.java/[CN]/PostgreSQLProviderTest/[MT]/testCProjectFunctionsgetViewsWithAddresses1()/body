@@ -1,0 +1,15 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  project.load();
+  final IFilledList<UnrelocatedAddress> addresses=new FilledList<UnrelocatedAddress>();
+  List<INaviView> views=PostgreSQLProjectFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),project,addresses,true);
+  assertEquals(0,views.size());
+  addresses.add(new UnrelocatedAddress(new CAddress(0x10033DCL)));
+  views=PostgreSQLProjectFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),project,addresses,true);
+  assertEquals(0,views.size());
+  addresses.add(new UnrelocatedAddress(new CAddress(0x1003429)));
+  views=PostgreSQLProjectFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),project,addresses,true);
+  assertEquals(0,views.size());
+  views=PostgreSQLProjectFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),project,addresses,false);
+  assertEquals(0,views.size());
+}

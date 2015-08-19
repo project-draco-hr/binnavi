@@ -1,0 +1,3 @@
+{
+  return provider.inSameDatabase(m_provider);
+}

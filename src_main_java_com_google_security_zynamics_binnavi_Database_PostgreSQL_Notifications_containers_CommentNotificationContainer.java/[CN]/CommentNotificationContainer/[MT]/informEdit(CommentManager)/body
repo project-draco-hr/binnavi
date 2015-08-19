@@ -1,0 +1,35 @@
+{
+  if (manager.getCommentedFunction(getCurrentComment()) != null) {
+    manager.editFunctionComment(manager.getCommentedFunction(getCurrentComment()),getCurrentComment(),newComment,CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedFunctionNode(getCurrentComment()) != null) {
+    manager.editFunctionNodeComment(manager.getCommentedFunctionNode(getCurrentComment()),getCurrentComment(),newComment,CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedGlobalCodeNode(getCurrentComment()) != null) {
+    manager.editCodeNodeComment(manager.getCommentedGlobalCodeNode(getCurrentComment()),getCurrentComment(),newComment,CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedLocalCodeNode(getCurrentComment()) != null) {
+    manager.editCodeNodeComment(manager.getCommentedLocalCodeNode(getCurrentComment()),getCurrentComment(),newComment,CommentScope.LOCAL);
+  }
+  if (manager.getCommentedLocalEdge(getCurrentComment()) != null) {
+    manager.editEdgeComment(manager.getCommentedLocalEdge(getCurrentComment()),getCurrentComment(),newComment,CommentScope.LOCAL);
+  }
+  if (manager.getCommentedGlobalEdge(getCurrentComment()) != null) {
+    manager.editEdgeComment(manager.getCommentedGlobalEdge(getCurrentComment()),getCurrentComment(),newComment,CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedGlobalInstruction(getCurrentComment()) != null) {
+    manager.editInstructionComment(manager.getCommentedGlobalInstruction(getCurrentComment()),null,getCurrentComment(),newComment,CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedLocalInstruction(getCurrentComment()) != null) {
+    manager.editInstructionComment(manager.getCommentedLocalInstruction(getCurrentComment()).second(),manager.getCommentedLocalInstruction(getCurrentComment()).first(),getCurrentComment(),newComment,CommentScope.LOCAL);
+  }
+  if (manager.getCommentedGroupNode(getCurrentComment()) != null) {
+    manager.editGroupNodeComment(manager.getCommentedGroupNode(getCurrentComment()),getCurrentComment(),newComment,CommentScope.LOCAL);
+  }
+  if (manager.getCommentedTextNode(getCurrentComment()) != null) {
+    manager.editTextNodeComment(manager.getCommentedTextNode(getCurrentComment()),getCurrentComment(),newComment,CommentScope.LOCAL);
+  }
+  if (manager.getCommentedTypeInstance(getCurrentComment()) != null) {
+    manager.editTypeInstanceComment(manager.getCommentedTypeInstance(getCurrentComment()),getCurrentComment(),newComment);
+  }
+}

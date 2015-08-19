@@ -1,0 +1,3 @@
+{
+  return (Graph2D)m_node.getGraph();
+}

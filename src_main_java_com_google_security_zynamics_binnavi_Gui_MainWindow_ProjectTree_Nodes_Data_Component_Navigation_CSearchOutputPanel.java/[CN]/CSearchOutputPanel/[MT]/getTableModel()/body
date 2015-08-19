@@ -1,0 +1,3 @@
+{
+  return (CSearchResultModel)m_table.getModel();
+}

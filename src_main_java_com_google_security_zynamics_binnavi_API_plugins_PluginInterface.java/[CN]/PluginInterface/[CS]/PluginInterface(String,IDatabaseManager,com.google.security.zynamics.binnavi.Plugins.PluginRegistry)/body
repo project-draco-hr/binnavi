@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(manager,"Database manager can't be null");
+  this.startPath=startPath;
+  this.manager=new DatabaseManager(manager);
+  this.registry=new PluginRegistry(registry);
+}

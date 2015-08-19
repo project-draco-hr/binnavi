@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE02199: View is not loaded");
+  }
+  return m_content.getGraph();
+}

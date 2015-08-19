@@ -1,0 +1,12 @@
+int nodeId
+double x
+double y
+double width
+double height
+Color color
+boolean selected
+boolean visible
+Set<CTag> tags
+List<IComment> comment
+boolean collapsed
+SQLProvider provider

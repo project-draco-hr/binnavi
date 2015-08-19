@@ -1,0 +1,6 @@
+{
+  final CDatabaseNode node=new CDatabaseNode(m_tree,new DefaultMutableTreeNode(),m_database);
+  assertEquals("Mock Database",node.toString());
+  m_database.getConfiguration().setDescription("Hannes");
+  assertEquals("Hannes",node.toString());
+}

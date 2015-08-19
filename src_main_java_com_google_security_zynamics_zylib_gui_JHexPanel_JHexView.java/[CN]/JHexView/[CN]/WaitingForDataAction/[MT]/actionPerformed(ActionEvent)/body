@@ -1,0 +1,10 @@
+{
+  if (m_dataProvider.hasData(m_offset,m_size)) {
+    JHexView.this.setEnabled(true);
+    setDefinitionStatus(DefinitionStatus.DEFINED);
+    ((Timer)arg0.getSource()).stop();
+  }
+ else   if (!m_dataProvider.keepTrying()) {
+    ((Timer)arg0.getSource()).stop();
+  }
+}

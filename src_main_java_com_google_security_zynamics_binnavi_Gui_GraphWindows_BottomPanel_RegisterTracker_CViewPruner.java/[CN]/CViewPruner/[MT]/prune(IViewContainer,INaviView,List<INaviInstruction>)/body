@@ -1,0 +1,6 @@
+{
+  final INaviView prunedView=container.createView("Pruned View","");
+  final Map<INaviViewNode,INaviViewNode> nodeMap=convertNodes(view,prunedView,keptInstructions);
+  convertEdges(view,prunedView,nodeMap);
+  return prunedView;
+}

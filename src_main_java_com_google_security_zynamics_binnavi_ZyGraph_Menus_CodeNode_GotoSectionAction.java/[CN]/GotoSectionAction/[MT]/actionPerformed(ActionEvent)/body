@@ -1,0 +1,3 @@
+{
+  CModuleNodeComponent.focusSectionAddress(module,section,address);
+}

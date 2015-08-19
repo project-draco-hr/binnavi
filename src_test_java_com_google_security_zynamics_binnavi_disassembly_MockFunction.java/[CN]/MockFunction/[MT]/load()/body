@@ -1,0 +1,6 @@
+{
+  m_loaded=true;
+  for (  final IFunctionListener<IComment> listener : m_listeners) {
+    listener.loadedFunction(this);
+  }
+}

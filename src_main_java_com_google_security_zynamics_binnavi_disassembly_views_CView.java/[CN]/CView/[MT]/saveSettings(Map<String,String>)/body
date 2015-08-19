@@ -1,0 +1,6 @@
+{
+  if (!m_configuration.isStored()) {
+    throw new IllegalStateException("IE01111: Settings can not be saved before view is saved");
+  }
+  m_provider.saveSettings(this,settings);
+}

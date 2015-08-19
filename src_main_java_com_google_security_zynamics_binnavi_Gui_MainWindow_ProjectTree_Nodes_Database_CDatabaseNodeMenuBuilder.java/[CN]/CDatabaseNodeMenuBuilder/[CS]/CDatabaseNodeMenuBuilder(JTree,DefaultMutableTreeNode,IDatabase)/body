@@ -1,0 +1,10 @@
+{
+  super(projectTree);
+  this.database=Preconditions.checkNotNull(database,"IE01963: Database argument can't be null");
+  Preconditions.checkNotNull(projectTree,"IE02345: projectTree argument can not be null");
+  this.parentNode=Preconditions.checkNotNull(parentNode,"IE02346: parentNode argument can not be null");
+  this.openAction=CActionProxy.proxy(new COpenDatabaseAction(projectTree,this.database));
+  this.closeAction=CActionProxy.proxy(new CCloseDatabaseAction(projectTree,this.database));
+  updateActions(database);
+  this.database.addListener(listener);
+}

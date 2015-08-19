@@ -1,0 +1,3 @@
+{
+  m_rawEdge.setVisible(realizer.isVisible());
+}

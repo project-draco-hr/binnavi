@@ -1,0 +1,4 @@
+{
+  m_debugSettings=debugSettings;
+  connection=new MockDebugConnection(this);
+}

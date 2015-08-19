@@ -1,0 +1,3 @@
+int lsb
+int width
+OperandSize size

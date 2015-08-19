@@ -1,0 +1,5 @@
+{
+  graph.getView().fitContent();
+  ZoomHelpers.keepZoomValid(graph.getView());
+  graph.updateViews();
+}

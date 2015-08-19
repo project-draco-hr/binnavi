@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SHSUB8");
+  translateAll(environment,instruction,"SHSUB8",instructions);
+}

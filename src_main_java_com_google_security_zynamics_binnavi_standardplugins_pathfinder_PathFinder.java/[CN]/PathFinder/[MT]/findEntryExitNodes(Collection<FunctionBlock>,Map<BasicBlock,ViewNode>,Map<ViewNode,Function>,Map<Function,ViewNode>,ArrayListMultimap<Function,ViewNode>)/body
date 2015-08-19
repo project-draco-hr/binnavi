@@ -1,0 +1,19 @@
+{
+  for (  final FunctionBlock functionBlock : passedFunctions) {
+    final Function function=functionBlock.getFunction();
+    if (function.getType() != FunctionType.Import) {
+      entryNodes.put(function,nodeMap.get(findEntryNode(function)));
+      for (      final BasicBlock block : findExitNode(function.getGraph())) {
+        exitNodes.put(function,nodeMap.get(block));
+      }
+    }
+  }
+  for (  final Map.Entry<ViewNode,Function> p : functionMap.entrySet()) {
+    final Function function=p.getValue();
+    if (function.getType() == FunctionType.Import) {
+      final ViewNode node=p.getKey();
+      entryNodes.put(function,node);
+      exitNodes.put(function,node);
+    }
+  }
+}

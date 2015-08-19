@@ -1,0 +1,19 @@
+{
+  super(new BorderLayout());
+  m_textArea.setFont(GuiHelper.MONOSPACED_FONT);
+  m_textArea.setEditable(false);
+  final JPanel optionsPanel=new JPanel(new BorderLayout());
+  final JPanel innerOptionsPanel=new JPanel();
+  final JCheckBox enabledBox=new JCheckBox("Enabled");
+  enabledBox.addItemListener(new ItemListener(){
+    @Override public void itemStateChanged(    final ItemEvent event){
+      m_synchronizer.setEnabled(enabledBox.isSelected());
+    }
+  }
+);
+  innerOptionsPanel.add(enabledBox);
+  optionsPanel.add(innerOptionsPanel,BorderLayout.WEST);
+  add(optionsPanel,BorderLayout.NORTH);
+  add(new JScrollPane(m_textArea));
+  m_synchronizer=new CDebuggerHistorySynchronizer(model,m_textArea);
+}

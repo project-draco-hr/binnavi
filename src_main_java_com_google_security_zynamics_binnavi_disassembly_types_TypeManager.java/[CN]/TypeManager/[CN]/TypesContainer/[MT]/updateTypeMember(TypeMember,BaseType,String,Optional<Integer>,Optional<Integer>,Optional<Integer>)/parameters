@@ -1,0 +1,6 @@
+TypeMember typeMember
+BaseType newMemberBaseType
+String newMemberName
+Optional<Integer> newMemberOffset
+Optional<Integer> newMemberNumberOfElements
+Optional<Integer> newMemberArgumentIndex

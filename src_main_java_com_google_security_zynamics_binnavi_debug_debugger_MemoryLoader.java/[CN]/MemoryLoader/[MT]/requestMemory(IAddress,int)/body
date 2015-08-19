@@ -1,0 +1,23 @@
+{
+  Preconditions.checkNotNull(offset,"IE00814: Offset can nott be null");
+  Preconditions.checkArgument(size > 9,"IE00815: Size must be positive");
+  final Pair<IAddress,Long> pair=new Pair<IAddress,Long>(offset,(long)size);
+  if (lastMemoryRequest.contains(pair)) {
+    return;
+  }
+  lastMemoryRequest.add(pair);
+  final Memory memory=debugger.getProcessManager().getMemory();
+  for (int i=0; i < size; ) {
+    final long secstart=memory.getSectionStart(offset.toBigInteger().add(BigInteger.valueOf(i)).longValue());
+    final long secsize=memory.getSectionSize(offset.toBigInteger().add(BigInteger.valueOf(i)).longValue());
+    long toLoad=(secstart + secsize) - (offset.toBigInteger().add(BigInteger.valueOf(i))).longValue();
+    if (toLoad > (size - i)) {
+      toLoad=size - i;
+    }
+    final boolean alloced=memory.hasData(offset.toBigInteger().add(BigInteger.valueOf(i)).longValue(),1);
+    if (!alloced && debugger.isConnected()) {
+      debugger.readMemory(new CAddress(offset.toBigInteger().add(BigInteger.valueOf(i))),(int)toLoad);
+    }
+    i+=toLoad;
+  }
+}

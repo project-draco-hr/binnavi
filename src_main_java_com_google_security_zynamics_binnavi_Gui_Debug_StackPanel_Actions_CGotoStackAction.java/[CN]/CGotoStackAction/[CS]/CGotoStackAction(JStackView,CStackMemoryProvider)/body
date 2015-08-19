@@ -1,0 +1,5 @@
+{
+  super("Goto Stack Pointer");
+  m_stackView=stackView;
+  m_model=model;
+}

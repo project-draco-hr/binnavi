@@ -1,0 +1,10 @@
+{
+switch (columnIndex) {
+case CALLED_COLUMN:
+    return m_crossReferences.get(rowIndex).getCalledFunction().getName();
+case CALLING_COLUMN:
+  return m_crossReferences.get(rowIndex).getCallingFunction().getName();
+default :
+throw new IllegalStateException("IE01277: Invalid column");
+}
+}

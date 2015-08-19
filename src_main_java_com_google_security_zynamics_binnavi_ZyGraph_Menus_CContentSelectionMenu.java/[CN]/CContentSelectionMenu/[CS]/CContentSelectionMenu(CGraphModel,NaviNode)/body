@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(model,"IE00968: Model argument can not be null");
+  Preconditions.checkNotNull(node,"IE00969: Node argument can not be null");
+  add(new CCopySelectionToClipboard(node));
+  add(new CSearchForSelection(model.getGraphPanel().getToolbar().getSearchPanel().getSearchField(),node));
+  add(new CSelectNodesWithSelection(model.getGraph(),node));
+}

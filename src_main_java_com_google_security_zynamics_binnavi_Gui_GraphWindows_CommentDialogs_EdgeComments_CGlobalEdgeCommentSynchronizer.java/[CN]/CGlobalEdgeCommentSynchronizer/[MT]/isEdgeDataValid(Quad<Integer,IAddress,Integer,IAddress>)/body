@@ -1,0 +1,9 @@
+{
+  if ((edgeData.second() == null) || (edgeData.fourth() == null)) {
+    return false;
+  }
+  if ((edgeData.first() == -1) || (edgeData.third() == -1)) {
+    return false;
+  }
+  return true;
+}

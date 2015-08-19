@@ -1,0 +1,4 @@
+{
+  m_coloredRanges[level].clear();
+  repaint();
+}

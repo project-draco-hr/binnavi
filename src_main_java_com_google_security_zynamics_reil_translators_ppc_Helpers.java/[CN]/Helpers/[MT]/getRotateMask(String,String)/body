@@ -1,0 +1,12 @@
+{
+  Long mask=0L;
+  final int mb=Integer.decode(MB);
+  final int me=Integer.decode(ME);
+  if ((mb == 0) && (me == 31)) {
+    return String.valueOf(0xFFFFFFFFL);
+  }
+  for (int i=mb; i != ((me + 1) % 32); i=(i + 1) % 32) {
+    mask|=((mask >> (31 - i)) | 1) << (31 - i);
+  }
+  return mask.toString();
+}

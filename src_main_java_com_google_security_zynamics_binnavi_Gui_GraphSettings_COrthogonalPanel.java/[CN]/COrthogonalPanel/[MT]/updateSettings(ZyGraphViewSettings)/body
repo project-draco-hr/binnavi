@@ -1,0 +1,7 @@
+{
+  final boolean needsLayouting=settings.getLayoutSettings().getOrthogonalSettings().getMinimumNodeDistance() != Integer.valueOf(m_tfOrthogonalMinNodeDistance.getText()) || settings.getLayoutSettings().getOrthogonalSettings().getStyle() != OrthogonalStyle.parseInt(m_cbOrthoLayoutStyle.getSelectedIndex()) || settings.getLayoutSettings().getOrthogonalSettings().getOrientation() != OrthogonalOrientation.parseInt(m_cbOrthoOrientation.getSelectedIndex());
+  settings.getLayoutSettings().getOrthogonalSettings().setMinimumNodeDistance(Integer.valueOf(m_tfOrthogonalMinNodeDistance.getText()));
+  settings.getLayoutSettings().getOrthogonalSettings().setStyle(OrthogonalStyle.parseInt(m_cbOrthoLayoutStyle.getSelectedIndex()));
+  settings.getLayoutSettings().getOrthogonalSettings().setOrientation(OrthogonalOrientation.parseInt(m_cbOrthoOrientation.getSelectedIndex()));
+  return needsLayouting;
+}

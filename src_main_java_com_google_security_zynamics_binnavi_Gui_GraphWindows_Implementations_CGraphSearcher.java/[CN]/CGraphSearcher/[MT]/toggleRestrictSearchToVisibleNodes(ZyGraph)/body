@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(graph,"IE01759: Graph argument can not be null");
+  graph.getSettings().getSearchSettings().setSearchVisibleNodesOnly(!graph.getSettings().getSearchSettings().getSearchVisibleNodesOnly());
+}

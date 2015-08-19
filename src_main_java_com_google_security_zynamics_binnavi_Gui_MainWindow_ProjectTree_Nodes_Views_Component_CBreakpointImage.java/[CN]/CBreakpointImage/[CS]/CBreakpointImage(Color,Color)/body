@@ -1,0 +1,14 @@
+{
+  super(16,16,BufferedImage.TYPE_INT_RGB);
+  Preconditions.checkNotNull(backgroundColor,"IE02021: Background color argument can not be null");
+  Preconditions.checkNotNull(breakpointColor,"IE02022: Breakpoint color argument can not be null");
+  final Graphics2D g2d=createGraphics();
+  g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+  g2d.setStroke(DEFAULT_STROKE);
+  g2d.setColor(backgroundColor);
+  g2d.fillRect(0,0,getHeight(),getWidth());
+  g2d.setColor(breakpointColor);
+  g2d.fillOval(4,4,8,8);
+  g2d.setColor(Color.BLACK);
+  g2d.drawOval(4,4,8,8);
+}

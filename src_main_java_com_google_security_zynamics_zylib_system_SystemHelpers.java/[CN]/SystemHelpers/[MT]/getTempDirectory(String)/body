@@ -1,0 +1,3 @@
+{
+  return getTempDirectory() + "zynamics" + File.separator+ product+ File.separator;
+}

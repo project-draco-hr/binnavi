@@ -1,0 +1,3 @@
+{
+  return message.success() && ((message instanceof DetachReply) || (message instanceof TerminateReply) || (message instanceof ProcessClosedReply));
+}

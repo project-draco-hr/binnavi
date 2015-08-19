@@ -1,0 +1,4 @@
+String result
+OperandSize resultSize
+String address
+TranslationResultType type

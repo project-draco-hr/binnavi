@@ -1,0 +1,11 @@
+{
+  convertData();
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.loadedModule(Module.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  int maxLineWidth=0;
+  final Map<INaviInstruction,INaviFunction> instructionToFunctionReferences=CReferenceFinder.getCodeReferenceMap(node);
+  for (  final INaviInstruction instruction : node.getInstructions()) {
+    final Pair<String,List<CStyleRunData>> zyLineContent=ZyInstructionBuilder.buildInstructionLine(instruction,graphSettings,modifier);
+    final ArrayList<CommentContainer> commentLineContainerList=new ArrayList<CommentContainer>();
+    final List<IComment> localComments=node.getComments().getLocalInstructionComment(instruction);
+    if (localComments != null) {
+      for (      final IComment localComment : localComments) {
+        commentLineContainerList.add(new CommentContainer(localComment));
+      }
+    }
+    final List<IComment> globalComments=instruction.getGlobalComment();
+    if (globalComments != null) {
+      for (      final IComment globalComment : globalComments) {
+        commentLineContainerList.add(new CommentContainer(globalComment));
+      }
+    }
+    final List<IComment> functionComments=instructionToFunctionReferences.get(instruction) == null ? null : instructionToFunctionReferences.get(instruction).getGlobalComment();
+    if (functionComments != null) {
+      for (      final IComment functionComment : functionComments) {
+        commentLineContainerList.add(new CommentContainer(functionComment));
+      }
+    }
+    commentsToLineAssociation.put(zyLineContent,commentLineContainerList);
+    final int lineWidth=zyLineContent.first().length();
+    if (lineWidth > maxLineWidth) {
+      maxLineWidth=lineWidth;
+    }
+    lines.add(zyLineContent);
+  }
+  return maxLineWidth;
+}

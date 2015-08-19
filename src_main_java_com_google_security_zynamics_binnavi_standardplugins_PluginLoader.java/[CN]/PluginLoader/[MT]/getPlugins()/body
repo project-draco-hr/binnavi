@@ -1,0 +1,8 @@
+{
+  final List<IPlugin<IPluginInterface>> plugins=Lists.newArrayList();
+  plugins.add(new PathfinderPlugin());
+  plugins.add(new CallResolverPlugin());
+  plugins.add(new LoopSelectionCriteriumPlugin());
+  plugins.add(new VisualCoveragePlugin());
+  return plugins;
+}

@@ -1,0 +1,11 @@
+{
+  m_isRegEx=regEx;
+  for (  final IGraphSearchSettingsListener listener : m_listeners) {
+    try {
+      listener.changedRegEx();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

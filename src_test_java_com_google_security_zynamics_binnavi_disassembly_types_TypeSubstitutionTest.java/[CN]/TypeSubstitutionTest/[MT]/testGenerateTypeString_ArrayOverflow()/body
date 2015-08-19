@@ -1,0 +1,4 @@
+{
+  final String typeString=TypeSubstitution.generateTypeString(createSubstitution(typeSystem.uintArrayType,0),typeSystem.uintArrayType.getByteSize() + 1);
+  Assert.assertEquals("unsigned int[10]" + "+1",typeString);
+}

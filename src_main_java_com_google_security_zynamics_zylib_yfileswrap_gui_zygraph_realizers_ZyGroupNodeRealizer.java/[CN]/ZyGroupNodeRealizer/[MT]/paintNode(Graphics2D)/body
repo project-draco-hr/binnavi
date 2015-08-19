@@ -1,0 +1,7 @@
+{
+  super.paintNode(gfx);
+  final IGroupNode<?,?> rawNode=(IGroupNode<?,?>)m_userData.getNode().getRawNode();
+  if (rawNode.isCollapsed()) {
+    getNodeContent().draw(gfx,getX(),getY() + 8);
+  }
+}

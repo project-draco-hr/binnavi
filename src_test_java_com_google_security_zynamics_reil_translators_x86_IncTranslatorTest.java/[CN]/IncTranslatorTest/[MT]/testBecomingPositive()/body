@@ -1,0 +1,18 @@
+{
+  interpreter.setRegister("CF",BigInteger.ZERO,OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("eax",BigInteger.valueOf(0xFFFFFFFFL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"eax"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1);
+  final IInstruction instruction=new MockInstruction("inc",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(6,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CF"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("OF"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("SF"));
+  assertEquals(BigInteger.ONE,interpreter.getVariableValue("ZF"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

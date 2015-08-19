@@ -1,0 +1,22 @@
+{
+  if (!debugger.isConnected()) {
+    return;
+  }
+  final Set<BreakpointAddress> echoBreakpoints=Sets.newHashSet();
+  for (  final Breakpoint breakpoint : breakpoints) {
+    if (breakpoint.getType() == BreakpointType.ECHO) {
+      echoBreakpoints.add(breakpoint.getAddress());
+      activeEchoBreakpoints.remove(breakpoint.getAddress());
+    }
+  }
+  for (  final ITraceLoggerListener listener : listeners) {
+    listener.removedBreakpoint();
+  }
+  if (activeEchoBreakpointCount() == 0) {
+    removeListeners();
+    for (    final ITraceLoggerListener listener : listeners) {
+      listener.finished(eventList);
+    }
+  }
+  NaviLogger.info("Removed %d echo breakpoints from the breakpoint manager",echoBreakpoints.size());
+}

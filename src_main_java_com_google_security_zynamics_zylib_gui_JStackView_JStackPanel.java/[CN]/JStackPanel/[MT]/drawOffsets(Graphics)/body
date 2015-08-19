@@ -1,0 +1,21 @@
+{
+  final int linesToDraw=getNumberOfVisibleRows();
+  final String formatString=m_addressMode == AddressMode.BIT32 ? "%08X" : "%016X";
+  final long elementSize=getElementSize();
+  final long baseAddress=m_model.getStartAddress() == -1 ? 0 : m_model.getStartAddress();
+  for (int i=0; i < linesToDraw; i++) {
+    final int elementIndex=m_firstRow + i;
+    final long elementAddress=baseAddress + (elementIndex * elementSize);
+    final String offsetString=String.format(formatString,elementAddress);
+    if (elementAddress == m_model.getStackPointer()) {
+      highlightStackPointer(g,i);
+    }
+    if (isEnabled()) {
+      g.setColor(m_fontColorOffsets);
+    }
+ else {
+      g.setColor(m_disabledColor != m_bgColorOffset ? m_disabledColor : Color.WHITE);
+    }
+    g.drawString(offsetString,PADDING_LEFT - (m_charWidth * m_firstColumn),m_paddingTop + (i * m_rowHeight));
+  }
+}

@@ -1,0 +1,8 @@
+{
+  final BaseType intType=backend.createType("test_int",32,true,null,BaseTypeCategory.ATOMIC);
+  final BaseType structType=backend.createType("test_struct",500,false,null,BaseTypeCategory.STRUCT);
+  final TypeMember member=backend.createStructureMember(structType,intType,"test_member",1);
+  Assert.assertNotNull(mockProvider.loadTypeMember(mockModule,member.getId()));
+  backend.deleteMember(member);
+  Assert.assertNull(mockProvider.loadTypeMember(mockModule,member.getId()));
+}

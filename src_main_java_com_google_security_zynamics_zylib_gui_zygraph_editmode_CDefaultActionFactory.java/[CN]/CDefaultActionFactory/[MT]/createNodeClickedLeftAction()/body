@@ -1,0 +1,3 @@
+{
+  return new CDefaultNodeClickedLeftAction<NodeType,EdgeType>();
+}

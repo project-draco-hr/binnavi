@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(thread,"Error: Thread argument can not be null");
+  m_thread=thread;
+  m_thread.addListener(m_listener);
+}

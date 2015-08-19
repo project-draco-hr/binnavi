@@ -1,0 +1,4 @@
+{
+  m_memorySelectionPanel.dispose();
+  m_stackPanel.dispose();
+}

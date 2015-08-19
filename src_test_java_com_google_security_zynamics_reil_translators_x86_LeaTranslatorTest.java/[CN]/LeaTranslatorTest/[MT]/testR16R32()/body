@@ -1,0 +1,23 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0x12340000L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ebx",BigInteger.valueOf(7000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ecx",BigInteger.valueOf(15000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"word");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ax"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.MEMDEREF,"["));
+  operandTree2.root.m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.OPERATOR,"+"));
+  operandTree2.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ebx"));
+  operandTree2.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.OPERATOR,"*"));
+  operandTree2.root.m_children.get(0).m_children.get(0).m_children.get(1).m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"4"));
+  operandTree2.root.m_children.get(0).m_children.get(0).m_children.get(1).m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ecx"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2);
+  final IInstruction instruction=new MockInstruction("lea",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(4,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x123405B8),interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

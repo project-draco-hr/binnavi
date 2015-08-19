@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(database,"IE01580: Database argument can not be null");
+  Preconditions.checkNotNull(model,"IE01581: Model argument can not be null");
+  Preconditions.checkNotNull(actionProvider,"IE01582: Action provider argument can not be null");
+  m_database=database;
+  m_model=model;
+  m_actionProvider=actionProvider;
+  createChildren();
+}

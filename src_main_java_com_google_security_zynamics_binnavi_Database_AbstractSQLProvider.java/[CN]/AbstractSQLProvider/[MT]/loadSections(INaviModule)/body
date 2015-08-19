@@ -1,0 +1,3 @@
+{
+  return PostgreSQLSectionFunctions.loadSections(this,module);
+}

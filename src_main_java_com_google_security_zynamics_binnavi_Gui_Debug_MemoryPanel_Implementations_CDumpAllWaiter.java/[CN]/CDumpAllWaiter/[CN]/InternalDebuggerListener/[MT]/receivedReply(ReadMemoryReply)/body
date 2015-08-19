@@ -1,0 +1,6 @@
+{
+  if (m_packet == reply.getId()) {
+    m_success=reply.success();
+    stopWaiting();
+  }
+}

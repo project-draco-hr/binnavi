@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  m_message=message;
+  final JLabel label=new JLabel(HELP_ICON);
+  add(label);
+  setToolTipText(message);
+}

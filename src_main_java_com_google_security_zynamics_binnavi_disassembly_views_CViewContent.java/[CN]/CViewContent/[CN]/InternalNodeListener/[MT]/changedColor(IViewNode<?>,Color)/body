@@ -1,0 +1,11 @@
+{
+  setModified(true);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedColor(view,node,color);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

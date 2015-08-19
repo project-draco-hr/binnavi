@@ -1,0 +1,3 @@
+{
+  m_model=Preconditions.checkNotNull(model,"IE01628: Model argument can not be null");
+}

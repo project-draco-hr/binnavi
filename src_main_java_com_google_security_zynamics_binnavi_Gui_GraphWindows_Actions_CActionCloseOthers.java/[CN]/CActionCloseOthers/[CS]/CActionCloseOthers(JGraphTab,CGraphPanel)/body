@@ -1,0 +1,5 @@
+{
+  super("Close Others");
+  m_tab=tab;
+  m_graphPanel=graphPanel;
+}

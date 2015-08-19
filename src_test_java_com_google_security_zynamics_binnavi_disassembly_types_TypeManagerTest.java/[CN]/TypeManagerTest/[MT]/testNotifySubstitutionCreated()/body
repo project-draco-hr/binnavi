@@ -1,0 +1,9 @@
+{
+  final TypeSubstitutionChangedEventCollector events=new TypeSubstitutionChangedEventCollector();
+  typeManager.addListener(events);
+  final IAddress address=new CAddress(0x1000);
+  final TypeSubstitution substitution=typeManager.createTypeSubstitution(new MockOperandTreeNode(),typeSystem.intType,0,0,address);
+  final TypeSubstitutionChangedEventCollector expectedEvents=new TypeSubstitutionChangedEventCollector();
+  expectedEvents.substitutionsAdded(Sets.newHashSet(substitution));
+  Assert.assertEquals(expectedEvents,events);
+}

@@ -1,0 +1,8 @@
+{
+  if (previousState2 instanceof Undefined) {
+    return new Undefined();
+  }
+ else {
+    return getAtomicType(firstOperand);
+  }
+}

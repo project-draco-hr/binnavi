@@ -1,0 +1,5 @@
+{
+  if (log.isLoggable(Level.SEVERE)) {
+    log.severe(String.format(string,args));
+  }
+}

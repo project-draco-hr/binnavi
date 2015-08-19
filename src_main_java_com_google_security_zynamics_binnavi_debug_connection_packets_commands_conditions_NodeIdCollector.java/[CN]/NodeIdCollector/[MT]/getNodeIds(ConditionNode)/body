@@ -1,0 +1,5 @@
+{
+  final Map<ConditionNode,Integer> map=new HashMap<>();
+  getNodeIds(root,map);
+  return map;
+}

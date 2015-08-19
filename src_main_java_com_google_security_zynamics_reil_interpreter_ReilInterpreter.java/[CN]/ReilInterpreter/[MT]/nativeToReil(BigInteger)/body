@@ -1,0 +1,3 @@
+{
+  return address.multiply(BigInteger.valueOf(0x100));
+}

@@ -1,0 +1,9 @@
+{
+  if (instance != null) {
+    instanceName.setText(instance.getName());
+    types.getModel().selectByBaseType(instance.getBaseType());
+  }
+  if (offset != null) {
+    sectionOffset.setText(String.valueOf(offset));
+  }
+}

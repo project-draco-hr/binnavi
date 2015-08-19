@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  final com.google.security.zynamics.binnavi.debug.models.breakpoints.Breakpoint internalBreakpoint=breakpointManager.getBreakpoint(BreakpointType.ECHO,new BreakpointAddress(module == null ? null : module.getNative(),new UnrelocatedAddress(new CAddress(address.toLong()))));
+  return echoBreakpointMap.get(internalBreakpoint);
+}

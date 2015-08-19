@@ -1,0 +1,3 @@
+{
+  typeInstanceCommentContainer.setComments(typeInstance,comments);
+}

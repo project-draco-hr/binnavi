@@ -1,0 +1,32 @@
+{
+  final JTabbedPane tab=new JTabbedPane();
+  tab.add("Global Line Comments",m_globalLineCommentsPanel);
+  tab.add("Local Line Comments",m_localLineCommentsPanel);
+  tab.add("Node Comments",m_commentsPanel);
+  tab.add("Function Comments",m_functionCommentsPanel);
+  add(tab,BorderLayout.CENTER);
+  add(new OKButtonPanel(this),BorderLayout.SOUTH);
+  pack();
+switch (initialTab) {
+case GlobalLineComments:
+    tab.setSelectedIndex(0);
+  break;
+case LocalLineComments:
+tab.setSelectedIndex(1);
+break;
+case LocalNodeComments:
+tab.setSelectedIndex(2);
+m_commentsPanel.focusLocalField();
+break;
+case GlobalNodeComments:
+tab.setSelectedIndex(2);
+m_commentsPanel.focusGlobalField();
+break;
+case FunctionComments:
+tab.setSelectedIndex(3);
+m_functionCommentsPanel.focusGlobalField();
+break;
+default :
+throw new IllegalStateException("IE00681: Unknown initial tab");
+}
+}

@@ -1,0 +1,16 @@
+{
+  int lineNumber=coordinate.getLine();
+  int index=coordinate.getFieldIndex();
+  int commentIndex=lineAndIndexToCommentIndex(comment,lineNumber,index);
+  if ((coordinate.getFieldIndex() == 0) && (coordinate.getLine() > 0)) {
+  }
+ else   if ((coordinate.getFieldIndex() == 0) && (coordinate.getLine() == 0)) {
+  }
+ else {
+    coordinate.setFieldIndex(Math.max(coordinate.getFieldIndex() - 1,0));
+    if (commentIndex >= 0) {
+      return deleteCharacterFromComment(comment,coordinate.getLine(),coordinate.getFieldIndex());
+    }
+  }
+  return comment;
+}

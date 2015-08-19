@@ -1,0 +1,15 @@
+INaviModule module
+SQLProvider provider
+ListenerProvider<IModuleListener> listeners
+int moduleId
+String name
+String comment
+Date creationDate
+Date modificationDate
+String md5
+String sha1
+IAddress fileBase
+IAddress imageBase
+DebuggerTemplate debuggerTemplate
+boolean isStared
+INaviRawModule rawModule

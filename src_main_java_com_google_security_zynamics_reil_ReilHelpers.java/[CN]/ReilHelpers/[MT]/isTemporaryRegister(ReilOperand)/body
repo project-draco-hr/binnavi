@@ -1,0 +1,3 @@
+{
+  return (operand.getType() == OperandType.REGISTER) && operand.getValue().startsWith("t");
+}

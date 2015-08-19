@@ -1,0 +1,12 @@
+def createIdcFile(fileName, module):
+    ' Takes the information from the module and creates an IDC file that contains all\n\tthe naming information that is backported to IDA Pro. This IDC file must then be run\n\tby the user from inside IDA Pro.\n\t'
+    output_file = open(fileName, 'w')
+    output_file.write('#include <idc.idc>\n')
+    output_file.write('static main(void) {\n')
+    output_file.write('\n')
+    for function in module.functions:
+        if function.name.startswith('sub_'):
+            continue
+        output_file.write(('MakeName(0x%s, "%s");\n' % (function.address, function.name)))
+    output_file.write('}')
+    output_file.close()

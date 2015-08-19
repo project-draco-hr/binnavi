@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(codeNode,"IE02633: codeNode argument can not be null");
+  final List<Pair<INaviInstruction,IComment>> values=new ArrayList<Pair<INaviInstruction,IComment>>();
+  final CCodeNodeComments currentComments=codeNode.getComments();
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    final List<IComment> comments=currentComments.getLocalInstructionComment(instruction);
+    if ((comments == null) || comments.isEmpty()) {
+      values.add(new Pair<INaviInstruction,IComment>(instruction,null));
+      continue;
+    }
+ else {
+      for (      final IComment comment : comments) {
+        values.add(new Pair<INaviInstruction,IComment>(instruction,comment));
+      }
+    }
+  }
+  return values;
+}

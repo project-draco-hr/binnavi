@@ -1,0 +1,5 @@
+{
+  final List<NodeType> nodes=new ArrayList<NodeType>();
+  getPredecessorsInternal(node,depth,nodes,new HashSet<NodeType>());
+  return nodes;
+}

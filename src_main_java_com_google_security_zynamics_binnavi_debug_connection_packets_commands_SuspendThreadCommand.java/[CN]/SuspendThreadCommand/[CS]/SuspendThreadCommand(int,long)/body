@@ -1,0 +1,4 @@
+{
+  super(DebugCommandType.CMD_SUSPEND_THREAD,packetId);
+  addArgument(new DebugMessageIntegerArgument((int)tid));
+}

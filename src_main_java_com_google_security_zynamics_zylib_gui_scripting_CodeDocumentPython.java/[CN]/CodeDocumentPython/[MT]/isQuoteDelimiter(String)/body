@@ -1,0 +1,9 @@
+{
+  final String quoteDelimiters="\"'";
+  if (quoteDelimiters.indexOf(character) < 0) {
+    return false;
+  }
+ else {
+    return true;
+  }
+}

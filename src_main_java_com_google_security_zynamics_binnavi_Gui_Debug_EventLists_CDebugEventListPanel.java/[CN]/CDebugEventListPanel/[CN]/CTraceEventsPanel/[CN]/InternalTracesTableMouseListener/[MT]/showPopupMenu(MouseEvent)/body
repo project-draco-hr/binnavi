@@ -1,0 +1,4 @@
+{
+  final CTraceEventsTableFilterMenu menu=new CTraceEventsTableFilterMenu(getFilterField());
+  menu.show(event.getComponent(),event.getX(),event.getY());
+}

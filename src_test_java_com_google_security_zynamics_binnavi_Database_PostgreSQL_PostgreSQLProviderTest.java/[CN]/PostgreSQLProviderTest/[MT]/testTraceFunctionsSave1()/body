@@ -1,0 +1,28 @@
+{
+  final INaviProject project=getProvider().createProject("SOME_PROJECT");
+  getProvider().createTrace(project,"SOME_TRACE","SOME_TRACE_DESCRIPTION");
+  project.load();
+  final TraceList trace=project.getContent().getTraces().get(0);
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final long tid=0x1L;
+  final UnrelocatedAddress address2=new UnrelocatedAddress(new CAddress(0x1234));
+  final BreakpointAddress address=new BreakpointAddress(module,address2);
+  final TraceEventType type=TraceEventType.ECHO_BREAKPOINT;
+  final List<TraceRegister> values=new ArrayList<>();
+  final ITraceEvent event=new TraceEvent(tid,address,type,values);
+  trace.addEvent(event);
+  trace.setDescription("burzelbarf");
+  PostgreSQLTraceFunctions.save((AbstractSQLProvider)getProvider(),trace);
+  project.close();
+  INaviProject project2=null;
+  for (  final INaviProject cProject : getProvider().loadProjects()) {
+    if (cProject.getConfiguration().getId() == project.getConfiguration().getId()) {
+      project2=cProject;
+    }
+  }
+  getProvider().createTrace(project2,"SOME_TRACE_2","SOME_TRACE_DESCRIPTION_2");
+  project2.load();
+  final TraceList trace2=project2.getContent().getTraces().get(0);
+  assertEquals("burzelbarf",trace2.getDescription());
+}

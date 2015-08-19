@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(instance,"Error: instance argument can not be null");
+  Preconditions.checkArgument(instancesById.containsKey(instance.getId()),"Error: type instance id is not known to the backend");
+  instancesById.remove(instance.getId());
+  provider.deleteTypeInstance(instance.getModule().getConfiguration().getId(),instance.getId());
+}

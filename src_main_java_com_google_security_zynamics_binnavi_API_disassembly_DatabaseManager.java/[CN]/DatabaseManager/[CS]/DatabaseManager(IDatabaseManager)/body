@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(manager,"Error: Manager argument can't be null");
+  m_manager=manager;
+  for (  final IDatabase database : m_manager) {
+    m_databases.add(new Database(database));
+  }
+  manager.addListener(m_internalListener);
+}

@@ -1,0 +1,3 @@
+{
+  m_scheduler.scheduleAtFixedRate(m_notificationPoller,0,500,TimeUnit.MILLISECONDS);
+}

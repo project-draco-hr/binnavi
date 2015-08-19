@@ -1,0 +1,4 @@
+{
+  super(projectTree,new CDebuggersModel(database),new CDebuggersTableHelp());
+  m_database=database;
+}

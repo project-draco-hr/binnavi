@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(element,"Error: Element argument can not be null");
+  m_node.removeElement(element.getNative());
+}

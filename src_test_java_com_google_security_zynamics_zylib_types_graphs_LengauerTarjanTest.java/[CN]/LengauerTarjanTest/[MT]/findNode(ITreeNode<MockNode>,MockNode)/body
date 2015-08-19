@@ -1,0 +1,12 @@
+{
+  if (treeNode.getObject() == b) {
+    return treeNode;
+  }
+  for (  final ITreeNode<MockNode> child : treeNode.getChildren()) {
+    final ITreeNode<MockNode> m=findNode(child,b);
+    if (m != null) {
+      return m;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,12 @@
+{
+  final List<IReference> nodeReferences=node.getReferences();
+  for (  final IReference reference : nodeReferences) {
+    if ((reference != null) && ReferenceType.isCodeReference(reference.getType())) {
+      references.add(reference);
+      break;
+    }
+  }
+  for (  final IOperandTreeNode child : node.getChildren()) {
+    getCodeReference(child,references);
+  }
+}

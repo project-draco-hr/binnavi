@@ -1,0 +1,3 @@
+{
+  return m_views == null ? 0 : m_views.size();
+}

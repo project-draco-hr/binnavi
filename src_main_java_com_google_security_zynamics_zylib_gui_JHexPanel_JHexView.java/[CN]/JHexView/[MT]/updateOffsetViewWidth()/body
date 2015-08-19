@@ -1,0 +1,4 @@
+{
+  final int addressBytes=m_addressMode == AddressMode.BIT32 ? 8 : 16;
+  m_offsetViewWidth=PADDING_OFFSETVIEW + (m_charWidth * addressBytes);
+}

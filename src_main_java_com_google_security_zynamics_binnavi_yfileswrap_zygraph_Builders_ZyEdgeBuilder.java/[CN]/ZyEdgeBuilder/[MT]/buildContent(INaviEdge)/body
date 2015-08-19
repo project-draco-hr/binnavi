@@ -1,0 +1,5 @@
+{
+  final ZyLabelContent content=new ZyLabelContent(null);
+  ZyNodeBuilder.addCommentLines(content,edge,edge.getLocalComment(),edge.getGlobalComment());
+  return content;
+}

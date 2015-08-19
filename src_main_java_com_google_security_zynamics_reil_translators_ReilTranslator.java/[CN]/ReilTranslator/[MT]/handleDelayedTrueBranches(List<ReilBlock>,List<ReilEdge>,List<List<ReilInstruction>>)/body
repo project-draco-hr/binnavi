@@ -1,0 +1,32 @@
+{
+  for (  final List<ReilInstruction> lastReil : delayedTrueBranches) {
+    final ReilInstruction lastReilInstruction=lastReil.get(lastReil.size() - 1);
+    for (    final ReilBlock node : nodes) {
+      final Iterable<ReilInstruction> nodeInstructions=node.getInstructions();
+      if (Iterables.getLast(nodeInstructions) == lastReilInstruction) {
+        final ReilEdge incomingEdge=node.getIncomingEdges().get(0);
+        final ReilBlock parentNode=incomingEdge.getSource();
+        edges.remove(incomingEdge);
+        boolean first=true;
+        for (        final ReilEdge outgoingEdge : node.getOutgoingEdges()) {
+          if (first) {
+            first=false;
+            final ReilEdge newEdge=new ReilEdge(parentNode,node,EdgeType.JUMP_CONDITIONAL_TRUE);
+            ReilBlock.link(parentNode,node,newEdge);
+            edges.add(newEdge);
+            final ReilEdge newEdge2=new ReilEdge(parentNode,outgoingEdge.getTarget(),EdgeType.JUMP_CONDITIONAL_FALSE);
+            ReilBlock.link(parentNode,outgoingEdge.getTarget(),newEdge2);
+            edges.add(newEdge2);
+          }
+ else {
+            final ReilEdge newEdge2=new ReilEdge(node,outgoingEdge.getTarget(),outgoingEdge.getType());
+            ReilBlock.link(node,outgoingEdge.getTarget(),newEdge2);
+            edges.add(newEdge2);
+          }
+          edges.remove(outgoingEdge);
+          ReilBlock.unlink(outgoingEdge.getSource(),outgoingEdge.getTarget(),outgoingEdge);
+        }
+      }
+    }
+  }
+}

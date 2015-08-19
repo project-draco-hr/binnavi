@@ -1,0 +1,19 @@
+{
+  final Matcher matcher=FUNCTION_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return null;
+  }
+  final Integer notificationModuleId=Integer.parseInt(matcher.group(3));
+  final IAddress notificationFunctionAddress=new CAddress(new BigInteger(matcher.group(4)));
+  final Integer commentId=matcher.group(5).equals("null") ? null : Integer.parseInt(matcher.group(5));
+  final INaviModule module=provider.findModule(notificationModuleId);
+  if ((module == null) || !module.isLoaded()) {
+    return null;
+  }
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction(notificationFunctionAddress);
+  if (function == null) {
+    return null;
+  }
+  final CommentOperation operation=commentId == null ? CommentOperation.DELETE : CommentOperation.APPEND;
+  return new FunctionCommentNotificationContainer(function,operation,commentId);
+}

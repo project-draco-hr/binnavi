@@ -1,0 +1,3 @@
+String searchString
+boolean cycleBackwards
+boolean zoomToResult

@@ -1,0 +1,10 @@
+{
+  checkDriver(configuration);
+  try {
+    return new CConnection(configuration);
+  }
+ catch (  final SQLException e) {
+    CUtilityFunctions.logException(e);
+    throw new CouldntConnectException(e,e.getErrorCode(),e.getSQLState());
+  }
+}

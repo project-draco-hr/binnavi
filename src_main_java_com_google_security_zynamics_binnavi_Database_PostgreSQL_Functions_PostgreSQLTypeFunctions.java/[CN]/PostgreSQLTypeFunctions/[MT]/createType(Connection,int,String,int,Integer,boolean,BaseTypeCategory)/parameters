@@ -1,0 +1,7 @@
+Connection connection
+int moduleId
+String name
+int size
+Integer childPointerTypeId
+boolean signed
+BaseTypeCategory category

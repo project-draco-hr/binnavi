@@ -1,0 +1,8 @@
+{
+  for (  final ArrayList<IComment> commentList : comments.values()) {
+    if (!commentList.isEmpty() && Iterables.getLast(commentList).getId().equals(commentId)) {
+      return commentList;
+    }
+  }
+  return null;
+}

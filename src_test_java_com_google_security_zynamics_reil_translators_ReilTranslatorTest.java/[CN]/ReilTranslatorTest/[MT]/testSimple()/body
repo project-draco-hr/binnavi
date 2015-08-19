@@ -1,0 +1,5 @@
+{
+  final ReilGraph g=m_translator.translate(new StandardEnvironment(),new MockInstruction("nop",new ArrayList<MockOperandTree>()));
+  assertEquals(1,g.nodeCount());
+  assertEquals(0,g.edgeCount());
+}

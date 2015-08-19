@@ -1,0 +1,17 @@
+{
+  int selected=0;
+  int visible=0;
+  int invisible=0;
+  for (  final NaviNode n : getGraphNodes()) {
+    if (n.getRawNode().isSelected()) {
+      selected++;
+    }
+    if (n.getRawNode().isVisible()) {
+      visible++;
+    }
+ else {
+      invisible++;
+    }
+  }
+  return String.format("Tagged Nodes (%d/%d/%d/%d)",selected,visible,invisible,visible + invisible);
+}

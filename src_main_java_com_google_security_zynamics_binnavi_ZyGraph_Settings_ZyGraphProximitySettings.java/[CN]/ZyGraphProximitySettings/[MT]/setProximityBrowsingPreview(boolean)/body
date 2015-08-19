@@ -1,0 +1,19 @@
+{
+  if (value == getProximityBrowsingPreview()) {
+    return;
+  }
+  if (m_type == null) {
+    m_ProximityPreview=value;
+  }
+ else {
+    m_type.setProximityBrowsingPreview(value);
+  }
+  for (  final IProximitySettingsListener listener : m_listeners) {
+    try {
+      listener.changedProximityBrowsingPreview(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

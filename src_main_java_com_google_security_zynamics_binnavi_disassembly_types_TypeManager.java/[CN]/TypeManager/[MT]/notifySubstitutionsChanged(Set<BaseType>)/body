@@ -1,0 +1,6 @@
+{
+  final Set<TypeSubstitution> changedSubstitutions=typesContainer.getAffectedTypeSubstitutions(baseTypes);
+  for (  final TypeSubstitutionChangedListener listener : substitutionListeners) {
+    listener.substitutionsChanged(changedSubstitutions);
+  }
+}

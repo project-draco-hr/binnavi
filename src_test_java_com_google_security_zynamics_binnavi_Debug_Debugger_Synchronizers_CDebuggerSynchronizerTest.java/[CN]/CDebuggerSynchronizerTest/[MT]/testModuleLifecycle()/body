@@ -1,0 +1,13 @@
+{
+  assertTrue(mockDebugger.getProcessManager().getModules().isEmpty());
+  mockDebugger.connect();
+  mockDebugger.getProcessManager().getThreads().clear();
+  debuggerSynchronizer.receivedEvent(new ThreadCreatedReply(0,0,1000,ThreadState.RUNNING));
+  final MemoryModule module=new MemoryModule("hannes.dll","C:\\hannes.dll",new RelocatedAddress(new CAddress(0x1000000)),1000);
+  debuggerSynchronizer.receivedEvent(new ModuleLoadedReply(0,0,module,new TargetProcessThread(1000,ThreadState.RUNNING)));
+  mockDebugger.getProcessManager().setTargetInformation(new TargetInformation(5,Lists.newArrayList(new RegisterDescription("eax",4,true),new RegisterDescription("ebx",4,false)),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  assertTrue(mockDebugger.getProcessManager().getModules().size() == 1);
+  assertTrue(mockDebugger.getProcessManager().getModules().get(0) == module);
+  debuggerSynchronizer.receivedEvent(new ModuleUnloadedReply(0,0,module));
+  assertTrue(mockDebugger.getProcessManager().getModules().isEmpty());
+}

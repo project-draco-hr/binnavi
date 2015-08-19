@@ -1,0 +1,3 @@
+INaviEdge edge
+Map<INaviViewNode,INaviViewNode> nodeMap
+Set<INaviEdge> visited

@@ -1,0 +1,7 @@
+{
+  final ReilInstruction instruction=ReilHelpers.createAdd(0x100,OperandSize.DWORD,"2",OperandSize.DWORD,"4",OperandSize.QWORD,"t0");
+  final ValueTrackerElement state=new ValueTrackerElement();
+  final ValueTrackerElement result=AddTransformer.transform(instruction,state);
+  assertTrue(result.getState("t0") instanceof Literal);
+  assertEquals(6,((Literal)result.getState("t0")).getValue().longValue());
+}

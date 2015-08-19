@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(graph,"IE01749: Graph argument can not be null");
+  graph.getSettings().getDisplaySettings().setMagnifyingGlassMode(!graph.getSettings().getDisplaySettings().getMagnifyingGlassMode());
+}

@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(value,"Error: Argument value can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final String pfInLsb=environment.getNextVariableString();
+  final String afInLsb=environment.getNextVariableString();
+  final String zfInLsb=environment.getNextVariableString();
+  final String sfInLsb=environment.getNextVariableString();
+  final String ofInLsb=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset,size,value,size,"1",OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 1,size,value,size,"-2",size,pfInLsb));
+  instructions.add(ReilHelpers.createAnd(offset + 2,size,pfInLsb,size,"1",OperandSize.BYTE,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 3,size,value,size,"-4",size,afInLsb));
+  instructions.add(ReilHelpers.createAnd(offset + 4,size,afInLsb,size,"1",OperandSize.BYTE,Helpers.AUXILIARY_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 5,size,value,size,"-6",size,zfInLsb));
+  instructions.add(ReilHelpers.createAnd(offset + 6,size,zfInLsb,size,"1",OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 7,size,value,size,"-7",size,sfInLsb));
+  instructions.add(ReilHelpers.createAnd(offset + 8,size,sfInLsb,size,"1",OperandSize.BYTE,Helpers.SIGN_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 9,size,value,size,"-11",size,ofInLsb));
+  instructions.add(ReilHelpers.createAnd(offset + 10,size,ofInLsb,size,"1",OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+}

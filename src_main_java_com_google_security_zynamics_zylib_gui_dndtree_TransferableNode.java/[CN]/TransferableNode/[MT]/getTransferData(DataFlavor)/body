@@ -1,0 +1,8 @@
+{
+  if (flavor == NODE_FLAVOR) {
+    return node;
+  }
+ else {
+    throw new UnsupportedFlavorException(flavor);
+  }
+}

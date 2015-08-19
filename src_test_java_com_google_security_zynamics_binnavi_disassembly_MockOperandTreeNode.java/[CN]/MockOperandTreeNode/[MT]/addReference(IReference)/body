@@ -1,0 +1,6 @@
+{
+  m_references.add(reference);
+  for (  final INaviOperandTreeNodeListener listener : m_listeners) {
+    listener.addedReference(this,reference);
+  }
+}

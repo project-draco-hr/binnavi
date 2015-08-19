@@ -1,0 +1,8 @@
+{
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  final TagManager manager1=database.getNodeTagManager();
+  final TagManager manager2=database.getNodeTagManager();
+  assertNotNull(manager1);
+  assertEquals(manager1,manager2);
+}

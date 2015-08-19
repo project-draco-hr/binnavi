@@ -1,0 +1,5 @@
+{
+  super("New Scripting Window");
+  m_parent=Preconditions.checkNotNull(parent,"IE01846: Parent argument can not be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_SCRIPTING".charAt(0));
+}

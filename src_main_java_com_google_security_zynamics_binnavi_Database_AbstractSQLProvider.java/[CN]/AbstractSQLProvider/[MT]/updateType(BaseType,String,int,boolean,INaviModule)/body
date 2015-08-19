@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.updateType(getConnection().getConnection(),baseType,name,size,isSigned,module);
+}

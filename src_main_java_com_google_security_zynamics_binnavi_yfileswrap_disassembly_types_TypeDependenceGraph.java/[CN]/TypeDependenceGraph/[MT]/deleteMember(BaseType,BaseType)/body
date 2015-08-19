@@ -1,0 +1,7 @@
+{
+  final Node containingTypeNode=containedRelationMap.get(containingType);
+  final Node memberTypeNode=containedRelationMap.get(memberType);
+  final Edge memberEdge=memberTypeNode.getEdgeTo(containingTypeNode);
+  containedRelation.removeEdge(memberEdge);
+  return determineDependentTypes(containingType);
+}

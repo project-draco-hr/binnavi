@@ -1,0 +1,11 @@
+{
+  try {
+    apiManager.hasEchoBreakpoint(null,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertFalse(apiManager.hasEchoBreakpoint(module,new Address(0x123)));
+  apiManager.setEchoBreakpoint(module,new Address(0x123));
+  assertTrue(apiManager.hasEchoBreakpoint(module,new Address(0x123)));
+}

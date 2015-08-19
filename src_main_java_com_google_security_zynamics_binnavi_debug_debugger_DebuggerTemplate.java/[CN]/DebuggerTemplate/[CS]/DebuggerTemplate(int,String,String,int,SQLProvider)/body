@@ -1,0 +1,9 @@
+{
+  Preconditions.checkArgument(debuggerId > 0,"IE00796: ID argument must be positive");
+  debuggerTemplateName=Preconditions.checkNotNull(name,"IE00797: Name argument can not be null");
+  debugClientHost=Preconditions.checkNotNull(host,"IE00798: Host argument can not be null");
+  Preconditions.checkArgument(NetHelpers.isValidPort(port),"IE00799: Invalid port argument");
+  this.sqlProvider=Preconditions.checkNotNull(sqlProvider,"IE00800: SQL provider argument can not be null");
+  debuggerTemplateId=debuggerId;
+  debugClientPort=port;
+}

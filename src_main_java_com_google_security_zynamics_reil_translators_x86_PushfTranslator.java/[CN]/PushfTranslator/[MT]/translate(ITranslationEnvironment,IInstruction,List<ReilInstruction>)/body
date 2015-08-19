@@ -1,0 +1,11 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"pushf");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a pushf instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final String result=Helpers.shiftFlagsIntoValue(environment,offset,OperandSize.DWORD,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generatePush(environment,offset,result,OperandSize.DWORD,instructions);
+}

@@ -1,0 +1,6 @@
+{
+  m_name=Preconditions.checkNotNull(name,"IE00998: Name argument can not be null");
+  m_description=Preconditions.checkNotNull(description,"IE00999: Description argument can not be null");
+  m_steps=new ArrayList<CTutorialStep>(Preconditions.checkNotNull(steps,"IE01000: Steps argument can not be null"));
+  Preconditions.checkArgument(!steps.isEmpty(),"IE01001: Tutorials with no steps are not allowed");
+}

@@ -1,0 +1,19 @@
+{
+  if ((m_debugger == null) || !m_debugger.isConnected()) {
+    if (template == null) {
+      m_debugger=null;
+    }
+ else {
+      m_debugger=new TcpDebugger(template,new ModuleTargetSettings(m_module));
+      m_debugger.setAddressTranslator(m_module,m_fileBase,m_imageBase);
+    }
+    for (    final IModuleListener listener : m_listeners) {
+      try {
+        listener.changedDebugger(m_module,m_debugger);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

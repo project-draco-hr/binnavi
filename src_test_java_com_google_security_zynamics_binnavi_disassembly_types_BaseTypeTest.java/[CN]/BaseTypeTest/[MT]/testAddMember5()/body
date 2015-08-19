@@ -1,0 +1,9 @@
+{
+  testStruct.addMember(testMember0);
+  testStruct.addMember(testMember1);
+  testStruct.addMember(testMember2);
+  testStruct.addMember(testMember3);
+  assertEquals(testMember0.getBitSize() + testMember1.getBitSize() + testMember2.getBitSize()+ testMember3.getBitSize(),testStruct.getBitSize());
+  assertEquals(4,testStruct.getMemberCount());
+  assertEquals(testMember3,testStruct.getLastMember());
+}

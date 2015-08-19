@@ -1,0 +1,2 @@
+def extendPluginMenu(self):
+    return [JMenuItem(MessageAction(self.pi))]

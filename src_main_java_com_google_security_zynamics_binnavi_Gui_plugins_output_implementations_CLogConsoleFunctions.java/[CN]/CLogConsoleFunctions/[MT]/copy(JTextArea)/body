@@ -1,0 +1,9 @@
+{
+  final String selectedText=area.getSelectedText();
+  if (selectedText == null) {
+    ClipboardHelpers.copyToClipboard(area.getText());
+  }
+ else {
+    ClipboardHelpers.copyToClipboard(selectedText);
+  }
+}

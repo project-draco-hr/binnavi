@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(type,"Error: Type argument can't be null");
+  if (type == m_type) {
+    return;
+  }
+  m_type=type;
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.changedType(this,type);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  super("Delete Debugger");
+  m_parent=Preconditions.checkNotNull(parent,"IE01873: Parent argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE01874: Database argument can not be null");
+  m_debuggers=Preconditions.checkNotNull(debuggers,"IE01875: Debuggers argument can not be null").clone();
+  m_updater=Preconditions.checkNotNull(updater,"IE02867: updater argument can not be null");
+  for (  final DebuggerTemplate debuggerTemplate : debuggers) {
+    Preconditions.checkNotNull(debuggerTemplate,"IE01876: Debuggers list contains null-elements");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_DEBUGGERS".charAt(0));
+}

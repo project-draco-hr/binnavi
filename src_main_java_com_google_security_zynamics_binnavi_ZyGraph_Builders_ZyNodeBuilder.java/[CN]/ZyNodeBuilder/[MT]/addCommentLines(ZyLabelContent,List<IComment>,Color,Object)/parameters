@@ -1,0 +1,4 @@
+ZyLabelContent content
+List<IComment> comments
+Color color
+Object object

@@ -1,0 +1,12 @@
+{
+  checkArguments(provider,module,functions);
+  final CConnection connection=provider.getConnection();
+  try {
+    final Pair<List<ICallgraphNode>,Map<Integer,CCallgraphNode>> nodeResult=loadNodes(connection,callgraphId,functions);
+    final List<ICallgraphEdge> edges=loadEdges(connection,callgraphId,nodeResult.second());
+    return new CCallgraph(nodeResult.first(),edges);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

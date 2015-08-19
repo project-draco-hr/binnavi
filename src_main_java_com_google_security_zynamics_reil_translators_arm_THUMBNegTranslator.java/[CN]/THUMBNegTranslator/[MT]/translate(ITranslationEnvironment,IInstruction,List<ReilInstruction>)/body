@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"NEG");
+  translateAll(environment,instruction,"NEG",instructions);
+}

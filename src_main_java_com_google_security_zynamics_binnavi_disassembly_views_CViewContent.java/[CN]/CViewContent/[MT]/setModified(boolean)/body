@@ -1,0 +1,14 @@
+{
+  if (m_wasModified == value) {
+    return;
+  }
+  m_wasModified=value;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedModificationState(view,value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

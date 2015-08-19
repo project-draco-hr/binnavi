@@ -1,0 +1,7 @@
+{
+  final IProjectTreeNode node=(IProjectTreeNode)m_projectTree.getLastSelectedPathComponent();
+  if (node != null) {
+    m_window.setJMenuBar(node.getMainMenu());
+    m_window.getJMenuBar().updateUI();
+  }
+}

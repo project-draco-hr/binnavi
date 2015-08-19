@@ -1,0 +1,5 @@
+{
+  super("Select nodes from the same function");
+  m_graph=Preconditions.checkNotNull(graph,"IE00936: Graph argument can't be null");
+  m_function=Preconditions.checkNotNull(function,"IE00937: Function argument can't be null");
+}

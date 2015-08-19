@@ -1,0 +1,7 @@
+{
+  boolean cont=true;
+  for (  final IModuleListener listener : m_listeners) {
+    cont&=listener.loading(event,counter);
+  }
+  return cont;
+}

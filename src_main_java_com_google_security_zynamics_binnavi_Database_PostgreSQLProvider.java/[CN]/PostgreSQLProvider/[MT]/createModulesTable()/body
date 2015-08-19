@@ -1,0 +1,3 @@
+{
+  executeUpdate("CREATE TABLE modules (" + " id serial, " + " name text NOT NULL, "+ " architecture varchar( 32 ) NOT NULL, "+ " base_address bigint NOT NULL, "+ " exporter varchar( 256 ) NOT NULL, "+ " version int NOT NULL, "+ " md5 char( 32 ) NOT NULL, "+ " sha1 char( 40 ) NOT NULL, "+ " comment TEXT, "+ " import_time timestamp NOT NULL DEFAULT current_timestamp, "+ " PRIMARY KEY (id));");
+}

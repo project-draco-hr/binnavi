@@ -1,0 +1,21 @@
+{
+  super(parent,title,ModalityType.APPLICATION_MODAL);
+  this.parent=parent;
+  setLayout(new BorderLayout());
+  new CDialogEscaper(this);
+  nameField.setText(variableName);
+  nameField.setSelectionStart(0);
+  nameField.setSelectionEnd(Integer.MAX_VALUE);
+  final JPanel upperPanel=new JPanel(new BorderLayout());
+  upperPanel.add(nameField,BorderLayout.NORTH);
+  upperPanel.setBorder(new TitledBorder(""));
+  final CPanelTwoButtons panel=new CPanelTwoButtons(new InternalActionListener(),"OK","Cancel");
+  add(upperPanel,BorderLayout.NORTH);
+  add(panel,BorderLayout.SOUTH);
+  setSize(300,100);
+  setResizable(false);
+  final InputMap windowImap=getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  windowImap.put(HotKeys.APPLY_HK.getKeyStroke(),"APPLY");
+  getRootPane().getActionMap().put("APPLY",CActionProxy.proxy(new ApplyAction()));
+  GuiHelper.centerChildToParent(parent,this,true);
+}

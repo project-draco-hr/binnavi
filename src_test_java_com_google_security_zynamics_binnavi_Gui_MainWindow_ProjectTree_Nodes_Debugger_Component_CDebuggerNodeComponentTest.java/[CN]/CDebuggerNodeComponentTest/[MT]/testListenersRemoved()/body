@@ -1,0 +1,4 @@
+{
+  m_component.dispose();
+  assertTrue(m_templateListeners.isEmpty());
+}

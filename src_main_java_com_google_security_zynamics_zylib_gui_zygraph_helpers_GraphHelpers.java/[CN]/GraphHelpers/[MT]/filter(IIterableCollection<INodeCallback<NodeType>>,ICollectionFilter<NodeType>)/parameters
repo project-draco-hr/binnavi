@@ -1,0 +1,2 @@
+IIterableCollection<INodeCallback<NodeType>> graph
+ICollectionFilter<NodeType> filter

@@ -1,0 +1,73 @@
+{
+  if (!codeNodeIndices.isEmpty()) {
+    final List<Pair<INaviCodeNode,INaviInstruction>> instructionsWithUnsavedLocalComments=PostgreSQLNodeSaver.saveCodeNodeInstructions(provider,nodes,firstNode,codeNodeIndices);
+    final String query="INSERT INTO " + CTableNames.CODE_NODES_TABLE + "(module_id, node_id, parent_function, comment_id) VALUES (?, ?, ?, ?)";
+    final ArrayList<INaviCodeNode> codeNodesWithUnsavedComments=new ArrayList<INaviCodeNode>();
+    final PreparedStatement preparedStatement=provider.getConnection().getConnection().prepareStatement(query);
+    try {
+      for (      final int index : codeNodeIndices) {
+        final INaviCodeNode codeNode=(INaviCodeNode)nodes.get(index);
+        codeNode.setId(firstNode + index);
+        INaviFunction function=null;
+        try {
+          function=codeNode.getParentFunction();
+        }
+ catch (        final MaybeNullException e) {
+        }
+        final int moduleId=Iterables.getLast(codeNode.getInstructions()).getModule().getConfiguration().getId();
+        final List<IComment> comment=codeNode.getComments().getLocalCodeNodeComment();
+        final Integer commentId=comment == null ? null : comment.size() == 0 ? null : Iterables.getLast(comment).getId();
+        if ((comment != null) && (comment.size() != 0) && (commentId == null)) {
+          codeNodesWithUnsavedComments.add(codeNode);
+        }
+        preparedStatement.setInt(1,moduleId);
+        preparedStatement.setInt(2,firstNode + index);
+        if (function == null) {
+          preparedStatement.setNull(3,Types.BIGINT);
+        }
+ else {
+          preparedStatement.setObject(3,function.getAddress().toBigInteger(),Types.BIGINT);
+        }
+        if (commentId == null) {
+          preparedStatement.setNull(4,Types.INTEGER);
+        }
+ else {
+          preparedStatement.setInt(4,commentId);
+        }
+        preparedStatement.addBatch();
+      }
+      preparedStatement.executeBatch();
+    }
+  finally {
+      preparedStatement.close();
+    }
+    for (    final INaviCodeNode codeNode : codeNodesWithUnsavedComments) {
+      final ArrayList<IComment> codeNodecomments=new ArrayList<IComment>();
+      for (      final IComment comment : codeNode.getComments().getLocalCodeNodeComment()) {
+        try {
+          final Integer commentId=PostgreSQLNodeFunctions.appendLocalCodeNodeComment(provider,codeNode,comment.getComment(),comment.getUser().getUserId());
+          final IComment newComment=new CComment(commentId,comment.getUser(),comment.getParent(),comment.getComment());
+          codeNodecomments.add(newComment);
+        }
+ catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+      codeNode.getComments().initializeLocalCodeNodeComment(codeNodecomments);
+    }
+    for (    final Pair<INaviCodeNode,INaviInstruction> pair : instructionsWithUnsavedLocalComments) {
+      final ArrayList<IComment> localInstructionComments=new ArrayList<IComment>();
+      for (      final IComment comment : pair.first().getComments().getLocalInstructionComment(pair.second())) {
+        try {
+          final int commentId=PostgreSQLInstructionFunctions.appendLocalInstructionComment(provider,pair.first(),pair.second(),comment.getComment(),comment.getUser().getUserId());
+          final IComment newComment=new CComment(commentId,comment.getUser(),comment.getParent(),comment.getComment());
+          localInstructionComments.add(newComment);
+        }
+ catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+      pair.first().getComments().initializeLocalInstructionComment(pair.second(),localInstructionComments);
+    }
+  }
+}

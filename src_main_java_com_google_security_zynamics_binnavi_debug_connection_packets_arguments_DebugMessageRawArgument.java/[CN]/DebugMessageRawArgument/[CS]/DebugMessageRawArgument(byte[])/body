@@ -1,0 +1,5 @@
+{
+  super(DebugArgumentType.DATA);
+  Preconditions.checkNotNull(data,"IE01052: Data argument can not be null");
+  appendBytes(data);
+}

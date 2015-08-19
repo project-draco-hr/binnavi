@@ -1,0 +1,5 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE02818: graph argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Freeze view");
+  putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/viewlock_up.jpg")));
+}

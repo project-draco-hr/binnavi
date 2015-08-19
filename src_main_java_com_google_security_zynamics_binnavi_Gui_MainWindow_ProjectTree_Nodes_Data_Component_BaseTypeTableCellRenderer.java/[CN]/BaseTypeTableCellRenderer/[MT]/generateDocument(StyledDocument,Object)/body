@@ -1,0 +1,3 @@
+{
+  generateDocument((TypeInstance)value,renderInstanceData,document);
+}

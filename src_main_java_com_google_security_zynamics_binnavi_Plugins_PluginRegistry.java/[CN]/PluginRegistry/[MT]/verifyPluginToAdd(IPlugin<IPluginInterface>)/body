@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(plugin,"IE00835: Plugin can't be null");
+  if ((plugin.getName() == null) || plugin.getName().equals("")) {
+    throw new IllegalArgumentException("IE00836: Invalid plugin name");
+  }
+  if (plugin.getGuid() == 0) {
+    throw new IllegalArgumentException("IE00837: Invalid plugin GUID");
+  }
+  for (  final IPlugin<IPluginInterface> oldPlugin : plugins) {
+    if (oldPlugin == plugin) {
+      throw new IllegalArgumentException("IE00838: Can not add plugin more than once");
+    }
+    if (oldPlugin.getGuid() == plugin.getGuid()) {
+      throw new IllegalArgumentException("IE00839: Plugin with GUID " + plugin.getGuid() + " already exists");
+    }
+  }
+}

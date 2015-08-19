@@ -1,0 +1,10 @@
+{
+  super(owner,"Please select a function",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(database,"IE01572: Database argument can not be null");
+  setLayout(new BorderLayout());
+  new CDialogEscaper(this);
+  m_panel=new CFunctionSelectionPanel(database,new InternalActionProvider());
+  add(new JScrollPane(m_panel));
+  add(new CPanelTwoButtons(new InternalListener(),"OK","Cancel"),BorderLayout.SOUTH);
+  setSize(500,400);
+}

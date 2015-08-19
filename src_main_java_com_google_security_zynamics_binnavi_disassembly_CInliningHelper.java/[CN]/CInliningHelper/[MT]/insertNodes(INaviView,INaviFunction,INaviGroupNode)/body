@@ -1,0 +1,6 @@
+{
+  final DirectedGraph<IBlockNode,IBlockEdge> graph=function.getGraph();
+  final Map<IBlockNode,CCodeNode> map=createNodes(view,function,parentGroup);
+  createEdges(view,graph.getEdges(),map);
+  return getRelevantNodes(function,Lists.newArrayList(map.values()));
+}

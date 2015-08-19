@@ -1,0 +1,4 @@
+INaviEdge edge
+IComment comment
+IComment newComment
+CommentScope scope

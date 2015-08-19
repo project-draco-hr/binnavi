@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(bookmark,"IE00331: Bookmark argument can not be null");
+  Preconditions.checkArgument(m_bookmarks.remove(bookmark),"IE00332: Bookmark is not managed by this manager");
+  for (  final ICodeBookmarkManagerListener listener : m_listeners) {
+    try {
+      listener.removedBookmark(this,bookmark);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  final HashMap<INaviModule,IAddress> imageBases=new HashMap<INaviModule,IAddress>();
+  final String query="SELECT module_id, image_base FROM " + CTableNames.SPACE_MODULES_TABLE + " WHERE address_space_id = "+ addressSpaceId;
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        try {
+          final INaviModule module=findModule(list,resultSet.getInt("module_id"));
+          imageBases.put(module,PostgreSQLHelpers.loadAddress(resultSet,"image_base"));
+        }
+ catch (        final MaybeNullException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+    return imageBases;
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

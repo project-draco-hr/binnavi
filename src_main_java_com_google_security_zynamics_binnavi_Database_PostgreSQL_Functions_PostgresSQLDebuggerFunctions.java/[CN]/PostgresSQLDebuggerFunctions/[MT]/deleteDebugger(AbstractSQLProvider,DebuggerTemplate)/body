@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00709: Debugger template argument can not be null");
+  Preconditions.checkArgument(debugger.inSameDatabase(provider),"IE00710: Debugger template is not part of this database");
+  NaviLogger.info("Deleting debugger %d",debugger.getId());
+  PostgreSQLHelpers.deleteById(provider.getConnection(),CTableNames.DEBUGGERS_TABLE,debugger.getId());
+}

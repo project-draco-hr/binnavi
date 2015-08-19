@@ -1,0 +1,3 @@
+{
+  m_function=Preconditions.checkNotNull(function,"IE02665: function argument can not be null");
+}

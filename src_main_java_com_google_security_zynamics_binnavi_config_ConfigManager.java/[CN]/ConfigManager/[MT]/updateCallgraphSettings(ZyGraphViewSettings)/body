@@ -1,0 +1,4 @@
+{
+  updateGraphSettings(callGraphSettings,settings);
+  callGraphSettings.setMultipleEdgesAsOne(settings.getEdgeSettings().getDisplayMultipleEdgesAsOne());
+}

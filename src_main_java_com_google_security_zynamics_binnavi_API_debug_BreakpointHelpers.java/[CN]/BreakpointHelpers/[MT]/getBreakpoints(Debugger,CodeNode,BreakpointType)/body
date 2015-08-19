@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(debugger,"Error: Debugger argument can not be null");
+  Preconditions.checkNotNull(node,"Error: Node argument can not be null");
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  final List<Address> breakpoints=new ArrayList<Address>();
+  for (  final Instruction instruction : node.getInstructions()) {
+    final BreakpointAddress address=new BreakpointAddress(instruction.getNative().getModule(),new UnrelocatedAddress(new CAddress(instruction.getAddress().toLong())));
+    if (manager.getNative().hasBreakpoint(type,address)) {
+      breakpoints.add(new Address(address.getAddress().getAddress().toBigInteger()));
+    }
+  }
+  return breakpoints;
+}

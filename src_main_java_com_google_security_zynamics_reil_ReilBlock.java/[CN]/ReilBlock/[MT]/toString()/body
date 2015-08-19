@@ -1,0 +1,8 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  builder.append("REIL Block " + getAddress().toHexString() + "\n");
+  for (  final ReilInstruction instruction : getInstructions()) {
+    builder.append(instruction.toString() + "\n");
+  }
+  return builder.toString();
+}

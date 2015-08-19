@@ -1,0 +1,3 @@
+{
+  sectionCommentContainer.unsetComments(section,comments);
+}

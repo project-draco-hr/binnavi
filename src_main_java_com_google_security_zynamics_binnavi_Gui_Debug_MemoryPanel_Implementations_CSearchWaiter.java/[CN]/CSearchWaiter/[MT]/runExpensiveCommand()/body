@@ -1,0 +1,12 @@
+{
+  try {
+    m_packet=m_debugger.search(m_offset,m_size,m_data);
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    removeListeners();
+    throw exception;
+  }
+  while (!m_finished) {
+    Thread.sleep(100);
+  }
+}

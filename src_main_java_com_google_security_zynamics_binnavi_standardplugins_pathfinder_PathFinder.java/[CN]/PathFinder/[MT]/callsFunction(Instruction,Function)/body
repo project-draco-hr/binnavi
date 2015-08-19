@@ -1,0 +1,9 @@
+{
+  for (  final Operand operand : instruction.getOperands()) {
+    final OperandExpression rootNode=operand.getRootNode();
+    if (hasFunctionCallReference(rootNode,function)) {
+      return true;
+    }
+  }
+  return false;
+}

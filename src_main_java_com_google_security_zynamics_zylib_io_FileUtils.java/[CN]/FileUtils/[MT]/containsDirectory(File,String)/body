@@ -1,0 +1,11 @@
+{
+  if (directory == null || !directory.isDirectory()) {
+    return false;
+  }
+  for (  final File file : directory.listFiles()) {
+    if (file.isDirectory() && file.getName().equals(filename)) {
+      return true;
+    }
+  }
+  return false;
+}

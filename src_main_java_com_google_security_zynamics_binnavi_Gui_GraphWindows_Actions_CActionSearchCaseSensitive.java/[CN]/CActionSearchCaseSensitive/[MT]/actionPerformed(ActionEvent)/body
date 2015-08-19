@@ -1,0 +1,3 @@
+{
+  CGraphSearcher.toggleCaseSensitiveSearch(m_graph);
+}

@@ -1,0 +1,4 @@
+List<TranslationResult> partialResults
+ITranslationEnvironment environment
+long baseOffset
+IOperandTreeNode expression

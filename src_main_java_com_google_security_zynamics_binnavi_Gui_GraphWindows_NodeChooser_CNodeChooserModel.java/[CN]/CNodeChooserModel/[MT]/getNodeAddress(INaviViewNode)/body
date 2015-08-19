@@ -1,0 +1,9 @@
+{
+  if (node instanceof INaviFunctionNode) {
+    return ((INaviFunctionNode)node).getAddress().toHexString();
+  }
+  if (node instanceof INaviCodeNode) {
+    return ((INaviCodeNode)node).getAddress().toHexString();
+  }
+  return null;
+}

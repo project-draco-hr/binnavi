@@ -1,0 +1,9 @@
+{
+  interpreter.setRegister("CF",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockInstruction instruction=new MockInstruction("clc",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(2,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CF"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

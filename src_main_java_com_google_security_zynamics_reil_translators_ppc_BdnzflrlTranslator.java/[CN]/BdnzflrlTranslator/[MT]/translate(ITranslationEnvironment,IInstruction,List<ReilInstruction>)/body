@@ -1,0 +1,5 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bdnzflrl");
+  final IOperandTreeNode BIOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  BranchGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"bdnzflrl",BIOperand.getValue(),Helpers.LINK_REGISTER,true,false,true,false,true,true);
+}

@@ -1,0 +1,11 @@
+{
+  Module apiModule=null;
+  apiModule=ObjectFinders.getObject(module,m_database.getModules());
+  if (apiModule == null) {
+    NaviLogger.severe("Error: Could not determine API module for native module '%s'",module.getConfiguration().getName());
+  }
+ else {
+    m_modules.add(apiModule);
+  }
+  return apiModule;
+}

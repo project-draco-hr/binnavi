@@ -1,0 +1,4 @@
+{
+  m_descriptionField.setText(tag.getDescription());
+  updateGUI();
+}

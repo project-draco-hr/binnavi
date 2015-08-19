@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(containers,"Error: containers argument can not be null");
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  for (  final TypesNotificationContainer container : containers) {
+    if (!provider.findModule(container.getModuleId()).isLoaded()) {
+      continue;
+    }
+    if (container.getAddress().isPresent()) {
+      informExpressionTypesNotification(container,provider);
+    }
+ else     if (container.getTypeId().isPresent()) {
+      informTypesNotification(container,provider);
+    }
+ else     if (container.getBaseTypeId().isPresent()) {
+      informBaseTypesNotification(container,provider);
+    }
+ else {
+      throw new IllegalStateException("Error: the parsed notification does not contain a distinct element.");
+    }
+  }
+}

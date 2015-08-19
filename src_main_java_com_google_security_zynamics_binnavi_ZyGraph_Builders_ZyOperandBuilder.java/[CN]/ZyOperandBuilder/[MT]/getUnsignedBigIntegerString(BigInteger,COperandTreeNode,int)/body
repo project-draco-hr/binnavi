@@ -1,0 +1,29 @@
+{
+  if (value.signum() != -1) {
+    return value.toString(radix);
+  }
+  INaviOperandTreeNode currentNode=node.getParent();
+  while (currentNode.getType() != ExpressionType.SIZE_PREFIX) {
+    if (currentNode.getParent() == null) {
+      throw new IllegalStateException("Error: could not determine size of operand.");
+    }
+    currentNode=currentNode.getParent();
+  }
+  final BigInteger twosComplement=value.abs().not().add(BigInteger.ONE);
+switch (currentNode.getValue()) {
+case "byte":
+    return twosComplement.and(new BigInteger("FF",16)).toString(radix);
+case "word":
+  return twosComplement.and(new BigInteger("FFFF",16)).toString(radix);
+case "dword":
+return twosComplement.and(new BigInteger("FFFFFFFF",16)).toString(radix);
+case "fword":
+return twosComplement.and(new BigInteger("FFFFFFFFFFFF",16)).toString(radix);
+case "qword":
+return twosComplement.and(new BigInteger("FFFFFFFFFFFFFFFF",16)).toString(radix);
+case "oword":
+return twosComplement.and(new BigInteger("FFFFFFFFFFFFFFFFFFFF",16)).toString(radix);
+default :
+throw new IllegalStateException("Error: size of operand tree node is not supported.");
+}
+}

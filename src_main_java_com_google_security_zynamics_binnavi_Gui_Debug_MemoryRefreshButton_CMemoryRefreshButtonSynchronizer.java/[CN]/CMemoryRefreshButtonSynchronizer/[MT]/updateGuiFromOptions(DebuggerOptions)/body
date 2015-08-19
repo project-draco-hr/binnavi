@@ -1,0 +1,4 @@
+{
+  m_refreshButton.setAction(options.canValidMemory() ? m_defaultAction : m_askAction);
+  m_refreshButton.setIcon(new ImageIcon(CMain.class.getResource("data/memoryupdate_up.jpg")));
+}

@@ -1,0 +1,7 @@
+{
+  final List<NodeType> selectedNodes=getSelectedNodes(graph);
+  if (selectedNodes.size() == 0) {
+    throw new IllegalStateException("Error: There are no selected nodes");
+  }
+  graph.zoomToNodes(selectedNodes);
+}

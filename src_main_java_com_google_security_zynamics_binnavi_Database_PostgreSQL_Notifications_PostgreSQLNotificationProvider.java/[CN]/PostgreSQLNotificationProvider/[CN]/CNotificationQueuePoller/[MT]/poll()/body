@@ -1,0 +1,50 @@
+{
+  final org.postgresql.PGNotification notifications[]=((org.postgresql.PGConnection)m_connection.getConnection()).getNotifications();
+  if (notifications == null) {
+    return;
+  }
+  final Collection<PGNotification> commentNotifications=Lists.newArrayList();
+  final Collection<PGNotification> viewNotifications=Lists.newArrayList();
+  final Collection<PGNotification> functionNotifications=Lists.newArrayList();
+  final Collection<PGNotification> typeNotifications=Lists.newArrayList();
+  final Collection<PGNotification> typeInstanceNotifications=Lists.newArrayList();
+  for (  final PGNotification notification : notifications) {
+    if (notification.getPID() == m_backendPID) {
+      continue;
+    }
+    if (notification.getName().equalsIgnoreCase(NotificationChannel.comment_changes.name())) {
+      commentNotifications.add(notification);
+      continue;
+    }
+    if (notification.getName().equalsIgnoreCase(NotificationChannel.view_changes.name())) {
+      viewNotifications.add(notification);
+      continue;
+    }
+    if (notification.getName().equalsIgnoreCase(NotificationChannel.function_changes.name())) {
+      functionNotifications.add(notification);
+      continue;
+    }
+    if (notification.getName().equalsIgnoreCase(NotificationChannel.types_changes.name())) {
+      typeNotifications.add(notification);
+      continue;
+    }
+    if (notification.getName().equalsIgnoreCase(NotificationChannel.type_instances_changes.name())) {
+      typeInstanceNotifications.add(notification);
+      continue;
+    }
+  }
+  final PostgreSQLViewNotificationParser viewParser=new PostgreSQLViewNotificationParser();
+  final Collection<ViewNotificationContainer> parsedViewNotifications=viewParser.parse(viewNotifications,m_provider);
+  viewParser.inform(parsedViewNotifications,m_provider);
+  final PostgreSQLFunctionNotificationParser functionParser=new PostgreSQLFunctionNotificationParser();
+  final Collection<FunctionNotificationContainer> parsedFunctionNotifications=functionParser.parse(functionNotifications,m_provider);
+  functionParser.inform(parsedFunctionNotifications,m_provider);
+  final PostgreSQLCommentNotificationParser commentParser=new PostgreSQLCommentNotificationParser();
+  commentParser.parse(commentNotifications,m_provider);
+  final PostgreSQLTypesNotificationParser typesParser=new PostgreSQLTypesNotificationParser();
+  final Collection<TypesNotificationContainer> parsedTypesNotifications=typesParser.parse(typeNotifications,m_provider);
+  typesParser.inform(parsedTypesNotifications,m_provider);
+  final PostgreSQLTypeInstancesNotificationParser typeInstancesParser=new PostgreSQLTypeInstancesNotificationParser();
+  final Collection<TypeInstancesNotificationContainer> parsedTypeInstanceNotifications=typeInstancesParser.parse(typeInstanceNotifications,m_provider);
+  typeInstancesParser.inform(parsedTypeInstanceNotifications,m_provider);
+}

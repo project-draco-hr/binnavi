@@ -1,0 +1,3 @@
+{
+  return m_instructions.isEmpty() ? null : m_instructions.get(m_instructions.size() - 1);
+}

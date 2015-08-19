@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SWP");
+  translateAll(environment,instruction,"SWP",instructions);
+}

@@ -1,0 +1,6 @@
+{
+  m_progressPanel.remove(operation.getProgressPanel());
+  if (m_progressPanel.getComponentCount() == 0) {
+    setVisible(false);
+  }
+}

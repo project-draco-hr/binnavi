@@ -1,0 +1,3 @@
+{
+  return addressSpace.getProject().createView("Dynamic Trace View","");
+}

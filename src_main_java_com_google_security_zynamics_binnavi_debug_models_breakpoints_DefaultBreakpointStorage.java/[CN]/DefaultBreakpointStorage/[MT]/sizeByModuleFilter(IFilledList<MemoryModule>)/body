@@ -1,0 +1,11 @@
+{
+  int size=0;
+  for (  final MemoryModule memoryModule : memoryModules) {
+    for (    final INaviModule naviModule : moduleToBreakpoint.keySet()) {
+      if (naviModule.getConfiguration().getName().equalsIgnoreCase(memoryModule.getName())) {
+        size+=moduleToBreakpoint.get(naviModule).size();
+      }
+    }
+  }
+  return size;
+}

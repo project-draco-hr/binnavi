@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(m_content,"IE00465: View is not loaded");
+  return m_content;
+}

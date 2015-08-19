@@ -1,0 +1,15 @@
+{
+  final ZyLineContent lineContent=getLabelContent().getLineContent(lineYPos);
+  if (lineContent != null) {
+    boolean commentDelimiterFound=false;
+    for (    final IZyEditableObject obj : lineContent.getLineFragmentObjectList()) {
+      if (obj.isCommentDelimiter()) {
+        commentDelimiterFound=true;
+      }
+      if ((lineXPos >= obj.getStart()) && commentDelimiterFound) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

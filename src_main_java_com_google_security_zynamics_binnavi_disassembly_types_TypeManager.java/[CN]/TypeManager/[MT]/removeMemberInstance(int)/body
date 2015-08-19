@@ -1,0 +1,7 @@
+{
+  final TypeMember typeMember=typesContainer.getTypeMemberById(typeMemberId);
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.deleteTypeMemberById(typeMemberId);
+  notifySubstitutionsChanged(affectedTypes);
+  notifyTypesUpdated(affectedTypes);
+  notifyMemberDeleted(typeMember);
+}

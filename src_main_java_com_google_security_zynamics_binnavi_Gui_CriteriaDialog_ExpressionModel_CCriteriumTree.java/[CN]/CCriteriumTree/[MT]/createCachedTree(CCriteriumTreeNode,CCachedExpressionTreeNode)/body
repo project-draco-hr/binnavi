@@ -1,0 +1,7 @@
+{
+  for (  final CCriteriumTreeNode originalChild : originalParent.getChildren()) {
+    final CCachedExpressionTreeNode clonedChild=originalChild.createCachedNode();
+    CCachedExpressionTreeNode.append(cachedExpressionTreeNode,clonedChild);
+    createCachedTree(originalChild,clonedChild);
+  }
+}

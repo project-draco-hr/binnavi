@@ -1,0 +1,2 @@
+Iterable<ViewNodeAdapter> selectedNodes
+int depth

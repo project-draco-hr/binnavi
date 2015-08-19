@@ -1,0 +1,21 @@
+{
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01335: Debugger provider can't be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE02093: Graph argument can not be null");
+  m_viewContainer=Preconditions.checkNotNull(viewContainer,"IE02099: View container argument can not be null");
+  m_tableModel=new CBreakpointTableModel(debuggerProvider);
+  setModel(m_tableModel);
+  for (  final IDebugger debugger : debuggerProvider.getDebuggers()) {
+    addDebuggerListeners(debugger);
+  }
+  debuggerProvider.addListener(m_debuggerListener);
+  getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+  getColumnModel().getColumn(CBreakpointTableModel.COLUMN_STATUS).setCellRenderer(new CBreakpointStatusRenderer());
+  final DefaultTableCellRenderer tcrColumn=new DefaultTableCellRenderer();
+  tcrColumn.setHorizontalAlignment(SwingConstants.CENTER);
+  getColumnModel().getColumn(CBreakpointTableModel.COLUMN_UNRELOCATED_ADDRESS).setCellRenderer(tcrColumn);
+  getColumnModel().getColumn(CBreakpointTableModel.COLUMN_RELOCATED_ADDRESS).setCellRenderer(tcrColumn);
+  getColumnModel().getColumn(CBreakpointTableModel.COLUMN_MODULE_NAME).setCellRenderer(tcrColumn);
+  getColumnModel().getColumn(CBreakpointTableModel.COLUMN_DEBUGGER).setCellRenderer(tcrColumn);
+  getColumnModel().getColumn(CBreakpointTableModel.COLUMN_CONDITION).setCellEditor(new CConditionEditor());
+  addMouseListener(new InternalMouseListener());
+}

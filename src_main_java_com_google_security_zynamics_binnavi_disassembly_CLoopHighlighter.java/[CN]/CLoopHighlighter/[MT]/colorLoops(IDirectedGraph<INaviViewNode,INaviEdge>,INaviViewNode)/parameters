@@ -1,0 +1,2 @@
+IDirectedGraph<INaviViewNode,INaviEdge> graph
+INaviViewNode entryNode

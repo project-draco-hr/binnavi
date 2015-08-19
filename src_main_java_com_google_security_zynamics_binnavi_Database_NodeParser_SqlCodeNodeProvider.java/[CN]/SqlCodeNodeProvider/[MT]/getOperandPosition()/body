@@ -1,0 +1,9 @@
+{
+  try {
+    final int position=m_resultSet.getInt("operand_position");
+    return m_resultSet.wasNull() ? null : position;
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

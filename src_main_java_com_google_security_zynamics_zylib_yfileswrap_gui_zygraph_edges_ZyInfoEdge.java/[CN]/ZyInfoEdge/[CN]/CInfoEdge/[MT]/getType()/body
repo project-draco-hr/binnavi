@@ -1,0 +1,3 @@
+{
+  return EdgeType.TEXTNODE_EDGE;
+}

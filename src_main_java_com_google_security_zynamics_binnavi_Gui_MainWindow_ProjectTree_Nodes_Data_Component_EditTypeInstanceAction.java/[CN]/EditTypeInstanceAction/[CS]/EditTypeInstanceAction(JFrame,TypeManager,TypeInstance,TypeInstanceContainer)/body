@@ -1,0 +1,7 @@
+{
+  super("Edit type instance");
+  this.owner=owner;
+  this.typeManager=typeManager;
+  this.instance=instance;
+  this.instanceContainer=instanceContainer;
+}

@@ -1,0 +1,29 @@
+{
+  if ((col != NAME_COLUMN) && (col != DESCRIPTION_COLUMN)) {
+    throw new IllegalStateException("IE01179: Column can not be edited");
+  }
+  final List<? extends ITreeNode<CTag>> children=m_tagTreeNode.getChildren();
+  final ITreeNode<CTag> tagNode=children.get(row);
+  if (col == NAME_COLUMN) {
+    try {
+      tagNode.getObject().setName((String)value);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00180: " + "Could not change tag name";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The name of the tag '%s' could not be changed.",tagNode.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag name could not be changed."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    }
+  }
+ else   if (col == DESCRIPTION_COLUMN) {
+    try {
+      tagNode.getObject().setDescription((String)value);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00181: " + "Could not change tag description";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The description of the tag '%s' could not be changed.",tagNode.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag description could not be changed."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    }
+  }
+}

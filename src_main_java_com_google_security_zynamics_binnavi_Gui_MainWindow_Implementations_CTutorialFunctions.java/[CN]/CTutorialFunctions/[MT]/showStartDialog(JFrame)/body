@@ -1,0 +1,9 @@
+{
+  final IFilledList<CTutorial> tutorials=CTutorialLoader.readTutorials(Constants.startPath + File.separator + "tutorials");
+  final CTutorialStartDialog dialog=new CTutorialStartDialog(parent,tutorials);
+  dialog.setVisible(true);
+  final CTutorial selectedTutorial=dialog.getSelectedTutorial();
+  if (selectedTutorial != null) {
+    CTutorialDialog.instance().start(selectedTutorial);
+  }
+}

@@ -1,0 +1,5 @@
+Graphics2D gfx
+double x
+double y
+double width1
+double height2

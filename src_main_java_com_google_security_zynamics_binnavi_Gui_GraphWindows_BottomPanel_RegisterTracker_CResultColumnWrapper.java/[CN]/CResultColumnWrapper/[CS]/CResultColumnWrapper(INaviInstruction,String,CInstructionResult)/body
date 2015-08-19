@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(startInstruction,"IE01677: Start instruction argument can not be null");
+  Preconditions.checkNotNull(trackedRegister,"IE01678: Tracked register argument can not be null");
+  Preconditions.checkNotNull(instructionResult,"IE01679: Instruction result argument can not be null");
+  m_startInstruction=startInstruction;
+  m_trackedRegister=trackedRegister;
+  m_instructionResult=instructionResult;
+}

@@ -1,0 +1,35 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final List<IComment> storedComments=codeNode.getComments().getLocalInstructionComment(instruction) == null ? new ArrayList<IComment>() : codeNode.getComments().getLocalInstructionComment(instruction);
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String comment1String=" Comment 1: ";
+  final int comment1Id=getProvider().appendLocalInstructionComment(codeNode,instruction,comment1String,user.getUserId());
+  final IComment comment1=new CComment(comment1Id,user,lastComment,comment1String);
+  final String comment2String=" Comment 2: ";
+  final int comment2Id=getProvider().appendLocalInstructionComment(codeNode,instruction,comment2String,user.getUserId());
+  final IComment comment2=new CComment(comment2Id,user,comment1,comment2String);
+  final String comment3String=" Comment 3: ";
+  final int comment3Id=getProvider().appendLocalInstructionComment(codeNode,instruction,comment3String,user.getUserId());
+  final IComment comment3=new CComment(comment3Id,user,comment2,comment3String);
+  final ArrayList<IComment> commentsBeforeDelete=getProvider().loadCommentById(comment3Id);
+  assertNotNull(commentsBeforeDelete);
+  assertEquals(storedComments.size() + 3,commentsBeforeDelete.size());
+  assertTrue(commentsBeforeDelete.contains(comment1));
+  assertTrue(commentsBeforeDelete.contains(comment2));
+  assertTrue(commentsBeforeDelete.contains(comment3));
+  assertEquals(comment3,Iterables.getLast(commentsBeforeDelete));
+  assertEquals(comment2,commentsBeforeDelete.get(commentsBeforeDelete.size() - 2));
+  assertEquals(comment1,commentsBeforeDelete.get(commentsBeforeDelete.size() - 3));
+  getProvider().deleteLocalInstructionComment(codeNode,instruction,comment2Id,user.getUserId());
+  final ArrayList<IComment> commentsAfterDelete1=getProvider().loadCommentById(comment2Id);
+  assertNotNull(commentsAfterDelete1);
+  assertTrue(commentsAfterDelete1.isEmpty());
+  final ArrayList<IComment> commentsAfterDelete2=getProvider().loadCommentById(comment3Id);
+  assertNotNull(commentsAfterDelete2);
+  assertEquals(storedComments.size() + 2,commentsAfterDelete2.size());
+  final IComment comment3AfterDelete=new CComment(comment3Id,user,comment1,comment3String);
+  assertTrue(commentsAfterDelete2.contains(comment3AfterDelete));
+  assertTrue(commentsAfterDelete2.contains(comment1));
+  assertEquals(comment3AfterDelete,Iterables.getLast(commentsAfterDelete2));
+  assertEquals(comment1,commentsAfterDelete2.get(commentsAfterDelete2.size() - 2));
+}

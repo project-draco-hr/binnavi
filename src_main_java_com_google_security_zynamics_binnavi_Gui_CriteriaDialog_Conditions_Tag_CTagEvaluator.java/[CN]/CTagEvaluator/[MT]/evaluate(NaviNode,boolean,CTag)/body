@@ -1,0 +1,6 @@
+{
+  if (any) {
+    return node.getRawNode().isTagged();
+  }
+  return node.getRawNode().isTagged(tag);
+}

@@ -1,0 +1,3 @@
+{
+  ioh.write(graph,outFile);
+}

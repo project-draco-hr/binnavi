@@ -1,0 +1,5 @@
+{
+  apiManager.setBreakpoint(module,new Address(0x123));
+  final List<Breakpoint> breakpoints=apiManager.getBreakpoints();
+  assertEquals(0x123,breakpoints.get(0).getAddress().toLong());
+}

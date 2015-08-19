@@ -1,0 +1,12 @@
+{
+  try {
+    final byte[] data=ByteStreams.toByteArray(new FileInputStream(filename));
+    module.setData(data);
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00207: " + "Could not load module data from file";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the data of file '%s'.",filename),new String[]{"There was a problem reading the file."},new String[]{"The module data was not loaded."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+}

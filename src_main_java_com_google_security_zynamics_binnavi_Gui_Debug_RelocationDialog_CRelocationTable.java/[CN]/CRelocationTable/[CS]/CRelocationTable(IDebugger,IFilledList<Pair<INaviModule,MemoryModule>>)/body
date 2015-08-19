@@ -1,0 +1,4 @@
+{
+  super(new CRelocationTableModel(debugger,wronglyPlacedModules));
+  setDefaultRenderer(Object.class,new CRelocationTableRenderer());
+}

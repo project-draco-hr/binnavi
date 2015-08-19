@@ -1,0 +1,3 @@
+{
+  return appendComment(new Commentable(sectionId,CommentScope.LOCAL),userId,commentText);
+}

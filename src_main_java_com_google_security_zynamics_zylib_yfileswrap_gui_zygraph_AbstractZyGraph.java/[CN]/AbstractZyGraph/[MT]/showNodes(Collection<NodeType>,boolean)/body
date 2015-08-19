@@ -1,0 +1,10 @@
+{
+  for (  final NodeType node : toShow) {
+    Preconditions.checkNotNull(node,"The list of nodes to show contained an invalid node");
+    ((IViewNode<?>)node.getRawNode()).setVisible(true);
+  }
+  if (addNeighbours) {
+    showNeighbors(toShow);
+  }
+  notifyVisibilityListeners();
+}

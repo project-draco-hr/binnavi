@@ -1,0 +1,11 @@
+{
+  return new IHelpInformation(){
+    @Override public String getText(){
+      return "The node chooser is used to select or deselect individual nodes of the graph.";
+    }
+    @Override public URL getUrl(){
+      return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+    }
+  }
+;
+}

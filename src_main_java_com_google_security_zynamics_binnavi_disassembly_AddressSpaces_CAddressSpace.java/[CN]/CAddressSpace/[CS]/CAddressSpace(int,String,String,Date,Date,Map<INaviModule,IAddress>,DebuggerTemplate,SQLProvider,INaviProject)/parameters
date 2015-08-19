@@ -1,0 +1,9 @@
+int addressSpaceId
+String name
+String description
+Date creationDate
+Date modificationDate
+Map<INaviModule,IAddress> imageBases
+DebuggerTemplate debuggerTemplate
+SQLProvider provider
+INaviProject project

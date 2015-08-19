@@ -1,0 +1,9 @@
+{
+  if (!m_finished) {
+    try {
+      super.setVisible(visible);
+    }
+ catch (    final Exception e) {
+    }
+  }
+}

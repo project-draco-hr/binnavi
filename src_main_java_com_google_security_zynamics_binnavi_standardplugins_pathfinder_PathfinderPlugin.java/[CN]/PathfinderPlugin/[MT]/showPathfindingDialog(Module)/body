@@ -1,0 +1,28 @@
+{
+  Preconditions.checkArgument(module.isLoaded(),"Internal Error: Target module is not loaded");
+  final PathfindingDialog dlg=new PathfindingDialog(pluginInterface.getMainWindow().getFrame(),module);
+  GuiHelper.centerChildToParent(pluginInterface.getMainWindow().getFrame(),dlg,true);
+  dlg.setVisible(true);
+  if (dlg.wasCancelled()) {
+    return;
+  }
+  final BasicBlock sourceBlock=dlg.getStartBlock();
+  final BasicBlock targetBlock=dlg.getEndBlock();
+  final Function firstFunction=dlg.getStartFunction();
+  final Function secondFunction=dlg.getEndFunction();
+  firstFunction.load();
+  secondFunction.load();
+  final CreationThread creationThread=new CreationThread(module,sourceBlock,targetBlock,firstFunction,secondFunction);
+  ProgressDialog.show(pluginInterface.getMainWindow().getFrame(),"Creating path ...",creationThread);
+  if ((!(creationThread.threwException())) && (creationThread.getCreatedView() == null)) {
+    MessageBox.showInformation(pluginInterface.getMainWindow().getFrame(),"There is no path between the two selected blocks");
+  }
+ else {
+    new Thread(){
+      @Override public void run(){
+        PluginInterface.instance().showInNewWindow(creationThread.getCreatedView());
+      }
+    }
+.start();
+  }
+}

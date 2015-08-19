@@ -1,0 +1,3 @@
+{
+  events.add(getEventString(MEMBER_CREATED_STRING,member.getId(),member.getName()));
+}

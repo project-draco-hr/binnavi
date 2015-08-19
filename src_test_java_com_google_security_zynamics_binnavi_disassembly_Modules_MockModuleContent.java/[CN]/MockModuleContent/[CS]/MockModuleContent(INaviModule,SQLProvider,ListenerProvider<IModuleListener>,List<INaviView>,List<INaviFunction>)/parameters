@@ -1,0 +1,5 @@
+INaviModule module
+SQLProvider provider
+ListenerProvider<IModuleListener> mListeners
+List<INaviView> views
+List<INaviFunction> functions

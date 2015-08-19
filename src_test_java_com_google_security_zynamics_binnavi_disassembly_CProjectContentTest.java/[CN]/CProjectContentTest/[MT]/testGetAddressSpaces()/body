@@ -1,0 +1,6 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  final List<INaviAddressSpace> addressSpaces=projectContent.getAddressSpaces();
+  assertNotNull(addressSpaces);
+  projectContent.close();
+}

@@ -1,0 +1,13 @@
+{
+  final INaviModule module=m_database.getContent().getModules().get(0);
+  module.load();
+  assertEquals("RegQueryValueExW",module.getContent().getFunctionContainer().getFunctions().get(0).getName());
+  assertEquals("GlobalFree",module.getContent().getFunctionContainer().getFunctions().get(50).getName());
+  assertEquals("DefWindowProcW",module.getContent().getFunctionContainer().getFunctions().get(100).getName());
+  assertEquals("sub_10075F4",module.getContent().getFunctionContainer().getFunctions().get(285).getName());
+  assertEquals(BigInteger.valueOf(16781312),module.getContent().getFunctionContainer().getFunctions().get(0).getAddress().toBigInteger());
+  assertEquals(BigInteger.valueOf(16781524),module.getContent().getFunctionContainer().getFunctions().get(50).getAddress().toBigInteger());
+  assertEquals(BigInteger.valueOf(16781732),module.getContent().getFunctionContainer().getFunctions().get(100).getAddress().toBigInteger());
+  assertEquals(BigInteger.valueOf(16807412),module.getContent().getFunctionContainer().getFunctions().get(285).getAddress().toBigInteger());
+  module.close();
+}

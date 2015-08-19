@@ -1,0 +1,4 @@
+{
+  super.setSourcePoint(point);
+  notifyLocationChanged();
+}

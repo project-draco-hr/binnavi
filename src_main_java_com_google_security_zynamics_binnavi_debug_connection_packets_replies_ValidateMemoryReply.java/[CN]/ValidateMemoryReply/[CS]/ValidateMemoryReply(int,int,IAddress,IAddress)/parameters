@@ -1,0 +1,4 @@
+int packetId
+int errorCode
+IAddress start
+IAddress end

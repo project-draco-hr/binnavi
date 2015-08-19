@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,view);
+  Preconditions.checkNotNull(description,"IE00714: Description argument can not be null");
+  PostgreSQLHelpers.setDescription(provider.getConnection(),view.getConfiguration().getId(),description,CTableNames.VIEWS_TABLE);
+}

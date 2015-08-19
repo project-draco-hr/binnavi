@@ -1,0 +1,24 @@
+{
+  final MemorySection section1=new MemorySection(new CAddress(0x100),new CAddress(0x1FF));
+  final MemorySection section2=new MemorySection(new CAddress(0x300),new CAddress(0x3FF));
+  final MemoryMap memoryMap=new MemoryMap(Lists.newArrayList(section1,section2));
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  final TargetProcessThread thread=new TargetProcessThread(0x666,ThreadState.RUNNING);
+  final MemoryModule module=new MemoryModule("narf.exe","C:\\zort\\narf.exe",new RelocatedAddress(new CAddress(0x1000)),123345);
+  debugger.connect();
+  debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,true,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  debugger.connection.m_synchronizer.receivedEvent(new ProcessStartReply(0,0,new ProcessStart(thread,module)));
+  debugger.connection.m_synchronizer.receivedEvent(new MemoryMapReply(0,0,memoryMap));
+  final MockDebugger debugger2=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger2.connect();
+  debugger2.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  debugger2.connection.m_synchronizer.receivedEvent(new MemoryMapReply(0,0,memoryMap));
+  debugger2.connection.m_synchronizer.receivedEvent(new ProcessStartReply(0,0,new ProcessStart(thread,module)));
+  m_model.setActiveDebugger(debugger);
+  assertTrue(m_registerView.isEnabled());
+  m_model.setActiveDebugger(debugger2);
+  assertTrue(m_registerView.isEnabled());
+  m_synchronizer.dispose();
+  debugger.close();
+  debugger2.close();
+}

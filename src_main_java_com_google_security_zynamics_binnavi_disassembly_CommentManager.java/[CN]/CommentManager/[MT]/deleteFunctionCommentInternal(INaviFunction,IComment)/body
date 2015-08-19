@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(function,"IE02564: function argument can not be null");
+  deleteCommentInternal(new FunctionCommentingStrategy(function),comment);
+}

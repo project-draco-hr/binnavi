@@ -1,0 +1,28 @@
+{
+  super(parent,"Available Debugger Options",true);
+  Preconditions.checkNotNull(parent,"IE01466: Parent argument can not be null");
+  Preconditions.checkNotNull(options,"IE01467: Options argument can not be null");
+  m_options=DebuggerOptions.newInstance(options);
+  setLayout(new BorderLayout());
+  m_exceptionSettingsPanel=new CExceptionSettingsPanel(m_options);
+  m_debuggerEventSettingsPanel=new CDebuggerEventSettingsPanel(eventSettings);
+  final JTabbedPane tabbedPane=new JTabbedPane();
+  tabbedPane.add(new COptionsPanel(m_options),"Debug Options");
+  tabbedPane.add(m_exceptionSettingsPanel,"Exception Options");
+  tabbedPane.add(m_debuggerEventSettingsPanel,"Debugger Event Settings");
+  add(tabbedPane);
+  final JPanel buttonPanel=new JPanel(new BorderLayout());
+  final JButton okButton=new JButton(new AbstractAction("OK"){
+    private static final long serialVersionUID=-2448050114927136382L;
+    @Override public void actionPerformed(    final ActionEvent arg0){
+      setVisible(false);
+    }
+  }
+);
+  okButton.setPreferredSize(new Dimension(100,25));
+  buttonPanel.add(okButton,BorderLayout.EAST);
+  add(buttonPanel,BorderLayout.SOUTH);
+  new CDialogEscaper(this);
+  setSize(600,400);
+  setLocationRelativeTo(null);
+}

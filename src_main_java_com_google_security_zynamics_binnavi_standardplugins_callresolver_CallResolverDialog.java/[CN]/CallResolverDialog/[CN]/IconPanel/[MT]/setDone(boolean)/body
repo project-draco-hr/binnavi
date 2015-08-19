@@ -1,0 +1,3 @@
+{
+  textLabel.setIcon(done ? ACCEPT_IMAGE : BULLET_IMAGE);
+}

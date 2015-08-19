@@ -1,0 +1,8 @@
+{
+  m_debugPerspectiveModel.removeListener(m_debugListener);
+  final IDebugger activeDebugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread activeThread=activeDebugger == null ? null : activeDebugger.getProcessManager().getActiveThread();
+  if (activeThread != null) {
+    activeThread.removeListener(m_threadListener);
+  }
+}

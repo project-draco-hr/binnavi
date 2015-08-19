@@ -1,0 +1,35 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  RelocatedAddress eventAddress=null;
+  final RegisterValues registerValues=reply.getRegisterValues();
+  final long tid=reply.getThreadId();
+  for (  final ThreadRegisters threadRegisters : registerValues) {
+    if (tid == threadRegisters.getTid()) {
+      for (      final RegisterValue registerValue : threadRegisters) {
+        if (registerValue.isPc()) {
+          eventAddress=new RelocatedAddress(new CAddress(registerValue.getValue()));
+        }
+      }
+    }
+  }
+  if (eventAddress != null) {
+    updateHitBreakpoints(DebuggerHelpers.getBreakpointAddress(getDebugger(),eventAddress));
+  }
+ else {
+    throw new IllegalStateException("IE00173: register reply did not include program counter");
+  }
+  try {
+    final TargetProcessThread thread=processManager.getThread(reply.getThreadId());
+    for (    final ThreadRegisters threadRegisters : registerValues) {
+      if (tid == threadRegisters.getTid()) {
+        thread.setRegisterValues(threadRegisters.getRegisters());
+        break;
+      }
+    }
+    processManager.setActiveThread(thread);
+    thread.setCurrentAddress(eventAddress);
+  }
+ catch (  final MaybeNullException exception) {
+    NaviLogger.info("Error: there is no thread with the specified thread id %d Exception: %s",reply.getThreadId(),exception);
+  }
+}

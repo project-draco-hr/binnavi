@@ -1,0 +1,146 @@
+{
+  int alt4=28;
+  alt4=dfa4.predict(input);
+switch (alt4) {
+case 1:
+{
+      mT__31();
+    }
+  break;
+case 2:
+{
+  mT__32();
+}
+break;
+case 3:
+{
+mT__33();
+}
+break;
+case 4:
+{
+mT__34();
+}
+break;
+case 5:
+{
+mWS();
+}
+break;
+case 6:
+{
+mCHARACTER();
+}
+break;
+case 7:
+{
+mNUMBER();
+}
+break;
+case 8:
+{
+mHEX_NUMBER();
+}
+break;
+case 9:
+{
+mIDENTIFIER();
+}
+break;
+case 10:
+{
+mEQ_SIGN();
+}
+break;
+case 11:
+{
+mGEQ_SIGN();
+}
+break;
+case 12:
+{
+mLEQ_SIGN();
+}
+break;
+case 13:
+{
+mLT_SIGN();
+}
+break;
+case 14:
+{
+mGT_SIGN();
+}
+break;
+case 15:
+{
+mNEQ_SIGN();
+}
+break;
+case 16:
+{
+mNEQ_SIGN_2();
+}
+break;
+case 17:
+{
+mOR();
+}
+break;
+case 18:
+{
+mAND();
+}
+break;
+case 19:
+{
+mB_OR();
+}
+break;
+case 20:
+{
+mB_AND();
+}
+break;
+case 21:
+{
+mB_XOR();
+}
+break;
+case 22:
+{
+mLSH();
+}
+break;
+case 23:
+{
+mRSH();
+}
+break;
+case 24:
+{
+mMULT();
+}
+break;
+case 25:
+{
+mDIV();
+}
+break;
+case 26:
+{
+mMOD();
+}
+break;
+case 27:
+{
+mADD();
+}
+break;
+case 28:
+{
+mSUB();
+}
+break;
+}
+}

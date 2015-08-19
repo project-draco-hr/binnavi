@@ -1,0 +1,26 @@
+{
+  final MockCodeNodeProvider cnProvider=new MockCodeNodeProvider();
+  final MockCodeNodeData instruction1=new MockCodeNodeData();
+  instruction1.nodeId=0;
+  instruction1.expressionId=0;
+  instruction1.expressionType=5;
+  instruction1.operandPosition=0;
+  instruction1.symbol="eax";
+  final MockCodeNodeData instruction2=new MockCodeNodeData();
+  instruction2.address=new CAddress(BigInteger.ONE);
+  instruction2.nodeId=1;
+  instruction2.expressionId=0;
+  instruction2.expressionType=5;
+  instruction2.operandPosition=0;
+  instruction2.symbol="eax";
+  cnProvider.data.add(instruction1);
+  cnProvider.data.add(instruction2);
+  final MockSqlProvider provider=new MockSqlProvider();
+  final MockModule module=new MockModule();
+  CFunctionContainerHelper.addFunction(module.getContent().getFunctionContainer(),new MockFunction(0));
+  final CCodeNodeParser p=new CCodeNodeParser(cnProvider,Lists.newArrayList(module),provider);
+  final List<CCodeNode> result=p.parse();
+  assertEquals(2,result.size());
+  assertEquals(1,Iterables.size(result.get(0).getInstructions()));
+  assertEquals(1,Iterables.size(result.get(1).getInstructions()));
+}

@@ -1,0 +1,24 @@
+{
+  final int totalRows=codeModel.getNumberOfRows();
+  int scrollRange=totalRows;
+  if (scrollRange < 0) {
+    scrollRange=0;
+    verticalScrollbar.setValue(0);
+    verticalScrollbar.setEnabled(false);
+  }
+ else {
+    verticalScrollbar.setEnabled(true);
+  }
+  verticalScrollbar.setMaximum(scrollRange);
+  final int totalWidth=codeModel.getTotalWidthInCharacters();
+  int realWidth=getWidth();
+  realWidth-=verticalScrollbar.getWidth();
+  if (realWidth >= (totalWidth * fontCharWidth)) {
+    horizontalScrollbar.setValue(0);
+    horizontalScrollbar.setEnabled(false);
+  }
+ else {
+    horizontalScrollbar.setMaximum(totalWidth + 1);
+    horizontalScrollbar.setEnabled(true);
+  }
+}

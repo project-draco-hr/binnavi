@@ -1,0 +1,10 @@
+{
+  m_toolBar=Preconditions.checkNotNull(toolBar,"IE01524: Toolbar argument can not be null");
+  m_threadPanel=Preconditions.checkNotNull(threadPanel,"IE01525: Thread panel argument can not be null");
+  m_debugPerspectiveModel=Preconditions.checkNotNull(debugPerspectiveModel,"IE01526: Debug perspective model argument can not be null");
+  final IDebugger activeDebugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread activeThread=activeDebugger == null ? null : activeDebugger.getProcessManager().getActiveThread();
+  synchronizeDebugger(null,m_debugPerspectiveModel.getCurrentSelectedDebugger());
+  synchronizeThread(null,activeThread);
+  m_debugPerspectiveModel.addListener(m_debugListener);
+}

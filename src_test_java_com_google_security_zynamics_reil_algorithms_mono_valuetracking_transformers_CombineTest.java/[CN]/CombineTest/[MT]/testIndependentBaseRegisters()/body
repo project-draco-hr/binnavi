@@ -1,0 +1,16 @@
+{
+  final ReilInstruction instruction1=ReilHelpers.createAdd(100,OperandSize.DWORD,"esi",OperandSize.DWORD,"4",OperandSize.DWORD,"eax");
+  final ReilInstruction instruction2=ReilHelpers.createAdd(101,OperandSize.DWORD,"edi",OperandSize.DWORD,"8",OperandSize.DWORD,"eax");
+  final ReilInstruction instruction3=ReilHelpers.createStr(102,OperandSize.DWORD,"eax",OperandSize.DWORD,"ebx");
+  final ReilBlock block1=new ReilBlock(Lists.newArrayList(instruction1));
+  final ReilBlock block2=new ReilBlock(Lists.newArrayList(instruction2));
+  final ReilBlock block3=new ReilBlock(Lists.newArrayList(instruction3));
+  final ReilEdge edge1=new ReilEdge(block1,block3,EdgeType.JUMP_UNCONDITIONAL);
+  final ReilEdge edge2=new ReilEdge(block2,block3,EdgeType.JUMP_UNCONDITIONAL);
+  ReilBlock.link(block1,block3,edge1);
+  ReilBlock.link(block2,block3,edge2);
+  final ReilFunction function=new ReilFunction("Fark",new ReilGraph(Lists.newArrayList(block1,block2,block3),Lists.newArrayList(edge1,edge2)));
+  System.out.println(function.getGraph());
+  final IStateVector<InstructionGraphNode,ValueTrackerElement> result=ValueTracker.track(function);
+  System.out.println(result);
+}

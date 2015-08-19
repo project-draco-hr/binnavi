@@ -1,0 +1,11 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"lis");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a li instruction (invalid number of operands)");
+  }
+  final IOperandTreeNode literalOperand=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final BigInteger literalValue=BigInteger.valueOf(Long.valueOf(literalOperand.getValue())).shiftLeft(16);
+  instructions.add(ReilHelpers.createStr(baseOffset++,OperandSize.DWORD,String.valueOf(literalValue),OperandSize.DWORD,registerOperand.getValue()));
+}

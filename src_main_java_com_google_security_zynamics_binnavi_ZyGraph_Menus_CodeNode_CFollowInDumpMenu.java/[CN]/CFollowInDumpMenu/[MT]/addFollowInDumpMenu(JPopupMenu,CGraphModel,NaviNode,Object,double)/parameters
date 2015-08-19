@@ -1,0 +1,5 @@
+JPopupMenu menu
+CGraphModel model
+NaviNode node
+Object clickedObject
+double y

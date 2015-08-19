@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(reference,"IE00221: Reference argument can not be null");
+  Preconditions.checkArgument(!references.contains(reference),"IE00222: Reference can not be added twice");
+  provider.addReference(this,reference.getTarget(),reference.getType());
+  references.add(reference);
+  for (  final INaviOperandTreeNodeListener listener : listeners) {
+    try {
+      listener.addedReference(this,reference);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

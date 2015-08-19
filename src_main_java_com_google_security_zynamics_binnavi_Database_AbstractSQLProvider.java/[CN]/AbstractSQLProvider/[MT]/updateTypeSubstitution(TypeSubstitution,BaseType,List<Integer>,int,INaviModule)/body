@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.updateTypeSubstitution(getConnection().getConnection(),substitution,baseType,memberPath,substitution.getPosition(),offset,module);
+}

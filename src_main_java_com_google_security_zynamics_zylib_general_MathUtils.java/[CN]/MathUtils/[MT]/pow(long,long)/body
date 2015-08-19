@@ -1,0 +1,12 @@
+{
+  if (exponent == 0) {
+    return 1;
+  }
+ else {
+    long start=base;
+    for (int i=1; i < exponent; i++) {
+      start*=base;
+    }
+    return start;
+  }
+}

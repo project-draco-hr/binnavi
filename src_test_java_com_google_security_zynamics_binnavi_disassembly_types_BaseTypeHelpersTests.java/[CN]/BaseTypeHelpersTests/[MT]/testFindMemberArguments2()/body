@@ -1,0 +1,7 @@
+{
+  WalkResult result=BaseTypeHelpers.findMember(typeSystem.uintType,-1);
+  assertEquals("",result.getPathString());
+  assertFalse(result.isValid());
+  assertNull(result.getPath());
+  assertNull(result.getMember());
+}

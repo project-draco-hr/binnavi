@@ -1,0 +1,6 @@
+{
+  for (  final IDebugger debugger : m_debuggerProvider.getDebuggers()) {
+    removeDebuggerListeners(debugger);
+  }
+  m_debuggerProvider.removeListener(m_debuggerListener);
+}

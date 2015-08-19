@@ -1,0 +1,22 @@
+{
+  if (offs < 0) {
+    return;
+  }
+  if (str.length() > 1) {
+    int i;
+    for (i=0; i < str.length(); i++) {
+      if (str.charAt(i) == '\n') {
+        remainingTextString=str.substring(i + 1);
+        remainingTextAttr=attr;
+        inputKeyListener.keyPressed(new KeyEvent(new Container(),KeyEvent.KEY_PRESSED,0,0,KeyEvent.VK_ENTER,'\n'));
+        break;
+      }
+ else {
+        insertChar(offs + i,"" + str.charAt(i));
+      }
+    }
+  }
+ else   if (str.length() == 1) {
+    insertChar(offs,str);
+  }
+}

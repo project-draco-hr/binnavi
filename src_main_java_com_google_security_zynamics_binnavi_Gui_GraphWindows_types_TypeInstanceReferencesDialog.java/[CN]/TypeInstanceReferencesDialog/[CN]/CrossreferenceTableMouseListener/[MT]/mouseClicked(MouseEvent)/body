@@ -1,0 +1,5 @@
+{
+  final XRefsTableModel model=(XRefsTableModel)xrefs.getModel();
+  final TypeInstanceReference reference=model.getXRef(xrefs.getSelectedRow());
+  CModuleNodeComponent.focusTypeInstance(reference.getTypeInstance().getModule(),reference.getTypeInstance());
+}

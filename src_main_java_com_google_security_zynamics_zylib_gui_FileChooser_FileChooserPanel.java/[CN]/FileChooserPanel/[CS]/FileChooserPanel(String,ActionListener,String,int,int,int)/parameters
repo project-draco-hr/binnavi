@@ -1,0 +1,6 @@
+String defaultText
+ActionListener listener
+String buttonText
+int width
+int height
+int buttonWidth

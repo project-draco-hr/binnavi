@@ -1,0 +1,3 @@
+{
+  getProvider().appendLocalInstructionComment(codeNode,instruction," FAIL ",null);
+}

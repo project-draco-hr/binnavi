@@ -1,0 +1,3 @@
+CTagManager tagManager
+ITreeNode<CTag> parent
+ITreeNode<CTag> tag

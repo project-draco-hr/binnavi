@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(operand,"Operand argument argument can not be null");
+  return operand.getType() == OperandType.REGISTER;
+}

@@ -1,0 +1,19 @@
+{
+  if (threshold == getEdgeHidingThreshold()) {
+    return;
+  }
+  if (type == null) {
+    edgeHidingThreshold=threshold;
+  }
+ else {
+    type.setEdgeHidingThreshold(threshold);
+  }
+  for (  final IZyGraphEdgeSettingsListener listener : listeners) {
+    try {
+      listener.changedEdgeHidingThreshold(threshold);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

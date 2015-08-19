@@ -1,0 +1,3 @@
+{
+  debugger.getProcessManager().addListener(m_debuggerUpdater);
+}

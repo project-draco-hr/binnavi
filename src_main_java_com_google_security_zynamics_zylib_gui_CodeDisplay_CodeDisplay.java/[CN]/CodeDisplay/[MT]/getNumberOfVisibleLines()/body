@@ -1,0 +1,4 @@
+{
+  final int rawHeight=getHeight() - horizontalScrollbar.getHeight();
+  return (rawHeight / fontLineHeight) + ((rawHeight % fontLineHeight) == 0 ? 0 : 1);
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
+  Preconditions.checkNotNull(attachedNode,"Target node argument can not be null");
+  final ZyLabelContent labelcontent=new ZyLabelContent(null);
+  labelcontent.addLineContent(new ZyLineContent(String.valueOf(degree),new Font("New Courier",Font.PLAIN,12),null));
+  final ZyProximityNodeRealizer<NodeType> r=new ZyProximityNodeRealizer<NodeType>(labelcontent);
+  final Node node=graph.createNode(r);
+  @SuppressWarnings("unchecked") final ZyProximityNode<NodeType> infoNode=new ZyProximityNode<NodeType>(node,r,(ZyGraphNode<NodeType>)attachedNode,isIncoming);
+  final ZyNodeData<ZyProximityNode<NodeType>> data=new ZyNodeData<ZyProximityNode<NodeType>>(infoNode);
+  r.setUserData(data);
+  return infoNode;
+}

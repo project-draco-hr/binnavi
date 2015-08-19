@@ -1,0 +1,9 @@
+{
+  final int selectedIndex=getSelectionIndex(event);
+  if (selectedIndex != -1) {
+    final JPopupMenu popupMenu=getPopupMenu(event.getX(),event.getY(),selectedIndex);
+    if (popupMenu != null) {
+      popupMenu.show(this,event.getX(),event.getY());
+    }
+  }
+}

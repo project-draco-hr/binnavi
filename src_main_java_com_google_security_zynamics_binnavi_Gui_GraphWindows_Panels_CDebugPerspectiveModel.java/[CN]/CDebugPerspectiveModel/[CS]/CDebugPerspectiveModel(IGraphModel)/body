@@ -1,0 +1,3 @@
+{
+  m_model=Preconditions.checkNotNull(model,"IE01804: Graph model argument can not be null");
+}

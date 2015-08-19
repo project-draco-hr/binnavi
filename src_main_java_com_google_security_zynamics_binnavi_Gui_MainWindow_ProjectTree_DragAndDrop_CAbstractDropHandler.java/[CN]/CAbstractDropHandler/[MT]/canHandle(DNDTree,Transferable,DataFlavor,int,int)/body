@@ -1,0 +1,15 @@
+{
+  if (!transferable.isDataFlavorSupported(m_flavor)) {
+    return false;
+  }
+  final Object data=getData(transferable);
+  if (data == null) {
+    return false;
+  }
+  final TreePath pathTarget=target.getPathForLocation(x,y);
+  if (pathTarget == null) {
+    target.setSelectionPath(null);
+    return false;
+  }
+  return canHandle((DefaultMutableTreeNode)pathTarget.getLastPathComponent(),data);
+}

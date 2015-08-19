@@ -1,0 +1,4 @@
+INaviFunction function
+IComment comment
+IComment newComment
+CommentScope scope

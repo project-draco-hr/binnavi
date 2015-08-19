@@ -1,0 +1,3 @@
+{
+  return new DebuggerException(parseStringOption(node,"exceptionName"),parseLongOption(node,"exceptionCode"),DebuggerExceptionHandlingAction.convertToHandlingAction(parseIntOption(node,"handlingAction")));
+}

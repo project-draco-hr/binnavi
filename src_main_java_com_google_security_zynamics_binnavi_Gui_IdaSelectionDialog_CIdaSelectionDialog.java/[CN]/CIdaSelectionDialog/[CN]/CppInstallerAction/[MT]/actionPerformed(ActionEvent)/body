@@ -1,0 +1,4 @@
+{
+  CBinExportInstaller.install(CIdaSelectionDialog.this,m_chooser.getCurrentDirectory());
+  updateDialog(m_chooser.getCurrentDirectory());
+}

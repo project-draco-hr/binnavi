@@ -1,0 +1,19 @@
+{
+  Preconditions.checkArgument(breakpointCounter > 0,"IE01036: Breakpoint counter argument must be positive");
+  this.canDetach=canDetach;
+  this.canAttach=canAttach;
+  this.canTerminate=canTerminate;
+  this.canMemmap=canMemmap;
+  this.stackAvailable=stackAvailable;
+  this.canValidMemory=canValidMemory;
+  this.canMultithread=canMultithread;
+  this.canHalt=canHalt;
+  this.haltBeforeCommunicating=haltBeforeCommunicating;
+  this.canSoftwareBreakpoints=canSoftwareBreakpoints;
+  this.breakpointCounter=breakpointCounter;
+  this.pageSize=pageSize;
+  this.exceptions=new ArrayList<DebuggerException>(exceptions);
+  this.canBreakOnModuleLoad=canBreakOnModuleLoad;
+  this.canBreakOnModuleUnload=canBreakOnModuleUnload;
+  this.canTraceCount=canTraceCount;
+}

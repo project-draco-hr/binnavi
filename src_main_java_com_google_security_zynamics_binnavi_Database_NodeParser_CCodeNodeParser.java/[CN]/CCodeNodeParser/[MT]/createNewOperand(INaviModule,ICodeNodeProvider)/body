@@ -1,0 +1,19 @@
+{
+  final int expressionId=dataset.getExpressionTreeId();
+  final int type=dataset.getExpressionTreeType();
+  final String value=getValue(dataset,type);
+  final Integer parentId=dataset.getParentId();
+  final String replacementString=dataset.getReplacement();
+  final IAddress functionAddress=dataset.getFunctionAddress();
+  final Integer typeId=dataset.getSubstitutionTypeId();
+  RawTypeSubstitution substitution=null;
+  if (typeId != null) {
+    substitution=new RawTypeSubstitution(dataset.getInstructionAddress(),dataset.getSubstitutionPosition(),expressionId,typeId,dataset.getSubstitutionPath(),dataset.getSubstitutionOffset());
+  }
+  final Integer instanceId=dataset.getTypeInstanceId() == null ? null : dataset.getTypeInstanceId();
+  final int operandPosition=dataset.getOperandPosition();
+  final IAddress address=dataset.getInstructionAddress();
+  final List<CReference> references=parseReferences(expressionId,dataset);
+  final INaviReplacement replacement=lookupReplacement(replacementString,module,functionAddress);
+  return new OperandTreeNode(expressionId,type,value,getParentId(parentId),replacement,references,substitution,instanceId,operandPosition,address);
+}

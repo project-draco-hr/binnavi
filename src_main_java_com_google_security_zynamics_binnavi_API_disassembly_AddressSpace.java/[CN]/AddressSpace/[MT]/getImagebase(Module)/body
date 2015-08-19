@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  return new Address(m_addressSpace.getContent().getImageBase(module.getNative()).toBigInteger());
+}

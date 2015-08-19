@@ -1,0 +1,18 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final ViewNode source=cachedNodes.get(edge.getSource());
+  final ViewNode target=cachedNodes.get(edge.getTarget());
+  final ViewEdge newEdge=new ViewEdge(edge,source,target);
+  viewGraph.addEdge(newEdge);
+  cachedEdges.put(edge,newEdge);
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.addedEdge(View.this,newEdge);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

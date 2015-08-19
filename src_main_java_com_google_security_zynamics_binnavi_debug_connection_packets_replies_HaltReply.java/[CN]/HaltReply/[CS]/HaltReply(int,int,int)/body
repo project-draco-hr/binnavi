@@ -1,0 +1,4 @@
+{
+  super(packetId,errorCode);
+  activeThreadId=tid;
+}

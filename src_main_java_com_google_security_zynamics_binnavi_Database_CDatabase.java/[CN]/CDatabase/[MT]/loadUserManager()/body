@@ -1,0 +1,17 @@
+{
+  final CUserManager userManager=CUserManager.get(provider);
+  final String userName=getConfiguration().getIdentity();
+  if (userManager.containsUserName(userName)) {
+    userManager.setCurrentActiveUser(userManager.getUserByUserName(userName));
+  }
+ else {
+    try {
+      userManager.setCurrentActiveUser(userManager.addUser(userName));
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      throw new CouldntLoadDataException(e);
+    }
+  }
+  return userManager;
+}

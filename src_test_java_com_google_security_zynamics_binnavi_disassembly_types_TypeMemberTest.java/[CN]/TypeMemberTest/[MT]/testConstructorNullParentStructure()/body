@@ -1,0 +1,3 @@
+{
+  TypeMember.createStructureMember(0,null,typeSystem.intType,"",0);
+}

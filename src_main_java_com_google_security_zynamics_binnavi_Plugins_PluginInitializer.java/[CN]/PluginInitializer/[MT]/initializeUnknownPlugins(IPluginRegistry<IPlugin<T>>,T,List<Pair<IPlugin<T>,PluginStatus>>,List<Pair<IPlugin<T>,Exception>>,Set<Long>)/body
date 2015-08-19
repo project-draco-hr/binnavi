@@ -1,0 +1,7 @@
+{
+  for (  final Pair<IPlugin<T>,PluginStatus> pluginPair : validatedPlugins) {
+    if ((pluginPair.second() == PluginStatus.Valid) && !processedPlugins.contains(pluginPair.first().getGuid())) {
+      initializePlugin(pluginPair.first(),pluginInterface,registry,initializedPlugins);
+    }
+  }
+}

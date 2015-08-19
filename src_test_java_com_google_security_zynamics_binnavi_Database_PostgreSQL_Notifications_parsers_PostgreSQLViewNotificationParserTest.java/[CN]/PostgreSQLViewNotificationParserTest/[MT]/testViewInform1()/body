@@ -1,0 +1,9 @@
+{
+  final String description2="TEST DESCRIPTION STATE CHANGE";
+  view.getConfiguration().setDescriptionInternal(description2);
+  assertEquals(description2,view.getConfiguration().getDescription());
+  final ViewNotificationContainer container=new ViewNotificationContainer(view.getConfiguration().getId(),Optional.fromNullable(view),Optional.<Integer>absent(),Optional.<INaviModule>absent(),Optional.<INaviProject>absent(),"UPDATE");
+  final PostgreSQLViewNotificationParser parser=new PostgreSQLViewNotificationParser();
+  parser.inform(Lists.<ViewNotificationContainer>newArrayList(container),provider);
+  assertEquals("DB PROJECT VIEW DESCRIPTION",view.getConfiguration().getDescription());
+}

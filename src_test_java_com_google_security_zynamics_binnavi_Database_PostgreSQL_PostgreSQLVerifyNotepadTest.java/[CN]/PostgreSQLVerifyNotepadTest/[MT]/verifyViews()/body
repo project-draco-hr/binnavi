@@ -1,0 +1,46 @@
+{
+  final SQLProvider provider=(SQLProvider)ReflectionHelpers.getField(m_database,"provider");
+  final INaviModule module=m_database.getContent().getModules().get(0);
+  module.load();
+  final List<INaviView> views=module.getContent().getViewContainer().getViews();
+  final INaviView callgraph=views.get(0);
+  assertEquals(null,module.getContent().getViewContainer().getFunction(callgraph));
+  assertEquals(ViewType.Native,callgraph.getType());
+  assertEquals(GraphType.CALLGRAPH,callgraph.getGraphType());
+  assertEquals(287,callgraph.getNodeCount());
+  assertEquals(848,callgraph.getEdgeCount());
+  callgraph.load();
+  assertEquals(287,callgraph.getNodeCount());
+  assertEquals(848,callgraph.getEdgeCount());
+  callgraph.close();
+  final LinkedHashSet<?> cgListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(CommentManager.get(provider),"listeners"),"m_listeners");
+  assertEquals(module.getContent().getFunctionContainer().getFunctions().size() + 1,cgListeners.size());
+  for (int i=1; i < views.size(); i++) {
+    final INaviView view=views.get(i);
+    final INaviFunction function=module.getContent().getViewContainer().getFunction(view);
+    assertEquals(view.getName(),function.getName());
+    assertEquals(ViewType.Native,view.getType());
+    assertEquals(GraphType.FLOWGRAPH,view.getGraphType());
+    assertEquals(view.getNodeCount(),function.getBasicBlockCount());
+    assertEquals(view.getEdgeCount(),function.getEdgeCount());
+    view.load();
+    function.load();
+    assertEquals(view.getNodeCount(),function.getBasicBlockCount());
+    assertEquals(view.getEdgeCount(),function.getEdgeCount());
+    if (function.getAddress().toBigInteger().equals(BigInteger.valueOf(0x1001929))) {
+      assertEquals(view.getNodeCount(),5);
+      assertEquals(view.getEdgeCount(),6);
+    }
+ else     if (function.getAddress().toBigInteger().equals(BigInteger.valueOf(16790571))) {
+      assertEquals(view.getNodeCount(),92);
+      assertEquals(view.getEdgeCount(),144);
+    }
+ else     if (i == 1) {
+      assertEquals(view.getNodeCount(),0);
+      assertEquals(view.getEdgeCount(),0);
+    }
+    view.close();
+    function.close();
+  }
+  module.close();
+}

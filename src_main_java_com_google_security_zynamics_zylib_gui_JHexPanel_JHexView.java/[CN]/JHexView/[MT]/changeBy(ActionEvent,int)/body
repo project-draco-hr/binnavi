@@ -1,0 +1,38 @@
+{
+  if (event.getModifiers() == ActionEvent.SHIFT_MASK) {
+    if ((getSelectionStart() + getSelectionLength() + length) < 0) {
+      setSelectionLength(-getSelectionStart());
+    }
+ else {
+      if ((getSelectionStart() + getSelectionLength() + length) < (2 * m_dataProvider.getDataLength())) {
+        setSelectionLength(getSelectionLength() + length);
+      }
+ else {
+        setSelectionLength((2 * m_dataProvider.getDataLength()) - getSelectionStart());
+      }
+    }
+  }
+ else {
+    if ((getSelectionStart() + getSelectionLength() + length) < 0) {
+      setSelectionStart(0);
+    }
+ else     if ((getSelectionStart() + getSelectionLength() + length) < (2 * m_dataProvider.getDataLength())) {
+      setSelectionStart(getSelectionStart() + getSelectionLength() + length);
+    }
+ else {
+      setSelectionStart(2 * m_dataProvider.getDataLength());
+    }
+    setSelectionLength(0);
+  }
+  final long newPosition=getSelectionStart() + getSelectionLength();
+  if (newPosition < (2 * getFirstVisibleByte())) {
+    scrollToPosition(newPosition);
+  }
+ else   if (newPosition >= (2 * (getFirstVisibleByte() + getMaximumVisibleBytes()))) {
+    final long invisibleNibbles=newPosition - (2 * (getFirstVisibleByte() + getMaximumVisibleBytes()));
+    final long scrollpos=(2 * getFirstVisibleByte()) + (2 * m_bytesPerRow) + invisibleNibbles;
+    scrollToPosition(scrollpos);
+  }
+  m_caret.setVisible(true);
+  repaint();
+}

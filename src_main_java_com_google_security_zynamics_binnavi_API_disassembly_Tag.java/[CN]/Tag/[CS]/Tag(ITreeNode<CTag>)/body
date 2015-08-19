@@ -1,0 +1,4 @@
+{
+  m_tag=Preconditions.checkNotNull(tag,"Error: Tag argument can not be null");
+  m_tag.getObject().addListener(m_listener);
+}

@@ -1,0 +1,3 @@
+{
+  m_edge=Preconditions.checkNotNull(edge,"IE02659: edge argument can not be null");
+}

@@ -1,0 +1,7 @@
+{
+  final CTrackingResult result=m_container.getResult();
+  if (result == null) {
+    return;
+  }
+  CTrackingResultsHighlighter.updateHighlighting(m_container.getGraph(),result.getStartInstruction(),"",new ArrayList<CInstructionResult>());
+}

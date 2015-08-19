@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible memory modules.\n\nFilter by module name: Enter the module name";
+}

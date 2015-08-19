@@ -1,0 +1,4 @@
+{
+  this.stackAvailable=value;
+  return this;
+}

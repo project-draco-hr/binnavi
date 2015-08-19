@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  final CBookmark bookmark=m_bookmarkManager.getBookmark(new CAddress(address.toLong()));
+  Preconditions.checkNotNull(bookmark,"Error: No bookmark exists at the specified address");
+  m_bookmarkManager.removeBookmark(bookmark);
+}

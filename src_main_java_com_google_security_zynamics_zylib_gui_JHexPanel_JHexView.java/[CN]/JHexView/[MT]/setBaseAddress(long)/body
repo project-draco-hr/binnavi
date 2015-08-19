@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(baseAddress >= 0,"Error: Base address can't be negative");
+  m_baseAddress=baseAddress;
+  repaint();
+}

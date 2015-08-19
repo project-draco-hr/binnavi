@@ -1,0 +1,6 @@
+{
+  if (model.getViewContainer().getFunction(model.getGraph().getRawView()) != null) {
+    return model.getViewContainer().getFunction(model.getGraph().getRawView()).getStackFrame();
+  }
+  return null;
+}

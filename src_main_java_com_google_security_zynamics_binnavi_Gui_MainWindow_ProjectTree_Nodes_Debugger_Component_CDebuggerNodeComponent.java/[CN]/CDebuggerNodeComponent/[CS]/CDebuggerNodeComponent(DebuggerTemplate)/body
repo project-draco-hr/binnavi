@@ -1,0 +1,15 @@
+{
+  super(new BorderLayout());
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01967: Debugger argument can't be null");
+  m_nameTextField=new CHelpSaveField(debugger.getName(),new CNameHelp());
+  m_hostTextField=new CHelpSaveField(debugger.getHost(),new CHostHelp());
+  m_portTextField=new CHelpSaveFormattedField(new CDecFormatter(5),new CPortHelp());
+  m_portTextField.setText(String.valueOf(debugger.getPort()));
+  m_debugger.addListener(m_listener);
+  createGui();
+  final UpdateListener updateListener=new UpdateListener();
+  m_nameTextField.getDocument().addDocumentListener(updateListener);
+  m_hostTextField.getDocument().addDocumentListener(updateListener);
+  m_portTextField.getDocument().addDocumentListener(updateListener);
+  updateGui();
+}

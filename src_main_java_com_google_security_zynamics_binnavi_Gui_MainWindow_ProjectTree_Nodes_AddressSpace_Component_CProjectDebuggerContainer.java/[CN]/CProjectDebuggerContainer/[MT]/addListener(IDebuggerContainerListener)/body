@@ -1,0 +1,5 @@
+{
+  final IProjectListener wrapper=new ListenerWrapper(listener);
+  m_project.addListener(wrapper);
+  m_wrappers.add(wrapper);
+}

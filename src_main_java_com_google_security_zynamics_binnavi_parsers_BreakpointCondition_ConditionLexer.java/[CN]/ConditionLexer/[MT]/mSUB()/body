@@ -1,0 +1,13 @@
+{
+  try {
+    final int _type=SUB;
+    final int _channel=DEFAULT_TOKEN_CHANNEL;
+{
+      match('-');
+    }
+    state.type=_type;
+    state.channel=_channel;
+  }
+  finally {
+  }
+}

@@ -1,0 +1,5 @@
+{
+  for (  final ITreeNode<CTag> child : m_tagNode.getChildren()) {
+    add(new CTagTreeNode(child));
+  }
+}

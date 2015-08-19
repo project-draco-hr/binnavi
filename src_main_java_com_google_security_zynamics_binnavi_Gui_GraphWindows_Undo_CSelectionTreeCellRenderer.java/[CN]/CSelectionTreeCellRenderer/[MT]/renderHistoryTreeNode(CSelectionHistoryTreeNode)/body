@@ -1,0 +1,23 @@
+{
+  if (!treeNode.isRoot()) {
+    final List<NaviNode> nodes=treeNode.getSnapshot().getSelection();
+    final Pair<Integer,Integer> result=CNodeTypeCounter.count(nodes);
+    final int countAll=nodes.size();
+    final int selected=result.first();
+    final int unselected=countAll - selected;
+    final int invisible=result.second();
+    if (countAll == selected) {
+      setForeground(SELECTED_FONT_COLOR);
+    }
+ else     if (countAll == unselected) {
+      setForeground(NORMAL_FONT_COLOR);
+    }
+ else     if (countAll == invisible) {
+      setForeground(INVISIBLE_FONT_COLOR);
+    }
+ else {
+      setForeground(MIXED_STATE_GROUP_NODE_COLOR);
+    }
+    setToolTipText(buildToolTip(nodes));
+  }
+}

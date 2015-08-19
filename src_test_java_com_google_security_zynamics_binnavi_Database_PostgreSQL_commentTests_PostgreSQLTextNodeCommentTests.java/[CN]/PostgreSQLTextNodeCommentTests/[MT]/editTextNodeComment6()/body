@@ -1,0 +1,15 @@
+{
+  final INaviTextNode textNode=setupTextNode();
+  final List<IComment> comments=textNode.getComments() == null ? new ArrayList<IComment>() : textNode.getComments();
+  final IComment lastComment=comments.size() == 0 ? null : Iterables.getLast(comments);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final String commentText=" TEXT NODE COMMENT TEST BEFORE EDIT ";
+  final Integer commentId=getProvider().appendTextNodeComment(textNode,commentText,user.getUserId());
+  final IComment newComment=new CComment(commentId,user,lastComment,commentText);
+  final ArrayList<IComment> newComments=getProvider().loadCommentById(commentId);
+  assertNotNull(newComments);
+  assertEquals(comments.size() + 1,newComments.size());
+  assertEquals(newComment,Iterables.getLast(newComments));
+  final IUser wrongUser=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().editTextNodeComment(textNode,commentId,wrongUser.getUserId()," FAIL ");
+}

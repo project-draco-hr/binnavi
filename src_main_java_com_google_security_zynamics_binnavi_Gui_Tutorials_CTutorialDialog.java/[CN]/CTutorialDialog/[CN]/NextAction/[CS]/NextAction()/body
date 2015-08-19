@@ -1,0 +1,3 @@
+{
+  super("Next",new ImageIcon(CMain.class.getResource("data/arrow_right.png")));
+}

@@ -1,0 +1,3 @@
+{
+  return "This table shows information about recorded traces.\nName: Name of the recorded trace\nEvents: Number of recorded events in the trace\nDescription: Provides additional information about the trace";
+}

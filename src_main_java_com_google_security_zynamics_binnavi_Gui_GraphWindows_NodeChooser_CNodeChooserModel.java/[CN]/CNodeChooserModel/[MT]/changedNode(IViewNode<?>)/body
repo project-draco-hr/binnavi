@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  final int index=m_nodeCache.indexOf(node);
+  fireTableRowsUpdated(index,index);
+}

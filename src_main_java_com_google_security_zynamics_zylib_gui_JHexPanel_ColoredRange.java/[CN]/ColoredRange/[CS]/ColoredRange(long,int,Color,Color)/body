@@ -1,0 +1,6 @@
+{
+  this.start=start;
+  this.size=size;
+  this.fcolor=fcolor;
+  this.bgcolor=bgcolor;
+}

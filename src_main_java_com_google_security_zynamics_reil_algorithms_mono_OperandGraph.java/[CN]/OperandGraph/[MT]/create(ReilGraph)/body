@@ -1,0 +1,4 @@
+{
+  final Map<ReilBlock,Pair<List<OperandGraphNode>,List<OperandGraphEdge>>> graphMap=createInitialMap(graph);
+  return connectParts(graph,graphMap);
+}

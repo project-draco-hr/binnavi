@@ -1,0 +1,6 @@
+{
+  if (o instanceof TypeChangedEventCollector) {
+    return events.equals(((TypeChangedEventCollector)o).events);
+  }
+  return false;
+}

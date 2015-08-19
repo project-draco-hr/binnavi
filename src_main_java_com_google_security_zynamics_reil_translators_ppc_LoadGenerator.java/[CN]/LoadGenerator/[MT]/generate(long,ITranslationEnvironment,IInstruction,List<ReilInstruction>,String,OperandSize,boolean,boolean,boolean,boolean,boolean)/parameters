@@ -1,0 +1,11 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String mnemonic
+OperandSize opSize
+boolean isIndexed
+boolean withUpdate
+boolean isAlgebraic
+boolean loadMultiple
+boolean isByteReverse

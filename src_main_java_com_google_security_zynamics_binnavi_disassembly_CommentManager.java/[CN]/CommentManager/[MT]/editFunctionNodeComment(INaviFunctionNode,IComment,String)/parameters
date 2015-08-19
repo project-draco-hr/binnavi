@@ -1,0 +1,3 @@
+INaviFunctionNode functionNode
+IComment oldComment
+String commentText

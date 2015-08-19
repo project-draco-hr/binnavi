@@ -1,0 +1,13 @@
+{
+  CCriteriumTreeNode.remove(node);
+  final ICriteriumTreeNode parent=node.getParent();
+  parent.getChildren().remove(node);
+  for (  final ICriteriumTreeListener listener : m_listeners) {
+    try {
+      listener.removedNode(this,node);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

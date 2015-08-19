@@ -1,0 +1,12 @@
+{
+  view=MockViewGenerator.generate(provider,module,function);
+  baseType=module.getTypeManager().getTypes().get(0);
+  final Section section=module.getContent().getSections().createSection("TEST_SECTION",new CAddress("01000000",16),new CAddress("0100FFFF",16),SectionPermission.READ_WRITE_EXECUTE,null);
+  final TypeInstanceContainer container=module.getContent().getTypeInstanceContainer();
+  instance=container.createInstance("TEST_INSTANCE",null,baseType,section,new Long("11143"));
+  final CCodeNode node=view.getBasicBlocks().get(0);
+  final INaviInstruction instruction=node.getInstructions().iterator().next();
+  final INaviOperandTreeNode operandNode=instruction.getOperands().get(0).getNodes().get(0);
+  reference=container.createReference(instruction.getAddress(),0,operandNode,instance,view);
+  assertNotNull(reference);
+}

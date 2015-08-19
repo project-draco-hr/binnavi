@@ -1,0 +1,5 @@
+{
+  final TraceList oldList=eventList;
+  eventList=trace;
+  return oldList;
+}

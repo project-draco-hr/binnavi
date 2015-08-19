@@ -1,0 +1,8 @@
+{
+  if (manager.getBreakpointStatus(breakpointToOldStatus.getKey().getAddress(),BreakpointType.STEP) == BreakpointStatus.BREAKPOINT_ENABLED) {
+    toSet.add(breakpointToOldStatus.getKey().getAddress());
+  }
+ else   if (manager.getBreakpointStatus(breakpointToOldStatus.getKey().getAddress(),BreakpointType.STEP) == BreakpointStatus.BREAKPOINT_DELETING) {
+    toRemove.add(breakpointToOldStatus.getKey().getAddress());
+  }
+}

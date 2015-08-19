@@ -1,0 +1,11 @@
+{
+  NaviLogger.info("Shutting down the connection to the debug client");
+  if (receiverThread != null) {
+    receiverThread.shutdown();
+    workerThread.interrupt();
+  }
+  if (pipeFetcherThread != null) {
+    pipeFetcherThread.shutdown();
+    fetcherThread.interrupt();
+  }
+}

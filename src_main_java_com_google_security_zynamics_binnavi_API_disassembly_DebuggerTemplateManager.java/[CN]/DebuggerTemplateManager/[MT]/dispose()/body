@@ -1,0 +1,6 @@
+{
+  m_manager.removeListener(m_internalListener);
+  for (  final DebuggerTemplate debuggerTemplate : m_debuggerTemplates) {
+    debuggerTemplate.dispose();
+  }
+}

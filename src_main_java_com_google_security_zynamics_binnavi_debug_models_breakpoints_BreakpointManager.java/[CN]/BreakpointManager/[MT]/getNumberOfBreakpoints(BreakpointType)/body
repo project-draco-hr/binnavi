@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(type,"IE01013: Type argument can not be null");
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.size();
+case ECHO:
+  return echoBreakpointStorage.size();
+case STEP:
+return stepBreakpointStorage.size();
+default :
+throw new IllegalStateException(String.format("IE01014: Invalid breakpoint type '%s'",type));
+}
+}

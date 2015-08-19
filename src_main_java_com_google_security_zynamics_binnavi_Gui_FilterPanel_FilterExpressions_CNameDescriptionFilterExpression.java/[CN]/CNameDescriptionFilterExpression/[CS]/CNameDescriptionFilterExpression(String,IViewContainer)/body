@@ -1,0 +1,4 @@
+{
+  m_text=Preconditions.checkNotNull(text,"IE02808: text argument can not be null");
+  m_module=module;
+}

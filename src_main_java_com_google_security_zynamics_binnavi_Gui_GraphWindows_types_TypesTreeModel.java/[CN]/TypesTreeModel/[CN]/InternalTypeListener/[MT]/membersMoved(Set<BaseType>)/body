@@ -1,0 +1,15 @@
+{
+  SwingUtilities.invokeLater(new Runnable(){
+    @Override public void run(){
+      for (      final BaseType baseType : affectedTypes) {
+        if (!filter.includeType(baseType)) {
+          continue;
+        }
+        final List<DefaultMutableTreeNode> oldNodes=collectSubtreeNodes(getBaseTypeTreeNode(baseType).getNode());
+        removeNodes(oldNodes);
+        nodeStructureChanged(insertBaseType(baseType).getNode());
+      }
+    }
+  }
+);
+}

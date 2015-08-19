@@ -1,0 +1,6 @@
+{
+  super.dispose();
+  m_container.dispose();
+  m_project.removeListener(m_listener);
+  deleteChildren();
+}

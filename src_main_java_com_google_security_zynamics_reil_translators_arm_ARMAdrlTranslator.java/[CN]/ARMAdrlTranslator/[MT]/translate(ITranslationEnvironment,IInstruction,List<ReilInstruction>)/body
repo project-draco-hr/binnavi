@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"ADRL");
+  translateAll(environment,instruction,"ADRL",instructions);
+}

@@ -1,0 +1,3 @@
+int index
+BigInteger oldValue
+BigInteger newValue

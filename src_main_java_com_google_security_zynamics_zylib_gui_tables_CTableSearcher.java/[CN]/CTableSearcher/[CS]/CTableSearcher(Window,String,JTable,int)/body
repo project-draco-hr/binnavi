@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(frame,"Internal Error: Parent window can't be null");
+  Preconditions.checkNotNull(windowTitle,"Internal Error: Window title can't be null");
+  Preconditions.checkNotNull(table,"Internal Error: Table can't be null");
+  m_Table=table;
+  m_Frame=frame;
+  m_title=windowTitle;
+  m_StartRow=startRow;
+}

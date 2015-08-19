@@ -1,0 +1,36 @@
+{
+  checkArguments(parent,debugger);
+  Preconditions.checkNotNull(memoryView,"IE01431: Memory view argument can not be null");
+  final CSearchDialog dlg=new CSearchDialog(parent);
+  final byte[] data=dlg.getSearchData();
+  if (data != null && data.length != 0) {
+    final JHexView hexView=memoryView.getHexView();
+    final long start=hexView.getCurrentOffset();
+    final int size=(int)(hexView.getLastOffset() - hexView.getCurrentOffset());
+    final CSearchWaiter waiter=new CSearchWaiter(debugger,new CAddress(start),size,data);
+    CProgressDialog.showEndless(parent,"Loading memory" + " ...",waiter);
+    hexView.uncolorizeAll();
+    if (waiter.getException() == null) {
+      final SearchReply reply=waiter.getReply();
+      if (reply != null) {
+        final IAddress offset=reply.getAddress();
+        if (reply.success()) {
+          if (hexView.isEnabled() && hexView.getDefinitionStatus() == DefinitionStatus.DEFINED) {
+            hexView.colorize(5,offset.toLong(),data.length,Color.BLACK,Color.YELLOW);
+            hexView.gotoOffset(offset.toLong());
+            hexView.requestFocusInWindow();
+          }
+        }
+ else {
+          CMessageBox.showInformation(parent,"The specified search string was not found.");
+        }
+      }
+    }
+ else {
+      CUtilityFunctions.logException(waiter.getException());
+      final String innerMessage="E00079: " + "Could not search through memory";
+      final String innerDescription=CUtilityFunctions.createDescription("It was not possible to send the search request to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The search operation could not be started."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,waiter.getException());
+    }
+  }
+}

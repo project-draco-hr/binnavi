@@ -1,0 +1,7 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE00989: Graph argument can't be null");
+  m_node=Preconditions.checkNotNull(node,"IE00990: Node argument can't be null");
+  Preconditions.checkNotNull(provider,"IE02241: Provider argument can not be null");
+  m_nodeModifier=new CDefaultModifier(graph.getSettings(),provider);
+  initializeListeners();
+}

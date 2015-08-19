@@ -1,0 +1,3 @@
+{
+  CProjectFunctions.createProject(m_parent,m_database,m_updater);
+}

@@ -1,0 +1,6 @@
+{
+  final CModuleNode node=new CModuleNode(m_tree,new DefaultMutableTreeNode(),m_database,m_module,new CModuleContainer(m_database,m_module));
+  assertEquals("Name (55/66)",node.toString());
+  m_module.getConfiguration().setName("Hannes");
+  assertEquals("Hannes (55/66)",node.toString());
+}

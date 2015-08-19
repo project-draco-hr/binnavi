@@ -1,0 +1,5 @@
+{
+  assertEquals(0,typeSystem.uintType.getMemberCount());
+  addMembersAndVerifyOperation();
+  assertEquals(4,testStruct.getMemberCount());
+}

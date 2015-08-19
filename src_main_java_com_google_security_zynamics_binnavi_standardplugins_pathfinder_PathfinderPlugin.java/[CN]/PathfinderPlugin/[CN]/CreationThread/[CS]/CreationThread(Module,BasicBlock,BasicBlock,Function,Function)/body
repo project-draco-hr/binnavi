@@ -1,0 +1,7 @@
+{
+  this.module=module;
+  this.sourceBlock=sourceBlock;
+  this.targetBlock=targetBlock;
+  this.firstFunction=firstFunction;
+  this.secondFunction=secondFunction;
+}

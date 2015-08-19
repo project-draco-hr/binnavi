@@ -1,0 +1,5 @@
+{
+  m_synchronizer.dispose();
+  m_debuggerContainer.dispose();
+  m_table.dispose();
+}

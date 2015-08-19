@@ -1,0 +1,11 @@
+{
+  super("Remove Module");
+  m_parent=Preconditions.checkNotNull(parent,"IE01911: Parent argument can't be null");
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"IE01912: Address space argument can't be null");
+  m_modules=Preconditions.checkNotNull(modules,"IE01913: Modules argument can't be null");
+  for (  final INaviModule module : modules) {
+    Preconditions.checkNotNull(module,"IE01914: Modules list contains a null-element");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_REMOVE_MODULE".charAt(0));
+}

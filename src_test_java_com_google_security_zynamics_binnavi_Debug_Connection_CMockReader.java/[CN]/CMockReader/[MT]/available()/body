@@ -1,0 +1,7 @@
+{
+  if ((m_msgcounter == -1) || (m_msgcounter > m_messages.length)) {
+    return 0;
+  }
+  final byte[] data=m_messages[m_msgcounter];
+  return data.length - m_bytecounter;
+}

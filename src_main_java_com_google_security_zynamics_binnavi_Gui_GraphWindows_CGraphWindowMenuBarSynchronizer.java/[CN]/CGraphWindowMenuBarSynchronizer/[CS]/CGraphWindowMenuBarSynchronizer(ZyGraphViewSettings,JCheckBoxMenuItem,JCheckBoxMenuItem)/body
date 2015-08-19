@@ -1,0 +1,7 @@
+{
+  m_settings=settings;
+  m_proximityBrowsingMenu=proximityBrowsingMenu;
+  m_autoLayoutMenu=autoLayoutMenu;
+  m_settings.getLayoutSettings().addListener(m_listener);
+  m_settings.getProximitySettings().addListener(m_proximityListener);
+}

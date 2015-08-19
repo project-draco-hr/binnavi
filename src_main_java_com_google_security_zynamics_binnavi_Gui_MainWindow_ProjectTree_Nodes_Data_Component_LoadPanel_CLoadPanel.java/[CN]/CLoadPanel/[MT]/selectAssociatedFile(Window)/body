@@ -1,0 +1,8 @@
+{
+  final CFileChooser chooser=new CFileChooser();
+  chooser.setDialogTitle("Select the input file");
+  if (chooser.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION) {
+    return chooser.getSelectedFile().getAbsolutePath();
+  }
+  return null;
+}

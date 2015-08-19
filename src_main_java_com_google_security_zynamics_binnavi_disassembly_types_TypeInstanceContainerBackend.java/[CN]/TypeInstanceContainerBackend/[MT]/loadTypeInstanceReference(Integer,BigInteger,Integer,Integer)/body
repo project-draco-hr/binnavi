@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(typeInstanceId,"Error: typeInstanceId argument can not be null");
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkNotNull(position,"Error: position argument can not be null");
+  Preconditions.checkNotNull(expressionId,"Error: expressionId argument can not be null");
+  final RawTypeInstanceReference rawReference=provider.loadTypeInstanceReference(module,typeInstanceId,address,position,expressionId);
+  final TypeInstance typeInstance=instancesById.get(rawReference.getTypeInstanceId());
+  final INaviView view=module.getContent().getViewContainer().getView(rawReference.getViewId());
+  final TypeInstanceReference reference=new TypeInstanceReference(new CAddress(address),position,Optional.<INaviOperandTreeNode>absent(),typeInstance,view);
+  referenceLookup.put(new InstanceReferenceLookup(new CAddress(address),position,expressionId),reference);
+  return reference;
+}

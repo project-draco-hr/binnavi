@@ -1,0 +1,4 @@
+{
+  this.edgeCount=edgeCount;
+  return this;
+}

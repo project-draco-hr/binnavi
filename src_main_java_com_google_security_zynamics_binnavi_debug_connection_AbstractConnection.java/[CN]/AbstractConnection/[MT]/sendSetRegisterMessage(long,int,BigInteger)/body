@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Set Register\" message to the debug client");
+  return sendPacket(new SetRegisterCommand(getMessageId(),tid,index,new CAddress(value)));
+}

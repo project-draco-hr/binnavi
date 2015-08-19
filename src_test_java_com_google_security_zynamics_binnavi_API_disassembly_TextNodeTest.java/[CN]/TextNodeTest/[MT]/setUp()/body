@@ -1,0 +1,11 @@
+{
+  final INaviTextNode internalNode=CTextNodeFactory.getWithComment("Fark");
+  final TagManager tagManager=new TagManager(new MockTagManager(TagType.NODE_TAG));
+  final TagManager viewTagManager=new TagManager(new MockTagManager(TagType.VIEW_TAG));
+  final Database database=new Database(new MockDatabase());
+  final INaviModule internalModule=new MockModule();
+  final Module module=new Module(database,internalModule,tagManager,viewTagManager);
+  final INaviView internalView=new MockView();
+  final View view=new View(module,internalView,tagManager,viewTagManager);
+  m_node=new TextNode(view,internalNode,tagManager);
+}

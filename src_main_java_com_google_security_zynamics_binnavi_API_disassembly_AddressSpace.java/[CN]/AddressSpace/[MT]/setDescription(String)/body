@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(description,"Error: Description argument can not be null");
+  try {
+    m_addressSpace.getConfiguration().setDescription(description);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

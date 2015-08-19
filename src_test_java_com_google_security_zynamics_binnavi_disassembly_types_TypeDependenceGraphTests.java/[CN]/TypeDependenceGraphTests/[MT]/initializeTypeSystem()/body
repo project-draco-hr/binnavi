@@ -1,0 +1,4 @@
+{
+  typeSystem=new TestTypeSystem(new TypeManager(new TypeManagerMockBackend()));
+  dependenceGraph=new TypeDependenceGraph(typeSystem.getTypes(),typeSystem.getTypeMembers());
+}

@@ -1,0 +1,7 @@
+{
+  for (  final COperandTree operand : m_operands) {
+    operand.close();
+  }
+  CommentManager.get(m_provider).unloadGlobalInstructionComment(this,getGlobalComment());
+  CommentManager.get(m_provider).removeListener(m_internalCommentListener);
+}

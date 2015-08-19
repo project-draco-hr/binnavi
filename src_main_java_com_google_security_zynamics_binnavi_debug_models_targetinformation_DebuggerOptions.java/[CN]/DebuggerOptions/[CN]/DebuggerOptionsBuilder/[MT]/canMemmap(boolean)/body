@@ -1,0 +1,4 @@
+{
+  this.canMemmap=value;
+  return this;
+}

@@ -1,0 +1,27 @@
+{
+  final INaviView view=getViews().get(row);
+  if (column == NAME_COLUMN) {
+    try {
+      view.getConfiguration().setName((String)value);
+      fireTableDataChanged();
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00187: " + "View name could not be changed";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The view name of view '%s' could not be changed.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view was not updated and the new view name is lost."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    }
+  }
+ else   if (column == DESCRIPTION_COLUMN) {
+    try {
+      view.getConfiguration().setDescription((String)value);
+      fireTableDataChanged();
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00186: " + "View description could not be changed";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The view description of view '%s' could not be changed.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view was not updated and the new view description is lost."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    }
+  }
+}

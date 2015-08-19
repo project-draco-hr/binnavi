@@ -1,0 +1,44 @@
+{
+  try {
+    final FileHandler fileHandler=new FileHandler(NAVI_LOG_FILE,MAX_LOG_FILE_SIZE,LOG_ROTATE_COUNT);
+    fileHandler.setFormatter(new NaviLogFormatter());
+    NaviLogger.addHandler(fileHandler);
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00002: " + "Could not create the log file";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not create the log file '%s'.",NAVI_LOG_FILE),new String[]{"Some kind of IO problem occurred. Please check the stack trace " + "for more details"},new String[]{"The error log file can not be stored"});
+    CNaviErrorDialog.show(null,message,description,exception);
+  }
+  NaviLogger.info("Loading configuration file");
+  try {
+    return ConfigManager.instance().read();
+  }
+ catch (  final FileReadException exception) {
+    CUtilityFunctions.logException(exception);
+    final String configFileName=ConfigHelper.getConfigFileName(Constants.COMPANY_NAME,Constants.PROJECT_NAME,Constants.CONFIG_FILE_NAME);
+    final String message="E00003: " + "Malformed configuration file";
+    final String description=CUtilityFunctions.createDescription(String.format("The configuration file '%s' could not be read because it contains " + "malformed XML.",configFileName),new String[]{"You edited the configuration file manually and made a mistake","The configuration file was corrupted randomly"},new String[]{"After closing this dialog you will be asked if you want to run " + "BinNavi with default settings or if you want to repair the configuration " + "file manually."});
+    CNaviErrorDialog.show(null,message,description,exception);
+    if (JOptionPane.YES_OPTION != CMessageBox.showYesNoQuestion(null,"Do you want to run BinNavi with default settings? If you choose 'No', " + "BinNavi will exit so you can repair the configuration file manually.")) {
+      System.exit(0);
+    }
+    final File file=new File(configFileName);
+    if (!file.delete()) {
+      final String innerMessage="E00004: " + "Could not delete malformed configuration file";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The malformed configuration file '%s' could not be deleted.",configFileName),new String[]{"The configuration file is in use by another program","Some kind of IO problem occurred"},new String[]{"BinNavi will exit after you close this error dialog and you " + "will have to delete or fix the malformed configuration file manually."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription);
+      System.exit(0);
+    }
+    try {
+      return ConfigManager.instance().read();
+    }
+ catch (    final FileReadException e) {
+      final String innerMessage="E00005: " + "Could not create configuration file";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not create the new configuration file '%s'.",configFileName),new String[]{"Some kind of IO problem occurred"},new String[]{"BinNavi will exit after you close this error dialog. Try to " + "find out why the configuration file could not be created. " + "You may also want to contact the BinNavi support at this point."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription);
+      System.exit(0);
+    }
+    return false;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final Module newModule=new Module(Database.this,module,m_nodeTagManager,m_viewTagManager);
+  m_modules.add(newModule);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.addedModule(Database.this,newModule);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super("Remove");
+  m_tree=tree;
+  m_node=node;
+}

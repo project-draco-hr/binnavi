@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(value,"Error: Argument value can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final int oldInstructionsSize=instructions.size();
+  final Pair<String,String> signMask=generateSignMask(environment,baseOffset,value,size,instructions);
+  long offset=(baseOffset + instructions.size()) - oldInstructionsSize;
+  final String toggledSign=environment.getNextVariableString();
+  final String absValue=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset++,size,value,size,signMask.second(),size,toggledSign));
+  instructions.add(ReilHelpers.createSub(offset++,size,toggledSign,size,signMask.second(),size,absValue));
+  return new Pair<String,String>(signMask.first(),absValue);
+}

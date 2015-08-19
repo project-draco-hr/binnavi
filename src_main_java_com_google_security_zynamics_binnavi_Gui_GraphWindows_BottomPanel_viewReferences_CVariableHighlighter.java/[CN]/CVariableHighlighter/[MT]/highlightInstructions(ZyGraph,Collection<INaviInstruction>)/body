@@ -1,0 +1,31 @@
+{
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      CNodeTypeSwitcher.switchNode(node.getRawNode(),new INodeTypeCallback<Void>(){
+        @Override public Void handle(        final INaviCodeNode node){
+          for (          final INaviInstruction instruction : node.getInstructions()) {
+            if (toHighlight.contains(instruction)) {
+              node.setInstructionColor(instruction,CHighlightLayers.VARIABLE_LAYER,new Color(100,160,200));
+            }
+ else {
+              node.setInstructionColor(instruction,CHighlightLayers.VARIABLE_LAYER,null);
+            }
+          }
+          return null;
+        }
+        @Override public Void handle(        final INaviFunctionNode node){
+          return null;
+        }
+        @Override public Void handle(        final INaviGroupNode node){
+          return null;
+        }
+        @Override public Void handle(        final INaviTextNode node){
+          return null;
+        }
+      }
+);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

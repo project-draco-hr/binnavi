@@ -1,0 +1,14 @@
+{
+  final List<IComment> storedComments=codeNode.getComments().getLocalInstructionComment(instruction) == null ? new ArrayList<IComment>() : codeNode.getComments().getLocalInstructionComment(instruction);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String beforeEditCommentString=" EDIT LOCAL INSTRUCTION COMMENT BEFORE EDIT ";
+  final int editedCommentId=getProvider().appendLocalInstructionComment(codeNode,instruction,beforeEditCommentString,user.getUserId());
+  final IComment commentBeforeEdit=new CComment(editedCommentId,user,lastComment,beforeEditCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(editedCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertTrue(commentsFromDatabase.contains(commentBeforeEdit));
+  assertEquals(storedComments.size() + 1,commentsFromDatabase.size());
+  final IUser wrongUser=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().editLocalInstructionComment(codeNode,instruction,editedCommentId,wrongUser.getUserId()," FAIL ");
+}

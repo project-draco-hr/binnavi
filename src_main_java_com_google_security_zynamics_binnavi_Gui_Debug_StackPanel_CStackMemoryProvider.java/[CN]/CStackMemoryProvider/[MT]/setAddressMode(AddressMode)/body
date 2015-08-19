@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(addressMode,"IE01501: Address mode argument can not be null");
+  if (addressMode == m_addressMode) {
+    return;
+  }
+  m_addressMode=addressMode;
+  notifyListeners();
+}

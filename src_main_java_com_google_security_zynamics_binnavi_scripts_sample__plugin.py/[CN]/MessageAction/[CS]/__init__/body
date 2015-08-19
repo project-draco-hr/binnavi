@@ -1,0 +1,3 @@
+def __init__(self, pi):
+    AbstractAction.__init__(self, 'Python Sample Plugin')
+    self.pi = pi

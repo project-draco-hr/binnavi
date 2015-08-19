@@ -1,0 +1,10 @@
+{
+  super(-tag.getObject().getId(),graph);
+  Preconditions.checkNotNull(graph,"IE01800: Graph can not be null.");
+  m_model=Preconditions.checkNotNull(model,"IE01801: Model can not be null.");
+  m_tag=Preconditions.checkNotNull(tag,"IE02327: Tag argument can not be null");
+  m_menuBuilder=new CTaggedNodesContainerNodeMenuBuilder(graph,m_tag);
+  createChildren();
+  graph.addListener(m_graphListener);
+  graph.getRawView().addListener(m_viewListener);
+}

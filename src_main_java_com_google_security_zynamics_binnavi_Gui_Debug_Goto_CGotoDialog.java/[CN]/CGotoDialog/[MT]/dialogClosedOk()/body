@@ -1,0 +1,31 @@
+{
+  final String input=offsetField.getText();
+  if (!"".equals(input)) {
+    try {
+      final MemoryExpressionElement expression=DebuggerMemoryExpressionParser.parse(input);
+      final CEvaluationVisitor visitor=new CEvaluationVisitor(m_bindings);
+      expression.visit(visitor);
+      final BigInteger value=visitor.getValue(expression);
+      if (value == null) {
+        final String errors=Commafier.commafy(visitor.getErrorMessages(),"\n");
+        CMessageBox.showError(m_parent,String.format("The expression you entered could not be evaluated:\n %s",errors));
+      }
+ else       if (value.compareTo(BigInteger.ZERO) == -1 || value.toString(16).length() > 8) {
+        CMessageBox.showError(m_parent,String.format("The expression you entered evaluates to the invalid memory address %s.",value.toString(16).toUpperCase()));
+      }
+ else {
+        final MemorySection section=ProcessHelpers.getSectionWith(m_memoryMap,new CAddress(value.longValue()));
+        if (section == null) {
+          CMessageBox.showError(m_parent,String.format("There is no memory at address %s.",value.toString(16).toUpperCase()));
+        }
+ else {
+          m_value=new CAddress(value.longValue());
+          dispose();
+        }
+      }
+    }
+ catch (    final RecognitionException exception) {
+      CMessageBox.showError(m_parent,"Invalid expression string.");
+    }
+  }
+}

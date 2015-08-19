@@ -1,0 +1,27 @@
+{
+  super(parent,"Welcome to BinNavi",ModalityType.APPLICATION_MODAL);
+  setLayout(new BorderLayout());
+  setSize(450,417);
+  setResizable(false);
+  GuiHelper.centerChildToParent(parent,this,true);
+  final JPanel centerPanel=new JPanel(new BorderLayout());
+  final ImagePanel panel=new ImagePanel(new ImageIcon(CMain.class.getResource("data/startup_logo.png")).getImage());
+  centerPanel.add(panel,BorderLayout.WEST);
+  final JTextArea area=new JTextArea("Welcome to BinNavi" + "\n\n" + "This is the first time you are using BinNavi on this computer. "+ "If you have never used BinNavi before, you should familiarize "+ "yourself with the basic concepts of BinNavi."+ "\n\n"+ "To learn about these concepts you can either read the manual or use "+ "one of the interactive tutorials you can find in the Help menu of the "+ "BinNavi main window."+ "\n\n"+ "If you just want to get started, you should configure the database "+ "you can find on the left side of the main window. Once you have "+ "successfully established a connection to the database you want to use, "+ "you can start to import disassembly data from an external data source like IDA Pro.");
+  area.setBorder(new EmptyBorder(5,5,5,5));
+  area.setWrapStyleWord(true);
+  area.setLineWrap(true);
+  area.setEditable(false);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.setBorder(new LineBorder(Color.BLACK,1));
+  innerPanel.add(area);
+  centerPanel.add(innerPanel);
+  add(centerPanel);
+  final JPanel bottomPanel=new JPanel(new BorderLayout());
+  bottomPanel.setBorder(new EmptyBorder(5,5,5,5));
+  final JButton closeButton=new JButton(new CloseAction());
+  bottomPanel.add(closeButton,BorderLayout.EAST);
+  add(bottomPanel,BorderLayout.SOUTH);
+  getRootPane().setDefaultButton(closeButton);
+  new CDialogEscaper(this);
+}

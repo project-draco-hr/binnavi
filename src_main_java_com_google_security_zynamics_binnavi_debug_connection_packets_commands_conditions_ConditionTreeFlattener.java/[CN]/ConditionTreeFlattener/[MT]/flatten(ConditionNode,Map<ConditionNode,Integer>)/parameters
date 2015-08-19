@@ -1,0 +1,2 @@
+ConditionNode root
+Map<ConditionNode,Integer> nodeIds

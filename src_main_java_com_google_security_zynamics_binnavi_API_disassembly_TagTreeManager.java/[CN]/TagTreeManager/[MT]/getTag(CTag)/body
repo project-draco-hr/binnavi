@@ -1,0 +1,3 @@
+{
+  return findTag(tag,m_root);
+}

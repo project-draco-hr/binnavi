@@ -1,0 +1,5 @@
+{
+  CGlobalProgressManager.instance().add(this);
+  m_progressPanel.setText(description);
+  m_progressPanel.start();
+}

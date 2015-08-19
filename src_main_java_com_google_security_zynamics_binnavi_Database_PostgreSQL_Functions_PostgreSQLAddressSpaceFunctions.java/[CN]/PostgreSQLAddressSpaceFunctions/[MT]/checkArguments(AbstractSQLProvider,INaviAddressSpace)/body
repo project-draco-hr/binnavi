@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00387: Provider argument can not be null");
+  Preconditions.checkNotNull(addressSpace,"IE00388: Address space argument can not be null");
+  Preconditions.checkArgument(addressSpace.inSameDatabase(provider),"IE00389: Address space is not part of this database");
+}

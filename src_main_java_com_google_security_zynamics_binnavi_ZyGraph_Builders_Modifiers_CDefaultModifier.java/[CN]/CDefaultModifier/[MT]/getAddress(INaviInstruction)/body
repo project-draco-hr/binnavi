@@ -1,0 +1,3 @@
+{
+  return getAddress(instruction.getModule(),new UnrelocatedAddress(instruction.getAddress()),true);
+}

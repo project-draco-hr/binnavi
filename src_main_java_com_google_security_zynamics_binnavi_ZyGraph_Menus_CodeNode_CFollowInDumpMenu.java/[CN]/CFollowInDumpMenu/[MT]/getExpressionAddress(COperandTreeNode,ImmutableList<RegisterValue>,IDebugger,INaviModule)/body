@@ -1,0 +1,13 @@
+{
+  if (!isAddressExpression(treeNode)) {
+    return null;
+  }
+  final INaviOperandTreeNode addressExpression=getAddressExpression(treeNode);
+  try {
+    return CExpressionEvaluator.evaluateExpression(addressExpression,registerValues,debugger,module);
+  }
+ catch (  final CExpressionEvaluationException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  return null;
+}

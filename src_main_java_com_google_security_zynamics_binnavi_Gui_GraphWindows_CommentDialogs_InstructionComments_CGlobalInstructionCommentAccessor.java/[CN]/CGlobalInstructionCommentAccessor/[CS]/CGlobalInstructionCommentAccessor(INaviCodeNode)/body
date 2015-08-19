@@ -1,0 +1,3 @@
+{
+  m_codeNode=Preconditions.checkNotNull(codeNode,"IE02684: codenode argument can not be null");
+}

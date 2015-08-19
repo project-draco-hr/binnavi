@@ -1,0 +1,7 @@
+{
+  final List<INaviView> views=(List<INaviView>)data;
+  final CTag tag=((CTagNode)parentNode).getObject().getObject();
+  for (  final INaviView view : views) {
+    CViewFunctions.tagView(m_parent,view,tag);
+  }
+}

@@ -1,0 +1,21 @@
+{
+  new Thread(){
+    @Override public void run(){
+      try {
+        final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,false);
+        operation.getProgressPanel().setMaximum(1);
+        operation.getProgressPanel().setText("Creating new tag" + ": " + name);
+        tagManager.addTag(parentTag,name);
+        operation.getProgressPanel().next();
+        operation.stop();
+      }
+ catch (      final CouldntSaveDataException exception) {
+        CUtilityFunctions.logException(exception);
+        final String innerMessage="E00144: " + "Could not create tag";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("The new tag '%s' could not be created.",name),new String[]{"There was a problem with the database connection."},new String[]{"The tag was not created."});
+        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+      }
+    }
+  }
+.start();
+}

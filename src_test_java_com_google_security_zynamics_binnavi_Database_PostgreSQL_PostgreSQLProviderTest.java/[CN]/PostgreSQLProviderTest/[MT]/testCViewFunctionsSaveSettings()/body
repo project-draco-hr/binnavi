@@ -1,0 +1,14 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final List<INaviView> views=module.getContent().getViewContainer().getViews();
+  final INaviView view=views.get(264);
+  view.load();
+  final Map<String,String> settings=new HashMap<String,String>();
+  settings.put("foo","bar");
+  PostgreSQLViewFunctions.saveSettings((AbstractSQLProvider)getProvider(),(CView)view,settings);
+  view.close();
+  view.load();
+  final Map<String,String> settings2=PostgreSQLViewFunctions.loadSettings((AbstractSQLProvider)getProvider(),(CView)view);
+  assertTrue(settings2.containsKey("foo"));
+}

@@ -1,0 +1,16 @@
+{
+  final List<RegisterDescription> registers=new ArrayList<>();
+  final DebuggerOptions debuggerOptions=new DebuggerOptions(false,false,true,false,true,false,true,false,true,false,1,0,new ArrayList<DebuggerException>(),true,true,true);
+  final com.google.security.zynamics.binnavi.debug.models.targetinformation.TargetInformation internalTargetInformation=new com.google.security.zynamics.binnavi.debug.models.targetinformation.TargetInformation(4,registers,debuggerOptions);
+  final TargetInformation targetInformation=new TargetInformation(internalTargetInformation);
+  assertFalse(targetInformation.canDetach());
+  assertFalse(targetInformation.canAttach());
+  assertTrue(targetInformation.canTerminate());
+  assertFalse(targetInformation.canMapMemory());
+  assertFalse(targetInformation.canValidateMemory());
+  assertTrue(targetInformation.canHalt());
+  assertTrue(targetInformation.canMultithread());
+  assertFalse(targetInformation.canSoftwareBreakpoint());
+  assertEquals(4,targetInformation.getAddressSize());
+  assertTrue(targetInformation.canTracecount());
+}

@@ -1,0 +1,4 @@
+{
+  ++exception;
+  events+=String.format("DEBUGGER_EXCEPTION;");
+}

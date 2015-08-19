@@ -1,0 +1,3 @@
+{
+  getProvider().appendFunctionNodeComment(functionNode,null,null);
+}

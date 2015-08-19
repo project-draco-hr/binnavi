@@ -1,0 +1,16 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  final Function function=module.getFunctions().get(0);
+  final List<Instruction> instructions=Lists.newArrayList(new Instruction(new MockInstruction()));
+  m_view.load();
+  final CodeNode codeNode=m_view.createCodeNode(function,instructions);
+  final FunctionNode functionNode=m_view.createFunctionNode(function);
+  final ArrayList<IComment> comment=Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null," COMMENT VIEW TEST "));
+  final TextNode textNode=m_view.createTextNode(comment);
+  assertEquals(3,m_view.getNodeCount());
+  m_view.addListener(listener);
+  @SuppressWarnings("unused") final CodeNode clonedCodeNode=(CodeNode)m_view.createNode(codeNode);
+  @SuppressWarnings("unused") final FunctionNode clonedFunctionNode=(FunctionNode)m_view.createNode(functionNode);
+  @SuppressWarnings("unused") final TextNode clonedTextNode=(TextNode)m_view.createNode(textNode);
+  m_view.removeListener(listener);
+}

@@ -1,0 +1,6 @@
+{
+  if (m_graph.getSettings().getLayoutSettings().getAutomaticLayouting() && m_doLayout) {
+    m_graph.doLayout();
+  }
+  m_graph.updateViews();
+}

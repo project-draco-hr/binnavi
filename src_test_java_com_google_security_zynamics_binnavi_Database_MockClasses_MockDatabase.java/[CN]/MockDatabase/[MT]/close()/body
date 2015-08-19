@@ -1,0 +1,22 @@
+{
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      if (!listener.closingDatabase(this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      listener.closedDatabase(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  isLoaded=false;
+  return true;
+}

@@ -1,0 +1,10 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getChildren().get(0);
+  final String registerNode1=(registerOperand1.getValue());
+  final String registerNode2=(registerOperand2.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  instructions.add(ReilHelpers.createLdm(baseOffset++,dw,registerNode2,bt,registerNode1));
+}

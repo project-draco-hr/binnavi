@@ -1,0 +1,11 @@
+{
+  return CollectionHelpers.filter(allNodes,new ICollectionFilter<NodeType>(){
+    private boolean isOpenGroupNode(    final NodeType node){
+      return (node.getRawNode() instanceof IGroupNode<?,?>) && !((IGroupNode<?,?>)node.getRawNode()).isCollapsed();
+    }
+    @Override public boolean qualifies(    final NodeType node){
+      return (node == getVisibleNode(node)) && !isOpenGroupNode(node);
+    }
+  }
+);
+}

@@ -1,0 +1,3 @@
+{
+  events+="RECEIVED_TARGET_INFORMATION;";
+}

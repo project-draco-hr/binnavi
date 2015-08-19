@@ -1,0 +1,19 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0x1000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("esp",BigInteger.valueOf(0x2000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("dsbase",BigInteger.valueOf(0x3000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setMemory(0x2000,0x123,4);
+  final MockOperandTree operandTree=new MockOperandTree();
+  operandTree.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree.root.m_children.add(new MockOperandTreeNode(ExpressionType.OPERATOR,"ds:"));
+  operandTree.root.m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.MEMDEREF,"["));
+  operandTree.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"eax"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree);
+  final IInstruction instruction=new MockInstruction("pop",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(BigInteger.valueOf(0x2004),interpreter.getVariableValue("esp"));
+  assertEquals(BigInteger.valueOf(8L),BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(0x123,interpreter.readMemoryDword(0x4000));
+  assertEquals(4,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+}

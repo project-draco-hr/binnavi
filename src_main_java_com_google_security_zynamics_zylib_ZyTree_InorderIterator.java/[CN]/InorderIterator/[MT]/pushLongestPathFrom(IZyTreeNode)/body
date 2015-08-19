@@ -1,0 +1,11 @@
+{
+  IZyTreeNode current=node;
+  do {
+    traversalStack.push(new Pair<IZyTreeNode,Integer>(current,0));
+    if (current.getChildren().size() == 0) {
+      break;
+    }
+    current=current.getChildren().get(0);
+  }
+ while (true);
+}

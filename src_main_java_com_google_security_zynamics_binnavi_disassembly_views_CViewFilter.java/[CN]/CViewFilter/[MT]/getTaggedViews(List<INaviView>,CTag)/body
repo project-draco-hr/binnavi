@@ -1,0 +1,9 @@
+{
+  final List<INaviView> taggedViews=new ArrayList<INaviView>();
+  for (  final INaviView view : views) {
+    if (view.getConfiguration().isTagged(tag)) {
+      taggedViews.add(view);
+    }
+  }
+  return taggedViews;
+}

@@ -1,0 +1,21 @@
+{
+  final MockDebuggerTemplateManagerListener listener=new MockDebuggerTemplateManagerListener();
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplateManager internalManager=new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplateManager(new MockSqlProvider());
+  final DebuggerTemplateManager manager=new DebuggerTemplateManager(internalManager);
+  manager.addListener(listener);
+  final DebuggerTemplate template=manager.createDebuggerTemplate("Hannes","Host",123);
+  assertEquals(1,internalManager.debuggerCount());
+  assertEquals(1,manager.getDebuggerTemplateCount());
+  assertEquals(1,manager.getDebuggerTemplates().size());
+  assertEquals("Hannes",internalManager.getDebugger(0).getName());
+  assertEquals("Host",internalManager.getDebugger(0).getHost());
+  assertEquals(123,internalManager.getDebugger(0).getPort());
+  assertEquals("Hannes",manager.getDebuggerTemplate(0).getName());
+  assertEquals("Host",manager.getDebuggerTemplate(0).getHost());
+  assertEquals(123,manager.getDebuggerTemplate(0).getPort());
+  manager.deleteDebugger(template);
+  assertEquals(0,internalManager.debuggerCount());
+  assertEquals(0,manager.getDebuggerTemplateCount());
+  assertEquals("addedDebuggerTemplate;deletedDebuggerTemplate;",listener.events);
+  manager.removeListener(listener);
+}

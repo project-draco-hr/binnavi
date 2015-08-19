@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(model,"IE01626: Model argument can not be null");
+  m_model=model;
+  m_actionSave=new CActionSave(model.getParent(),model.getGraph());
+  final JCheckBoxMenuItem autoLayoutMenu=new JCheckBoxMenuItem(new CActionAutomaticLayouting(model.getGraph()));
+  final JCheckBoxMenuItem proximityBrowsingMenu=new JCheckBoxMenuItem(CActionProxy.proxy(new CActionProximityBrowsing(model.getParent(),model.getGraph())));
+  add(new CViewMenu(model.getParent(),model.getGraphPanel(),model.getGraph(),model.getViewContainer(),m_actionSave));
+  add(new CGraphMenu(model.getParent(),model.getGraph(),model.getViewContainer(),proximityBrowsingMenu,autoLayoutMenu));
+  add(m_selectionMenu=new CSelectionMenu(model));
+  add(new CSearchMenu(model.getGraph()));
+  add(m_pluginsMenu=new CPluginsMenu(model));
+  add(new CWindowsMenu(model.getParent(),viewSwitcher));
+  m_synchronizer=new CGraphWindowMenuBarSynchronizer(model.getGraph().getSettings(),proximityBrowsingMenu,autoLayoutMenu);
+  updateGui();
+}

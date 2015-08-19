@@ -1,0 +1,38 @@
+{
+  final int len=filename.length();
+  final int ellLen=ellipsis.length();
+  Preconditions.checkArgument(maxlen >= (4 * ellLen),"Maximum length too short");
+  if (len <= maxlen) {
+    return filename;
+  }
+  int i=0;
+  char sep=File.separatorChar;
+  boolean found=false;
+  while (!found && (i < len)) {
+    sep=filename.charAt(i);
+    found=((sep == '/') || (sep == '\\'));
+    i++;
+  }
+  final StringBuilder result=new StringBuilder();
+  if (!found) {
+    result.append(filename.substring(0,maxlen - ellLen));
+    result.append(ellipsis);
+  }
+ else {
+    final int lastComp=filename.lastIndexOf(sep);
+    final int splitLen=maxlen - (len - lastComp);
+    final int splitPos=(splitLen / 2) - (ellLen / 2);
+    if (splitPos > 0) {
+      result.append(filename.substring(0,(splitPos - (ellLen % 2)) + (splitLen % 2)));
+      result.append(ellipsis);
+      result.append(filename.substring((lastComp - splitPos) + (ellLen % 2)));
+    }
+ else {
+      result.append(filename.substring(0,3));
+      result.append(ellipsis);
+      result.append(filename.substring(lastComp,(lastComp + maxlen) - 3 - (2 * ellLen)));
+      result.append(ellipsis);
+    }
+  }
+  return result.toString();
+}

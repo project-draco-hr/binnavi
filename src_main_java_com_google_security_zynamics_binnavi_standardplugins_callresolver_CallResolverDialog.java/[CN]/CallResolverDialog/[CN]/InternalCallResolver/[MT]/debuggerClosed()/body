@@ -1,0 +1,4 @@
+{
+  appendOutput("Target debugger was closed.");
+  updateGui();
+}

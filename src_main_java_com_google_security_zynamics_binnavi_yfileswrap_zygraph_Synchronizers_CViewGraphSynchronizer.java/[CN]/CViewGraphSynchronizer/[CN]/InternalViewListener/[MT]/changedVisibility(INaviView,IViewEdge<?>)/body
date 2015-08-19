@@ -1,0 +1,7 @@
+{
+  m_edgeDrawingSynchronizer.updateEdgeDrawingState();
+  final NaviEdge naviEdge=m_mappings.getEdge(edge);
+  if (edge != null) {
+    naviEdge.getRealizer().setDrawSloppyEdges(CEdgeDrawingFunctions.calcDrawSloppyEdges(m_graph));
+  }
+}

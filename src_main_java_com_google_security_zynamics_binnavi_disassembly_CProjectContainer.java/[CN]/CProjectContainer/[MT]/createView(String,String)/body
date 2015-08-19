@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(name,"IE02214: Name argument can not be null");
+  Preconditions.checkNotNull(description,"IE02215: Description argument can not be null");
+  return m_project.getContent().createView(name,description);
+}

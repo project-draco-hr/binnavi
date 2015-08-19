@@ -1,0 +1,4 @@
+{
+  taggingPanel.getTree().dispose();
+  taggingPanel.getTree().setSelectionModel(new DefaultTreeSelectionModel());
+}

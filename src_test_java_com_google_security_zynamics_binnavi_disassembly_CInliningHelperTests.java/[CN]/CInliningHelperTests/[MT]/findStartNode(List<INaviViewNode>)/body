@@ -1,0 +1,10 @@
+{
+  for (  final INaviViewNode node : nodes) {
+    for (    final INaviEdge edge : node.getOutgoingEdges()) {
+      if (edge.getType() == EdgeType.ENTER_INLINED_FUNCTION) {
+        return node;
+      }
+    }
+  }
+  throw new IllegalStateException("Error: Start node could not be determined");
+}

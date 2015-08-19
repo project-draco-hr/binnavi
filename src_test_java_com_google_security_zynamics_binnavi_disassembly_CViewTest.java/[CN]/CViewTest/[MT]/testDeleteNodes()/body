@@ -1,0 +1,27 @@
+{
+  m_view.load();
+  try {
+    m_view.getContent().deleteNodes(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  final CCodeNode codeNode=m_view.getContent().createCodeNode(m_function,Lists.newArrayList(m_instruction));
+  final CFunctionNode functionNode=m_view.getContent().createFunctionNode(m_function);
+  m_view.getContent().createEdge(codeNode,codeNode,EdgeType.JUMP_CONDITIONAL_FALSE);
+  m_view.getContent().createEdge(codeNode,functionNode,EdgeType.JUMP_CONDITIONAL_TRUE);
+  assertEquals(2,m_view.getNodeCount());
+  assertEquals(2,m_view.getEdgeCount());
+  m_view.getContent().deleteNodes(Lists.newArrayList((INaviViewNode)codeNode,functionNode));
+  assertEquals("loadedView/addedNode/changedGraphType/addedNode/changedGraphType/addedEdge/addedEdge/deletedEdge/deletedEdge/deletedNodes/",m_listener.eventList);
+  assertEquals(0,m_view.getNodeCount());
+  assertEquals(0,m_view.getEdgeCount());
+  try {
+    m_view.getContent().deleteNodes(Lists.newArrayList((INaviViewNode)codeNode,functionNode));
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  assertEquals("loadedView/addedNode/changedGraphType/addedNode/changedGraphType/addedEdge/addedEdge/deletedEdge/deletedEdge/deletedNodes/",m_listener.eventList);
+  assertEquals(0,m_view.getNodeCount());
+}

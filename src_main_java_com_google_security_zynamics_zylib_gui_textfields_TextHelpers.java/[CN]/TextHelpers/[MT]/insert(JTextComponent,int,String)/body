@@ -1,0 +1,4 @@
+{
+  final String old=component.getText();
+  component.setText(old.substring(0,position) + string + old.substring(position));
+}

@@ -1,0 +1,40 @@
+{
+  final OperandOrderIterator iter=new OperandOrderIterator(operandTree.getRootNode());
+  final boolean isVariableAccess=graphSettings.getDisplaySettings().getSimplifiedVariableAccess() && isVariableAccess(operandTree.getRootNode());
+  boolean hasMemderef=false;
+  boolean hasExpressionList=false;
+  boolean needsComma=false;
+  boolean hasExclamationMark=false;
+  COperandTreeNode memParent=null;
+  final ColorsConfigItem colors=ConfigManager.instance().getColorSettings();
+  while (iter.next()) {
+    if (isVariableAccess) {
+      skipMemoryAccess(iter);
+    }
+    final COperandTreeNode treeNode=(COperandTreeNode)iter.current();
+    hasExclamationMark="!".equals(treeNode.getValue());
+    if (skipOperand(treeNode,hasExpressionList)) {
+      continue;
+    }
+    if (needsComma) {
+      styleRun.add(new CStyleRunData(line.length(),1,colors.getOperandSeparatorColor()));
+      line.append(',');
+    }
+    if (hasExpressionList) {
+      needsComma=true;
+    }
+    if (hasMemderef && !isAncestor(treeNode,memParent)) {
+      styleRun.add(new CStyleRunData(line.length(),1,colors.getMemRefColor()));
+      line.append(']');
+      hasMemderef=false;
+    }
+    hasExpressionList=(treeNode.getType() == ExpressionType.EXPRESSION_LIST) || hasExpressionList;
+    if (treeNode.getType() == ExpressionType.MEMDEREF) {
+      memParent=treeNode;
+      hasMemderef=true;
+    }
+    addOperand(line,styleRun,treeNode,modifier);
+  }
+  addClosingDelimiters(line,styleRun,hasMemderef,hasExpressionList,hasExclamationMark);
+  addCommaSeparator(line,styleRun,instruction.getOperands(),counter);
+}

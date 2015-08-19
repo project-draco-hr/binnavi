@@ -1,0 +1,10 @@
+{
+  final WalkResult result=BaseTypeHelpers.findMember(typeSystem.uintArrayType,0);
+  assertNotNull(result);
+  assertTrue(result.isValid());
+  assertNotNull(result.getMember());
+  assertNotNull(result.getPath());
+  assertEquals(typeSystem.uintArrayTypeMember,result.getMember());
+  assertEquals(Lists.newArrayList(typeSystem.uintArrayType),result.getPath());
+  assertEquals("unsigned int[0]",result.getPathString());
+}

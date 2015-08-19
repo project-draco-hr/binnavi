@@ -1,0 +1,6 @@
+{
+  final List<NaviNode> nodes=CTraceNodeFinder.getTraceNodes(graph,list);
+  for (  final NaviNode node : nodes) {
+    CTaggingFunctions.tagNode(parent,node,tag);
+  }
+}

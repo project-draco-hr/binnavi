@@ -1,0 +1,4 @@
+{
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.isTainted(m_fullSet));
+  Assert.assertFalse(m_emptyRegisterSetLatticeElement.isTainted(m_fullSet));
+}

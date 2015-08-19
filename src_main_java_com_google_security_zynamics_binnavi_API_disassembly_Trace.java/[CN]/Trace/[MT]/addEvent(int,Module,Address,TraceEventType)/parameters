@@ -1,0 +1,4 @@
+int tid
+Module module
+Address address
+TraceEventType type

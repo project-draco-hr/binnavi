@@ -1,0 +1,3 @@
+AbstractZyGraph<NodeType,EdgeType> graph
+List<IZyEditModeListener<NodeType,EdgeType>> listeners
+IStateActionFactory<NodeType,EdgeType> factory

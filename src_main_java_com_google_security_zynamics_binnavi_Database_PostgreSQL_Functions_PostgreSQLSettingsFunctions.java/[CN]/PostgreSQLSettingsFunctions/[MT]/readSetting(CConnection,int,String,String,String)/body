@@ -1,0 +1,25 @@
+{
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement("select value from " + table + " where name = ? and "+ column+ " = ?");
+    try {
+      statement.setString(1,key);
+      statement.setInt(2,containerId);
+      final ResultSet resultSet=statement.executeQuery();
+      try {
+        while (resultSet.next()) {
+          return PostgreSQLHelpers.readString(resultSet,"value");
+        }
+      }
+  finally {
+        resultSet.close();
+      }
+      return null;
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

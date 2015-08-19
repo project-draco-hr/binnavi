@@ -1,0 +1,4 @@
+JFrame parent
+IDebugger debugger
+ZyGraph graph
+TraceLogger logger

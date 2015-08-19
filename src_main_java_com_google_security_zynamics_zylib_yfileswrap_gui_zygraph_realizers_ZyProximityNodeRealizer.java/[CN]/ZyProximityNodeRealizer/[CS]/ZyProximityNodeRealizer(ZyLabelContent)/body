@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(content,"Error: Node content can't be null.");
+  m_content=content;
+  setShapeType(ShapeNodeRealizer.ELLIPSE);
+  setLineType(LineType.LINE_2);
+  setDropShadowOffsetX((byte)0);
+  setDropShadowOffsetY((byte)0);
+  setFillColor(m_backGroundColor);
+  setSloppySelectionColor(m_backGroundColor);
+  final Rectangle2D bounds=getNodeContent().getBounds();
+  final double diameter=Math.max(bounds.getWidth(),bounds.getHeight());
+  setSize(diameter,diameter);
+}

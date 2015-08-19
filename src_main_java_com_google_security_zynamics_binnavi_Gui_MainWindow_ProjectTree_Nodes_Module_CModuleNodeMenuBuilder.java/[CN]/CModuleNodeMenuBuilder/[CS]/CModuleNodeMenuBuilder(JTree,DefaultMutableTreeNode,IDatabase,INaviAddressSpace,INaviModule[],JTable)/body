@@ -1,0 +1,25 @@
+{
+  super(projectTree);
+  m_database=Preconditions.checkNotNull(database,"IE01109: Database argument can't be null");
+  m_parentNode=parentNode;
+  m_addressSpace=addressSpace;
+  m_modules=modules.clone();
+  m_table=table;
+  final boolean singleModule=m_modules.length == 1;
+  m_loadModulesAction=CActionProxy.proxy(new CLoadModuleAction(projectTree,m_modules));
+  m_initializeModuleAction=CActionProxy.proxy(new CModuleInitializeAction(projectTree,m_modules));
+  if (singleModule) {
+    m_container=new CModuleContainer(database,m_modules[0]);
+    m_searchAction=CActionProxy.proxy(new CSearchAction(projectTree,m_container));
+    m_resolveAction=CActionProxy.proxy(new CResolveFunctionsAction(projectTree,m_database,m_modules[0]));
+    m_resolveAllAction=CActionProxy.proxy(new CResolveAllFunctionsSingleModuleAction(projectTree,m_database,m_modules[0]));
+    updateActions(m_modules[0]);
+    m_modules[0].addListener(m_listener);
+  }
+ else {
+    m_searchAction=null;
+    m_resolveAction=null;
+    m_resolveAllAction=null;
+    updateActions(m_modules);
+  }
+}

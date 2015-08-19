@@ -1,0 +1,12 @@
+{
+  boolean needsTableChange=false;
+  for (  final Breakpoint breakpoint : breakpoints) {
+    if (breakpoint.getType() == BreakpointType.REGULAR) {
+      needsTableChange=true;
+      break;
+    }
+  }
+  if (needsTableChange) {
+    m_tableModel.fireTableDataChanged();
+  }
+}

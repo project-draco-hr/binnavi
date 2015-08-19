@@ -1,0 +1,6 @@
+{
+  for (  final VisualCoverageAction action : createdActions) {
+    action.dispose();
+  }
+  createdActions.clear();
+}

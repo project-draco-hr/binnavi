@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  return new Address(m_debugger.memoryToFile(module.getNative(),new RelocatedAddress(new CAddress(address.toLong()))).getAddress().toBigInteger());
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(function,"Error: function arugment can not be null.");
+  setForwardedFunction(function,true);
+}

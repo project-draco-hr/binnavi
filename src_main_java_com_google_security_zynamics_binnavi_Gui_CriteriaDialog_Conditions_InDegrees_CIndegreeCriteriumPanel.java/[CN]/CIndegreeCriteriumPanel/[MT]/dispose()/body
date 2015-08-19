@@ -1,0 +1,4 @@
+{
+  m_operatorBox.dispose();
+  m_inputField.dispose();
+}

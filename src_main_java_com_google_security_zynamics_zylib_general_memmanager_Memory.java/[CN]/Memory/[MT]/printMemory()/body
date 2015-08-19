@@ -1,0 +1,7 @@
+{
+  m_readLock.lock();
+  for (  final MemoryChunk chunk : m_chunks) {
+    chunk.print();
+  }
+  m_readLock.unlock();
+}

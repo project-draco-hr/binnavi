@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(name,"IE00809: Name argument can not be null");
+  Preconditions.checkNotNull(host,"IE00810: Host argument can not be null");
+  Preconditions.checkArgument(NetHelpers.isValidPort(port),"IE00811: Invalid port");
+  final DebuggerTemplate debugger=sqlProvider.createDebuggerTemplate(name,host,port);
+  addDebugger(debugger);
+  return debugger;
+}

@@ -1,0 +1,3 @@
+{
+  return "<html><b>" + tag.getName() + "</b><br><i>"+ tag.getDescription().replace("\n","<br>")+ "</i></html>";
+}

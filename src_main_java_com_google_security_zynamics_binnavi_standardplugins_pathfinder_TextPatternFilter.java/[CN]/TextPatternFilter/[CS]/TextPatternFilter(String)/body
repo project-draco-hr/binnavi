@@ -1,0 +1,3 @@
+{
+  m_pattern=Preconditions.checkNotNull(pattern,"Error: pattern argument can not be null").toLowerCase();
+}

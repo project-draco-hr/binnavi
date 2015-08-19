@@ -1,0 +1,3 @@
+{
+  return m_debuggerCombo == null ? null : m_debuggerCombo.getSelectedDebugger();
+}

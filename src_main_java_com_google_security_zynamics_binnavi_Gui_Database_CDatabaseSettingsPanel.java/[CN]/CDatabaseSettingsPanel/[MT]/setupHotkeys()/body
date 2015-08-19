@@ -1,0 +1,20 @@
+{
+  final InputMap inputMap=getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  final ActionMap actionMap=getActionMap();
+  inputMap.put(HotKeys.DATABASE_SETTINGS_TEST_CONNECTION_KEY.getKeyStroke(),"TEST_CONNECTION");
+  actionMap.put("TEST_CONNECTION",new AbstractAction(){
+    @Override public void actionPerformed(    final ActionEvent event){
+      if (testButton.isEnabled()) {
+        testConnection();
+      }
+    }
+  }
+);
+  inputMap.put(HotKeys.DATABASE_SETTINGS_SAVE_CONNECTION_KEY.getKeyStroke(),"SAVE_CONNECTION");
+  actionMap.put("SAVE_CONNECTION",new AbstractAction(){
+    @Override public void actionPerformed(    final ActionEvent event){
+      saveConnection();
+    }
+  }
+);
+}

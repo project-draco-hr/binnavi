@@ -1,0 +1,17 @@
+{
+  final ArrayList<SearchResult> results=new ArrayList<SearchResult>();
+  if ("".equals(searchString)) {
+    return results;
+  }
+  int lineCounter=0;
+  for (  final ZyLineContent lineContent : content) {
+    final String lineText=caseSensitive ? lineContent.getText() : lineContent.getText().toLowerCase();
+    int startPosition=0;
+    do {
+      startPosition=regEx ? CElementSearcher.doRegexSearch(element,lineText,lineCounter,searchString,startPosition,caseSensitive,results) : CElementSearcher.doTextSearch(element,lineText,lineCounter,searchString,startPosition,caseSensitive,results);
+    }
+ while (startPosition != -1);
+    ++lineCounter;
+  }
+  return results;
+}

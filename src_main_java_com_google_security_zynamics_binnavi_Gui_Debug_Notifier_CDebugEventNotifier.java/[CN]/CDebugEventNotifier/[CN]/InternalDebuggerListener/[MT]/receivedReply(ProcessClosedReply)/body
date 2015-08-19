@@ -1,0 +1,6 @@
+{
+  if (reply.success()) {
+    stop();
+    CMessageBox.showInformation(activateWindow(),"The target process terminated.");
+  }
+}

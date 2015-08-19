@@ -1,0 +1,8 @@
+{
+  Preconditions.checkArgument(bytes > 0,"Error: Number of bytes must be positive");
+  Preconditions.checkArgument(bytes <= m_bytesPerRow,"Error: Number of bytes can't be more than the number of bytes per row");
+  m_bytesPerColumn=bytes;
+  updateHexViewWidth();
+  updatePreferredSize();
+  repaint();
+}

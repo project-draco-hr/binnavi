@@ -1,0 +1,6 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"xor");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  XorGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"xor",registerOperand2.getValue(),registerOperand1.getValue(),false,false,false,false);
+}

@@ -1,0 +1,7 @@
+{
+  final double x=mouseX - labelParentX - m_content.getPaddingLeft();
+  final double y=mouseY - labelParentY;
+  m_mouse_released_y=calcHitLine(y);
+  m_caret_endpos_x=calcCaretPosition(m_mouse_released_y,x,y);
+  m_mouse_released_x=calcHitPosition(m_caret_endpos_x,x,y,zoomFactor);
+}

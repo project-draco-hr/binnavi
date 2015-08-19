@@ -1,0 +1,3 @@
+{
+  return PostgreSQLFunctionFunctions.appendGlobalFunctionComment(this,function,commentText,userId);
+}

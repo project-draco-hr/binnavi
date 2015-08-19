@@ -1,0 +1,9 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cdq");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final String isolatedMsb=environment.getNextVariableString();
+  final String shiftedMsb=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(baseOffset,OperandSize.DWORD,"eax",OperandSize.DWORD,"2147483648",OperandSize.DWORD,isolatedMsb));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 1,OperandSize.DWORD,isolatedMsb,OperandSize.DWORD,"-31",OperandSize.DWORD,shiftedMsb));
+  instructions.add(ReilHelpers.createSub(baseOffset + 2,OperandSize.DWORD,"0",OperandSize.DWORD,shiftedMsb,OperandSize.DWORD,"edx"));
+}

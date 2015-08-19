@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(mnemonic,"Error: mnemonic argument can not be null");
+  Preconditions.checkArgument(com.google.security.zynamics.reil.ReilHelpers.isValidReilMnemonic(mnemonic),"Error: mnemonic argument is not a valid REIL mnemonic");
+  return mnemonic;
+}

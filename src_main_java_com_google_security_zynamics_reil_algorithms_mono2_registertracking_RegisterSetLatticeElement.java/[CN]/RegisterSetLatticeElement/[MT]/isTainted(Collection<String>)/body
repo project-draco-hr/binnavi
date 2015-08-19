@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(registers,"Error: Registers argument can not be null");
+  for (  final String register : registers) {
+    if (m_taintedRegs.contains(register)) {
+      return true;
+    }
+  }
+  return false;
+}

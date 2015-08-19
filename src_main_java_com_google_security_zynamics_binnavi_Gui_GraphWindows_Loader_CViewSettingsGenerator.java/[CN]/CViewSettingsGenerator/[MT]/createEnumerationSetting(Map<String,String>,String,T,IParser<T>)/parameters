@@ -1,0 +1,4 @@
+Map<String,String> rawSettings
+String settingName
+T defaultValue
+IParser<T> parser

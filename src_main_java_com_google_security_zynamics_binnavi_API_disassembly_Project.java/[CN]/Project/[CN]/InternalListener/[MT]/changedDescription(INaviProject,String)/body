@@ -1,0 +1,10 @@
+{
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.changedDescription(Project.this,description);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

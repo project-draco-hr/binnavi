@@ -1,0 +1,17 @@
+{
+  for (int rows=0; rows < 10000; rows++) {
+    ArrayList<String> field1=new ArrayList<>();
+    ArrayList<String> field2=new ArrayList<>();
+    ArrayList<String> field3=new ArrayList<>();
+    field1.add(String.format("* %d *",rows));
+    field2.add(String.format("Code for line %d",rows));
+    field3.add(String.format("First comment in line %d",rows));
+    field3.add(String.format("Second comment in line %d",rows));
+    totalNumberOfLines+=2;
+    ArrayList<ArrayList<String>> fields=new ArrayList<>();
+    fields.add(field1);
+    fields.add(field2);
+    fields.add(field3);
+    data.add(fields);
+  }
+}

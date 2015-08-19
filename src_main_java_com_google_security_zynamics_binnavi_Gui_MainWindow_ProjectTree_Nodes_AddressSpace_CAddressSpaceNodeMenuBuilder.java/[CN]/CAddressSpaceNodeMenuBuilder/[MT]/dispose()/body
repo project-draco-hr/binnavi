@@ -1,0 +1,5 @@
+{
+  if (m_addressSpaces.length == 1) {
+    m_addressSpaces[0].removeListener(m_listener);
+  }
+}

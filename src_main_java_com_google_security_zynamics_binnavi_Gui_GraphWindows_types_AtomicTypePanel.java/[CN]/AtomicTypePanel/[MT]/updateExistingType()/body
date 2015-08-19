@@ -1,0 +1,3 @@
+{
+  typeManager.updateType(existingType,name.getText(),Integer.parseInt(size.getText()),signed.isSelected());
+}

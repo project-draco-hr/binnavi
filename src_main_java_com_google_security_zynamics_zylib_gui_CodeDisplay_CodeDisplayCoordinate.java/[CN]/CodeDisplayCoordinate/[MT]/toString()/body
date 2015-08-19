@@ -1,0 +1,3 @@
+{
+  return "Row: " + Integer.toString(rowIndex) + ", Column: "+ Integer.toString(columnIndex)+ ", Line: "+ Integer.toString(lineIndex)+ ","+ Integer.toString(fieldIndex);
+}

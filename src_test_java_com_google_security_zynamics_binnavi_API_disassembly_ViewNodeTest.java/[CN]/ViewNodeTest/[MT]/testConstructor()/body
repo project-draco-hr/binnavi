@@ -1,0 +1,4 @@
+{
+  assertEquals(m_view,m_node.getView());
+  assertTrue(m_node.isVisible());
+}

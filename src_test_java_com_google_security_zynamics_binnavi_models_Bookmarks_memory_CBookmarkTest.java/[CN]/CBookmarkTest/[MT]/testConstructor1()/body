@@ -1,0 +1,3 @@
+{
+  new CBookmark(null,"MyDescription");
+}

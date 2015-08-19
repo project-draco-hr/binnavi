@@ -1,0 +1,15 @@
+{
+  final Pair<Node,NaviNode> result=ZyGraphNodeBuilder.convertNode(rawNode,m_graph.getGraph(),m_graph.getSettings());
+  m_mappings.addNode(result.first(),result.second());
+  if (rawNode instanceof INaviGroupNode) {
+    ((INaviGroupNode)rawNode).addGroupListener(m_groupNodeListener);
+  }
+  for (  final INaviGraphListener listener : m_listeners) {
+    try {
+      listener.addedNode(m_graph,result.second());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

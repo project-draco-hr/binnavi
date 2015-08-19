@@ -1,0 +1,3 @@
+{
+  return convert(new com.google.security.zynamics.reil.algorithms.mono.MonotoneSolver<GraphNode,LatticeElement,ObjectType,LatticeWrapper<LatticeElement,ObjectType>>(graph,new LatticeWrapper<LatticeElement,ObjectType>(lattice),state,transformationList,walker,null).solve());
+}

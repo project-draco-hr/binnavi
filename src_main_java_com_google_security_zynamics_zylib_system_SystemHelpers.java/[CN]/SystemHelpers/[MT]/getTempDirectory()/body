@@ -1,0 +1,3 @@
+{
+  return FileUtils.ensureTrailingSlash(System.getProperty("java.io.tmpdir"));
+}

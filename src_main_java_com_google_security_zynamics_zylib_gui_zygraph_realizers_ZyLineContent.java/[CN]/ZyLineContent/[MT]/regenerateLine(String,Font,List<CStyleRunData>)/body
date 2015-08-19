@@ -1,0 +1,26 @@
+{
+  m_text=Preconditions.checkNotNull(text,"Error: text argument can not be null");
+  Preconditions.checkNotNull(textColorStyleRun,"Error: textColorStyleRun argument can not be null");
+  m_atext=new AttributedString(text);
+  if (!isEmpty()) {
+    if (font != null) {
+      m_atext.addAttribute(TextAttribute.FONT,font);
+    }
+    for (    final CStyleRunData data : textColorStyleRun) {
+      final int position=data.getStart();
+      final int realLength=calculateRealLength(position,data.getLength());
+      validatePartialLineArguments(position,realLength);
+      m_atext.addAttribute(TextAttribute.FOREGROUND,data.getColor(),position,position + realLength);
+      if (data.getLineObject() != null) {
+        m_lineObjects.add(data.getLineObject());
+      }
+      if (data.getObject() != null) {
+        setObject(position,realLength,data.getObject());
+      }
+    }
+    m_textLayout=new TextLayout(m_atext.getIterator(),m_fontContext);
+  }
+  if (font != null) {
+    updateCharBounds(font);
+  }
+}

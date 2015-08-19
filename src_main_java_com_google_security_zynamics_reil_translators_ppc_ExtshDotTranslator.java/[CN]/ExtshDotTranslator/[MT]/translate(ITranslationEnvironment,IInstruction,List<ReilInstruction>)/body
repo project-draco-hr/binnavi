@@ -1,0 +1,3 @@
+{
+  SignExtendGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"extsh.",OperandSize.WORD,true);
+}

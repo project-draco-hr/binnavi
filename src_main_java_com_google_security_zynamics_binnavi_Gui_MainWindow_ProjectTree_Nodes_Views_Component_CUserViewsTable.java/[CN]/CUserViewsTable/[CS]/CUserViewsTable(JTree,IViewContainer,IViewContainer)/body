@@ -1,0 +1,5 @@
+{
+  super(projectTree,new CUserViewsModel(originContainer),contextContainer,new CUserViewsTableHelp());
+  m_contextContainer=contextContainer;
+  setDefaultRenderer(Object.class,new CViewsTableRenderer(this,originContainer));
+}

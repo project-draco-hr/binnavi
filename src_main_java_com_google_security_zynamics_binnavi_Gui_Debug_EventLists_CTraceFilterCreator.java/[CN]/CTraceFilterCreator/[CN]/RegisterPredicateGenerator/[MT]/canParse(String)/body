@@ -1,0 +1,16 @@
+{
+  final Pattern pattern=Pattern.compile(RULE_REGEX);
+  final Matcher matcher=pattern.matcher(text);
+  if (!matcher.matches()) {
+    return false;
+  }
+  final boolean hasHexPrefix=matcher.group(3) != null;
+  final String value=matcher.group(4);
+  try {
+    Long.valueOf(value,hasHexPrefix ? 16 : 10);
+    return true;
+  }
+ catch (  final NumberFormatException exception) {
+    return false;
+  }
+}

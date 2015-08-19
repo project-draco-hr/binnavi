@@ -1,0 +1,6 @@
+{
+  long offset=baseOffset;
+  instructions.add(ReilHelpers.createAnd(offset++,carrySize,carryOperand,OperandSize.BYTE,String.valueOf(1L),OperandSize.BYTE,"C"));
+  instructions.add(ReilHelpers.createBsh(offset++,resultSize,resultOperand,OperandSize.WORD,String.valueOf(-31L),OperandSize.BYTE,"N"));
+  instructions.add(ReilHelpers.createBisz(offset++,resultSize,resultOperand,OperandSize.BYTE,"Z"));
+}

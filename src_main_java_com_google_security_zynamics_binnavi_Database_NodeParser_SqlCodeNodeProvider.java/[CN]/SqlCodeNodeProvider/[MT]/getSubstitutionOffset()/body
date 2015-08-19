@@ -1,0 +1,8 @@
+{
+  try {
+    return m_resultSet.getInt("expression_types_offset");
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

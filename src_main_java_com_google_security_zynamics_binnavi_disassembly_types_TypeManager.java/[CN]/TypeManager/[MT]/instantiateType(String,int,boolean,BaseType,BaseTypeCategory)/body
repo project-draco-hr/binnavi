@@ -1,0 +1,8 @@
+{
+  final BaseType baseType=backend.createType(name,size,signed,childPointer == null ? null : childPointer.getId(),category);
+  if (childPointer != null) {
+    BaseType.appendToPointerHierarchy(childPointer,baseType);
+  }
+  typesContainer.addBaseType(baseType);
+  return baseType;
+}

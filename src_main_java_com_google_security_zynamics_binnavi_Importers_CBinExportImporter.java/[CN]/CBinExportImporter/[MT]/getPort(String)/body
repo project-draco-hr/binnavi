@@ -1,0 +1,13 @@
+{
+  final int colonIndex=host.indexOf(':');
+  if (colonIndex == -1) {
+    return 5432;
+  }
+  final String portString=host.substring(colonIndex + 1);
+  try {
+    return Integer.valueOf(portString);
+  }
+ catch (  final NumberFormatException exception) {
+    return 5432;
+  }
+}

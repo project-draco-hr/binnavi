@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  Preconditions.checkNotNull(startInstruction,"Error: startInstruction argument can not be null");
+  Preconditions.checkNotNull(trackedRegister,"Error: trackedRegister argument can not be null");
+  Preconditions.checkNotNull(options,"Error: options argument can not be null");
+  final CReilInstructionGraph instructionGraph=new CReilInstructionGraph(function.getGraph());
+  final RegisterSetLatticeElement registerSetLatticeElement=new RegisterSetLatticeElement(trackedRegister);
+  final MonoReilSolver<RegisterSetLatticeElement> monoReilSolver=new MonoReilSolver<RegisterSetLatticeElement>(instructionGraph,options.getAnalysisDirection(),new RegisterSetLattice());
+  final Iterable<IInstructionGraphEdge> relevantEdges=options.trackIncoming() ? instructionGraph.getIncomingEdgesForAddress(startInstruction.getAddress()) : instructionGraph.getOutgoingEdgesForAddress(startInstruction.getAddress());
+  final List<Pair<IInstructionGraphEdge,RegisterSetLatticeElement>> initialState=new ArrayList<Pair<IInstructionGraphEdge,RegisterSetLatticeElement>>();
+  for (  final IInstructionGraphEdge currentRelevantEdge : relevantEdges) {
+    initialState.add(new Pair<IInstructionGraphEdge,RegisterSetLatticeElement>(currentRelevantEdge,registerSetLatticeElement));
+  }
+  final ITransformationProvider<RegisterSetLatticeElement> transformationProvider=new RegisterTrackingTransformationProvider(options);
+  final MonoReilSolverResult<RegisterSetLatticeElement> solverResult=monoReilSolver.solve(transformationProvider,initialState,Integer.MAX_VALUE);
+  return solverResult;
+}

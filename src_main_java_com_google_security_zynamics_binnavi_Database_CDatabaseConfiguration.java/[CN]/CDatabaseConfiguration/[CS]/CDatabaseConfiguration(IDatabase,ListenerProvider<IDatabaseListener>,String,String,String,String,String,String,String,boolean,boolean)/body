@@ -1,0 +1,16 @@
+{
+  m_database=Preconditions.checkNotNull(database,"IE02401: database argument can not be null");
+  m_listeners=Preconditions.checkNotNull(listeners,"IE02402: listeners argument can not be null");
+  m_description=Preconditions.checkNotNull(description,"IE02403: description argument can not be null");
+  m_driver=Preconditions.checkNotNull(driver,"IE02404: driver argument can not be null");
+  m_host=Preconditions.checkNotNull(host,"IE02405: host argument can not be null");
+  m_name=Preconditions.checkNotNull(name,"IE02406: name argument can not be null");
+  m_user=Preconditions.checkNotNull(user,"IE02407: user argument can not be null");
+  m_password=Preconditions.checkNotNull(password,"IE02408: password argument can not be null");
+  m_identity=Preconditions.checkNotNull(identity,"IE00065: identity argument can not be null");
+  if (m_identity.isEmpty()) {
+    m_identity="identity";
+  }
+  m_autoConnect=autoConnect;
+  m_savePassword=savePassword;
+}

@@ -1,0 +1,11 @@
+{
+  final double x=m_graph.getEditMode().translateX(event.getX());
+  final double y=m_graph.getEditMode().translateY(event.getY());
+  final HitInfo hitInfo=m_graph.getGraph().getHitInfo(x,y);
+  if (hitInfo.hasHitNodes()) {
+    return CHitNodesTransformer.enterNode(m_factory,event,hitInfo);
+  }
+ else {
+    return CHitNodesTransformer.exitNode(m_factory,event,hitInfo,this);
+  }
+}

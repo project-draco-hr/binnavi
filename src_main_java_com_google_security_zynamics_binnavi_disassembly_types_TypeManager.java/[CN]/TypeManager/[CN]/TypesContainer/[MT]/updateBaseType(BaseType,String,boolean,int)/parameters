@@ -1,0 +1,4 @@
+BaseType baseType
+String newName
+boolean signed
+int size

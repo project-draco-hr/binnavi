@@ -1,0 +1,18 @@
+{
+  final JPanel basePanel=new JPanel(new BorderLayout());
+  final JPanel titledBorderHelperPanel=new JPanel(new BorderLayout());
+  titledBorderHelperPanel.setBorder(new TitledBorder("Debugger"));
+  final JPanel containerPanel=new JPanel(new GridLayout(3,1,5,5));
+  containerPanel.setBorder(new EmptyBorder(0,0,5,0));
+  final JPanel buttonPanel=new JPanel(new GridLayout(1,2));
+  buttonPanel.setBorder(new EmptyBorder(5,0,5,2));
+  buttonPanel.add(new JPanel());
+  buttonPanel.add(m_saveButton);
+  containerPanel.add(new CLabeledComponent("Name" + ":",new CNameHelp(),m_nameTextField));
+  containerPanel.add(new CLabeledComponent("Host" + ":",new CHostHelp(),m_hostTextField));
+  containerPanel.add(new CLabeledComponent("Port" + ":",new CPortHelp(),m_portTextField));
+  titledBorderHelperPanel.add(containerPanel,BorderLayout.NORTH);
+  basePanel.add(titledBorderHelperPanel,BorderLayout.NORTH);
+  basePanel.add(buttonPanel,BorderLayout.CENTER);
+  add(basePanel,BorderLayout.NORTH);
+}

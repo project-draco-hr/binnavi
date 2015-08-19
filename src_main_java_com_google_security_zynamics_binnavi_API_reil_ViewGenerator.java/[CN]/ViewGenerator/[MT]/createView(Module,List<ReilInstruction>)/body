@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  Preconditions.checkNotNull(instructions,"Error: Instructions argument can not be null");
+  final INaviView view=CReilViewCreator.create(module.getNative(),convert(instructions));
+  return ObjectFinders.getObject(view,module.getViews());
+}

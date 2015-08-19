@@ -1,0 +1,5 @@
+{
+  super(projectTree);
+  m_database=database;
+  m_tag=tag;
+}

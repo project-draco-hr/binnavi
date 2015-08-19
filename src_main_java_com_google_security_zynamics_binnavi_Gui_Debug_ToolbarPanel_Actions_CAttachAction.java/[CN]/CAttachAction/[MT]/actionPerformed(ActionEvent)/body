@@ -1,0 +1,9 @@
+{
+  final IDebugger debugger=m_frontEndDebuggerProvider.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    CMessageBox.showInformation(m_parent,"No debugger selected. Did you configure a debugger for this module?");
+  }
+ else {
+    CDebuggerFunctions.attach(m_parent,debugger,m_frontEndDebuggerProvider.getNotifier(debugger));
+  }
+}

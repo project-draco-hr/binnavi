@@ -1,0 +1,3 @@
+ReilInstruction instruction
+LatticeElement currentState
+LatticeElement incomingState

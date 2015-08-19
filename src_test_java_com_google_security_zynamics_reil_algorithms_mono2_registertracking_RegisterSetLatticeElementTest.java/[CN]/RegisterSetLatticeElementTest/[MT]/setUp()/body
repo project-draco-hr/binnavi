@@ -1,0 +1,5 @@
+{
+  m_emptyRegisterSetLatticeElement=new RegisterSetLatticeElement();
+  m_fullSet=Sets.newHashSet("eax","ebx","ecx","edx","esi");
+  m_fullRegisterSetLatticeElement=new RegisterSetLatticeElement(m_fullSet,m_fullSet,new HashSet<String>(),m_fullSet,m_fullSet);
+}

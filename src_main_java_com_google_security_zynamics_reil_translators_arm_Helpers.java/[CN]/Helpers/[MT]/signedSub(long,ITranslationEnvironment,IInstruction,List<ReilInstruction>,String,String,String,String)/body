@@ -1,0 +1,12 @@
+{
+  final String tmpResult=environment.getNextVariableString();
+  final String twoComplementfirstOperand=environment.getNextVariableString();
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize qw=OperandSize.QWORD;
+  final OperandSize bt=OperandSize.BYTE;
+  long baseOffset=offset;
+  instructions.add(ReilHelpers.createXor(baseOffset++,dw,firstOperand,dw,String.valueOf(0xFFFFFFFFL),dw,twoComplementfirstOperand));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,twoComplementfirstOperand,dw,secondOperand,qw,tmpResult));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,qw,tmpResult,bt,String.valueOf(1L),qw,trueResult));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,qw,trueResult,dw,String.valueOf(0xFFFFFFFFL),dw,resultOperand));
+}

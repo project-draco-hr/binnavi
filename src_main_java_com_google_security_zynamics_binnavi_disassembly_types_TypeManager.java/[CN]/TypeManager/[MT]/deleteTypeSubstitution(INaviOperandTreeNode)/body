@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(node,"IE02787: Operand tree node can not be null.");
+  final TypeSubstitution substitution=node.getTypeSubstitution();
+  typesContainer.deleteTypeSubstitution(substitution);
+  backend.deleteTypeSubstitution(substitution);
+  node.setTypeSubstitution(null);
+  notifySubstitutionsDeleted(Collections.singleton(substitution));
+}

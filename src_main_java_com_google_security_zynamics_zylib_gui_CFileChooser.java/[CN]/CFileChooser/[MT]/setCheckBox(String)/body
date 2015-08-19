@@ -1,0 +1,43 @@
+{
+  m_checkBox.setText(checkBoxText);
+  m_checkBox.setBorder(new EmptyBorder(0,0,0,0));
+  final String approve=getApproveButtonText();
+  final JButton approveButton=(JButton)GuiHelper.findComponentByPredicate(this,new GuiHelper.ComponentFilter(){
+    @Override public boolean accept(    final JComponent c){
+      if (!(c instanceof JButton)) {
+        return false;
+      }
+      final String text=((JButton)c).getText();
+      if (text == null) {
+        return approve == null;
+      }
+      if (approve == null) {
+        return text == null;
+      }
+      return ((JButton)c).getText().equals(approve);
+    }
+  }
+);
+  JComponent parent=null;
+  if (approveButton != null) {
+    final Container approveParent=approveButton.getParent();
+    if (approveParent instanceof JComponent) {
+      parent=(JComponent)approveParent;
+    }
+  }
+  if (parent == null) {
+    setAccessory(m_checkBox);
+    return;
+  }
+  if (SystemHelpers.isRunningMacOSX()) {
+    parent.add(m_checkBox,0);
+    return;
+  }
+  final JPanel buttonPanel=new JPanel(parent.getLayout());
+  for (  final Component c : parent.getComponents()) {
+    buttonPanel.add(c);
+  }
+  parent.setLayout(new BorderLayout(0,0));
+  parent.add(m_checkBox,BorderLayout.LINE_START);
+  parent.add(buttonPanel,BorderLayout.CENTER);
+}

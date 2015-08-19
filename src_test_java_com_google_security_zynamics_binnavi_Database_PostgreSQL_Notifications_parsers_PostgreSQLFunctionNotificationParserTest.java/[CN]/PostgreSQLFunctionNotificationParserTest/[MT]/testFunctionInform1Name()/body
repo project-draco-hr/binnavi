@@ -1,0 +1,9 @@
+{
+  final String name="FUNCTION NAME CHANGE TEST";
+  function.setNameInternal(name);
+  assertEquals(name,function.getName());
+  final FunctionNotificationContainer container=new FunctionNotificationContainer(module.getConfiguration().getId(),module,function.getAddress(),"UPDATE");
+  final PostgreSQLFunctionNotificationParser parser=new PostgreSQLFunctionNotificationParser();
+  parser.inform(Lists.newArrayList(container),provider);
+  assertEquals("Mock Function",function.getName());
+}

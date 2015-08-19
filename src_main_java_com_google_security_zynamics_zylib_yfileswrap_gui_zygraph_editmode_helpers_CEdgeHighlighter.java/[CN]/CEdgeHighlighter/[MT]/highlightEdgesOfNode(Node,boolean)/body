@@ -1,0 +1,10 @@
+{
+  final EdgeCursor edges=node.edges();
+  int edgeCount=node.degree();
+  for (Edge edge=edges.edge(); edgeCount > 0; edgeCount--) {
+    final EdgeRealizer edgeRealizer=((Graph2D)node.getGraph()).getRealizer(edge);
+    highlightEdge(edgeRealizer,highlight);
+    edges.cyclicNext();
+    edge=edges.edge();
+  }
+}

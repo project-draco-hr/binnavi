@@ -1,0 +1,4 @@
+{
+  updateBorderText();
+  view.removeListener(m_viewListener);
+}

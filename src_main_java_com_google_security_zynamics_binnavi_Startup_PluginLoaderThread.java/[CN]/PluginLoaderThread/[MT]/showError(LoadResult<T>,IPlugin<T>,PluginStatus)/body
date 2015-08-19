@@ -1,0 +1,25 @@
+{
+  String message="";
+  String description="";
+switch (pluginStatus) {
+case DuplicateGuid:
+    message="E00009: " + "Detected a GUID collision between two plugins";
+  description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the plugins '%s' and '%s' because they " + "share the same GUID.",plugin.getName(),getPluginWithGuid(plugins.getLoadedPlugins(),plugin.getGuid()).getName()),new String[]{"Plugin GUIDs have to be unique but two plugins share the same " + "GUID."},new String[]{"Neither of the two plugins is loaded until the plugin authors " + "resolve their GUID collision."});
+break;
+case InvalidGuid:
+message="E00010: " + "Detected a plugin with an invalid GUID";
+description=CUtilityFunctions.createDescription(String.format("The plugin '%s' has the invalid GUID %d.",plugin.getName(),plugin.getGuid()),new String[]{"Certain values are not valid for plugin GUIDs. The specified " + "plugin uses such an invalid GUID."},new String[]{"The plugin is not loaded until the plugin author changes " + "the GUID of this plugin."});
+break;
+case InvalidName:
+message="E00011: " + "Detected a plugin with an invalid name";
+description=CUtilityFunctions.createDescription(String.format("The plugin with GUID %d has the invalid name '%s'.",plugin.getGuid(),plugin.getName()),new String[]{"Certain values are not valid for plugin names. The specified " + "plugin uses such an invalid name."},new String[]{"The plugin is not loaded until the plugin author changes the " + "name of this plugin."});
+break;
+case InvalidNameGuid:
+message="E00103: " + "Detected a plugin with an invalid name and an invalid GUID";
+description=CUtilityFunctions.createDescription(String.format("The plugin with GUID %d has the invalid name '%s'.",plugin.getGuid(),plugin.getName()),new String[]{"Certain values are not valid for plugin names and plugin GUIDs. " + "The specified plugin uses such an invalid name and an invalid GUID."},new String[]{"The plugin is not loaded until the plugin author changes the " + "name and the GUID of this plugin."});
+break;
+default :
+throw new IllegalStateException("IE00001: Encountered an invalid plugin status");
+}
+CNaviErrorDialog.show(parent,message,description);
+}

@@ -1,0 +1,24 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"and");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a and instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree targetOperand=operands.get(0);
+  final IOperandTree sourceOperand=operands.get(1);
+  final TranslationResult sourceResult=Helpers.translateOperand(environment,offset,sourceOperand,true);
+  instructions.addAll(sourceResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult targetResult=Helpers.translateOperand(environment,offset,targetOperand,true);
+  instructions.addAll(targetResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final OperandSize size=targetResult.getSize();
+  final String sourceRegister=sourceResult.getRegister();
+  final String targetRegister=targetResult.getRegister();
+  final String andResult=Helpers.generateAnd(environment,offset,size,sourceRegister,targetRegister,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.writeBack(environment,offset,targetOperand,andResult,size,targetResult.getAddress(),targetResult.getType(),instructions);
+  Helpers.writeParityFlag(environment,offset,size,andResult,instructions);
+}

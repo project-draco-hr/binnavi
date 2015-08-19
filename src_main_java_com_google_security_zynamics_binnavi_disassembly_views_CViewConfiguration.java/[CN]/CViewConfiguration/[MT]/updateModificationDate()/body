@@ -1,0 +1,16 @@
+{
+  try {
+    modificationDate=isStored() ? provider.getModificationDate(view) : new Date();
+    for (    final INaviViewListener listener : listeners) {
+      try {
+        listener.changedModificationDate(view,modificationDate);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+ catch (  final CouldntLoadDataException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

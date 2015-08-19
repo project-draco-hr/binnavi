@@ -1,0 +1,12 @@
+{
+  final ViewNode apiNode=removeElement(node);
+  m_elements.remove(apiNode);
+  for (  final IGroupNodeListener listener : m_listeners) {
+    try {
+      listener.removedNode(GroupNode.this,apiNode);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

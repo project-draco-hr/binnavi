@@ -1,0 +1,4 @@
+Set<BreakpointAddress> addresses
+BreakpointStatus status
+BreakpointStorage storage
+BreakpointType type

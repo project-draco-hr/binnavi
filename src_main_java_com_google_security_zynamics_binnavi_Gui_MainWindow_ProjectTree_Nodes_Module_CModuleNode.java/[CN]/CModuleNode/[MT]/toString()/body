@@ -1,0 +1,3 @@
+{
+  return m_module.getConfiguration().getName() + " (" + m_module.getFunctionCount()+ "/"+ m_module.getCustomViewCount()+ ")";
+}

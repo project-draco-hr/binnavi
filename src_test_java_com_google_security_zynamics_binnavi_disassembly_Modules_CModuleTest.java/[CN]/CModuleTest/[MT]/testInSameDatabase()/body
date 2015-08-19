@@ -1,0 +1,19 @@
+{
+  m_module.load();
+  assertFalse(m_module.inSameDatabase(new MockSqlProvider()));
+  assertTrue(m_module.inSameDatabase(m_sql));
+  try {
+    m_module.inSameDatabase((SQLProvider)null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  final MockDatabase database=new MockDatabase();
+  assertFalse(m_module.inSameDatabase(database));
+  try {
+    m_module.inSameDatabase((IDatabaseObject)null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

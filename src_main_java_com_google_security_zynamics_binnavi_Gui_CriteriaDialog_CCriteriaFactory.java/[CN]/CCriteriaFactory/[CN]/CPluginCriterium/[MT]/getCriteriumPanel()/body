@@ -1,0 +1,8 @@
+{
+  try {
+    return m_plugin.getCriteriumPanel();
+  }
+ catch (  final Exception exception) {
+    return new JPanel();
+  }
+}

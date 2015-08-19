@@ -1,0 +1,6 @@
+{
+  add(new CTaggedGraphNodesContainerNode(getGraph(),m_model,m_tag));
+  for (  final ITreeNode<CTag> child : m_tag.getChildren()) {
+    add(new CTagTreeNode(m_parent,getGraph(),m_tagManager,m_model,child));
+  }
+}

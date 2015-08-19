@@ -1,0 +1,7 @@
+{
+  final ZyGraphViewSettings settings=ConfigManager.instance().getDefaultCallGraphSettings();
+  final CGraphSettingsDialog dlg=new CGraphSettingsDialog(parent,"Initial Call graph Settings",settings,true,true);
+  dlg.setVisible(true);
+  ConfigManager.instance().updateCallgraphSettings(settings);
+  ConfigManager.instance().saveSettings(parent);
+}

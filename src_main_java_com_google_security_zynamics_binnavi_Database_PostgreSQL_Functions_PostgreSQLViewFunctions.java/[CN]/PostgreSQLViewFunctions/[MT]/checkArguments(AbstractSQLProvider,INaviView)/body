@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00611: Provider argument can not be null");
+  Preconditions.checkNotNull(view,"IE00612: View argument can not be null");
+  Preconditions.checkArgument(view.inSameDatabase(provider),"IE00613: View is not part of this database");
+}

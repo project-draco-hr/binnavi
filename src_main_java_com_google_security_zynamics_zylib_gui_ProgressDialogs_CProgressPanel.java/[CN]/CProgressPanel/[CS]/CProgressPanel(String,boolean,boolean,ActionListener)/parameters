@@ -1,0 +1,4 @@
+String description
+boolean indeterminate
+boolean showSeconds
+ActionListener cancelButtonListener

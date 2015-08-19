@@ -1,0 +1,10 @@
+{
+  super(parent,"Settings",ModalityType.APPLICATION_MODAL);
+  setLayout(new BorderLayout(5,5));
+  new CDialogEscaper(this);
+  m_pane.add("General",new CGeneralSettingsPanel());
+  m_pane.add("Colors",new CColorSettingsPanel());
+  add(m_pane);
+  add(new CPanelTwoButtons(new InternalListener(),"OK","Cancel"),BorderLayout.SOUTH);
+  setSize(600,400);
+}

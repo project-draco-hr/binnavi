@@ -1,0 +1,16 @@
+{
+  int count=0;
+  final StringBuilder list=new StringBuilder();
+  for (  final INaviProject project : projects) {
+    list.append("- ");
+    list.append(project.getConfiguration().getName());
+    list.append('\n');
+    count++;
+    if ((count == MAX_LIST_LENGTH) && (projects.length != MAX_LIST_LENGTH)) {
+      list.append("\n... ");
+      list.append(String.format("%d others ...",projects.length - count));
+      break;
+    }
+  }
+  return list.toString();
+}

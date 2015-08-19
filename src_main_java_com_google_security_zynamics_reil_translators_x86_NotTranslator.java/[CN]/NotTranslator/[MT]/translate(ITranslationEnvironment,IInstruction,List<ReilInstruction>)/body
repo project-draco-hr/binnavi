@@ -1,0 +1,17 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"not");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not an not instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree operand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,offset,operand,true);
+  offset=baseOffset + instructions.size();
+  final String operandRegister=result.getRegister();
+  final OperandSize size=result.getSize();
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(size));
+  final String xorResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset,size,operandRegister,size,truncateMask,size,xorResult));
+  Helpers.writeBack(environment,offset + 1,operand,xorResult,size,result.getAddress(),result.getType(),instructions);
+}

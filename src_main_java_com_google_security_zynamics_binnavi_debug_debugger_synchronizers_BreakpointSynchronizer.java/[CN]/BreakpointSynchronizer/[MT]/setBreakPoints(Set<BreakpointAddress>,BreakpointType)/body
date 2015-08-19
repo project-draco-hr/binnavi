@@ -1,0 +1,11 @@
+{
+  if (addresses.size() != 0) {
+    try {
+      debugger.setBreakPoints(addresses,type);
+    }
+ catch (    final DebugExceptionWrapper exception) {
+      manager.setBreakpointStatus(Sets.newHashSet(addresses),type,BreakpointStatus.BREAKPOINT_DISABLED);
+      NaviLogger.severe("Error: Debugger could not set " + type.toString() + " breakpoints. Exception %s",exception);
+    }
+  }
+}

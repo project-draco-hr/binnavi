@@ -1,0 +1,14 @@
+{
+  final DebuggerTemplateManager debuggerManager=new DebuggerTemplateManager(getProvider());
+  final CProject project=getProvider().createProject("PROJECT_234");
+  getProvider().createAddressSpace(project,"ADDRESS_SPACE_234");
+  final List<INaviModule> modules=getProvider().loadModules();
+  final List<INaviModule> convertedModules=new ArrayList<INaviModule>();
+  convertedModules.add(modules.get(0));
+  final List<CAddressSpace> addressSpaces=PostgreSQLAddressSpaceLoader.loadAddressSpaces((AbstractSQLProvider)getProvider(),project,debuggerManager,convertedModules);
+  final CAddressSpace addressSpace=addressSpaces.get(0);
+  addressSpace.load();
+  addressSpace.getContent().addModule(modules.get(0));
+  addressSpace.getContent().setImageBase(modules.get(0),new CAddress(0x1234));
+  @SuppressWarnings("unused") final List<CAddressSpace> addressSpaces2=PostgreSQLAddressSpaceLoader.loadAddressSpaces((AbstractSQLProvider)getProvider(),project,debuggerManager,convertedModules);
+}

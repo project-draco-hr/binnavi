@@ -1,0 +1,11 @@
+{
+  final StyledDocument document=new DefaultStyledDocument();
+  generateDocument(instance,false,document);
+  try {
+    return document.getText(0,document.getLength());
+  }
+ catch (  final BadLocationException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  return "";
+}

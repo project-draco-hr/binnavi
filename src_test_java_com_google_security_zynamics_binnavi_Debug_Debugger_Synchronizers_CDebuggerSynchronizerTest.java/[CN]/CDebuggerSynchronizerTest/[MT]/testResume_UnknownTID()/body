@@ -1,0 +1,4 @@
+{
+  debuggerSynchronizer.receivedEvent(new ResumeReply(0,0));
+  assertEquals(0,listener.exception);
+}

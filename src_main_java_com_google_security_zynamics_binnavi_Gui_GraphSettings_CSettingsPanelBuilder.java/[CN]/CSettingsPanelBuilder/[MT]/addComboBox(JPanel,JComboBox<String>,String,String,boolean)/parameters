@@ -1,0 +1,5 @@
+JPanel panel
+JComboBox<String> comboBox
+String description
+String hint
+boolean value

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(connection,"IE00266: connection argument can not be null");
+  Preconditions.checkArgument(rawModuleId >= 0,"Error: raw module id can only be a positive number.");
+  Preconditions.checkArgument(moduleId >= 0,"Error: module if can only be a positive number");
+  final String query="INSERT INTO " + CTableNames.ADDRESS_REFERENCES_TABLE + " (module_id, address, position, expression_id, type, target) "+ " SELECT "+ moduleId+ ", address, position, expression_node_id, "+ " (ENUM_RANGE(NULL::address_reference_type))[type + 1], destination  "+ " FROM ex_"+ rawModuleId+ "_address_references  WHERE position IS NOT NULL AND expression_node_id IS NOT NULL;";
+  connection.executeUpdate(query,true);
+}

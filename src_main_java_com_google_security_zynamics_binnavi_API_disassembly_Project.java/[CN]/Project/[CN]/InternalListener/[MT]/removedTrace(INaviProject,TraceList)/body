@@ -1,0 +1,12 @@
+{
+  final Trace deletedTrace=ObjectFinders.getObject(trace,m_traces);
+  m_traces.remove(deletedTrace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.deletedTrace(Project.this,deletedTrace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

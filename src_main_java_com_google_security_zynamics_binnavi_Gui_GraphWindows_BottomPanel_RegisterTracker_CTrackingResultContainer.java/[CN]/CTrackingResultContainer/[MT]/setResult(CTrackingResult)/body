@@ -1,0 +1,6 @@
+{
+  m_result=Preconditions.checkNotNull(result,"IE01685: Result argument can not be null");
+  for (  final ITrackingResultsListener listener : m_listeners) {
+    listener.updatedResult(this,result);
+  }
+}

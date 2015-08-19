@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(node,"IE00104: Node argument can not be null");
+  Preconditions.checkArgument(m_elements.remove(node),"IE00105: Node is not part of this group");
+  node.setParentGroup(null);
+  for (  final INaviGroupNodeListener listener : m_listeners) {
+    try {
+      listener.removedElement(this,node);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

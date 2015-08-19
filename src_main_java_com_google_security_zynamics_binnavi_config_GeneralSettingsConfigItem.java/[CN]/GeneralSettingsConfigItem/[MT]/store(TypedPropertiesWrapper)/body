@@ -1,0 +1,19 @@
+{
+  properties.setString(IDA_DIRECTORY,idaDirectory);
+  properties.setInteger(DEFAULT_EXPORTER,defaultExporter);
+  properties.setString(SUPPORT_EMAIL_ADDRESS,supportEmailAddress);
+  properties.setBoolean(SHOW_EXPIRING_INFORMATION,showExpiringInformation);
+  properties.setBoolean(SHOW_EXPIRED_INFORMATION,showExpiredInformation);
+  properties.setBoolean(MAXIMIZE_WINDOW,maximizeWindow);
+  properties.setInteger(LOG_LEVEL,logLevel);
+  if (defaultScriptingLanguage != null) {
+    properties.setString(DEFAULT_SCRIPTING_LANGUAGE,defaultScriptingLanguage);
+  }
+  lastOpenWindow.store(properties);
+  graphWindow.store(properties);
+  properties.setString(LAST_DIRECTORY,lastDirectory);
+  properties.setInteger(PLUGINS_COUNT,plugins.size());
+  for (int i=0; i < plugins.size(); i++) {
+    plugins.get(i).storeWithKeyPrefix(properties,PLUGINS_PREFIX + i + ".");
+  }
+}

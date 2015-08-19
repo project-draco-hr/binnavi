@@ -1,0 +1,7 @@
+{
+  super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  this.setFont(GuiHelper.MONOSPACED_FONT);
+  this.setVerticalAlignment(SwingConstants.TOP);
+  this.setVerticalTextPosition(SwingConstants.TOP);
+  return this;
+}

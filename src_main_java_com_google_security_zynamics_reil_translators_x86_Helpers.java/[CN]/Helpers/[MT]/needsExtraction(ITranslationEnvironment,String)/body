@@ -1,0 +1,3 @@
+{
+  return (getRegisterSize(registerName) != environment.getArchitectureSize()) && !isSegment(registerName);
+}

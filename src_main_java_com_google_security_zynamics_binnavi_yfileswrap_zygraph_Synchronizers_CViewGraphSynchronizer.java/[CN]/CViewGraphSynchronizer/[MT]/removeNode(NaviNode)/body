@@ -1,0 +1,8 @@
+{
+  if (node.getRawNode() instanceof INaviGroupNode) {
+    ((INaviGroupNode)node.getRawNode()).removeGroupListener(m_groupNodeListener);
+  }
+  m_selectedNodes.remove(node);
+  m_graphInternals.removeNode(node);
+  m_graph.updateViews();
+}

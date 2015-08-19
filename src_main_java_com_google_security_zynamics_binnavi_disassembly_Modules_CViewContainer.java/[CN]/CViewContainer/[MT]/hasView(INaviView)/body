@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(view,"IE00190: View argument can not be null");
+  Preconditions.checkArgument(view.inSameDatabase(m_provider),"IE00192: View and module are not in the same database");
+  return (view == m_nativeCallgraphView) || m_customViews.contains(view) || m_nativeFlowgraphs.contains(view);
+}

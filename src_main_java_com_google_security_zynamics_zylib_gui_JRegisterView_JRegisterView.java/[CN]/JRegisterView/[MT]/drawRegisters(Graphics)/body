@@ -1,0 +1,27 @@
+{
+  final int PADDING_TOP=m_font.getSize() + 5;
+  int y=PADDING_TOP;
+  final int lineHeight=m_font.getSize();
+  int registerCounter=0;
+  for (  final RegisterInformationInternal register : m_registerModel.getRegisterInformation()) {
+    if (isEnabled()) {
+      g.setColor(register.isModified() || (registerCounter == m_editedRegister) ? m_modifiedColor : m_textColor);
+    }
+ else {
+      g.setColor(m_disabledColor);
+    }
+    g.drawString(register.getRegisterName(),m_paddingLeft,y);
+    final BigInteger value=(registerCounter == m_editedRegister ? m_editValue : register.getValue()).and(register.getRegisterSize() == 8 ? BigInteger.valueOf(9223372036854775807L) : BigInteger.valueOf(4294967295L));
+    final String valueString;
+    if (register.getRegisterSize() != 0) {
+      final String formatMask="%0" + (2 * register.getRegisterSize()) + "X";
+      valueString=String.format(formatMask,value);
+    }
+ else {
+      valueString=String.valueOf(value.and(BigInteger.ONE));
+    }
+    g.drawString(valueString,10 + 5 + (m_charWidth * m_longestRegisterName),y);
+    ++registerCounter;
+    y+=lineHeight;
+  }
+}

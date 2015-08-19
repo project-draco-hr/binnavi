@@ -1,0 +1,16 @@
+{
+  final List<BreakpointAddress> addresses=new ArrayList<BreakpointAddress>();
+  final Set<BreakpointAddress> addressesForManager=new HashSet<BreakpointAddress>();
+  for (  final Breakpoint breakpoint : breakpoints) {
+    Preconditions.checkArgument(manager.getBreakpointStatus(breakpoint.getAddress(),BreakpointType.STEP) == BreakpointStatus.BREAKPOINT_INACTIVE,"Internal Error: Breakpoint with type STEP has unexpected status");
+    Preconditions.checkArgument(debugger.isConnected(),"Internal Error: It should only be possible to set step breakpoints when the " + "debugger is connected");
+    if (isBreakpointInsideModules(breakpoint,debugger.getProcessManager().getModules())) {
+      addresses.add(breakpoint.getAddress());
+    }
+ else {
+      addressesForManager.add(breakpoint.getAddress());
+    }
+  }
+  manager.setBreakpointStatus(addressesForManager,BreakpointType.STEP,BreakpointStatus.BREAKPOINT_INACTIVE);
+  return addresses;
+}

@@ -1,0 +1,4 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE01765: Graph argument can not be null");
+  m_nodeCache=CollectionHelpers.filter(getNodes(),new NodeFilter());
+}

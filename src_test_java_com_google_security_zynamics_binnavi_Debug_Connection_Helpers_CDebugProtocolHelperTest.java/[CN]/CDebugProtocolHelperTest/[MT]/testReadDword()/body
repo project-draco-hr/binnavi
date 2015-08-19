@@ -1,0 +1,5 @@
+{
+  final CMockReader reader=new CMockReader(new byte[][]{{(byte)0xFF,(byte)0xFF,(byte)0xFF,(byte)0xFF}});
+  reader.next();
+  assertEquals(0xFFFFFFFFL,DebugProtocolHelper.readDWord(reader));
+}

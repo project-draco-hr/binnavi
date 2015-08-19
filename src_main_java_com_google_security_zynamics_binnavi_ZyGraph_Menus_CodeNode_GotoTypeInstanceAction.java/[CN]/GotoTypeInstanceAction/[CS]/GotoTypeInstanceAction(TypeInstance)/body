@@ -1,0 +1,4 @@
+{
+  super("Goto type instance");
+  this.instance=instance;
+}

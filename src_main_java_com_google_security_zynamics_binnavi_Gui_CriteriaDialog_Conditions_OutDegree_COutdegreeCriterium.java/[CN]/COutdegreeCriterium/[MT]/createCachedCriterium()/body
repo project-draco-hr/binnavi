@@ -1,0 +1,3 @@
+{
+  return new CCachedOutdegreeCriterium(m_panel.getOperator(),m_panel.getOutdegree());
+}

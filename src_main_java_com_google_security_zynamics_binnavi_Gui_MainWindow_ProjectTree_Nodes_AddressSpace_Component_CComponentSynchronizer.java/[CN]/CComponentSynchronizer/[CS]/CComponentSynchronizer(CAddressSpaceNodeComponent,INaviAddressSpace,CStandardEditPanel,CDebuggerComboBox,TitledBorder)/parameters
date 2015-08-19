@@ -1,0 +1,5 @@
+CAddressSpaceNodeComponent component
+INaviAddressSpace addressSpace
+CStandardEditPanel stdEditPanel
+CDebuggerComboBox debuggerCombo
+TitledBorder titledBorder

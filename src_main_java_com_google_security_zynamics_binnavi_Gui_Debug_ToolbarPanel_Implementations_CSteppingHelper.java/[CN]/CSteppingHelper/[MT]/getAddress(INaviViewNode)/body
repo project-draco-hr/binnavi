@@ -1,0 +1,15 @@
+{
+  if (node instanceof INaviCodeNode) {
+    final INaviCodeNode ccnode=(INaviCodeNode)node;
+    final INaviInstruction instruction=Iterables.getFirst(ccnode.getInstructions(),null);
+    return new BreakpointAddress(instruction.getModule(),new UnrelocatedAddress(instruction.getAddress()));
+  }
+ else   if (node instanceof INaviFunctionNode) {
+    final INaviFunction function=((INaviFunctionNode)node).getFunction();
+    final INaviModule module=function.getModule();
+    return new BreakpointAddress(module,new UnrelocatedAddress(function.getAddress()));
+  }
+ else {
+    return null;
+  }
+}

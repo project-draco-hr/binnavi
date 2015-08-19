@@ -1,0 +1,12 @@
+{
+  final DebuggerTemplate removedTemplate=ObjectFinders.getObject(debugger,m_database.getDebuggerTemplateManager().getDebuggerTemplates());
+  m_debuggerTemplates.remove(removedTemplate);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.removedDebuggerTemplate(Project.this,removedTemplate);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

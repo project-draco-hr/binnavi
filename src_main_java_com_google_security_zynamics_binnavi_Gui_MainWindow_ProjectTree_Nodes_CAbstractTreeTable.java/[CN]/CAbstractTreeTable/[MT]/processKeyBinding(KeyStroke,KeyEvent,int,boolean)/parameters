@@ -1,0 +1,4 @@
+KeyStroke keyStroke
+KeyEvent event
+int condition
+boolean pressed

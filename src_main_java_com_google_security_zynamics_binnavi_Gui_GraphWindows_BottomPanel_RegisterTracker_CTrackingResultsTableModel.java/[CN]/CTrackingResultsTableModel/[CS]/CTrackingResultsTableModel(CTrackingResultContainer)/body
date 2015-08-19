@@ -1,0 +1,4 @@
+{
+  m_container=Preconditions.checkNotNull(container,"IE01692: Container argument can not be null");
+  m_container.addListener(m_resultsListener);
+}

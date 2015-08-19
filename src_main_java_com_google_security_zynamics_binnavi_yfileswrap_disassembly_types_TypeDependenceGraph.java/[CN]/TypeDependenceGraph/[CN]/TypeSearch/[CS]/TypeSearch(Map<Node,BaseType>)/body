@@ -1,0 +1,5 @@
+{
+  this.nodesToTypes=nodesToTypes;
+  setLookFurtherMode(false);
+  setDirectedMode(true);
+}

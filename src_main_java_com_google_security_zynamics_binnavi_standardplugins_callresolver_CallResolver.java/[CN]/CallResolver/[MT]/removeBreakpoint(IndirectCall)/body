@@ -1,0 +1,8 @@
+{
+  final Module module=indirectCall.getModule();
+  final Address address=indirectCall.getAddress();
+  final BreakpointManager breakpointManager=debugger.getBreakpointManager();
+  if (breakpointManager.hasBreakpoint(module,address)) {
+    debugger.getBreakpointManager().removeBreakpoint(indirectCall.getModule(),indirectCall.getAddress());
+  }
+}

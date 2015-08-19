@@ -1,0 +1,13 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"leave");
+  Preconditions.checkArgument(instruction.getOperands().size() == 0,"Error: Argument instruction is not a leave instruction (invalid number of operands)");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(archSize);
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String addResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(baseOffset,archSize,"ebp",archSize,"esp"));
+  instructions.add(ReilHelpers.createLdm(baseOffset + 1,archSize,"esp",archSize,"ebp"));
+  instructions.add(ReilHelpers.createAdd(baseOffset + 2,archSize,"esp",archSize,"4",resultSize,addResult));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 3,resultSize,addResult,archSize,truncateMask,archSize,"esp"));
+}

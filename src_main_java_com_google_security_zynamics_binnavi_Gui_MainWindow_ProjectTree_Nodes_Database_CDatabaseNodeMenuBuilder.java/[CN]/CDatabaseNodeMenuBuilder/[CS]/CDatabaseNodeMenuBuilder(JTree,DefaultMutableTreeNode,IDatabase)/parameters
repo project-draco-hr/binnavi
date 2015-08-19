@@ -1,0 +1,3 @@
+JTree projectTree
+DefaultMutableTreeNode parentNode
+IDatabase database

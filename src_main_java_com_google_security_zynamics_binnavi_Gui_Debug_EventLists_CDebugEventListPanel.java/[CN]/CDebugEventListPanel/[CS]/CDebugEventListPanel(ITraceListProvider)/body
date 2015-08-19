@@ -1,0 +1,19 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(eventListManager,"IE01369: Event list manager argument can't be null");
+  m_tracesTable=new CEventListTable(eventListManager);
+  m_tracesTable.getSelectionModel().addListSelectionListener(new InternalSelectionListener());
+  final JPanel rightPanel=new JPanel(new BorderLayout());
+  m_traceEventTable=new CEventTable(new CEventTableModel());
+  m_traceEventTable.getSelectionModel().addListSelectionListener(new InternalEventSelectionListener());
+  final CTablePanel<ITraceEvent> filteredPanel=new CTraceEventsPanel(m_traceEventTable);
+  m_eventValueTable=new CEventValueTable(m_eventModel);
+  m_eventValueTable.addMouseListener(new InternalMouseListener());
+  final JSplitPane splitPane1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true,filteredPanel,new JScrollPane(m_eventValueTable));
+  rightPanel.add(splitPane1,BorderLayout.CENTER);
+  splitPane1.setResizeWeight(0.5);
+  m_tracesPanel=new CTracesPanel(m_tracesTable);
+  final JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true,m_tracesPanel,rightPanel);
+  add(splitPane,BorderLayout.CENTER);
+  splitPane.setResizeWeight(0.5);
+}

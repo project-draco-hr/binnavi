@@ -1,0 +1,7 @@
+{
+  final Vector<DebuggerTemplate> debuggers=new Vector<>();
+  for (  final DebuggerTemplate debugger : m_database.getContent().getDebuggerTemplateManager()) {
+    debuggers.add(debugger);
+  }
+  return debuggers;
+}

@@ -1,0 +1,8 @@
+{
+  for (  final MockNode candidate : mocks) {
+    if (object == candidate) {
+      return;
+    }
+  }
+  fail();
+}

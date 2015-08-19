@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(provider,"IE01265: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE01266: Module argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00532: Module is not stored in the given database");
+  try {
+    return ByteHelpers.combine(loadDataChunks(provider,module));
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

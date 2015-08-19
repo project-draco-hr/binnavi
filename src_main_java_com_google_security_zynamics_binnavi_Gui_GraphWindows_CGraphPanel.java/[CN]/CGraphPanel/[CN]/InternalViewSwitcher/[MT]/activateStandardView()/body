@@ -1,0 +1,3 @@
+{
+  m_viewModel.setActiveView(PerspectiveType.StandardPerspective);
+}

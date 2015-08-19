@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(name,"IE02803: name argument can not be null");
+  if (viewName.equals(name)) {
+    return;
+  }
+  viewName=name;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedName(view,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

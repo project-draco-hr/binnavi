@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(component,"IE01256: Component argument can not be null");
+  Preconditions.checkNotNull(message,"IE01257: Message argument can not be null");
+  final JPanel panel=new JPanel(new BorderLayout());
+  panel.add(component,BorderLayout.CENTER);
+  final JHintIcon hintPopup=new JHintIcon(message);
+  hintPopup.setBorder(new EmptyBorder(0,3,0,0));
+  panel.add(hintPopup,BorderLayout.EAST);
+  return panel;
+}

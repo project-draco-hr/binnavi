@@ -1,0 +1,5 @@
+{
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    node.getRealizer().setUpdater(new CCodeNodeUpdater(model.getGraph(),node,(INaviCodeNode)node.getRawNode(),model.getDebuggerProvider()));
+  }
+}

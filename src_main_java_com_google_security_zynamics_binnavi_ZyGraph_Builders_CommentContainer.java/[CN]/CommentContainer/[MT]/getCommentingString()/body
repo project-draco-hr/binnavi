@@ -1,0 +1,17 @@
+{
+  if (this.comment == null) {
+    return null;
+  }
+  if (this.comment.getComment().split("\\n").length <= 1) {
+    return Lists.newArrayList(this.comment.getUser().getUserName() + userNameDelimiter + this.comment.getComment());
+  }
+  if (this.comment.getComment().split("\\n").length > 1) {
+    final String[] commentFragments=this.comment.getComment().split("\\n");
+    final List<String> generatedComment=Lists.newArrayList(this.comment.getUser().getUserName() + userNameDelimiter + commentFragments[0]);
+    for (int i=1; i < commentFragments.length; i++) {
+      generatedComment.add(Strings.repeat(" ",this.comment.getUser().getUserName().length() + userNameDelimiter.length()) + commentFragments[i]);
+    }
+    return generatedComment;
+  }
+  return null;
+}

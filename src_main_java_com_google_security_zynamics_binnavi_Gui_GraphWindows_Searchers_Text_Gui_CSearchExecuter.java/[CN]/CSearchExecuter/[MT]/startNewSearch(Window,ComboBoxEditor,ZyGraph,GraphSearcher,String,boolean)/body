@@ -1,0 +1,34 @@
+{
+  try {
+    searcher.search(GraphHelpers.getNodes(graph),GraphHelpers.getEdges(graph),searchString);
+    if (searcher.getResults().isEmpty()) {
+      editor.getEditorComponent().setBackground(BACKGROUND_COLOR_FAIL);
+    }
+ else {
+      editor.getEditorComponent().setBackground(BACKGROUND_COLOR_SUCCESS);
+    }
+    for (    final SearchResult result : searcher.getResults()) {
+      if (result.getObject() instanceof NaviNode) {
+        final NaviNode node=(NaviNode)result.getObject();
+        node.setBackgroundColor(result.getLine(),result.getPosition(),result.getLength(),Color.YELLOW);
+      }
+ else       if (result.getObject() instanceof NaviEdge) {
+        final NaviEdge edge=(NaviEdge)result.getObject();
+        edge.getLabelContent().getLineContent(result.getLine()).setBackgroundColor(result.getPosition(),result.getLength(),Color.YELLOW);
+      }
+    }
+    final SearchResult result=searcher.getCursor().current();
+    if (result != null) {
+      if (result.getObject() instanceof NaviNode) {
+        ZyGraphHelpers.centerNode(graph,(NaviNode)result.getObject(),zoomToResult);
+      }
+ else       if (result.getObject() instanceof NaviEdge) {
+        ZyGraphHelpers.centerEdgeLabel(graph,(NaviEdge)result.getObject(),zoomToResult);
+      }
+    }
+    graph.updateGraphViews();
+  }
+ catch (  final PatternSyntaxException exception) {
+    CMessageBox.showInformation(parent,String.format("Invalid Regular Expression '%s'",searchString));
+  }
+}

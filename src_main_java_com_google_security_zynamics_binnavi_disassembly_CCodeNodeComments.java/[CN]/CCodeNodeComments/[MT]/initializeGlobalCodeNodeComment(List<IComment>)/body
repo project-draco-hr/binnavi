@@ -1,0 +1,5 @@
+{
+  if (m_parentFunction != null) {
+    CommentManager.get(m_provider).initializeGlobalCodeNodeComment(m_codeNode,comments);
+  }
+}

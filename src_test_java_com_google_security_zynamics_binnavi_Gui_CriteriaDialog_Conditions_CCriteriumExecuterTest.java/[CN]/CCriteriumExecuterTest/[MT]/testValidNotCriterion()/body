@@ -1,0 +1,11 @@
+{
+  final CCachedNotCriterium criterium=new CCachedNotCriterium();
+  final CCachedExpressionTreeNode node=new CCachedExpressionTreeNode(criterium);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node);
+  final CCachedTextCriterium criterium2=new CCachedTextCriterium("nop",false,false);
+  final CCachedExpressionTreeNode node2=new CCachedExpressionTreeNode(criterium2);
+  CCachedExpressionTreeNode.append(node,node2);
+  assertEquals(0,m_graph.getSelectedNodes().size());
+  CCriteriumExecuter.execute(m_tree,m_graph);
+  assertEquals(2,m_graph.getSelectedNodes().size());
+}

@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(nodes,"Error: nodes argument can not be null");
+  if (nodes.size() == 0) {
+    return;
+  }
+  final double oldZoom=graph.getView().getZoom();
+  final Point2D oldViewPoint=graph.getView().getViewPoint2D();
+  final Rectangle2D box=GraphHelpers.calculateBoundingBox(nodes);
+  graph.getView().zoomToArea(box.getX(),box.getY(),box.getWidth(),box.getHeight());
+  ZoomHelpers.keepZoomValid(graph.getView());
+  graph.zoomOut();
+  final double newZoom=graph.getView().getZoom();
+  final Point2D newCenter=graph.getView().getCenter();
+  graph.getView().setZoom(oldZoom);
+  graph.getView().setViewPoint((int)oldViewPoint.getX(),(int)oldViewPoint.getY());
+  graph.getView().focusView(newZoom,newCenter,graph.getSettings().getLayoutSettings().getAnimateLayout());
+  graph.updateViews();
+}

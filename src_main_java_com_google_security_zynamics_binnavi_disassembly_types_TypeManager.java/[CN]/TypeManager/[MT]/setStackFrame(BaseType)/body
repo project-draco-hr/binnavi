@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null");
+  baseType.setIsStackFrame(true);
+}

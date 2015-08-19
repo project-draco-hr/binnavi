@@ -1,0 +1,7 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"stosw");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a stosw instruction (invalid number of operand)");
+  }
+  new StosGenerator().generate(environment,ReilHelpers.toReilAddress(instruction.getAddress()).toLong(),OperandSize.WORD,instructions);
+}

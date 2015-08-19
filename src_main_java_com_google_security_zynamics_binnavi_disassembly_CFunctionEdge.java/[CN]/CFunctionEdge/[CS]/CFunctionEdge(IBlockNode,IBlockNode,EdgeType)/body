@@ -1,0 +1,4 @@
+{
+  super(source,target);
+  m_type=Preconditions.checkNotNull(type,"IE01238: Type argument can not be null");
+}

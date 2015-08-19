@@ -1,0 +1,20 @@
+{
+  for (  final ISelectionHistoryListener listener : m_listeners) {
+    try {
+      listener.startedRedo();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_graph.selectNodes(m_graph.getSelectedNodes(),false);
+  m_graph.selectNodes(getUndoSnapshot(false).getSelection(),true);
+  for (  final ISelectionHistoryListener listener : m_listeners) {
+    try {
+      listener.finishedRedo();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

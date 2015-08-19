@@ -1,0 +1,33 @@
+{
+  assertFalse(Helpers.isHigher8BitRegister("al"));
+  assertFalse(Helpers.isHigher8BitRegister("bl"));
+  assertFalse(Helpers.isHigher8BitRegister("cl"));
+  assertFalse(Helpers.isHigher8BitRegister("dl"));
+  assertTrue(Helpers.isHigher8BitRegister("ah"));
+  assertTrue(Helpers.isHigher8BitRegister("bh"));
+  assertTrue(Helpers.isHigher8BitRegister("ch"));
+  assertTrue(Helpers.isHigher8BitRegister("dh"));
+  assertFalse(Helpers.isHigher8BitRegister("ax"));
+  assertFalse(Helpers.isHigher8BitRegister("bx"));
+  assertFalse(Helpers.isHigher8BitRegister("cx"));
+  assertFalse(Helpers.isHigher8BitRegister("dx"));
+  assertFalse(Helpers.isHigher8BitRegister("di"));
+  assertFalse(Helpers.isHigher8BitRegister("si"));
+  assertFalse(Helpers.isHigher8BitRegister("sp"));
+  assertFalse(Helpers.isHigher8BitRegister("bp"));
+  assertFalse(Helpers.isHigher8BitRegister("ip"));
+  assertFalse(Helpers.isHigher8BitRegister("eax"));
+  assertFalse(Helpers.isHigher8BitRegister("ebx"));
+  assertFalse(Helpers.isHigher8BitRegister("ecx"));
+  assertFalse(Helpers.isHigher8BitRegister("edx"));
+  assertFalse(Helpers.isHigher8BitRegister("edi"));
+  assertFalse(Helpers.isHigher8BitRegister("esi"));
+  assertFalse(Helpers.isHigher8BitRegister("esp"));
+  assertFalse(Helpers.isHigher8BitRegister("ebp"));
+  assertFalse(Helpers.isHigher8BitRegister("eip"));
+  assertFalse(Helpers.isHigher8BitRegister("cs"));
+  assertFalse(Helpers.isHigher8BitRegister("ds"));
+  assertFalse(Helpers.isHigher8BitRegister("es"));
+  assertFalse(Helpers.isHigher8BitRegister("fs"));
+  assertFalse(Helpers.isHigher8BitRegister("gs"));
+}

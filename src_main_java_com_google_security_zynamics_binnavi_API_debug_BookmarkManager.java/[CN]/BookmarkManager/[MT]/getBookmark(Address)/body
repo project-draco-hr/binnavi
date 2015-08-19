@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(address,"Error: Bookmark addresses argument can't be null");
+  final CBookmark bookmark=m_bookmarkManager.getBookmark(new CAddress(address.toLong()));
+  return bookmark == null ? null : ObjectFinders.getObject(bookmark,m_bookmarks);
+}

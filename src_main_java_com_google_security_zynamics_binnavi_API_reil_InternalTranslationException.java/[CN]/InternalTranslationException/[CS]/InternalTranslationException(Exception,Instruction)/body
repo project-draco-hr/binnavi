@@ -1,0 +1,4 @@
+{
+  super(exception);
+  m_instruction=instruction;
+}

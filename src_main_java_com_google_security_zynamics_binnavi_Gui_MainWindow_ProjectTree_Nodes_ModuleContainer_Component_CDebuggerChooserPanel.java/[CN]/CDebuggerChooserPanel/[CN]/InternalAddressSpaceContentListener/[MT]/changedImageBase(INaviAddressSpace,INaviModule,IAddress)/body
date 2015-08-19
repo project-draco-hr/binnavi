@@ -1,0 +1,6 @@
+{
+  if (module == m_module) {
+    m_imageBaseAddr.setText(address.toHexString());
+    updateSaveFields();
+  }
+}

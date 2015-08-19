@@ -1,0 +1,10 @@
+{
+  for (  final IFilterPanelListener<T> listener : m_listeners) {
+    try {
+      listener.mousePressed(event);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

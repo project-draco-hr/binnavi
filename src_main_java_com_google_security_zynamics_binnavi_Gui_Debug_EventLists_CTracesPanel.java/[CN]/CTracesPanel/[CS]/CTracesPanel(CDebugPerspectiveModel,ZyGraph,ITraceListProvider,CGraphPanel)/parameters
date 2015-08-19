@@ -1,0 +1,4 @@
+CDebugPerspectiveModel model
+ZyGraph graph
+ITraceListProvider traceProvider
+CGraphPanel graphPanel

@@ -1,0 +1,5 @@
+{
+  final TypeInstanceContainer typeInstanceContainer=new TypeInstanceContainer(typeInstanceContainerBackend,provider);
+  Assert.assertNotNull(typeInstanceContainer);
+  typeInstanceContainer.createReference(new CAddress("41000",16),0,null,null,view);
+}

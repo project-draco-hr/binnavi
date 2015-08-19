@@ -1,0 +1,3 @@
+{
+  return m_expression.evaluate((Wrapper)m_wrapper.wrap(element));
+}

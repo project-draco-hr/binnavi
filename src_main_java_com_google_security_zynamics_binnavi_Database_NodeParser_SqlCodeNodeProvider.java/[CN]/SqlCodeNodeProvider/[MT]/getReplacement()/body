@@ -1,0 +1,8 @@
+{
+  try {
+    return PostgreSQLHelpers.readString(m_resultSet,"replacement");
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

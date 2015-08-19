@@ -1,0 +1,9 @@
+{
+  if (connection != null) {
+    connection.removeEventListener(synchronizer);
+  }
+  if (connection != null) {
+    connection.shutdown();
+    connection=null;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  List<INaviView> localCachedViews=m_cachedViews;
+  if (localCachedViews == null) {
+    final IFilter<INaviView> filter=getFilter();
+    if (m_originContainer.isLoaded()) {
+      localCachedViews=filter == null ? m_originContainer.getUserViews() : filter.get(m_originContainer.getUserViews());
+    }
+ else {
+      localCachedViews=new ArrayList<INaviView>();
+    }
+  }
+  CStaredItemFunctions.sort(localCachedViews);
+  m_cachedViews=localCachedViews;
+  return new ArrayList<INaviView>(localCachedViews);
+}

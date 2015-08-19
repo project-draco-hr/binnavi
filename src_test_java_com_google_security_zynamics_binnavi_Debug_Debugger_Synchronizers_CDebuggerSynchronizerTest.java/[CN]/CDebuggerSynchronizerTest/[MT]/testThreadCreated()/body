@@ -1,0 +1,7 @@
+{
+  mockDebugger.connect();
+  debuggerSynchronizer.receivedEvent(new ThreadCreatedReply(0,0,18,ThreadState.RUNNING));
+  debuggerSynchronizer.receivedEvent(new ThreadCreatedReply(0,0,19,ThreadState.SUSPENDED));
+  assertEquals(ThreadState.RUNNING,mockDebugger.getProcessManager().getThread(18).getState());
+  assertEquals(ThreadState.SUSPENDED,mockDebugger.getProcessManager().getThread(19).getState());
+}

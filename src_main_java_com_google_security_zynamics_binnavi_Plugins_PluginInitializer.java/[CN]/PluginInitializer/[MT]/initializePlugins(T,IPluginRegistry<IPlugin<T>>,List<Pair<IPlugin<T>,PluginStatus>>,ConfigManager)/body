@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(pluginInterface,"IE00828: Plugin interface can't be null");
+  Preconditions.checkNotNull(registry,"IE00829: Plugin registry can't be null");
+  Preconditions.checkNotNull(list,"IE00830: Plugins can't be null");
+  Preconditions.checkNotNull(configFile,"IE00831: Config File can't be null");
+  final ArrayList<Pair<IPlugin<T>,Exception>> initializedPlugins=new ArrayList<Pair<IPlugin<T>,Exception>>();
+  final List<PluginConfigItem> pluginOrder=configFile.getGeneralSettings().getPlugins();
+  final Set<Long> processedPlugins=new HashSet<Long>();
+  initializeKnownPlugins(pluginInterface,registry,pluginOrder,list,initializedPlugins,processedPlugins);
+  initializeUnknownPlugins(registry,pluginInterface,list,initializedPlugins,processedPlugins);
+  return initializedPlugins;
+}

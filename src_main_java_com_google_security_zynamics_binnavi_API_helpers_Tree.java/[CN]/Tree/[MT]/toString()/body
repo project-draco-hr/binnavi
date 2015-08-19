@@ -1,0 +1,3 @@
+{
+  return "Tree with root node " + m_rootNode.toString();
+}

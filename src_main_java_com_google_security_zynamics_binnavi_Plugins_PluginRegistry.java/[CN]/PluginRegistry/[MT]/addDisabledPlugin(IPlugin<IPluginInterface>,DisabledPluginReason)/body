@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(plugin,"IE00833: Plugin can't be null");
+  Preconditions.checkNotNull(reason,"IE00834: Reason can't be null");
+  disabledPlugins.add(new Pair<IPlugin<IPluginInterface>,DisabledPluginReason>(plugin,reason));
+}

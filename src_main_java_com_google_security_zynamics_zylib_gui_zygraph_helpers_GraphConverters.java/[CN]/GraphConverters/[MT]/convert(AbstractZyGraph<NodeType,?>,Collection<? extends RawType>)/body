@@ -1,0 +1,7 @@
+{
+  final List<NodeType> list=new ArrayList<NodeType>();
+  for (  final RawType node : nodes) {
+    list.add(graph.getNode(node));
+  }
+  return list;
+}

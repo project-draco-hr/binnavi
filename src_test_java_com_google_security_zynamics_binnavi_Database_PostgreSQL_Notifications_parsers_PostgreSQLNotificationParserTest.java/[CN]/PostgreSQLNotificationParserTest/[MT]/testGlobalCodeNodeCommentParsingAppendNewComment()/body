@@ -1,0 +1,13 @@
+{
+  new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  MockPGNotification notification=new MockPGNotification("comment_changes","bn_global_node_comments UPDATE 1 4608 3333");
+  final Collection<CommentNotification> result=PostgreSQLCommentNotificationParser.processNodeGlobalCommentNotification(notification,provider);
+  assertEquals(1,result.size());
+  final CodeNodeCommentNotificationContainer container=(CodeNodeCommentNotificationContainer)Iterables.getFirst(result,null);
+  final INaviCodeNode node=container.getNode();
+  assertEquals(1111,node.getId());
+  assertEquals(new CAddress(4608),node.getAddress());
+  assertEquals(CommentOperation.APPEND,container.getOperation());
+  assertEquals(new Integer(3333),container.getCommentId());
+  assertEquals(CommentScope.GLOBAL,container.getScope());
+}

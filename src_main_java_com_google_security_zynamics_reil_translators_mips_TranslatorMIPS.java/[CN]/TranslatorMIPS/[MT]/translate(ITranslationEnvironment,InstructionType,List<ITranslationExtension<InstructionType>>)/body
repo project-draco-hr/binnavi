@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  final String mnemonic=instruction.getMnemonic();
+  if (mnemonic == null) {
+    return new ArrayList<ReilInstruction>();
+  }
+  final IInstructionTranslator translator=translators.get(mnemonic.toLowerCase());
+  if (translators.containsKey(mnemonic.toLowerCase())) {
+    final ArrayList<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+    translator.translate(environment,instruction,instructions);
+    for (    final ITranslationExtension<InstructionType> extension : extensions) {
+      extension.postProcess(environment,instruction,instructions);
+    }
+    return instructions;
+  }
+ else {
+    return Lists.newArrayList(ReilHelpers.createUnknown(ReilHelpers.toReilAddress(instruction.getAddress()).toLong()));
+  }
+}

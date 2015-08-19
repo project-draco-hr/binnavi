@@ -1,0 +1,3 @@
+{
+  return String.format("Trace '%s' [%d events]",getName(),trace.getEventCount());
+}

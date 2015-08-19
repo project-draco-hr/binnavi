@@ -1,0 +1,25 @@
+{
+  this.debugger=Preconditions.checkNotNull(debugger,"IE02019: Debugger argument can not be null");
+  this.function=Preconditions.checkNotNull(function,"IE02020: Function argument can not be null");
+  this.table=Preconditions.checkNotNull(table,"IE02348: Table argument can not be null");
+  this.view=Preconditions.checkNotNull(view,"IE02349: View argument can not be null");
+  if (starImage == null) {
+    try {
+      starImage=new ImageIcon(CMain.class.getResource("data/star.png").toURI().toURL()).getImage();
+    }
+ catch (    final MalformedURLException e) {
+    }
+catch (    final URISyntaxException e) {
+    }
+  }
+  if (font == null) {
+    normalFont=new Font(getFont().getFontName(),Font.PLAIN,12);
+    normalBoldFont=new Font(getFont().getFontName(),Font.BOLD,12);
+  }
+ else {
+    normalFont=new Font(font.getName(),Font.PLAIN,font.getSize());
+    normalBoldFont=new Font(font.getName(),Font.BOLD,font.getSize());
+  }
+  setBackground(backgroundColor);
+  setOpaque(true);
+}

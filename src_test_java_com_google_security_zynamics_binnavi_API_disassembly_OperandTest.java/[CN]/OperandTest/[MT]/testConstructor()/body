@@ -1,0 +1,12 @@
+{
+  final MockModule mockModule=new MockModule();
+  final COperandTreeNode rootNode=new COperandTreeNode(1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),new MockSqlProvider(),mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode=new COperandTreeNode(1,IOperandTree.NODE_TYPE_REGISTER_ID,"eax",null,new ArrayList<IReference>(),new MockSqlProvider(),mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode,childNode);
+  final COperandTree tree=new COperandTree(rootNode,new MockSqlProvider(),mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final Operand operand=new Operand(tree);
+  assertEquals("dword",operand.getRootNode().getValue());
+  assertEquals(1,operand.getRootNode().getChildren().size());
+  assertEquals("eax",operand.getRootNode().getChildren().get(0).getValue());
+  assertEquals("eax",operand.toString());
+}

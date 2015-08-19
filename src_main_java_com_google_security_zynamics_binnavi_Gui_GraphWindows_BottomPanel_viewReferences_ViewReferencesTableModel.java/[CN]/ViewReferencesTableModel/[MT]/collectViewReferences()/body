@@ -1,0 +1,16 @@
+{
+  for (  CCodeNode node : view.getContent().getBasicBlocks()) {
+    for (    INaviInstruction instruction : node.getInstructions()) {
+      for (      COperandTree operandTree : instruction.getOperands()) {
+        for (        INaviOperandTreeNode operandNode : operandTree.getNodes()) {
+          if (operandNode.getTypeSubstitution() != null) {
+            addTypeSubstitutionToTree(operandNode,instruction);
+          }
+          if (operandNode.getTypeInstanceReferences() != null) {
+            addTypeInstancesToTree(operandNode.getTypeInstanceReferences(),instruction);
+          }
+        }
+      }
+    }
+  }
+}

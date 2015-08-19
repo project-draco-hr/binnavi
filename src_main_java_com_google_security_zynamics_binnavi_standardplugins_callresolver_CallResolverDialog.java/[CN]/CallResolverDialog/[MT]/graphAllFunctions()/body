@@ -1,0 +1,16 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final View view=OutputGraphGenerator.createCompleteView(callResolver.getTarget(),callResolver.getIndirectAddresses(),callResolver.getResolvedAddresses());
+      final View2D view2d=PluginInterface.instance().showInLastWindow(view);
+      view2d.doHierarchicalLayout();
+      try {
+        view.save();
+      }
+ catch (      final CouldntSaveDataException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+.start();
+}

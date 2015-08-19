@@ -1,0 +1,8 @@
+{
+  return GraphHelpers.filter(graph,new ICollectionFilter<NaviNode>(){
+    @Override public boolean qualifies(    final NaviNode item){
+      return item.getRawNode() instanceof INaviCodeNode && isEventNode((INaviCodeNode)item.getRawNode(),eventList) || item.getRawNode() instanceof INaviFunctionNode && isEventNode((INaviFunctionNode)item.getRawNode(),eventList);
+    }
+  }
+);
+}

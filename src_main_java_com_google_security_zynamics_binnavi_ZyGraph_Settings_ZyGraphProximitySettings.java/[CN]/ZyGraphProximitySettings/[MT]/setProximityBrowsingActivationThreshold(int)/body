@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00889: Threshold argument must not be negative");
+  if (value == getProximityBrowsingActivationThreshold()) {
+    return;
+  }
+  if (m_type == null) {
+    m_proximityBrowsingActivisionThreshold=value;
+  }
+ else {
+    m_type.setProximityBrowsingThreshold(value);
+  }
+}

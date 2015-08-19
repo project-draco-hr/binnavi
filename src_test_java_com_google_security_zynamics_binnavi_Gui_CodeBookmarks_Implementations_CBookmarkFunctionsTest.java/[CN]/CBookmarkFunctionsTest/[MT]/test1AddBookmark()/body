@@ -1,0 +1,8 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final MockAddress mockAddress=new MockAddress();
+  final MockModule mockModule=new MockModule();
+  assertEquals(0,bookmarkManager.size());
+  CBookmarkFunctions.addBookmark(bookmarkManager,mockModule,mockAddress);
+  assertEquals(1,bookmarkManager.size());
+}

@@ -1,0 +1,84 @@
+{
+  if (isEnabled()) {
+    g.setColor(m_fontColorAscii);
+  }
+ else {
+    g.setColor(m_disabledColor != m_bgColorAscii ? m_disabledColor : Color.WHITE);
+  }
+  final int characterWidth=getCharacterWidth(g);
+  final int initx=getAsciiViewLeft() + m_paddingAsciiLeft;
+  int x=initx;
+  int y=m_paddingTop;
+  byte[] data=null;
+  int bytesToDraw;
+  if (m_status == DefinitionStatus.DEFINED) {
+    bytesToDraw=getBytesToDraw();
+    data=m_dataProvider.getData(getFirstVisibleOffset(),bytesToDraw);
+  }
+ else {
+    bytesToDraw=getMaximumVisibleBytes();
+  }
+  long currentOffset=getFirstVisibleOffset();
+  for (int i=0; i < bytesToDraw; i++, currentOffset++) {
+    ColoredRange range=findColoredRange(currentOffset);
+    if ((range != null) && ((currentOffset + bytesToDraw) < range.getStart())) {
+      range=null;
+    }
+    if ((i != 0) && ((i % m_bytesPerRow) == 0)) {
+      x=initx;
+      y+=m_rowHeight;
+    }
+    if (m_status == DefinitionStatus.DEFINED) {
+      char c=(char)data[i];
+      c=Convert.isPrintableCharacter(c) ? c : '.';
+      final String dataString=String.valueOf(c);
+      if (isEnabled()) {
+        final long normalizedOffset=m_flipBytes ? ((currentOffset & -m_bytesPerColumn) + m_bytesPerColumn) - (currentOffset % m_bytesPerColumn) - 1 : currentOffset;
+        if (isSelectedOffset(normalizedOffset)) {
+          g.setColor(m_selectionColor);
+          g.fillRect(x,y - m_charHeight,m_charWidth,m_charHeight + 2);
+          g.setColor(m_fontColorAscii);
+        }
+ else         if ((range != null) && range.containsOffset(currentOffset)) {
+          final Color bgColor=range.getBackgroundColor();
+          if (bgColor != null) {
+            g.setColor(bgColor);
+          }
+ else {
+            System.out.println("FOO");
+          }
+          g.fillRect(x,y - m_charHeight,m_charWidth,m_charHeight + 2);
+          g.setColor(range.getColor());
+        }
+ else         if ((m_colormap != null) && m_colormap.colorize(data,i)) {
+          final Color backgroundColor=m_colormap.getBackgroundColor(data,i);
+          final Color foregroundColor=m_colormap.getForegroundColor(data,i);
+          if (backgroundColor != null) {
+            g.setColor(backgroundColor);
+            g.fillRect(x,y - m_charHeight,m_charWidth,m_charHeight + 2);
+          }
+          if (foregroundColor != null) {
+            g.setColor(foregroundColor);
+          }
+        }
+ else {
+          g.setColor(m_fontColorAscii);
+        }
+      }
+ else {
+        g.setColor(m_disabledColor != m_bgColorAscii ? m_disabledColor : Color.WHITE);
+      }
+      g.drawString(dataString,x,y);
+    }
+ else {
+      g.drawString("?",x,y);
+    }
+    x+=characterWidth;
+    if ((range != null) && ((range.getStart() + range.getSize()) <= currentOffset)) {
+      range=findColoredRange(currentOffset);
+      if ((range != null) && ((currentOffset + bytesToDraw) < range.getStart())) {
+        range=null;
+      }
+    }
+  }
+}

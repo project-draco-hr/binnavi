@@ -1,0 +1,11 @@
+{
+  if (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 2) {
+    TableHelpers.selectClickedRow(m_eventTable,event);
+    final int[] rows=m_eventTable.getConvertedSelectedRows();
+    if (rows.length == 1) {
+      final ITraceEvent debugEvent=m_eventTable.getTreeTableModel().getEvents().get(rows[0]);
+      final BreakpointAddress address=debugEvent.getOffset();
+      ZyZoomHelpers.zoomToAddress(m_graph,address.getAddress().getAddress(),address.getModule(),true);
+    }
+  }
+}

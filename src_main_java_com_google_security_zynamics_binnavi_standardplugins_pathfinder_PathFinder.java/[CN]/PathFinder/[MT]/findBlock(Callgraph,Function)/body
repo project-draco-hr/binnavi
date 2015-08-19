@@ -1,0 +1,8 @@
+{
+  for (  final FunctionBlock callgraphNode : callgraph) {
+    if (function == callgraphNode.getFunction()) {
+      return callgraphNode;
+    }
+  }
+  throw new IllegalStateException("Error: Call graph node of unknown function");
+}

@@ -1,0 +1,6 @@
+{
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123_SET);
+  debuggerSynchronizer.receivedEvent(new BreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,0))));
+  assertEquals(1,breakpointManager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_123,BreakpointType.REGULAR));
+}

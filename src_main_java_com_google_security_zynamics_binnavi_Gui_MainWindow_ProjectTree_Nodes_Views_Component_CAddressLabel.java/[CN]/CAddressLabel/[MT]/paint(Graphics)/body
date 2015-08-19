@@ -1,0 +1,18 @@
+{
+  CLoadProgressPainter.paint(view,graphics,getWidth(),getHeight(),getBackground());
+  if (view.isStared()) {
+    graphics.drawImage(starImage,0,0,getHeight() - 2,getHeight() - 2,table);
+  }
+  final UnrelocatedAddress fileAddress=new UnrelocatedAddress(function.getAddress());
+  if (CGraphDebugger.hasBreakpoint(debugger.getBreakpointManager(),function.getModule(),fileAddress)) {
+    final BreakpointStatus breakpointStatus=CGraphDebugger.getBreakpointStatus(debugger.getBreakpointManager(),function.getModule(),fileAddress);
+    final CBreakpointImage img=new CBreakpointImage(getBackground(),BreakpointManager.getBreakpointColor(breakpointStatus));
+    final int x=getWidth() - img.getWidth() - 2;
+    final int y=(getHeight() / 2) - (img.getHeight() / 2);
+    ((Graphics2D)graphics).drawImage(img,null,x,y);
+  }
+  final boolean isOpen=CWindowManager.instance().isOpen(view);
+  graphics.setColor(Color.BLACK);
+  graphics.setFont(isOpen ? normalBoldFont : normalFont);
+  graphics.drawString(function.getAddress().toHexString(),view.isStared() ? getHeight() : 0,12);
+}

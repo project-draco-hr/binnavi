@@ -1,0 +1,6 @@
+{
+  debuggerSynchronizer.receivedEvent(new ReadMemoryReply(0,0,CommonTestObjects.BP_ADDRESS_123.getAddress().getAddress(),"Hannes".getBytes()));
+  assertEquals(0,listener.exception);
+  assertEquals("RECEIVED_MEMORY/00000123/6;",listener.events);
+  assertTrue(mockDebugger.getProcessManager().getMemory().hasData(0x123,6));
+}

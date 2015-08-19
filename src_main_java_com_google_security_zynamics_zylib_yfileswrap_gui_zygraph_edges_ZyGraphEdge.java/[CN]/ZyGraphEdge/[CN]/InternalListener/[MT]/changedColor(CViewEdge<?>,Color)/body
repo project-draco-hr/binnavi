@@ -1,0 +1,4 @@
+{
+  m_realizer.setLineColor(color);
+  updateViews();
+}

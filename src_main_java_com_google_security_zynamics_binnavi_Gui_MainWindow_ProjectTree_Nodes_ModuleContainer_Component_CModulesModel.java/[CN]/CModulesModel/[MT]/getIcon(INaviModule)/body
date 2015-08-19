@@ -1,0 +1,11 @@
+{
+  if (module.getConfiguration().getRawModule().isComplete() && module.isInitialized()) {
+    return module.isLoaded() ? ICON_MODULE : ICON_MODULE_GRAY;
+  }
+ else   if (module.getConfiguration().getRawModule().isComplete() && !module.isInitialized()) {
+    return ICON_MODULE_UNCONVERTED;
+  }
+ else {
+    return ICON_MODULE_BROKEN;
+  }
+}

@@ -1,0 +1,4 @@
+Node node
+ZyProximityNodeRealizer<T> realizer
+ZyGraphNode<T> attachedNode
+boolean isIncoming

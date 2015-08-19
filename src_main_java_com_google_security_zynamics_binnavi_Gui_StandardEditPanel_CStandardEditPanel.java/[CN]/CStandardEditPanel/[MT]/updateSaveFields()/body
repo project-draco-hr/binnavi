@@ -1,0 +1,4 @@
+{
+  m_nameTextField.setModified(!m_savedName.equals(m_nameTextField.getText()));
+  m_descriptionField.setModified(!m_savedDescription.equals(m_descriptionField.getText()));
+}

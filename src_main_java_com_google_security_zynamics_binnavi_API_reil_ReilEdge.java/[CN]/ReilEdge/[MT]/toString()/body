@@ -1,0 +1,3 @@
+{
+  return String.format("REIL Edge [%s -> %s]",super.getSource().getAddress().toHexString(),super.getTarget().getAddress().toHexString());
+}

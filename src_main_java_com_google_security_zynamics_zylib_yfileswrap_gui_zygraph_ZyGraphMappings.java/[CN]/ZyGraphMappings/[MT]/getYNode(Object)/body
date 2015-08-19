@@ -1,0 +1,8 @@
+{
+  if (m_rawNodeMap.containsKey(rawNode)) {
+    return m_rawNodeMap.get(rawNode).getNode();
+  }
+ else {
+    return null;
+  }
+}

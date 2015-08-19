@@ -1,0 +1,8 @@
+{
+  for (  final INaviEdge edge : source.getOutgoingEdges()) {
+    if ((edge.getTarget() == target) && (edge.getType() == type)) {
+      return true;
+    }
+  }
+  return false;
+}

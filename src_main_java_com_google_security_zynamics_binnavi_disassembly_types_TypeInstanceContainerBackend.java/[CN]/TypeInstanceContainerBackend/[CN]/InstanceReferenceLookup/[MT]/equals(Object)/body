@@ -1,0 +1,7 @@
+{
+  if (!(o instanceof InstanceReferenceLookup)) {
+    return false;
+  }
+  final InstanceReferenceLookup other=(InstanceReferenceLookup)o;
+  return address.equals(other.address) && operandPosition == other.operandPosition && expressionId == other.expressionId;
+}

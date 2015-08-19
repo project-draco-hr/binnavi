@@ -1,0 +1,14 @@
+{
+  gfx.setColor(color);
+  final int roundedX=(int)Math.round(x);
+  final int roundedY=(int)Math.round(y);
+  final int roundedHeight=(int)Math.round(height);
+  final int roundedWidth=(int)Math.round(width);
+  gfx.setComposite(DEFAULT_COMPOSITE);
+  gfx.fillRoundRect(roundedX,roundedY,roundedWidth,roundedHeight,10,10);
+  gfx.setColor(color.darker());
+  gfx.setStroke(DEFAULT_BORDER_STROKE);
+  gfx.drawRoundRect(roundedX,roundedY,roundedWidth,roundedHeight,10,10);
+  gfx.setComposite(NORMAL_COMPOSITE);
+  gfx.setStroke(NORMAL_STROKE);
+}

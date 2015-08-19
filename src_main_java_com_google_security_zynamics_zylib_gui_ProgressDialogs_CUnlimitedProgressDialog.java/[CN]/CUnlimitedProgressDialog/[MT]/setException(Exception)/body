@@ -1,0 +1,5 @@
+{
+  if (m_exception == null) {
+    m_exception=e;
+  }
+}

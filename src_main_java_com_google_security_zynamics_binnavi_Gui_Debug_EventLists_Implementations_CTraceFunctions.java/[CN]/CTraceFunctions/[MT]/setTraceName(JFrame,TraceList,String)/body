@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(eventList,"IE01390: Event list argument can't be null");
+  Preconditions.checkNotNull(name,"IE01391: Name argument can't be null");
+  try {
+    eventList.setName(name);
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00077: " + "Could not change trace name";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The name of the trace list '%s' could not be changed.",eventList.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The trace list keeps its old name. You could try changing the name again once the connection problem was resolved."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+  }
+}

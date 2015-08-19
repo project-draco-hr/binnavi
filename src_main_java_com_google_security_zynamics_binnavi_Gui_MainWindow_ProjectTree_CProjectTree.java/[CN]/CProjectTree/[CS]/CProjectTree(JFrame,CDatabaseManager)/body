@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(databaseManager,"IE01840: Database manager object can't be null");
+  m_treeModel=new CProjectTreeModel(this);
+  setModel(m_treeModel);
+  CProjectTreeDragHandlerInitializer.initialize(parent,this,databaseManager);
+  addMouseListener(new InternalMouseListener());
+  setScrollsOnExpand(false);
+  setRootVisible(false);
+  m_rootNode=new CRootNode(this,databaseManager);
+  m_treeModel.setRoot(m_rootNode);
+  setCellRenderer(new IconNodeRenderer());
+  m_popup.add(CActionProxy.proxy(new CAddDatabaseAction(this)));
+}

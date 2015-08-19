@@ -1,0 +1,5 @@
+{
+  if (!reporter.report(event)) {
+    throw new LoadCancelledException();
+  }
+}

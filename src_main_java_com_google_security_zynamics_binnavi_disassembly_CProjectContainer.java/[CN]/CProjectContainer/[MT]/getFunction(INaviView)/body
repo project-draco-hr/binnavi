@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(view,"IE02217: View argument can not be null");
+  for (  final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+    if (!addressSpace.isLoaded()) {
+      continue;
+    }
+    for (    final INaviModule module : addressSpace.getContent().getModules()) {
+      if (!module.isLoaded()) {
+        continue;
+      }
+      final INaviFunction function=module.getContent().getViewContainer().getFunction(view);
+      if (function != null) {
+        return function;
+      }
+    }
+  }
+  return null;
+}

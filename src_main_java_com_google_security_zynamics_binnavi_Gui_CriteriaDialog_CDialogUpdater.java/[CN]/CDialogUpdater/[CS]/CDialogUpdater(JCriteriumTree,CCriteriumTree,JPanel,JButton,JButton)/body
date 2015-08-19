@@ -1,0 +1,9 @@
+{
+  m_jtree=jtree;
+  m_ctree=ctree;
+  m_defineConditionPanel=conditionPanel;
+  m_addConditionButton=conditionButton;
+  m_executeButton=executeButton;
+  m_jtree.addTreeSelectionListener(m_treeSelectionListener);
+  m_ctree.addListener(m_treeCriteriumlListener);
+}

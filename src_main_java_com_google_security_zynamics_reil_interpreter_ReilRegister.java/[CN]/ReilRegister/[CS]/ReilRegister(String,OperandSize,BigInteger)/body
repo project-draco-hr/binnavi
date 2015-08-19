@@ -1,0 +1,5 @@
+{
+  this.register=Preconditions.checkNotNull(register,"Error: Argument register can't be null");
+  this.size=Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  this.value=value;
+}

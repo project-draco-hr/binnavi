@@ -1,0 +1,36 @@
+{
+  final long baseOffset=offset;
+  long newOffset=baseOffset;
+  final OperandSize resultSize=TranslationHelpers.getNextSize(size1);
+  final ArrayList<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  final Pair<String,String> abs1=Helpers.generateAbs(environment,newOffset,operand1,size1,instructions);
+  newOffset=baseOffset + instructions.size();
+  final Pair<String,String> abs2=Helpers.generateAbs(environment,newOffset,operand2,size2,instructions);
+  newOffset=baseOffset + instructions.size();
+  final String lowerHalfMask=String.valueOf(TranslationHelpers.getAllBitsMask(size1));
+  final String multResult=environment.getNextVariableString();
+  final String xoredSigns=environment.getNextVariableString();
+  final String toggleMask=environment.getNextVariableString();
+  final String decResult=environment.getNextVariableString();
+  final String realResult=environment.getNextVariableString();
+  final String maskedLowerHalf=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createMul(newOffset,size1,abs1.second(),size2,abs2.second(),resultSize,multResult));
+  instructions.add(ReilHelpers.createXor(newOffset + 1,size1,abs1.first(),size2,abs2.first(),size1,xoredSigns));
+  instructions.add(ReilHelpers.createSub(newOffset + 2,size1,"0",size1,xoredSigns,resultSize,toggleMask));
+  instructions.add(ReilHelpers.createSub(newOffset + 3,resultSize,multResult,size1,xoredSigns,resultSize,decResult));
+  instructions.add(ReilHelpers.createXor(newOffset + 4,resultSize,toggleMask,resultSize,decResult,resultSize,realResult));
+  instructions.add(ReilHelpers.createAnd(newOffset + 5,resultSize,realResult,size1,lowerHalfMask,size1,maskedLowerHalf));
+  final TranslationResult foo=Helpers.extendSign(environment,newOffset + 6,maskedLowerHalf,size1,resultSize);
+  instructions.addAll(foo.getInstructions());
+  newOffset=newOffset + 6 + foo.getInstructions().size();
+  final String cmpResult=environment.getNextVariableString();
+  final String resultsEqual=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(newOffset,resultSize,realResult,resultSize,foo.getRegister(),resultSize,cmpResult));
+  instructions.add(ReilHelpers.createBisz(newOffset + 1,resultSize,cmpResult,OperandSize.BYTE,resultsEqual));
+  instructions.add(ReilHelpers.createBisz(newOffset + 2,OperandSize.BYTE,resultsEqual,OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createBisz(newOffset + 3,OperandSize.BYTE,resultsEqual,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createUndef(newOffset + 4,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createUndef(newOffset + 5,OperandSize.BYTE,Helpers.AUXILIARY_FLAG));
+  instructions.add(ReilHelpers.createUndef(newOffset + 6,OperandSize.BYTE,Helpers.PARITY_FLAG));
+  return new TranslationResult(realResult,resultSize,TranslationResultType.REGISTER,null,instructions,offset);
+}

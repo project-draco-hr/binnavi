@@ -1,0 +1,9 @@
+SQLProvider provider
+IDatabase database
+ListenerProvider<IDatabaseListener> listeners
+List<INaviProject> projects
+List<INaviModule> modules
+List<INaviRawModule> rawModules
+CTagManager viewTagManager
+CTagManager nodeTagManager
+DebuggerTemplateManager debuggerDescriptionManager

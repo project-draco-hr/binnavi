@@ -1,0 +1,16 @@
+{
+  try {
+    final CallableStatement statement=connection.prepareCall("{ call delete_type(?, ?) }");
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setInt(2,member.getId());
+      statement.execute();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(strategy,"IE02548: strategy argument can not be null");
+  if (comments == null) {
+    return;
+  }
+  strategy.saveComments(comments);
+  for (  final IComment comment : comments) {
+    commentIdToComment.put(comment.getId(),comment);
+  }
+  for (  final CommentListener listener : listeners) {
+    try {
+      strategy.sendInitializedCommentNotification(listener,comments);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

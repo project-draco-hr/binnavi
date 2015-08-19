@@ -1,0 +1,3 @@
+{
+  return new Object[]{new CLeftTitle(titleString.substring(0,titleString.length() / 2)),new CRightTitle(titleString.substring(titleString.length() / 2))};
+}

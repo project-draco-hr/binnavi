@@ -1,0 +1,30 @@
+{
+  if (!view.isLoaded()) {
+    view.load();
+  }
+  final ZyGraph graph=container instanceof CModuleContainer ? CGraphBuilder.buildDnDGraph(view,container.getModules().get(0).getTypeManager()) : CGraphBuilder.buildGraph(view);
+  CRegisterHotKeys.register(graph);
+  if (window == null) {
+    final CGraphWindow navi=new CGraphWindow();
+    final CGraphModel model=new CGraphModel(navi,container.getDatabase(),container,graph);
+    CNodeUpdaterInitializer.addUpdaters(model);
+    final CGraphPanel panel=new CGraphPanel(model);
+    navi.addGraph(panel);
+    CWindowManager.instance().register(navi);
+    navi.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+    navi.setVisible(true);
+    GuiHelper.applyWindowFix(navi);
+    navi.setExtendedState(Frame.MAXIMIZED_BOTH);
+    workArounds(panel);
+    graphModel=model;
+  }
+ else {
+    final CGraphModel model=new CGraphModel(window,container.getDatabase(),container,graph);
+    CNodeUpdaterInitializer.addUpdaters(model);
+    final CGraphPanel panel=new CGraphPanel(model);
+    window.addGraph(panel);
+    workArounds(panel);
+    window.toFront();
+    graphModel=model;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (m_value instanceof Literal) {
+    return new Literal(m_value.evaluate().equals(BigInteger.ZERO) ? BigInteger.ONE : BigInteger.ZERO);
+  }
+ else {
+    return this;
+  }
+}

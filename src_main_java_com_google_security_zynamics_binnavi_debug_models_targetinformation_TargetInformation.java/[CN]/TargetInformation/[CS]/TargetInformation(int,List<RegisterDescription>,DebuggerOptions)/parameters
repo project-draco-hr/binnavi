@@ -1,0 +1,3 @@
+int addressSize
+List<RegisterDescription> registers
+DebuggerOptions debuggerOptions

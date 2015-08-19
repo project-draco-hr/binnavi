@@ -1,0 +1,10 @@
+{
+  if (counter < oldRegisterInformation.length) {
+    if (!oldRegisterInformation[counter].getValue().equals(registerValue.getValue())) {
+      newRegisterInformation[counter].setModified(true);
+    }
+  }
+ else {
+    newRegisterInformation[counter].setModified(true);
+  }
+}

@@ -1,0 +1,28 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"popaw");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a popaw instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"edi",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"esi",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"ebp",instructions);
+  offset=baseOffset + instructions.size();
+  final String newEsp=environment.getNextVariableString();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,newEsp,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"ebx",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"edx",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"ecx",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,"eax",instructions);
+  offset=baseOffset + instructions.size();
+  final String maskedEsp=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset,OperandSize.DWORD,"esp",OperandSize.DWORD,"4294901760",OperandSize.DWORD,maskedEsp));
+  instructions.add(ReilHelpers.createOr(offset + 1,OperandSize.WORD,newEsp,OperandSize.DWORD,maskedEsp,OperandSize.DWORD,"esp"));
+}

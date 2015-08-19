@@ -1,0 +1,30 @@
+{
+  m_apiManager.addListener(m_mockListener);
+  try {
+    m_apiManager.addBookmark(null,"Fark");
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_apiManager.addBookmark(new Address(0x123),null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_apiManager.addBookmark(new Address(0x123),"Fark");
+  try {
+    m_apiManager.addBookmark(new Address(0x123),"Fark");
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  assertEquals(1,m_nativeManager.getNumberOfBookmarks());
+  assertEquals(0x123,m_nativeManager.getBookmark(0).getAddress().toLong());
+  assertEquals("Fark",m_nativeManager.getBookmark(0).getDescription());
+  assertEquals(1,m_apiManager.getNumberOfBookmarks());
+  assertEquals(0x123,m_apiManager.getBookmark(0).getAddress().toLong());
+  assertEquals("Fark",m_apiManager.getBookmark(0).getDescription());
+  assertEquals("addedBookmark/123;",m_mockListener.events);
+  m_apiManager.removeListener(m_mockListener);
+}

@@ -1,0 +1,14 @@
+{
+  if (isLower8BitRegister(register)) {
+    return 0xFFFFFF00L;
+  }
+ else   if (isHigher8BitRegister(register)) {
+    return 0xFFFF00FFL;
+  }
+ else   if (is16BitRegister(register)) {
+    return 0xFFFF0000L;
+  }
+ else {
+    throw new InternalTranslationException("Error: Invalid register");
+  }
+}

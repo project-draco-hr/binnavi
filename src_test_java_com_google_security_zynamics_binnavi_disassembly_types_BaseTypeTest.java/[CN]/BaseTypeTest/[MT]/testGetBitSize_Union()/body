@@ -1,0 +1,4 @@
+{
+  assertEquals(typeSystem.uintArrayType.getBitSize(),typeSystem.simpleUnion.getBitSize());
+  assertEquals(typeSystem.doubleNestedStruct.getBitSize(),typeSystem.complexUnion.getBitSize());
+}

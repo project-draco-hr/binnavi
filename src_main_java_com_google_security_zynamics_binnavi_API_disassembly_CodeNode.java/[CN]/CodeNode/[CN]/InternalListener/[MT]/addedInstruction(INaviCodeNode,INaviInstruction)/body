@@ -1,0 +1,12 @@
+{
+  final Instruction addedInstruction=new Instruction(instruction);
+  m_instructions.add(addedInstruction);
+  for (  final ICodeNodeListener listener : m_listeners) {
+    try {
+      listener.addedInstruction(CodeNode.this,addedInstruction);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

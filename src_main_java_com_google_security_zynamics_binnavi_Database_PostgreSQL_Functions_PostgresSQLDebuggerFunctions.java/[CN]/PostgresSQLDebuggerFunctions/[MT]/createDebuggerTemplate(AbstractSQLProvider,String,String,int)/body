@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(name,"IE00417: Debugger names can not be null");
+  Preconditions.checkArgument(!name.isEmpty(),"IE00418: Debugger names can not be empty");
+  Preconditions.checkNotNull(host,"IE00419: Debugger host can not be null");
+  Preconditions.checkArgument(!host.isEmpty(),"IE00418: Debugger host can not be empty");
+  Preconditions.checkArgument((port > 0) && (port <= 65535),"IE00421: Debugger port is out of bounds");
+  NaviLogger.info("Creating new debugger %s (%s:%d)",name,host,port);
+  final CConnection connection=provider.getConnection();
+  try {
+    final String query="INSERT INTO " + CTableNames.DEBUGGERS_TABLE + "(name, host, port) VALUES(?, ?, ?) RETURNING id";
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    statement.setString(1,name);
+    statement.setString(2,host);
+    statement.setInt(3,port);
+    final ResultSet resultSet=statement.executeQuery();
+    int id=-1;
+    try {
+      while (resultSet.next()) {
+        id=resultSet.getInt("id");
+      }
+    }
+  finally {
+      resultSet.close();
+      statement.close();
+    }
+    return new DebuggerTemplate(id,name,host,port,provider);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

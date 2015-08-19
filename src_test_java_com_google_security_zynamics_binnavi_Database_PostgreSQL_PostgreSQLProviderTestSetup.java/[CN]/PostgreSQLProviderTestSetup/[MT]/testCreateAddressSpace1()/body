@@ -1,0 +1,3 @@
+{
+  getProvider().createAddressSpace(null,"Test Address Space");
+}

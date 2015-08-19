@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00880: Threshold argument must not be negative");
+  if (value == getLayoutCalculationTimeWarningThreshold()) {
+    return;
+  }
+  if (m_type == null) {
+    m_layoutCalculationTimeWarningThreshold=value;
+  }
+ else {
+    m_type.setLayoutCalculationThreshold(value);
+  }
+}

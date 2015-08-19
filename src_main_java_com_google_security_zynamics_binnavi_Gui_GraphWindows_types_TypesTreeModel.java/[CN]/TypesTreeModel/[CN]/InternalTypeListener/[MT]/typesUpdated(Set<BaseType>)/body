@@ -1,0 +1,9 @@
+{
+  for (  final BaseType baseType : baseTypes) {
+    if (filter.includeType(baseType)) {
+      deleteBaseType(baseType);
+      ChildNodeDescriptor descriptor=insertBaseType(baseType);
+      nodeStructureChanged(descriptor.node);
+    }
+  }
+}

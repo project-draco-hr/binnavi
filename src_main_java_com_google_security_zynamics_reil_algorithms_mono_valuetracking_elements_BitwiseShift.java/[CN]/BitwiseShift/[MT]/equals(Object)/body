@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof BitwiseShift) && ((BitwiseShift)rhs).m_lhs.equals(m_lhs) && ((BitwiseShift)rhs).m_rhs.equals(m_rhs);
+}

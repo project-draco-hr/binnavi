@@ -1,0 +1,3 @@
+String pluginPath
+Set<File> pluginFiles
+IStandardDescriptionUpdater descriptionUpdater

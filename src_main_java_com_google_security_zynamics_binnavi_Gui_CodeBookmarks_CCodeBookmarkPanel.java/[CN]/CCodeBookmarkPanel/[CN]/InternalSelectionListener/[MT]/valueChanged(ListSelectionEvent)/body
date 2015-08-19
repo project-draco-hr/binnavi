@@ -1,0 +1,5 @@
+{
+  if (!event.getValueIsAdjusting() && (m_table.getSelectedRow() != -1)) {
+    ZyZoomHelpers.zoomToAddress(m_graph,m_bookmarkManager.get(m_table.getSelectedRow()).getAddress(),m_bookmarkManager.get(m_table.getSelectedRow()).getModule(),true);
+  }
+}

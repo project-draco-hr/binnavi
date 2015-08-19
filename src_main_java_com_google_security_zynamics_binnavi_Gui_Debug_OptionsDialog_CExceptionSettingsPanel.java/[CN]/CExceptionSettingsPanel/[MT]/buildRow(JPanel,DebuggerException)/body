@@ -1,0 +1,10 @@
+{
+  componentPanel.add(new JLabel(exception.getExceptionName()));
+  final JComboBox<String> combobox=new JComboBox<String>();
+  combobox.addItem(getString(DebuggerExceptionHandlingAction.Continue));
+  combobox.addItem(getString(DebuggerExceptionHandlingAction.Halt));
+  combobox.addItem(getString(DebuggerExceptionHandlingAction.Ignore));
+  combobox.setSelectedIndex(exception.getExceptionAction().getValue());
+  componentPanel.add(combobox);
+  return combobox;
+}

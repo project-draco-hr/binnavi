@@ -1,0 +1,5 @@
+{
+  final JMenu menu=new JMenu("Debuggers");
+  menu.setMnemonic("HK_MENU_DEBUGGERS".charAt(0));
+  return menu;
+}

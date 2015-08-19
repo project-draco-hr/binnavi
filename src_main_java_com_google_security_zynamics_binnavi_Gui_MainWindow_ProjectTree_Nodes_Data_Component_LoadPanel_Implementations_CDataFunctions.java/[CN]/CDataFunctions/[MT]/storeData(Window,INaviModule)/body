@@ -1,0 +1,11 @@
+{
+  final SaveToDatabaseThread thread=new SaveToDatabaseThread(module);
+  CProgressDialog.showEndless(parent,"Saving data to the database" + " ...",thread);
+  final Exception exception=thread.getException();
+  if (exception != null) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00200: " + "Could not save module data";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not save the module data of module '%s' to the database.",module.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The module data was not written to the database."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+}

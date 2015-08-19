@@ -1,0 +1,40 @@
+{
+  final MockSqlProvider sql=new MockSqlProvider();
+  final CTagManager manager=new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Foo","Bar",TagType.VIEW_TAG,sql))),TagType.VIEW_TAG,sql);
+  final MockTagManagerListener listener=new MockTagManagerListener();
+  manager.addListener(listener);
+  final ITreeNode<CTag> tag1=manager.addTag(manager.getRootTag(),"Tag I");
+  final ITreeNode<CTag> tag2=manager.addTag(manager.getRootTag(),"Tag II");
+  final ITreeNode<CTag> tag3=manager.addTag(tag2,"Tag III");
+  final ITreeNode<CTag> tag4=manager.insertTag(manager.getRootTag(),"Tag IV");
+  final ITreeNode<CTag> tag5=manager.insertTag(tag3,"Tag V");
+  try {
+    manager.deleteTagSubTree(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    manager.deleteTagSubTree(manager.getRootTag());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  manager.deleteTagSubTree(tag5);
+  assertEquals("addedTag/addedTag/addedTag/insertedTag/insertedTag/deletedTag/",listener.eventList);
+  assertEquals(4,DepthFirstSorter.getSortedList(manager.getRootTag()).size());
+  assertEquals(tag4,tag1.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag1));
+  assertTrue(tag4.getChildren().contains(tag1));
+  assertEquals(tag4,tag2.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag2));
+  assertTrue(tag4.getChildren().contains(tag2));
+  assertEquals(tag2,tag3.getParent());
+  assertTrue(tag2.getChildren().contains(tag3));
+  assertNull(tag5.getParent());
+  assertFalse(tag3.getChildren().contains(tag5));
+  assertNull(CTagHelpers.findTag(manager.getRootTag(),5));
+  manager.deleteTagSubTree(tag4);
+  assertEquals("addedTag/addedTag/addedTag/insertedTag/insertedTag/deletedTag/deletedSubtree/",listener.eventList);
+  assertEquals(0,DepthFirstSorter.getSortedList(manager.getRootTag()).size());
+}

@@ -1,0 +1,3 @@
+INaviCodeNode codeNode
+String commentText
+Integer userId

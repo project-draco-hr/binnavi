@@ -1,0 +1,47 @@
+{
+  if (!isActive()) {
+    return;
+  }
+  if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+    deactivateLabelContent();
+    return;
+  }
+  if ((event.getKeyCode() == KeyEvent.VK_TAB) && (event.getModifiers() != 0) && (event.getModifiers() != InputEvent.SHIFT_DOWN_MASK)) {
+    return;
+  }
+  if (!getActiveLabelContent().isSelectable()) {
+    return;
+  }
+  CAbstractKeyBehavior behaviour=null;
+  final char keyText=KeyEvent.getKeyText(event.getKeyCode()).charAt(0);
+  if (event.isControlDown() && (keyText >= 'A') && (keyText <= 'Z')) {
+    behaviour=m_ctrlKeyBehaviourMap.get(event.getKeyCode());
+  }
+  if (behaviour == null) {
+    behaviour=m_keyBehaviourMap.get(event.getKeyCode());
+    if ((behaviour == null) && (event.getKeyChar() != KeyEvent.CHAR_UNDEFINED) && !event.isControlDown()&& getActiveLabelContent().isEditable()) {
+      behaviour=m_keyBehaviourMap.get(null);
+    }
+  }
+  if (behaviour != null) {
+    int y=-1;
+    String oldContent="";
+    if (getActiveLabelContent().isEditable()) {
+      y=getActiveLabelContent().getCaret().getYmouseReleased();
+      oldContent=getContentSnippet(y);
+    }
+    behaviour.keyPressed(getActiveLabelContent(),event);
+    if (y > -1) {
+      final String newContent=getContentSnippet(y);
+      if (!oldContent.equals(newContent) && !oldContent.isEmpty()) {
+        for (        final ILabelEditableContentListener listener : m_editModeListener) {
+          listener.editableContentChanged(getActiveLabelContent());
+        }
+      }
+    }
+    m_activeRealizer.regenerate();
+    m_activeRealizer.repaint();
+    m_graph.updateViews();
+  }
+  event.consume();
+}

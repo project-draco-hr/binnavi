@@ -1,0 +1,2 @@
+BaseType deletedType
+Set<BaseType> affectedTypes

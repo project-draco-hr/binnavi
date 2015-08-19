@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(description,"IE00044: Description argument can not be null");
+  if (m_description.equals(description)) {
+    return;
+  }
+  m_provider.setDescription(m_addressSpace,description);
+  m_description=description;
+  for (  final IAddressSpaceConfigurationListener listener : m_listeners) {
+    try {
+      listener.changedDescription(m_addressSpace,description);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

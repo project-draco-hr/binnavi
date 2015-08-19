@@ -1,0 +1,10 @@
+{
+  super("Search memory");
+  Preconditions.checkNotNull(parent,"IE01424: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01425: Debugger argument can not be null");
+  Preconditions.checkNotNull(memoryView,"IE01426: Memory view argument can not be null");
+  m_parent=parent;
+  m_memoryView=memoryView;
+  m_debugger=debugger;
+  putValue(Action.SHORT_DESCRIPTION,"Search memory");
+}

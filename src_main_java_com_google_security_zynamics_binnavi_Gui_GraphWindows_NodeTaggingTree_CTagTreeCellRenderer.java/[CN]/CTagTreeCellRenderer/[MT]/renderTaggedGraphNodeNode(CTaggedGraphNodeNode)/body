@@ -1,0 +1,10 @@
+{
+  final INaviViewNode rawNode=node.getGraphNode().getRawNode();
+  if (rawNode.isTagged() && rawNode.isSelected()) {
+    setForeground(COLOR_TAGGED_SELECTED_ALL);
+  }
+ else   if (rawNode.isTagged() && !rawNode.isVisible()) {
+    setForeground(COLOR_TAGGED_INVISIBLE);
+  }
+  setToolTipText(buildToolTip(node.getGraphNode()));
+}

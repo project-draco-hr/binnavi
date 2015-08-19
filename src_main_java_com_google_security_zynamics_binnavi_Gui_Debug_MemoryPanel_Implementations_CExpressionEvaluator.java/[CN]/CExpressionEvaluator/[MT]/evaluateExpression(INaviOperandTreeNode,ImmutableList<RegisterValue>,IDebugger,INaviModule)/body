@@ -1,0 +1,12 @@
+{
+switch (node.getType()) {
+case IMMEDIATE_INTEGER:
+    return evaluateInteger(node,debugger,module);
+case REGISTER:
+  return evaluateRegister(node,registers);
+case OPERATOR:
+return evaluateOperator(node,registers,debugger,module);
+default :
+throw new IllegalStateException("IE00610: Unknown operand type");
+}
+}

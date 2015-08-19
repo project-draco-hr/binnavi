@@ -1,0 +1,3 @@
+{
+  return resolvedFunction != null ? resolvedFunction.getAddress() : null;
+}

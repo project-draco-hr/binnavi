@@ -1,0 +1,16 @@
+{
+  final CCriteriumTree cCriteriumTree=new CCriteriumTree();
+  final CCriteriaFactory cCriteriaFactory=new CCriteriaFactory(m_graph,null,null);
+  final List<ICriteriumCreator> criteria=cCriteriaFactory.getConditions();
+  final CConditionBox box=new CConditionBox(criteria);
+  final JCriteriumTree jtree=new JCriteriumTree(cCriteriumTree,criteria);
+  final CColorCriterium colorado=new CColorCriterium(m_graph);
+  final CCriteriumTreeNode child=new CCriteriumTreeNode(colorado);
+  cCriteriumTree.appendNode(cCriteriumTree.getRoot(),child);
+  final TreePath path=new TreePath(((JCriteriumTreeNode)jtree.getModel().getRoot()).getFirstChild());
+  jtree.setSelectionPath(path);
+  box.setSelectedIndex(6);
+  CCriteriumFunctions.appendCriterium(jtree,cCriteriumTree,box);
+  assertEquals(null,CCriteriumFunctions.findNode(cCriteriumTree.getRoot(),new CTextCriterium()));
+  assertEquals(child,CCriteriumFunctions.findNode(cCriteriumTree.getRoot(),colorado));
+}

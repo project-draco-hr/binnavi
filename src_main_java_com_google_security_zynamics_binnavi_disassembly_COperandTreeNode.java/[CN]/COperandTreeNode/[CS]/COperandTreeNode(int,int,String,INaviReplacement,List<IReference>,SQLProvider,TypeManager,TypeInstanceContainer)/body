@@ -1,0 +1,21 @@
+{
+  this.provider=Preconditions.checkNotNull(provider,"IE02212: Provider argument can not be null");
+  Preconditions.checkNotNull(value,"IE00214: Value can not be null");
+  this.references=new ArrayList<IReference>(Preconditions.checkNotNull(references,"IE02211: References argument can not be null"));
+  id=nodeId;
+  for (  final IReference reference : references) {
+    Preconditions.checkNotNull(reference,"IE00215: Invalid reference in reference list");
+  }
+  Preconditions.checkNotNull(typeManager,"Type manager can not be null.");
+  Preconditions.checkNotNull(instanceContainer,"Type instance container can not be null");
+  initValue(type,value);
+  if (expressionValue == null) {
+    throw new IllegalArgumentException(String.format("IE00216: Unknown operand value '%s'",value));
+  }
+  this.replacement=replacement;
+  if (replacement != null) {
+    replacement.addListener(listener);
+    displayStyle=OperandDisplayStyle.OFFSET;
+  }
+  instanceContainer.addListener(typeInstanceContainerListener);
+}

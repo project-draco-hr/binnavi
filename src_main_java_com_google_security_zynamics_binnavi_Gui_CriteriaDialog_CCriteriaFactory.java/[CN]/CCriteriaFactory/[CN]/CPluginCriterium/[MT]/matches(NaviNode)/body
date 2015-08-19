@@ -1,0 +1,3 @@
+{
+  return m_plugin.matches(m_view2D.getNode(node.getRawNode()));
+}

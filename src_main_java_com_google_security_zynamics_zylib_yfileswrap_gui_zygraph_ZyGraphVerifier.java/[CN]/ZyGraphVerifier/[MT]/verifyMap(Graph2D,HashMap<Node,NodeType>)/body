@@ -1,0 +1,14 @@
+{
+  Preconditions.checkArgument(graph.nodeCount() <= nodeMap.size(),"Error: Invalid node map (Graph contains " + graph.nodeCount() + " nodes while nodeMap contains "+ nodeMap.size()+ " nodes");
+  final HashSet<Node> visitedNodes=new HashSet<Node>();
+  final HashSet<NodeType> visitedNodes2=new HashSet<NodeType>();
+  for (  final Map.Entry<Node,NodeType> elem : nodeMap.entrySet()) {
+    final Node ynode=elem.getKey();
+    final NodeType node=elem.getValue();
+    Preconditions.checkArgument((ynode != null) && (node != null),"Error: Invalid node map");
+    Preconditions.checkArgument(!visitedNodes.contains(ynode),"Error: Invalid node map");
+    Preconditions.checkArgument(!visitedNodes2.contains(node),"Error: Invalid node map");
+    visitedNodes.add(ynode);
+    visitedNodes2.add(node);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (!filter.includeUpdatedType(member.getParentType())) {
+    return;
+  }
+  deleteMemberNodes(member);
+}

@@ -1,0 +1,4 @@
+{
+  final String test=apiManager.toString();
+  assertNotNull(test);
+}

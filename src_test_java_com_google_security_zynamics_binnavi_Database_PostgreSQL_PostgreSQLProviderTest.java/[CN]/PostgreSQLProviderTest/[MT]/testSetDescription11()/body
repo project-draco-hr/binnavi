@@ -1,0 +1,5 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  final ITreeNode<CTag> tag=tagManager.getRootTag().getChildren().get(0);
+  getProvider().setDescription(tag.getObject(),null);
+}

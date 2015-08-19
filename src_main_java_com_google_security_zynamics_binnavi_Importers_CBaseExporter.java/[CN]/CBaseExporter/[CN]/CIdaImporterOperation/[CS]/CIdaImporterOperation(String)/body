@@ -1,0 +1,5 @@
+{
+  m_progressBar=new CProgressPanel(String.format("Importing IDB file '%s'",filename),true,false);
+  m_progressBar.start();
+  CGlobalProgressManager.instance().add(this);
+}

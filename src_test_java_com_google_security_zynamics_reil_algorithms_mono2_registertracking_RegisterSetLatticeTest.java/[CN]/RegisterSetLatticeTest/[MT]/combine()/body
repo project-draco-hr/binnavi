@@ -1,0 +1,8 @@
+{
+  final RegisterSetLattice lattice=new RegisterSetLattice();
+  final RegisterSetLatticeElement element=lattice.combine(Lists.newArrayList(m_fullRegisterSetLatticeElement,m_emptyRegisterSetLatticeElement));
+  Assert.assertTrue(element.getTaintedRegisters().containsAll(m_fullRegisterSetLatticeElement.getTaintedRegisters()));
+  Assert.assertTrue(element.getUntaintedRegisters().containsAll(m_fullRegisterSetLatticeElement.getUntaintedRegisters()));
+  Assert.assertTrue(element.getReadRegisters().containsAll(m_fullRegisterSetLatticeElement.getReadRegisters()));
+  Assert.assertTrue(element.getUpdatedRegisters().containsAll(m_fullRegisterSetLatticeElement.getUpdatedRegisters()));
+}

@@ -1,0 +1,31 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"mul");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a mul instruction (invalid number of operand)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final TranslationResult firstResult=Helpers.translateOperand(environment,offset,operands.get(0),true);
+  instructions.addAll(firstResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String operand1=firstResult.getRegister();
+  final String operand2="eax";
+  final OperandSize size1=firstResult.getSize();
+  final OperandSize size2=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(size2);
+  final String result=environment.getNextVariableString();
+  final String upperHalf=environment.getNextVariableString();
+  final String upperHalfZero=environment.getNextVariableString();
+  final String maskUpper=String.valueOf(TranslationHelpers.getAllButMask(resultSize,size1));
+  instructions.add(ReilHelpers.createMul(offset,size1,operand1,size2,operand2,resultSize,result));
+  instructions.add(ReilHelpers.createAnd(offset + 1,resultSize,result,resultSize,maskUpper,resultSize,upperHalf));
+  instructions.add(ReilHelpers.createBisz(offset + 2,resultSize,upperHalf,OperandSize.BYTE,upperHalfZero));
+  instructions.add(ReilHelpers.createBisz(offset + 3,resultSize,upperHalfZero,OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createBisz(offset + 4,resultSize,upperHalfZero,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset + 5,OperandSize.BYTE,Helpers.SIGN_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset + 6,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset + 7,OperandSize.BYTE,Helpers.AUXILIARY_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset + 8,OperandSize.BYTE,Helpers.PARITY_FLAG));
+  instructions.addAll(Helpers.writeMulResult(environment,offset + 9,result,size1));
+}

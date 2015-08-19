@@ -1,0 +1,6 @@
+{
+  final CommentManager commentManager=CommentManager.get(m_provider);
+  commentManager.unloadGlobalCodeNodeComment(m_codeNode,getGlobalCodeNodeComment());
+  commentManager.unloadLocalCodeNodeComment(m_codeNode,getLocalCodeNodeComment());
+  commentManager.removeListener(m_internalCommentListener);
+}

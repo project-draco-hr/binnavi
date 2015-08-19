@@ -1,0 +1,32 @@
+{
+  final Point location=parent.getLocation();
+  final GeneralSettingsConfigItem.LastOpenWindowConfigItem window=generalSettings.getLastOpenWindow();
+  window.setTop((int)location.getY());
+  window.setLeft((int)location.getX());
+  window.setHeight(parent.getHeight());
+  window.setWidth(parent.getWidth());
+  generalSettings.setMaximizeWindow((parent.getExtendedState() == Frame.ICONIFIED) || (parent.getExtendedState() == Frame.MAXIMIZED_BOTH));
+  databases.clear();
+  for (  final IDatabase database : CDatabaseManager.instance()) {
+    final DatabaseConfigItem databaseConfig=new DatabaseConfigItem();
+    databaseConfig.setAutoConnect(database.getConfiguration().isAutoConnect());
+    databaseConfig.setDescription(database.getConfiguration().getDescription());
+    databaseConfig.setDriver(database.getConfiguration().getDriver());
+    databaseConfig.setPassword(database.getConfiguration().isSavePassword() ? database.getConfiguration().getPassword() : "");
+    databaseConfig.setSavePassword(database.getConfiguration().isSavePassword());
+    databaseConfig.setHost(database.getConfiguration().getHost());
+    databaseConfig.setName(database.getConfiguration().getName());
+    databaseConfig.setUser(database.getConfiguration().getUser());
+    databaseConfig.setIdentity(database.getConfiguration().getIdentity());
+    databases.add(databaseConfig);
+  }
+  try {
+    write();
+  }
+ catch (  final FileWriteException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00150: " + "Could not write configuration file";
+    final String innerDescription=CUtilityFunctions.createDescription("The configuration file where the settings are stored could not be written.",new String[]{"There was a problem writing the file. Please see the stacktrace for more " + "information."},new String[]{"The active configuration was not saved and will be lost."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  m_useFullPaths=useFullPaths;
+  m_cachedValuesSemaphore.acquireUninterruptibly();
+  m_cachedValues=null;
+  m_cachedValuesSemaphore.release();
+  fireTableDataChanged();
+}

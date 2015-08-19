@@ -1,0 +1,6 @@
+{
+  this.moduleId=Preconditions.checkNotNull(moduleId,"IE02625: moduleId argument can not be null.");
+  this.module=Preconditions.checkNotNull(module,"IE02626: module argument can not be null.");
+  this.functionAddress=Preconditions.checkNotNull(functionAddress,"Error: functionAddress argument can not be null");
+  this.databaseOperation=Preconditions.checkNotNull(databaseOperation,"Error: databaseOperation argument can not be null");
+}

@@ -1,0 +1,7 @@
+{
+  final CProject project=getProvider().createProject("ADDRESS_SPACE_PROJECT_123");
+  getProvider().createAddressSpace(project,"ADDRESS_SPACE_123");
+  final CAddressSpace addressSpace=getProvider().loadAddressSpaces(project).get(0);
+  getProvider().assignDebugger(addressSpace,getProvider().loadDebuggers().getDebugger(0));
+  getProvider().assignDebugger(addressSpace,null);
+}

@@ -1,0 +1,17 @@
+{
+  super.paintComponent(graphics);
+  final Graphics2D graphics2d=(Graphics2D)graphics.create();
+  graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+  if (getModel().isPressed()) {
+    graphics2d.translate(1,1);
+  }
+  graphics2d.setStroke(new BasicStroke(3));
+  graphics2d.setColor(Color.BLACK);
+  if (getModel().isRollover()) {
+    graphics2d.setColor(ROLL_OVER_COLOR);
+  }
+  final int delta=6;
+  graphics2d.drawLine(delta,delta,getWidth() - delta - 1,getHeight() - delta - 1);
+  graphics2d.drawLine(getWidth() - delta - 1,delta,delta,getHeight() - delta - 1);
+  graphics2d.dispose();
+}

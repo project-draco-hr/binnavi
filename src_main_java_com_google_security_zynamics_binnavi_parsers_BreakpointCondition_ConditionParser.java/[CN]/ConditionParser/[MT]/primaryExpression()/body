@@ -1,0 +1,144 @@
+{
+  final ConditionParser.primaryExpression_return retval=new ConditionParser.primaryExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token IDENTIFIER30=null;
+  Token NUMBER31=null;
+  Token HEX_NUMBER32=null;
+  Token char_literal33=null;
+  Token char_literal35=null;
+  Token char_literal36=null;
+  Token char_literal38=null;
+  ConditionParser.formula_return formula34=null;
+  ConditionParser.formula_return formula37=null;
+  Object IDENTIFIER30_tree=null;
+  Object NUMBER31_tree=null;
+  Object HEX_NUMBER32_tree=null;
+  final Object char_literal33_tree=null;
+  final Object char_literal35_tree=null;
+  final Object char_literal36_tree=null;
+  final Object char_literal38_tree=null;
+  final RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
+  final RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
+  final RewriteRuleTokenStream stream_33=new RewriteRuleTokenStream(adaptor,"token 33");
+  final RewriteRuleTokenStream stream_34=new RewriteRuleTokenStream(adaptor,"token 34");
+  final RewriteRuleSubtreeStream stream_formula=new RewriteRuleSubtreeStream(adaptor,"rule formula");
+  try {
+    int alt9=5;
+switch (input.LA(1)) {
+case IDENTIFIER:
+{
+        alt9=1;
+      }
+    break;
+case NUMBER:
+{
+    alt9=2;
+  }
+break;
+case HEX_NUMBER:
+{
+alt9=3;
+}
+break;
+case 31:
+{
+alt9=4;
+}
+break;
+case 33:
+{
+alt9=5;
+}
+break;
+default :
+final NoViableAltException nvae=new NoViableAltException("",9,0,input);
+throw nvae;
+}
+switch (alt9) {
+case 1:
+{
+root_0=(Object)adaptor.nil();
+IDENTIFIER30=(Token)match(input,IDENTIFIER,FOLLOW_IDENTIFIER_in_primaryExpression558);
+IDENTIFIER30_tree=(Object)adaptor.create(IDENTIFIER30);
+adaptor.addChild(root_0,IDENTIFIER30_tree);
+}
+break;
+case 2:
+{
+root_0=(Object)adaptor.nil();
+NUMBER31=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_primaryExpression564);
+NUMBER31_tree=(Object)adaptor.create(NUMBER31);
+adaptor.addChild(root_0,NUMBER31_tree);
+}
+break;
+case 3:
+{
+root_0=(Object)adaptor.nil();
+HEX_NUMBER32=(Token)match(input,HEX_NUMBER,FOLLOW_HEX_NUMBER_in_primaryExpression570);
+HEX_NUMBER32_tree=(Object)adaptor.create(HEX_NUMBER32);
+adaptor.addChild(root_0,HEX_NUMBER32_tree);
+}
+break;
+case 4:
+{
+char_literal33=(Token)match(input,31,FOLLOW_31_in_primaryExpression576);
+stream_31.add(char_literal33);
+pushFollow(FOLLOW_formula_in_primaryExpression578);
+formula34=formula();
+state._fsp--;
+stream_formula.add(formula34.getTree());
+char_literal35=(Token)match(input,32,FOLLOW_32_in_primaryExpression580);
+stream_32.add(char_literal35);
+retval.tree=root_0;
+final RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval != null ? retval.tree : null);
+root_0=(Object)adaptor.nil();
+{
+{
+Object root_1=(Object)adaptor.nil();
+root_1=(Object)adaptor.becomeRoot((Object)adaptor.create(MEMORY_EXPRESSION,"MEMORY_EXPRESSION"),root_1);
+adaptor.addChild(root_1,stream_formula.nextTree());
+adaptor.addChild(root_0,root_1);
+}
+}
+retval.tree=root_0;
+}
+break;
+case 5:
+{
+char_literal36=(Token)match(input,33,FOLLOW_33_in_primaryExpression594);
+stream_33.add(char_literal36);
+pushFollow(FOLLOW_formula_in_primaryExpression596);
+formula37=formula();
+state._fsp--;
+stream_formula.add(formula37.getTree());
+char_literal38=(Token)match(input,34,FOLLOW_34_in_primaryExpression598);
+stream_34.add(char_literal38);
+retval.tree=root_0;
+final RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval != null ? retval.tree : null);
+root_0=(Object)adaptor.nil();
+{
+{
+Object root_1=(Object)adaptor.nil();
+root_1=(Object)adaptor.becomeRoot((Object)adaptor.create(SUB_EXPRESSION,"SUB_EXPRESSION"),root_1);
+adaptor.addChild(root_1,stream_formula.nextTree());
+adaptor.addChild(root_0,root_1);
+}
+}
+retval.tree=root_0;
+}
+break;
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException re) {
+reportError(re);
+recover(input,re);
+retval.tree=(Object)adaptor.errorNode(input,retval.start,input.LT(-1),re);
+}
+ finally {
+}
+return retval;
+}

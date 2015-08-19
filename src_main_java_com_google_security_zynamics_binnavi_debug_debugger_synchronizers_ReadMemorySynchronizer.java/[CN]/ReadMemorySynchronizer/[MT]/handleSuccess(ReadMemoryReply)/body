@@ -1,0 +1,3 @@
+{
+  getDebugger().getProcessManager().getMemory().store(reply.getAddress().toLong(),reply.getData());
+}

@@ -1,0 +1,7 @@
+{
+  final ITreeNode<ObjectType> current=m_path.pop();
+  for (  final ITreeNode<ObjectType> child : current.getChildren()) {
+    m_path.add(child);
+  }
+  return current;
+}

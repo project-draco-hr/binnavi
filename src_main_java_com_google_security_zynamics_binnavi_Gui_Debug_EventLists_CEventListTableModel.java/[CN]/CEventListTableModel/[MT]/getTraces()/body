@@ -1,0 +1,19 @@
+{
+  List<TraceList> localCachedValues=m_cachedValues;
+  if (localCachedValues == null) {
+    if (m_traceProvider.isLoaded()) {
+      final IFilter<TraceList> filter=getFilter();
+      if (filter == null) {
+        localCachedValues=m_traceProvider.getTraces();
+      }
+ else {
+        localCachedValues=filter.get(m_traceProvider.getTraces());
+      }
+    }
+ else {
+      localCachedValues=new ArrayList<TraceList>();
+    }
+  }
+  m_cachedValues=localCachedValues;
+  return new ArrayList<TraceList>(localCachedValues);
+}

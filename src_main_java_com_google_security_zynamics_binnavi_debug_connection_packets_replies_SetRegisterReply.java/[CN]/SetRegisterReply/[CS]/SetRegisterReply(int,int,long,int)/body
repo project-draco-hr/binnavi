@@ -1,0 +1,5 @@
+{
+  super(packetId,errorCode);
+  threadId=tid;
+  registerIndex=index;
+}

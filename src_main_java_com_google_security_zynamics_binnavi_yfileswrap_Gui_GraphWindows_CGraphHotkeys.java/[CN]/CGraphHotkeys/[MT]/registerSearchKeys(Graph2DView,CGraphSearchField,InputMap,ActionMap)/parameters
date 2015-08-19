@@ -1,0 +1,4 @@
+Graph2DView view
+CGraphSearchField searchField
+InputMap inputMap
+ActionMap actionMap

@@ -1,0 +1,17 @@
+{
+  graphics.setColor(getBackground());
+  graphics.fillRect(0,0,getWidth(),getHeight());
+  if (m_column == table.getNameColumn()) {
+    CLoadProgressPainter.paint(m_view,graphics,getWidth(),getHeight(),getBackground());
+    if (m_view.isStared()) {
+      graphics.drawImage(starImage,0,0,getHeight() - 2,getHeight() - 2,null);
+    }
+  }
+  if (m_value == null) {
+    return;
+  }
+  final boolean isOpen=CWindowManager.instance().isOpen(m_view);
+  graphics.setColor(Color.BLACK);
+  graphics.setFont(isOpen ? normalBoldFont : normalFont);
+  graphics.drawString(m_value.toString(),(m_column == table.getNameColumn()) && m_view.isStared() ? getHeight() : 0,12);
+}

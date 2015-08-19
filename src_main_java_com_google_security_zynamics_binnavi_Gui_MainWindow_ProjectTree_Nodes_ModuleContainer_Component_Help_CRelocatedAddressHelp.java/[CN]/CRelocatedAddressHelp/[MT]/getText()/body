@@ -1,0 +1,3 @@
+{
+  return "This field shows the relocated base address of the file in memory. Most of the time BinNavi automatically updates this value when you debug the target.";
+}

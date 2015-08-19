@@ -1,0 +1,11 @@
+{
+  final ZyGraph graph=ZyGraphFactory.generateTestGraph();
+  final CCriteriaFactory criteriaFactory=new CCriteriaFactory(graph,null,null);
+  final List<ICriteriumCreator> criteria=criteriaFactory.getConditions();
+  final CCriteriumTree m_ctree=new CCriteriumTree();
+  final JCriteriumTree jtree=new JCriteriumTree(m_ctree,criteria);
+  jtree.getModel().setRoot(new JCriteriumTreeNode(m_ctree,m_ctree.getRoot().getCriterium(),criteria));
+  final CCriteriumTreeNode parent=new CCriteriumTreeNode(null);
+  final CCriteriumTreeNode child=new CCriteriumTreeNode(null);
+  m_ctree.appendNode(parent,child);
+}

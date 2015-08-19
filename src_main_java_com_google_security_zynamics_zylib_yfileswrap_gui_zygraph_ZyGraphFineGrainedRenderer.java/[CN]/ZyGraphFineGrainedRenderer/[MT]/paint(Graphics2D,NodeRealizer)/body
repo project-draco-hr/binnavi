@@ -1,0 +1,8 @@
+{
+  if (m_view.isNodeSloppyPaintMode()) {
+    nr.paintSloppy(gfx);
+  }
+ else {
+    nr.paint(gfx);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  final Address currentAddress=thread.getCurrentAddress();
+  if (myBreakpoints.contains(currentAddress)) {
+    breakpointCounter.put(currentAddress,breakpointCounter.get(currentAddress) + 1);
+    final ViewNode currentNode=nodeMap.get(currentAddress);
+    currentNode.setColor(COLOR_CURRENT_HIT);
+    updatePreviousNode();
+    previousNodeAddress=currentAddress;
+    if (myBreakpoints.isEmpty()) {
+      removeListeners();
+      finish();
+    }
+    try {
+      debugger.resume();
+    }
+ catch (    final DebugException exception) {
+      MessageBox.showError(parent,"Could not resume the target process");
+    }
+  }
+ else   if (debugger.getBreakpointManager().hasBreakpoint(null,currentAddress)) {
+  }
+ else {
+  }
+}

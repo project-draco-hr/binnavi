@@ -1,0 +1,3 @@
+{
+  this.endianness=Preconditions.checkNotNull(endianness,"Error: Argument endianness can't be null");
+}

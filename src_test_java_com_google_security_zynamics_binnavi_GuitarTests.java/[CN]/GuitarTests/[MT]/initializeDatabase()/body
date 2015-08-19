@@ -1,0 +1,23 @@
+{
+  try {
+    VirtualSocketImplFactory.initializePeriscopeOpenJdk();
+  }
+ catch (  final IOException ex) {
+    return;
+  }
+  final String[] args={"--periscope_gslb_service=periscope2corp-proxy-locator","--periscope_prod2corp=true"};
+  Flags.parse(args);
+  ProxyLocator.getProxyLocator().initialize();
+  LogConfig.specifyFromProgram("FINE",null);
+  NaviLogger.setLevel(Level.INFO);
+  try {
+    final IntegrationTestSetup setup=new IntegrationTestSetup();
+    setup.createIntegrationTestDatabase();
+  }
+ catch (  final IOException e) {
+    e.printStackTrace();
+  }
+catch (  final SQLException e) {
+    e.printStackTrace();
+  }
+}

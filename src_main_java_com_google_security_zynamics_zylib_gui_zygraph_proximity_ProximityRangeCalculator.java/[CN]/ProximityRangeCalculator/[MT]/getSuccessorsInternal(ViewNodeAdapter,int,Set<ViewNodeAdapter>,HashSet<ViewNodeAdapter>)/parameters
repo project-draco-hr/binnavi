@@ -1,0 +1,4 @@
+ViewNodeAdapter node
+int depth
+Set<ViewNodeAdapter> nodes
+HashSet<ViewNodeAdapter> visited

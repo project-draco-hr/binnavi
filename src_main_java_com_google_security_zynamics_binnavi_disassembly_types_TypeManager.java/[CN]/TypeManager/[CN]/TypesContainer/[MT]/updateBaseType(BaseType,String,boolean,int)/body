@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null.");
+  Preconditions.checkNotNull(newName,"Error: newName argument can not be null.");
+  if (!baseType.getName().equals(newName)) {
+    typesByName.remove(baseType.getName());
+    typesByName.put(newName,baseType);
+    baseType.setName(newName);
+  }
+  if (baseType.getCategory() == BaseTypeCategory.ATOMIC || baseType.getCategory() == BaseTypeCategory.POINTER && baseType.getBitSize() != size) {
+    baseType.setSize(size);
+  }
+  baseType.setSigned(signed);
+  return dependenceGraph.updateType(baseType);
+}

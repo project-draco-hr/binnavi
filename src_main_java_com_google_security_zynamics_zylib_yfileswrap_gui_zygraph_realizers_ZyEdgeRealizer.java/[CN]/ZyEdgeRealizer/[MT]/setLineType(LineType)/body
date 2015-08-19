@@ -1,0 +1,4 @@
+{
+  m_isHighlighted=(lineType == LineType.LINE_5) || (lineType == LineType.DASHED_5) || (lineType == LineType.DOTTED_5)|| (lineType == LineType.DASHED_DOTTED_5);
+  super.setLineType(lineType);
+}

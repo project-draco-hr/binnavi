@@ -1,0 +1,5 @@
+{
+  final HashMap<BigInteger,List<ReilInstruction>> out=new HashMap<BigInteger,List<ReilInstruction>>();
+  out.put(BigInteger.valueOf(instructions.get(0).getAddress().toLong()),instructions);
+  return out;
+}

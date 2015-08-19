@@ -1,0 +1,7 @@
+{
+  final List<IGraphPanelExtension> extensions=new ArrayList<IGraphPanelExtension>();
+  for (  final IGraphPanelExtensionCreator creator : m_creators) {
+    extensions.add(creator.create());
+  }
+  return extensions;
+}

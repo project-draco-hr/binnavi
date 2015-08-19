@@ -1,0 +1,14 @@
+{
+  try {
+    m_view.getContent().createTextNode(Lists.<IComment>newArrayList());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_view.load();
+  assertEquals(0,m_view.getNodeCount());
+  assertEquals("loadedView/",m_listener.eventList);
+  m_view.getContent().createTextNode(Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null," TEXT NODE COMMENTS ")));
+  assertEquals(1,m_view.getNodeCount());
+  assertEquals("loadedView/addedNode/",m_listener.eventList);
+}

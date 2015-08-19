@@ -1,0 +1,4 @@
+SQLProvider provider
+List<INaviViewNode> nodes
+int firstNode
+List<Integer> groupNodeIndices

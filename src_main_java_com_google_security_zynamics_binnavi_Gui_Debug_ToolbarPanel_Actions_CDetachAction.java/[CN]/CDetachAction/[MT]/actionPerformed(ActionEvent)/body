@@ -1,0 +1,6 @@
+{
+  final IDebugger debugger=m_debugger.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    CDebuggerFunctions.detach(m_parent,debugger);
+  }
+}

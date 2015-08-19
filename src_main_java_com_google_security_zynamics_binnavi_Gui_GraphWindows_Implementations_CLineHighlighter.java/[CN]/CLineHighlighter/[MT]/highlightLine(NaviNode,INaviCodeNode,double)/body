@@ -1,0 +1,16 @@
+{
+  final double yPos=y - node.getY();
+  final int row=node.positionToRow(yPos);
+  final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(codeNode,row);
+  if (instruction == null) {
+    return;
+  }
+  if (m_highlightedInstructions.contains(instruction)) {
+    codeNode.setInstructionColor(instruction,CHighlightLayers.HIGHLIGHTING_LAYER,null);
+    m_highlightedInstructions.remove(instruction);
+  }
+ else {
+    codeNode.setInstructionColor(instruction,CHighlightLayers.HIGHLIGHTING_LAYER,new Color(0x36D0FE));
+    m_highlightedInstructions.add(instruction);
+  }
+}

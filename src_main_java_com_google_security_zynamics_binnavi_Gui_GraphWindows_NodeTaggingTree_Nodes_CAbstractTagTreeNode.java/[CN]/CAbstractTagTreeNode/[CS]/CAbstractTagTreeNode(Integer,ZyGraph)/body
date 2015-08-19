@@ -1,0 +1,4 @@
+{
+  super(uniqueNodeId);
+  m_graph=Preconditions.checkNotNull(graph,"IE01795: Graph can not be null.");
+}

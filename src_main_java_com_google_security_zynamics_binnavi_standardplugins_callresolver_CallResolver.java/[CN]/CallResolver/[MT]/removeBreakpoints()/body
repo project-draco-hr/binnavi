@@ -1,0 +1,12 @@
+{
+  for (  final IndirectCall indirectCall : indirectCallAddresses) {
+    if (!removedBreakpoints.contains(indirectCall)) {
+      try {
+        removeBreakpoint(indirectCall);
+      }
+ catch (      final Exception exception) {
+        Logger.logException(exception);
+      }
+    }
+  }
+}

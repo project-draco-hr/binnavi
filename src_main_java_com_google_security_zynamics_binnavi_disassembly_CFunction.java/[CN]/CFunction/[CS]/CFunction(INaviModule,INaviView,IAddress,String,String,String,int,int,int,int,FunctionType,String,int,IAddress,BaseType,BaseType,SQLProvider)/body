@@ -1,0 +1,25 @@
+{
+  this.module=Preconditions.checkNotNull(module,"IE00069: Module can not be null");
+  this.view=Preconditions.checkNotNull(view,"IE00268: View argument can not be null");
+  this.address=Preconditions.checkNotNull(address,"IE00070: Function address can not be null");
+  this.name=name;
+  this.originalName=Preconditions.checkNotNull(originalName,"IE00642: OriginalName argument can not be null");
+  this.description=description;
+  Preconditions.checkArgument(indegree >= 0,"IE00643: Indegree argument can not be smaller 0");
+  this.indegree=indegree;
+  Preconditions.checkArgument(outdegree >= 0,"IE01102: Outdegree argument can not be smaller 0");
+  this.outdegree=outdegree;
+  Preconditions.checkArgument(edgeCount >= 0,"IE01103: Edge count argument can not be smaller 0");
+  this.edgeCount=edgeCount;
+  Preconditions.checkArgument(blockCount >= 0,"IE02175: Block count argument can not be smaller 0");
+  this.blockCount=blockCount;
+  this.type=Preconditions.checkNotNull(type,"IE00073: Function type can not be null");
+  this.provider=Preconditions.checkNotNull(provider,"IE00074: SQL provider can not be null");
+  this.forwardedFunctionModuleId=forwardedFunctionModuleId;
+  this.forwardedFunctionAddress=forwardedFunctionAddress;
+  this.forwardedFunctionModuleName=forwardedFunctionModuleName;
+  this.stackFrame=stackFrame;
+  this.prototype=prototype;
+  CommentManager.get(provider).addListener(commentListener);
+  FunctionManager.get(provider).putFunction(this);
+}

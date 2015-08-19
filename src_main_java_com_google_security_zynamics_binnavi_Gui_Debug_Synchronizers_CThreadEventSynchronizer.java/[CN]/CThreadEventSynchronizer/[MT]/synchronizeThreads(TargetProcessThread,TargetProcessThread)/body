@@ -1,0 +1,11 @@
+{
+  if (oldThread != null) {
+    oldThread.removeListener(m_internalThreadListener);
+  }
+  if (newThread == null) {
+    CDebuggerPainter.clearDebuggerHighlighting(m_graph);
+  }
+ else {
+    newThread.addListener(m_internalThreadListener);
+  }
+}

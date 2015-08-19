@@ -1,0 +1,5 @@
+{
+  if (m_component != null) {
+    m_component.dispose();
+  }
+}

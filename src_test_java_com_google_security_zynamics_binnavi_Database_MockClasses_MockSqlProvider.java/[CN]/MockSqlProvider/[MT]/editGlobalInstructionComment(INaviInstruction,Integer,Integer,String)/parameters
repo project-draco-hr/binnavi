@@ -1,0 +1,4 @@
+INaviInstruction instruction
+Integer commentId
+Integer userId
+String newCommentText

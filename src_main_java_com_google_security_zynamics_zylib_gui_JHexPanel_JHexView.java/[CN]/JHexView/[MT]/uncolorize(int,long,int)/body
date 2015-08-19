@@ -1,0 +1,7 @@
+{
+  Preconditions.checkArgument(offset >= 0,"Error: Offset can't be negative");
+  Preconditions.checkArgument(size > 0,"Error: Size must be positive");
+  Preconditions.checkArgument((level >= 0) && (level < m_coloredRanges.length),"Error: Invalid level");
+  m_coloredRanges[level].removeRange(offset,size);
+  repaint();
+}

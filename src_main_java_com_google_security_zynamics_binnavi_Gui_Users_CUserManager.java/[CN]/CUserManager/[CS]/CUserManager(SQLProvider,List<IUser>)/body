@@ -1,0 +1,5 @@
+{
+  this.provider=Preconditions.checkNotNull(provider,"IE02716: provider argument can not be null.");
+  this.users.addAll(users);
+  this.provider.addListener(providerListener);
+}

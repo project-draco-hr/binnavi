@@ -1,0 +1,16 @@
+{
+  final Collection<ReilInstruction> instructions1=new ArrayList<ReilInstruction>();
+  instructions1.add(ReilHelpers.createAdd(0,OperandSize.DWORD,"eax",OperandSize.DWORD,"123",OperandSize.QWORD,"t0"));
+  final Collection<ReilInstruction> instructions2=new ArrayList<ReilInstruction>();
+  instructions2.add(ReilHelpers.createAnd(1,OperandSize.QWORD,"t0",OperandSize.DWORD,String.valueOf(0xFFFFFFFF),OperandSize.DWORD,"t1"));
+  final ReilBlock block1=new ReilBlock(instructions1);
+  final ReilBlock block2=new ReilBlock(instructions2);
+  final ReilEdge edge1=new ReilEdge(block1,block2,EdgeType.JUMP_CONDITIONAL_FALSE);
+  ReilBlock.link(block1,block2,edge1);
+  final List<ReilBlock> blocks=Lists.newArrayList(block1,block2);
+  final List<ReilEdge> edges=Lists.newArrayList(edge1);
+  final ReilGraph rg=new ReilGraph(blocks,edges);
+  final OperandGraph g=OperandGraph.create(rg);
+  assertEquals(6,g.nodeCount());
+  assertEquals(5,g.edgeCount());
+}

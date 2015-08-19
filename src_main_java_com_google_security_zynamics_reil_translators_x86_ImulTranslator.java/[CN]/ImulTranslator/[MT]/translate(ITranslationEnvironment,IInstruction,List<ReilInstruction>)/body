@@ -1,0 +1,16 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"imul");
+  if ((instruction.getOperands().size() < 1) || (instruction.getOperands().size() > 3)) {
+    throw new InternalTranslationException("Error: Argument instruction is not a imul instruction (invalid number of operand)");
+  }
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  if (operands.size() == 1) {
+    translate_1(environment,instruction,instructions);
+  }
+ else   if (operands.size() == 2) {
+    translate_2(environment,instruction,instructions);
+  }
+ else {
+    translate_3(environment,instruction,instructions);
+  }
+}

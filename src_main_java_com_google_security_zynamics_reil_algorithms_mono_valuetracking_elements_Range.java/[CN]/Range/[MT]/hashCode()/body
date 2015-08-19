@@ -1,0 +1,3 @@
+{
+  return 555555 * m_lower.hashCode() * m_upper.hashCode();
+}

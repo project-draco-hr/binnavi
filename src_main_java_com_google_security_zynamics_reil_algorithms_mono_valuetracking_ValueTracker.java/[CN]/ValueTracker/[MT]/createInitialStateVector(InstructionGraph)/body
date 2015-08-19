@@ -1,0 +1,7 @@
+{
+  final StateVector<InstructionGraphNode,ValueTrackerElement> stateVector=new StateVector<InstructionGraphNode,ValueTrackerElement>();
+  for (  final InstructionGraphNode node : instructionGraph) {
+    stateVector.setState(node,new ValueTrackerElement());
+  }
+  return stateVector;
+}

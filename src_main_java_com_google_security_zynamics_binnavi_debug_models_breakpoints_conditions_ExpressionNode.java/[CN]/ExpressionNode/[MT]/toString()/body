@@ -1,0 +1,3 @@
+{
+  return Commafier.commafy(getChildren()," " + operator + " ");
+}

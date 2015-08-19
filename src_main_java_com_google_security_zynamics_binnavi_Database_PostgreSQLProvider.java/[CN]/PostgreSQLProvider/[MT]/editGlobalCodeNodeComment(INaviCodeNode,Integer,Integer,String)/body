@@ -1,0 +1,3 @@
+{
+  PostgreSQLNodeFunctions.editGlobalCodeNodeComment(this,codeNode,commentId,userId,newCommentText);
+}

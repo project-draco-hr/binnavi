@@ -1,0 +1,10 @@
+{
+  if (event.getSource() == m_checkBoxParentDepth) {
+    m_parentLabel.setText(m_checkBoxParentDepth.isSelected() ? ((Integer)m_parentDepthSlider.getValue()).toString() : "all");
+    m_parentDepthSlider.setEnabled(m_checkBoxParentDepth.isSelected());
+  }
+ else   if (event.getSource() == m_checkBoxChildDepth) {
+    m_childLabel.setText(m_checkBoxChildDepth.isSelected() ? ((Integer)m_childDepthSlider.getValue()).toString() : "all");
+    m_childDepthSlider.setEnabled(m_checkBoxChildDepth.isSelected());
+  }
+}

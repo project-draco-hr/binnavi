@@ -1,0 +1,11 @@
+{
+  final TreeNode<CTag> rootNode=new TreeNode<CTag>(new CTag(1,"root","",TagType.NODE_TAG,m_provider));
+  final Tree<CTag> tree=new Tree<CTag>(rootNode);
+  final ITagManager manager=new CTagManager(tree,TagType.NODE_TAG,m_provider);
+  final ITreeNode<CTag> secondNode=manager.addTag(rootNode,"2nd");
+  final ITreeNode<CTag> thirdNode=manager.addTag(rootNode,"3rd");
+  final TagManager tagManager=new TagManager(manager);
+  assertNotNull(tagManager.getTag(rootNode.getObject()));
+  assertNotNull(tagManager.getTag(secondNode.getObject()));
+  assertNotNull(tagManager.getTag(thirdNode.getObject()));
+}

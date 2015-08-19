@@ -1,0 +1,15 @@
+{
+  final IFilledList<UnrelocatedAddress> addresses=new FilledList<UnrelocatedAddress>();
+  for (  final ITraceEvent traceEvent : trace) {
+    addresses.add(traceEvent.getOffset().getAddress());
+  }
+  final List<INaviView> views=m_container.getViewsWithAddresses(addresses,false);
+  if (m_container instanceof CProjectContainer) {
+    for (    final INaviModule module : m_container.getModules()) {
+      if (module.isLoaded()) {
+        views.addAll(module.getViewsWithAddresses(addresses,false));
+      }
+    }
+  }
+  m_model.setViews(views);
+}

@@ -1,0 +1,12 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: The address space has not yet been loaded");
+  }
+  try {
+    final CAddressSpace addressSpace=m_project.getContent().createAddressSpace(name);
+    return ObjectFinders.getObject(addressSpace,m_addressSpaces);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

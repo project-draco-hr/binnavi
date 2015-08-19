@@ -1,0 +1,18 @@
+{
+  final IFilterComponent<T> filterComponent=getFilterComponent();
+  final IFilter<T> componentFilter=filterComponent == null ? null : filterComponent.createFilter();
+  if ("".equals(text)) {
+    return componentFilter == null ? null : componentFilter;
+  }
+  final IAbstractNode root=CFilterRuleParser.parse(text);
+  if (validate(root)) {
+    if (componentFilter == null) {
+      return createFilter(convert(root));
+    }
+ else {
+      final IFilter<T> filter=createFilter(convert(root));
+      return new CCombinedFilter<T>(filter,componentFilter);
+    }
+  }
+  return null;
+}

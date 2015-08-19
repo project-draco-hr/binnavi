@@ -1,0 +1,30 @@
+{
+  final List<NaviNode> nodes=GraphHelpers.getNodes(m_graph);
+  final NaviNode cnn=nodes.get(0);
+  final CCodeNode codeNode=(CCodeNode)cnn.getRawNode();
+  assertEquals(codeNode.isVisible(),cnn.isVisible());
+  codeNode.setVisible(false);
+  assertFalse(codeNode.isVisible());
+  assertEquals(codeNode.isVisible(),cnn.isVisible());
+  codeNode.setVisible(true);
+  assertTrue(codeNode.isVisible());
+  assertEquals(codeNode.isVisible(),cnn.isVisible());
+  assertFalse(codeNode.isSelected());
+  assertEquals(codeNode.isSelected(),cnn.isSelected());
+  codeNode.setSelected(false);
+  assertFalse(codeNode.isSelected());
+  assertEquals(codeNode.isSelected(),cnn.isSelected());
+  codeNode.setSelected(true);
+  assertTrue(codeNode.isSelected());
+  assertEquals(codeNode.isSelected(),cnn.isSelected());
+  assertEquals(codeNode.getColor(),cnn.getRealizer().getFillColor());
+  codeNode.setColor(Color.GREEN);
+  assertEquals(Color.GREEN,codeNode.getColor());
+  assertEquals(codeNode.getColor(),cnn.getRealizer().getFillColor());
+  codeNode.setX(100);
+  assertEquals(100,codeNode.getX(),0.1);
+  assertEquals(codeNode.getX(),cnn.getX(),0.1);
+  codeNode.setY(200);
+  assertEquals(200,codeNode.getY(),0.1);
+  assertEquals(codeNode.getY(),cnn.getY(),0.1);
+}

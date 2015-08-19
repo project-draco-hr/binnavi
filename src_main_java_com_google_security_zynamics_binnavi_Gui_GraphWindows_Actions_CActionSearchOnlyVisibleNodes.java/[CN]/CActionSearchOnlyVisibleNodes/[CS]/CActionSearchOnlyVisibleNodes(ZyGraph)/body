@@ -1,0 +1,4 @@
+{
+  super("Visible Only Search");
+  m_graph=graph;
+}

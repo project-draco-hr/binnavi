@@ -1,0 +1,4 @@
+{
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.isTainted("eax"));
+  Assert.assertFalse(m_emptyRegisterSetLatticeElement.isTainted("eax"));
+}

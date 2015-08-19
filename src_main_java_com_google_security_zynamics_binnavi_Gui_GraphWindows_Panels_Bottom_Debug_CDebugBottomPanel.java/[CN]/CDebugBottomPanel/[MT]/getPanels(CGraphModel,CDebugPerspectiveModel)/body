@@ -1,0 +1,11 @@
+{
+  final IFilledList<IResultsPanel> debugPanels=new FilledList<IResultsPanel>();
+  debugPanels.add(new CCombinedMemoryPanel(model.getParent(),debugPerspectiveModel));
+  debugPanels.add(new CModulesPanel(debugPerspectiveModel));
+  debugPanels.add(new CThreadInformationPanel(debugPerspectiveModel));
+  debugPanels.add(new CBreakpointPanel(model.getParent(),model.getDebuggerProvider(),model.getGraph(),model.getViewContainer()));
+  debugPanels.add(new CTracesPanel(debugPerspectiveModel,model.getGraph(),model.getViewContainer().getTraceProvider(),model.getGraphPanel()));
+  debugPanels.add(new CBookmarkPanel(model.getDebuggerProvider()));
+  debugPanels.add(new CDebuggerHistoryPanel(debugPerspectiveModel));
+  return debugPanels;
+}

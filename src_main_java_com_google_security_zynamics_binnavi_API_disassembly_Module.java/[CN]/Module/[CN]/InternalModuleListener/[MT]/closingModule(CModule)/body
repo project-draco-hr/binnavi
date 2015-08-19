@@ -1,0 +1,13 @@
+{
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      if (!listener.closingModule(Module.this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(database,"IE00698: Database argument can't be null");
+  Preconditions.checkArgument(m_databases.remove(database),"IE00699: The database is not known to the database manager");
+  for (  final DatabaseManagerListener listener : m_listeners) {
+    try {
+      listener.removedDatabase(this,database);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

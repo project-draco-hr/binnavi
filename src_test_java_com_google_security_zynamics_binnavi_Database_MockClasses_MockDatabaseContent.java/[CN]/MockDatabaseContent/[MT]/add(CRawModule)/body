@@ -1,0 +1,11 @@
+{
+  m_rawModules.add(module);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedRawModules(m_database,new Stack<INaviRawModule>(),Lists.newArrayList((INaviRawModule)module));
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

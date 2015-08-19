@@ -1,0 +1,4 @@
+{
+  add(new CProjectNode(getProjectTree(),CProjectContainerNode.this,m_database,project,new CProjectContainer(m_database,project)));
+  getTreeModel().nodeStructureChanged(CProjectContainerNode.this);
+}

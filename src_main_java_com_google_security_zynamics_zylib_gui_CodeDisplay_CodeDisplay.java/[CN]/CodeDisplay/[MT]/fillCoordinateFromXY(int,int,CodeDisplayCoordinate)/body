@@ -1,0 +1,11 @@
+{
+  Map.Entry<Integer,CodeDisplayCoordinate> coordinate=yCoordinateToRowAndLine.floorEntry(y);
+  if (coordinate == null) {
+    newCoordinate.setRow(2);
+    newCoordinate.setColumn(1);
+    return true;
+  }
+  newCoordinate.setRow(coordinate.getValue().getRow());
+  newCoordinate.setLine(coordinate.getValue().getLine());
+  return fillColumnAndFieldIndexFromX(x,newCoordinate);
+}

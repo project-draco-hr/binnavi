@@ -1,0 +1,29 @@
+{
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"IE01791: Address space argument can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE01792: Provider argument can not be null");
+  Preconditions.checkNotNull(modules,"IE01793: Modules argument can not be null");
+  for (  final Pair<IAddress,INaviModule> pair : modules) {
+    final IAddress address=pair.first();
+    final INaviModule module=pair.second();
+    m_modules.add(module);
+    m_imageBases.put(module,address);
+    final IDebugger debugger=addressSpace.getConfiguration().getDebugger();
+    if (debugger != null) {
+      debugger.setAddressTranslator(module,module.getConfiguration().getFileBase(),getImageBase(module));
+    }
+  }
+  final IDebugger debugger=addressSpace.getConfiguration().getDebugger();
+  if ((debugger == null) || !debugger.isConnected()) {
+    final DebuggerTemplate template=addressSpace.getConfiguration().getDebuggerTemplate();
+    if (template == null) {
+      addressSpace.getConfiguration().setDebugger(null);
+    }
+ else {
+      final TcpDebugger newDebuggerdebugger=new TcpDebugger(template,new ProjectTargetSettings(m_addressSpace.getProject()));
+      for (      final INaviModule module : m_modules) {
+        newDebuggerdebugger.setAddressTranslator(module,module.getConfiguration().getFileBase(),getImageBase(module));
+      }
+      addressSpace.getConfiguration().setDebugger(newDebuggerdebugger);
+    }
+  }
+}

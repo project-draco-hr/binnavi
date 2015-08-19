@@ -1,0 +1,3 @@
+INaviAddressSpace addressSpace
+AddressSpaceContentBackend provider
+List<Pair<IAddress,INaviModule>> modules

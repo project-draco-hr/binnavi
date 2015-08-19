@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < getChildCount(); i++) {
+    if (((CTaggedGraphNodeNode)getChildAt(i)).getGraphNode().getRawNode() == node) {
+      remove(i);
+      break;
+    }
+  }
+}

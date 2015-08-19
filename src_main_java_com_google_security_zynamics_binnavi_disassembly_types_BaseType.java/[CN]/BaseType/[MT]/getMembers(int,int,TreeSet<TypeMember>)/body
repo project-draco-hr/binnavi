@@ -1,0 +1,9 @@
+{
+  final ArrayList<TypeMember> result=Lists.newArrayList();
+  for (  final TypeMember member : members) {
+    if (member.getBitOffset().get() >= startOffset && member.getBitOffset().get() < endOffset) {
+      result.add(member);
+    }
+  }
+  return result;
+}

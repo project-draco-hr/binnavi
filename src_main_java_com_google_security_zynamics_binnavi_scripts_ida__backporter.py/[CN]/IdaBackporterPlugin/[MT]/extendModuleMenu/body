@@ -1,0 +1,5 @@
+def extendModuleMenu(self, modules):
+    if ((len(modules) != 1) or (not modules[0].isLoaded())):
+        return []
+    else:
+        return [JMenuItem(MenuAction(self.pi, modules[0]))]

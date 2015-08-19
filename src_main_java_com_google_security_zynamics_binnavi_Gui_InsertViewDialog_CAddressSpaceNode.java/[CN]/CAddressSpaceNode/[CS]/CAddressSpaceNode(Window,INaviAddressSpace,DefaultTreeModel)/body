@@ -1,0 +1,8 @@
+{
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"IE01820: Address space argument can not be null");
+  m_parent=Preconditions.checkNotNull(parent,"IE02332: Parent argument can not be null");
+  m_model=Preconditions.checkNotNull(model,"IE02333: Model argument can not be null");
+  m_addressSpace.addListener(m_internalSpaceListener);
+  m_addressSpace.getConfiguration().addListener(m_internalSpaceConfigurationListener);
+  createChildren();
+}

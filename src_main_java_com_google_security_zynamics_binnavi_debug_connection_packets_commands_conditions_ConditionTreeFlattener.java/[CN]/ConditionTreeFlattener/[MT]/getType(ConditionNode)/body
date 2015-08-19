@@ -1,0 +1,26 @@
+{
+  return ByteHelpers.toBigEndianDword(ConditionNodeSwitcher.process(node,new NodeSwitcher<Integer>(){
+    @Override public Integer process(    final ExpressionNode node){
+      return ID_EXPRESSION_NODE;
+    }
+    @Override public Integer process(    final FormulaNode node){
+      return ID_FORMULA_NODE;
+    }
+    @Override public Integer process(    final IdentifierNode node){
+      return ID_IDENTIFIER_NODE;
+    }
+    @Override public Integer process(    final MemoryNode node){
+      return ID_MEMORY_NODE;
+    }
+    @Override public Integer process(    final NumberNode node){
+      return ID_NUMBER_NODE;
+    }
+    @Override public Integer process(    final RelationNode node){
+      return ID_RELATION_NODE;
+    }
+    @Override public Integer process(    final SubNode node){
+      return ID_SUB_NODE;
+    }
+  }
+));
+}

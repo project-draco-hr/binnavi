@@ -1,0 +1,10 @@
+{
+  final int index=indexOf(content,getStartDelimiter(),startOffset);
+  if ((index < 0) || (index > endOffset)) {
+    return false;
+  }
+ else {
+    setMultiLineComment(true);
+    return true;
+  }
+}

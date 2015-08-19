@@ -1,0 +1,7 @@
+{
+  if (!"".equals(getText())) {
+    add(getText());
+    final IAddress address=new CAddress(Long.parseLong(getText(),16));
+    m_textField.setSuccessful(ZyZoomHelpers.zoomToAddress(m_graph,address,m_modules.get(0),true));
+  }
+}

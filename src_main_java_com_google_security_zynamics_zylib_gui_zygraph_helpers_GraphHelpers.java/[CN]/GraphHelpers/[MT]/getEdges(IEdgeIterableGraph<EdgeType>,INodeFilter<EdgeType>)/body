@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can't be null");
+  Preconditions.checkNotNull(filter,"Error: Filter argument can't be null");
+  final ArrayList<EdgeType> nodes=new ArrayList<EdgeType>();
+  graph.iterateEdges(new IEdgeCallback<EdgeType>(){
+    @Override public IterationMode nextEdge(    final EdgeType node){
+      if (filter.qualifies(node)) {
+        nodes.add(node);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return nodes;
+}

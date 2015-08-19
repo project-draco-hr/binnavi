@@ -1,0 +1,11 @@
+{
+  super.shutdown();
+  try {
+    if (debugClientSocket != null) {
+      debugClientSocket.close();
+    }
+  }
+ catch (  final IOException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

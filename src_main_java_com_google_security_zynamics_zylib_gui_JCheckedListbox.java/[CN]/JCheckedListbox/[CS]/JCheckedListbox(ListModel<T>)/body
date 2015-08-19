@@ -1,0 +1,6 @@
+{
+  super(model);
+  m_selected=new boolean[model.getSize()];
+  setCellRenderer(new CheckedListboxRenderer<T>());
+  addMouseListener(new InternalListener());
+}

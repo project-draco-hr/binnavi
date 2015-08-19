@@ -1,0 +1,11 @@
+{
+  if (node instanceof CodeNode) {
+    return ((CodeNode)node).getAddress();
+  }
+ else   if (node instanceof FunctionNode) {
+    return ((FunctionNode)node).getFunction().getAddress();
+  }
+ else {
+    throw new IllegalStateException("Error: Invalid node passed to getAddress");
+  }
+}

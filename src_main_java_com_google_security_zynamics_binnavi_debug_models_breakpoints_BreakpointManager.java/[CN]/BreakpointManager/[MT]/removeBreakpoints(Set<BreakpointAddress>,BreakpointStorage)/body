@@ -1,0 +1,14 @@
+{
+  if (breakpointAddressSet.size() != 0) {
+    final Set<Breakpoint> breakpoints=storage.getBreakPointsByAddress(breakpointAddressSet);
+    storage.removeBreakpoints(breakpointAddressSet);
+    for (    final BreakpointManagerListener listener : listeners) {
+      try {
+        listener.breakpointsRemoved(breakpoints);
+      }
+ catch (      final Exception e) {
+        CUtilityFunctions.logException(e);
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  this.codeNode=codeNode;
+  this.naviNode=naviNode;
+}

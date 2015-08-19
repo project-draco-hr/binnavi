@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01331: Parent argument can not be null");
+  Preconditions.checkNotNull(debuggerProvider,"IE01332: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01333: Graph argument can not be null");
+  m_breakpointTable=new CBreakpointTable(debuggerProvider,graph,viewContainer);
+  add(new CBreakpointToolbar(parent,debuggerProvider,graph.getRawView()),BorderLayout.NORTH);
+  add(new JScrollPane(m_breakpointTable),BorderLayout.CENTER);
+}

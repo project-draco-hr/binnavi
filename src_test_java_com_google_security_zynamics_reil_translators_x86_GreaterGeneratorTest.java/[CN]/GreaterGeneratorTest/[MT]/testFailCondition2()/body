@@ -1,0 +1,8 @@
+{
+  interpreter.setRegister("SF",BigInteger.ZERO,OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("OF",BigInteger.ONE,OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ZF",BigInteger.ZERO,OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  final Pair<OperandSize,String> result=generator.generate(environment,0x100,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.ONE);
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue(result.second()));
+}

@@ -1,0 +1,6 @@
+{
+  super(new File("."));
+  setDialogTitle(title);
+  setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+  setAcceptAllFileFilterUsed(false);
+}

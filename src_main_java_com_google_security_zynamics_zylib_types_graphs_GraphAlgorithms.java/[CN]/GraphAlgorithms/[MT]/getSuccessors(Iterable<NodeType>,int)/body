@@ -1,0 +1,7 @@
+{
+  final List<NodeType> nodes=new ArrayList<NodeType>();
+  for (  final NodeType node : selectedNodes) {
+    nodes.addAll(getSuccessors(node,depth));
+  }
+  return nodes;
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    return m_value.matches(m_view2D.getNode(node.getRawNode()));
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+}

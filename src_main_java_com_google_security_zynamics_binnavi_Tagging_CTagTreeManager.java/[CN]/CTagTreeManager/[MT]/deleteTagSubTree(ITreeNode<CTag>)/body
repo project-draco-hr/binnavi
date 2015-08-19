@@ -1,0 +1,28 @@
+{
+  validateTag(tag);
+  Preconditions.checkArgument(tag != getRootTag(),"IE00865: Can not delete the root tag");
+  final List<? extends ITreeNode<CTag>> children=tag.getChildren();
+  if (children.isEmpty()) {
+    deleteTag(tag);
+    return;
+  }
+  m_provider.deleteTagSubtree(tag);
+  for (  final ITreeNode<CTag> child : children) {
+    for (    final ITreeNode<CTag> c : DepthFirstSorter.getSortedList(child)) {
+      c.getParent().removeChild(c);
+      c.getObject().deleteTag();
+    }
+    child.getParent().removeChild(child);
+    child.getObject().deleteTag();
+  }
+  tag.getParent().removeChild(tag);
+  tag.getObject().deleteTag();
+  for (  final ITagTreeManagerListener listener : m_listeners) {
+    try {
+      listener.deletedTagSubtree(this,tag.getParent(),tag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

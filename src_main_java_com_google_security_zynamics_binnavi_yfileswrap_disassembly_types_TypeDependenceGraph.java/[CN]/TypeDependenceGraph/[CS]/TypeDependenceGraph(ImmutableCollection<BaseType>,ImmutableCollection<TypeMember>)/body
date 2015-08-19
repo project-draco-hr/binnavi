@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(types,"IE02761: Types argument can not be null.");
+  Preconditions.checkNotNull(members,"Error: Members argument can not be null.");
+  for (  final BaseType baseType : types) {
+    addType(baseType);
+  }
+  initializeMembers(members);
+}

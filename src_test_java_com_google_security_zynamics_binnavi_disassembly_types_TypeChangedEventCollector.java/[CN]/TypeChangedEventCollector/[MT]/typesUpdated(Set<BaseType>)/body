@@ -1,0 +1,12 @@
+{
+  final StringBuilder builder=new StringBuilder(TYPE_UPDATED_STRING);
+  builder.append(": [");
+  for (  final BaseType baseType : getSortedTypes(baseTypes)) {
+    builder.append(baseType.getName());
+    builder.append('(');
+    builder.append(baseType.getId());
+    builder.append("),");
+  }
+  builder.append(']');
+  events.add(builder.toString());
+}

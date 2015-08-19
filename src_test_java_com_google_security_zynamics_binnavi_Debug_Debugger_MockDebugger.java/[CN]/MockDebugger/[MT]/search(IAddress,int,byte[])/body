@@ -1,0 +1,4 @@
+{
+  processCounter();
+  return 0;
+}

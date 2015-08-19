@@ -1,0 +1,4 @@
+IAddress cAddress
+String mnemonic
+ArrayList<COperandTree> operands
+ArrayList<IComment> globalComment

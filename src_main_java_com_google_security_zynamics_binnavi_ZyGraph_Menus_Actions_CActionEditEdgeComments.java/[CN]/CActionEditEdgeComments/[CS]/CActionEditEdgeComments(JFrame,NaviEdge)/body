@@ -1,0 +1,5 @@
+{
+  super("Edit Edge Comments");
+  m_parent=parent;
+  m_edge=edge;
+}

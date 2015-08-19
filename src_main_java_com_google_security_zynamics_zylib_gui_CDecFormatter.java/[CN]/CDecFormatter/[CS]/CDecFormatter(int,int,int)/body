@@ -1,0 +1,5 @@
+{
+  m_maxChar=maxChar;
+  m_minNumber=minNumber;
+  m_maxNumber=maxNumber;
+}

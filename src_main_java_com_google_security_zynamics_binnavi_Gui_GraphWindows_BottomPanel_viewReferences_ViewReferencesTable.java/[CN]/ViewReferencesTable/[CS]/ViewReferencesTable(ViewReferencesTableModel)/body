@@ -1,0 +1,7 @@
+{
+  super(model);
+  setRootVisible(false);
+  final IconNodeRenderer renderer=new IconNodeRenderer();
+  renderer.setFont(GuiHelper.MONOSPACED_FONT);
+  setCellRenderer(renderer);
+}

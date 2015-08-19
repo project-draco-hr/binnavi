@@ -1,0 +1,8 @@
+{
+  return new DefaultFilter<MemoryModule,CMemoryModuleWrapper>(convert,new IWrapperCreator<MemoryModule>(){
+    @Override public IFilterWrapper<MemoryModule> wrap(    final MemoryModule element){
+      return new CMemoryModuleWrapper(element);
+    }
+  }
+);
+}

@@ -1,0 +1,14 @@
+{
+  final String[] curComp=current.trim().split("\\.|-|\\s+");
+  final String[] remComp=remote.trim().split("\\.|-|\\s+");
+  int result=0;
+  for (int i=0; (result == 0) && (i < Math.min(curComp.length,remComp.length)); i++) {
+    try {
+      result=Integer.parseInt(curComp[i]) - Integer.parseInt(remComp[i]);
+    }
+ catch (    final NumberFormatException e) {
+      result=curComp[i].compareToIgnoreCase(remComp[i]);
+    }
+  }
+  return result < -1 ? -1 : (result > 1 ? 1 : result);
+}

@@ -1,0 +1,16 @@
+{
+  if (node.getObject() == source) {
+    return false;
+  }
+ else   if (node.getObject() == target) {
+    return true;
+  }
+ else {
+    for (    final ITreeNode<ObjectType> child : node.getChildren()) {
+      if (!dominates(child,target,source)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}

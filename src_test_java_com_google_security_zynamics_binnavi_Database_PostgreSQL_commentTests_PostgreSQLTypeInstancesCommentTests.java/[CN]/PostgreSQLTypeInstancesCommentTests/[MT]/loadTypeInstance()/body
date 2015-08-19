@@ -1,0 +1,4 @@
+{
+  instanceContainer=getNotepadModule().getContent().getTypeInstanceContainer();
+  typeInstance=instanceContainer.getTypeInstances().get(0);
+}

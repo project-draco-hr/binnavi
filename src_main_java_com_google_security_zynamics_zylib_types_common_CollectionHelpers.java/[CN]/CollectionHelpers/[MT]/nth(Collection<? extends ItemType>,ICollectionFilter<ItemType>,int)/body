@@ -1,0 +1,12 @@
+{
+  int counter=0;
+  for (  final ItemType itemType : collection) {
+    if (callback.qualifies(itemType)) {
+      if (counter == index) {
+        return itemType;
+      }
+      counter++;
+    }
+  }
+  throw new IllegalStateException("Error: nth element does not exist");
+}

@@ -1,0 +1,35 @@
+{
+  Preconditions.checkNotNull(graph,"Error: graph argument can not be null");
+  final List<InstructionGraphNode> nodes=new ArrayList<InstructionGraphNode>();
+  final List<InstructionGraphEdge> edges=new ArrayList<InstructionGraphEdge>();
+  final HashMap<ReilBlock,InstructionGraphNode> firstNodeMapping=new HashMap<ReilBlock,InstructionGraphNode>();
+  final HashMap<ReilBlock,InstructionGraphNode> lastNodeMapping=new HashMap<ReilBlock,InstructionGraphNode>();
+  for (  final ReilBlock block : graph) {
+    InstructionGraphNode lastNode=null;
+    final ReilInstruction lastInstruction=Iterables.getLast(block.getInstructions());
+    for (    final ReilInstruction instruction : block) {
+      final InstructionGraphNode currentNode=new InstructionGraphNode(instruction);
+      nodes.add(currentNode);
+      if (instruction == lastInstruction) {
+        lastNodeMapping.put(block,currentNode);
+      }
+      if (!firstNodeMapping.containsKey(block)) {
+        firstNodeMapping.put(block,currentNode);
+      }
+      if (lastNode != null) {
+        final InstructionGraphEdge edge=new InstructionGraphEdge(lastNode,currentNode,EdgeType.JUMP_UNCONDITIONAL);
+        edges.add(edge);
+        InstructionGraphNode.link(lastNode,currentNode,edge);
+      }
+      lastNode=currentNode;
+    }
+  }
+  for (  final ReilBlock block : graph) {
+    for (    final ReilEdge edge : block.getOutgoingEdges()) {
+      final InstructionGraphEdge newEdge=new InstructionGraphEdge(lastNodeMapping.get(block),firstNodeMapping.get(edge.getTarget()),edge.getType());
+      edges.add(newEdge);
+      InstructionGraphNode.link(lastNodeMapping.get(block),firstNodeMapping.get(edge.getTarget()),newEdge);
+    }
+  }
+  return new InstructionGraph(nodes,edges);
+}

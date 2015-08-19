@@ -1,0 +1,20 @@
+{
+  try {
+    final int _type=CHARACTER;
+    final int _channel=DEFAULT_TOKEN_CHANNEL;
+{
+      if ((input.LA(1) >= 'A' && input.LA(1) <= 'Z') || (input.LA(1) >= 'a' && input.LA(1) <= 'z')) {
+        input.consume();
+      }
+ else {
+        final MismatchedSetException mse=new MismatchedSetException(null,input);
+        recover(mse);
+        throw mse;
+      }
+    }
+    state.type=_type;
+    state.channel=_channel;
+  }
+  finally {
+  }
+}

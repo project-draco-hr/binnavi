@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(wrappedState,"IE02086: Wrapped state argument can not be null");
+  element=wrappedState.getElement();
+  object=wrappedState.getObject();
+}

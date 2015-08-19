@@ -1,0 +1,9 @@
+{
+  for (int i=0; i < node.getChildCount(); i++) {
+    final TreeNode child=node.getChildAt(i);
+    if (child instanceof CModuleContainerNode) {
+      return (CModuleContainerNode)child;
+    }
+  }
+  throw new IllegalStateException("IE00693: Could not find module container node");
+}

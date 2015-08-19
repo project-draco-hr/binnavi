@@ -1,0 +1,4 @@
+{
+  super(DebugCommandType.CMD_SELECT_PROCESS,packetId);
+  addArgument(new DebugMessageIntegerArgument(pid));
+}

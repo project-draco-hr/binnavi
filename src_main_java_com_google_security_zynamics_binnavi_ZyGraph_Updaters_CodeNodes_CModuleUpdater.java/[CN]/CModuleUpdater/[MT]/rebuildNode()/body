@@ -1,0 +1,4 @@
+{
+  m_realizer.regenerate();
+  m_graph.updateViews();
+}

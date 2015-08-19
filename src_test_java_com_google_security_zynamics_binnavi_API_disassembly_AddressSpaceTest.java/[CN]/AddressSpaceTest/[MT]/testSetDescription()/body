@@ -1,0 +1,7 @@
+{
+  final MockAddressSpaceListener listener=new MockAddressSpaceListener();
+  addressSpace.addListener(listener);
+  addressSpace.setDescription("Foo");
+  assertEquals("changedDescription;changedModificationDate;",listener.events);
+  addressSpace.removeListener(listener);
+}

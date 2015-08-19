@@ -1,0 +1,27 @@
+{
+  final IFilledList<CTutorial> tutorials=new FilledList<CTutorial>();
+  DirUtils.traverse(new File(directory),new IDirectoryTraversalCallback(){
+    @Override public void entering(    final File directory){
+    }
+    @Override public void leaving(    final File directory){
+    }
+    @Override public void nextFile(    final File file){
+      if (file.getAbsolutePath().endsWith("xml")) {
+        try {
+          tutorials.add(loadTutorial(file));
+        }
+ catch (        final ParserConfigurationException e) {
+          CUtilityFunctions.logException(e);
+        }
+catch (        final SAXException e) {
+          CUtilityFunctions.logException(e);
+        }
+catch (        final IOException e) {
+          CUtilityFunctions.logException(e);
+        }
+      }
+    }
+  }
+);
+  return tutorials;
+}

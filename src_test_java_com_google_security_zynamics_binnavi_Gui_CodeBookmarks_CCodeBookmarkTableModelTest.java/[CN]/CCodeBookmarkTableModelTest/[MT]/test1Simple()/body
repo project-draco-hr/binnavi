@@ -1,0 +1,6 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  assertEquals(3,tableModel.getColumnCount());
+  assertEquals(0,tableModel.getRowCount());
+}

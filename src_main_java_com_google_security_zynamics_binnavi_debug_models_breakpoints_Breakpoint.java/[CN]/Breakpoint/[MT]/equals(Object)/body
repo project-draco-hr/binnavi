@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Breakpoint) && address.equals(((Breakpoint)rhs).getAddress()) && type.equals(((Breakpoint)rhs).getType());
+}

@@ -1,0 +1,11 @@
+int nodeId
+double x
+double y
+double width
+double height
+Color color
+Color borderColor
+boolean selected
+boolean visible
+Set<CTag> tags
+SQLProvider provider

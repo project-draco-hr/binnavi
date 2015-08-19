@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof BreakpointAddress) && (((BreakpointAddress)rhs).module == module) && ((BreakpointAddress)rhs).unrelocatedBreakpointAddress.equals(unrelocatedBreakpointAddress);
+}

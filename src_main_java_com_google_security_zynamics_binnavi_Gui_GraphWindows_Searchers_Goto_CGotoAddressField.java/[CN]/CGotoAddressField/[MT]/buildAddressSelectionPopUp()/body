@@ -1,0 +1,7 @@
+{
+  final CAddressSelectionDialog dlg=new CAddressSelectionDialog(m_parent,m_modules);
+  dlg.setVisible(true);
+  final INaviModule result=dlg.getSelectionResult();
+  final IAddress address=new CAddress(Long.parseLong(getText(),16));
+  ZyZoomHelpers.zoomToAddress(m_graph,address,result,true);
+}

@@ -1,0 +1,5 @@
+{
+  memorySectionStartAddress=Preconditions.checkNotNull(start,"IE00753: Section start can not be null");
+  memorySectionEndAddress=Preconditions.checkNotNull(end,"IE00754: Section end can not be null");
+  Preconditions.checkArgument(end.toBigInteger().compareTo(start.toBigInteger()) != -1,"IE00755: Section end can not come before section start");
+}

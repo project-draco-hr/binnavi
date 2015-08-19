@@ -1,0 +1,31 @@
+{
+  final JPanel topPanel=new JPanel(new BorderLayout());
+  final JPanel innerTopPanel=new JPanel(new BorderLayout());
+  innerTopPanel.add(m_stdEditPanel);
+  topPanel.add(innerTopPanel);
+  final JPanel debuggerChooserPanel=new JPanel(new BorderLayout());
+  debuggerChooserPanel.setBorder(new TitledBorder("Project Debuggers"));
+  m_checkedList=new JCheckedListbox<>(new Vector<DebuggerTemplate>(),false);
+  updateCheckedListPanel();
+  final JScrollPane debuggerScrollPane=new JScrollPane(m_checkedList);
+  m_checkedListPanel.add(debuggerScrollPane);
+  debuggerChooserPanel.add(m_checkedListPanel,BorderLayout.CENTER);
+  debuggerChooserPanel.setMinimumSize(new Dimension(0,128));
+  debuggerChooserPanel.setPreferredSize(new Dimension(0,128));
+  innerTopPanel.add(debuggerChooserPanel,BorderLayout.SOUTH);
+  final JPanel buttonPanel=new JPanel(new GridLayout(1,2));
+  buttonPanel.setBorder(new EmptyBorder(0,0,5,2));
+  buttonPanel.add(new JPanel());
+  buttonPanel.add(m_saveButton);
+  topPanel.add(buttonPanel,BorderLayout.SOUTH);
+  final JPanel bottomPanel=new CAddressSpacesTablePanel(m_table);
+  final JScrollPane scrollPane=new JScrollPane(m_table);
+  bottomPanel.setBorder(m_titledBorder);
+  setBorder(new EmptyBorder(0,0,0,1));
+  bottomPanel.add(scrollPane);
+  final JSplitPane splitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true,topPanel,bottomPanel);
+  splitPane.setOneTouchExpandable(true);
+  splitPane.setDividerLocation(splitPane.getMinimumDividerLocation());
+  splitPane.setResizeWeight(0.5);
+  add(splitPane);
+}

@@ -1,0 +1,5 @@
+JTree projectTree
+DefaultMutableTreeNode parentNode
+IDatabase database
+INaviProject[] projects
+JTable table

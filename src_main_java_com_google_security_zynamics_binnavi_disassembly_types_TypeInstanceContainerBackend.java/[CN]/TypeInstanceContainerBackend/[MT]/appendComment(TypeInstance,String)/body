@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(instance,"Error: instance can not be null.");
+  Preconditions.checkNotNull(commentText,"Error: comment can not be null.");
+  return CommentManager.get(provider).appendTypeInstanceComment(instance,commentText);
+}

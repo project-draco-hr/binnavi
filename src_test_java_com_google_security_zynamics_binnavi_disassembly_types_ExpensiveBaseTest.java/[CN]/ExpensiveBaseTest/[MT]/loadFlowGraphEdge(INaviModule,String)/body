@@ -1,0 +1,3 @@
+{
+  return loadView(module,functionName).getGraph().getEdges().get(0);
+}

@@ -1,0 +1,10 @@
+{
+  this.breakpointManager=breakpointManager;
+  breakpointManager.addListener(internalListener);
+  for (  final com.google.security.zynamics.binnavi.debug.models.breakpoints.Breakpoint breakpoint : breakpointManager.getBreakpoints(BreakpointType.REGULAR)) {
+    breakpointMap.put(breakpoint,new Breakpoint(breakpoint));
+  }
+  for (  final com.google.security.zynamics.binnavi.debug.models.breakpoints.Breakpoint breakpoint : breakpointManager.getBreakpoints(BreakpointType.ECHO)) {
+    echoBreakpointMap.put(breakpoint,new Breakpoint(breakpoint));
+  }
+}

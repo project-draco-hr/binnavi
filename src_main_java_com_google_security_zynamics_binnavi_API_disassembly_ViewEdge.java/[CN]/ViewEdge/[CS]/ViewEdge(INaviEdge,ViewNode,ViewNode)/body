@@ -1,0 +1,4 @@
+{
+  super(source,target);
+  m_edge=Preconditions.checkNotNull(edge,"Error: edge argument can not be null");
+}

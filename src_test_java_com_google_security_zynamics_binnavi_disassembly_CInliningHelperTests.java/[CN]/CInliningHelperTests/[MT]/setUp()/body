@@ -1,0 +1,10 @@
+{
+  m_sql=new MockSqlProvider();
+  m_module=MockCreator.createModule(m_sql);
+  m_module.load();
+  m_view=MockCreator.createView(m_sql,m_module);
+  m_view.load();
+  m_function=MockCreator.createFunction(m_module,m_sql,MockView.getFullView(m_sql,ViewType.Native,null));
+  m_function.load();
+  ConfigManager.instance().read();
+}

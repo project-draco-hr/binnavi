@@ -1,0 +1,6 @@
+{
+  final HashMap<String,Set<IAddress>> newWritten=new HashMap<String,Set<IAddress>>(written);
+  newWritten.remove(influence.getAddress());
+  newWritten.put(influence.getThirdOperand().getValue(),Sets.newHashSet(influence.getAddress()));
+  return newWritten;
+}

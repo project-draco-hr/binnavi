@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(statement,"Statement argument can not be null");
+  return statement.executeQuery();
+}

@@ -1,0 +1,4 @@
+{
+  oldView.removeListener(m_listener);
+  newView.addListener(m_listener);
+}

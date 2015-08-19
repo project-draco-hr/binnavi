@@ -1,0 +1,3 @@
+{
+  events_.append(event).append(instance.getId()).append(instance.getName()).append(instance.getBaseType().getName()).append(instance.getAddress().getVirtualAddress()).append(instance.getSection().getName());
+}

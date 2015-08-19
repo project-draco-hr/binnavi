@@ -1,0 +1,10 @@
+{
+  for (  final IGroupNodeListener listener : m_listeners) {
+    try {
+      listener.editedComment(GroupNode.this,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

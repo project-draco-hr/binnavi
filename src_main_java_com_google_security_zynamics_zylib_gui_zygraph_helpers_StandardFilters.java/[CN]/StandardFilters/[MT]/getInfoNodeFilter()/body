@@ -1,0 +1,8 @@
+{
+  return new INodeFilter<NodeType>(){
+    @Override public boolean qualifies(    final NodeType node){
+      return node instanceof CProximityNode;
+    }
+  }
+;
+}

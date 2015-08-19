@@ -1,0 +1,9 @@
+{
+  final Collection<S> firstList=new ArrayList<S>(elements.size());
+  final Collection<T> secondList=new ArrayList<T>(elements.size());
+  for (  final Pair<S,T> pair : elements) {
+    firstList.add(pair.first());
+    secondList.add(pair.second());
+  }
+  return new Pair<Collection<S>,Collection<T>>(firstList,secondList);
+}

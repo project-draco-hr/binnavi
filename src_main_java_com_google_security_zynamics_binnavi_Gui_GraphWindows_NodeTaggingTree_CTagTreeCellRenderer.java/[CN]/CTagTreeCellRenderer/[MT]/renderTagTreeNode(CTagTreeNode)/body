@@ -1,0 +1,4 @@
+{
+  final CTag tag=node.getTag().getObject();
+  setToolTipText(buildToolTip(tag));
+}

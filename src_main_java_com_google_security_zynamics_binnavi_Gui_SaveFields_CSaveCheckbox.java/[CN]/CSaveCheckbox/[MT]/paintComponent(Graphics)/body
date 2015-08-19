@@ -1,0 +1,7 @@
+{
+  setOpaque(!m_modified);
+  if (m_modified) {
+    m_background.paint((Graphics2D)graphics,getWidth(),getHeight());
+  }
+  super.paintComponent(graphics);
+}

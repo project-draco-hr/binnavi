@@ -1,0 +1,7 @@
+{
+  final HashMap<IAddress,INaviFunction> functionMap=new HashMap<IAddress,INaviFunction>();
+  for (  final INaviFunction function : functions) {
+    functionMap.put(function.getAddress(),function);
+  }
+  return functionMap;
+}

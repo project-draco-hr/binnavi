@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(block,"IE02005: Block argument can not be null");
+  Preconditions.checkNotNull(searchInstruction,"IE02012: Instruction argument can not be null");
+  for (  final Instruction instruction : block.getInstructions()) {
+    if (instruction.getNative() == searchInstruction) {
+      return instruction;
+    }
+  }
+  throw new IllegalStateException("IE01272: Could not determine what instruction could not be translated");
+}

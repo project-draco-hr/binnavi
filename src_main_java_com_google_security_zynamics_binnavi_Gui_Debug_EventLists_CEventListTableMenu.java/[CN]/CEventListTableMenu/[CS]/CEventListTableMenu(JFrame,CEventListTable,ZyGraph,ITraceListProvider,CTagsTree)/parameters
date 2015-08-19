@@ -1,0 +1,5 @@
+JFrame parent
+CEventListTable table
+ZyGraph graph
+ITraceListProvider traceProvider
+CTagsTree tree

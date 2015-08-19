@@ -1,0 +1,25 @@
+{
+  if (projectNotificationContainer.getDatabaseOperation().equals("INSERT")) {
+    final INaviProject project=projectNotificationContainer.getNotificationProject().get();
+    if (!project.isLoaded()) {
+      return;
+    }
+    final Integer viewId=projectNotificationContainer.getViewId();
+    final ImmutableNaviViewConfiguration databaseViewConfiguration=provider.loadFlowGraphInformation(project,viewId);
+    final CProjectViewGenerator generator=new CProjectViewGenerator(provider,project);
+    final INaviView view=generator.generate(databaseViewConfiguration);
+    project.getContent().addView(view);
+  }
+  if (projectNotificationContainer.getDatabaseOperation().equals("UPDATE")) {
+    return;
+  }
+  if (projectNotificationContainer.getDatabaseOperation().equals("DELETE")) {
+    final INaviProject project=projectNotificationContainer.getNotificationProject().get();
+    if (!project.isLoaded()) {
+      return;
+    }
+    final Integer viewId=projectNotificationContainer.getViewId();
+    final INaviView view=ViewManager.get(provider).getView(viewId);
+    project.getContent().deleteViewInternal(view);
+  }
+}

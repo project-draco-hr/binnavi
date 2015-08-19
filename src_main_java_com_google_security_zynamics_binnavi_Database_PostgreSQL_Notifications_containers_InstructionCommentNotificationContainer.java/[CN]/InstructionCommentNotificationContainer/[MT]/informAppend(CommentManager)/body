@@ -1,0 +1,3 @@
+{
+  manager.appendInstructionComment(instruction,node,getScope(),getCommentId());
+}

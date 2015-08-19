@@ -1,0 +1,19 @@
+{
+  if (m_connection == null) {
+    return false;
+  }
+  try {
+    final Statement statement=m_connection.createStatement();
+    try {
+      statement.execute("SELECT 1;");
+    }
+  finally {
+      statement.close();
+    }
+    return true;
+  }
+ catch (  final SQLException exception) {
+    NaviLogger.severe("Error: The connection to the database is in an invalid state as statement creation failed with: %s",exception);
+    return false;
+  }
+}

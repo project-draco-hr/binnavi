@@ -1,0 +1,17 @@
+{
+  final List<ICallgraphEdge> edges=new ArrayList<ICallgraphEdge>();
+  final String edgeQuery="SELECT source_node_id, target_node_id" + " FROM " + CTableNames.NODES_TABLE + " JOIN "+ CTableNames.EDGES_TABLE+ " ON "+ CTableNames.NODES_TABLE+ ".id = "+ CTableNames.EDGES_TABLE+ ".source_node_id"+ " WHERE view_id = "+ callgraphId;
+  final ResultSet edgeResult=connection.executeQuery(edgeQuery,true);
+  try {
+    while (edgeResult.next()) {
+      final CCallgraphNode source=nodeMap.get(edgeResult.getInt("source_node_id"));
+      final CCallgraphNode target=nodeMap.get(edgeResult.getInt("target_node_id"));
+      CCallgraphNode.link(source,target);
+      edges.add(new CCallgraphEdge(source,target));
+    }
+  }
+  finally {
+    edgeResult.close();
+  }
+  return edges;
+}

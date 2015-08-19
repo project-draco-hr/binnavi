@@ -1,0 +1,15 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"addi");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode literalOperand1=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final String tmpLiteralValue=environment.getNextVariableString();
+  final BigInteger literalValue=BigInteger.valueOf(Long.valueOf(literalOperand1.getValue()));
+  if (literalValue.testBit(15)) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,OperandSize.DWORD,String.valueOf(literalValue.or(BigInteger.valueOf(0xFFFF0000L))),OperandSize.DWORD,tmpLiteralValue));
+  }
+ else {
+    instructions.add(ReilHelpers.createStr(baseOffset++,OperandSize.DWORD,String.valueOf(literalValue),OperandSize.DWORD,tmpLiteralValue));
+  }
+  AddGenerator.generate(baseOffset,environment,instruction,instructions,"addi",registerOperand1.getValue(),tmpLiteralValue,false,false,false,false);
+}

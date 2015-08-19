@@ -1,0 +1,5 @@
+IViewContainer container
+INaviView view
+CGraphWindow window
+Window parent
+FutureCallback<Boolean> callBack

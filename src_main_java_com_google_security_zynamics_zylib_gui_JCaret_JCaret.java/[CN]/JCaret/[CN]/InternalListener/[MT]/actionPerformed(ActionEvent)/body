@@ -1,0 +1,4 @@
+{
+  m_isCaretVisible=!m_isCaretVisible;
+  notifyListeners();
+}

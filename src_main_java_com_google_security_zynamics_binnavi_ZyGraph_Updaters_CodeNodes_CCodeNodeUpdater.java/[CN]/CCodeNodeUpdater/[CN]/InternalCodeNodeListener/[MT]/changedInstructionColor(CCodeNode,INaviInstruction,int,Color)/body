@@ -1,0 +1,8 @@
+{
+  if (color == null) {
+    node.clearHighlighting(level,CCodeNodeHelpers.instructionToLine(CCodeNodeUpdater.this.codeNode,instruction));
+  }
+ else {
+    node.setHighlighting(level,CCodeNodeHelpers.instructionToLine(CCodeNodeUpdater.this.codeNode,instruction),color);
+  }
+}

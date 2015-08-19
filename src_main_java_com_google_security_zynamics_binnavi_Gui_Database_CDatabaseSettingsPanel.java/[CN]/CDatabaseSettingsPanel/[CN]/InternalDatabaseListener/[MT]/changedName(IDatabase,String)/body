@@ -1,0 +1,4 @@
+{
+  databaseNameField.setText(database.getConfiguration().getName());
+  updateSaveButton();
+}

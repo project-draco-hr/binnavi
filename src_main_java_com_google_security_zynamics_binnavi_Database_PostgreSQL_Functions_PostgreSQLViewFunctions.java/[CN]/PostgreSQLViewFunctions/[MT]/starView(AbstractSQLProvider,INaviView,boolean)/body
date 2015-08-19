@@ -1,0 +1,9 @@
+{
+  checkArguments(provider,view);
+  try {
+    provider.getConnection().executeUpdate("UPDATE " + CTableNames.VIEWS_TABLE + " SET stared = "+ isStared+ " WHERE id = "+ view.getConfiguration().getId(),true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

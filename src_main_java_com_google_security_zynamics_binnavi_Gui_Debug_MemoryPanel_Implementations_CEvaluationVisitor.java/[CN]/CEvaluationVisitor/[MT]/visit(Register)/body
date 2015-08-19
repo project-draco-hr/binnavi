@@ -1,0 +1,8 @@
+{
+  try {
+    m_partialEvaluationMap.put(expression,m_binding.getValue(expression.getName()));
+  }
+ catch (  final CEvaluationException e) {
+    m_errorMessages.add(String.format("Unknown register %s",expression.getName()));
+  }
+}

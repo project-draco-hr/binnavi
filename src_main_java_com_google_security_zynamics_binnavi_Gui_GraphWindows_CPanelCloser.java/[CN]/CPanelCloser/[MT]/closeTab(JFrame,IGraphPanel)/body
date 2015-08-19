@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(parent,"IE01630: Parent argument can not be null");
+  Preconditions.checkNotNull(panel,"IE01631: Panel argument can not be null");
+  final ZyGraph graph=panel.getModel().getGraph();
+  return graph.getRawView().wasModified() ? closeModifiedGraph(parent,panel) : true;
+}

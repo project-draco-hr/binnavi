@@ -1,0 +1,4 @@
+{
+  super(Lists.newArrayList(new CInstructionGenerator(module),new CBlockGenerator(),new CEdgeGenerator(),new CNameDescriptionGenerator<CViewWrapper>(module)));
+  m_component=new CFunctionFilterComponent(module);
+}

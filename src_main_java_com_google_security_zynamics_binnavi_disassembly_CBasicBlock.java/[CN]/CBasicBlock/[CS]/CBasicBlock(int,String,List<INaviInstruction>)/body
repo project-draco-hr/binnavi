@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(blockId >= 0,"IE00050: Basic Block IDs can not be negative");
+  m_globalComment=Preconditions.checkNotNull(globalComment,"IE00052: Global comment can not be null");
+  m_instructions=Preconditions.checkNotNull(instructions,"IE01783: Instructions argument can not be null");
+  m_id=blockId;
+}

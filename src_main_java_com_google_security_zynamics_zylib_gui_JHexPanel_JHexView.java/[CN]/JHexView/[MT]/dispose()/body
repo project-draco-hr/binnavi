@@ -1,0 +1,10 @@
+{
+  removeMouseListener(m_listener);
+  removeMouseMotionListener(m_listener);
+  removeMouseWheelListener(m_listener);
+  removeFocusListener(m_listener);
+  removeComponentListener(m_listener);
+  removeKeyListener(m_listener);
+  m_caret.removeListener(m_listener);
+  m_caret.stop();
+}

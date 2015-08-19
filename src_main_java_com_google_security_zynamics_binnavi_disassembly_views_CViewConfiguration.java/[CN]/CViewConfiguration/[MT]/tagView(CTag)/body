@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(tag,"IE00319: Tag argument can not be null");
+  Preconditions.checkArgument(tag.inSameDatabase(provider),"IE00320: Tag and view are not stored in the same database");
+  Preconditions.checkArgument(tag.getType() == TagType.VIEW_TAG,"IE00321: Tag is not a view tag");
+  if (!viewTags.contains(tag)) {
+    if (isStored()) {
+      provider.tagView(view,tag);
+    }
+    tag.addListener(tagListener);
+    viewTags.add(tag);
+    for (    final INaviViewListener listener : listeners) {
+      try {
+        listener.taggedView(view,tag);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

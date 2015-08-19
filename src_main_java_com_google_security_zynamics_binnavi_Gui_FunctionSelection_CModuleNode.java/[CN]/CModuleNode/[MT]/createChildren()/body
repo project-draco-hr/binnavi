@@ -1,0 +1,9 @@
+{
+  if (m_module.isLoaded()) {
+    for (    final INaviFunction function : m_module.getContent().getFunctionContainer().getFunctions()) {
+      if (function.getType() != FunctionType.IMPORT) {
+        add(new CFunctionIconNode(function));
+      }
+    }
+  }
+}

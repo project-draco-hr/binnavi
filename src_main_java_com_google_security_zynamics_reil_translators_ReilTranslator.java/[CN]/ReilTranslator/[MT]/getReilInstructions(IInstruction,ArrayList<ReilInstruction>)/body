@@ -1,0 +1,9 @@
+{
+  final List<ReilInstruction> result=new ArrayList<ReilInstruction>();
+  for (  final ReilInstruction reilInstruction : instructions) {
+    if (ReilHelpers.toNativeAddress(reilInstruction.getAddress()).equals(instruction.getAddress())) {
+      result.add(reilInstruction);
+    }
+  }
+  return result;
+}

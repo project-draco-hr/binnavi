@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(provider,"IE00619: Provider argument can not be null");
+  Preconditions.checkNotNull(view,"IE00620: View argument can not be null");
+  Preconditions.checkArgument(view.inSameDatabase(provider),"IE00621: View is not part of this database");
+  Preconditions.checkNotNull(modules,"IE00622: Modules argument can not be null");
+  for (  final INaviModule module : modules) {
+    Preconditions.checkNotNull(module,"IE00623: Modules list contains a null element");
+    Preconditions.checkArgument(module.inSameDatabase(provider),"IE00624: Module is not part of this database");
+  }
+  Preconditions.checkNotNull(nodeTagManager,"IE00625: Node tag manager argument can not be null");
+  Preconditions.checkArgument(nodeTagManager.inSameDatabase(provider),"IE00626: Node tag manager is not part of this database");
+}

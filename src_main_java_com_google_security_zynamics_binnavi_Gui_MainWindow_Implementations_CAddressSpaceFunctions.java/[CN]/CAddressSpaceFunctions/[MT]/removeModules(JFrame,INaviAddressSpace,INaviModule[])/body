@@ -1,0 +1,28 @@
+{
+  new Thread(){
+    @Override public void run(){
+      if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to remove the following modules from the address space?\n\n%s",CNameListGenerators.getNameList(modules))) == JOptionPane.YES_OPTION) {
+        final CDefaultProgressOperation operation=new CDefaultProgressOperation("Removing modules from address space",false,true);
+        operation.getProgressPanel().setMaximum(modules.length);
+        for (        final INaviModule module : modules) {
+          operation.getProgressPanel().setText("Removing modules from address space" + ": '" + module.getConfiguration().getName() + "'");
+          try {
+            addressSpace.getContent().removeModule(module);
+          }
+ catch (          final CouldntDeleteException exception) {
+            CUtilityFunctions.logException(exception);
+            final String message="E00027: " + "Module could not be removed from address space";
+            final String description=CUtilityFunctions.createDescription(String.format("The module '%s' could not be removed from the address space '%s'. Try removing the module from the address space again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",module.getConfiguration().getName(),addressSpace.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The address space remains unchanged."});
+            CNaviErrorDialog.show(parent,message,description,exception);
+          }
+catch (          final CouldntSaveDataException exception) {
+            CUtilityFunctions.logException(exception);
+          }
+          operation.getProgressPanel().next();
+        }
+        operation.stop();
+      }
+    }
+  }
+.start();
+}

@@ -1,0 +1,10 @@
+{
+  for (  final IMemoryListener listener : m_listeners) {
+    try {
+      listener.changedMemory(Memory.this,address,size);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

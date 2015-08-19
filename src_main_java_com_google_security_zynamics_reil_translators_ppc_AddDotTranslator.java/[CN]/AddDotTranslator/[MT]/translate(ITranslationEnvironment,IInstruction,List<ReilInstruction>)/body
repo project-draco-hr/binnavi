@@ -1,0 +1,6 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"add.");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  AddGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"add.",registerOperand1.getValue(),registerOperand2.getValue(),true,false,false,false);
+}

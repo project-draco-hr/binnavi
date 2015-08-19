@@ -1,0 +1,18 @@
+{
+  m_module=Preconditions.checkNotNull(module,"IE01215: Module can't be null");
+  m_database=database;
+  module.addListener(m_moduleListener);
+  m_activeDebugger=module.getConfiguration().getDebugger();
+  if (m_activeDebugger != null) {
+    final BreakpointManager manager=m_activeDebugger.getBreakpointManager();
+    manager.addListener(m_breakpointManagerListener);
+  }
+  if (module.isLoaded()) {
+    for (    final IFlowgraphView view : m_module.getContent().getViewContainer().getNativeFlowgraphViews()) {
+      view.addListener(m_viewListener);
+    }
+    for (    final INaviFunction function : m_module.getContent().getFunctionContainer().getFunctions()) {
+      function.addListener(m_viewListener);
+    }
+  }
+}

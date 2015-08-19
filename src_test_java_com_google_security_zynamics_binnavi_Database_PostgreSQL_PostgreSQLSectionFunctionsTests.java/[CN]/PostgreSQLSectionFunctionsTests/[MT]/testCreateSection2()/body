@@ -1,0 +1,3 @@
+{
+  getProvider().createSection(getKernel32Module().getConfiguration().getId(),null,null,null,null,null,new byte[]{});
+}

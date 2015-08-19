@@ -1,0 +1,9 @@
+{
+  final int longValue=(int)(long)Long.valueOf(node.getValue());
+  if (RelocationChecker.needsRelocation(node,module)) {
+    return debugger.fileToMemory(module,new UnrelocatedAddress(new CAddress(longValue))).getAddress().toBigInteger();
+  }
+ else {
+    return BigInteger.valueOf(longValue);
+  }
+}

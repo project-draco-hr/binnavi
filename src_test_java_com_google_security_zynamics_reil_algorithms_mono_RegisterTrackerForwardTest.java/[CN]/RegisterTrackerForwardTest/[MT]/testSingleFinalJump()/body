@@ -1,0 +1,16 @@
+{
+  final ReilInstruction instruction2=ReilHelpers.createStr(0x101,OperandSize.DWORD,"r12",OperandSize.DWORD,"ctr");
+  final ReilInstruction instruction3=ReilHelpers.createJcc(0x102,OperandSize.DWORD,"1",OperandSize.DWORD,"ctr");
+  final InstructionGraphNode fakeNode=new InstructionGraphNode(ReilHelpers.createNop(0));
+  final InstructionGraphNode node2=new InstructionGraphNode(instruction2);
+  final InstructionGraphNode node3=new InstructionGraphNode(instruction3);
+  final InstructionGraphEdge edge1=new InstructionGraphEdge(fakeNode,node2,EdgeType.JUMP_UNCONDITIONAL);
+  InstructionGraphNode.link(fakeNode,node2,edge1);
+  final InstructionGraphEdge edge2=new InstructionGraphEdge(node2,node3,EdgeType.JUMP_UNCONDITIONAL);
+  InstructionGraphNode.link(node2,node3,edge2);
+  final List<InstructionGraphNode> nodes=Lists.newArrayList(fakeNode,node2,node3);
+  final StateVector<InstructionGraphNode,RegisterSet> init=new StateVector<InstructionGraphNode,RegisterSet>();
+  init.setState(nodes.get(0),new RegisterSet("r12"));
+  init.setState(nodes.get(1),new RegisterSet());
+  init.setState(nodes.get(2),new RegisterSet());
+}

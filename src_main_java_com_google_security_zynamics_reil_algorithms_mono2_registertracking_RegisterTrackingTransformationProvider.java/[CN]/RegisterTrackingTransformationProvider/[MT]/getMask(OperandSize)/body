@@ -1,0 +1,14 @@
+{
+switch (operandSize) {
+case BYTE:
+    return String.valueOf(0xFFL);
+case DWORD:
+  return String.valueOf(0xFFFFFFFFL);
+case QWORD:
+return String.valueOf(0xFFFFFFFFFFFFFFFFL);
+case WORD:
+return String.valueOf(0xFFFFL);
+default :
+throw new IllegalStateException("Error: Unknown target size for truncate mask");
+}
+}

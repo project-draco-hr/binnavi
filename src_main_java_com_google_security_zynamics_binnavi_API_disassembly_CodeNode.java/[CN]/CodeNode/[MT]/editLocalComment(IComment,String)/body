@@ -1,0 +1,8 @@
+{
+  try {
+    return m_node.getComments().editLocalCodeNodeComment(comment,newComment);
+  }
+ catch (  final CouldntSaveDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntSaveDataException(exception);
+  }
+}

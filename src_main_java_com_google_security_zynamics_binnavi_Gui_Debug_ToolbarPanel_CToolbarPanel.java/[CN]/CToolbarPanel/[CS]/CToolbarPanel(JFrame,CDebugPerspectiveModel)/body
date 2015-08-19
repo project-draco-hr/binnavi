@@ -1,0 +1,15 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01523: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01522: Debug perspective model argument can not be null");
+  m_parent=parent;
+  final JPanel toolbarPanel=new JPanel(new BorderLayout());
+  toolbarPanel.setBorder(new EmptyBorder(1,1,1,1));
+  m_threadPanel=new CThreadPanel(debugPerspectiveModel);
+  final CDebuggerToolbar toolbar=new CDebuggerToolbar(debugPerspectiveModel);
+  toolbarPanel.add(toolbar,BorderLayout.WEST);
+  toolbarPanel.add(m_threadPanel,BorderLayout.CENTER);
+  add(toolbarPanel,BorderLayout.SOUTH);
+  m_synchronizer=new CToolbarPanelSynchronizer(toolbar,m_threadPanel,debugPerspectiveModel);
+  m_synchronizer.addListener(m_internalSynchronizerListener);
+}

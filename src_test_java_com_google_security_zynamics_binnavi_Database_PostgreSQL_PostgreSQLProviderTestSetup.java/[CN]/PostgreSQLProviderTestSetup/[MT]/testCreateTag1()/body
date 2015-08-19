@@ -1,0 +1,3 @@
+{
+  getProvider().createTag(null,"Tag Name","Tag Description",TagType.VIEW_TAG);
+}

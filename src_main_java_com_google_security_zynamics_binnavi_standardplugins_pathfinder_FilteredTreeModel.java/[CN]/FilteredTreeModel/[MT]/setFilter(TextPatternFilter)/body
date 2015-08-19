@@ -1,0 +1,4 @@
+{
+  ((FunctionTreeRootNode)getRoot()).setFilter(filter);
+  nodeStructureChanged((TreeNode)getRoot());
+}

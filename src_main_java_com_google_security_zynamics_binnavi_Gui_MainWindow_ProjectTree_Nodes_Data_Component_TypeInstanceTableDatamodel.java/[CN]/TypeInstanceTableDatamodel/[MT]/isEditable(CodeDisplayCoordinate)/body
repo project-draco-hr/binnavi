@@ -1,0 +1,16 @@
+{
+switch (coordinate.getColumn()) {
+case ADDRESS_INDEX:
+    return false;
+case NAME_INDEX:
+  return true;
+case TYPE_INDEX:
+return false;
+case XREFS_INDEX:
+return false;
+case COMMENTS_INDEX:
+return true;
+default :
+return false;
+}
+}

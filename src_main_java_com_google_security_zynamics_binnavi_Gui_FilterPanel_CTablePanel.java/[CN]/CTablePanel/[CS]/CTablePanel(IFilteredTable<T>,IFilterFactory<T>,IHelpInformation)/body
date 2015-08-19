@@ -1,0 +1,17 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(table,"IE01841: Table argument can not be null");
+  m_table=table;
+  m_filterFactory=filterFactory;
+  if (filterFactory == null) {
+    m_filterPanel=null;
+  }
+ else {
+    m_filterPanel=new CFilterPanel<T>(filterFactory,filterHelp);
+    add(m_filterPanel,BorderLayout.NORTH);
+    m_filterPanel.addListener(m_filterListener);
+  }
+  m_titledBorder=new TitledBorder("");
+  setBorder(m_titledBorder);
+  add(new JScrollPane(m_table.self()),BorderLayout.CENTER);
+}

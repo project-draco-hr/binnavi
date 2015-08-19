@@ -1,0 +1,64 @@
+{
+  if (visible) {
+    m_graph.reInsertNode(m_node);
+    if ((node.getParentGroup() != null) && !node.getParentGroup().isVisible()) {
+      node.getParentGroup().setVisible(true);
+    }
+    if (node instanceof IGroupNode<?,?>) {
+      final IGroupNode<?,?> gnode=(IGroupNode<?,?>)node;
+      if (gnode.isCollapsed()) {
+        m_graph.getHierarchyManager().convertToFolderNode(m_node);
+      }
+ else {
+        m_graph.getHierarchyManager().convertToGroupNode(m_node);
+      }
+      if (gnode.isCollapsed()) {
+        for (        final IViewNode<?> element : gnode.getElements()) {
+          element.setVisible(true);
+        }
+      }
+    }
+    if (m_pnode != null) {
+      m_graph.getHierarchyManager().setParentNode(m_node,m_pnode);
+    }
+  }
+ else {
+    m_pnode=m_graph.getHierarchyManager().getParentNode(m_node);
+    if ((m_pnode == null) && (node.getParentGroup() != null)) {
+      throw new IllegalStateException("Error");
+    }
+    if (node instanceof IGroupNode<?,?>) {
+      final IGroupNode<?,?> gnode=(IGroupNode<?,?>)node;
+      if (gnode.isCollapsed()) {
+        for (        final IViewNode<?> element : gnode.getElements()) {
+          element.setVisible(false);
+        }
+      }
+    }
+    if ((node.getParentGroup() == null) || !node.getParentGroup().isCollapsed()) {
+      m_graph.removeNode(m_node);
+    }
+  }
+  for (  final IViewEdge<? extends IViewNode<?>> edge : node.getIncomingEdges()) {
+    if (node.getParentGroup() == null) {
+      edge.setVisible(edge.getSource().isVisible() && edge.getTarget().isVisible() && NodeHelpers.getVisibleNode(edge.getTarget()).isVisible()&& NodeHelpers.getVisibleNode(edge.getSource()).isVisible());
+    }
+ else     if (node.getParentGroup().isCollapsed()) {
+      edge.setVisible(node.getParentGroup().isVisible() && edge.getSource().isVisible());
+    }
+ else {
+      edge.setVisible(edge.getSource().isVisible() && edge.getTarget().isVisible() && NodeHelpers.getVisibleNode(edge.getTarget()).isVisible()&& NodeHelpers.getVisibleNode(edge.getSource()).isVisible());
+    }
+  }
+  for (  final IViewEdge<? extends IViewNode<?>> edge : node.getOutgoingEdges()) {
+    if (node.getParentGroup() == null) {
+      edge.setVisible(edge.getSource().isVisible() && edge.getTarget().isVisible() && NodeHelpers.getVisibleNode(edge.getTarget()).isVisible()&& NodeHelpers.getVisibleNode(edge.getSource()).isVisible());
+    }
+ else     if (node.getParentGroup().isCollapsed()) {
+      edge.setVisible(node.getParentGroup().isVisible() && edge.getTarget().isVisible());
+    }
+ else {
+      edge.setVisible(edge.getSource().isVisible() && edge.getTarget().isVisible() && NodeHelpers.getVisibleNode(edge.getTarget()).isVisible()&& NodeHelpers.getVisibleNode(edge.getSource()).isVisible());
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  super("Dwords");
+  m_model=model;
+}

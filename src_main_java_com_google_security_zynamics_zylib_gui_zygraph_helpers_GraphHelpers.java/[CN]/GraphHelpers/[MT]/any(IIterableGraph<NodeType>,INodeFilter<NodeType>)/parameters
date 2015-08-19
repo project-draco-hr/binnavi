@@ -1,0 +1,2 @@
+IIterableGraph<NodeType> graph
+INodeFilter<NodeType> filter

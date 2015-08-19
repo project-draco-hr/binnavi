@@ -1,0 +1,5 @@
+{
+  this(viewId,name,description,type,graphType,creationDate,modificationDate,bbcount,edgecount,tags,nodeTags,isStared,provider);
+  Preconditions.checkNotNull(module,"IE01279: Module argument can not be null");
+  m_configuration.setModule(module);
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(color,"Error: color argument can not be null");
+  if (!isEmpty()) {
+    final int realLength=calculateRealLength(position,length);
+    validatePartialLineArguments(position,realLength);
+    if (hasHighlighting(level)) {
+      clearHighlighting(level);
+    }
+    m_highlighting.add(new CHighlighting(level,position * m_charWidth,realLength * m_charWidth,color));
+    Collections.sort(m_highlighting);
+  }
+}

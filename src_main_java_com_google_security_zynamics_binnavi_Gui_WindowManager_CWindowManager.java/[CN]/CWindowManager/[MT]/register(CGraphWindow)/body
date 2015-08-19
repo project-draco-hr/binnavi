@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(window,"IE02084: Graph window can't be null");
+  if (m_graphs.contains(window)) {
+    throw new IllegalStateException("IE01205: Cannot register graph window twice");
+  }
+  m_graphs.add(window);
+  window.addWindowListener(m_listener);
+  for (  final IWindowManagerListener listener : m_listeners) {
+    try {
+      listener.windowOpened(this,window);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

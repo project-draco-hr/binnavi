@@ -1,0 +1,23 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sub");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a sub instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree operand1=operands.get(0);
+  final IOperandTree operand2=operands.get(1);
+  final TranslationResult operand2Result=Helpers.translateOperand(environment,offset,operand2,true);
+  instructions.addAll(operand2Result.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult operand1Result=Helpers.translateOperand(environment,offset,operand1,true);
+  instructions.addAll(operand1Result.getInstructions());
+  offset=baseOffset + instructions.size();
+  final OperandSize size=operand1Result.getSize();
+  final String register1=operand1Result.getRegister();
+  final String register2=operand2Result.getRegister();
+  final String subResultValue=Helpers.generateSub(environment,offset,size,register1,register2,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.writeBack(environment,offset,operand1,subResultValue,size,operand1Result.getAddress(),operand1Result.getType(),instructions);
+}

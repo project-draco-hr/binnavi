@@ -1,0 +1,6 @@
+{
+  super("Set Node Color");
+  m_graphPanel=Preconditions.checkNotNull(graphPanel,"IE02815: graphPanel argument can not be null");
+  putValue(Action.SMALL_ICON,new ImageIcon(CMain.class.getResource("data/nodecolor_up.jpg")));
+  putValue(Action.SHORT_DESCRIPTION,"Change the colors of the selected nodes");
+}

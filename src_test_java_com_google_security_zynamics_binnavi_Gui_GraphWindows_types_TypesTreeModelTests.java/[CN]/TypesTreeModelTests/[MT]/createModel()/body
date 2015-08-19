@@ -1,0 +1,7 @@
+{
+  final TypesTreeModel model=TypesTreeModel.createDefaultModel(typeManager);
+  Assert.assertNotNull(model);
+  final DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
+  Assert.assertNotNull(root);
+  return root;
+}

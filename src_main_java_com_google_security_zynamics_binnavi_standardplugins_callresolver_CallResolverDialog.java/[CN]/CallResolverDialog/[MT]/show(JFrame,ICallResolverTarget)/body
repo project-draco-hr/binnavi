@@ -1,0 +1,4 @@
+{
+  final CallResolverDialog dialog=new CallResolverDialog(parent,target);
+  dialog.setVisible(true);
+}

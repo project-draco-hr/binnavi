@@ -1,0 +1,4 @@
+{
+  eventList+="closingModule/";
+  return canClose;
+}

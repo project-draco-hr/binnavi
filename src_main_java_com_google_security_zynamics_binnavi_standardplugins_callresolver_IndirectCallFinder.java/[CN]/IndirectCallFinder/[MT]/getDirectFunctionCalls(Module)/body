@@ -1,0 +1,19 @@
+{
+  final Set<Address> set=new HashSet<Address>();
+  final String query="SELECT it.address" + " FROM " + TableNames.INSTRUCTIONS_TABLE + " AS it"+ " JOIN "+ TableNames.ADDRESS_REFERENCES_TABLE+ " AS art ON it.address = art.address "+ " AND it.module_id = art.module_id"+ " WHERE type = 'call_direct' AND art.module_id = "+ module.getId();
+  try {
+    final ResultSet resultSet=module.getDatabase().executeQuery(query);
+    try {
+      while (resultSet.next()) {
+        set.add(new Address(resultSet.getLong("address")));
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    exception.printStackTrace();
+  }
+  return set;
+}

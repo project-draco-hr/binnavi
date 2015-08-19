@@ -1,0 +1,6 @@
+{
+  super(exception);
+  m_errorCode=errorCode;
+  m_sqlState=sqlState;
+  m_stackStacktrace=exception.getStackTrace();
+}

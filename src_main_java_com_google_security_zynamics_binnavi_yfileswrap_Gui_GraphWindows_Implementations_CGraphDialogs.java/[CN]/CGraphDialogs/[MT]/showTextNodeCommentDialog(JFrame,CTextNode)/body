@@ -1,0 +1,5 @@
+{
+  final DialogTextNodeComment dlg=new DialogTextNodeComment(parent,node);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+}

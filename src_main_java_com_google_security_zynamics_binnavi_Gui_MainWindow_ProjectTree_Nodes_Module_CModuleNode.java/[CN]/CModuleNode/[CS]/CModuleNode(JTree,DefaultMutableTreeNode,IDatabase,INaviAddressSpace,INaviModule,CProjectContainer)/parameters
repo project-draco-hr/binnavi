@@ -1,0 +1,6 @@
+JTree projectTree
+DefaultMutableTreeNode parentNode
+IDatabase database
+INaviAddressSpace addressSpace
+INaviModule module
+CProjectContainer contextContainer

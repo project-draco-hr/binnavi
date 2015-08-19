@@ -1,0 +1,8 @@
+{
+  if (isLoaded()) {
+    return String.format("Database '%s' [%d projects, %d modules]",getDescription(),getProjects().size(),getModules().size());
+  }
+ else {
+    return String.format("Database '%s' [Unloaded]",getDescription());
+  }
+}

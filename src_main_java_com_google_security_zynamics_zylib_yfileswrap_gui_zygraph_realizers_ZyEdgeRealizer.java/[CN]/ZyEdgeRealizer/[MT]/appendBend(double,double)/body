@@ -1,0 +1,5 @@
+{
+  final Bend bend=super.appendBend(x,y);
+  bend.setSelected(isSelected());
+  return bend;
+}

@@ -1,0 +1,8 @@
+int id
+String name
+CommentManager commentManager
+INaviModule module
+IAddress startAddress
+IAddress endAddress
+SectionPermission permission
+byte[] data

@@ -1,0 +1,10 @@
+{
+  properties.setColor(BREAKPOINT_ACTIVE_COLOR,breakpointActive);
+  properties.setColor(BREAKPOINT_INACTIVE_COLOR,breakpointInactive);
+  properties.setColor(BREAKPOINT_DISABLED_COLOR,breakpointDisabled);
+  properties.setColor(BREAKPOINT_HIT_COLOR,breakpointHit);
+  properties.setColor(BREAKPOINT_ENABLED_COLOR,breakpointEnabled);
+  properties.setColor(BREAKPOINT_INVALID_COLOR,breakpointInvalid);
+  properties.setColor(BREAKPOINT_DELETING_COLOR,breakpointDeleting);
+  properties.setColor(ACTIVE_LINE_COLOR,activeLine);
+}

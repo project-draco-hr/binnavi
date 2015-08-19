@@ -1,0 +1,18 @@
+{
+  m_module=Preconditions.checkNotNull(module,"IE02395: module argument can not be null");
+  m_listeners=listeners;
+  m_provider=Preconditions.checkNotNull(provider,"IE02396: provider argument can not be null");
+  m_nativeCallgraphView=nativeCallgraph;
+  viewIdView.put(nativeCallgraph.getConfiguration().getId(),nativeCallgraph);
+  m_nativeFlowgraphs=nativeFlowgraphs;
+  m_customViews=customViews;
+  m_viewFunctionBiMap=viewFunctionBiMap;
+  for (  final INaviView view : m_customViews) {
+    view.addListener(m_viewListener);
+    viewIdView.put(view.getConfiguration().getId(),view);
+  }
+  for (  final INaviView view : m_nativeFlowgraphs) {
+    view.addListener(m_viewListener);
+    viewIdView.put(view.getConfiguration().getId(),view);
+  }
+}

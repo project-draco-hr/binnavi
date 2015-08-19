@@ -1,0 +1,4 @@
+{
+  m_status=Preconditions.checkNotNull(status,"Error: Definition status can't be null");
+  repaint();
+}

@@ -1,0 +1,3 @@
+{
+  return (function != null) && (function.getType() == FunctionType.IMPORT) && (function.getForwardedFunctionAddress() == null);
+}

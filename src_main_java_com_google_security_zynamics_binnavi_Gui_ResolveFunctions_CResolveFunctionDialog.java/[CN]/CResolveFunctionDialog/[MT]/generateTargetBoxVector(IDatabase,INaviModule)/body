@@ -1,0 +1,10 @@
+{
+  final Vector<CModuleWrapper> wrappers=new Vector<CModuleWrapper>();
+  for (  final INaviModule module : database.getContent().getModules()) {
+    if (module == sourceModule) {
+      continue;
+    }
+    wrappers.add(new CModuleWrapper(module));
+  }
+  return wrappers;
+}

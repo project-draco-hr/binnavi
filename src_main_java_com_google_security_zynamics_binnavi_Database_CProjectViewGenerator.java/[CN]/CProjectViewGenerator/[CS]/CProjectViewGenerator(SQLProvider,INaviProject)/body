@@ -1,0 +1,4 @@
+{
+  m_provider=Preconditions.checkNotNull(provider,"IE00272: provider argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"IE00452: project argument can not be null");
+}

@@ -1,0 +1,3 @@
+Window parent
+ITraceListProvider listProvider
+int[] traces

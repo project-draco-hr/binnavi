@@ -1,0 +1,10 @@
+{
+  this.filename=filename;
+  properties=new TypedPropertiesWrapper(new Properties());
+  databases=Lists.newArrayList();
+  generalSettings=new GeneralSettingsConfigItem();
+  colors=new ColorsConfigItem();
+  debuggerColors=new DebugColorsConfigItem();
+  callGraphSettings=new CallGraphSettingsConfigItem();
+  flowGraphSettings=new FlowGraphSettingsConfigItem();
+}

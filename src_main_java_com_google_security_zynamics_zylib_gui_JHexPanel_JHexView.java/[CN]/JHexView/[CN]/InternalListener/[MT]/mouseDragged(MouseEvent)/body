@@ -1,0 +1,28 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  final int x=event.getX();
+  final int y=event.getY();
+  if (y < (m_paddingTop - (m_rowHeight - m_charHeight))) {
+    scrollToPosition((2 * getFirstVisibleByte()) - (2 * m_bytesPerRow));
+    if ((getSelectionLength() - (2 * m_bytesPerRow)) < 0) {
+      return;
+    }
+    setSelectionLength(getSelectionLength() - (2 * m_bytesPerRow));
+  }
+ else   if (y >= (m_rowHeight * getNumberOfVisibleRows())) {
+    scrollToPosition((2 * getFirstVisibleByte()) + (2 * m_bytesPerRow));
+    if ((getSelectionLength() + (2 * m_bytesPerRow)) > (2 * (m_dataProvider.getDataLength() - getSelectionStart()))) {
+      return;
+    }
+    setSelectionLength(getSelectionLength() + (2 * m_bytesPerRow));
+  }
+ else {
+    final int position=getNibbleAtCoordinate(x,y);
+    if (position != -1) {
+      setSelectionLength(position - getSelectionStart());
+      repaint();
+    }
+  }
+}

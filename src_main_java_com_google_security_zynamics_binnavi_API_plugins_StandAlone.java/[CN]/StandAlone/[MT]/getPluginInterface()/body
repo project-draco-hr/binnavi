@@ -1,0 +1,14 @@
+{
+  try {
+    ConfigManager.instance().read();
+  }
+ catch (  final FileReadException exception) {
+    NaviLogger.severe("Error: could not read config file.");
+  }
+  final CDatabaseManager manager=CDatabaseManager.instance();
+  final PluginRegistry registry=new PluginRegistry();
+  if (pluginInterface == null) {
+    pluginInterface=PluginInterface.instance("",manager,registry);
+  }
+  return pluginInterface;
+}

@@ -1,0 +1,3 @@
+{
+  m_stackView.gotoOffset(m_model.getStackPointer());
+}

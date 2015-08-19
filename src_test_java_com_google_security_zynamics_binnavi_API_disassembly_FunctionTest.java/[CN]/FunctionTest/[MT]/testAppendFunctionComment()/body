@@ -1,0 +1,19 @@
+{
+  final MockFunctionListener listener=new MockFunctionListener();
+  final Function function=new Function(ModuleFactory.get(),m_internalFunction2);
+  function.addListener(listener);
+  final CUserManager userManager=CUserManager.get(m_provider);
+  final IUser user=userManager.addUser(" SET FUNCTION COMMENT TEST ");
+  userManager.setCurrentActiveUser(user);
+  final List<IComment> appendedComments=function.appendComment("Hannes");
+  assertEquals(appendedComments,function.getComment());
+  assertEquals(appendedComments,m_internalFunction2.getGlobalComment());
+  assertEquals("appendedComment;",listener.events);
+  final ArrayList<IComment> comments=Lists.newArrayList();
+  comments.add(new CComment(12345,CommonTestObjects.TEST_USER_1,null,"FOO"));
+  m_internalFunction2.initializeGlobalComment(comments);
+  assertEquals(comments.get(0),function.getComment().get(0));
+  assertEquals(comments.get(0),m_internalFunction2.getGlobalComment().get(0));
+  assertEquals("appendedComment;initializedComments;",listener.events);
+  function.removeListener(listener);
+}

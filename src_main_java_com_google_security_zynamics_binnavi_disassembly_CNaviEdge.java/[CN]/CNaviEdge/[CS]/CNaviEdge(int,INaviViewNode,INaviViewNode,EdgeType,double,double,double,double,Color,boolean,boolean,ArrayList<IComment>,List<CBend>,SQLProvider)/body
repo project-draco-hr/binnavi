@@ -1,0 +1,9 @@
+{
+  super(id,sourceNode,targetNode,type,sourceX,sourceY,targetX,targetY,color,selected,visible,edgePaths);
+  m_provider=Preconditions.checkNotNull(provider,"IE00204: Provider argument can not be null");
+  CNaviViewNode.link(sourceNode,targetNode);
+  CommentManager.get(provider).addListener(m_internalCommentListener);
+  if ((localComment != null) && !localComment.isEmpty()) {
+    CommentManager.get(m_provider).initializeLocalEdgeComment(this,localComment);
+  }
+}

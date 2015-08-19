@@ -1,0 +1,4 @@
+{
+  typeSystem.uintType.setName("NEW NAME");
+  assertEquals("NEW NAME",typeSystem.uintType.getName());
+}

@@ -1,0 +1,6 @@
+{
+  final DefaultMutableTreeNode node=(DefaultMutableTreeNode)m_projectTree.getLastSelectedPathComponent();
+  if (node != null) {
+    nodeSelected((IProjectTreeNode)node);
+  }
+}

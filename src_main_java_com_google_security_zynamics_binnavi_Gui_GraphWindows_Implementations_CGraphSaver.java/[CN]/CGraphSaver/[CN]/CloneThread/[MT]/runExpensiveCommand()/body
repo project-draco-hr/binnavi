@@ -1,0 +1,5 @@
+{
+  final INaviView newView=m_container.createView(String.format("Clone of %s",m_view.getName()),m_view.getConfiguration().getDescription());
+  CViewInserter.insertView(m_view,newView);
+  CViewOpener.showView(m_parent,m_container,newView,m_parent);
+}

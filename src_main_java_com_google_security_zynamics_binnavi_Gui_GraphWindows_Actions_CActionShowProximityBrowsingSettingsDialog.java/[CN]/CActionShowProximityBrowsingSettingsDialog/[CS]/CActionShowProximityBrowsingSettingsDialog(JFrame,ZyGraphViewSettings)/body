@@ -1,0 +1,5 @@
+{
+  super("Proximity Browsing Settings");
+  m_parent=parent;
+  m_settings=settings;
+}

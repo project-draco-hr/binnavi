@@ -1,0 +1,61 @@
+{
+  final LinkedHashMap<ICodeContainer<InstructionType>,List<ReilInstruction>> instructionMap=new LinkedHashMap<ICodeContainer<InstructionType>,List<ReilInstruction>>();
+  final Map<IInstruction,ReilInstruction> firstMap=new HashMap<IInstruction,ReilInstruction>();
+  final Map<IInstruction,ReilInstruction> lastMap=new HashMap<IInstruction,ReilInstruction>();
+  final List<List<ReilInstruction>> delayedTrueBranches=new ArrayList<List<ReilInstruction>>();
+  for (  final ICodeContainer<InstructionType> block : function.getBasicBlocks()) {
+    final Iterable<InstructionType> blockInstructions=block.getInstructions();
+    final IInstruction lastBlockInstruction=Iterables.getLast(blockInstructions);
+    final boolean endsWithInlining=isInlineSource(block);
+    final ArrayList<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+    instructionMap.put(block,instructions);
+    for (    final InstructionType instruction : blockInstructions) {
+      environment.nextInstruction();
+      final ITranslator<InstructionType> translator=m_translators.get(instruction.getArchitecture().toUpperCase());
+      if (translator == null) {
+        throw new InternalTranslationException("Could not translate instruction from unknown architecture " + instruction.getArchitecture());
+      }
+      try {
+        final List<ReilInstruction> result=translator.translate(environment,instruction,extensions);
+        instructions.addAll(result);
+        if (endsWithInlining && (instruction == lastBlockInstruction)) {
+          final ReilInstruction lastInstruction=instructions.get(instructions.size() - 1);
+          if (lastInstruction.getMnemonic().equals(ReilHelpers.OPCODE_JCC) && lastInstruction.getMetaData().containsKey("isCall")) {
+            instructions.remove(instructions.size() - 1);
+            result.remove(result.size() - 1);
+          }
+        }
+        firstMap.put(instruction,getFirstInstruction(result));
+        lastMap.put(instruction,getLastInstruction(result));
+      }
+ catch (      final InternalTranslationException exception) {
+        exception.setInstruction(instruction);
+        throw exception;
+      }
+    }
+    final IInstruction secondLastInstruction=Iterables.size(block.getInstructions()) > 2 ? Iterables.get(block.getInstructions(),Iterables.size(block.getInstructions()) - 2,null) : null;
+    if (secondLastInstruction != null) {
+      final List<ReilInstruction> secondLastReil=getReilInstructions(secondLastInstruction,instructions);
+      if (ReilHelpers.isDelayedBranch(secondLastReil.get(secondLastReil.size() - 1))) {
+        final IInstruction lastInstruction=getLastInstruction(block);
+        final List<ReilInstruction> lastReil=getReilInstructions(lastInstruction,instructions);
+        if (secondLastReil.get(secondLastReil.size() - 1).getMnemonic().equals(ReilHelpers.OPCODE_JCC)) {
+          instructions.removeAll(lastReil);
+          instructions.addAll(instructions.size() - 1,lastReil);
+        }
+      }
+ else       if (ReilHelpers.isDelayedTrueBranch(secondLastReil.get(secondLastReil.size() - 1))) {
+        final IInstruction lastInstruction=getLastInstruction(block);
+        final List<ReilInstruction> lastReil=getReilInstructions(lastInstruction,instructions);
+        delayedTrueBranches.add(lastReil);
+      }
+    }
+  }
+  final Collection<IAddress> nativeJumpTargets=getBlockAddresses(function);
+  final Pair<List<ReilBlock>,List<ReilEdge>> pair=ReilGraphGenerator.createGraphElements(instructionMap.values(),nativeJumpTargets);
+  final List<ReilBlock> nodes=pair.first();
+  final List<ReilEdge> edges=pair.second();
+  insertNativeEdges(function.getBasicBlockEdges(),nodes,edges,firstMap,lastMap);
+  handleDelayedTrueBranches(nodes,edges,delayedTrueBranches);
+  return new ReilFunction("REIL - " + function.getName(),new ReilGraph(nodes,edges));
+}

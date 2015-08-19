@@ -1,0 +1,21 @@
+{
+  final FontMetrics metrics=m_label.getFontMetrics(m_label.getFont());
+  final double labelWidth=getWidth() - 50;
+  boolean fits=false;
+  do {
+    final double textWidth=metrics.stringWidth(text);
+    if (labelWidth > textWidth) {
+      fits=true;
+    }
+ else {
+      if (text.length() > 4) {
+        text=text.substring(0,text.length() - 4) + "...";
+      }
+ else {
+        break;
+      }
+    }
+  }
+ while (!fits && (text.length() > 4));
+  return text;
+}

@@ -1,0 +1,3 @@
+{
+  return ReilHelpers.toReilAddress(new CAddress(Long.valueOf(addressString)));
+}

@@ -1,0 +1,3 @@
+{
+  putValue(SHORT_DESCRIPTION,"Remove results highlighting from the graph");
+}

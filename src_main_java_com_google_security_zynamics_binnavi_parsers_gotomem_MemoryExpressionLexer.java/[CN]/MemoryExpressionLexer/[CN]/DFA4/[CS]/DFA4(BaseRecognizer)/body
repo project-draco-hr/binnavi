@@ -1,0 +1,11 @@
+{
+  this.recognizer=recognizer;
+  decisionNumber=4;
+  eot=DFA4_eot;
+  eof=DFA4_eof;
+  min=DFA4_min;
+  max=DFA4_max;
+  accept=DFA4_accept;
+  special=DFA4_special;
+  transition=DFA4_transition;
+}

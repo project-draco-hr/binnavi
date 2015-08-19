@@ -1,0 +1,5 @@
+{
+  m_startInstruction=Preconditions.checkNotNull(startInstruction,"IE02301: startInstruction argument can not be null");
+  m_trackedRegister=Preconditions.checkNotNull(trackedRegister,"IE02302: trackedRegister argument can not be null");
+  m_results=new ArrayList<CInstructionResult>(Preconditions.checkNotNull(results,"IE02303: results argument can not be null"));
+}

@@ -1,0 +1,3 @@
+{
+  CHelpManager.instance().start(window);
+}

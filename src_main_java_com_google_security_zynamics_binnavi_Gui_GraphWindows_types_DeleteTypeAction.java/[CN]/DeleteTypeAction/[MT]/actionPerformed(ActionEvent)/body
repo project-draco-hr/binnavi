@@ -1,0 +1,14 @@
+{
+  final ImmutableList<BaseType> types=typeEditor.getSelectedTypes();
+  if (types.isEmpty() || CMessageBox.showYesNoQuestion(owner,"Do you really want to delete these type(s)?") != JOptionPane.YES_OPTION) {
+    return;
+  }
+  try {
+    for (    final BaseType baseType : types) {
+      typeManager.deleteType(baseType);
+    }
+  }
+ catch (  final CouldntDeleteException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

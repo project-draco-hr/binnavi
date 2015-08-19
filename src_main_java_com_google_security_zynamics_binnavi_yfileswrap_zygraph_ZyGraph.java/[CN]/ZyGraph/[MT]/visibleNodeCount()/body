@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.countIf(new NodeList(getGraph().nodes()),new ICollectionFilter<Node>(){
+    @Override public boolean qualifies(    final Node item){
+      return !(getGraph().getRealizer(item) instanceof ZyProximityNodeRealizer<?>);
+    }
+  }
+);
+}

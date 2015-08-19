@@ -1,0 +1,5 @@
+{
+  extender.registerCodeNodeExtension(new CodeNodeExtension());
+  extender.addTab("Code Bookmarks",this);
+  m_bookmarkTable.getSelectionModel().addListSelectionListener(new InternalSelectionListener(m_bookmarkTable,model.getGraph()));
+}

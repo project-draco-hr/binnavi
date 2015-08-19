@@ -1,0 +1,4 @@
+{
+  this.provider=Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  this.module=Preconditions.checkNotNull(module,"Error: module argument can not be null");
+}

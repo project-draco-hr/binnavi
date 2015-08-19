@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(edge,"Error: Edge argument can not be null");
+  Preconditions.checkArgument(!m_outgoingEdges.contains(edge),"Error: Outgoing edge was added before");
+  m_outgoingEdges.add(edge);
+}

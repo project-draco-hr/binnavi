@@ -1,0 +1,12 @@
+{
+  final JPanel settingPanel=new JPanel(new BorderLayout());
+  settingPanel.setBorder(STANDARD_EMPTY_BORDER);
+  settingPanel.add(new JLabel(description),BorderLayout.CENTER);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.add(component,BorderLayout.CENTER);
+  final JHintIcon hintPopup=new JHintIcon(hint);
+  hintPopup.setBorder(new EmptyBorder(0,3,0,0));
+  innerPanel.add(hintPopup,BorderLayout.EAST);
+  settingPanel.add(innerPanel,BorderLayout.EAST);
+  panel.add(settingPanel);
+}

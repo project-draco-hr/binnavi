@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(plugin,"Error: Plugin argument can not be null");
+  m_registry.addPlugin(plugin);
+}

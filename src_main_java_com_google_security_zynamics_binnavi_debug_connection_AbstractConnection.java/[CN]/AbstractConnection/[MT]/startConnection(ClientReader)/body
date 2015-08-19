@@ -1,0 +1,10 @@
+{
+  NaviLogger.info("Starting the connection to the debug client");
+  Preconditions.checkNotNull(reader,"IE00738: Reader can not be null");
+  fetcherThread=new Thread(pipeFetcherThread,"Pipe Fetcher (" + Thread.currentThread().getStackTrace()[6] + ")");
+  pipeFetcherThread.reset();
+  fetcherThread.start();
+  receiverThread=new ReceiveWorker(reader,eventQueue);
+  workerThread=new Thread(receiverThread,"Receive Worker");
+  workerThread.start();
+}

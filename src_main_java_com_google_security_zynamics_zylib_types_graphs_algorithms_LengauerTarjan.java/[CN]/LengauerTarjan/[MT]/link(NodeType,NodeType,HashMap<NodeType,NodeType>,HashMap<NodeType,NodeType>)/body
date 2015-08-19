@@ -1,0 +1,4 @@
+{
+  ancestor.put(node,parent);
+  best.put(node,node);
+}

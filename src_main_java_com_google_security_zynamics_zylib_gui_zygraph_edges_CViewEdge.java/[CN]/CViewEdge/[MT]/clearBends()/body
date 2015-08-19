@@ -1,0 +1,11 @@
+{
+  m_paths.clear();
+  for (  final IViewEdgeListener listener : m_listeners) {
+    try {
+      listener.clearedBends(this);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

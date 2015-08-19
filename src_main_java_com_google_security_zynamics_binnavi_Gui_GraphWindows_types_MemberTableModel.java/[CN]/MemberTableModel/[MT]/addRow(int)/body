@@ -1,0 +1,5 @@
+{
+  model.add(rowIndex,new MemberTableRowData());
+  validRows.add(rowIndex,false);
+  fireTableRowsInserted(rowIndex,rowIndex);
+}

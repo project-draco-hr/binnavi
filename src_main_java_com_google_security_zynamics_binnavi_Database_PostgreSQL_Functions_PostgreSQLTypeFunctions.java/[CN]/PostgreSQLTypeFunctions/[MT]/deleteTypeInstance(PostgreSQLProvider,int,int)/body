@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be larger then zero");
+  Preconditions.checkArgument(typeInstanceId >= 0,"Error: type instance id must be larger or equal to zero");
+  final String function=" { call delete_type_instance(?, ?) } ";
+  try {
+    final CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      deleteCommentStatement.setInt(1,moduleId);
+      deleteCommentStatement.setInt(2,typeInstanceId);
+      deleteCommentStatement.execute();
+    }
+  finally {
+      deleteCommentStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

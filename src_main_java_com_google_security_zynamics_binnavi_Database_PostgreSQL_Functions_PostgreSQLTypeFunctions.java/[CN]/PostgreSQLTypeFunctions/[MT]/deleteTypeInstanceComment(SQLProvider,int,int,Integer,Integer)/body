@@ -1,0 +1,28 @@
+{
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be greater then zero");
+  Preconditions.checkArgument(instanceId >= 0,"Error: instance id must be greater or equal to zero");
+  Preconditions.checkNotNull(commentId,"Error: comment text argument can not be null");
+  Preconditions.checkNotNull(userId,"Error: user id argument can not be null");
+  final String function=" { ? = call delete_type_instance_comment(?, ?, ?, ?) } ";
+  try {
+    final CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      deleteCommentStatement.registerOutParameter(1,Types.INTEGER);
+      deleteCommentStatement.setInt(2,moduleId);
+      deleteCommentStatement.setInt(3,instanceId);
+      deleteCommentStatement.setInt(4,commentId);
+      deleteCommentStatement.setInt(5,userId);
+      deleteCommentStatement.execute();
+      deleteCommentStatement.getInt(1);
+      if (deleteCommentStatement.wasNull()) {
+        throw new IllegalArgumentException("Error: The comment id returned from the database was null.");
+      }
+    }
+  finally {
+      deleteCommentStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

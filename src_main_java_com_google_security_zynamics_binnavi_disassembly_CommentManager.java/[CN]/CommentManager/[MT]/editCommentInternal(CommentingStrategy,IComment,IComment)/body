@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(strategy,"IE02545: strategy argument can not be null");
+  Preconditions.checkNotNull(editedComment,"IE02546: comment argument can not be null");
+  Preconditions.checkNotNull(newComment,"IE02547: commentText argument can not be null");
+  final List<IComment> currentComments=strategy.getComments();
+  if (editedComment.getComment().equals(newComment)) {
+    return;
+  }
+  final int index=currentComments.indexOf(editedComment);
+  if (index == -1) {
+    throw new IllegalArgumentException("Error: Can not edit comment as there is no comment to edit.");
+  }
+  currentComments.set(index,newComment);
+  strategy.saveComments(currentComments);
+  commentIdToComment.put(editedComment.getId(),newComment);
+  for (  final CommentListener listener : listeners) {
+    try {
+      strategy.sendEditedCommentNotification(listener,newComment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

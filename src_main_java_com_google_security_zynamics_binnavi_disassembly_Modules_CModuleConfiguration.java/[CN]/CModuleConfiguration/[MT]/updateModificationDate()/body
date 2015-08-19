@@ -1,0 +1,16 @@
+{
+  try {
+    m_modificationDate=m_provider.getModificationDate(m_module);
+    for (    final IModuleListener listener : m_listeners) {
+      try {
+        listener.changedModificationDate(m_module,m_modificationDate);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+ catch (  final CouldntLoadDataException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

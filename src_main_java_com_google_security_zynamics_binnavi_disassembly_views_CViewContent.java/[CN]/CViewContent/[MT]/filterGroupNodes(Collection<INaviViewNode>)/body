@@ -1,0 +1,8 @@
+{
+  return Collections2.filter(nodes,new Predicate<INaviViewNode>(){
+    @Override public boolean apply(    final INaviViewNode node){
+      return !(node instanceof INaviGroupNode);
+    }
+  }
+);
+}

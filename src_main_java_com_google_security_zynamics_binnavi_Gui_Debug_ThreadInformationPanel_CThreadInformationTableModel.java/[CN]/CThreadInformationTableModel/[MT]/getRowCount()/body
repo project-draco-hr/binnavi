@@ -1,0 +1,5 @@
+{
+synchronized (m_threads) {
+    return m_threads.size();
+  }
+}

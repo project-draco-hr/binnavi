@@ -1,0 +1,24 @@
+{
+  final List<CInstructionResult> results=m_container.getResult().getResults();
+  final CInstructionResult result=results.get(rowIndex);
+switch (columnIndex) {
+case CTrackingResultsTable.STATUS_COLUMN:
+    return new CResultColumnWrapper(m_container.getResult().getStartInstruction(),m_container.getResult().getTrackedRegister(),result);
+case CTrackingResultsTable.ADDRESS_COLUMN:
+  return CTrackingResultsTableFiller.getAddressColumnText(result);
+case CTrackingResultsTable.INSTRUCTION_COLUMN:
+return CTrackingResultsTableFiller.getInstructionColumnText(result);
+case CTrackingResultsTable.READS_COLUMN:
+return CTrackingResultsTableFiller.getReadsColumnText(result);
+case CTrackingResultsTable.UPDATES_COLUMN:
+return CTrackingResultsTableFiller.getUpdatedColumnText(result);
+case CTrackingResultsTable.DEFINES_COLUMN:
+return CTrackingResultsTableFiller.getWritesColumnText(result);
+case CTrackingResultsTable.UNDEFINES_COLUMN:
+return CTrackingResultsTableFiller.getUndefinesColumnText(result);
+case CTrackingResultsTable.TAINTED_COLUMN:
+return CTrackingResultsTableFiller.getDefinedColumnText(result);
+default :
+throw new IllegalStateException("IE01147: Invalid column");
+}
+}

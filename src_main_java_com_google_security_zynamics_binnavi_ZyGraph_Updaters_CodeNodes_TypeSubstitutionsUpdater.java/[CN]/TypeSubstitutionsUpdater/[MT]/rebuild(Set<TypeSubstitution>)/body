@@ -1,0 +1,11 @@
+{
+  final IAddress startAddress=codeNode.getAddress();
+  final IAddress endAddress=codeNode.getLastInstruction().getAddress();
+  for (  final TypeSubstitution substitution : typeSubstitutions) {
+    if (substitution.getAddress().toLong() >= startAddress.toLong() && substitution.getAddress().toLong() <= endAddress.toLong()) {
+      naviNode.getRealizer().regenerate();
+      naviNode.getRealizer().repaint();
+      return;
+    }
+  }
+}

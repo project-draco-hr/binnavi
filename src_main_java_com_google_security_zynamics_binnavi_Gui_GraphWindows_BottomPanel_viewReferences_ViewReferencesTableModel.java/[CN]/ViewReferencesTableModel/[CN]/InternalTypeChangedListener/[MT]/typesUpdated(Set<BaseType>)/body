@@ -1,0 +1,5 @@
+{
+  for (  BaseType baseType : Sets.intersection(baseTypeToTreeNode.keySet(),baseTypes)) {
+    nodeChanged(baseTypeToTreeNode.get(baseType));
+  }
+}

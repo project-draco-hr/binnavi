@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(engine,"Error: Script %s has an unknown extension.",file.getAbsolutePath());
+  final String script=FileUtils.readTextfile(file);
+  runScript(engine,script,bindings);
+}

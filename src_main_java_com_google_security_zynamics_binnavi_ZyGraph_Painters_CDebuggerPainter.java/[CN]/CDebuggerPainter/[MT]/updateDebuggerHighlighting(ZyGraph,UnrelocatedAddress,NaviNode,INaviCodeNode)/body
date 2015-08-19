@@ -1,0 +1,7 @@
+{
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    if (instruction.getAddress().equals(address.getAddress())) {
+      updateDebuggerHighlighting(graph,node,codeNode,instruction);
+    }
+  }
+}

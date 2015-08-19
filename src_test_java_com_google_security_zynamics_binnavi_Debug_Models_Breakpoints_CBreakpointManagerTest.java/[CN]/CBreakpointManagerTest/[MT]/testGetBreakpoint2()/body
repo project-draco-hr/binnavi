@@ -1,0 +1,6 @@
+{
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_manager.getBreakpointStatus(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x123))),BreakpointType.REGULAR));
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_manager.getBreakpointStatus(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x456))),BreakpointType.REGULAR));
+  assertEquals(null,m_manager.getBreakpointStatus(null,BreakpointType.REGULAR));
+  assertEquals(null,m_manager.getBreakpointStatus(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0))),BreakpointType.REGULAR));
+}

@@ -1,0 +1,3 @@
+{
+  return (TypesTreeModel)super.getModel();
+}

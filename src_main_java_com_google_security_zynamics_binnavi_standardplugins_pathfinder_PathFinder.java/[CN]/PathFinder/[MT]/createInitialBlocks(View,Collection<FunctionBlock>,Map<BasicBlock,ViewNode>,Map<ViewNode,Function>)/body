@@ -1,0 +1,18 @@
+{
+  for (  final FunctionBlock functionBlock : passedFunctions) {
+    final Function function=functionBlock.getFunction();
+    if (function.getType() == FunctionType.Import) {
+      final FunctionNode newNode=view.createFunctionNode(function);
+      functionMap.put(newNode,function);
+    }
+ else {
+      function.load();
+      for (      final BasicBlock block : function.getGraph().getNodes()) {
+        final CodeNode newNode=view.createCodeNode(function,block.getInstructions());
+        newNode.setColor(DEFAULT_BLOCK_COLOR);
+        nodeMap.put(block,newNode);
+        functionMap.put(newNode,function);
+      }
+    }
+  }
+}

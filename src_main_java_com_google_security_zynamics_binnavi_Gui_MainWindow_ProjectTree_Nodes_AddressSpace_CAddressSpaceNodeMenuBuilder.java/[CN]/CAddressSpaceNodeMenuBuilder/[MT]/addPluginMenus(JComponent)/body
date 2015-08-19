@@ -1,0 +1,14 @@
+{
+  final List<IAddressSpaceMenuPlugin> plugins=Lists.newArrayList();
+  for (  final IPlugin<IPluginInterface> plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof IAddressSpaceMenuPlugin) {
+      plugins.add((IAddressSpaceMenuPlugin)plugin);
+    }
+  }
+  if (!plugins.isEmpty()) {
+    menu.add(new JSeparator());
+    for (    final IAddressSpaceMenuPlugin plugin : plugins) {
+      addPluginMenu(menu,plugin);
+    }
+  }
+}

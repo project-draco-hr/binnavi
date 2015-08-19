@@ -1,0 +1,3 @@
+{
+  return new ReadMemoryReply(packetId,parseInteger(),null,null);
+}

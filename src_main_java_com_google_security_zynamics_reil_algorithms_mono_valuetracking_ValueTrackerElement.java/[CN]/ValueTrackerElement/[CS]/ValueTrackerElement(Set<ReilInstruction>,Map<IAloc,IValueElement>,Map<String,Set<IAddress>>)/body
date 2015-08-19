@@ -1,0 +1,5 @@
+{
+  m_values=new HashMap<IAloc,IValueElement>(values);
+  m_influences=new LinkedHashSet<ReilInstruction>(influences);
+  m_lastWritten=new HashMap<String,Set<IAddress>>(lastWritten);
+}

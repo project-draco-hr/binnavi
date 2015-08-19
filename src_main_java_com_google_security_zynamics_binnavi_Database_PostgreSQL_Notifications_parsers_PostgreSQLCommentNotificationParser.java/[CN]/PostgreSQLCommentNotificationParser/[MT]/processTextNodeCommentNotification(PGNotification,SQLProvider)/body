@@ -1,0 +1,14 @@
+{
+  final Matcher matcher=TEXT_NODE_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return null;
+  }
+  final Integer nodeId=Integer.parseInt(matcher.group(3));
+  final Integer commentId=matcher.group(4).equals("null") ? null : Integer.parseInt(matcher.group(4));
+  final INaviTextNode node=(INaviTextNode)NodeCache.get(provider).getNodeById(nodeId);
+  if (node == null) {
+    return null;
+  }
+  final CommentOperation operation=commentId == null ? CommentOperation.DELETE : CommentOperation.APPEND;
+  return new TextNodeCommentNotificationContainer(node,operation,commentId);
+}

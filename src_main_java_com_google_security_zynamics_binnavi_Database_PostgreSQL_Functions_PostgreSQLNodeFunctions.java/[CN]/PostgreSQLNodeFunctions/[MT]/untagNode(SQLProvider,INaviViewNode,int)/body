@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(provider,"IE01990: Provider argument can not be null");
+  Preconditions.checkNotNull(node,"IE01991: Node argument can not be null");
+  final CConnection connection=provider.getConnection();
+  try {
+    connection.executeUpdate(String.format("DELETE FROM %s " + " WHERE node_id = %d AND tag_id = %d",CTableNames.TAGGED_NODES_TABLE,node.getId(),tagId),true);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

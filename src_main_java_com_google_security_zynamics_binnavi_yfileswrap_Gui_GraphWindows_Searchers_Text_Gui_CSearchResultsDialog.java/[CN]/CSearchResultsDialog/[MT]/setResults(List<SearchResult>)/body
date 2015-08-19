@@ -1,0 +1,20 @@
+{
+  final Object[][] data=new Object[results.size()][1];
+  int counter=0;
+  for (  final SearchResult result : results) {
+    if (result.getObject() instanceof NaviNode) {
+      final NaviNode node=(NaviNode)result.getObject();
+      final ZyLabelContent labelContent=node.getRealizer().getNodeContent();
+      final String lineText=labelContent.getLineContent(result.getLine()).getText();
+      data[counter++][0]=lineText;
+    }
+ else     if (result.getObject() instanceof NaviEdge) {
+      final NaviEdge edge=(NaviEdge)result.getObject();
+      final ZyLabelContent labelContent=edge.getLabelContent();
+      final String lineText=labelContent.getLineContent(result.getLine()).getText();
+      data[counter++][0]=lineText;
+    }
+  }
+  m_table.setModel(new CResultsTableModel(data,new String[]{"Result"}));
+  m_resultsLabel.setText(String.format("%d search results",data.length));
+}

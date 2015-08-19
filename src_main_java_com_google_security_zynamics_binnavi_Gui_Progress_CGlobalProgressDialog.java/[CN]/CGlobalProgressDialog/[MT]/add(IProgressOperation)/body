@@ -1,0 +1,9 @@
+{
+  final GridBagConstraints constraints=new GridBagConstraints();
+  constraints.fill=GridBagConstraints.HORIZONTAL;
+  constraints.gridy=counter++;
+  constraints.gridx=0;
+  constraints.weightx=1;
+  constraints.weighty=1;
+  m_progressPanel.add(operation.getProgressPanel(),constraints);
+}

@@ -1,0 +1,16 @@
+{
+  if (node instanceof INaviGroupNode) {
+    final ZyGroupNodeRealizer<NaviNode> realizer=new ZyGroupNodeRealizer<NaviNode>(content,((INaviGroupNode)node).isCollapsed());
+    if ((node.getWidth() != 0) && (node.getHeight() != 0)) {
+      realizer.setSize(node.getWidth(),node.getHeight());
+    }
+    return realizer;
+  }
+ else {
+    final ZyNormalNodeRealizer<NaviNode> realizer=new ZyNormalNodeRealizer<NaviNode>(content);
+    if ((node.getWidth() != 0) && (node.getHeight() != 0)) {
+      realizer.setSize(node.getWidth(),node.getHeight());
+    }
+    return realizer;
+  }
+}

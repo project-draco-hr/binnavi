@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(menu,"IE02144: Menu argument can not be null");
+  Preconditions.checkNotNull(graph,"IE02145: Graph argument can not be null");
+  Preconditions.checkNotNull(node,"IE02146: Node argument can not be null");
+  final JMenu selectionMenu=new JMenu("Selection");
+  selectionMenu.add(CActionProxy.proxy(new CActionSelectNodePredecessors(graph,node)));
+  selectionMenu.add(CActionProxy.proxy(new CActionSelectNodeSuccessors(graph,node)));
+  if (graph.getSelectedNodes().size() > 0) {
+    selectionMenu.add(CActionProxy.proxy(new CGroupAction(graph)));
+  }
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    try {
+      final INaviFunction parentFunction=((INaviCodeNode)node.getRawNode()).getParentFunction();
+      selectionMenu.add(CActionProxy.proxy(new CActionSelectSameParentFunction(graph,parentFunction)));
+    }
+ catch (    final MaybeNullException exception) {
+    }
+  }
+ else   if (node.getRawNode() instanceof INaviFunctionNode) {
+    final INaviFunction function=((INaviFunctionNode)node.getRawNode()).getFunction();
+    selectionMenu.add(CActionProxy.proxy(new CActionSelectSameFunctionType(graph,function.getType())));
+  }
+  menu.add(selectionMenu);
+  menu.addSeparator();
+}

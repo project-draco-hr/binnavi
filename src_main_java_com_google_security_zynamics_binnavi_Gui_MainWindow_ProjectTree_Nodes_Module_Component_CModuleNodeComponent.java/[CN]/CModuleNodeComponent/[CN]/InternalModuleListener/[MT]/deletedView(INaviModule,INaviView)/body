@@ -1,0 +1,3 @@
+{
+  tabbedPane.setTitleAt(2,"Views" + String.format(" (%d)",module.getCustomViewCount()));
+}

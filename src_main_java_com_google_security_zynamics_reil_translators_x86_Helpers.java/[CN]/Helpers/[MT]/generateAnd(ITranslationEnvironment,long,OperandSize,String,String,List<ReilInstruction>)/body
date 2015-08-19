@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(operand1,"Error: Argument operand1 can't be null");
+  Preconditions.checkNotNull(operand2,"Error: Argument operand2 can't be null");
+  final String result=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset,size,operand1,size,operand2,size,result));
+  generateBinaryOperationFlags(environment,offset + 1,result,size,instructions);
+  return result;
+}

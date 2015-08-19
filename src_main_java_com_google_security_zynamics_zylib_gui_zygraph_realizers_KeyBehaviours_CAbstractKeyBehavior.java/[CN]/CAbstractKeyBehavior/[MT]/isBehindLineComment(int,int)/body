@@ -1,0 +1,21 @@
+{
+  final int nonCommentLineYPos=getLabelContent().getNonPureCommentLineIndexOfModelAt(lineYPos);
+  if (nonCommentLineYPos < 0) {
+    return false;
+  }
+  if (nonCommentLineYPos < lineYPos) {
+    return true;
+  }
+  if (nonCommentLineYPos == lineYPos) {
+    final ZyLineContent lineContent=getLabelContent().getLineContent(lineYPos);
+    if (lineContent == null) {
+      return false;
+    }
+    for (    final IZyEditableObject obj : lineContent.getLineFragmentObjectList()) {
+      if (obj.isCommentDelimiter()) {
+        return obj.getStart() <= lineXPos;
+      }
+    }
+  }
+  return false;
+}

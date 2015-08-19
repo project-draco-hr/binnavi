@@ -1,0 +1,27 @@
+{
+  Preconditions.checkNotNull(provider,"IE00509: provider argument can not be null");
+  Preconditions.checkNotNull(edge,"IE00510: codeNode argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE00511: comment argument can not be null");
+  Preconditions.checkNotNull(userId,"IE00512: userId argument can not be null");
+  final String function=" { ? = call delete_local_edge_comment(?, ?, ?) } ";
+  try {
+    final CallableStatement deleteCommentFunction=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      deleteCommentFunction.registerOutParameter(1,Types.INTEGER);
+      deleteCommentFunction.setInt(2,edge.getId());
+      deleteCommentFunction.setInt(3,commentId);
+      deleteCommentFunction.setInt(4,userId);
+      deleteCommentFunction.execute();
+      deleteCommentFunction.getInt(1);
+      if (deleteCommentFunction.wasNull()) {
+        throw new IllegalArgumentException("Error: the comment id returned from the database was null");
+      }
+    }
+  finally {
+      deleteCommentFunction.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

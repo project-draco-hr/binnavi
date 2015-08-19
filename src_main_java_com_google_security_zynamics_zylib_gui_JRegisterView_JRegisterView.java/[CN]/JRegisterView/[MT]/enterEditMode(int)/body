@@ -1,0 +1,8 @@
+{
+  requestFocusInWindow();
+  m_caret.setVisible(true);
+  m_editedRegister=register;
+  m_caretPosition=0;
+  m_editValue=m_registerModel.getRegisterInformation(register).getValue();
+  repaint();
+}

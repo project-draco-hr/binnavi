@@ -1,0 +1,3 @@
+{
+  return HtmlGenerator.getHtml(content,MONOSPACE_FONT,true);
+}

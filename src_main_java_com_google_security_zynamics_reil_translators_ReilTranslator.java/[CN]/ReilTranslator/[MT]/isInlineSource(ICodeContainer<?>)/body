@@ -1,0 +1,3 @@
+{
+  return (container.getOutgoingEdges().size() == 1) && (container.getOutgoingEdges().get(0).getType() == EdgeType.ENTER_INLINED_FUNCTION);
+}

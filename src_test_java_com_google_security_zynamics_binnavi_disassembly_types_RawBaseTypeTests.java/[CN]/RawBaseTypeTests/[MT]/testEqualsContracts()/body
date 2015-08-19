@@ -1,0 +1,10 @@
+{
+  final RawBaseType rawType0=new RawBaseType(ID,NAME,SIZE,POINTER_ID,true,BaseTypeCategory.ATOMIC);
+  final RawBaseType rawType1=new RawBaseType(ID,NAME,SIZE,POINTER_ID,true,BaseTypeCategory.ATOMIC);
+  final RawBaseType rawType2=new RawBaseType(ID,NAME,SIZE,POINTER_ID,true,BaseTypeCategory.ATOMIC);
+  assertEquals(rawType0,rawType0);
+  assertEquals(rawType0,rawType1);
+  assertEquals(rawType1,rawType0);
+  assertEquals(rawType1,rawType2);
+  assertEquals(rawType0,rawType2);
+}

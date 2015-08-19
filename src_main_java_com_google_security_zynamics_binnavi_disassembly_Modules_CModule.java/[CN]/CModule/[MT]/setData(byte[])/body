@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(data,"IE00198: Data argument can not be null");
+  m_data=data.clone();
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedData(this,data);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

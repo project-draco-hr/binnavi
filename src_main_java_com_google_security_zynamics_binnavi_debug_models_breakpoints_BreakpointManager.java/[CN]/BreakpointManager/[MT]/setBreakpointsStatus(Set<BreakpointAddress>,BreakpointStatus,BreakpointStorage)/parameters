@@ -1,0 +1,3 @@
+Set<BreakpointAddress> addresses
+BreakpointStatus newStatus
+BreakpointStorage storage

@@ -1,0 +1,3 @@
+{
+  m_node.getComments().initializeLocalInstructionComment(instruction.getNative(),comments);
+}

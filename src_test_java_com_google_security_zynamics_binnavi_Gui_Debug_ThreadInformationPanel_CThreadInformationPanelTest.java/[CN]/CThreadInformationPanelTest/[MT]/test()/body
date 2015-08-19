@@ -1,0 +1,21 @@
+{
+  final IGraphModel graphModel=new MockGraphModel();
+  final CDebugPerspectiveModel model=CDebugPerspectiveModelFactory.get(graphModel);
+  final CThreadInformationPanel panel=new CThreadInformationPanel(model);
+  final IDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  final TargetProcessThread thread=new TargetProcessThread(0,ThreadState.RUNNING);
+  debugger.getProcessManager().addThread(thread);
+  final LinkedHashSet<?> perspectiveListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(model,"m_listeners"),"m_listeners");
+  final LinkedHashSet<?> debuggerListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ReflectionHelpers.getField(AbstractDebugger.class,debugger,"processManager"),"listeners"),"m_listeners");
+  final LinkedHashSet<?> threadListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(thread,"listeners"),"m_listeners");
+  assertEquals(1,perspectiveListeners.size());
+  assertEquals(1,debuggerListeners.size());
+  assertEquals(1,threadListeners.size());
+  model.setActiveDebugger(debugger);
+  assertEquals(2,threadListeners.size());
+  assertEquals(2,debuggerListeners.size());
+  panel.dispose();
+  assertEquals(1,threadListeners.size());
+  assertEquals(1,debuggerListeners.size());
+  assertEquals(0,perspectiveListeners.size());
+}

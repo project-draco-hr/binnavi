@@ -1,0 +1,7 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"mtlo");
+  final String sourceValue=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  instructions.add(ReilHelpers.createStr(baseOffset,dw,sourceValue,dw,"LO"));
+}

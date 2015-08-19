@@ -1,0 +1,13 @@
+int nodeId
+double x
+double y
+double width
+double height
+Color color
+Color borderColor
+boolean selected
+boolean visible
+List<IComment> localComment
+INaviFunction parentFunction
+Set<CTag> tags
+SQLProvider provider

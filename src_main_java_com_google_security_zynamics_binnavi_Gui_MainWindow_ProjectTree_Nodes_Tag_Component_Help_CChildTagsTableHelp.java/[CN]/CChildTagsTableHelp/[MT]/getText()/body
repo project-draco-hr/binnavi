@@ -1,0 +1,3 @@
+{
+  return "This table shows information about the child tags of the selected tag.\nName: Name of the child tag\nDescription: Description of the child tag\nChildren: Number of children of the child tag";
+}

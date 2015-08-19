@@ -1,0 +1,33 @@
+{
+  addressColor=properties.getColor(ADDRESS_COLOR,ADDRESS_COLOR_DEFAULT);
+  mnemonicColor=properties.getColor(MNEMONIC_COLOR,MNEMONIC_COLOR_DEFAULT);
+  stringColor=properties.getColor(STRING_COLOR,STRING_COLOR_DEFAULT);
+  memRefColor=properties.getColor(MEM_REF_COLOR,MEM_REF_COLOR_DEFAULT);
+  operatorColor=properties.getColor(OPERATOR_COLOR,OPERATOR_COLOR_DEFAULT);
+  prefixColor=properties.getColor(PREFIX_COLOR,PREFIX_COLOR_DEFAULT);
+  immediateColor=properties.getColor(IMMEDIATE_COLOR,IMMEDIATE_COLOR_DEFAULT);
+  registerColor=properties.getColor(REGISTER_COLOR,REGISTER_COLOR_DEFAULT);
+  functionColor=properties.getColor(FUNCTION_COLOR,FUNCTION_COLOR_DEFAULT);
+  variableColor=properties.getColor(VARIABLE_COLOR,VARIABLE_COLOR_DEFAULT);
+  expressionListColor=properties.getColor(EXPRESSION_LIST_COLOR,EXPRESSION_LIST_COLOR_DEFAULT);
+  noTypeColor=properties.getColor(NO_TYPE_COLOR,NO_TYPE_COLOR_DEFAULT);
+  invalidTypeColor=properties.getColor(INVALID_TYPE_COLOR,INVALID_TYPE_COLOR_DEFAULT);
+  operandSeperatorColor=properties.getColor(OPERAND_SEPARATOR_COLOR,OPERAND_SEPARATOR_COLOR_DEFAULT);
+  globalCommentColor=properties.getColor(GLOBAL_COMMENT_COLOR,GLOBAL_COMMENT_COLOR_DEFAULT);
+  localCommentColor=properties.getColor(LOCAL_COMMENT_COLOR,LOCAL_COMMENT_COLOR_DEFAULT);
+  normalFunctionColor=properties.getColor(NORMAL_FUNCTION_COLOR,NORMAL_FUNCTION_COLOR_DEFAULT);
+  libraryFunctionColor=properties.getColor(LIBRARY_FUNCTION_COLOR,LIBRARY_FUNCTION_COLOR_DEFAULT);
+  importedFunctionColor=properties.getColor(IMPORTED_FUNCTION_COLOR,IMPORTED_FUNCTION_COLOR_DEFAULT);
+  thunkFunctionColor=properties.getColor(THUNK_FUNCTION_COLOR,THUNK_FUNCTION_COLOR_DEFAULT);
+  adjustorThunkFunctionColor=properties.getColor(ADJUSTOR_THUNK_FUNCTION_COLOR,ADJUSTOR_THUNK_FUNCTION_COLOR_DEFAULT);
+  unknownFunctionColor=properties.getColor(UNKNOWN_FUNCTION_COLOR,UNKNOWN_FUNCTION_COLOR_DEFAULT);
+  basicBlocksColor=properties.getColor(BASIC_BLOCKS_COLOR,BASIC_BLOCKS_COLOR_DEFAULT);
+  conditionalJumpTrueColor=properties.getColor(CONDITIONAL_JUMP_TRUE_COLOR,CONDITIONAL_JUMP_TRUE_COLOR_DEFAULT);
+  conditionalJumpFalseColor=properties.getColor(CONDITIONAL_JUMP_FALSE_COLOR,CONDITIONAL_JUMP_FALSE_COLOR_DEFAULT);
+  unconditionalJumpColor=properties.getColor(UNCONDITIONAL_JUMP_COLOR,UNCONDITIONAL_JUMP_COLOR_DEFAULT);
+  switchJumpColor=properties.getColor(SWITCH_JUMP_COLOR,SWITCH_JUMP_COLOR_DEFAULT);
+  textEdgeColor=properties.getColor(TEXT_EDGE_COLOR,TEXT_EDGE_COLOR_DEFAULT);
+  enterInlinedJumpColor=properties.getColor(ENTER_INLINED_JUMP_COLOR,ENTER_INLINED_JUMP_COLOR_DEFAULT);
+  leaveInlinedJumpColor=properties.getColor(LEAVE_INLINED_JUMP_COLOR,LEAVE_INLINED_JUMP_COLOR_DEFAULT);
+  tagColor=properties.getColor(TAG_COLOR,TAG_COLOR_DEFAULT);
+}

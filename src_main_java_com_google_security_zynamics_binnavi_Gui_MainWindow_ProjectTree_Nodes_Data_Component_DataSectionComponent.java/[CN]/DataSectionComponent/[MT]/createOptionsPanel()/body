@@ -1,0 +1,7 @@
+{
+  final JPanel optionsPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionsPanel.setBorder(new TitledBorder("Options"));
+  optionsPanel.add(createVirtualAddressCheckBox());
+  optionsPanel.add(createSectionSelectionPanel());
+  return optionsPanel;
+}

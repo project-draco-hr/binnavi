@@ -1,0 +1,13 @@
+{
+  final String imageBaseText=m_debuggerPanel.getImageBase();
+  if ("".equals(imageBaseText)) {
+    return true;
+  }
+  final CAddress enteredAddress=new CAddress(Convert.hexStringToLong(imageBaseText));
+  if (m_addressSpace == null) {
+    return !enteredAddress.equals(m_module.getConfiguration().getImageBase());
+  }
+ else {
+    return !enteredAddress.equals(m_addressSpace.getContent().getImageBase(m_module));
+  }
+}

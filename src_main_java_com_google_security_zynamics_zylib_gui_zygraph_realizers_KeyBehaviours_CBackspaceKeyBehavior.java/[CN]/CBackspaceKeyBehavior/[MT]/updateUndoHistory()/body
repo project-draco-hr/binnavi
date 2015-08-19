@@ -1,0 +1,28 @@
+{
+  if (!m_wasEditablePosition) {
+    return;
+  }
+  m_wasEditablePosition=false;
+  final int x=getCaretEndPosX();
+  int y=getCaretMouseReleasedY();
+  ZyLineContent lineContent=getLineContent(y);
+  String text="";
+  if ((lineContent == null) || (lineContent.getLineObject() == null) || (m_lineModel.getPersistentModel() != lineContent.getLineObject().getPersistentModel())) {
+    if (!m_isLabelComment) {
+      int offset=0;
+      if ((y + 1) < getLabelContent().getLineCount()) {
+        offset=1;
+        lineContent=getLineContent(y + offset);
+      }
+      if ((m_lineModel.getPersistentModel() != lineContent.getLineObject().getPersistentModel()) && (y > 0)) {
+        offset=-1;
+        lineContent=getLineContent(y + offset);
+      }
+      y+=offset;
+    }
+  }
+ else   if (isComment(x,y)) {
+    text=getMultiLineComment(y);
+  }
+  udpateUndolist(getLabelContent(),m_lineModel.getPersistentModel(),m_lineModel,text,m_isAboveComment,m_isBehindComment,m_isLabelComment,getCaretStartPosX(),getCaretMousePressedX(),getCaretMousePressedY(),getCaretEndPosX(),getCaretMouseReleasedX(),getCaretMouseReleasedY());
+}

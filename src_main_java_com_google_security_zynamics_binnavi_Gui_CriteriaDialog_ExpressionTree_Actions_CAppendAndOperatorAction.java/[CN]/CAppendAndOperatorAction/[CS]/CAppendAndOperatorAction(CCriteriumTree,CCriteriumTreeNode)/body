@@ -1,0 +1,5 @@
+{
+  super("Append AND");
+  m_tree=tree;
+  m_parent=parent;
+}

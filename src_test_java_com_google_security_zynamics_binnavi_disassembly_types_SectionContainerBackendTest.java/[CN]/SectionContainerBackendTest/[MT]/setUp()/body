@@ -1,0 +1,4 @@
+{
+  provider=new MockSqlProvider();
+  module=new MockModule(provider);
+}

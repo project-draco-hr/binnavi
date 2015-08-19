@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(modules,"IE00733: modules argument can not be null");
+  if (modules.length == 1) {
+    return "Initialize Module";
+  }
+ else {
+    return "Initialize Modules";
+  }
+}

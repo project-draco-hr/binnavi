@@ -1,0 +1,17 @@
+INaviModule module
+INaviView view
+IAddress address
+String name
+String originalName
+String description
+int indegree
+int outdegree
+int blockCount
+int edgeCount
+FunctionType type
+String forwardedFunctionModuleName
+int forwardedFunctionModuleId
+IAddress forwardedFunctionAddress
+BaseType stackFrame
+BaseType prototype
+SQLProvider provider

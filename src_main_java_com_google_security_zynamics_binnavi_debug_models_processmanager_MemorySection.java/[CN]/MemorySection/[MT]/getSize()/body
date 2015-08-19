@@ -1,0 +1,3 @@
+{
+  return (int)(memorySectionEndAddress.toLong() - memorySectionStartAddress.toLong()) + 1;
+}

@@ -1,0 +1,5 @@
+{
+  if (m_settings.getLayoutSettings().getAutomaticLayouting() && !m_disableLayoutingInternally) {
+    doLayout();
+  }
+}

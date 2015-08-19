@@ -1,0 +1,21 @@
+{
+  try {
+    m_start=new CAddress(new BigInteger(m_startField.getText(),16));
+  }
+ catch (  final NumberFormatException e) {
+    CMessageBox.showError(CMemoryRangeDialog.this,"You have entered an invalid start address.");
+    return;
+  }
+  try {
+    m_bytes=new CAddress(new BigInteger(m_endField.getText(),16));
+  }
+ catch (  final NumberFormatException e) {
+    CMessageBox.showError(CMemoryRangeDialog.this,"You have entered an invalid end address.");
+    return;
+  }
+  if (m_bytes.toBigInteger().equals(BigInteger.ZERO)) {
+    CMessageBox.showError(CMemoryRangeDialog.this,"You have entered an invalid memory range.");
+    return;
+  }
+  dispose();
+}

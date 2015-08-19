@@ -1,0 +1,10 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"lw");
+  final IOperandTreeNode targetRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final OperandSize dw=OperandSize.DWORD;
+  final String extendedValue=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createLdm(offset,dw,extendedValue,dw,targetRegister.getValue()));
+}

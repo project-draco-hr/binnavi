@@ -1,0 +1,3 @@
+{
+  handleRegisterTracking(node,y,operand,AnalysisDirection.DOWN);
+}

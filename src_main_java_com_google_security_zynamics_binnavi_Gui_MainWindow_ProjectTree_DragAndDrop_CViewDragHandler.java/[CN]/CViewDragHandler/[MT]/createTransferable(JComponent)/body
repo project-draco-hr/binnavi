@@ -1,0 +1,9 @@
+{
+  final int[] rows=m_table.getSelectedRows();
+  final List<INaviView> views=new ArrayList<INaviView>();
+  for (  final int i : rows) {
+    final int index=m_table.convertRowIndexToModel(i);
+    views.add(m_table.getTreeTableModel().getViews().get(index));
+  }
+  return new CViewTransferable(views);
+}

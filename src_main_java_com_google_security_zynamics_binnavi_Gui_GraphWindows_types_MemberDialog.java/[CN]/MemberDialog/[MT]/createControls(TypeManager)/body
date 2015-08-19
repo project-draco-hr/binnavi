@@ -1,0 +1,72 @@
+{
+  setBounds(100,100,450,215);
+  getContentPane().setLayout(new BorderLayout());
+  contentPanel.setBorder(new EmptyBorder(5,5,5,5));
+  getContentPane().add(contentPanel,BorderLayout.CENTER);
+  final GridBagLayout gbl_contentPanel=new GridBagLayout();
+  gbl_contentPanel.columnWidths=new int[]{0,0,0};
+  gbl_contentPanel.rowHeights=new int[]{0,0,0,0};
+  gbl_contentPanel.columnWeights=new double[]{0.0,1.0,Double.MIN_VALUE};
+  gbl_contentPanel.rowWeights=new double[]{0.0,0.0,0.0,Double.MIN_VALUE};
+  contentPanel.setLayout(gbl_contentPanel);
+{
+    final JLabel lblMemberName=new JLabel("Member name:");
+    final GridBagConstraints gbc_lblMemberName=new GridBagConstraints();
+    gbc_lblMemberName.insets=new Insets(0,0,5,5);
+    gbc_lblMemberName.anchor=GridBagConstraints.EAST;
+    gbc_lblMemberName.gridx=0;
+    gbc_lblMemberName.gridy=0;
+    contentPanel.add(lblMemberName,gbc_lblMemberName);
+  }
+{
+    memberName=new JTextField();
+    final GridBagConstraints gbc_memberName=new GridBagConstraints();
+    gbc_memberName.insets=new Insets(0,0,5,0);
+    gbc_memberName.fill=GridBagConstraints.HORIZONTAL;
+    gbc_memberName.gridx=1;
+    gbc_memberName.gridy=0;
+    contentPanel.add(memberName,gbc_memberName);
+    memberName.setColumns(10);
+  }
+{
+    final JLabel lblMemberType=new JLabel("Member type:");
+    final GridBagConstraints gbc_lblMemberType=new GridBagConstraints();
+    gbc_lblMemberType.anchor=GridBagConstraints.EAST;
+    gbc_lblMemberType.insets=new Insets(0,0,5,5);
+    gbc_lblMemberType.gridx=0;
+    gbc_lblMemberType.gridy=1;
+    contentPanel.add(lblMemberType,gbc_lblMemberType);
+  }
+{
+    memberType=new TypeComboBox(new TypeListModel(typeManager.getTypes(),new TypeListModel.PrototypesFilter()));
+    final GridBagConstraints gbc_memberType=new GridBagConstraints();
+    gbc_memberType.insets=new Insets(0,0,5,0);
+    gbc_memberType.fill=GridBagConstraints.HORIZONTAL;
+    gbc_memberType.gridx=1;
+    gbc_memberType.gridy=1;
+    contentPanel.add(memberType,gbc_memberType);
+  }
+{
+    final JPanel buttonPane=new JPanel();
+    buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+    getContentPane().add(buttonPane,BorderLayout.SOUTH);
+{
+      final JButton okButton=new JButton("OK");
+      okButton.addActionListener(new OkActionListener());
+      okButton.setActionCommand("OK");
+      buttonPane.add(okButton);
+      getRootPane().setDefaultButton(okButton);
+    }
+{
+      final JButton cancelButton=new JButton("Cancel");
+      cancelButton.addActionListener(new ActionListener(){
+        @Override public void actionPerformed(        final ActionEvent e){
+          dispose();
+        }
+      }
+);
+      cancelButton.setActionCommand("Cancel");
+      buttonPane.add(cancelButton);
+    }
+  }
+}

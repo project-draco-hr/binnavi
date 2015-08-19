@@ -1,0 +1,25 @@
+{
+  if (visited.contains(node)) {
+    return null;
+  }
+  visited.add(node);
+  for (  final INaviEdge incomingEdge : node.getIncomingEdges()) {
+    if (incomingEdge.getType() == EdgeType.ENTER_INLINED_FUNCTION) {
+      if (incomingEdge.getSource() instanceof INaviCodeNode) {
+        return (INaviCodeNode)incomingEdge.getSource();
+      }
+ else {
+        return null;
+      }
+    }
+  }
+  for (  final INaviEdge incomingEdge : node.getIncomingEdges()) {
+    if (incomingEdge.getSource() instanceof INaviCodeNode) {
+      final INaviCodeNode startNode=searchForSourceNodeOfEnterInlinedEdge((INaviCodeNode)incomingEdge.getSource(),originalFunction,visited);
+      if (startNode != null) {
+        return startNode;
+      }
+    }
+  }
+  return null;
+}

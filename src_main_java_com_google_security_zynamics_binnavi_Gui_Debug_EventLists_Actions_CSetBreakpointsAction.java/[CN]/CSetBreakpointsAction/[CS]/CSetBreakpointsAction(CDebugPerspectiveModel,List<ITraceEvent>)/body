@@ -1,0 +1,5 @@
+{
+  super("Set Breakpoints on events");
+  m_model=model;
+  m_events=events;
+}

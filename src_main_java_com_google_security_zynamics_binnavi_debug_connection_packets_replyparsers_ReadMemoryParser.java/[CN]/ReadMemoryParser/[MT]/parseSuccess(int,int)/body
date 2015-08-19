@@ -1,0 +1,5 @@
+{
+  final IAddress address=parseAddress();
+  final byte[] data=parseData();
+  return new ReadMemoryReply(packetId,0,address,data);
+}

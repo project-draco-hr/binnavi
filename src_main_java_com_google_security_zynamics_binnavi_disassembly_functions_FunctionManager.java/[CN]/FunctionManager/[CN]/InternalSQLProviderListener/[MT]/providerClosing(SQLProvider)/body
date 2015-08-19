@@ -1,0 +1,5 @@
+{
+  if (FunctionManager.this.provider.equals(provider)) {
+    FunctionManager.this.close();
+  }
+}

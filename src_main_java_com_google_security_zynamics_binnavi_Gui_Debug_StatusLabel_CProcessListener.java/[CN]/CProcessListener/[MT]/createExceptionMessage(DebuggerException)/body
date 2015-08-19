@@ -1,0 +1,3 @@
+{
+  return "An exception occurred in the target process. " + (exception.getExceptionName().isEmpty() ? String.format("Exception code: 0x%X",exception.getExceptionCode()) : String.format("Exception name: %s, exception code: 0x%X",exception.getExceptionName(),exception.getExceptionCode()));
+}

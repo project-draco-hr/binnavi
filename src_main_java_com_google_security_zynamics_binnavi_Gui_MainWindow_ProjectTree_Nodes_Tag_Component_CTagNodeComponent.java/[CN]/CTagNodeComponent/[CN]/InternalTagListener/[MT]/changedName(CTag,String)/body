@@ -1,0 +1,4 @@
+{
+  m_nameTextField.setText(tag.getName());
+  updateGUI();
+}

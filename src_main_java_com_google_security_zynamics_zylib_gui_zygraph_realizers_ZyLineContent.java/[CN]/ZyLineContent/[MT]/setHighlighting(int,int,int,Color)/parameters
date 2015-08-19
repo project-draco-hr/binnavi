@@ -1,0 +1,4 @@
+int position
+int length
+int level
+Color color

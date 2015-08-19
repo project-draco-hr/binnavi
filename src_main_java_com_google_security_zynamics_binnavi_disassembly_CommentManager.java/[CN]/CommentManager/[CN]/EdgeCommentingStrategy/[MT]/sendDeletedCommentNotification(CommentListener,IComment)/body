@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    listener.deletedGlobalEdgeComment(edge,comment);
+  }
+ else {
+    listener.deletedLocalEdgeComment(edge,comment);
+  }
+}

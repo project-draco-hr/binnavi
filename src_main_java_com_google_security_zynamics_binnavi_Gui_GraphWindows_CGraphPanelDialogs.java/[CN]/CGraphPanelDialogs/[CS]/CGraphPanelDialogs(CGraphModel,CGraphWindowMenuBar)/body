@@ -1,0 +1,14 @@
+{
+  m_model=model;
+  m_menuBar=menuBar;
+  final CGraphWindow parent=model.getParent();
+  final ZyGraph graph=model.getGraph();
+  final String defaultLanguage=ConfigManager.instance().getGeneralSettings().getDefaultScriptingLanguage();
+  final HashMap<String,Object> bindings=new HashMap<String,Object>();
+  bindings.put("cg",model.getView2D());
+  bindings.put("cf",model.getGraphFrame());
+  bindings.put("cdb",model.getApiDatabase());
+  m_scriptingDlg=new CScriptingDialog(parent,defaultLanguage,PluginInterface.instance(),bindings);
+  m_scriptingDlg.setTitle(String.format("%s - %s",m_scriptingDlg.getTitle(),graph.getRawView().getName()));
+  m_criteriaDlg=new CCriteriaDialog(model.getParent(),new CCriteriaFactory(model.getGraph(),model.getView2D(),model.getDatabase().getContent().getNodeTagManager()));
+}

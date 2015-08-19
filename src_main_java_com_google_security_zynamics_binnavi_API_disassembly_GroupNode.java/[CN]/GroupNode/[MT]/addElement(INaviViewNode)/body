@@ -1,0 +1,10 @@
+{
+  final List<ViewNode> nodes=getView().getGraph().getNodes();
+  for (  final ViewNode viewNode : nodes) {
+    if (viewNode.getNative() == node) {
+      m_elements.add(viewNode);
+      return viewNode;
+    }
+  }
+  return null;
+}

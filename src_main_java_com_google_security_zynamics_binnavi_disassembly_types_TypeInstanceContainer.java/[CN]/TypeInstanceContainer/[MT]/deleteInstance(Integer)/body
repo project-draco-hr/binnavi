@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(typeInstanceId,"Error: typeInstanceId argument can not be null");
+  final TypeInstance backendInstance=backend.lookupTypeInstance(typeInstanceId);
+  final TypeInstance storedTypeInstance=instancesByAddress.remove(backendInstance.getAddress());
+  instances.remove(storedTypeInstance);
+  backend.deleteInstanceInternal(backendInstance);
+  notifyInstanceRemoved(storedTypeInstance);
+}

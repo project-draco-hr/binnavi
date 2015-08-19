@@ -1,0 +1,17 @@
+{
+  if (m_debugger == null) {
+    return false;
+  }
+  if (m_debugger.getProcessManager().getTargetInformation().getDebuggerOptions().canMemmap()) {
+    return m_memoryProvider != null && m_memoryProvider.hasData(BigInteger.valueOf(startAddress),(int)numberOfBytes);
+  }
+ else {
+    final CAddress stackStart=new CAddress(getStartAddress());
+    final int stackSize=getNumberOfEntries() * 4;
+    final CAddress stackEnd=new CAddress(getStartAddress() + stackSize);
+    final Pair<IAddress,Integer> realRange=MemoryRangeCalculator.calculateRequestRange(BigInteger.valueOf(startAddress),(int)numberOfBytes,stackStart,stackEnd);
+    final long realStart=realRange.first().toLong();
+    final long realSize=realRange.second();
+    return m_memoryProvider != null && m_memoryProvider.hasData(BigInteger.valueOf(startAddress),(int)numberOfBytes,BigInteger.valueOf(realStart),(int)realSize);
+  }
+}

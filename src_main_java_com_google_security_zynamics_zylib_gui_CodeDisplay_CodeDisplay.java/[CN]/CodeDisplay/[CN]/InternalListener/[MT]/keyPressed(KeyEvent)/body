@@ -1,0 +1,95 @@
+{
+  if (!event.isActionKey()) {
+    return;
+  }
+  CodeDisplayCoordinate newCoordinate=new CodeDisplayCoordinate(caretPosition);
+  int line=newCoordinate.getLine();
+  int row=newCoordinate.getRow();
+  int fieldIndex=newCoordinate.getFieldIndex();
+  int column=newCoordinate.getColumn();
+switch (event.getKeyCode()) {
+case KeyEvent.VK_UP:
+    if (line == 0) {
+      int newRow=row - 1;
+      newCoordinate.setRow(Math.max(newRow,0));
+      int maximumLines=codeModel.getMaximumLinesForRow(newRow);
+      if (maximumLines > 0) {
+        newCoordinate.setLine(codeModel.getMaximumLinesForRow(newRow) - 1);
+      }
+    }
+ else {
+      newCoordinate.setLine(line - 1);
+    }
+  break;
+case KeyEvent.VK_DOWN:
+if (line == codeModel.getMaximumLinesForRow(row) - 1) {
+  newCoordinate.setRow(Math.min(row + 1,codeModel.getNumberOfRows()));
+  newCoordinate.setLine(0);
+}
+ else {
+  newCoordinate.setLine(line + 1);
+}
+break;
+case KeyEvent.VK_LEFT:
+if (fieldIndex == 0) {
+newCoordinate.setColumn(column - 1);
+newCoordinate.setFieldIndex(codeModel.getColumnWidthInCharacters(column - 1) - 1);
+}
+ else {
+newCoordinate.setFieldIndex(fieldIndex - 1);
+}
+break;
+case KeyEvent.VK_RIGHT:
+fieldIndex=newCoordinate.getFieldIndex();
+if (fieldIndex == codeModel.getColumnWidthInCharacters(column) - 1) {
+newCoordinate.setColumn(column + 1);
+newCoordinate.setFieldIndex(0);
+}
+ else {
+newCoordinate.setFieldIndex(fieldIndex + 1);
+}
+break;
+case KeyEvent.VK_PAGE_DOWN:
+for (int count=0; count < currentlyVisibleLines - 2; count++) {
+if (newCoordinate.getLine() >= codeModel.getMaximumLinesForRow(row) - 1) {
+newCoordinate.setRow(Math.min(newCoordinate.getRow() + 1,codeModel.getNumberOfRows()));
+newCoordinate.setLine(0);
+}
+ else {
+newCoordinate.setLine(newCoordinate.getLine() + 1);
+}
+}
+verticalScrollbar.setValue(newCoordinate.getRow());
+break;
+case KeyEvent.VK_PAGE_UP:
+for (int count=0; count < currentlyVisibleLines - 2; count++) {
+if (newCoordinate.getLine() == 0) {
+int newRow=Math.max(newCoordinate.getRow() - 1,0);
+newCoordinate.setRow(Math.max(newRow,0));
+newCoordinate.setLine(codeModel.getMaximumLinesForRow(newRow) - 1);
+}
+ else {
+newCoordinate.setLine(Math.max(newCoordinate.getLine() - 1,0));
+}
+}
+verticalScrollbar.setValue(newCoordinate.getRow());
+break;
+case KeyEvent.VK_HOME:
+codeModel.keyPressedOrTyped(newCoordinate,event);
+break;
+case KeyEvent.VK_END:
+codeModel.keyPressedOrTyped(newCoordinate,event);
+break;
+case KeyEvent.VK_BACK_SPACE:
+codeModel.keyPressedOrTyped(newCoordinate,event);
+break;
+default :
+throw new IllegalArgumentException();
+}
+if (codeModel.canHaveCaret(newCoordinate)) {
+setCaretPosition(newCoordinate);
+updateCharacterBufferFromModel();
+notifyCaretListeners();
+repaint();
+}
+}

@@ -1,0 +1,7 @@
+{
+  final List<INaviView> views=m_project.getContent().getViews();
+  m_callgraphBorder.setTitle(String.format("%d Call graph Views",CViewFilter.getCallgraphViewCount(views)));
+  m_flowgraphBorder.setTitle(String.format("%d Flow graph Views",CViewFilter.getFlowgraphViewCount(views)));
+  m_mixedgraphBorder.setTitle(String.format("%d Mixed graph Views",CViewFilter.getMixedgraphViewCount(views)));
+  updateUI();
+}

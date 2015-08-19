@@ -1,0 +1,7 @@
+{
+  final IFilledList<INaviView> views=new FilledList<INaviView>();
+  for (  final IFlowgraphView flowgraphView : nativeFlowgraphViews) {
+    views.add(flowgraphView);
+  }
+  return views;
+}

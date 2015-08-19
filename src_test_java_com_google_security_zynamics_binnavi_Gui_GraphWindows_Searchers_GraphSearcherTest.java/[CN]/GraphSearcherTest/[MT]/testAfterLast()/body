@@ -1,0 +1,14 @@
+{
+  final ZyNodeRealizer<NaviNode> r=new ZyNormalNodeRealizer<NaviNode>(m_content);
+  final NaviNode m_node1=new NaviNode(m_ynode,r,m_codeNode1);
+  final GraphSearcher searcher=new GraphSearcher();
+  searcher.search(Lists.newArrayList(m_node1),new ArrayList<NaviEdge>(),"");
+  assertNull(searcher.getCursor().current());
+  m_content.addLineContent(new ZyLineContent("Hello my Test",null));
+  searcher.search(Lists.newArrayList(m_node1),new ArrayList<NaviEdge>(),"my");
+  assertFalse(searcher.getCursor().isAfterLast());
+  searcher.getCursor().next();
+  assertTrue(searcher.getCursor().isAfterLast());
+  searcher.getCursor().next();
+  assertTrue(searcher.getCursor().isAfterLast());
+}

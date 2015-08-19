@@ -1,0 +1,7 @@
+{
+  final Trace trace=new Trace(new TraceList(1,"Name","Description",new MockSqlProvider()));
+  assertEquals("Name",trace.getName());
+  assertEquals("Description",trace.getDescription());
+  assertEquals("Trace 'Name' [0 events]",trace.toString());
+  assertEquals(0,trace.getEvents().size());
+}

@@ -1,0 +1,6 @@
+{
+  final CAddress small=new CAddress(0x876543abL);
+  assertEquals(small.toString(),small.toHexString());
+  final CAddress larger=new CAddress(0x100000000L);
+  assertEquals(larger.toString(),larger.toHexString());
+}

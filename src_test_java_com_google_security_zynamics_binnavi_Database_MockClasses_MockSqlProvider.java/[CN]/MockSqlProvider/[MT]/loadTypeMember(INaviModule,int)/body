@@ -1,0 +1,11 @@
+{
+  final List<RawTypeMember> rawMembers=members.get(module);
+  if (rawMembers != null) {
+    for (    final RawTypeMember rawMember : rawMembers) {
+      if (rawMember.getId() == memberId) {
+        return rawMember;
+      }
+    }
+  }
+  return null;
+}

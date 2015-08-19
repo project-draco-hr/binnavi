@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(module,"IE00041: Module argument can not be null");
+  Preconditions.checkArgument(m_modules.contains(module),"IE00043: Module does not belong to this address space");
+  m_provider.removeModule(m_addressSpace,module);
+  m_modules.remove(module);
+  for (  final IAddressSpaceContentListener listener : m_listeners) {
+    try {
+      listener.removedModule(m_addressSpace,module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_addressSpace.getConfiguration().updateModificationDate();
+}

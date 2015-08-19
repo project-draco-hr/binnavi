@@ -1,0 +1,10 @@
+{
+  for (  final IStackModelListener listener : m_listeners) {
+    try {
+      listener.dataChanged();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

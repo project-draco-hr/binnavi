@@ -1,0 +1,4 @@
+{
+  this.graphType=Preconditions.checkNotNull(graphType,"Error: graphType argument can not be null");
+  return this;
+}

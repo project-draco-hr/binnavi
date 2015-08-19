@@ -1,0 +1,4 @@
+{
+  m_bookmark=bookmark;
+  m_bookmark.addListener(m_internalBookmarkListener);
+}

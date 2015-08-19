@@ -1,0 +1,19 @@
+{
+  final CConnection connection=provider.getConnection();
+  final String query="SELECT * FROM " + CTableNames.DEBUGGERS_TABLE;
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final DebuggerTemplate debugger=new DebuggerTemplate(resultSet.getInt("id"),PostgreSQLHelpers.readString(resultSet,"name"),PostgreSQLHelpers.readString(resultSet,"host"),resultSet.getInt("port"),provider);
+        manager.addDebugger(debugger);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

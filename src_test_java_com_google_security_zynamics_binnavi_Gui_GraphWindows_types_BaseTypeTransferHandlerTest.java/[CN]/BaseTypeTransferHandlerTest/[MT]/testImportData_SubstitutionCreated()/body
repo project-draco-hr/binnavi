@@ -1,0 +1,6 @@
+{
+  initSubstitutionStubs();
+  final BaseTypeTransferHandler handler=new BaseTypeTransferHandler(manager,wrapper);
+  handler.importData(null);
+  verify(manager).createTypeSubstitution(node,baseType,POSITION,OFFSET,ADDRESS);
+}

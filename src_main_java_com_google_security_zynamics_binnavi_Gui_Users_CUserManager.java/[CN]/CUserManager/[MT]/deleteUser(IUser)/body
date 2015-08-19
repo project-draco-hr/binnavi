@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(user,"IE02721: user argument can not be null");
+  if (!users.contains(user)) {
+    throw new IllegalStateException("IE02722: User is not known to the user management.");
+  }
+  provider.deleteUser(user);
+  for (  final IUserManagerListener listener : listeners) {
+    try {
+      listener.deletedUser(user);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

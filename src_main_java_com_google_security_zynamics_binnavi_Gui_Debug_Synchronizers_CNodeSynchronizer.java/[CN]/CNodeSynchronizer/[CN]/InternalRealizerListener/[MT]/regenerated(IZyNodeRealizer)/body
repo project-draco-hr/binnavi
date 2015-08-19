@@ -1,0 +1,15 @@
+{
+  final IDebugger activeDebugger=m_debugPerspective.getCurrentSelectedDebugger();
+  final TargetProcessThread currentThread=activeDebugger == null ? null : activeDebugger.getProcessManager().getActiveThread();
+  if (currentThread != null) {
+    final UnrelocatedAddress fileAddress=m_debugPerspective.getCurrentSelectedDebugger().memoryToFile(currentThread.getCurrentAddress());
+    CDebuggerPainter.updateSingleNodeDebuggerHighlighting(m_graph,fileAddress,(NaviNode)realizer.getUserData().getNode());
+  }
+  final INaviViewNode rawNode=(INaviViewNode)realizer.getUserData().getNode().getRawNode();
+  if (rawNode instanceof INaviCodeNode) {
+    CBreakpointPainter.paintBreakpoints(m_manager,(NaviNode)realizer.getUserData().getNode(),(INaviCodeNode)rawNode);
+  }
+ else   if (rawNode instanceof INaviFunctionNode) {
+    CBreakpointPainter.paintBreakpoints(m_manager,(NaviNode)realizer.getUserData().getNode(),(INaviFunctionNode)rawNode);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      node.addNodeModifier(modifier);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

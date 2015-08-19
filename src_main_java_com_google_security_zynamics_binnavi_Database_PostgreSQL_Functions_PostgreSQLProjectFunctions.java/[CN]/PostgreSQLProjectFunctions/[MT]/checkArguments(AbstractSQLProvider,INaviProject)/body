@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00516: Provider argument can not be null");
+  Preconditions.checkNotNull(project,"IE00517: Project argument can not be null");
+  Preconditions.checkArgument(project.inSameDatabase(provider),"IE00518: Project is not part of this database");
+}

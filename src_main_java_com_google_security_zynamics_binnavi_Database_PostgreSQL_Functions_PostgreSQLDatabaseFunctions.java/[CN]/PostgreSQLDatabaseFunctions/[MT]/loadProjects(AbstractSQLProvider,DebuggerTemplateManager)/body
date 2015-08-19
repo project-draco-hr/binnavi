@@ -1,0 +1,31 @@
+{
+  PostgreSQLDatabaseFunctions.checkArguments(provider,debuggerManager);
+  final CConnection connection=provider.getConnection();
+  final List<INaviProject> projects=new ArrayList<INaviProject>();
+  if (!PostgreSQLHelpers.hasTable(connection,CTableNames.PROJECTS_TABLE)) {
+    return projects;
+  }
+  try {
+    final String query="SELECT id, name, description, creation_date, modification_date, " + " (SELECT count(*) FROM " + CTableNames.ADDRESS_SPACES_TABLE + " WHERE project_id = "+ CTableNames.PROJECTS_TABLE+ ".id) "+ " AS addressspace_count FROM "+ CTableNames.PROJECTS_TABLE;
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final int projectId=resultSet.getInt("id");
+        final String name=PostgreSQLHelpers.readString(resultSet,"name");
+        final String description=PostgreSQLHelpers.readString(resultSet,"description");
+        final int addressSpaceCount=resultSet.getInt("addressspace_count");
+        final Timestamp creationDate=resultSet.getTimestamp("creation_date");
+        final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+        final List<DebuggerTemplate> debuggers=PostgreSQLDatabaseFunctions.getAssignedDebuggers(connection,projectId,debuggerManager);
+        projects.add(new CProject(projectId,name,description == null ? "" : description,creationDate,modificationDate,addressSpaceCount,debuggers,provider));
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+  return new ArrayList<INaviProject>(projects);
+}

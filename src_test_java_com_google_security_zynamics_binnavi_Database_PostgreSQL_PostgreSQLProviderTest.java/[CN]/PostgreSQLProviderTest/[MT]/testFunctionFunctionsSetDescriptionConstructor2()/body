@@ -1,0 +1,6 @@
+{
+  final INaviModule module1=getProvider().loadModules().get(0);
+  module1.load();
+  final INaviFunction function1=module1.getContent().getFunctionContainer().getFunctions().get(25);
+  getProvider().setDescription(function1,null);
+}

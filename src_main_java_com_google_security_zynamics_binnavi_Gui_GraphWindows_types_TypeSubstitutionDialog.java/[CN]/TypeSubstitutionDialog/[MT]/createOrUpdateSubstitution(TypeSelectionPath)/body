@@ -1,0 +1,14 @@
+{
+  final int offset=path.determineTotalMemberOffset();
+  final BaseType baseType=path.getRootType();
+  final int position=selectedNode.getOperandPosition();
+  final IAddress address=selectedNode.getInstructionAddress();
+  final TypeSubstitution substitution=selectedNode.getTypeSubstitution();
+  final List<TypeMember> memberPath=path.getMembers();
+  if (substitution == null) {
+    typeManager.createTypeSubstitution(selectedNode,baseType,memberPath,position,offset,address);
+  }
+ else {
+    typeManager.updateTypeSubstitution(selectedNode,substitution,baseType,path.getMembers(),offset);
+  }
+}

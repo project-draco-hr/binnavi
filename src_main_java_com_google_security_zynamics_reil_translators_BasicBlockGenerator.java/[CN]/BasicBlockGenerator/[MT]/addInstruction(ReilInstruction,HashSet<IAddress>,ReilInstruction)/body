@@ -1,0 +1,37 @@
+{
+  if (jumpTargets.contains(reilInstruction.getAddress()) && (currentBlock.size() != 0)) {
+    final ReilBlock reilBlock=new ReilBlock(currentBlock);
+    blocks.add(reilBlock);
+{
+      edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,reilInstruction.getAddress(),EdgeType.JUMP_UNCONDITIONAL));
+    }
+    currentBlock=new ArrayList<ReilInstruction>();
+  }
+  currentBlock.add(reilInstruction);
+  if (reilInstruction.getMnemonic().equals(ReilHelpers.OPCODE_JCC) && (ReilHelpers.isDelayedBranch(reilInstruction) || (reilInstruction != lastInstruction))) {
+    final ReilBlock reilBlock=new ReilBlock(currentBlock);
+    blocks.add(reilBlock);
+    currentBlock=new ArrayList<ReilInstruction>();
+    final String jumpTarget=reilInstruction.getThirdOperand().getValue();
+    if (ReilHelpers.isConditionalJump(reilInstruction)) {
+      edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,null,EdgeType.JUMP_CONDITIONAL_FALSE));
+      if (Convert.isDecString(jumpTarget)) {
+        edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,toReilAddress(jumpTarget),EdgeType.JUMP_CONDITIONAL_TRUE));
+      }
+ else       if (reilInstruction.getThirdOperand().getType() == OperandType.SUB_ADDRESS) {
+        final String[] parts=jumpTarget.split("\\.");
+        edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,toReilAddress(parts),EdgeType.JUMP_CONDITIONAL_TRUE));
+      }
+    }
+ else     if (ReilHelpers.isFunctionCall(reilInstruction)) {
+      edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,null,EdgeType.JUMP_UNCONDITIONAL));
+    }
+ else     if (Convert.isDecString(jumpTarget)) {
+      edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,toReilAddress(jumpTarget),EdgeType.JUMP_UNCONDITIONAL));
+    }
+ else     if (reilInstruction.getThirdOperand().getType() == OperandType.SUB_ADDRESS) {
+      final String[] parts=jumpTarget.split("\\.");
+      edgepairs.add(new Triple<ReilBlock,IAddress,EdgeType>(reilBlock,toReilAddress(parts),EdgeType.JUMP_UNCONDITIONAL));
+    }
+  }
+}

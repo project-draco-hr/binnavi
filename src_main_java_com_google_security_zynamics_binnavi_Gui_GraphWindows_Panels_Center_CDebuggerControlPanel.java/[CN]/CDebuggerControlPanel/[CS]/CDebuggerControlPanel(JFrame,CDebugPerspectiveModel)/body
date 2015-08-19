@@ -1,0 +1,5 @@
+{
+  super(new BorderLayout());
+  m_toolbarPanel=new CToolbarPanel(parent,debugPerspectiveModel);
+  add(m_toolbarPanel,BorderLayout.SOUTH);
+}

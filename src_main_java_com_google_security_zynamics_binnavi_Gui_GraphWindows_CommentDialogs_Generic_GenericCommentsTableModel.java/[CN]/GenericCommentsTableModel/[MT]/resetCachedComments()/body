@@ -1,0 +1,3 @@
+{
+  cachedComments=commentAccessor.getComment() == null ? new ArrayList<IComment>() : new ArrayList<>(commentAccessor.getComment());
+}

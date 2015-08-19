@@ -1,0 +1,3 @@
+{
+  getTreeModel().nodeChanged(CDebuggerNode.this);
+}

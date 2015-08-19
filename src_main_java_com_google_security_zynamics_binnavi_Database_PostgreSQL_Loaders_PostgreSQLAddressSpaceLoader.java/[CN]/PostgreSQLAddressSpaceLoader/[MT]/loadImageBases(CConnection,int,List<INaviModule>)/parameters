@@ -1,0 +1,3 @@
+CConnection connection
+int addressSpaceId
+List<INaviModule> list

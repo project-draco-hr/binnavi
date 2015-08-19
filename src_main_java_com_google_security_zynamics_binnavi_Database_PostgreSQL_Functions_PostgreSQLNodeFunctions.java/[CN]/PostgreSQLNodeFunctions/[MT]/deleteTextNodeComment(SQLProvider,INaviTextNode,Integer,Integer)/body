@@ -1,0 +1,27 @@
+{
+  Preconditions.checkNotNull(provider,"IE02481: provider argument can not be null");
+  Preconditions.checkNotNull(textNode,"IE02482: textNode argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE02483: commentId argument can not be null");
+  Preconditions.checkNotNull(userId,"IE02484: userId argument can not be null");
+  final String function=" { ? = call delete_text_node_comment(?, ?, ?) } ";
+  try {
+    final CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      deleteCommentStatement.registerOutParameter(1,Types.INTEGER);
+      deleteCommentStatement.setInt(2,textNode.getId());
+      deleteCommentStatement.setInt(3,commentId);
+      deleteCommentStatement.setInt(4,userId);
+      deleteCommentStatement.execute();
+      deleteCommentStatement.getInt(1);
+      if (deleteCommentStatement.wasNull()) {
+        throw new IllegalArgumentException("Error: the comment id returned from the database was null");
+      }
+    }
+  finally {
+      deleteCommentStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

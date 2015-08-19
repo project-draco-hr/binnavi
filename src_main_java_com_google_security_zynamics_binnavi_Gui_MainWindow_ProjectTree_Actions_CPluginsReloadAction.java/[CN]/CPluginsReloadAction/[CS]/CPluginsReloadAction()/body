@@ -1,0 +1,4 @@
+{
+  super("Reload Plugins");
+  putValue(ACCELERATOR_KEY,HotKeys.RELOAD_PLUGINS_ACCELERATOR_KEY.getKeyStroke());
+}

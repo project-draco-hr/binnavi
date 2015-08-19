@@ -1,0 +1,20 @@
+{
+  if (node instanceof INaviFunctionNode) {
+    addModuleListener((INaviFunctionNode)node);
+  }
+  if (node.isSelected()) {
+    m_selectedNodes.add(m_mappings.getNode(node));
+  }
+  new SwingInvoker(){
+    @Override protected void operation(){
+      setupNewNode(node);
+    }
+  }
+.invokeAndWait();
+  if (node instanceof INaviGroupNode) {
+    final INaviGroupNode gnode=(INaviGroupNode)node;
+    for (    final INaviViewNode viewNode : gnode.getElements()) {
+      updateParentNode(viewNode,gnode);
+    }
+  }
+}

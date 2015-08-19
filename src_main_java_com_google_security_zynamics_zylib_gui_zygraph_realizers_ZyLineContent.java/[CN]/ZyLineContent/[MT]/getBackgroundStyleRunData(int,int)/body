@@ -1,0 +1,24 @@
+{
+  Preconditions.checkState((start >= 0) && (start <= end) && (start < m_text.length()),"Illegal start value.");
+  Preconditions.checkState((end >= 0) && (end >= start) && (end < m_text.length()),"Illegal end value.");
+  final List<CStyleRunData> styleRun=new ArrayList<CStyleRunData>();
+  final AttributedCharacterIterator iterator=m_atext.getIterator();
+  iterator.setIndex(start);
+  Color lastColor=null;
+  int attributeStart=start;
+  for (int i=start; i <= end; ++i) {
+    final Color color=(Color)iterator.getAttribute(TextAttribute.BACKGROUND);
+    if (((color != null) && !color.equals(lastColor)) || ((lastColor != null) && !lastColor.equals(color))) {
+      if (lastColor != null) {
+        final CStyleRunData data=new CStyleRunData(attributeStart,(i - attributeStart) + 1,lastColor);
+        styleRun.add(data);
+      }
+      lastColor=color;
+      attributeStart=i;
+    }
+    iterator.next();
+  }
+  final CStyleRunData data=new CStyleRunData(attributeStart,(end - attributeStart) + 1,lastColor);
+  styleRun.add(data);
+  return styleRun;
+}

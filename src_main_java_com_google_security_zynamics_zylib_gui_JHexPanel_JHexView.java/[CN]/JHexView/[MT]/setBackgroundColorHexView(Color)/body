@@ -1,0 +1,4 @@
+{
+  m_bgColorHex=Preconditions.checkNotNull(color,"Error: Color can't be null");
+  repaint();
+}

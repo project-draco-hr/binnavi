@@ -1,0 +1,5 @@
+JTree projectTree
+IDatabase database
+INaviAddressSpace addressSpace
+INaviModule module
+IViewContainer container

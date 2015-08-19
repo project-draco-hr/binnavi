@@ -1,0 +1,7 @@
+{
+  final StringBuffer buffer=new StringBuffer();
+  for (  final Map.Entry<Long,Integer> entry : m_countMap.entrySet()) {
+    buffer.append(String.format("%d:%d%n",entry.getKey(),entry.getValue()));
+  }
+  return buffer.toString();
+}

@@ -1,0 +1,6 @@
+{
+  m_cachedValuesSemaphore.acquireUninterruptibly();
+  m_cachedValues=null;
+  m_cachedValuesSemaphore.release();
+  super.setFilter(filter);
+}

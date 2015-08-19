@@ -1,0 +1,6 @@
+{
+  if ((node.getRawNode() instanceof INaviCodeNode) || (node.getRawNode() instanceof IFunctionNode)) {
+    return getDisplayString(node.getRawNode());
+  }
+  return node.toString();
+}

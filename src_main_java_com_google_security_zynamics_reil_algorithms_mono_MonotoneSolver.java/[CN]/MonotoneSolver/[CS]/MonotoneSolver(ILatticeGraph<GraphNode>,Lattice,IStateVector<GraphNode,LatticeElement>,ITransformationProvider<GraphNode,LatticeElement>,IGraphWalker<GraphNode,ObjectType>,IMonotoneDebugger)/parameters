@@ -1,0 +1,6 @@
+ILatticeGraph<GraphNode> graph
+Lattice lattice
+IStateVector<GraphNode,LatticeElement> startVector
+ITransformationProvider<GraphNode,LatticeElement> transformationProvider
+IGraphWalker<GraphNode,ObjectType> walker
+IMonotoneDebugger debugger

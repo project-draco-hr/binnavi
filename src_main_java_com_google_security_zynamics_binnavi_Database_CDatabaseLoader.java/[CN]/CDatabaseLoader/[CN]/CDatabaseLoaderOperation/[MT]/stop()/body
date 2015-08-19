@@ -1,0 +1,5 @@
+{
+  m_loadProgressPanel.stop();
+  m_database.removeListener(m_databaseListener);
+  CGlobalProgressManager.instance().remove(this);
+}

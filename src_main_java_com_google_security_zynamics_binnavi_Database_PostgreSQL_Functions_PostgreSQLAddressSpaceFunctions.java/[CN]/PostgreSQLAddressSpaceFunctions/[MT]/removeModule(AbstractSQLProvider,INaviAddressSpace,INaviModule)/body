@@ -1,0 +1,14 @@
+{
+  checkArguments(provider,addressSpace);
+  Preconditions.checkNotNull(module,"IE00393: Module argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00394: Module is not part of this database");
+  final CConnection connection=provider.getConnection();
+  final String query="DELETE FROM " + CTableNames.SPACE_MODULES_TABLE + " WHERE address_space_id = "+ addressSpace.getConfiguration().getId()+ " AND module_id = "+ module.getConfiguration().getId();
+  try {
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntDeleteException(e);
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

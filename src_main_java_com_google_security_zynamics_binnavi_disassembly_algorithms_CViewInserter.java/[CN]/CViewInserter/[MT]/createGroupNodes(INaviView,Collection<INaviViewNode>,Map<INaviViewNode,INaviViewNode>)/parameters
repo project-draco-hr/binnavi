@@ -1,0 +1,3 @@
+INaviView target
+Collection<INaviViewNode> sourceNodes
+Map<INaviViewNode,INaviViewNode> nodeMap

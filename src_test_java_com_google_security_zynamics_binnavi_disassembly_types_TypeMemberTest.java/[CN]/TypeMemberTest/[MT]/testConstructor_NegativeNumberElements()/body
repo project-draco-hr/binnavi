@@ -1,0 +1,3 @@
+{
+  TypeMember.createArrayMember(0,typeSystem.simpleStruct,typeSystem.intType,"",-1);
+}

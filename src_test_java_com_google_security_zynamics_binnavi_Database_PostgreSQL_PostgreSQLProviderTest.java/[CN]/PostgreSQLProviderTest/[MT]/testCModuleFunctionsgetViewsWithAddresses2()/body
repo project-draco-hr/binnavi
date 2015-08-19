@@ -1,0 +1,3 @@
+{
+  PostgreSQLModuleFunctions.getViewsWithAddresses(null,null,null,true);
+}

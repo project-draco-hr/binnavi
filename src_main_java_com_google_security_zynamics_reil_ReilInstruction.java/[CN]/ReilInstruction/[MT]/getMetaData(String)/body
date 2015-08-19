@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(key,"Error: Argument key can't be null");
+  return metaData.get(key);
+}

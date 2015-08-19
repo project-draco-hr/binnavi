@@ -1,0 +1,8 @@
+{
+  final LastDirFileChooser chooser=new LastDirFileChooser();
+  if (chooser.showOpenDialog(CScriptingDialog.this) == JFileChooser.APPROVE_OPTION) {
+    final File selectedFile=chooser.getSelectedFile();
+    executeScriptFile(selectedFile);
+    setLastExecutedScriptFile(selectedFile);
+  }
+}

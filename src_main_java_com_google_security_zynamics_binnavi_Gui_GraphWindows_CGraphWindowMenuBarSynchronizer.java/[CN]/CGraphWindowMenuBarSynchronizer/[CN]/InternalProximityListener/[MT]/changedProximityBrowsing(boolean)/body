@@ -1,0 +1,3 @@
+{
+  m_proximityBrowsingMenu.setSelected(m_settings.getProximitySettings().getProximityBrowsing());
+}

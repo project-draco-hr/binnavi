@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02588: node argument can not be null");
+  editCommentInternal(new GroupNodeCommentingStrategy(node),comment,newComment);
+}

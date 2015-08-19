@@ -1,0 +1,17 @@
+{
+  if (oldDebugger != null) {
+    oldDebugger.getProcessManager().removeListener(m_processListener);
+    m_debugPerspectiveModel.getTraceLogger(oldDebugger).removeListener(m_traceListener);
+    synchronizeThread(oldDebugger.getProcessManager().getActiveThread(),null);
+  }
+  if (newDebugger != null) {
+    newDebugger.getProcessManager().addListener(m_processListener);
+    m_debugPerspectiveModel.getTraceLogger(newDebugger).addListener(m_traceListener);
+    final TargetInformation targetInformation=newDebugger.getProcessManager().getTargetInformation();
+    if (targetInformation != null) {
+      updateFromDebuggerOptions(targetInformation.getDebuggerOptions());
+    }
+    synchronizeThread(null,newDebugger.getProcessManager().getActiveThread());
+  }
+  m_toolBar.updateGui();
+}

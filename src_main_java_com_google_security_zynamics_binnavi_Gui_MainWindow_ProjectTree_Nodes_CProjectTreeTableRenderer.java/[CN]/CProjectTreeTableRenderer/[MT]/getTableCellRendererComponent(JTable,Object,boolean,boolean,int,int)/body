@@ -1,0 +1,6 @@
+{
+  super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  postProcess(table,value,isSelected,hasFocus,row,column);
+  setM_row(row);
+  return this;
+}

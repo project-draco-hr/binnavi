@@ -1,0 +1,6 @@
+{
+  m_tagTree.setRootVisible(false);
+  final DefaultTreeModel tagTreeModel=new DefaultTreeModel(new CTagTreeNode(root));
+  m_tagTree.setModel(tagTreeModel);
+  m_tagTree.setCellRenderer(new IconNodeRenderer());
+}

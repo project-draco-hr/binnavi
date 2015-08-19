@@ -1,0 +1,9 @@
+{
+  if (e.isBendSelection() || e.isEdgeSelection()) {
+    return;
+  }
+  if ((sequenceCounter == 0) && fireFlag) {
+    updateSelectionState(e.getGraph2D());
+    fireFlag=false;
+  }
+}

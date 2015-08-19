@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(comments,"Error: Text argument can not be null");
+  final CTextNode newTextNode=naviView.getContent().createTextNode(comments);
+  return (TextNode)cachedNodes.get(newTextNode);
+}

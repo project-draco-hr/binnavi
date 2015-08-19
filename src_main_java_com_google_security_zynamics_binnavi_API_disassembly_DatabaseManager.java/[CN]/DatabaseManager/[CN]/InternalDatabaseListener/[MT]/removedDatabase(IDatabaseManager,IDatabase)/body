@@ -1,0 +1,13 @@
+{
+  final Database removedDatabase=ObjectFinders.getObject(database,m_databases);
+  removedDatabase.dispose();
+  m_databases.remove(removedDatabase);
+  for (  final IDatabaseManagerListener listener : m_listeners) {
+    try {
+      listener.removedDatabase(DatabaseManager.this,removedDatabase);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  CCriteriumFunctions.insertCriterium(m_tree,m_parent,new CNotCriterium());
+}

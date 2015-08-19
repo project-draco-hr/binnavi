@@ -1,0 +1,6 @@
+{
+  final IUser user=CGenericSQLUserFunctions.addUser(getProvider(),"TEST USER FOR INSERT TEST");
+  assertNotNull(user);
+  assertEquals("TEST USER FOR INSERT TEST",user.getUserName());
+  assertNotNull(user.getUserId());
+}

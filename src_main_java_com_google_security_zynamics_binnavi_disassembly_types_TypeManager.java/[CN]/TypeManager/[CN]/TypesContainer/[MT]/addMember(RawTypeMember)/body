@@ -1,0 +1,12 @@
+{
+  if (rawTypeMember.getOffset().isPresent()) {
+    return addMember(TypeMember.createStructureMember(rawTypeMember.getId(),typesById.get(rawTypeMember.getParentId()),typesById.get(rawTypeMember.getBaseTypeId()),rawTypeMember.getName(),rawTypeMember.getOffset().get()));
+  }
+  if (rawTypeMember.getNumberOfElements().isPresent()) {
+    return addMember(TypeMember.createArrayMember(rawTypeMember.getId(),typesById.get(rawTypeMember.getParentId()),typesById.get(rawTypeMember.getBaseTypeId()),rawTypeMember.getName(),rawTypeMember.getNumberOfElements().get()));
+  }
+  if (rawTypeMember.getArgumentIndex().isPresent()) {
+    return addMember(TypeMember.createFunctionPrototypeMember(rawTypeMember.getId(),typesById.get(rawTypeMember.getParentId()),typesById.get(rawTypeMember.getBaseTypeId()),rawTypeMember.getName(),rawTypeMember.getArgumentIndex().get()));
+  }
+  throw new IllegalStateException("Error: member can only be added to compound types.");
+}

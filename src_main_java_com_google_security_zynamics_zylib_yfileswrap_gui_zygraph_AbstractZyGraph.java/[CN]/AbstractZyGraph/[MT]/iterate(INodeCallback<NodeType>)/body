@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(callback,"Callback argument can't be null");
+  for (  final NodeType node : m_mappings.getNodes()) {
+    if (callback.next(node) == IterationMode.STOP) {
+      return;
+    }
+  }
+}

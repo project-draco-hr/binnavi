@@ -1,0 +1,22 @@
+{
+  if ((row >= 0) && (row < m_views.size())) {
+switch (col) {
+case 0:
+      return m_views.get(row).getType() == ViewType.Native ? "Function" : "Flowgraph";
+case 1:
+    return m_views.get(row).getName();
+case 2:
+  if (m_views.get(row).getConfiguration().getModule() != null) {
+    return m_views.get(row).getConfiguration().getModule().getConfiguration().getName();
+  }
+ else {
+    return "Error: no module.";
+  }
+default :
+throw new IllegalArgumentException("IE01305: Unknown column");
+}
+}
+ else {
+throw new IllegalStateException("IE01307: Unknown row");
+}
+}

@@ -1,0 +1,3 @@
+{
+  return CNodeSearcher.search(node,text,regularExpression,caseSensitive).size() != 0;
+}

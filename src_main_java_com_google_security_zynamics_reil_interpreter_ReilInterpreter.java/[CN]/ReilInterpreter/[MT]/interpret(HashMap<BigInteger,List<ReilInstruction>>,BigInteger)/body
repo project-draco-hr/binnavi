@@ -1,0 +1,51 @@
+{
+  cpuPolicy.start(this);
+  interpreterPolicy.start();
+  final String programCounter=cpuPolicy.getProgramCounter();
+  Preconditions.checkNotNull(programCounter,"Error: CPU Policy returned an invalid program counter");
+  setRegister(programCounter,entryPoint,cpuPolicy.getRegisterSize(programCounter),ReilRegisterStatus.DEFINED);
+  while (true) {
+    BigInteger pc=nativeToReil(getVariableValue(programCounter));
+    interpreterPolicy.nextInstruction(this);
+    log("Interpreting: %X%n",pc.longValue());
+    if (!instructions.containsKey(pc)) {
+      throw new InterpreterException(String.format("Error: Instruction at offset %X not found",pc));
+    }
+    final List<ReilInstruction> instructionList=instructions.get(pc);
+    if ((instructionList == null) || (instructionList.size() == 0)) {
+      throw new InterpreterException(String.format("Error: Instruction at offset %X has invalid REIL code",pc));
+    }
+    setRegister(SUB_PC,BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+    int subPc=getVariableValue(SUB_PC).intValue();
+    while (subPc < instructionList.size()) {
+      final ReilInstruction inst=instructionList.get(subPc);
+      log("Next instruction: " + inst.toString().replaceAll("%",""));
+      for (      final ReilRegister r : registers.values()) {
+        log("%s: %X%n",r.getRegister(),r.getValue());
+      }
+      interpretInstruction(inst,programCounter);
+      final int newSubPc=getVariableValue(SUB_PC).intValue();
+      if (subPc == newSubPc) {
+        subPc=newSubPc + 1;
+      }
+ else {
+        subPc=newSubPc;
+      }
+      setRegister(SUB_PC,BigInteger.valueOf(subPc),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+    }
+    final BigInteger pcNew=getVariableValue(programCounter);
+    if (pc.equals(nativeToReil(pcNew))) {
+      pc=pcNew.add(BigInteger.ONE);
+    }
+ else {
+      pc=pcNew;
+    }
+    if (pcNew.equals(BigInteger.valueOf(4294967295L))) {
+      break;
+    }
+    if (!searchNextPc(pc,instructions,programCounter)) {
+      break;
+    }
+  }
+  interpreterPolicy.end();
+}

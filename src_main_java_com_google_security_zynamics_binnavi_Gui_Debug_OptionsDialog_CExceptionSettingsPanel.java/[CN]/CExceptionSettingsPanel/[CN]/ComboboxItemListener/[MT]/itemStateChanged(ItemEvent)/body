@@ -1,0 +1,6 @@
+{
+  @SuppressWarnings("unchecked") final JComboBox<String> combobox=(JComboBox<String>)event.getSource();
+  final DebuggerException oldException=m_comboboxMap.get(combobox);
+  final DebuggerExceptionHandlingAction exceptionAction=DebuggerExceptionHandlingAction.convertToHandlingAction(combobox.getSelectedIndex());
+  m_comboboxMap.put(combobox,new DebuggerException(oldException.getExceptionName(),oldException.getExceptionCode(),exceptionAction));
+}

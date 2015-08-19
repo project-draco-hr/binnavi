@@ -1,0 +1,5 @@
+{
+  final CProject project=getProvider().createProject("DELETE_ADDRESS_SPACE_PROJECT");
+  getProvider().createAddressSpace(project,"DELETE_ADDRESS_SPACE_ADDRESS_SPACE");
+  getProvider().deleteAddressSpace(getProvider().loadAddressSpaces(project).get(0));
+}

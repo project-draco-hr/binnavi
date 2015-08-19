@@ -1,0 +1,11 @@
+{
+  if (m_labelContent == null) {
+    return null;
+  }
+  CUndoHistory undoHistory=m_undoHistories.get(m_labelContent);
+  if (undoHistory == null) {
+    undoHistory=new CUndoHistory();
+    m_undoHistories.put(m_labelContent,undoHistory);
+  }
+  return undoHistory;
+}

@@ -1,0 +1,12 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bltzal");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String rs=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final IOperandTreeNode target=operands.get(1).getRootNode().getChildren().get(0);
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String jumpCondition=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(offset++,dw,rs,dw,String.valueOf(-31L),dw,jumpCondition));
+  Helpers.generateDelayBranch(instructions,offset,dw,jumpCondition,dw,target);
+}

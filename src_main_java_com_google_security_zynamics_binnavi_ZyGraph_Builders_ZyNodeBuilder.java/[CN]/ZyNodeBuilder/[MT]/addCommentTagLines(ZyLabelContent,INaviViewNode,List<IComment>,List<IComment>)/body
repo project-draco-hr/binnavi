@@ -1,0 +1,4 @@
+{
+  addCommentLines(content,node,localComment,globalComment);
+  addTagLines(content,node,"|T| ",ConfigManager.instance().getColorSettings().getTagColor());
+}

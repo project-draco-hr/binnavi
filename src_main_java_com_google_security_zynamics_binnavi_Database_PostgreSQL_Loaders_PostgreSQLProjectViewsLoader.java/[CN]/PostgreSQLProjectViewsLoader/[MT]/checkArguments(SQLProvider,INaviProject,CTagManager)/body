@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,viewTagManager);
+  Preconditions.checkNotNull(project,"IE00644: Module argument can't be null");
+  Preconditions.checkArgument(project.inSameDatabase(provider),"IE00528: Project is not part of this database");
+}

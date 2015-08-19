@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"IE02117: Graph argument can not be null");
+  Preconditions.checkNotNull(searchString,"IE02118: Search string argument can not be null");
+  final GraphSearcher searcher=new GraphSearcher();
+  searcher.search(GraphHelpers.getNodes(graph),new ArrayList<NaviEdge>(),searchString);
+  final List<SearchResult> results=searcher.getResults();
+  final List<NaviNode> resultNodes=new ArrayList<NaviNode>();
+  for (  final SearchResult searchResult : results) {
+    resultNodes.add((NaviNode)searchResult.getObject());
+  }
+  graph.selectNodes(resultNodes,true);
+  searcher.dispose();
+}

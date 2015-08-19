@@ -1,0 +1,13 @@
+{
+  final int first=m_traceEventTable.getSelectionModel().getMinSelectionIndex();
+  if (first == -1) {
+    m_eventValueTable.setEvent(null);
+    return;
+  }
+  final boolean single=first == m_traceEventTable.getSelectionModel().getMaxSelectionIndex();
+  m_eventValueTable.setEnabled(single);
+  if (single) {
+    final CEventTableModel model=m_traceEventTable.getTreeTableModel();
+    m_eventValueTable.setEvent(model.getEvents().get(m_traceEventTable.convertRowIndexToModel(first)));
+  }
+}

@@ -1,0 +1,4 @@
+{
+  selectedTutorial=tutorialList.getSelectedValue();
+  dispose();
+}

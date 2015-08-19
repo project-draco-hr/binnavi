@@ -1,0 +1,8 @@
+{
+  super(projectTree,new CProjectsModel(database),new CProjectsTableHelp());
+  m_database=Preconditions.checkNotNull(database,"IE02874: database argument can not be null");
+  setDefaultRenderer(Object.class,new ProjectLoadedRenderer());
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.LOAD_HK.getKeyStroke(),"LOAD");
+  getActionMap().put("LOAD",CActionProxy.proxy(new LoadProjectAction()));
+}

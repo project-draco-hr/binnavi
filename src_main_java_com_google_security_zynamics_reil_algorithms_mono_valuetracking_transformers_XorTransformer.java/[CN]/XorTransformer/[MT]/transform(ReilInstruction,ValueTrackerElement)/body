@@ -1,0 +1,3 @@
+{
+  return transform(instruction,incomingState,XOR_GENERATOR);
+}

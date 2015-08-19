@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can't be null");
+  m_zyGraph=graph;
+  setCenterZooming(false);
+}

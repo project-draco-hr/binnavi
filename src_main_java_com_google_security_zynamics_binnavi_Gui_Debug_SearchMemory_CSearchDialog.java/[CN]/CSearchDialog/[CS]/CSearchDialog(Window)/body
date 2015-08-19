@@ -1,0 +1,10 @@
+{
+  super(parent,"Find",ModalityType.DOCUMENT_MODAL);
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  add(createSearchPane(),BorderLayout.CENTER);
+  add(new CPanelTwoButtons(new InternalActionListener(),"OK","Cancel"),BorderLayout.SOUTH);
+  pack();
+  GuiHelper.centerChildToParent(parent,this,true);
+  setVisible(true);
+}

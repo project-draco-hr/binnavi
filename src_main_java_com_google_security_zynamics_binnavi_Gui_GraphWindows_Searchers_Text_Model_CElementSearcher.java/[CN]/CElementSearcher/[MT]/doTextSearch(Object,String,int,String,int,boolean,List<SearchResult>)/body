@@ -1,0 +1,10 @@
+{
+  final int index=lineText.indexOf(caseSensitive ? localSearchString : localSearchString.toLowerCase(),startPosition);
+  if (index == -1) {
+    return -1;
+  }
+ else {
+    results.add(new SearchResult(element,lineCounter,index,localSearchString.length()));
+    return index + localSearchString.length();
+  }
+}

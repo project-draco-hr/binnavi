@@ -1,0 +1,46 @@
+{
+  final Object selectedParentString=m_parentBox.getSelectedItem();
+  if (selectedParentString == null) {
+    return;
+  }
+  final Object selectedModule=m_targetModuleBox.getSelectedItem();
+  if (selectedModule == null) {
+    return;
+  }
+  final INaviModule targetModule=((CModuleWrapper)selectedModule).getObject();
+  if (!targetModule.isLoaded()) {
+    if (CMessageBox.showYesNoQuestion(this,"The target module must be loaded before functions can be forwarded.\n\n" + "Do you want to load the target module now?") == JOptionPane.NO_OPTION) {
+      return;
+    }
+    CModuleLoader.loadModule(this,targetModule);
+  }
+  int counter=0;
+  final String parentString=selectedParentString.toString();
+  for (  final INaviFunction sourceFunction : m_module.getContent().getFunctionContainer().getFunctions()) {
+    if (sourceFunction.getOriginalModulename().equalsIgnoreCase(parentString) && CFunctionHelpers.isForwardableFunction(sourceFunction)) {
+      String sourceFunctionName=sourceFunction.getName();
+      if (sourceFunctionName.startsWith("__imp_")) {
+        sourceFunctionName=sourceFunctionName.substring("__imp_".length());
+      }
+      try {
+        final INaviFunction targetFunction=targetModule.getContent().getFunctionContainer().getFunction(sourceFunctionName);
+        sourceFunction.setForwardedFunction(targetFunction);
+        ++counter;
+      }
+ catch (      final MaybeNullException exception) {
+      }
+catch (      final CouldntSaveDataException exception) {
+        CUtilityFunctions.logException(exception);
+        final String message="E00023: " + "Could not save function forwarding";
+        final String description=CUtilityFunctions.createDescription(String.format("Could not forward the function '%s' from module '%s' to module '%s'",sourceFunction.getName(),m_module.getConfiguration().getName(),targetModule.getConfiguration().getName()),new String[]{"The database connection was dropped while saving."},new String[]{"The changes in function forwarding were not saved. Try saving function " + "forwarding again. If necessary, close the connection to the database and " + "reconnect."});
+        CNaviErrorDialog.show(this,message,description,exception);
+      }
+    }
+  }
+  if (counter == 0) {
+    CMessageBox.showInformation(this,"No functions suitable for forwarding were found.");
+  }
+ else {
+    CMessageBox.showInformation(this,String.format("%d functions were forwarded from module '%s' to module '%s'",counter,m_module.getConfiguration().getName(),targetModule.getConfiguration().getName()));
+  }
+}

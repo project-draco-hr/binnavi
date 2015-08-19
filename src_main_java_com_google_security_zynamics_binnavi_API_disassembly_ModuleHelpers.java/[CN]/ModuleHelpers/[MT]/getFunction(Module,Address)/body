@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  for (  final Function function : module.getFunctions()) {
+    if (function.getAddress().equals(address)) {
+      return function;
+    }
+  }
+  return null;
+}

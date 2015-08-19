@@ -1,0 +1,6 @@
+{
+  final BaseType baseType=backend.createType("test_int",32,true,null,BaseTypeCategory.ATOMIC);
+  Assert.assertNotNull(mockProvider.loadType(mockModule,baseType.getId()));
+  backend.deleteType(baseType);
+  Assert.assertNull(mockProvider.loadType(mockModule,baseType.getId()));
+}

@@ -1,0 +1,22 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunctions().get(123);
+  function.load();
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final java.util.List<IComment> storedComments=function.getGlobalComment() == null ? new ArrayList<IComment>() : function.getGlobalComment();
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String firstCommentString=" PASS FUNCTION NODE COMMENT 1 ";
+  final int firstCommentId=getProvider().appendFunctionComment(function,firstCommentString,user.getUserId());
+  final IComment firstComment=new CComment(firstCommentId,user,lastComment,firstCommentString);
+  final String secondCommentString=" PASS FUNCTION NODE COMMENT 2 ";
+  final int secondCommentId=getProvider().appendFunctionComment(function,secondCommentString,user.getUserId());
+  final IComment secondComment=new CComment(secondCommentId,user,firstComment,secondCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(secondCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(storedComments.size() + 2,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(firstComment));
+  assertTrue(commentsFromDatabase.contains(secondComment));
+  function.close();
+  module.close();
+}

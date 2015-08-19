@@ -1,0 +1,3 @@
+BaseType containingType
+BaseType memberType
+String memberName

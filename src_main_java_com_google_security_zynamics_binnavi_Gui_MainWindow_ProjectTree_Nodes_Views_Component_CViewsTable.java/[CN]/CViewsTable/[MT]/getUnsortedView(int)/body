@@ -1,0 +1,3 @@
+{
+  return getTreeTableModel().getViews().get(convertRowIndexToModel(row));
+}

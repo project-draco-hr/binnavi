@@ -1,0 +1,4 @@
+{
+  final T element=get();
+  return element == null ? 0 : element.hashCode();
+}

@@ -1,0 +1,3 @@
+{
+  CTaggingFunctions.tagNode(m_parent,m_tagsTree,m_node);
+}

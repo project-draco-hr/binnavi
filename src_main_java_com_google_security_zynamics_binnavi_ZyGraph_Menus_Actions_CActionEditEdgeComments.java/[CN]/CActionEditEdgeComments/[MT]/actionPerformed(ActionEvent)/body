@@ -1,0 +1,3 @@
+{
+  CEdgeFunctions.editEdgeComments(m_parent,m_edge);
+}

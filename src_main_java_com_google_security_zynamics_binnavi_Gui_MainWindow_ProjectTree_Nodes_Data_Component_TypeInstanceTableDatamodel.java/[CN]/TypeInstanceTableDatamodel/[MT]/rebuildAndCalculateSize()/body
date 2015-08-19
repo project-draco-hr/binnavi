@@ -1,0 +1,13 @@
+{
+  if (typeContainer == null) {
+    return;
+  }
+  typesToDisplay.clear();
+  typeDeclarations.clear();
+  currentNumberOfRows=0;
+  currentNumberOfLines=0;
+  for (  TypeInstance instance : typeContainer.getTypeInstances(section)) {
+    currentNumberOfRows++;
+    addTypeToDisplay(instance);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE00312: Parent argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01549: Debugger argument can not be null");
+  putValue(Action.NAME,"ST");
+  putValue(Action.SHORT_DESCRIPTION,"Stop Trace Mode");
+  putValue(Action.SMALL_ICON,new ImageIcon("data/recordstop_up.jpg"));
+}

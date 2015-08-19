@@ -1,0 +1,16 @@
+{
+  final int xDelta=getXdelta();
+  final int yDelta=getYdelta();
+  if (!isShiftPressed() && !isCtrlPressed()) {
+    handleNotShiftAndNotCtrl(xDelta,yDelta);
+  }
+ else   if (isShiftPressed() && !isCtrlPressed()) {
+    handleShiftAndNotCtrl(xDelta,yDelta);
+  }
+ else   if (!isShiftPressed() && isCtrlPressed()) {
+    handleNotShiftAndCtrl(xDelta,yDelta);
+  }
+ else   if (isShiftPressed() && isCtrlPressed()) {
+    handleShiftAndCtrl(xDelta,yDelta);
+  }
+}

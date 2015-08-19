@@ -1,0 +1,5 @@
+{
+  m_entries[index][0]=description;
+  m_entries[index][1]=String.valueOf(value);
+  return index + 1;
+}

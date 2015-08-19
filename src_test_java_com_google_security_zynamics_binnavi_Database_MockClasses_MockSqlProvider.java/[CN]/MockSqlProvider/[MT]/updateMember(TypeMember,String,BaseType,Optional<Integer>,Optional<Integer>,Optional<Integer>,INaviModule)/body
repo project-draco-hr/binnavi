@@ -1,0 +1,10 @@
+{
+  final RawTypeMember rawMember=findMember(member,module);
+  if (rawMember != null) {
+    members.remove(module,rawMember);
+    members.put(module,new RawTypeMember(rawMember.getId(),newName,newBaseType.getId(),rawMember.getParentId(),newOffset.orNull(),newArgumentIndex.orNull(),newNumberOfElements.orNull()));
+  }
+ else {
+    throw new IllegalStateException("Trying to update non-existing member.");
+  }
+}

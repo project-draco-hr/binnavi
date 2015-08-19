@@ -1,0 +1,9 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      m_imageBaseAddr.setText(imageBase.toHexString());
+      updateSaveFields();
+    }
+  }
+.invokeLater();
+}

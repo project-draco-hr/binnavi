@@ -1,0 +1,46 @@
+{
+  Preconditions.checkNotNull(provider,"IE02527: provider argument can not be null");
+  Preconditions.checkNotNull(nodes,"IE02528: nodes argument can not be null");
+  Preconditions.checkNotNull(textNodeIndices,"IE02529: textNodeIndices argument can not be null");
+  if (!textNodeIndices.isEmpty()) {
+    final String query="INSERT INTO " + CTableNames.TEXT_NODES_TABLE + "(node_id, comment_id) VALUES (?, ?)";
+    final PreparedStatement preparedStatement=provider.getConnection().getConnection().prepareStatement(query);
+    final List<INaviTextNode> textNodesWithUnsavedComments=new ArrayList<INaviTextNode>();
+    try {
+      for (      final Integer index : textNodeIndices) {
+        final INaviTextNode node=(INaviTextNode)nodes.get(index);
+        final List<IComment> comment=node.getComments();
+        final Integer commentId=comment == null ? null : comment.size() == 0 ? null : Iterables.getLast(comment).getId();
+        if ((comment != null) && (comment.size() != 0) && (commentId == null)) {
+          textNodesWithUnsavedComments.add(node);
+        }
+        preparedStatement.setInt(1,firstNode + index);
+        if (commentId == null) {
+          preparedStatement.setNull(2,Types.INTEGER);
+        }
+ else {
+          preparedStatement.setInt(2,commentId);
+        }
+        preparedStatement.addBatch();
+      }
+      preparedStatement.executeBatch();
+    }
+  finally {
+      preparedStatement.close();
+    }
+    for (    final INaviTextNode textNode : textNodesWithUnsavedComments) {
+      final ArrayList<IComment> textNodeComments=new ArrayList<IComment>();
+      for (      final IComment comment : textNode.getComments()) {
+        try {
+          final Integer commentId=provider.appendTextNodeComment(textNode,comment.getComment(),comment.getUser().getUserId());
+          final IComment newComment=new CComment(commentId,comment.getUser(),comment.getParent(),comment.getComment());
+          textNodeComments.add(newComment);
+        }
+ catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+      textNode.initializeComment(textNodeComments);
+    }
+  }
+}

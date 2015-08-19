@@ -1,0 +1,3 @@
+AbstractAction action
+String rolloverIcon
+String pressedIcon

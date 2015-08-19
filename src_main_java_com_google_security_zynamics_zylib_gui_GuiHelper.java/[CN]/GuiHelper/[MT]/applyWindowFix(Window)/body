@@ -1,0 +1,8 @@
+{
+  if (!instance.needsWindowFix) {
+    return;
+  }
+  window.removeWindowStateListener(instance);
+  window.addWindowStateListener(instance);
+  instance.windowStateChanged(null);
+}

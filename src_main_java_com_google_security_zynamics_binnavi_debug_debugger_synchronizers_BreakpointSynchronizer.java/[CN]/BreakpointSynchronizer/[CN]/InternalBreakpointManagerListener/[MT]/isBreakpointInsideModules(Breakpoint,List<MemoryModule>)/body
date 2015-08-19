@@ -1,0 +1,10 @@
+{
+  final RelocatedAddress bpAddress=debugger.fileToMemory(breakpoint.getAddress().getModule(),breakpoint.getAddress().getAddress());
+  for (  final MemoryModule module : list) {
+    final boolean addressOk=(bpAddress.getAddress().toBigInteger().compareTo(module.getBaseAddress().getAddress().toBigInteger()) >= 0) && (bpAddress.getAddress().toBigInteger().compareTo(module.getBaseAddress().getAddress().toBigInteger().add(BigInteger.valueOf(module.getSize()))) <= 0);
+    if (addressOk && (module.getName().compareToIgnoreCase(breakpoint.getAddress().getModule().getConfiguration().getName()) == 0)) {
+      return true;
+    }
+  }
+  return false;
+}

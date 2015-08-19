@@ -1,0 +1,8 @@
+{
+  this.baseAddress=baseAddress;
+  this.address=address;
+  this.register=register;
+  this.size=size;
+  this.type=type;
+  this.instructions=instructions;
+}

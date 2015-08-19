@@ -1,0 +1,7 @@
+{
+  if (CFunction.this == function) {
+    for (    final IFunctionListener<IComment> listener : functionListeners) {
+      listener.appendedComment(function,comment);
+    }
+  }
+}

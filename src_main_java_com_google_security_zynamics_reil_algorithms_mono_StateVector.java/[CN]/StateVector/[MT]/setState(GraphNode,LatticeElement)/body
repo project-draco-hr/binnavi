@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  Preconditions.checkNotNull(element,"Error: element argument can not be null");
+  mapping.put(node,element);
+}

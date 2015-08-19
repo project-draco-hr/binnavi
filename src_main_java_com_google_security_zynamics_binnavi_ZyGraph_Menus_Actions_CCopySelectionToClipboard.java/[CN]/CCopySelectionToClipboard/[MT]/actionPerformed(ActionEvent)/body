@@ -1,0 +1,4 @@
+{
+  final String selectedText=m_node.getRealizer().getNodeContent().getSelectedText();
+  ClipboardHelpers.copyToClipboard(selectedText);
+}

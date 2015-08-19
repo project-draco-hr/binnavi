@@ -1,0 +1,35 @@
+{
+  Preconditions.checkArgument(isConnected(),"IE00664: Can not disconnect from the database because it is not connected");
+  if (PostgreSQLNotificationProvider.contains(provider)) {
+    PostgreSQLNotificationProvider.get(provider).unInitialize();
+  }
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      if (!listener.closingDatabase(this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  if (isLoaded()) {
+    for (    final INaviProject project : content.getProjects()) {
+      if (project.isLoaded() && !project.close()) {
+        return false;
+      }
+    }
+  }
+  provider.close();
+  provider=null;
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      listener.closedDatabase(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  content=null;
+  return true;
+}

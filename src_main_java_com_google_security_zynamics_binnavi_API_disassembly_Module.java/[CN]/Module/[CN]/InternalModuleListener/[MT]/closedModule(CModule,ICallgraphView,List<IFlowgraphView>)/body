@@ -1,0 +1,10 @@
+{
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.closedModule(Module.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

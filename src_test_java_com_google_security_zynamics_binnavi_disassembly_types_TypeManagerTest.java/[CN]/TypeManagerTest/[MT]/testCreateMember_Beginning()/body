@@ -1,0 +1,42 @@
+{
+  final ImmutableMap<TypeMember,Integer> oldOffsets=captureMemberOffsets();
+  final ImmutableMap<BaseType,Integer> oldSizes=captureTypeSizes();
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final BaseType memberType=typeSystem.intType;
+  final int sizeDelta=memberType.getBitSize();
+  final TypeMember newMember=typeManager.createStructureMember(typeSystem.simpleStruct,memberType,"narf",0);
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.memberUpdated(typeSystem.ssIntMember);
+  expectedEvents.memberUpdated(typeSystem.ssUintMember);
+  expectedEvents.memberUpdated(typeSystem.ssArrayMember);
+  expectedEvents.memberUpdated(typeSystem.dnsIntMember);
+  expectedEvents.memberUpdated(typeSystem.dnsPointerMember);
+  expectedEvents.memberAdded(newMember);
+  assertEquals(expectedEvents,events);
+  assertEquals(oldSizes.get(typeSystem.simpleStruct) + sizeDelta,typeSystem.simpleStruct.getBitSize());
+  assertEquals(oldSizes.get(typeSystem.nestedStruct) + sizeDelta,typeSystem.nestedStruct.getBitSize());
+  assertEquals(oldSizes.get(typeSystem.doubleNestedStruct) + sizeDelta,typeSystem.doubleNestedStruct.getBitSize());
+  for (  TypeMember member : typeSystem.simpleUnion) {
+    assertEquals(Optional.<Integer>of(Integer.valueOf(0)),member.getBitOffset());
+  }
+  assertEquals(oldSizes.get(typeSystem.simpleUnion),Integer.valueOf(typeSystem.simpleUnion.getBitSize()));
+  for (  TypeMember member : typeSystem.complexUnion) {
+    assertEquals(Optional.<Integer>of(Integer.valueOf(0)),member.getBitOffset());
+  }
+  assertEquals(typeSystem.doubleNestedStruct.getBitSize(),typeSystem.complexUnion.getBitSize());
+  assertEquals(oldOffsets.get(typeSystem.ssIntMember) + sizeDelta,(int)typeSystem.ssIntMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.ssUintMember) + sizeDelta,(int)typeSystem.ssUintMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.ssArrayMember) + sizeDelta,(int)typeSystem.ssArrayMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.nsIntMember),typeSystem.nsIntMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.nsSimpleStructMember),typeSystem.nsSimpleStructMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.dnsNestedStructMember),typeSystem.dnsNestedStructMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.dnsIntMember) + sizeDelta,(int)typeSystem.dnsIntMember.getBitOffset().get());
+  assertEquals(oldOffsets.get(typeSystem.dnsPointerMember) + sizeDelta,(int)typeSystem.dnsPointerMember.getBitOffset().get());
+  for (  TypeMember member : typeSystem.simpleUnion) {
+    assertEquals(Optional.<Integer>of(Integer.valueOf(0)),member.getBitOffset());
+  }
+  for (  TypeMember member : typeSystem.complexUnion) {
+    assertEquals(Optional.<Integer>of(Integer.valueOf(0)),member.getBitOffset());
+  }
+}

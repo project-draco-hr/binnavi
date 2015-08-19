@@ -1,0 +1,11 @@
+{
+  try {
+    m_manager.getBreakpoint(BreakpointType.REGULAR,-1).setDescription("Argl");
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  m_manager.getBreakpoint(BreakpointType.REGULAR,0).setDescription(null);
+  m_manager.getBreakpoint(BreakpointType.REGULAR,0).setDescription("Hannes");
+  assertEquals("Hannes",m_manager.getBreakpoint(BreakpointType.REGULAR,0).getDescription());
+}

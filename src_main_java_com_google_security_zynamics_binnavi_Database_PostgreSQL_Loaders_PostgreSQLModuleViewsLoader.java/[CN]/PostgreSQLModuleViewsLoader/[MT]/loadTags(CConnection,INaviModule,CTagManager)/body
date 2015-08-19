@@ -1,0 +1,3 @@
+{
+  return PostgreSQLViewTagLoader.loadViewTags(connection,CTableNames.MODULE_VIEWS_TABLE,"module_id",module.getConfiguration().getId(),viewTagManager);
+}

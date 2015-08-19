@@ -1,0 +1,11 @@
+{
+  if (oldDebugger != null) {
+    m_breakpointSynchronizer.dispose();
+    m_threadEventSynchronizer.dispose();
+  }
+  if (newDebugger != null) {
+    m_breakpointSynchronizer=new CBreakpointSynchronizer(newDebugger.getBreakpointManager(),m_graph);
+    m_threadEventSynchronizer=new CThreadEventSynchronizer(newDebugger,m_graph);
+    new CNodeSynchronizer(newDebugger.getBreakpointManager(),m_graph,m_debugPerspective);
+  }
+}

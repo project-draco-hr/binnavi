@@ -1,0 +1,11 @@
+{
+  testEndTime=System.nanoTime();
+  NaviLogger.info("Test took: " + String.valueOf(TimeUnit.SECONDS.convert(testEndTime - testStartTime,TimeUnit.NANOSECONDS)) + " seconds");
+  if (kernel32Module != null && kernel32Module.isLoaded()) {
+    kernel32Module.close();
+  }
+  if (notepadModule != null && notepadModule.isLoaded()) {
+    notepadModule.close();
+  }
+  database.close();
+}

@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(manager,"IE02374: Manager argument can not be null");
+  Preconditions.checkNotNull(node,"IE02375: Node argument can not be null");
+  Preconditions.checkNotNull(functionNode,"IE02376: Code node argument can not be null");
+  final INaviFunction function=functionNode.getFunction();
+  final INaviModule module=function.getModule();
+  final int FUNCTION_BREAKPOINT_LINE=1;
+  final BreakpointAddress address=new BreakpointAddress(module,new UnrelocatedAddress(function.getAddress()));
+  if (manager.hasBreakpoint(BreakpointType.REGULAR,address)) {
+    node.setHighlighting(CHighlightLayers.BREAKPOINT_LAYER,FUNCTION_BREAKPOINT_LINE,BreakpointManager.getBreakpointColor(manager.getBreakpointStatus(address,BreakpointType.REGULAR)));
+  }
+ else {
+    node.clearHighlighting(500,FUNCTION_BREAKPOINT_LINE);
+  }
+}

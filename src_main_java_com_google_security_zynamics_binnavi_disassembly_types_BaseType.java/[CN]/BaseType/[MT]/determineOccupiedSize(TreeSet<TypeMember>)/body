@@ -1,0 +1,4 @@
+{
+  final TypeMember lastMember=members.last();
+  return lastMember.getBitOffset().get() - members.first().getBitOffset().get() + lastMember.getBitSize();
+}

@@ -1,0 +1,14 @@
+{
+  for (  final IViewEdge<? extends IViewNode<?>> edge : node.getIncomingEdges()) {
+    edge.setSelected(selected || edge.getSource().isSelected());
+  }
+  for (  final IViewEdge<? extends IViewNode<?>> edge : node.getOutgoingEdges()) {
+    edge.setSelected(selected || edge.getTarget().isSelected());
+  }
+  if (selected) {
+    m_selectedNodes.add(m_graph.getNode(node));
+  }
+ else {
+    m_selectedNodes.remove(m_graph.getNode(node));
+  }
+}

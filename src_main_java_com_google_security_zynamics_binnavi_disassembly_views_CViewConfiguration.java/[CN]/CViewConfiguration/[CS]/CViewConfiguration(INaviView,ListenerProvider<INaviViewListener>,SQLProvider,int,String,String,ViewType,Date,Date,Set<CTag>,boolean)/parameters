@@ -1,0 +1,11 @@
+INaviView view
+ListenerProvider<INaviViewListener> listeners
+SQLProvider provider
+int viewId
+String description
+String name
+ViewType type
+Date creationDate
+Date modificationDate
+Set<CTag> tags
+boolean isStared

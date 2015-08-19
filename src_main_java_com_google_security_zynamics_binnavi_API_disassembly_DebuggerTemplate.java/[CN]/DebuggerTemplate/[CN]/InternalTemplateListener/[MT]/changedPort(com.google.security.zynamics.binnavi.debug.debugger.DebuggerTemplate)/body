@@ -1,0 +1,10 @@
+{
+  for (  final IDebuggerTemplateListener listener : m_listeners) {
+    try {
+      listener.changedPort(DebuggerTemplate.this,debugger.getPort());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

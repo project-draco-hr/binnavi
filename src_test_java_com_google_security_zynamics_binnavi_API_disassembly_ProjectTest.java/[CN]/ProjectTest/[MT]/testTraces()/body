@@ -1,0 +1,13 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.load();
+  m_project.addListener(listener);
+  m_project.getNative().getContent().createTrace("foo","bar");
+  assertEquals("addedTrace;changedModificationDate;",listener.events);
+  assertEquals(1,m_project.getTraces().size());
+  assertEquals("foo",m_project.getTraces().get(0).getName());
+  assertEquals("bar",m_project.getTraces().get(0).getDescription());
+  m_project.getNative().getContent().removeTrace(m_project.getNative().getContent().getTraces().get(0));
+  assertEquals("addedTrace;changedModificationDate;deletedTrace;changedModificationDate;",listener.events);
+  assertTrue(m_project.getTraces().isEmpty());
+}

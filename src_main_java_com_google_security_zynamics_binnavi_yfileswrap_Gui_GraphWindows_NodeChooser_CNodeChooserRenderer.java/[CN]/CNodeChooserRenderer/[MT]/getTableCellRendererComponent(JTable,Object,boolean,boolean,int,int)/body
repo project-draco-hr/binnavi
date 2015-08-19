@@ -1,0 +1,33 @@
+{
+  setFont(DEFAULT_CELL_FONT);
+  final INaviViewNode node=getNode(m_table.modelIndex(row));
+  Color textColor=UNSELECTED_FOREGROUND;
+  if (node.isSelected()) {
+    textColor=SELECTED_FOREGROUND;
+  }
+ else   if (!node.isVisible()) {
+    textColor=INVISIBLE_FOREGROUND;
+  }
+  setForeground(textColor);
+  if (column == CNodeChooserModel.COLUMN_IN) {
+    setText(String.valueOf(node.getIncomingEdges().size()));
+  }
+ else   if (column == CNodeChooserModel.COLUMN_OUT) {
+    setText(String.valueOf(node.getOutgoingEdges().size()));
+  }
+ else   if (column == CNodeChooserModel.COLUMN_ADDRESS) {
+    setText(getNodeText(node));
+  }
+ else {
+    setText("");
+  }
+  setBackground(DEFAULT_BACKGROUND);
+  if (column == CNodeChooserModel.COLUMN_COLOR) {
+    setBackground(node.getColor());
+  }
+ else {
+    calculateBackgroundColor(node);
+  }
+  setToolTipText(buildToolTip(m_graph.getNode(node).getNodeContent()));
+  return this;
+}

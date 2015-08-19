@@ -1,0 +1,15 @@
+{
+  m_cachedValuesSemaphore.acquireUninterruptibly();
+  if (m_cachedValues == null) {
+    final IFilter<MemoryModule> filter=getFilter();
+    if (filter == null) {
+      m_cachedValues=m_modules;
+    }
+ else {
+      m_cachedValues=filter.get(m_modules);
+    }
+  }
+  final FilledList<MemoryModule> returnValue=new FilledList<MemoryModule>(m_cachedValues);
+  m_cachedValuesSemaphore.release();
+  return returnValue;
+}

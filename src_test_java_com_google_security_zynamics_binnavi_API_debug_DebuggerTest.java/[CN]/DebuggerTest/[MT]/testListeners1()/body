@@ -1,0 +1,9 @@
+{
+  final DebuggerListener listener=new DebuggerListener();
+  debugger.addListener(listener);
+  mockDebugger.connect();
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(1,ThreadState.RUNNING));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new AttachReply(0,0));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new AttachReply(0,1));
+  mockDebugger.connection.m_synchronizer.receivedEvent(new AuthenticationFailedReply());
+}

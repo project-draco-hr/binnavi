@@ -1,0 +1,4 @@
+{
+  super("Regular Expression Search");
+  m_graph=graph;
+}

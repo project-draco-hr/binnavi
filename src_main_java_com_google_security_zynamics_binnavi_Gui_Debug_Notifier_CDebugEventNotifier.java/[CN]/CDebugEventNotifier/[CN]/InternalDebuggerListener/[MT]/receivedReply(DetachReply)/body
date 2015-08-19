@@ -1,0 +1,5 @@
+{
+  if (!reply.success()) {
+    CMessageBox.showError(activateWindow(),String.format("Could not detach from the target process.\n\nReason: %s",DebuggerErrorCodes.codeToMessage(reply.getErrorCode())));
+  }
+}

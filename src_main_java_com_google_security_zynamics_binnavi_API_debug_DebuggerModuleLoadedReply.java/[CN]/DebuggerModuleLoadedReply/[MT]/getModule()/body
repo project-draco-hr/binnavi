@@ -1,0 +1,3 @@
+{
+  return new MemoryModule(((ModuleLoadedReply)reply).getModule());
+}

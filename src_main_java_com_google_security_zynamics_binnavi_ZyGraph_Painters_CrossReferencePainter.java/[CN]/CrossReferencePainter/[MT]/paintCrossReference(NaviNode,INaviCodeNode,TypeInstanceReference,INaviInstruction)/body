@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  Preconditions.checkNotNull(codeNode,"Error: codeNode argument can not be null");
+  Preconditions.checkNotNull(reference,"Error: reference argument can not be null");
+  Preconditions.checkNotNull(instruction,"Error: instruction argument can not be null");
+  final int line=CCodeNodeHelpers.instructionToLine(codeNode,instruction);
+  node.clearHighlighting(CHighlightLayers.VARIABLE_LAYER,line);
+  node.setHighlighting(CHighlightLayers.VARIABLE_LAYER,line,ConfigManager.instance().getColorSettings().getMemRefColor());
+}

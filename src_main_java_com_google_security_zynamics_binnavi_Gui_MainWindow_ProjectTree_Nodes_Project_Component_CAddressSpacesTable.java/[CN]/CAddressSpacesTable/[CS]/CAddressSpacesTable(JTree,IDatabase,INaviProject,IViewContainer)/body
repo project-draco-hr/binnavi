@@ -1,0 +1,10 @@
+{
+  super(projectTree,new CAddressSpacesModel(project),new CAddressSpacesTableHelp());
+  m_database=Preconditions.checkNotNull(database,"IE02871: database argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"IE02872: project argument can not be null");
+  m_container=Preconditions.checkNotNull(container,"IE02873: container argument can not be null");
+  setDefaultRenderer(Object.class,new AddressSpaceLoadedRenderer());
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.LOAD_HK.getKeyStroke(),"LOAD");
+  getActionMap().put("LOAD",CActionProxy.proxy(new LoadAddressSpaceAction()));
+}

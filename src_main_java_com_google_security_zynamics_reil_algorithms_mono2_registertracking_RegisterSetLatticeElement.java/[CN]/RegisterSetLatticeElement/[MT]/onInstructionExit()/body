@@ -1,0 +1,15 @@
+{
+  clearTemporaryRegisters(m_taintedRegs);
+  clearTemporaryRegisters(m_newlyTaintedRegs);
+  clearTemporaryRegisters(m_untaintedRegs);
+  clearTemporaryRegisters(m_readRegs);
+  clearTemporaryRegisters(m_updatedRegs);
+  m_nativeNewlyTaintedRegs=ImmutableSet.copyOf(m_newlyTaintedRegs);
+  m_nativeUntaintedRegs=ImmutableSet.copyOf(m_untaintedRegs);
+  m_nativeReadRegs=ImmutableSet.copyOf(m_readRegs);
+  m_nativeUpdatedRegs=ImmutableSet.copyOf(m_updatedRegs);
+  m_newlyTaintedRegs.clear();
+  m_untaintedRegs.clear();
+  m_readRegs.clear();
+  m_updatedRegs.clear();
+}

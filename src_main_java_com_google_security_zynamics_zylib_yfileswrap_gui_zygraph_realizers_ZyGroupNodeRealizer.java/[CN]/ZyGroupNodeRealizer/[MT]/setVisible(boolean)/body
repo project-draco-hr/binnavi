@@ -1,0 +1,11 @@
+{
+  super.setVisible(visible);
+  updateContentSelectionColor();
+  for (  final IZyNodeRealizerListener<?> listener : m_listeners) {
+    try {
+      listener.changedVisibility(this);
+    }
+ catch (    final Exception exception) {
+    }
+  }
+}

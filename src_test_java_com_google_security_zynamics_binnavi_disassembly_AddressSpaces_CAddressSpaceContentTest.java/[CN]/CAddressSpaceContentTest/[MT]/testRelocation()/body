@@ -1,0 +1,29 @@
+{
+  final CModule module=MockCreator.createModule(m_sql);
+  m_addressSpace.load();
+  m_addressSpace.getContent().addListener(m_listener);
+  try {
+    m_addressSpace.getContent().setImageBase(module,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_addressSpace.getContent().setImageBase(null,new CAddress(0x123));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_addressSpace.getContent().setImageBase(module,new CAddress(0x123));
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  m_addressSpace.getContent().addModule(module);
+  assertEquals("00000666",m_addressSpace.getContent().getImageBase(module).toHexString());
+  m_addressSpace.getContent().setImageBase(module,new CAddress(0x123));
+  assertEquals("addedModule;changedImageBase;changedImageBase;",m_listener.events);
+  assertEquals("00000123",m_addressSpace.getContent().getImageBase(module).toHexString());
+  assertEquals("00000666",module.getConfiguration().getImageBase().toHexString());
+}

@@ -1,0 +1,16 @@
+{
+  final Trace trace=new Trace(new TraceList(1,"Name","Description",new MockSqlProvider()));
+  final MockTraceListener listener=new MockTraceListener();
+  trace.addListener(listener);
+  final MockModule module=new MockModule();
+  final Module m=ModuleFactory.get(module);
+  trace.addEvent(0,m,new Address(123),TraceEventType.Breakpoint);
+  trace.addEvent(0,m,new Address(124),TraceEventType.EchoBreakpoint);
+  assertEquals(2,trace.getEvents().size());
+  assertEquals(123,trace.getEvents().get(0).getAddress().toLong());
+  assertEquals(TraceEventType.Breakpoint,trace.getEvents().get(0).getType());
+  assertEquals(124,trace.getEvents().get(1).getAddress().toLong());
+  assertEquals(TraceEventType.EchoBreakpoint,trace.getEvents().get(1).getType());
+  assertEquals("addedEvent;addedEvent;",listener.events);
+  trace.removeListener(listener);
+}

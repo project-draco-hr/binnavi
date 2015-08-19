@@ -1,0 +1,3 @@
+{
+  return support.isDrop() && support.isDataFlavorSupported(TypeDataFlavor.BASE_TYPE_FLAVOR) && support.getComponent() instanceof ZyGraph2DView;
+}

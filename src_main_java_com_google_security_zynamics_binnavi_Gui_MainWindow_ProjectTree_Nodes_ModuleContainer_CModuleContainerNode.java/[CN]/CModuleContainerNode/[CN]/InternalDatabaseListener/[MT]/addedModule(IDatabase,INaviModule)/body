@@ -1,0 +1,3 @@
+{
+  getTreeModel().insertNodeInto(new CModuleNode(getProjectTree(),CModuleContainerNode.this,database,module,new CModuleContainer(database,module)),CModuleContainerNode.this,getChildCount());
+}

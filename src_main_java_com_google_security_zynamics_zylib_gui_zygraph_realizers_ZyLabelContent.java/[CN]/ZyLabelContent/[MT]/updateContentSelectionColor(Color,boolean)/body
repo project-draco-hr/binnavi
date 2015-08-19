@@ -1,0 +1,9 @@
+{
+  final Color nodeSelectionColor=fillColor.darker();
+  if (isSelected) {
+    setSelectionColor(nodeSelectionColor.darker());
+  }
+ else {
+    setSelectionColor(nodeSelectionColor);
+  }
+}

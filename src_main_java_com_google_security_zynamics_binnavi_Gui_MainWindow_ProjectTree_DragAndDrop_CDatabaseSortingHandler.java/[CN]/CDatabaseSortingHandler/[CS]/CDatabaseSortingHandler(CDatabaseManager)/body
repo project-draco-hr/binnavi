@@ -1,0 +1,4 @@
+{
+  super(CModuleTransferable.MODULE_FLAVOR);
+  m_manager=Preconditions.checkNotNull(manager,"IE01926: Manager argument can not be null");
+}

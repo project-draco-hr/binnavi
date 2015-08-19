@@ -1,0 +1,4 @@
+{
+  super("Delete Invisible Nodes");
+  m_graph=graph;
+}

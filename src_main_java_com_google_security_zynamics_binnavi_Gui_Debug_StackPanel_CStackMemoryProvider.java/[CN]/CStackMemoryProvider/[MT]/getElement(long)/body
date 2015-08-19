@@ -1,0 +1,31 @@
+{
+  if (m_dataLayout == StackDataLayout.Bytes) {
+    if (m_addressMode == AddressMode.BIT32) {
+      final String unpaddedValue=BigInteger.valueOf(ByteHelpers.readDwordBigEndian(m_debugger.getProcessManager().getMemory().getData(address,4),0)).toString(16);
+      return Strings.padStart(unpaddedValue,8,'0').toUpperCase();
+    }
+ else     if (m_addressMode == AddressMode.BIT64) {
+      final String unpaddedValue=BigInteger.valueOf(ByteHelpers.readQwordBigEndian(m_debugger.getProcessManager().getMemory().getData(address,8),0)).toString(16);
+      return Strings.padStart(unpaddedValue,16,'0').toUpperCase();
+    }
+ else {
+      throw new IllegalStateException("IE01137: Unknown address mode");
+    }
+  }
+ else   if (m_dataLayout == StackDataLayout.Dwords) {
+    if (m_addressMode == AddressMode.BIT32) {
+      final String unpaddedValue=BigInteger.valueOf(ByteHelpers.readDwordLittleEndian(m_debugger.getProcessManager().getMemory().getData(address,4),0)).toString(16);
+      return Strings.padStart(unpaddedValue,8,'0').toUpperCase();
+    }
+ else     if (m_addressMode == AddressMode.BIT64) {
+      final String unpaddedValue=BigInteger.valueOf(ByteHelpers.readQwordLittleEndian(m_debugger.getProcessManager().getMemory().getData(address,8),0)).toString(16);
+      return Strings.padStart(unpaddedValue,16,'0').toUpperCase();
+    }
+ else {
+      throw new IllegalStateException("IE01138: Unknown address mode");
+    }
+  }
+ else {
+    throw new IllegalStateException("IE01139: Invalid data layout selected");
+  }
+}

@@ -1,0 +1,3 @@
+{
+  this(new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),new ArrayList<INaviEdge>()),new MockSqlProvider(),ViewType.Native,new BigInteger(31,new SecureRandom()).intValue());
+}

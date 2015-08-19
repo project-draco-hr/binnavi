@@ -1,0 +1,12 @@
+{
+  final StringBuffer databaseString=new StringBuffer();
+  boolean addComma=false;
+  for (  final Database database : getDatabases()) {
+    if (addComma) {
+      databaseString.append(", ");
+    }
+    addComma=true;
+    databaseString.append("'" + database.getDescription() + "'");
+  }
+  return String.format("Database Manager [%s]",databaseString);
+}

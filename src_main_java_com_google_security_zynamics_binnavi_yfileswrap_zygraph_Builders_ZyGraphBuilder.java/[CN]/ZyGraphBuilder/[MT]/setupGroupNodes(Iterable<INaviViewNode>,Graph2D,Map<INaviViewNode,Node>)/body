@@ -1,0 +1,9 @@
+{
+  for (  final INaviViewNode node : nodes) {
+    if (node.getParentGroup() != null) {
+      final Node child=rawNodeToNodeMap.get(node);
+      final Node parent=rawNodeToNodeMap.get(node.getParentGroup());
+      graph2D.getHierarchyManager().setParentNode(child,parent);
+    }
+  }
+}

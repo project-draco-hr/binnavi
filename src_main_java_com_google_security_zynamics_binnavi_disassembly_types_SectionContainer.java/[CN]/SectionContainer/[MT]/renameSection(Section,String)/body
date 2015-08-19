@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  Preconditions.checkArgument(sections.contains(section),"Error: section is not known to the section container");
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  final Section renamedSection=backend.renameSection(section,name);
+  sections.set(sections.indexOf(section),renamedSection);
+  sectionsById.put(renamedSection.getId(),renamedSection);
+  return renamedSection;
+}

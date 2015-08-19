@@ -1,0 +1,4 @@
+{
+  super(table,new CTracesFilterCreator(),new CTraceFilterHelp());
+  addListener(m_internalTracesTableMouseListener);
+}

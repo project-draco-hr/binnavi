@@ -1,0 +1,6 @@
+{
+  instructionNodes=HashBiMap.<INaviInstruction,InstructionNode>create();
+  typeInstanceReferences=HashBiMap.<TypeInstanceReference,InstructionNode>create();
+  typeSubstitutions=HashBiMap.<TypeSubstitution,InstructionNode>create();
+  typeInstances=HashMultimap.<TypeInstance,TypeInstanceReference>create();
+}

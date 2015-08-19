@@ -1,0 +1,4 @@
+{
+  final Pair<List<ReilBlock>,List<ReilEdge>> pair=createGraphElements(instructionList,nativeJumpTargets);
+  return new ReilGraph(pair.first(),pair.second());
+}

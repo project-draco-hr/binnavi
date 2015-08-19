@@ -1,0 +1,11 @@
+{
+  m_modules.add(module);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.addedModule(m_database,module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

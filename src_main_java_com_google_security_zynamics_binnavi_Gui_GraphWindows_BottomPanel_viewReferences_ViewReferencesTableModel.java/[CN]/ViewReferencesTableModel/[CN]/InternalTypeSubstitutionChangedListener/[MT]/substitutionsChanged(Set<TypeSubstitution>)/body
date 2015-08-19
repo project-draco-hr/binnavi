@@ -1,0 +1,4 @@
+{
+  removeSubstitutions(changedSubstitutions);
+  addSubstitutions(changedSubstitutions);
+}

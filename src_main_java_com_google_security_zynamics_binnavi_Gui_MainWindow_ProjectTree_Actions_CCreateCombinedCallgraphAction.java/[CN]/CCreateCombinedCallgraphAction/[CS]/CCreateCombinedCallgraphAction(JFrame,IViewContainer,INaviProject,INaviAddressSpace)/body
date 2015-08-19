@@ -1,0 +1,7 @@
+{
+  super("Create combined callgraph");
+  m_frame=Preconditions.checkNotNull(frame,"Error: frame argument can not be null");
+  m_container=Preconditions.checkNotNull(container,"Error: container argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"Error: project argument can not be null");
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"Error: addressSpace argument can not be null");
+}

@@ -1,0 +1,13 @@
+{
+  List<IComment> comments=Lists.newArrayList();
+  try {
+    comments=m_instruction.appendGlobalComment(commentText);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  for (  final IInstructionListener listener : m_listeners) {
+    listener.appendedComment(this,Iterables.getLast(comments));
+  }
+  return comments;
+}

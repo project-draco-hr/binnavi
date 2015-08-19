@@ -1,0 +1,5 @@
+{
+  if (needsRefresh(reference)) {
+    nodeChanged(multiIndex.getInstructionNode(reference));
+  }
+}

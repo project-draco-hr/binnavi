@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.deleteTypeInstanceComment(this,moduleId,instanceId,commentId,userId);
+}

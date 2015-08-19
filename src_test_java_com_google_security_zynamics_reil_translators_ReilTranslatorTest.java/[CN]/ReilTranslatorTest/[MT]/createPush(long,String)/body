@@ -1,0 +1,6 @@
+{
+  final MockOperandTree operandTree3=new MockOperandTree();
+  operandTree3.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree3.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,lhs));
+  return new MockInstruction(address,"push",Lists.newArrayList(operandTree3));
+}

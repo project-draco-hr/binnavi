@@ -1,0 +1,4 @@
+{
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  manager.removeListener(m_breakpointManagerListener);
+}

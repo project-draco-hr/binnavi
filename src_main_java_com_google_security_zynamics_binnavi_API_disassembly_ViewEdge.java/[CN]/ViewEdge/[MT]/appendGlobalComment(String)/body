@@ -1,0 +1,11 @@
+{
+  try {
+    return m_edge.appendGlobalComment(comment);
+  }
+ catch (  final CouldntSaveDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntSaveDataException(exception);
+  }
+catch (  final CouldntLoadDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntLoadDataException(exception);
+  }
+}

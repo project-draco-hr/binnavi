@@ -1,0 +1,9 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final CView view=(CView)module.getContent().getViewContainer().getViews().get(224);
+  view.load();
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  final CTag tag=tagManager.getRootTag().getChildren().get(0).getObject();
+  getProvider().tagView(view,tag);
+}

@@ -1,0 +1,2 @@
+AbstractZyGraph<NodeType,?> graph
+Collection<? extends RawType> nodes

@@ -1,0 +1,4 @@
+MutableDirectedGraph<INaviViewNode,INaviEdge> graph
+SQLProvider provider
+ViewType type
+Integer viewId

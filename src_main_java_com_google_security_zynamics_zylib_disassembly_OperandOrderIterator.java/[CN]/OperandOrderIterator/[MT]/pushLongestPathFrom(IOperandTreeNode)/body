@@ -1,0 +1,11 @@
+{
+  IOperandTreeNode current=node;
+  do {
+    m_traversalStack.push(new Pair<IOperandTreeNode,Integer>(current,0));
+    if ((current.getChildren().size() <= 1) || (current.getType() == ExpressionType.EXPRESSION_LIST)) {
+      break;
+    }
+    current=current.getChildren().get(0);
+  }
+ while (true);
+}

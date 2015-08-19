@@ -1,0 +1,8 @@
+{
+  if (m_settings.containsKey(key)) {
+    return m_settings.get(key);
+  }
+ else {
+    return m_provider.readSetting(this,key);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final CEdgeClickedLeftState state=new CEdgeClickedLeftState(this,m_graph,e);
+  m_factory.createEdgeClickedLeftAction().execute(state,event);
+  return state;
+}

@@ -1,0 +1,17 @@
+{
+  try {
+    m_module.getConfiguration().setName(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("Mock Name",m_module.getConfiguration().getName());
+  m_module.getConfiguration().setName("Test Name");
+  assertEquals("changedName=Test Name/",m_listener.eventList);
+  assertEquals("Test Name",m_module.getConfiguration().getName());
+  m_module.getConfiguration().setName("NOTEPAD.EXE");
+  assertEquals("changedName=Test Name/changedName=NOTEPAD.EXE/",m_listener.eventList);
+  m_module.getConfiguration().setName("NOTEPAD.EXE");
+  assertEquals("changedName=Test Name/changedName=NOTEPAD.EXE/",m_listener.eventList);
+  assertEquals("NOTEPAD.EXE",m_module.getConfiguration().getName());
+}

@@ -1,0 +1,4 @@
+Entry<Breakpoint,BreakpointStatus> breakpointToOldStatus
+Set<BreakpointAddress> toSet
+Set<BreakpointAddress> toRemoveFromDebugger
+Set<BreakpointAddress> toRemoveFromManager

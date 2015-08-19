@@ -1,0 +1,3 @@
+{
+  return String.valueOf((0xFFFFFFFFL << bits) & 0xFFFFFFFFL);
+}

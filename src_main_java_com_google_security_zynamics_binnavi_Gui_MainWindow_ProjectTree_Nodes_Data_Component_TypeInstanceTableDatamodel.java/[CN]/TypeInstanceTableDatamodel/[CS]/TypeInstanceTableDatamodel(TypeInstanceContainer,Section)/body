@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(currentSection);
+  Preconditions.checkNotNull(instanceContainer);
+  setSection(currentSection);
+  setTypeInstanceContainer(instanceContainer);
+  rebuildAndCalculateSize();
+}

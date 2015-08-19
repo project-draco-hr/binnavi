@@ -1,0 +1,19 @@
+{
+  super.setVisible(visible);
+  if (m_firstStart) {
+    CFirstStartDialog.show(this);
+    CMessageBox.showInformation(getRootPane(),"Please configure your IDA Pro settings and install the required IDA Pro plugins now." + "\n\nIf you want to reconfigure these settings later you can find them in the " + "Settings dialog of this window.");
+    final String file=CActionProvider.selectIDADirectory(getRootPane(),ConfigManager.instance().getGeneralSettings().getIdaDirectory());
+    if (file != null) {
+      ConfigManager.instance().getGeneralSettings().setIdaDirectory(file);
+    }
+  }
+  if (insufficientMemory()) {
+    CMessageBox.showInformation(this,"You are using BinNavi with less than the recommended 512 MB of memory.\n" + "Please check binnavi.bat in your BinNavi directory to find out how to increase " + "the available memory.");
+  }
+  for (  final IDatabase database : CDatabaseManager.instance()) {
+    if (database.getConfiguration().isAutoConnect()) {
+      CDatabaseConnectionFunctions.openDatabase(this,database);
+    }
+  }
+}

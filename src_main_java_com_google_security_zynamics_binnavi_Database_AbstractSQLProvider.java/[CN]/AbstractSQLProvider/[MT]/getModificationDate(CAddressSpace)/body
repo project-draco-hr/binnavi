@@ -1,0 +1,3 @@
+{
+  return PostgreSQLAddressSpaceFunctions.getModificationDate(this,addressSpace);
+}

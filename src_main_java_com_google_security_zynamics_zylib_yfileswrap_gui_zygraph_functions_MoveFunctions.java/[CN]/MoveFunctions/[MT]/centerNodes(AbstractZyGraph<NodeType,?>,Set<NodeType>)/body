@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(nodes,"Error: Nodes argument is null");
+  Preconditions.checkArgument(!nodes.isEmpty(),"Error: Nodes argument is empty");
+  final Rectangle2D box=GraphHelpers.calculateBoundingBox(nodes);
+  graph.getView().setCenter(box.getX() + (box.getWidth() / 2.),box.getY() + (box.getHeight() / 2.));
+  graph.updateViews();
+}

@@ -1,0 +1,13 @@
+{
+  String searchText="";
+  do {
+    m_Frame.repaint();
+    searchText=(String)JOptionPane.showInputDialog(m_Frame,"Search",m_title,JOptionPane.QUESTION_MESSAGE,null,null,searchText);
+    if ((searchText != null) && (searchText.length() > 0)) {
+      if (!search(searchText)) {
+        JOptionPane.showMessageDialog(m_Frame,"Search string not found",m_title,JOptionPane.ERROR_MESSAGE);
+      }
+    }
+  }
+ while ((searchText != null) && (searchText.length() > 0));
+}

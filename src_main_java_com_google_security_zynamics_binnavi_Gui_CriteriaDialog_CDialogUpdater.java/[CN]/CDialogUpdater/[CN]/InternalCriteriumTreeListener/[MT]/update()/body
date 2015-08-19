@@ -1,0 +1,4 @@
+{
+  updateInfoField();
+  m_executeButton.setEnabled(CExpressionTreeValidator.isValid(m_jtree));
+}

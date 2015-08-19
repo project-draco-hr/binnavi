@@ -1,0 +1,13 @@
+{
+  @SuppressWarnings("unused") final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  final DebuggerTemplate template=new DebuggerTemplate(2,"bla","horst",2222,m_provider);
+  m_space.getConfiguration().setDebuggerTemplate(template);
+  m_space.getConfiguration().setDebuggerTemplate(null);
+  assertEquals(1,m_space.getContent().getModules().size());
+  m_space.getContent().removeModule(m_module);
+  m_space.getContent().addModule(m_module);
+  m_module.load();
+  m_project.load();
+  m_space.close();
+  m_space.load();
+}

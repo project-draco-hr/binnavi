@@ -1,0 +1,5 @@
+{
+  final long id=Long.valueOf(getAttribute(node,"threadId"));
+  final ThreadState state=convertThreadState(Integer.valueOf(getAttribute(node,"threadState")));
+  return new TargetProcessThread(id,state);
+}

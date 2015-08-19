@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(typeManager,"Error: typeManager argument can not be null");
+  return new TypesTreeModel(typeManager,new DefaultTypesFilter());
+}

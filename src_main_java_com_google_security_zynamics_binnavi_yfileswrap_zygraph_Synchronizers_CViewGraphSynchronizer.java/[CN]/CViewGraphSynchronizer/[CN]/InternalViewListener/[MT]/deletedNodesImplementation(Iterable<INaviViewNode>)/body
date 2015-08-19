@@ -1,0 +1,15 @@
+{
+  final boolean oldProxyMode=m_graph.getSettings().getProximitySettings().getProximityBrowsing();
+  boolean needsLayout=false;
+  for (  final INaviViewNode node : nodes) {
+    removeNode(m_mappings.getNode(node));
+    needsLayout|=isCollapsedGroupNode(node);
+  }
+  if (oldProxyMode) {
+    m_graph.getSettings().getProximitySettings().setProximityBrowsing(oldProxyMode);
+  }
+  if (m_graph.getSettings().getLayoutSettings().getAutomaticLayouting() && needsLayout) {
+    m_graph.doLayout();
+  }
+  m_graphInternals.notifyNodeDeleted();
+}

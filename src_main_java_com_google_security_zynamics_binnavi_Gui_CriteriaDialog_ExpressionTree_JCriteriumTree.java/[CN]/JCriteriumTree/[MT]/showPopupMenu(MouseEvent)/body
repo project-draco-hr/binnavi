@@ -1,0 +1,9 @@
+{
+  final JCriteriumTreeNode selectedNode=(JCriteriumTreeNode)TreeHelpers.getNodeAt(this,event.getX(),event.getY());
+  if (selectedNode != null) {
+    final JPopupMenu menu=selectedNode.getPopupMenu();
+    if (menu != null) {
+      menu.show(this,event.getX(),event.getY());
+    }
+  }
+}

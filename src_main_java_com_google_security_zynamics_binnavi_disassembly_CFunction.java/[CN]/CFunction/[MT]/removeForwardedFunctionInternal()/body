@@ -1,0 +1,7 @@
+{
+  try {
+    removeForwardedFunction(false);
+  }
+ catch (  final CouldntSaveDataException exception) {
+  }
+}

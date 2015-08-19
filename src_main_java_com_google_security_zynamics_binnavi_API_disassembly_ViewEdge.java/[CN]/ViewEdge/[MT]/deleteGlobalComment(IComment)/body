@@ -1,0 +1,8 @@
+{
+  try {
+    m_edge.deleteGlobalComment(comment);
+  }
+ catch (  final CouldntDeleteException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntDeleteException(exception);
+  }
+}

@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(module,"IE02176: Module argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02177: Provider argument can not be null");
+  Preconditions.checkNotNull(listeners,"IE02178: Listeners argument can not be null");
+  Preconditions.checkNotNull(callgraph,"IE02184: Call graph argument can not be null");
+  Preconditions.checkNotNull(functions,"IE02185: Functions argument can not be null");
+  Preconditions.checkNotNull(nativeCallgraph,"IE02204: Native Call graph argument can not be null");
+  Preconditions.checkNotNull(nativeFlowgraphs,"IE02205: Native Flowgraphs argument can not be null");
+  Preconditions.checkNotNull(customViews,"IE02206: Custom Views argument can not be null");
+  Preconditions.checkNotNull(viewFunctionMap,"IE02207: View Function Map argument can not be null");
+  Preconditions.checkNotNull(traces,"IE02208: Traces argument can not be null");
+  this.sections=Preconditions.checkNotNull(sections);
+  this.instanceContainer=Preconditions.checkNotNull(instanceContainer);
+  m_traces=new CTraceContainer(module,traces,provider);
+  m_viewContainer=new CViewContainer(module,nativeCallgraph,nativeFlowgraphs,customViews,viewFunctionMap,listeners,provider);
+  m_callgraph=callgraph;
+  m_functions=new CFunctionContainer(module,functions);
+}

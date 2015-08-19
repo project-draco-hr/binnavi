@@ -1,0 +1,4 @@
+{
+  m_options.setExceptions(m_exceptionSettingsPanel.getExceptionSettings());
+  return m_options;
+}

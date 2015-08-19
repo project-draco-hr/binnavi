@@ -1,0 +1,14 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE00981: Graph argument can not be null");
+  m_graphInternals=Preconditions.checkNotNull(graphInternals,"IE00982: Graph internals argument can not be null");
+  m_mappings=Preconditions.checkNotNull(mappings,"IE00983: Mappings argument can not be null");
+  m_oldView=graph.getRawView();
+  m_edgeDrawingSynchronizer=new CEdgeDrawingSynchronizer(graph);
+  m_settingsSynchronizer=new CGraphSettingsSynchronizer(graph);
+  for (  final NaviNode node : mappings.getNodes()) {
+    if (node.isSelected()) {
+      m_selectedNodes.add(node);
+    }
+  }
+  initializeListeners();
+}

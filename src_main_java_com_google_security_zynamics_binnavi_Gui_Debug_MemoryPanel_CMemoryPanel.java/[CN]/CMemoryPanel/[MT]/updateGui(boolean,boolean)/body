@@ -1,0 +1,3 @@
+{
+  m_gotoAction.setEnabled(connected && suspended);
+}

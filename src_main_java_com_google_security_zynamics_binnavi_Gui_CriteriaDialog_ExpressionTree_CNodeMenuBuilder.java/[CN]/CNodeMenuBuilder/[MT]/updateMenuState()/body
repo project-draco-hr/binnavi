@@ -1,0 +1,11 @@
+{
+  m_appendAnd.setEnabled(m_criteriumNode.allowAppend(CAndCriterium.class));
+  m_appendOr.setEnabled(m_criteriumNode.allowAppend(COrCriterium.class));
+  m_appendNot.setEnabled(m_criteriumNode.allowAppend(CNotCriterium.class));
+  m_insertAnd.setEnabled(m_criteriumNode.allowInsert(CAndCriterium.class));
+  m_insertOr.setEnabled(m_criteriumNode.allowInsert(COrCriterium.class));
+  m_insertNot.setEnabled(m_criteriumNode.allowInsert(CNotCriterium.class));
+  m_conditionSubmenu.setEnabled(m_criteriumNode.allowAppend(CConditionCriterium.class));
+  m_remove.setEnabled(!m_criteriumNode.isRoot());
+  m_removeAll.setEnabled(m_criteriumNode.getChildCount() != 0);
+}

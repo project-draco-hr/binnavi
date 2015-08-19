@@ -1,0 +1,3 @@
+BreakpointType type
+BreakpointStatus newStatus
+int index

@@ -1,0 +1,7 @@
+ITranslationEnvironment environment
+long offset
+int size
+String sourceRegister1
+String sourceRegister2
+String targetRegister
+List<ReilInstruction> instructions

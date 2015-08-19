@@ -1,0 +1,10 @@
+{
+  for (  final IOperandExpressionListener listener : m_listeners) {
+    try {
+      listener.changed(OperandExpression.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  final List<ThreadRegisterValues> values=new ArrayList<ThreadRegisterValues>();
+  for (  final ThreadRegisters threadRegisterValues : registerValues) {
+    values.add(new ThreadRegisterValues(threadRegisterValues));
+  }
+  this.values=values;
+}

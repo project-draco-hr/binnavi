@@ -1,0 +1,3 @@
+int moduleId
+INaviRawModule rawModule
+SQLProvider provider

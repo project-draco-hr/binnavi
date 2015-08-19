@@ -1,0 +1,5 @@
+{
+  for (  final ListenerWrapper wrapper : m_wrappers) {
+    m_database.getContent().getDebuggerTemplateManager().removeListener(wrapper);
+  }
+}

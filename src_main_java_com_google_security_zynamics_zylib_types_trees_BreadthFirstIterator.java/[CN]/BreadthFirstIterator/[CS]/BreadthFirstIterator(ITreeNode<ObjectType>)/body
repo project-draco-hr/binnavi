@@ -1,0 +1,5 @@
+{
+  for (  final ITreeNode<ObjectType> treeNode : rootNode.getChildren()) {
+    m_path.add(treeNode);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final Integer commentId=functionNode.isStored() ? provider.appendFunctionNodeComment(functionNode,commentText,userId) : null;
+  return provider.loadCommentById(commentId);
+}

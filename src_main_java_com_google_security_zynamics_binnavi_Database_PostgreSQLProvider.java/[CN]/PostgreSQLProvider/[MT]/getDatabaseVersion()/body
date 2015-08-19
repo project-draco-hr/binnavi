@@ -1,0 +1,8 @@
+{
+  try {
+    return PostgreSQLDatabaseFunctions.getDatabaseVersion(connection);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

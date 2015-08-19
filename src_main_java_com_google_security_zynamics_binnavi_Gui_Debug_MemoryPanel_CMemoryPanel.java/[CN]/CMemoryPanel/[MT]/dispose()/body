@@ -1,0 +1,4 @@
+{
+  m_hexView.getHexView().removeHexListener(m_hexPanelListener);
+  m_hexView.dispose();
+}

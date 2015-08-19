@@ -1,0 +1,6 @@
+{
+  this.provider=Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  this.address=Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  this.module=Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  FunctionManager.get(provider).putFunction(this);
+}

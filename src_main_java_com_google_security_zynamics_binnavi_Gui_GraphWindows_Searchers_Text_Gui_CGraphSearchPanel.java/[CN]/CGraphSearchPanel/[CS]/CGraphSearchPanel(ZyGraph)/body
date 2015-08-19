@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  m_searchField=new CGraphSearchField(graph);
+  add(m_searchField);
+  final JButton button=new JButton(CActionProxy.proxy(new CShowResultsAction()));
+  add(button,BorderLayout.EAST);
+}

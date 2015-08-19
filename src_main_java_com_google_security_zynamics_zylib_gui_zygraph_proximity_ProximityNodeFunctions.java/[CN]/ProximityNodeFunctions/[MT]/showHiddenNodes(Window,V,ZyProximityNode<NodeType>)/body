@@ -1,0 +1,7 @@
+{
+  final Set<U> toShow=new LinkedHashSet<U>();
+  final Set<U> nodes=GraphHelpers.getVisibleNodes(ViewableGraph.wrap(graph));
+  toShow.addAll(filterVisibleNodes(nodes));
+  toShow.addAll(filterVisibleNodes(getNeighborhood(graph,zyNode)));
+  showNodes(parent,graph,new ArrayList<U>(toShow),false);
+}

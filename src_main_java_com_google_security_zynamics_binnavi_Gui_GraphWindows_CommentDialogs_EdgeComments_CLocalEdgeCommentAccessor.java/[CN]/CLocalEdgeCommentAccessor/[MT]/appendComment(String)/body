@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(newComment,"IE02660: newComment argument can not be null");
+  return m_edge.appendLocalComment(newComment);
+}

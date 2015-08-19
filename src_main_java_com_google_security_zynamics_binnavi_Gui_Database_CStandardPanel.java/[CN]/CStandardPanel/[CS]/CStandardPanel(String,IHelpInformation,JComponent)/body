@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  final JLabel label=helpInformation == null ? new JLabel(labelText) : new CHelpLabel(labelText,helpInformation);
+  final int PREFERRED_LABEL_WIDTH=110;
+  final int PREFERRED_LABEL_HEIGHT=25;
+  label.setPreferredSize(new Dimension(PREFERRED_LABEL_WIDTH,PREFERRED_LABEL_HEIGHT));
+  add(label,BorderLayout.WEST);
+  add(component,BorderLayout.CENTER);
+  setBorder(new EmptyBorder(0,0,0,0));
+}

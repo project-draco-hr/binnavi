@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(provider,"IE00404: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE00405: Module argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(module),"IE00406: Module is not part of this database");
+  Preconditions.checkNotNull(functions,"IE00407: Functions argument can not be null");
+  for (  final INaviFunction function : functions) {
+    Preconditions.checkNotNull(function,"IE00408: Function list contains a null-element");
+    Preconditions.checkArgument(function.inSameDatabase(module),"IE00409: Function list contains an element that is not part of this database");
+  }
+}

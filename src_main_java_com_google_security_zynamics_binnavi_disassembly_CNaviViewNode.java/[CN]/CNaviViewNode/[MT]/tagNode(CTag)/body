@@ -1,0 +1,12 @@
+{
+  if (!isTagged(tag)) {
+    if (isStored()) {
+      m_provider.saveTagToNode(this,tag.getId());
+    }
+    m_tags.add(tag);
+    for (    final INaviViewNodeListener listener : m_naviViewNodeListeners) {
+      listener.taggedNode(this,tag);
+    }
+    tag.addListener(m_tagListener);
+  }
+}

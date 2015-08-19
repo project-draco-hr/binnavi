@@ -1,0 +1,3 @@
+{
+  setFont(GuiHelper.MONOSPACED_FONT);
+}

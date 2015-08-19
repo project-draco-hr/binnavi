@@ -1,0 +1,9 @@
+{
+  final List<RawTypeMember> foundMembers=new ArrayList<RawTypeMember>();
+  for (  final RawTypeMember member : rawMembers) {
+    if (member.getName().equals(name)) {
+      foundMembers.add(member);
+    }
+  }
+  return foundMembers;
+}

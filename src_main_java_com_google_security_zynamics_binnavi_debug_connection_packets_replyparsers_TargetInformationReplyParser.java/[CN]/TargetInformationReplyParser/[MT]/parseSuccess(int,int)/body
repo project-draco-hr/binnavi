@@ -1,0 +1,10 @@
+{
+  try {
+    final TargetInformation targetInformation=TargetInformationParser.parse(parseData());
+    return new TargetInformationReply(packetId,0,targetInformation);
+  }
+ catch (  final MessageParserException exception) {
+    CUtilityFunctions.logException(exception);
+    return new TargetInformationReply(packetId,PARSER_ERROR,null);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return (invisibleNodes >= graph.getSettings().getLayoutSettings().getVisibilityWarningTreshold()) && (JOptionPane.YES_OPTION != CMessageBox.showYesNoCancelQuestion(parent,String.format("The selected operation makes %d more nodes visible. Do you want to continue?",invisibleNodes)));
+}

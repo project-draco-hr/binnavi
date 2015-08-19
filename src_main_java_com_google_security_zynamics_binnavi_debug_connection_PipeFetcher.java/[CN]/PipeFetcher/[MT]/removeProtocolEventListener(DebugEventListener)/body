@@ -1,0 +1,3 @@
+{
+  protocolListeners.removeListener(listener);
+}

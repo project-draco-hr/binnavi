@@ -1,0 +1,3 @@
+{
+  PostgreSQLAddressSpaceLoader.loadAddressSpaces((AbstractSQLProvider)getProvider(),null,null,null);
+}

@@ -1,0 +1,7 @@
+{
+  notified=Preconditions.checkNotNull(notifiedObject,"Error: notifiedObject argument can not be null");
+  scope=commentScope;
+  operation=Preconditions.checkNotNull(commentOperation,"IE02519: operation argument can not be null");
+  commentId=id;
+  commentText=newComment;
+}

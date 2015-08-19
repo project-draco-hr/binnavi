@@ -1,0 +1,7 @@
+{
+  m_debugger=debugger;
+  m_process=new Process(m_debugger.getProcessManager());
+  m_bookmarkManager=new BookmarkManager(m_debugger.getBookmarkManager());
+  m_breakpointManager=new BreakpointManager(m_debugger.getBreakpointManager());
+  m_debugger.addListener(m_listener);
+}

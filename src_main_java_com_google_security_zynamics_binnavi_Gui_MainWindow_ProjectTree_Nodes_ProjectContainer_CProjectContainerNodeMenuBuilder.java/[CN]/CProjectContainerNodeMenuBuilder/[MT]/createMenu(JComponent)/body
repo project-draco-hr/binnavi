@@ -1,0 +1,28 @@
+{
+  menu.add(new JMenuItem(CActionProxy.proxy(new CCreateProjectAction(getParent(),database,new CNodeSelectionUpdater(getProjectTree(),findNode())))));
+  final List<IProjectFolderMenuPlugin> plugins=new ArrayList<IProjectFolderMenuPlugin>();
+  for (  final IPlugin<IPluginInterface> plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof IProjectFolderMenuPlugin) {
+      plugins.add((IProjectFolderMenuPlugin)plugin);
+    }
+  }
+  if (!plugins.isEmpty()) {
+    menu.add(new JSeparator());
+    for (    final IProjectFolderMenuPlugin plugin : plugins) {
+      try {
+        final List<JComponent> menuItems=plugin.extendProjectFolderMenu(getPluginDatabase());
+        if (menuItems != null) {
+          for (          final JComponent menuItem : menuItems) {
+            menu.add(menuItem);
+          }
+        }
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+        final String innerMessage="E00089: " + "Plugin caused an unexpected exception";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
+        CNaviErrorDialog.show(getParent(),innerMessage,innerDescription,exception);
+      }
+    }
+  }
+}

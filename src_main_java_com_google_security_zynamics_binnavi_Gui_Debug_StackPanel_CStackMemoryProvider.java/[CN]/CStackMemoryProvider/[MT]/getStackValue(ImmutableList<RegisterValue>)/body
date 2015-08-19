@@ -1,0 +1,8 @@
+{
+  for (  final RegisterValue registerValue : registers) {
+    if (registerValue.isSp()) {
+      return registerValue.getValue();
+    }
+  }
+  return null;
+}

@@ -1,0 +1,20 @@
+{
+  Preconditions.checkArgument(value >= -1,"IE00890: Distance argument must not be less than -1");
+  if (value == getProximityBrowsingChildren()) {
+    return;
+  }
+  if (m_type == null) {
+    m_proximityBrowsingChildren=value;
+  }
+ else {
+    m_type.setProximityBrowsingChildren(value);
+  }
+  for (  final IProximitySettingsListener listener : m_listeners) {
+    try {
+      listener.changedProximityBrowsingDepth(value,getProximityBrowsingParents());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

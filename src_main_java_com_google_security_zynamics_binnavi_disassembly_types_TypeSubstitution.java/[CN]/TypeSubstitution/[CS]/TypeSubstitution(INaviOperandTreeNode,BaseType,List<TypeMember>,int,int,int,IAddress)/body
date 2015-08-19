@@ -1,0 +1,11 @@
+{
+  this.baseType=Preconditions.checkNotNull(baseType,"Error: Base type argument for type substitution can not be null.");
+  this.memberPath=Preconditions.checkNotNull(memberPath,"Error: Member path can not be null.");
+  this.expressionId=expressionId;
+  Preconditions.checkArgument(position >= 0,"Error: Position argument for type substitution can not be negative.");
+  this.position=position;
+  Preconditions.checkArgument(offset >= 0,"Error: Offset argument for type substitution can not be negative.");
+  this.offset=offset;
+  this.node=Preconditions.checkNotNull(node,"IE02802: Node argument for type substitution can not be null.");
+  this.address=Preconditions.checkNotNull(address,"Error: Address argument for type sbustitution can not be null.");
+}

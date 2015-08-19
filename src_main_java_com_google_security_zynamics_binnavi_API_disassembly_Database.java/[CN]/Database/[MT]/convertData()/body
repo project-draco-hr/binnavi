@@ -1,0 +1,13 @@
+{
+  m_viewTagManager=new TagManager(m_database.getContent().getViewTagManager());
+  m_nodeTagManager=new TagManager(m_database.getContent().getNodeTagManager());
+  m_modules.clear();
+  m_projects.clear();
+  for (  final INaviModule module : m_database.getContent().getModules()) {
+    m_modules.add(new Module(this,module,m_nodeTagManager,m_viewTagManager));
+  }
+  for (  final INaviProject project : m_database.getContent().getProjects()) {
+    m_projects.add(new Project(this,project,m_nodeTagManager,m_viewTagManager));
+  }
+  m_debuggerTemplateManager=new DebuggerTemplateManager(m_database.getContent().getDebuggerTemplateManager());
+}

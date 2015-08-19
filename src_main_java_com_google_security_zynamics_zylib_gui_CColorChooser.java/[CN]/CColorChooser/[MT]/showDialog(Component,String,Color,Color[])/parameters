@@ -1,0 +1,4 @@
+Component parent
+String title
+Color initialColor
+Color[] recentColors

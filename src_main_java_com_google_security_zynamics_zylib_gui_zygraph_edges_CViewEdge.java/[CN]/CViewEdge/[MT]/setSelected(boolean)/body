@@ -1,0 +1,9 @@
+{
+  if (m_selected == selected) {
+    return;
+  }
+  m_selected=selected;
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.changedSelection(this,selected);
+  }
+}

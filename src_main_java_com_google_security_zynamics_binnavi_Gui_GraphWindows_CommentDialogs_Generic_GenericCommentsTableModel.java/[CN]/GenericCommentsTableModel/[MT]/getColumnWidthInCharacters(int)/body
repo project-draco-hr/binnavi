@@ -1,0 +1,4 @@
+{
+  Preconditions.checkElementIndex(columnIndex,columns.length);
+  return columns[columnIndex].getWidth();
+}

@@ -1,0 +1,3 @@
+{
+  return "This table shows information about the modules found in the debugged target process.\nName: Name of the module\nBase Address: Load address of the module in the target process\nSize: Size of the loaded module in bytes";
+}

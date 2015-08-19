@@ -1,0 +1,11 @@
+{
+  final NodeIdentifier nodeAddressModuleId=new NodeIdentifier(nodeAddress,moduleId);
+  List<Integer> nodeIds=addressModuleIdNodeIdsCache.getIfPresent(nodeAddressModuleId);
+  if (nodeIds != null) {
+    nodeIds.add(node.getId());
+  }
+ else {
+    nodeIds=Lists.newArrayList(node.getId());
+  }
+  addressModuleIdNodeIdsCache.put(nodeAddressModuleId,nodeIds);
+}

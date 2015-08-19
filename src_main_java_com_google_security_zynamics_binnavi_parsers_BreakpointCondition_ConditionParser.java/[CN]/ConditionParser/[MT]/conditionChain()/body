@@ -1,0 +1,52 @@
+{
+  final ConditionParser.conditionChain_return retval=new ConditionParser.conditionChain_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token OR4=null;
+  ConditionParser.andExpression_return andExpression3=null;
+  ConditionParser.andExpression_return andExpression5=null;
+  Object OR4_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_andExpression_in_conditionChain335);
+      andExpression3=andExpression();
+      state._fsp--;
+      adaptor.addChild(root_0,andExpression3.getTree());
+      loop1:       do {
+        int alt1=2;
+        final int LA1_0=input.LA(1);
+        if ((LA1_0 == OR)) {
+          alt1=1;
+        }
+switch (alt1) {
+case 1:
+{
+            OR4=(Token)match(input,OR,FOLLOW_OR_in_conditionChain338);
+            OR4_tree=(Object)adaptor.create(OR4);
+            root_0=(Object)adaptor.becomeRoot(OR4_tree,root_0);
+            pushFollow(FOLLOW_andExpression_in_conditionChain341);
+            andExpression5=andExpression();
+            state._fsp--;
+            adaptor.addChild(root_0,andExpression5.getTree());
+          }
+        break;
+default :
+      break loop1;
+  }
+}
+ while (true);
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException re) {
+reportError(re);
+recover(input,re);
+retval.tree=(Object)adaptor.errorNode(input,retval.start,input.LT(-1),re);
+}
+ finally {
+}
+return retval;
+}

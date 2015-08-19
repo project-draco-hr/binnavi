@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(e,"Error: mouse event can not be null");
+  final IMouseStateChange result=m_state.mouseDragged(e,m_graph);
+  m_state=result.getNextState();
+  if (result.notifyYFiles()) {
+    m_inMouseDragged=true;
+    try {
+      super.mouseDragged(e);
+    }
+  finally {
+      m_inMouseDragged=false;
+    }
+  }
+}

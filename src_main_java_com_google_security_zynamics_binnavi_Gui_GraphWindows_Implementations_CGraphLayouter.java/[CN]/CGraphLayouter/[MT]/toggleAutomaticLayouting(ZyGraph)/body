@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(graph,"IE01748: Graph argument can not be null");
+  graph.getSettings().getLayoutSettings().setAutomaticLayouting(!graph.getSettings().getLayoutSettings().getAutomaticLayouting());
+}

@@ -1,0 +1,6 @@
+{
+  final Reference reference=new Reference(new CReference(new CAddress(0),ReferenceType.CALL_DIRECT));
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.ReferenceType.CALL_DIRECT,reference.getType());
+  assertEquals(0,reference.getTarget().toLong());
+  assertEquals("CALL_DIRECT Reference to 0",reference.toString());
+}

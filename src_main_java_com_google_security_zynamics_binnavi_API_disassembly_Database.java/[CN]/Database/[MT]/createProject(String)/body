@@ -1,0 +1,9 @@
+{
+  try {
+    final INaviProject newProject=m_database.getContent().addProject(name);
+    return ObjectFinders.getObject(newProject,m_projects);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

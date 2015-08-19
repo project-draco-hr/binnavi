@@ -1,0 +1,3 @@
+{
+  CFunctionHelpers.resolveFunction(parentWindow,database,function);
+}

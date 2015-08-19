@@ -1,0 +1,8 @@
+{
+  final CAddressSpaceNode addressSpaceNode=(CAddressSpaceNode)parentNode;
+  final INaviAddressSpace addressSpace=addressSpaceNode.getObject();
+  final List<CModule> modules=(List<CModule>)data;
+  for (  final CModule module : modules) {
+    CAddressSpaceFunctions.addModule(m_parent,addressSpace,module);
+  }
+}

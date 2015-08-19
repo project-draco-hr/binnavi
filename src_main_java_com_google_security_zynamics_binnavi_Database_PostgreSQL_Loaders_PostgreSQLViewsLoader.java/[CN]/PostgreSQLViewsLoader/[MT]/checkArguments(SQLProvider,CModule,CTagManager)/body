@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,viewTagManager);
+  Preconditions.checkNotNull(module,"IE00497: Module argument can't be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00498: Module is not part of this database");
+}

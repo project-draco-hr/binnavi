@@ -1,0 +1,4 @@
+{
+  m_debuggerSelectionPanel.dispose();
+  m_registerPanel.dispose();
+}

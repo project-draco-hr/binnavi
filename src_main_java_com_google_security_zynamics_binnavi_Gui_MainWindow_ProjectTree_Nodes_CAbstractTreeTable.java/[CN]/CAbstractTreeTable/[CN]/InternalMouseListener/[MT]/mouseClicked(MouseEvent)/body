@@ -1,0 +1,5 @@
+{
+  if ((event.getButton() == MouseEvent.BUTTON1) && (event.getClickCount() == 2)) {
+    handleDoubleClick(getSelectionIndex(event));
+  }
+}

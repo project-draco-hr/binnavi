@@ -1,0 +1,16 @@
+{
+  final JTree tree=new JTree();
+  final CCriteriumTree cCriteriumTree=new CCriteriumTree();
+  final CCriteriaFactory cCriteriaFactory=new CCriteriaFactory(m_graph,null,null);
+  final JCriteriumTreeModel jCriterumTreeModel=new JCriteriumTreeModel(tree,cCriteriumTree,cCriteriaFactory.getConditions());
+  final CCriteriumTreeNode child=new CCriteriumTreeNode(new CColorCriterium(m_graph));
+  cCriteriumTree.appendNode(cCriteriumTree.getRoot(),child);
+  final CCriteriumTreeNode child2=new CCriteriumTreeNode(new CAndCriterium());
+  cCriteriumTree.insertNode(cCriteriumTree.getRoot(),child2);
+  final CCriteriumTreeNode child3=new CCriteriumTreeNode(new CColorCriterium(m_graph));
+  cCriteriumTree.appendNode(child2,child3);
+  cCriteriumTree.remove(child);
+  assertEquals(1,((JCriteriumTreeNode)jCriterumTreeModel.getRoot()).getChildCount());
+  assertEquals(1,((JCriteriumTreeNode)((JCriteriumTreeNode)jCriterumTreeModel.getRoot()).getChildAt(0)).getChildCount());
+  assertEquals(child2.getCriterium(),((JCriteriumTreeNode)((JCriteriumTreeNode)jCriterumTreeModel.getRoot()).getChildAt(0)).getCriterium());
+}

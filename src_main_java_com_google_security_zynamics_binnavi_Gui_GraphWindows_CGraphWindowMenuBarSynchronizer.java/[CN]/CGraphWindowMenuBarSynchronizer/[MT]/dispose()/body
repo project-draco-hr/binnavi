@@ -1,0 +1,4 @@
+{
+  m_settings.getLayoutSettings().removeListener(m_listener);
+  m_settings.getProximitySettings().removeListener(m_proximityListener);
+}

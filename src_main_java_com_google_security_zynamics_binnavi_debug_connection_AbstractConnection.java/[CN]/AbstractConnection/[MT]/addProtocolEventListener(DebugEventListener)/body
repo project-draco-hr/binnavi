@@ -1,0 +1,3 @@
+{
+  pipeFetcherThread.addProtocolEventListener(listener);
+}

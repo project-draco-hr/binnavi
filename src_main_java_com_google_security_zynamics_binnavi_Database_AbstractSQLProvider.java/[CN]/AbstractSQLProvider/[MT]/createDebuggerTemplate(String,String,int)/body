@@ -1,0 +1,3 @@
+{
+  return PostgresSQLDebuggerFunctions.createDebuggerTemplate(this,name,host,port);
+}

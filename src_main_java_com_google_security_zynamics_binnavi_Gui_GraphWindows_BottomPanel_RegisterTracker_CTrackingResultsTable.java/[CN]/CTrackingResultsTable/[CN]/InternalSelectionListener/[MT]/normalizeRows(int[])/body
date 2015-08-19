@@ -1,0 +1,7 @@
+{
+  final int[] rawRows=new int[sortedRows.length];
+  for (int i=0; i < sortedRows.length; i++) {
+    rawRows[i]=convertRowIndexToModel(sortedRows[i]);
+  }
+  return rawRows;
+}

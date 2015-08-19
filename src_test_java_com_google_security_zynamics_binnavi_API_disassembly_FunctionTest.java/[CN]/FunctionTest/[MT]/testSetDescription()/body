@@ -1,0 +1,14 @@
+{
+  final MockFunctionListener listener=new MockFunctionListener();
+  final Function function=new Function(ModuleFactory.get(),m_internalFunction);
+  function.addListener(listener);
+  function.setDescription("Hannes");
+  assertEquals("Hannes",function.getDescription());
+  assertEquals("Hannes",m_internalFunction.getDescription());
+  assertEquals("changedDescription;",listener.events);
+  m_internalFunction.setDescription("Hannes 2");
+  assertEquals("Hannes 2",function.getDescription());
+  assertEquals("Hannes 2",m_internalFunction.getDescription());
+  assertEquals("changedDescription;changedDescription;",listener.events);
+  function.removeListener(listener);
+}

@@ -1,0 +1,4 @@
+{
+  viewTags=Preconditions.checkNotNull(tags,"Error: tags argument can not be null");
+  return this;
+}

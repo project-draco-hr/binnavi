@@ -1,0 +1,5 @@
+{
+  this.member=null;
+  this.path=null;
+  this.pathString="";
+}

@@ -1,0 +1,23 @@
+{
+  final Map<Integer,Set<CTag>> nodeTagMap=getNodeTags(provider.getConnection(),module,nodeTagManager);
+  try {
+    while (resultSet.next()) {
+      final int viewId=resultSet.getInt("view_id");
+      final String name=PostgreSQLHelpers.readString(resultSet,"name");
+      final String description=PostgreSQLHelpers.readString(resultSet,"description");
+      final Timestamp creationDate=resultSet.getTimestamp("creation_date");
+      final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+      final boolean starState=resultSet.getBoolean("stared");
+      final int nodeCount=resultSet.getInt("bbcount");
+      final int edgeCount=resultSet.getInt("edgecount");
+      final Set<CTag> viewTags=tags.containsKey(viewId) ? tags.get(viewId) : new HashSet<CTag>();
+      final Set<CTag> nodeTags=nodeTagMap.containsKey(viewId) ? nodeTagMap.get(viewId) : new HashSet<CTag>();
+      final CModuleViewGenerator generator=new CModuleViewGenerator(provider,module);
+      views.add(generator.generate(viewId,name,description,viewType,graphType,creationDate,modificationDate,nodeCount,edgeCount,viewTags,nodeTags,starState));
+    }
+    return views;
+  }
+  finally {
+    resultSet.close();
+  }
+}

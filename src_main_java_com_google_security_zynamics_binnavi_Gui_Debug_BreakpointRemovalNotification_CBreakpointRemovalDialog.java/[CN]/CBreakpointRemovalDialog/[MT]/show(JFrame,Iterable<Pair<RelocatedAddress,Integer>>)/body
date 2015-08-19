@@ -1,0 +1,5 @@
+{
+  final CBreakpointRemovalDialog dialog=new CBreakpointRemovalDialog(parent,failedAddresses);
+  GuiHelper.centerChildToParent(parent,dialog,true);
+  dialog.setVisible(true);
+}

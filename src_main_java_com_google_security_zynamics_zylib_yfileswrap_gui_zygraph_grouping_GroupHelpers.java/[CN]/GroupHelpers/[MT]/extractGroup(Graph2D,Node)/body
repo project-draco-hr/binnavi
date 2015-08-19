@@ -1,0 +1,5 @@
+{
+  for (final NodeCursor nc=graph.getHierarchyManager().getChildren(groupNode); nc.ok(); nc.next()) {
+    graph.getHierarchyManager().setParentNode(nc.node(),graph.getHierarchyManager().getParentNode(groupNode));
+  }
+}

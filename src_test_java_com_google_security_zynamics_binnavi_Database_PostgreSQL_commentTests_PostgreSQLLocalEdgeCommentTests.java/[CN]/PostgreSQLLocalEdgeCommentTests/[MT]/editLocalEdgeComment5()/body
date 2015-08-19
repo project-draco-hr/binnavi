@@ -1,0 +1,18 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final List<IComment> storedComments=edge.getLocalComment() == null ? new ArrayList<IComment>() : edge.getLocalComment();
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String beforeEditCommentString=" EDIT LOCAL EDGE COMMENT BEFORE EDIT ";
+  final int editedCommentId=getProvider().appendLocalEdgeComment(edge,beforeEditCommentString,user.getUserId());
+  final IComment commentBeforeEdit=new CComment(editedCommentId,user,lastComment,beforeEditCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(editedCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertTrue(commentsFromDatabase.contains(commentBeforeEdit));
+  assertEquals(storedComments.size() + 1,commentsFromDatabase.size());
+  final String afterEditCommentString=" EDIT LOCAL EDGE COMMENT AFTER EDIT ";
+  getProvider().editLocalEdgeComment(edge,editedCommentId,user.getUserId(),afterEditCommentString);
+  final IComment commentAfterEdit=new CComment(editedCommentId,user,lastComment,afterEditCommentString);
+  final ArrayList<IComment> commentsAfterEdit=getProvider().loadCommentById(editedCommentId);
+  assertNotNull(commentsAfterEdit);
+  assertTrue(commentsAfterEdit.contains(commentAfterEdit));
+}

@@ -1,0 +1,16 @@
+{
+  final Set<BreakpointAddress> visitedAddresses=new LinkedHashSet<BreakpointAddress>();
+  for (  final TraceList trace : traces) {
+    for (    final ITraceEvent event : trace) {
+      final BreakpointAddress address=event.getOffset();
+      if (!addresses.contains(address)) {
+        continue;
+      }
+      if (visitedAddresses.contains(address)) {
+        continue;
+      }
+      visitedAddresses.add(address);
+      newTrace.addEvent(event);
+    }
+  }
+}

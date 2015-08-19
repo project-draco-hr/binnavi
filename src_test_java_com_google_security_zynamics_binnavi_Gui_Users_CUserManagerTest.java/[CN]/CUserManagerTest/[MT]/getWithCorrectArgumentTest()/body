@@ -1,0 +1,3 @@
+{
+  assertNotNull(CUserManager.get(m_sql));
+}

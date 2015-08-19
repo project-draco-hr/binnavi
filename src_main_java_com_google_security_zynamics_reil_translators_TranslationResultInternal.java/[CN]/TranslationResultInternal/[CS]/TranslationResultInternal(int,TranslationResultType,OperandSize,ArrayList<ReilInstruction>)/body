@@ -1,0 +1,6 @@
+{
+  this.nextVariable=nextVariable;
+  this.resultType=resultType;
+  this.resultSize=resultSize;
+  this.instructions=instructions;
+}

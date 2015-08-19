@@ -1,0 +1,4 @@
+{
+  final Window parent=m_parent == null ? SwingUtilities.getWindowAncestor(m_parentComponent) : m_parent;
+  CViewSearcher.searchView(parent,m_container,m_address);
+}

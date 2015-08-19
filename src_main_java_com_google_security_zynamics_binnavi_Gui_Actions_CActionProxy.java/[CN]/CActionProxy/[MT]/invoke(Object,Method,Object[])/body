@@ -1,0 +1,21 @@
+{
+  if (GraphicsEnvironment.isHeadless() || !isExecuteMethod(method)) {
+    return method.invoke(m_action,args);
+  }
+  final CTutorial currentTutorial=CTutorialDialog.instance().getCurrentTutorial();
+  if (currentTutorial == null) {
+    return method.invoke(m_action,args);
+  }
+  final long actionId=(Long)ReflectionHelpers.getStaticField(m_action.getClass(),"serialVersionUID");
+  if (currentTutorial.getCurrentStep().handles(actionId)) {
+    final Object result=method.invoke(m_action,args);
+    if (currentTutorial.getCurrentStep().mandates(actionId)) {
+      currentTutorial.next();
+    }
+    return result;
+  }
+ else {
+    CTutorialDialog.instance().wrongAction(actionId);
+    return null;
+  }
+}

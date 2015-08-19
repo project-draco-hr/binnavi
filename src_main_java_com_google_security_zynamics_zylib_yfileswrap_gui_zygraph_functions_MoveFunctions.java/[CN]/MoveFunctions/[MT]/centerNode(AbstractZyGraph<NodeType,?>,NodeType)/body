@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can't be null");
+  final NodeRealizer realizer=graph.getGraph().getRealizer(node.getNode());
+  if (realizer.isVisible()) {
+    graph.getView().focusView(graph.getView().getZoom(),new Point2D.Double(realizer.getCenterX(),realizer.getCenterY()),graph.getSettings().getLayoutSettings().getAnimateLayout());
+    graph.updateViews();
+  }
+}

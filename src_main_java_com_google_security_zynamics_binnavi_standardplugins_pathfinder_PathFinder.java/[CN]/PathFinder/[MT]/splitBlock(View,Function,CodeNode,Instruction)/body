@@ -1,0 +1,35 @@
+{
+  boolean before=true;
+  final List<Instruction> beforeInstructions=new ArrayList<Instruction>();
+  final List<Instruction> afterInstructions=new ArrayList<Instruction>();
+  for (  final Instruction nodeInstruction : node.getInstructions()) {
+    if (before) {
+      beforeInstructions.add(nodeInstruction);
+    }
+ else {
+      afterInstructions.add(nodeInstruction);
+    }
+    if (nodeInstruction == instruction) {
+      before=false;
+    }
+  }
+  if (afterInstructions.isEmpty()) {
+    return new NodePair(node,null);
+  }
+ else {
+    final CodeNode firstNode=view.createCodeNode(function,beforeInstructions);
+    final CodeNode secondNode=view.createCodeNode(function,afterInstructions);
+    firstNode.setColor(node.getColor());
+    secondNode.setColor(DEFAULT_BLOCK_COLOR);
+    for (    final ViewEdge edge : node.getIncomingEdges()) {
+      final ViewEdge newEdge=view.createEdge(edge.getSource(),firstNode,edge.getType());
+      newEdge.setColor(edge.getColor());
+    }
+    for (    final ViewEdge edge : node.getOutgoingEdges()) {
+      final ViewEdge newEdge=view.createEdge(secondNode,edge.getTarget(),edge.getType());
+      newEdge.setColor(edge.getColor());
+    }
+    view.deleteNode(node);
+    return new NodePair(firstNode,secondNode);
+  }
+}

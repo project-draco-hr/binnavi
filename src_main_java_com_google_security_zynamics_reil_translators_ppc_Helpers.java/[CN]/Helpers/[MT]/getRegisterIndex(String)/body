@@ -1,0 +1,4 @@
+{
+  final String registerNumber=getRealRegisterName(register).substring(2);
+  return Integer.decode(registerNumber);
+}

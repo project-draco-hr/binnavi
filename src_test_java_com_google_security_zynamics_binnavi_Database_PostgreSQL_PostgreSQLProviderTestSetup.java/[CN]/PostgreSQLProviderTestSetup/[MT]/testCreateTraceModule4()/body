@@ -1,0 +1,7 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  final TraceList trace=getProvider().createTrace(module,"Trace Name","Trace Description");
+  assertEquals("Trace Name",trace.getName());
+  assertEquals("Trace Description",trace.getDescription());
+  assertEquals(0,trace.getEventCount());
+}

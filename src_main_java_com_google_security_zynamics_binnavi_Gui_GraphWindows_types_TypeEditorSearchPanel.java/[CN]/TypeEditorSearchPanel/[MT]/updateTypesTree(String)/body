@@ -1,0 +1,8 @@
+{
+  currentMatches=determineMatches(filterString,(DefaultMutableTreeNode)typesTree.getModel().getRoot());
+  selectMatches(currentMatches,typesTree);
+  currentMatchIndex=currentMatches.isEmpty() ? -1 : 0;
+  if (currentMatchIndex != -1) {
+    scrollToMatch(currentMatchIndex,currentMatches,typesTree);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(processManager,"IE01516: Process manager argument can not be null");
+  Preconditions.checkNotNull(threadEventListener,"IE01517: Thread event listener argument can not be null");
+  m_processManager=processManager;
+  m_threadEventListener=threadEventListener;
+  processManager.addListener(m_internalThreadListener);
+}

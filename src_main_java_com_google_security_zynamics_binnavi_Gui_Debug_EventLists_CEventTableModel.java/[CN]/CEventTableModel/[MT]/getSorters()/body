@@ -1,0 +1,6 @@
+{
+  final Pair<Integer,Comparator<?>> pair=new Pair<Integer,Comparator<?>>(CEventTableModel.THREAD_COLUMN,new LongComparator());
+  final ArrayList<Pair<Integer,Comparator<?>>> list=new ArrayList<Pair<Integer,Comparator<?>>>();
+  list.add(pair);
+  return list;
+}

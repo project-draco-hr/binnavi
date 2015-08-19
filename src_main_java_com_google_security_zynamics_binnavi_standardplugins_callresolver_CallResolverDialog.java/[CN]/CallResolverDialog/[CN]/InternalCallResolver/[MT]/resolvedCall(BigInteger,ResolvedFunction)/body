@@ -1,0 +1,6 @@
+{
+  final Function function=resolvedFunction.getFunction();
+  final Address functionAddress=function == null ? resolvedFunction.getAddress() : function.getAddress();
+  final String functionName=function == null ? resolvedFunction.getMemoryModule().getName() + "!???" : function.getModule().getName() + "!" + function.getName();
+  appendOutput(String.format("Done resolving: %08X -> %08X (%s)",lastIndirectCall.longValue(),functionAddress.toLong(),functionName));
+}

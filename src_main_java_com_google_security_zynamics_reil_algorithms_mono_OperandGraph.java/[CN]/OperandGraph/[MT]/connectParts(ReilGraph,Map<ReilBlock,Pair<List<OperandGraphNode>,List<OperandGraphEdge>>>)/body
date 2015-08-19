@@ -1,0 +1,30 @@
+{
+  final Pair<Collection<List<OperandGraphNode>>,Collection<List<OperandGraphEdge>>> unzipped=CollectionHelpers.unzip(graphMap.values());
+  final Set<OperandGraphNode> allNodes=Sets.newHashSet(CollectionHelpers.flatten(unzipped.first()));
+  final Set<OperandGraphEdge> allEdges=Sets.newHashSet(CollectionHelpers.flatten(unzipped.second()));
+  for (  final ReilBlock block : graph) {
+    final Pair<List<OperandGraphNode>,List<OperandGraphEdge>> p=graphMap.get(block);
+    final List<OperandGraphNode> nodes=p.first();
+    final List<ReilBlock> parents=getParents(block);
+    for (    final OperandGraphNode node : nodes) {
+      if (node.getIndex() == 2) {
+        continue;
+      }
+      final OperandGraphNode definition=findDefinition(node,block,graphMap,false);
+      if (definition != null) {
+        final OperandGraphEdge edge=new OperandGraphEdge(definition,node);
+        OperandGraphNode.link(definition,node);
+        allEdges.add(edge);
+      }
+ else {
+        final Set<OperandGraphNode> definitions=findDefinitions(parents,node,graphMap,new HashSet<ReilBlock>());
+        for (        final OperandGraphNode innerDefinition : definitions) {
+          final OperandGraphEdge edge=new OperandGraphEdge(innerDefinition,node);
+          OperandGraphNode.link(innerDefinition,node);
+          allEdges.add(edge);
+        }
+      }
+    }
+  }
+  return new OperandGraph(allNodes,allEdges);
+}

@@ -1,0 +1,3 @@
+{
+  CProjectFunctions.openProjects(m_projectTree,m_projects);
+}

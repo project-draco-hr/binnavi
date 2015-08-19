@@ -1,0 +1,6 @@
+{
+  final double minZoom=getMinimumZoom(view);
+  if (view.getZoom() < minZoom) {
+    view.setZoom(minZoom);
+  }
+}

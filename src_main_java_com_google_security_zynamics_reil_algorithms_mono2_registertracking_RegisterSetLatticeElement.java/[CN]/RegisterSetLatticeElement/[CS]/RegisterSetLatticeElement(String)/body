@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(register,"Error: Register argument can not be null");
+  (m_taintedRegs=new TreeSet<String>()).add(register);
+  (m_newlyTaintedRegs=new TreeSet<String>()).add(register);
+  m_untaintedRegs=new TreeSet<String>();
+  m_readRegs=new TreeSet<String>();
+  m_updatedRegs=new TreeSet<String>();
+}

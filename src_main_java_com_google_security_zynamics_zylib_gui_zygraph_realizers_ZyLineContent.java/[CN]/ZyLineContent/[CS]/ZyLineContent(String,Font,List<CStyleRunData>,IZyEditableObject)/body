@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(text,"Error: Text argument can't be null");
+  Preconditions.checkNotNull(textColorStyleRun,"Error: Text color style run can't be null.");
+  m_model=model;
+  regenerateLine(text,font,textColorStyleRun);
+}

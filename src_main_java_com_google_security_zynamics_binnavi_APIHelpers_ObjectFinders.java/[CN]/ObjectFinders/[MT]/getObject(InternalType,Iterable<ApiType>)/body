@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(internalObject,"IE00003: Internal object argument can not be null");
+  Preconditions.checkNotNull(apiObjects,"IE00004: API objects argument can not be null");
+  for (  final ApiType apiObject : apiObjects) {
+    if (apiObject.getNative() == internalObject) {
+      return apiObject;
+    }
+  }
+  return null;
+}

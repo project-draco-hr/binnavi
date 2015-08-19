@@ -1,0 +1,7 @@
+{
+  final int row=table.rowAtPoint(event.getPoint());
+  if (row == -1) {
+    return;
+  }
+  table.setRowSelectionInterval(row,row);
+}

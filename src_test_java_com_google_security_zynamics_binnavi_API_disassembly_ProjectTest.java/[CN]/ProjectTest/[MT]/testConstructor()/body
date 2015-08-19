@@ -1,0 +1,9 @@
+{
+  assertEquals(database,m_project.getDatabase());
+  assertEquals("Project Name",m_project.getName());
+  assertEquals("Project Description",m_project.getDescription());
+  assertEquals(creationDate,m_project.getCreationDate());
+  assertEquals(modificationDate,m_project.getModificationDate());
+  assertFalse(m_project.isLoaded());
+  assertEquals("Project 'Project Name' [unloaded, 1 address spaces]",m_project.toString());
+}

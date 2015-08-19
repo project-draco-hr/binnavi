@@ -1,0 +1,23 @@
+{
+  final List<Byte> argchars=new ArrayList<>();
+  argchars.add((byte)((type >> 24) & 0xFF));
+  argchars.add((byte)((type >> 16) & 0xFF));
+  argchars.add((byte)((type >> 8) & 0xFF));
+  argchars.add((byte)((type) & 0xFF));
+  argchars.add((byte)((packetId >> 24) & 0xFF));
+  argchars.add((byte)((packetId >> 16) & 0xFF));
+  argchars.add((byte)((packetId >> 8) & 0xFF));
+  argchars.add((byte)((packetId) & 0xFF));
+  argchars.add((byte)((arguments.size() >> 24) & 0xFF));
+  argchars.add((byte)((arguments.size() >> 16) & 0xFF));
+  argchars.add((byte)((arguments.size() >> 8) & 0xFF));
+  argchars.add((byte)((arguments.size()) & 0xFF));
+  for (  final DebugMessageArgument argument : arguments) {
+    argchars.addAll(argument.getBytes());
+  }
+  final byte[] ret=new byte[argchars.size()];
+  for (int i=0; i < argchars.size(); i++) {
+    ret[i]=argchars.get(i);
+  }
+  return ret;
+}

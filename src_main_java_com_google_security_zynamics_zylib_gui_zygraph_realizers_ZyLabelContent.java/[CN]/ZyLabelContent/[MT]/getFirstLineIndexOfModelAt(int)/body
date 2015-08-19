@@ -1,0 +1,13 @@
+{
+  final ZyLineContent lineContent=getLineContent(lineYPos);
+  if (lineContent != null) {
+    final IZyEditableObject lineModel=lineContent.getLineObject();
+    int indexCopy=lineYPos;
+    while (--indexCopy >= 0) {
+      if (m_content.get(indexCopy).getLineObject() != lineModel) {
+        return indexCopy + 1;
+      }
+    }
+  }
+  return lineYPos;
+}

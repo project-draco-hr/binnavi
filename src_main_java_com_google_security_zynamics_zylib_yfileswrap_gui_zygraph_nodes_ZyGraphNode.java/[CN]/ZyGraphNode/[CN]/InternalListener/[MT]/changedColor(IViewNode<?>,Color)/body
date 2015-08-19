@@ -1,0 +1,4 @@
+{
+  m_realizer.setFillColor(color);
+  updateViews();
+}

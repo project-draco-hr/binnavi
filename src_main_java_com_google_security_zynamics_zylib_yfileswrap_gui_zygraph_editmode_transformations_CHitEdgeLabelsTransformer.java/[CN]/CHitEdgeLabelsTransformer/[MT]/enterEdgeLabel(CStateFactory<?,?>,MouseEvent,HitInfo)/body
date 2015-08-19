@@ -1,0 +1,4 @@
+{
+  final EdgeLabel l=hitInfo.getHitEdgeLabel();
+  return new CStateChange(m_factory.createEdgeLabelEnterState(l,event),true);
+}

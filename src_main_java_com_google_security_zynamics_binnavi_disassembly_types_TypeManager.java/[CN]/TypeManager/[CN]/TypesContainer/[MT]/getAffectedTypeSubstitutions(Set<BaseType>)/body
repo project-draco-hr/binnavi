@@ -1,0 +1,8 @@
+{
+  final Set<BaseType> affectedTypes=Sets.intersection(baseTypes,substitutionsByType.keySet());
+  final HashSet<TypeSubstitution> typeSubstitutions=Sets.newHashSet();
+  for (  final BaseType baseType : affectedTypes) {
+    typeSubstitutions.addAll(substitutionsByType.get(baseType));
+  }
+  return typeSubstitutions;
+}

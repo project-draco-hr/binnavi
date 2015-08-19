@@ -1,0 +1,7 @@
+{
+  m_databases.add(database);
+  for (  final DatabaseManagerListener listener : m_listeners) {
+    listener.addedDatabase(this,database);
+  }
+  return database;
+}

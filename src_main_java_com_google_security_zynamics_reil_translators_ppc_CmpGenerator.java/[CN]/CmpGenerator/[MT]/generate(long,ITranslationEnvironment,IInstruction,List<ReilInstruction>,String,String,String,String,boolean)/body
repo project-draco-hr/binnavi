@@ -1,0 +1,26 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,mnemonic);
+  final String conditionRegister=firstOperand.toUpperCase();
+  final String realFirstOperand=secondOperand;
+  final String realSecondOperand=thirdOperand;
+  final String crTemp=environment.getNextVariableString();
+  final String firstToUnsigned=(!isLogical) ? environment.getNextVariableString() : null;
+  final String secondToUnsigned=(!isLogical) ? environment.getNextVariableString() : null;
+  final String firstUnsigned=(!isLogical) ? environment.getNextVariableString() : realFirstOperand;
+  final String secondUnsigned=(!isLogical) ? environment.getNextVariableString() : realSecondOperand;
+  final String logicalTmpQword=environment.getNextVariableString();
+  final String logicalTmp=environment.getNextVariableString();
+  if (!isLogical) {
+    instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.DWORD,realFirstOperand,OperandSize.DWORD,"2147483648",OperandSize.QWORD,firstToUnsigned));
+    instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.DWORD,realSecondOperand,OperandSize.DWORD,"2147483648",OperandSize.QWORD,secondToUnsigned));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,OperandSize.QWORD,firstToUnsigned,OperandSize.DWORD,"4294967295",OperandSize.DWORD,firstUnsigned));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,OperandSize.QWORD,secondToUnsigned,OperandSize.DWORD,"4294967295",OperandSize.DWORD,secondUnsigned));
+  }
+  instructions.add(ReilHelpers.createSub(baseOffset++,OperandSize.DWORD,firstUnsigned,OperandSize.DWORD,secondUnsigned,OperandSize.QWORD,logicalTmpQword));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,OperandSize.QWORD,logicalTmpQword,OperandSize.DWORD,"8589934591",OperandSize.QWORD,logicalTmp));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.QWORD,logicalTmp,OperandSize.BYTE,conditionRegister + "EQ"));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.QWORD,logicalTmp,OperandSize.WORD,"-32",OperandSize.BYTE,conditionRegister + "LT"));
+  instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,conditionRegister + "EQ",OperandSize.BYTE,conditionRegister + "LT",OperandSize.BYTE,crTemp));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.BYTE,crTemp,OperandSize.BYTE,conditionRegister + "GT"));
+  instructions.add(ReilHelpers.createStr(baseOffset,OperandSize.BYTE,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.BYTE,conditionRegister + "SO"));
+}

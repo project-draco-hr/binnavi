@@ -1,0 +1,12 @@
+{
+switch (type) {
+case REGULAR:
+    return DebugCommandType.CMD_SETBP;
+case ECHO:
+  return DebugCommandType.CMD_SETBPE;
+case STEP:
+return DebugCommandType.CMD_SETBPS;
+default :
+throw new IllegalArgumentException(String.format("IE00734: Unknown breakpoint type '%s'",type));
+}
+}

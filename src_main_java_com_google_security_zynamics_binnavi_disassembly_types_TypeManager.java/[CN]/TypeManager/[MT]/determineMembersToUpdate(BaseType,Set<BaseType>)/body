@@ -1,0 +1,15 @@
+{
+  final ImmutableList.Builder<TypeMember> builder=ImmutableList.<TypeMember>builder();
+  boolean includeMember=false;
+  for (  TypeMember member : baseType) {
+    if (affectedTypes.contains(member.getBaseType())) {
+      if (!includeMember) {
+        includeMember=true;
+      }
+    }
+    if (includeMember) {
+      builder.add(member);
+    }
+  }
+  return builder.build();
+}

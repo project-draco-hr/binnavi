@@ -1,0 +1,9 @@
+{
+  final Builder<BaseType,Integer> builder=ImmutableMap.<BaseType,Integer>builder();
+  for (  BaseType baseType : baseTypes) {
+    if (baseType.getCategory() != BaseTypeCategory.FUNCTION_PROTOTYPE) {
+      builder.put(baseType,baseType.getBitSize());
+    }
+  }
+  return builder.build();
+}

@@ -1,0 +1,11 @@
+{
+  content.removeListener(m_internalContentListener);
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      listener.closedAddressSpace(AddressSpace.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

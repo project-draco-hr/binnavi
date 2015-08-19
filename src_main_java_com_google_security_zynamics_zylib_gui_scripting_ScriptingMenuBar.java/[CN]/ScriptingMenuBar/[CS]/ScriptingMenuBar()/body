@@ -1,0 +1,16 @@
+{
+  final JMenu fileMenu=new JMenu(Constants.MENU_FILE);
+  fileMenu.addSeparator();
+  fileMenu.add(new ExecuteAction());
+  fileMenu.add(executeAgainAction);
+  fileMenu.addSeparator();
+  fileMenu.add(new NewConsoleTabAction());
+  fileMenu.add(new CloseTabAction());
+  add(fileMenu);
+  final JMenu editMenu=new JMenu(Constants.MENU_EDIT);
+  editMenu.addSeparator();
+  editMenu.add(cutAction);
+  editMenu.add(copyAction);
+  editMenu.add(pasteAction);
+  add(editMenu);
+}

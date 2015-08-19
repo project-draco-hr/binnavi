@@ -1,0 +1,3 @@
+{
+  CNodeDeleter.deleteNode(m_view,m_node);
+}

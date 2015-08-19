@@ -1,0 +1,6 @@
+{
+  if (!existingType.getName().equals(name.getText())) {
+    typeManager.renameType(existingType,name.getText());
+  }
+  createOrUpdateMembers(existingType,members.getModel());
+}

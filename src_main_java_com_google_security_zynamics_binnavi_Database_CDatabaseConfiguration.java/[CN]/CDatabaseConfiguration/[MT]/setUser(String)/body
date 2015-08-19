@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(user,"IE00692: Database user can not be null");
+  if (user.equals(getUser())) {
+    return;
+  }
+  m_user=user;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedUser(m_database,user);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  if (debuggeeActiveThread == thread) {
+    return;
+  }
+  if ((thread != null) && !activeProcessThreads.contains(thread)) {
+    throw new IllegalStateException("IE00369: Unknown thread");
+  }
+  final TargetProcessThread oldThread=debuggeeActiveThread;
+  debuggeeActiveThread=thread;
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.changedActiveThread(oldThread,thread);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

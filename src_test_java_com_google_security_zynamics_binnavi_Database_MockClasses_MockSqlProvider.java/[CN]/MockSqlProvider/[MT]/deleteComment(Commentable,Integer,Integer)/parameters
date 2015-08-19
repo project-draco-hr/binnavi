@@ -1,0 +1,3 @@
+Commentable commentable
+Integer commentId
+Integer userId

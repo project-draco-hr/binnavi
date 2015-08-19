@@ -1,0 +1,11 @@
+{
+  properties.setString(DESCRIPTION,description);
+  properties.setString(DRIVER,driver);
+  properties.setString(HOST,host);
+  properties.setString(NAME,name);
+  properties.setString(USER,user);
+  properties.setString(PASSWORD,password);
+  properties.setString(IDENTITY,identity);
+  properties.setBoolean(AUTO_CONNECT,autoConnect);
+  properties.setBoolean(SAVE_PASSWORD,savePassword);
+}

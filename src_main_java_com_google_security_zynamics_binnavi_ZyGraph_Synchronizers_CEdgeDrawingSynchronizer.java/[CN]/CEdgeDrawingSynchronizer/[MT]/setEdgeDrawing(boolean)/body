@@ -1,0 +1,10 @@
+{
+  m_graph.iterateEdges(new IEdgeCallback<NaviEdge>(){
+    @Override public IterationMode nextEdge(    final NaviEdge edge){
+      edge.setDrawSloppyEdges(draw);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  m_graph.updateViews();
+}

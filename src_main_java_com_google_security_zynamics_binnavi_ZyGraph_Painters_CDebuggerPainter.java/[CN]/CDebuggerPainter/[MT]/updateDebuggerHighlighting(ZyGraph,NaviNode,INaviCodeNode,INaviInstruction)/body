@@ -1,0 +1,10 @@
+{
+  node.setHighlighting(CHighlightLayers.PROGRAM_COUNTER_LAYER,CCodeNodeHelpers.instructionToLine(codeNode,instruction),11,-1,ConfigManager.instance().getDebuggerColorSettings().getActiveLine());
+  if (!node.getRawNode().isVisible()) {
+    node.getRawNode().setVisible(true);
+    if (graph.getSettings().getProximitySettings().getProximityBrowsing()) {
+      graph.showNode(node,true);
+    }
+    graph.doLayout();
+  }
+}

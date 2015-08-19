@@ -1,0 +1,6 @@
+{
+  super.dispose();
+  m_contextContainer.dispose();
+  m_module.removeListener(m_listener);
+  deleteChildren();
+}

@@ -1,0 +1,3 @@
+{
+  getProvider().deleteSectionComment(-1,1,null,null);
+}

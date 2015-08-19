@@ -1,0 +1,9 @@
+{
+  final MockViewNodeListener listener=new MockViewNodeListener();
+  m_node.addListener(listener);
+  assertTrue(m_node.isVisible());
+  m_node.getNative().setVisible(false);
+  assertFalse(m_node.isVisible());
+  assertEquals("changedVisibility;",listener.events);
+  m_node.removeListener(listener);
+}

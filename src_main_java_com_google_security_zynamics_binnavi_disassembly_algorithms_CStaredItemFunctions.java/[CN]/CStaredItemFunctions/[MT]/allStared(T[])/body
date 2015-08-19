@@ -1,0 +1,8 @@
+{
+  for (  final IStaredItem item : items) {
+    if (!item.isStared()) {
+      return false;
+    }
+  }
+  return true;
+}

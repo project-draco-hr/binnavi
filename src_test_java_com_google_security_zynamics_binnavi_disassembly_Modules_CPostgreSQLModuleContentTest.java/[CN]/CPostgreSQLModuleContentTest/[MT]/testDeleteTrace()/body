@@ -1,0 +1,16 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent1=module.getContent();
+  assertNotNull(moduleContent1);
+  final CView view=moduleContent1.getViewContainer().createView("name","desc");
+  assertNotNull(view);
+  final TraceList trace=moduleContent1.getTraceContainer().createTrace("name2","desc2");
+  assertNotNull(trace);
+  moduleContent1.getTraceContainer().deleteTrace(trace);
+  try {
+    moduleContent1.getTraceContainer().deleteTrace(null);
+  }
+ catch (  final NullPointerException e) {
+  }
+}

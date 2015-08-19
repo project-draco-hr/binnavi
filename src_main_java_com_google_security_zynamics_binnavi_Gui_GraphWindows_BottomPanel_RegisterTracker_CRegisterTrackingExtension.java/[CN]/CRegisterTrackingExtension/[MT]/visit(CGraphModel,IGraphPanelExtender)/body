@@ -1,0 +1,10 @@
+{
+  m_resultsContainer=new CTrackingResultContainer(model.getViewContainer(),model.getGraph());
+  m_extender=extender;
+  m_outerPanel.add(m_tabbedPane);
+  m_tabbedPane.addTab("Results",m_resultsPanel=new CTrackingResultsPanel(m_extender,m_resultsContainer));
+  m_tabbedPane.addTab("Settings",m_settingsPanel);
+  extender.addTab("Register Tracking",m_outerPanel);
+  extender.registerCodeNodeExtension(new OperandMenuExtension());
+  m_resultsContainer.addListener(m_internalListener);
+}

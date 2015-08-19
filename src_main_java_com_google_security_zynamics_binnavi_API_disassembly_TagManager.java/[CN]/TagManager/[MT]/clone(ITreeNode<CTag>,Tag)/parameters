@@ -1,0 +1,2 @@
+ITreeNode<CTag> currentNode
+Tag parentExpression

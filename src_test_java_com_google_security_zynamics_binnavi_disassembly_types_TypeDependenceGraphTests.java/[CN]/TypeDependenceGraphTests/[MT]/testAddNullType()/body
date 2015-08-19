@@ -1,0 +1,4 @@
+{
+  final TypeDependenceGraph dependenceGraph=new TypeDependenceGraph(ImmutableList.<BaseType>builder().build(),ImmutableList.<TypeMember>builder().build());
+  dependenceGraph.addType(null);
+}

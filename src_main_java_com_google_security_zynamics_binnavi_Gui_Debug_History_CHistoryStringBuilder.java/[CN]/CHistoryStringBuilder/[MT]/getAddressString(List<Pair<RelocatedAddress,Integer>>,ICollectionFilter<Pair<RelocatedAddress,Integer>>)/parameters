@@ -1,0 +1,2 @@
+List<Pair<RelocatedAddress,Integer>> addresses
+ICollectionFilter<Pair<RelocatedAddress,Integer>> filter

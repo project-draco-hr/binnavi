@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(module,"Module argument can not be null");
+  Preconditions.checkNotNull(key,"Key argument can not be null");
+  Preconditions.checkNotNull(value,"Value argument can not be null");
+}

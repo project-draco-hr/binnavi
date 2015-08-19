@@ -1,0 +1,8 @@
+{
+  Preconditions.checkArgument(rawModuleId > 0,"IE00258: Module ID must be positive");
+  m_name=Preconditions.checkNotNull(name,"IE00259: Module Name can't be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE00265: Invalid SQL provider");
+  m_id=rawModuleId;
+  m_functionCount=functionCount;
+  m_isComplete=isComplete;
+}

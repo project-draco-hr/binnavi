@@ -1,0 +1,9 @@
+{
+  if (existingType == null) {
+    return;
+  }
+  final TypeMember arrayMember=existingType.iterator().next();
+  numberElements.setValue(arrayMember.getNumberOfElements().get());
+  baseTypes.getModel().selectByBaseType(arrayMember.getBaseType());
+  updatePreview();
+}

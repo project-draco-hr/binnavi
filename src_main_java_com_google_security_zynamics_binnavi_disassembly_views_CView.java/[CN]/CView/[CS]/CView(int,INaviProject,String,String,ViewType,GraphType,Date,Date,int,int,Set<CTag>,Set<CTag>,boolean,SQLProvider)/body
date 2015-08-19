@@ -1,0 +1,5 @@
+{
+  this(viewId,name,description,type,graphType,creationDate,modificationDate,bbcount,edgecount,tags,nodeTags,isStared,provider);
+  Preconditions.checkNotNull(project,"IE01281: Project argument can not be null");
+  m_configuration.setProject(project);
+}

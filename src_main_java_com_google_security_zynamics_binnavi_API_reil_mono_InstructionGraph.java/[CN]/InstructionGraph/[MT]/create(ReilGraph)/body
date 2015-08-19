@@ -1,0 +1,3 @@
+{
+  return CInstructionGraphConverter.convert(com.google.security.zynamics.reil.algorithms.mono.InstructionGraph.create(ReilGraphConverter.convert(graph)));
+}

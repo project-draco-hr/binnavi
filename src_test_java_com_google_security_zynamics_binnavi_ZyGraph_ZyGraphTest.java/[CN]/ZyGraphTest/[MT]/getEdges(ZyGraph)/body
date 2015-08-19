@@ -1,0 +1,11 @@
+{
+  final ArrayList<com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge> edges=new ArrayList<com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge>();
+  graph.iterateEdges(new IEdgeCallback<com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge>(){
+    @Override public IterationMode nextEdge(    final com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge node){
+      edges.add(node);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return edges;
+}

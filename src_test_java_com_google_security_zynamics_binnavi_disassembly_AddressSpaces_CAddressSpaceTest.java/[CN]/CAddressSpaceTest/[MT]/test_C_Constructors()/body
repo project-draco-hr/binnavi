@@ -1,0 +1,49 @@
+{
+  final MockSqlProvider sql=new MockSqlProvider();
+  try {
+    new CAddressSpace(0,"AS Name","AS Description",new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  try {
+    new CAddressSpace(1,null,"AS Description",new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  try {
+    new CAddressSpace(1,"AS Name",null,new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  try {
+    new CAddressSpace(1,"AS Name","AS Description",null,new Date(),new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  try {
+    new CAddressSpace(1,"AS Name","AS Description",new Date(),null,new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  try {
+    new CAddressSpace(1,"AS Name","AS Description",new Date(),new Date(),null,null,sql,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  try {
+    new CAddressSpace(1,"AS Name","AS Description",new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,null,new MockProject());
+    fail();
+  }
+ catch (  final Exception exception) {
+  }
+  final CAddressSpace addressSpace=new CAddressSpace(1,"AS Name","AS Description",new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+  assertEquals(1,addressSpace.getConfiguration().getId());
+  assertEquals("AS Name",addressSpace.getConfiguration().getName());
+  assertEquals("AS Description",addressSpace.getConfiguration().getDescription());
+}

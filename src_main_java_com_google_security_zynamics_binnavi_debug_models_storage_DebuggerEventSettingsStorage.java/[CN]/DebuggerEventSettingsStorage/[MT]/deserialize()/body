@@ -1,0 +1,3 @@
+{
+  return new DebuggerEventSettings(readBoolSetting(LOAD_DLL),readBoolSetting(UNLOAD_DLL));
+}

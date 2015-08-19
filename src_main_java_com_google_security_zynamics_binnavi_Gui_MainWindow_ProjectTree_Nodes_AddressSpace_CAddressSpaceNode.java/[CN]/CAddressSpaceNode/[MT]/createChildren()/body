@@ -1,0 +1,8 @@
+{
+  if (m_addressSpace.isLoaded()) {
+    m_addressSpace.getContent().addListener(m_addrSpaceContentListener);
+    for (    final INaviModule module : m_addressSpace.getContent().getModules()) {
+      add(new CModuleNode(getProjectTree(),this,m_database,m_addressSpace,module,new CProjectContainer(m_database,m_project,m_addressSpace)));
+    }
+  }
+}

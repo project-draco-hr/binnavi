@@ -1,0 +1,3 @@
+{
+  return OperandSize.valueOf(m_operand.getSize());
+}

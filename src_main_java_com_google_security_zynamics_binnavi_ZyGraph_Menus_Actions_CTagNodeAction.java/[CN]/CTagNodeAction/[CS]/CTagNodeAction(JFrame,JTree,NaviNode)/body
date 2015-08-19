@@ -1,0 +1,9 @@
+{
+  super("Tag Node");
+  Preconditions.checkNotNull(parent,"IE02165: Parent argument can not be null");
+  Preconditions.checkNotNull(tagsTree,"IE02166: Tags tree argument can not be null");
+  Preconditions.checkNotNull(node,"IE02167: Node argument can not be null");
+  m_parent=parent;
+  m_tagsTree=tagsTree;
+  m_node=node;
+}

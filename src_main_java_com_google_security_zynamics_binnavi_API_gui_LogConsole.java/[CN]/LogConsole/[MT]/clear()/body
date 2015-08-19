@@ -1,0 +1,3 @@
+{
+  CPluginOutputDialog.instance().clear();
+}

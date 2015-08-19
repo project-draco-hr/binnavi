@@ -1,0 +1,5 @@
+{
+  for (  final String register : registers) {
+    this.registers.add(Preconditions.checkNotNull(register,"Error: register argument can not be null"));
+  }
+}

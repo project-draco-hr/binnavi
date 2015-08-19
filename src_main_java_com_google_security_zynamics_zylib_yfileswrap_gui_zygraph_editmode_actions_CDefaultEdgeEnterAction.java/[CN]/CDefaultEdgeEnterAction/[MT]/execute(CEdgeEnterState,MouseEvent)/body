@@ -1,0 +1,5 @@
+{
+  highlightEdge(state.getEdge());
+  updateTooltip(state.getGraph(),state.getEdge());
+  state.getGraph().updateViews();
+}

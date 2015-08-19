@@ -1,0 +1,19 @@
+{
+  final List<INaviOperandTreeNode> children=node.getChildren();
+  BigInteger initial=evaluateExpression(children.get(0),registers,debugger,module);
+  for (int i=1; i < children.size(); i++) {
+    if (node.getValue().equals("+")) {
+      initial=initial.add(evaluateExpression(children.get(i),registers,debugger,module));
+    }
+ else     if (node.getValue().equals("-")) {
+      initial=initial.subtract(evaluateExpression(children.get(i),registers,debugger,module));
+    }
+ else     if (node.getValue().equals("*")) {
+      initial=initial.multiply(evaluateExpression(children.get(i),registers,debugger,module));
+    }
+ else {
+      throw new CExpressionEvaluationException(String.format("Unknown operand '%s'",node.getValue()));
+    }
+  }
+  return initial;
+}

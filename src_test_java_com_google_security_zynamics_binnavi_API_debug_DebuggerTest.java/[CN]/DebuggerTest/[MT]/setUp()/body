@@ -1,0 +1,6 @@
+{
+  debugSettings=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  mockDebugger=new MockDebugger(debugSettings);
+  debugger=new Debugger(mockDebugger);
+  mockDebugger.setAddressTranslator(CommonTestObjects.MODULE,CommonTestObjects.MODULE_FILE_BASE,CommonTestObjects.MODULE_IMAGE_BASE.getAddress());
+}

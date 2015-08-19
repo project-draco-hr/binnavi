@@ -1,0 +1,9 @@
+{
+  final int selectedIndex=getSelectionIndex(event);
+  if (selectedIndex != -1) {
+    final TargetProcessThread thread=m_table.getModel().getThreads().get(selectedIndex);
+    final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+    final CThreadInformationTableMenu popupMenu=new CThreadInformationTableMenu(SwingUtilities.getWindowAncestor(CThreadInformationPanel.this),debugger,thread);
+    popupMenu.show(m_table,event.getX(),event.getY());
+  }
+}

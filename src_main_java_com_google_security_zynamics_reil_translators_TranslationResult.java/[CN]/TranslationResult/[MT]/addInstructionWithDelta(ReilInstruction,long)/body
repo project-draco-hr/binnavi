@@ -1,0 +1,4 @@
+{
+  instruction.setAddress(new CAddress(baseAddress + instructions.size() + delta));
+  instructions.add(instruction);
+}

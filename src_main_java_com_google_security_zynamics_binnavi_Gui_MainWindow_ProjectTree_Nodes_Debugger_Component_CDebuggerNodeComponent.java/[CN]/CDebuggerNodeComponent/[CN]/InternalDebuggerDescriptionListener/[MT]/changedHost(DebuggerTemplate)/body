@@ -1,0 +1,4 @@
+{
+  m_hostTextField.setText(debugger.getHost());
+  updateGui();
+}

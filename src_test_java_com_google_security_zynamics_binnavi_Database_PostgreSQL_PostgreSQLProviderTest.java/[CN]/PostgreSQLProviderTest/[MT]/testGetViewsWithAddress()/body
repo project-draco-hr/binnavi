@@ -1,0 +1,5 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  assertNotNull(getProvider().getViewsWithAddresses(module,Lists.newArrayList(new UnrelocatedAddress(new CAddress(0x01002B69))),true).size());
+}

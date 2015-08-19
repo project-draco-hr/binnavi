@@ -1,0 +1,11 @@
+{
+  final long tid=parseThreadId();
+  final byte[] data=parseData();
+  try {
+    final RegisterValues registerValues=RegisterValuesParser.parse(data);
+    return new StepBreakpointHitReply(packetId,0,tid,registerValues);
+  }
+ catch (  final MessageParserException e) {
+    return new StepBreakpointHitReply(packetId,PARSER_ERROR,tid,null);
+  }
+}

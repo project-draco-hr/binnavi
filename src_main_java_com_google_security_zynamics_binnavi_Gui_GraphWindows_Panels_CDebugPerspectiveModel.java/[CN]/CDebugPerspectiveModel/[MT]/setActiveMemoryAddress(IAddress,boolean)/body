@@ -1,0 +1,17 @@
+{
+  if ((address != null) && address.equals(m_activeAddress)) {
+    return;
+  }
+ else   if ((address == null) && (m_activeAddress == null)) {
+    return;
+  }
+  m_activeAddress=address;
+  for (  final IDebugPerspectiveModelListener listener : m_listeners) {
+    try {
+      listener.changedActiveAddress(m_activeAddress,focusMemoryWindow);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals("TEST USER 1",TESTUSER_1.getUserName());
+}

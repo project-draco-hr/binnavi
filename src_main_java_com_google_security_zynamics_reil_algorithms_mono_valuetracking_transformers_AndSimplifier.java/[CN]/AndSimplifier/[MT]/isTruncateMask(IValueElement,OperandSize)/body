@@ -1,0 +1,3 @@
+{
+  return (value instanceof Literal) && ((Literal)value).getValue().equals(BigInteger.valueOf(TranslationHelpers.getAllBitsMask(size)));
+}

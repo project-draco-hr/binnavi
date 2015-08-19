@@ -1,0 +1,4 @@
+{
+  bufferGraphics.clearRect(0,0,getWidth(),getHeight());
+  bufferGraphics.setFont(m_font);
+}

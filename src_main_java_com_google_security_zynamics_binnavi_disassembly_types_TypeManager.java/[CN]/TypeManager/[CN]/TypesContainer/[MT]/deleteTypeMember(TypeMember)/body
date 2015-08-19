@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(typeMember,"Error: typeMember argument can not be null");
+  typeMember.getParentType().deleteMember(typeMember);
+  memberById.remove(typeMember.getId());
+  return dependenceGraph.deleteMember(typeMember);
+}

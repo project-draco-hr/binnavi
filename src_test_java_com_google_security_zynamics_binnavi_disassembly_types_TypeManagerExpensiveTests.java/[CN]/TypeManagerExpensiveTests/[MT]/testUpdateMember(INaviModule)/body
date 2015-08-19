@@ -1,0 +1,17 @@
+{
+  final TypeManager manager=module.getTypeManager();
+  final BaseType baseType0=manager.createAtomicType(TypeName,32,true);
+  final BaseType baseType1=manager.createAtomicType(UpdatedTypeName,32,true);
+  final BaseType compoundType=manager.createStructure(CompoundTypeName);
+  final TypeMember member=manager.appendMember(compoundType,baseType0,MemberName);
+  manager.updateStructureMember(member,baseType0,UpdatedMemberName,100);
+  final List<RawTypeMember> members=getProvider().loadTypeMembers(module);
+  Assert.assertTrue(findRawMembers(MemberName,members).isEmpty());
+  final List<RawTypeMember> updatedMembers=findRawMembers(UpdatedMemberName,members);
+  Assert.assertTrue(updatedMembers.size() == 1);
+  matchMember(member,updatedMembers.get(0));
+  manager.deleteMember(member);
+  manager.deleteType(baseType0);
+  manager.deleteType(baseType1);
+  manager.deleteType(compoundType);
+}

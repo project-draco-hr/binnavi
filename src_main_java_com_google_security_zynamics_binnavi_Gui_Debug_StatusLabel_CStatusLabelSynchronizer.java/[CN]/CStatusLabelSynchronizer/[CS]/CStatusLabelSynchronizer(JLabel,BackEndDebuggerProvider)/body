@@ -1,0 +1,10 @@
+{
+  m_label=Preconditions.checkNotNull(label,"IE01095: Label argument can not be null");
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01096: Debugger provider argument can not be null");
+  m_processListener=new CProcessListener(label);
+  m_debugEventListener=new CDebugEventListener(label);
+  for (  final IDebugger debugger : debuggerProvider) {
+    addListeners(debugger);
+  }
+  debuggerProvider.addListener(m_debuggerProviderListener);
+}

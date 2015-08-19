@@ -1,0 +1,4 @@
+{
+  this.canHalt=value;
+  return this;
+}

@@ -1,0 +1,3 @@
+{
+  return m_graphs.isEmpty() ? null : m_graphs.get(m_graphs.size() - 1);
+}

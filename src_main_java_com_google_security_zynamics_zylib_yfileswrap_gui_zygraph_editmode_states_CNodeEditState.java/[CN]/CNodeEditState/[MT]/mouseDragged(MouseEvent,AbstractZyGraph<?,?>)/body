@@ -1,0 +1,5 @@
+{
+  m_isDragging=true;
+  CEditNodeHelper.select(graph,m_node,event);
+  return new CStateChange(this,false);
+}

@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  m_clearRegisterCheckbox.setSelected(true);
+  m_clearRegisterField.setBorder(new LineBorder(Color.BLACK));
+  updateRegisterField();
+  m_clearRegisterCheckbox.addItemListener(new InternalItemListener());
+  add(m_clearRegisterCheckbox,BorderLayout.NORTH);
+  add(m_clearRegisterField,BorderLayout.CENTER);
+  setBorder(new EmptyBorder(5,5,5,5));
+}

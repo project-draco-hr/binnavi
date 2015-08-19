@@ -1,0 +1,35 @@
+{
+  final MockNode node504C=new MockNode("504C");
+  final MockNode node5090=new MockNode("5090");
+  final MockNode node50A0=new MockNode("50A0");
+  final MockNode node50B0=new MockNode("50B0");
+  final MockNode node50BC=new MockNode("50BC");
+  final MockNode node50C0=new MockNode("50C0");
+  final MockNode node5068=new MockNode("5068");
+  final MockEdge edge9=new MockEdge(node504C,node5068);
+  final MockEdge edge1=new MockEdge(node504C,node5090);
+  final MockEdge edge2=new MockEdge(node5090,node50A0);
+  final MockEdge edge3=new MockEdge(node5090,node50B0);
+  final MockEdge edge4=new MockEdge(node50A0,node50A0);
+  final MockEdge edge5=new MockEdge(node50A0,node50B0);
+  final MockEdge edge6=new MockEdge(node50B0,node504C);
+  final MockEdge edge7=new MockEdge(node50B0,node50BC);
+  final MockEdge edge8=new MockEdge(node50BC,node50C0);
+  final MockEdge edge10=new MockEdge(node5068,node50C0);
+  MockNode.link(node504C,node5068);
+  MockNode.link(node504C,node5090);
+  MockNode.link(node5090,node50A0);
+  MockNode.link(node5090,node50B0);
+  MockNode.link(node50A0,node50A0);
+  MockNode.link(node50A0,node50B0);
+  MockNode.link(node50B0,node50BC);
+  MockNode.link(node50B0,node504C);
+  MockNode.link(node5068,node50C0);
+  MockNode.link(node50BC,node50C0);
+  final List<MockNode> nodes=Lists.newArrayList(node504C,node5090,node50A0,node50B0,node50BC,node50C0,node5068);
+  final List<MockEdge> edges=Lists.newArrayList(edge9,edge7,edge1,edge2,edge3,edge4,edge5,edge6,edge8,edge10);
+  final DirectedGraph<MockNode,MockEdge> graph=new DirectedGraph<MockNode,MockEdge>(nodes,edges);
+  final Tree<MockNode> tree=LengauerTarjan.calculate(graph,node504C).first();
+  assertNotNull(tree.getRootNode());
+  assertEquals(3,tree.getRootNode().getChildren().size());
+}

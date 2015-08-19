@@ -1,0 +1,9 @@
+{
+  setScrollBarMaximum();
+  int width=(getWidth() + 1) - m_scrollbar.getWidth();
+  int height=(getHeight() + 1) - m_horizontalScrollbar.getHeight();
+  width=Math.max(1,width);
+  height=Math.max(1,height);
+  img=new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+  bufferGraphics=img.getGraphics();
+}

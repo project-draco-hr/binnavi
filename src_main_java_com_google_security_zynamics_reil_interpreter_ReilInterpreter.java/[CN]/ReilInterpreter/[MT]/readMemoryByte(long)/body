@@ -1,0 +1,3 @@
+{
+  return (byte)memory.load(address,1);
+}

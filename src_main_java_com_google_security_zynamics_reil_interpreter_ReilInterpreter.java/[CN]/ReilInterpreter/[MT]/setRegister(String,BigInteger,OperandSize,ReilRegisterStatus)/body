@@ -1,0 +1,9 @@
+{
+  final ReilRegister r=new ReilRegister(register,size,value);
+  if (registers.containsKey(register)) {
+    registers.remove(register);
+  }
+  if (status == ReilRegisterStatus.DEFINED) {
+    registers.put(register,r);
+  }
+}

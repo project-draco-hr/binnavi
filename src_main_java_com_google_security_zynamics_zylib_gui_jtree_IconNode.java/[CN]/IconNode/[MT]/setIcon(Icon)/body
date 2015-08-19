@@ -1,0 +1,3 @@
+{
+  this.icon=Preconditions.checkNotNull(icon,"Error: icon argument can not be null");
+}

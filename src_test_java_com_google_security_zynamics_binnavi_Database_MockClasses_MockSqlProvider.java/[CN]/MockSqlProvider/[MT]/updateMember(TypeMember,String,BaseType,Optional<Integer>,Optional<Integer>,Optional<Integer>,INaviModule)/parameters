@@ -1,0 +1,7 @@
+TypeMember member
+String newName
+BaseType newBaseType
+Optional<Integer> newOffset
+Optional<Integer> newNumberOfElements
+Optional<Integer> newArgumentIndex
+INaviModule module

@@ -1,0 +1,3 @@
+{
+  return PostgreSQLViewsLoader.loadViewFunctionMapping(this,flowgraphs,functions,module);
+}

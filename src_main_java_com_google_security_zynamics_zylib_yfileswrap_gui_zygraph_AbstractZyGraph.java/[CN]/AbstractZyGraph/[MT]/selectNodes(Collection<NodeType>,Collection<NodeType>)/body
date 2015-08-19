@@ -1,0 +1,12 @@
+{
+  m_graph.firePreEvent();
+  for (  final NodeType node : toSelect) {
+    Preconditions.checkNotNull(node,"Error: The list of nodes to select contained an invalid node");
+    ((IViewNode<?>)node.getRawNode()).setSelected(true);
+  }
+  for (  final NodeType node : toUnselect) {
+    Preconditions.checkNotNull(node,"Error: The list of nodes to unselect contained an invalid node");
+    ((IViewNode<?>)node.getRawNode()).setSelected(false);
+  }
+  m_graph.firePostEvent();
+}

@@ -1,0 +1,10 @@
+{
+  m_cachedValues=null;
+  for (  final IFlowgraphView view : m_module.getContent().getViewContainer().getNativeFlowgraphViews()) {
+    view.addListener(m_viewListener);
+  }
+  for (  final INaviFunction function : m_module.getContent().getFunctionContainer().getFunctions()) {
+    function.addListener(m_viewListener);
+  }
+  fireTableDataChanged();
+}

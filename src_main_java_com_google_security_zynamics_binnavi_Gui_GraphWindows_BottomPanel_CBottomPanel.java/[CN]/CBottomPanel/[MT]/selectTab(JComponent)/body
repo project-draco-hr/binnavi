@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(component,"IE01230: Component argument can not be null");
+  m_tabbedPane.setSelectedComponent(component);
+}

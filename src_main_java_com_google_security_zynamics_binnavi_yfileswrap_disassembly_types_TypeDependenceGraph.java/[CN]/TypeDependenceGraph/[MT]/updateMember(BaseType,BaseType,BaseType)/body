@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(parentType,"IE02767: Parent type can not be null.");
+  Preconditions.checkNotNull(oldMemberType,"IE02768: Old member type can not be null.");
+  Preconditions.checkNotNull(newMemberType,"IE02769: New member type can not be null.");
+  final ImmutableSet<BaseType> affectedTypes=determineDependentTypes(parentType);
+  if (affectedTypes.contains(parentType)) {
+    return new DependenceResult(false,affectedTypes);
+  }
+ else {
+    deleteMember(parentType,oldMemberType);
+    addMember(parentType,newMemberType);
+    return new DependenceResult(true,affectedTypes);
+  }
+}

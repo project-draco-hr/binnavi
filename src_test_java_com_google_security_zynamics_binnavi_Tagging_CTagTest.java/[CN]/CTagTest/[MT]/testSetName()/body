@@ -1,0 +1,17 @@
+{
+  try {
+    m_tag.setName(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("Tag Name",m_tag.getName());
+  m_tag.setName("Test Name");
+  assertEquals("changedName=Test Name/",m_listener.eventList);
+  assertEquals("Test Name",m_tag.getName());
+  m_tag.setName("Tag Name");
+  assertEquals("changedName=Test Name/changedName=Tag Name/",m_listener.eventList);
+  m_tag.setName("Tag Name");
+  assertEquals("changedName=Test Name/changedName=Tag Name/",m_listener.eventList);
+  assertEquals("Tag Name",m_tag.getName());
+}

@@ -1,0 +1,5 @@
+{
+  for (  final CTag tag : m_tags) {
+    tag.removeListener(m_tagListener);
+  }
+}

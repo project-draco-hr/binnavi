@@ -1,0 +1,7 @@
+{
+  debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  final ArrayList<MemorySection> sections=new ArrayList<MemorySection>();
+  sections.add(new MemorySection(new CAddress(BigInteger.ZERO),new CAddress(BigInteger.valueOf(1000))));
+  debugger.getProcessManager().setMemoryMap(new MemoryMap(sections));
+  loader=new MemoryLoader(debugger);
+}

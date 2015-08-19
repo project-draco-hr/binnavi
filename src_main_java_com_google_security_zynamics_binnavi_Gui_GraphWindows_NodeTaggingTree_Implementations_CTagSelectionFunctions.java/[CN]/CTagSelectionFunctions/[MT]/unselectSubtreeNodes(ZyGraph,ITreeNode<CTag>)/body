@@ -1,0 +1,3 @@
+{
+  unselectNodes(graph,getSubtreeTags(tag),true);
+}

@@ -1,0 +1,6 @@
+{
+  setOpaque(false);
+  graphics.setColor(m_lastSearchSuccessful ? BACKGROUND_COLOR_SUCCESS : BACKGROUND_COLOR_FAIL);
+  graphics.fillRect(2,2,getWidth() - 4,getHeight() - 4);
+  super.paintComponent(graphics);
+}

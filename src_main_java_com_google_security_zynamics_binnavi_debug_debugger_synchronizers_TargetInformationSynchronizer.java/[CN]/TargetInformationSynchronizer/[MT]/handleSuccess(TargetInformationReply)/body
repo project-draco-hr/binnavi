@@ -1,0 +1,15 @@
+{
+  final IDebugger debugger=getDebugger();
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  final TargetInformation info=reply.getTargetInformation();
+  processManager.setTargetInformation(info);
+  if (info.getDebuggerOptions().canMemmap()) {
+    try {
+      debugger.getMemoryMap();
+    }
+ catch (    final DebugExceptionWrapper e) {
+      NaviLogger.severe("Error: Debugger could not get memory map. Exception %s",e);
+      issueDebugException(e);
+    }
+  }
+}

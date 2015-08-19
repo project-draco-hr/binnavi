@@ -1,0 +1,15 @@
+{
+  final BreakpointManager manager=getDebugger().getBreakpointManager();
+  final long tid=reply.getThreadId();
+  for (  final ThreadRegisters threadRegisters : reply.getRegisterValues()) {
+    if (tid == threadRegisters.getTid()) {
+      for (      final RegisterValue registerValue : threadRegisters) {
+        if (registerValue.isPc()) {
+          final RelocatedAddress address=new RelocatedAddress(new CAddress(registerValue.getValue()));
+          manager.setBreakpointStatus(Sets.newHashSet(DebuggerHelpers.getBreakpointAddress(getDebugger(),address)),BreakpointType.ECHO,BreakpointStatus.BREAKPOINT_HIT);
+          break;
+        }
+      }
+    }
+  }
+}

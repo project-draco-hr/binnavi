@@ -1,0 +1,3 @@
+{
+  return CNodesDisplayString.getDisplayString(m_node);
+}

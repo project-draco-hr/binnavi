@@ -1,0 +1,12 @@
+{
+switch (m_index) {
+case 0:
+    return m_instruction.getFirstOperand().getValue();
+case 1:
+  return m_instruction.getSecondOperand().getValue();
+case 2:
+return m_instruction.getThirdOperand().getValue();
+default :
+throw new IllegalStateException("Error: Unknown operand index");
+}
+}

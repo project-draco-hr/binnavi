@@ -1,0 +1,4 @@
+{
+  final INodeFilter<NodeType> selectedFilter=getSelectedFilter();
+  return getNegatedFilter(selectedFilter);
+}

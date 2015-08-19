@@ -1,0 +1,3 @@
+{
+  TextHelpers.insert(m_filterField,"nodes==0");
+}

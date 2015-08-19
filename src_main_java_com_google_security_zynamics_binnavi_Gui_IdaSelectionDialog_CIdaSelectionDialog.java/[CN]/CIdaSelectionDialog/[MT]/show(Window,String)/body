@@ -1,0 +1,6 @@
+{
+  final CIdaSelectionDialog dlg=new CIdaSelectionDialog(parent,initialDirectory);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  return dlg;
+}

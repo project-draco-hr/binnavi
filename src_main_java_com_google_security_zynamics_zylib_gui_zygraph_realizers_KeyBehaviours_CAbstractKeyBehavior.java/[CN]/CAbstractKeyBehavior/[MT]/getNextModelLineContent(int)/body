@@ -1,0 +1,15 @@
+{
+  final ZyLineContent lineContent=m_labelContent.getLineContent(lineYPos);
+  final IZyEditableObject lineObject=lineContent.getLineObject();
+  for (int index=lineYPos + 1; index < m_labelContent.getLineCount(); ++index) {
+    final ZyLineContent nextLineContent=m_labelContent.getLineContent(index);
+    if (nextLineContent == null) {
+      return null;
+    }
+    final IZyEditableObject nextLineObject=nextLineContent.getLineObject();
+    if ((lineObject != nextLineObject) && !nextLineObject.isPlaceholder()) {
+      return nextLineContent;
+    }
+  }
+  return null;
+}

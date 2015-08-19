@@ -1,0 +1,16 @@
+{
+  final INaviViewNode target=edge.getTarget();
+  visited.add(edge);
+  final Set<EdgeResult> targets=new HashSet<EdgeResult>();
+  if (nodeMap.containsKey(target)) {
+    targets.add(new EdgeResult(nodeMap.get(target),edge.getType()));
+  }
+ else {
+    for (    final INaviEdge outgoingEdge : target.getOutgoingEdges()) {
+      if (!visited.contains(outgoingEdge)) {
+        targets.addAll(getTargets(outgoingEdge,nodeMap,visited));
+      }
+    }
+  }
+  return targets;
+}

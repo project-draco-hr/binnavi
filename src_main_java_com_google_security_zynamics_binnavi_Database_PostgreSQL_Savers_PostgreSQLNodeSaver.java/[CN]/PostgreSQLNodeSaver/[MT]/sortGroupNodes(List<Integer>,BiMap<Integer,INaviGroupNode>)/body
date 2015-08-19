@@ -1,0 +1,17 @@
+{
+  final List<Integer> sortedList=new ArrayList<Integer>();
+  final List<Integer> clonedList=new ArrayList<Integer>(groupNodeIndices);
+  final Set<INaviGroupNode> addedNodes=new HashSet<INaviGroupNode>();
+  while (!clonedList.isEmpty()) {
+    for (    final Integer id : clonedList) {
+      final INaviGroupNode node=groupNodeMap.get(id);
+      if ((node.getParentGroup() == null) || addedNodes.contains(node.getParentGroup())) {
+        addedNodes.add(node);
+        sortedList.add(id);
+        clonedList.remove(id);
+        break;
+      }
+    }
+  }
+  return sortedList;
+}

@@ -1,0 +1,5 @@
+{
+  getProvider().appendFunctionNodeComment(functionNode," FAIL ",null);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().appendFunctionNodeComment(functionNode," PASS LOCAL FUNCTION NODE COMMENT ",user.getUserId());
+}

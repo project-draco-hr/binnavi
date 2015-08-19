@@ -1,0 +1,4 @@
+ZyLabelContent content
+INaviViewNode node
+List<IComment> localComment
+List<IComment> globalComment

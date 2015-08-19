@@ -1,0 +1,13 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.changedDescription(View.this,description);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

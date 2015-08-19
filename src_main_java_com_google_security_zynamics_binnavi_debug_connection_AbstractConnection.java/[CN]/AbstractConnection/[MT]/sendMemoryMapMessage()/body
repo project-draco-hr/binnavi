@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Memory Map\" message to the debug client");
+  sendPacket(new RequestMemoryMapCommand(getMessageId()));
+}

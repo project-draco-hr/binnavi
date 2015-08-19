@@ -1,0 +1,4 @@
+{
+  final INaviView view=loadCallGraphView(module);
+  return (INaviFunctionNode)view.getGraph().getNodes().get(0);
+}

@@ -1,0 +1,3 @@
+{
+  return address.hashCode() * (mnemonic + 1) * firstOperand.hashCode()* secondOperand.hashCode()* thirdOperand.hashCode()* metaData.hashCode();
+}

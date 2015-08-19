@@ -1,0 +1,44 @@
+{
+  final ConditionParser.condition_return retval=new ConditionParser.condition_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token set10=null;
+  ConditionParser.formula_return formula9=null;
+  ConditionParser.formula_return formula11=null;
+  final Object set10_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_formula_in_condition376);
+      formula9=formula();
+      state._fsp--;
+      adaptor.addChild(root_0,formula9.getTree());
+      set10=(Token)input.LT(1);
+      set10=(Token)input.LT(1);
+      if ((input.LA(1) >= EQ_SIGN && input.LA(1) <= NEQ_SIGN_2)) {
+        input.consume();
+        root_0=(Object)adaptor.becomeRoot((Object)adaptor.create(set10),root_0);
+        state.errorRecovery=false;
+      }
+ else {
+        final MismatchedSetException mse=new MismatchedSetException(null,input);
+        throw mse;
+      }
+      pushFollow(FOLLOW_formula_in_condition395);
+      formula11=formula();
+      state._fsp--;
+      adaptor.addChild(root_0,formula11.getTree());
+    }
+    retval.stop=input.LT(-1);
+    retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+    adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+  }
+ catch (  final RecognitionException re) {
+    reportError(re);
+    recover(input,re);
+    retval.tree=(Object)adaptor.errorNode(input,retval.start,input.LT(-1),re);
+  }
+ finally {
+  }
+  return retval;
+}

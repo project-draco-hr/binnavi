@@ -1,0 +1,11 @@
+{
+  final List<TranslationResult> partialResults=new ArrayList<>();
+  final List<? extends IOperandTreeNode> children=expression.getChildren();
+  Collections.sort(children,comparator);
+  for (  final IOperandTreeNode child : children) {
+    final TranslationResult nextResult=loadOperand(environment,baseOffset,child,isSegmentExpression(expression.getValue()) ? expression : null,size,loadOperand);
+    partialResults.add(nextResult);
+    baseOffset+=nextResult.getInstructions().size();
+  }
+  return partialResults;
+}

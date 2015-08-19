@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
+  Preconditions.checkNotNull(nodes,"Nodes argument can not be null");
+  final Set<NodeType> all=new LinkedHashSet<NodeType>(nodes);
+  for (  final NodeType node : nodes) {
+    final List<NodeType> nodeList=new ArrayList<NodeType>();
+    nodeList.add(node);
+    final List<IViewNode<?>> converted=GraphConverters.convert(nodeList);
+    final List<ViewNodeAdapter> wrapped=ViewNodeAdapter.wrap(Lists.newArrayList(converted));
+    final List<ViewNodeAdapter> preds=getPredecessors(wrapped,getRealDepth(parentDepth));
+    final List<ViewNodeAdapter> succs=getSuccessors(wrapped,getRealDepth(childDepth));
+    all.addAll(ViewNodeAdapter.unwrap(graph,getParentGroups(node)));
+    if ((node.getRawNode() instanceof IGroupNode<?,?>) && node.isSelected()) {
+      all.addAll(ViewNodeAdapter.unwrap(graph,getGroupMembers((IGroupNode<?,?>)node.getRawNode())));
+    }
+    all.addAll(ViewNodeAdapter.unwrap(graph,preds));
+    all.addAll(ViewNodeAdapter.unwrap(graph,succs));
+  }
+  return all;
+}

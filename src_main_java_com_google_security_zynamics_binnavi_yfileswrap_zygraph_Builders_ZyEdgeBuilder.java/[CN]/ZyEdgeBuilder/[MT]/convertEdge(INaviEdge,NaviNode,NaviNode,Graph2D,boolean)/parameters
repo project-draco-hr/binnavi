@@ -1,0 +1,5 @@
+INaviEdge edge
+NaviNode sourceNode
+NaviNode targetNode
+Graph2D graph2D
+boolean adjustColors

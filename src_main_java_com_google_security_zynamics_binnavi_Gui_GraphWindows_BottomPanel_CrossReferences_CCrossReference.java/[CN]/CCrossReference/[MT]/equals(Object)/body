@@ -1,0 +1,7 @@
+{
+  if (!(rhs instanceof CCrossReference)) {
+    return false;
+  }
+  final CCrossReference rhsRef=(CCrossReference)rhs;
+  return m_sourceFunction == rhsRef.m_sourceFunction && m_targetFunction == rhsRef.m_targetFunction;
+}

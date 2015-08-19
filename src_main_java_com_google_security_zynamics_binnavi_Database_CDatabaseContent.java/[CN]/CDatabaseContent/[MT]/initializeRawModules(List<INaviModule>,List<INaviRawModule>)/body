@@ -1,0 +1,17 @@
+{
+  final List<INaviModule> newModules=new ArrayList<INaviModule>();
+  for (  final INaviRawModule rawModule : rawModules) {
+    if (!hasModule(modules,rawModule)) {
+      try {
+        newModules.add(createModule(rawModule));
+      }
+ catch (      final CouldntLoadDataException e) {
+        CUtilityFunctions.logException(e);
+      }
+catch (      final CouldntSaveDataException e) {
+        CUtilityFunctions.logException(e);
+      }
+    }
+  }
+  return newModules;
+}

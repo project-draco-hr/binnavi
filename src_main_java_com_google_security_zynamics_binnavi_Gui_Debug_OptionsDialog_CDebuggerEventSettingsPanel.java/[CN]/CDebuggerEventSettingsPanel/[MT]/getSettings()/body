@@ -1,0 +1,3 @@
+{
+  return new DebuggerEventSettings(m_breakOnDllLoadCheckbox.isSelected(),m_breakOnDllUnloadCheckbox.isSelected());
+}

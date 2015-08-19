@@ -1,0 +1,5 @@
+{
+  m_loaded=loaded;
+  m_configuration=new MockModuleConfiguration(m_provider);
+  m_content=new MockModuleContent(this,m_provider,m_listeners,null,null);
+}

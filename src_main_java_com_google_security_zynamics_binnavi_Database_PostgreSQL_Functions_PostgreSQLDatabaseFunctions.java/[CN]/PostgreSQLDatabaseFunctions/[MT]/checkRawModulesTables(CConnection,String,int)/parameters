@@ -1,0 +1,3 @@
+CConnection connection
+String databaseName
+int rawModuleId

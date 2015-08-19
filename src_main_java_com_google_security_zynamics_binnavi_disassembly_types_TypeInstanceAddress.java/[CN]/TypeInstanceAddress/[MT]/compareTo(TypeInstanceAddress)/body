@@ -1,0 +1,9 @@
+{
+  final int result=getBaseAddress().compareTo(rhs.getBaseAddress());
+  if (result == 0) {
+    return (int)(offset - rhs.getOffset());
+  }
+ else {
+    return result;
+  }
+}

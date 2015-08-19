@@ -1,0 +1,10 @@
+{
+  addressSpace.load();
+  final MockAddressSpaceListener listener=new MockAddressSpaceListener();
+  addressSpace.addModule(module);
+  addressSpace.addListener(listener);
+  addressSpace.setImageBase(module,new Address(0x1234));
+  assertEquals(0x1234,addressSpace.getImagebase(module).toLong());
+  assertEquals("changedImageBase;changedModificationDate;",listener.events);
+  addressSpace.removeListener(listener);
+}

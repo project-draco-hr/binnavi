@@ -1,0 +1,7 @@
+{
+  try {
+    new DebugMessageRawArgument(null);
+  }
+ catch (  final NullPointerException e) {
+  }
+}

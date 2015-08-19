@@ -1,0 +1,11 @@
+{
+  if ((event.getClickCount() == 2) && SwingUtilities.isLeftMouseButton(event)) {
+    final Point clickPoint=event.getPoint();
+    final int row=m_eventValueTable.rowAtPoint(clickPoint);
+    final int column=m_eventValueTable.columnAtPoint(clickPoint);
+    if ((row != -1) && (column == CEventValueTableModel.MEMORY_COLUMN)) {
+      final byte[] data=m_eventModel.getEvent().getRegisterValues().get(row).getMemory();
+      CTraceMemoryDialog.show(SwingUtilities.getWindowAncestor(m_eventValueTable),data);
+    }
+  }
+}

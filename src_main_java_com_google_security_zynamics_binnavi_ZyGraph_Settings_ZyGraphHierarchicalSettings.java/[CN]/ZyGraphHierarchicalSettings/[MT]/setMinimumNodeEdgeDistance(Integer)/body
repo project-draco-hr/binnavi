@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(minNodeEdgeDistance >= 0,"Error: Distance argument must not be negative");
+  if (minNodeEdgeDistance == getMinimumNodeEdgeDistance()) {
+    return;
+  }
+  if (m_type == null) {
+    m_minimumNodeEdgeDistance=minNodeEdgeDistance;
+  }
+ else {
+    m_type.setHierarchicMinimumNodeEdgeDistance(minNodeEdgeDistance);
+  }
+}

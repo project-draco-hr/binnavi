@@ -1,0 +1,6 @@
+{
+  if (node.getType() == ExpressionType.MEMDEREF) {
+    return true;
+  }
+  return node.getParent() == null ? false : isAddressExpression(node.getParent());
+}

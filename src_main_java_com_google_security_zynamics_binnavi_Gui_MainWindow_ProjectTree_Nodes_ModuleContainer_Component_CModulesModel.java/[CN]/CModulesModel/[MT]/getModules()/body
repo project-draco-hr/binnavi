@@ -1,0 +1,15 @@
+{
+  List<INaviModule> localCachedValues=m_cachedValues;
+  if (localCachedValues == null) {
+    final IFilter<INaviModule> filter=getFilter();
+    if (m_database.isConnected()) {
+      localCachedValues=filter == null ? m_database.getContent().getModules() : filter.get(m_database.getContent().getModules());
+    }
+ else {
+      localCachedValues=new ArrayList<INaviModule>();
+    }
+  }
+  CStaredItemFunctions.sort(localCachedValues);
+  m_cachedValues=localCachedValues;
+  return new ArrayList<INaviModule>(localCachedValues);
+}

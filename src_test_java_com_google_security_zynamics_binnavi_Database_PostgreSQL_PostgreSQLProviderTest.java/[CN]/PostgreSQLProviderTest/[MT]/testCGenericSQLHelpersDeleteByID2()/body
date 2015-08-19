@@ -1,0 +1,3 @@
+{
+  PostgreSQLHelpers.deleteById(null,null,0);
+}

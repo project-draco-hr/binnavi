@@ -1,0 +1,16 @@
+{
+  if (!isConverted()) {
+    return false;
+  }
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      if (!listener.closingView(View.this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

@@ -1,0 +1,3 @@
+{
+  return (int)DebugProtocolHelper.readThreadId(workerInputStream);
+}

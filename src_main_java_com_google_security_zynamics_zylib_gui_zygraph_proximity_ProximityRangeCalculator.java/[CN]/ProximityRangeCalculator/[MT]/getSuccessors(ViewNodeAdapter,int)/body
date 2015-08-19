@@ -1,0 +1,5 @@
+{
+  final Set<ViewNodeAdapter> nodes=new HashSet<ViewNodeAdapter>();
+  getSuccessorsInternal(node,depth,nodes,new HashSet<ViewNodeAdapter>());
+  return nodes;
+}

@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < 10; i++) {
+    final BigInteger current=pc.add(BigInteger.valueOf(i));
+    if (instructions.containsKey(nativeToReil(current))) {
+      setRegister(programCounter,current,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+      return true;
+    }
+  }
+  return false;
+}

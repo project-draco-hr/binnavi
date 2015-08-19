@@ -1,0 +1,4 @@
+{
+  graph.removeView(graph.getCurrentView());
+  graph.setCurrentView(originalView);
+}

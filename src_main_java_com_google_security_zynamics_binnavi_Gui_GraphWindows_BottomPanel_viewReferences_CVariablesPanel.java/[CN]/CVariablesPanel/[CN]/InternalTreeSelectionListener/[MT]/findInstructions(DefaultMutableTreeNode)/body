@@ -1,0 +1,11 @@
+{
+  final Set<INaviInstruction> instructions=Sets.newHashSet();
+  Enumeration<?> enumeration=node.preorderEnumeration();
+  while (enumeration.hasMoreElements()) {
+    final DefaultMutableTreeNode currentNode=(DefaultMutableTreeNode)enumeration.nextElement();
+    if (currentNode.isLeaf() && currentNode instanceof InstructionNode) {
+      instructions.add(((InstructionNode)currentNode).getInstruction());
+    }
+  }
+  return instructions;
+}

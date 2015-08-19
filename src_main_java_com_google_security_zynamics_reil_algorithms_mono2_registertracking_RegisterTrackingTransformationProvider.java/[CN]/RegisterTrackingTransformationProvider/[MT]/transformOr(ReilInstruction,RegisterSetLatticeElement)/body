@@ -1,0 +1,21 @@
+{
+  final OperandType operandOneType=ins.getFirstOperand().getType();
+  final OperandType operandTwoType=ins.getSecondOperand().getType();
+  final OperandSize operandOneSize=ins.getFirstOperand().getSize();
+  final OperandSize operandTwoSize=ins.getSecondOperand().getSize();
+  final OperandSize operandThreeSize=ins.getThirdOperand().getSize();
+  final String operandOneValue=ins.getFirstOperand().getValue();
+  final String operandTwoValue=ins.getSecondOperand().getValue();
+  final String mask=getMask(operandThreeSize);
+  if ((operandOneType == OperandType.INTEGER_LITERAL) && mask.equalsIgnoreCase(operandOneValue) && operandThreeSize.equals(operandTwoSize)&& operandThreeSize.equals(operandOneSize)) {
+    final RegisterSetLatticeElement newState=state.copy();
+    newState.untaint(ins.getThirdOperand().getValue());
+    return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newState,null);
+  }
+ else   if ((operandTwoType == OperandType.INTEGER_LITERAL) && mask.equalsIgnoreCase(operandTwoValue) && operandThreeSize.equals(operandTwoSize)&& operandThreeSize.equals(operandOneSize)) {
+    final RegisterSetLatticeElement newState=state.copy();
+    newState.untaint(ins.getThirdOperand().getValue());
+    return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newState,null);
+  }
+  return transformNormalInstruction(ins,state);
+}

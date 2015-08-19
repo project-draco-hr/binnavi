@@ -1,0 +1,13 @@
+{
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.setBorder(new TitledBorder("Edit Tag Condition"));
+  createTree(rootTag);
+  final JScrollPane pane=new JScrollPane(m_tagTree);
+  pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+  pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  final JPanel anyTagPanel=new JPanel();
+  anyTagPanel.add(m_anyTagBox);
+  mainPanel.add(pane,BorderLayout.CENTER);
+  mainPanel.add(m_anyTagBox,BorderLayout.SOUTH);
+  add(mainPanel,BorderLayout.CENTER);
+}

@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(addressSpace,"IE01955: Address space argument can't be null");
+  m_addressSpace=addressSpace;
+  addressSpace.addListener(m_addressSpaceListener);
+  if (addressSpace.isLoaded()) {
+    addressSpace.getContent().addListener(m_contentListener);
+    for (    final INaviModule module : addressSpace.getContent().getModules()) {
+      module.addListener(m_modulesListener);
+    }
+  }
+}

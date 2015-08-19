@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final long offset=baseOffset;
+  final int previousInstructions=(int)(baseOffset % 0x100);
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(archSize);
+  final String ediChange=String.valueOf(operandSize.getByteSize());
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String firstVar=environment.getNextVariableString();
+  final String secondVar=environment.getNextVariableString();
+  final String tempEsi1=environment.getNextVariableString();
+  final String tempEdi1=environment.getNextVariableString();
+  final String tempEsi2=environment.getNextVariableString();
+  final String tempEdi2=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createLdm(offset,archSize,"esi",operandSize,firstVar));
+  instructions.add(ReilHelpers.createLdm(offset + 1,archSize,"edi",operandSize,secondVar));
+  final String jmpGoal=String.format("%d.%d",ReilHelpers.toNativeAddress(new CAddress(baseOffset)).toLong(),previousInstructions + 8);
+  instructions.add(ReilHelpers.createJcc(offset + 2,OperandSize.BYTE,Helpers.DIRECTION_FLAG,OperandSize.ADDRESS,jmpGoal));
+  instructions.add(ReilHelpers.createAdd(offset + 3,archSize,"esi",archSize,ediChange,resultSize,tempEsi1));
+  instructions.add(ReilHelpers.createAnd(offset + 4,resultSize,tempEsi1,resultSize,truncateMask,archSize,"esi"));
+  instructions.add(ReilHelpers.createAdd(offset + 5,archSize,"edi",archSize,ediChange,resultSize,tempEdi1));
+  instructions.add(ReilHelpers.createAnd(offset + 6,resultSize,tempEdi1,resultSize,truncateMask,archSize,"edi"));
+  final String jmpGoal2=String.format("%d.%d",ReilHelpers.toNativeAddress(new CAddress(baseOffset)).toLong(),previousInstructions + 12);
+  instructions.add(ReilHelpers.createJcc(offset + 7,OperandSize.BYTE,"1",OperandSize.ADDRESS,jmpGoal2));
+  instructions.add(ReilHelpers.createSub(offset + 8,archSize,"esi",archSize,ediChange,resultSize,tempEsi2));
+  instructions.add(ReilHelpers.createAnd(offset + 9,resultSize,tempEsi2,resultSize,truncateMask,archSize,"esi"));
+  instructions.add(ReilHelpers.createSub(offset + 10,archSize,"edi",archSize,ediChange,resultSize,tempEdi2));
+  instructions.add(ReilHelpers.createAnd(offset + 11,resultSize,tempEdi2,resultSize,truncateMask,archSize,"edi"));
+  Helpers.generateSub(environment,offset + 12,operandSize,firstVar,secondVar,instructions);
+}

@@ -1,0 +1,3 @@
+CDebuggerToolbar toolBar
+CThreadPanel threadPanel
+CDebugPerspectiveModel debugPerspectiveModel

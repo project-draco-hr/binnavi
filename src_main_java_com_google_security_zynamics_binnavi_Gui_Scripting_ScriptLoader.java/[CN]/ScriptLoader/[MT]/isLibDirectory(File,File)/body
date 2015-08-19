@@ -1,0 +1,8 @@
+{
+  if (directory.getParentFile().equals(scriptDir)) {
+    final String[] splitPath=directory.getAbsolutePath().split("\\".equals(File.separator) ? "\\\\" : File.separator);
+    final String lastPath=splitPath[splitPath.length - 1];
+    return "lib".equals(lastPath);
+  }
+  return false;
+}

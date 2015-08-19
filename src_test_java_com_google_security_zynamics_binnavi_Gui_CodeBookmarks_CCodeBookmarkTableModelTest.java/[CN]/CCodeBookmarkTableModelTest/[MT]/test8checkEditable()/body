@@ -1,0 +1,9 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  final CCodeBookmark bookmark=new CCodeBookmark(new MockModule(),new MockAddress(),"burzel");
+  bookmarkManager.addBookmark(bookmark);
+  assertFalse(tableModel.isCellEditable(0,0));
+  assertFalse(tableModel.isCellEditable(0,1));
+  assertTrue(tableModel.isCellEditable(0,2));
+}

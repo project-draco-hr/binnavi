@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(operand,"Operand argument can not be null");
+  return com.google.security.zynamics.reil.ReilHelpers.isTemporaryRegister(operand.getNative());
+}

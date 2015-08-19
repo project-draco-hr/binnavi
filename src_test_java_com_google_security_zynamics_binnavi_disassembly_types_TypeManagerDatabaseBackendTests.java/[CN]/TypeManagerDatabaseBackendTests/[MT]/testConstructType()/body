@@ -1,0 +1,12 @@
+{
+  final String typeName="test_type";
+  final int bitSize=100;
+  final boolean isSigned=true;
+  final BaseType baseType=backend.createType(typeName,bitSize,isSigned,null,BaseTypeCategory.ATOMIC);
+  final RawBaseType rawBaseType=mockProvider.loadType(mockModule,baseType.getId());
+  Assert.assertEquals(baseType.getId(),rawBaseType.getId());
+  Assert.assertEquals(bitSize,rawBaseType.getSize());
+  Assert.assertEquals(isSigned,rawBaseType.isSigned());
+  Assert.assertEquals(typeName,rawBaseType.getName());
+  Assert.assertNull(rawBaseType.getPointerId());
+}

@@ -1,0 +1,13 @@
+{
+  final List<CCodeNode> exitNodes=new ArrayList<CCodeNode>();
+  CCodeNode entryNode=null;
+  for (  final CCodeNode node : nodes) {
+    if (node.getOutgoingEdges().isEmpty()) {
+      exitNodes.add(node);
+    }
+    if (node.getAddress().equals(function.getAddress())) {
+      entryNode=node;
+    }
+  }
+  return new Triple<CCodeNode,List<CCodeNode>,ArrayList<CCodeNode>>(entryNode,exitNodes,nodes);
+}

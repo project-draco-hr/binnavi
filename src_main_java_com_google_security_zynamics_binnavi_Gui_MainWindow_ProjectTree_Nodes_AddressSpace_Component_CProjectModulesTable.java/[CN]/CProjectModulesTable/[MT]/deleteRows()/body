@@ -1,0 +1,3 @@
+{
+  CAddressSpaceFunctions.removeModules(getParentWindow(),m_addressSpace,getModules(getSortSelectedRows()));
+}

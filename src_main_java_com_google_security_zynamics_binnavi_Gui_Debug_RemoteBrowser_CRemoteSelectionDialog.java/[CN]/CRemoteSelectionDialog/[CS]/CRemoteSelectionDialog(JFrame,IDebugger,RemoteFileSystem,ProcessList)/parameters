@@ -1,0 +1,4 @@
+JFrame parent
+IDebugger debugger
+RemoteFileSystem fileList
+ProcessList processList

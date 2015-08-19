@@ -1,0 +1,22 @@
+{
+  try {
+    new CTagManager(null,TagType.VIEW_TAG,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Foo","Bar",TagType.VIEW_TAG,new MockSqlProvider()))),null,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Foo","Bar",TagType.VIEW_TAG,new MockSqlProvider()))),TagType.VIEW_TAG,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  final MockSqlProvider sql=new MockSqlProvider();
+  new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Foo","Bar",TagType.VIEW_TAG,sql))),TagType.VIEW_TAG,sql);
+}

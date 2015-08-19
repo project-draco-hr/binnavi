@@ -1,0 +1,11 @@
+{
+  final CharStream charStream=new ANTLRStringStream(filterString);
+  final FilterLexer lexer=new FilterLexer(charStream);
+  final CommonTokenStream tokens=new CommonTokenStream();
+  tokens.setTokenSource(lexer);
+  final FilterParser parser=new FilterParser(tokens);
+  parser.setTreeAdaptor(adaptor);
+  final FilterParser.prog_return parserResult=parser.prog();
+  final CommonTree ast=(CommonTree)parserResult.getTree();
+  return convert(ast);
+}

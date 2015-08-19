@@ -1,0 +1,11 @@
+{
+  super(model);
+  final AbstractColorChooserPanel[] panels=getChooserPanels();
+  if (panels.length > 0) {
+    removeChooserPanel(panels[0]);
+  }
+  m_recentColors=recentColors;
+  if (m_recentColors != null) {
+    addChooserPanel(new RecentColorsColorChooserPanel());
+  }
+}

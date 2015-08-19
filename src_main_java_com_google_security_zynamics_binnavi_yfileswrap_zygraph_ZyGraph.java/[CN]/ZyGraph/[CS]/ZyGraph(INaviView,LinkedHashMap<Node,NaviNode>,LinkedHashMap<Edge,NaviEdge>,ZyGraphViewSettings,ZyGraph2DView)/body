@@ -1,0 +1,15 @@
+{
+  super(g2dview,nodeMap,edgeMap,settings);
+  m_rawView=Preconditions.checkNotNull(view,"IE00869: Argument view can't be null");
+  m_settings=Preconditions.checkNotNull(settings,"IE00870: Settings argument can't be null");
+  m_synchronizer=new CViewGraphSynchronizer(this,new GraphInternals(),getMappings());
+  hideInvisibleElements();
+  CLayoutFunctions.updateBackground(this);
+  CEdgeDrawingFunctions.initializeEdgeDrawingMode(this);
+  initializeListeners();
+  initializeProximityBrowser();
+  if ((m_rawView.getType() == ViewType.Native) && (getGraph().nodeCount() >= m_settings.getProximitySettings().getProximityBrowsingActivationThreshold())) {
+    m_settings.getProximitySettings().setProximityBrowsing(true);
+  }
+  updateMultipleEdgeState();
+}

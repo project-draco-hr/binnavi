@@ -1,0 +1,7 @@
+{
+  final Component activePanel=scriptTab.getSelectedComponent();
+  if (activePanel == null) {
+    return;
+  }
+  scriptTab.remove(activePanel);
+}

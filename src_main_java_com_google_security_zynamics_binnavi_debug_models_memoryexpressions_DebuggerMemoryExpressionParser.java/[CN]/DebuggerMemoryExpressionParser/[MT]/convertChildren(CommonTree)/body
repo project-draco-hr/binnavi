@@ -1,0 +1,7 @@
+{
+  final List<MemoryExpressionElement> children=new ArrayList<>();
+  for (  final Object childObject : ast.getChildren()) {
+    children.add(convert((CommonTree)childObject));
+  }
+  return children;
+}

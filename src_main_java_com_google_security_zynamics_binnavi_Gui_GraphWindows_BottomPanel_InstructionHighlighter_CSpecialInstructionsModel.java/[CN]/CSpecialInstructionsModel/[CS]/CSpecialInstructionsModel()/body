@@ -1,0 +1,5 @@
+{
+  m_descriptions.add(new CCallsDescription());
+  m_descriptions.add(new CReadsDescription());
+  m_descriptions.add(new CWritesDescription());
+}

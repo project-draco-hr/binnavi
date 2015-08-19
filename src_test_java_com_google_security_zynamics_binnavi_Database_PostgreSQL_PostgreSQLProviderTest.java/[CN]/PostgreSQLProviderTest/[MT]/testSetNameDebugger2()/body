@@ -1,0 +1,3 @@
+{
+  getProvider().setName((DebuggerTemplate)null,"localhost");
+}

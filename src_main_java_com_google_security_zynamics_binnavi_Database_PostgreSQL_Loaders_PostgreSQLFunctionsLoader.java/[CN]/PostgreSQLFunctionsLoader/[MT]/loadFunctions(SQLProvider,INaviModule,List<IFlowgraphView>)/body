@@ -1,0 +1,13 @@
+{
+  checkArguments(provider,module);
+  final String query=" SELECT * FROM load_function_information(?) ";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    final ResultSet resultSet=statement.executeQuery();
+    return parseFunctionInformation(resultSet,provider,module);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

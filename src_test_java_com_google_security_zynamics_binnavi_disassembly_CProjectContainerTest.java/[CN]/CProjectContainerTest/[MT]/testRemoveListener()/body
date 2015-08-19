@@ -1,0 +1,9 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  try {
+    container.removeListener(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

@@ -1,0 +1,10 @@
+{
+  m_reducedResults.clear();
+  Object last=null;
+  for (  final SearchResult r : m_results) {
+    if (last != r.getObject()) {
+      last=r.getObject();
+      m_reducedResults.add(r);
+    }
+  }
+}

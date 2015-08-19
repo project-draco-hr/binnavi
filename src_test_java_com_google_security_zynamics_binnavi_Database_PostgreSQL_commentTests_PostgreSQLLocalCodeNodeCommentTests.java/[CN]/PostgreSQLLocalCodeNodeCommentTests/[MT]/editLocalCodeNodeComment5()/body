@@ -1,0 +1,17 @@
+{
+  final List<IComment> comments=codeNode.getComments().getLocalCodeNodeComment() == null ? new ArrayList<IComment>() : codeNode.getComments().getLocalCodeNodeComment();
+  final IComment lastComment=comments.size() == 0 ? null : Iterables.getLast(comments);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final String commentText=" CODE NODE COMMENT TEST BEFORE EDIT ";
+  final Integer commentId=getProvider().appendLocalCodeNodeComment(codeNode,commentText,user.getUserId());
+  final IComment newComment=new CComment(commentId,user,lastComment,commentText);
+  final ArrayList<IComment> newComments=getProvider().loadCommentById(commentId);
+  assertNotNull(newComments);
+  assertEquals(comments.size() + 1,newComments.size());
+  assertEquals(newComment,Iterables.getLast(newComments));
+  final String commentAfterEdit=" CODE NODE COMMENT TEST AFTER EDIT ";
+  getProvider().editLocalCodeNodeComment(codeNode,commentId,user.getUserId(),commentAfterEdit);
+  final ArrayList<IComment> commentsAfterEdit=PostgreSQLCommentFunctions.loadCommentByCommentId(getProvider(),commentId);
+  assertEquals(commentAfterEdit,Iterables.getLast(commentsAfterEdit).getComment());
+  assertEquals(commentsAfterEdit.size(),newComments.size());
+}

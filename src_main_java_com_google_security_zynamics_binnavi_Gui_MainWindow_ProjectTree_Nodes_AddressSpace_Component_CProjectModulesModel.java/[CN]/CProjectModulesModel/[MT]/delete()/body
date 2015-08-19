@@ -1,0 +1,9 @@
+{
+  m_addressSpace.removeListener(m_addressSpaceListener);
+  if (m_addressSpace.isLoaded()) {
+    m_addressSpace.getContent().removeListener(m_contentListener);
+    for (    final INaviModule module : m_addressSpace.getContent().getModules()) {
+      module.removeListener(m_modulesListener);
+    }
+  }
+}

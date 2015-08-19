@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(color,"Error: Color argument can't be null");
+  if (!isEmpty()) {
+    m_atext.addAttribute(TextAttribute.FOREGROUND,color);
+    m_textLayout=new TextLayout(m_atext.getIterator(),m_fontContext);
+  }
+}

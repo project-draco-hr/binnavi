@@ -1,0 +1,11 @@
+{
+  final IDebugger previousDebugger=m_activeDebuggers.get(addressSpace);
+  if (previousDebugger != null) {
+    m_debuggerProvider.removeDebugger(previousDebugger);
+    m_activeDebuggers.remove(addressSpace);
+  }
+  if (debugger != null) {
+    m_debuggerProvider.addDebugger(addressSpace.getConfiguration().getDebugger());
+    m_activeDebuggers.put(addressSpace,addressSpace.getConfiguration().getDebugger());
+  }
+}

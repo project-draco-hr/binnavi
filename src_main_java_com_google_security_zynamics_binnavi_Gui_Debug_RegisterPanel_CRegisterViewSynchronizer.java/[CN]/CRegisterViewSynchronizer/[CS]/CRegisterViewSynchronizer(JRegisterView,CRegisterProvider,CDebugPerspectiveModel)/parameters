@@ -1,0 +1,3 @@
+JRegisterView registerView
+CRegisterProvider dataProvider
+CDebugPerspectiveModel debugPerspectiveModel

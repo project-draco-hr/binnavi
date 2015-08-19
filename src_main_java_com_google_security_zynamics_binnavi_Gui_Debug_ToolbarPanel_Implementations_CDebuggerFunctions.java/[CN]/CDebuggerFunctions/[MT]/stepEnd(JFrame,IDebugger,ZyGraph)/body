@@ -1,0 +1,35 @@
+{
+  checkArguments(parent,debugger,graph);
+  if (!debugger.isConnected()) {
+    return;
+  }
+  final TargetProcessThread activeThread=debugger.getProcessManager().getActiveThread();
+  if (activeThread == null) {
+    return;
+  }
+  final RelocatedAddress currentAddress=activeThread.getCurrentAddress();
+  if (currentAddress == null) {
+    CMessageBox.showError(parent,"Could not step because the selected thread is not suspended");
+    return;
+  }
+  final Set<BreakpointAddress> relocatedBlockAddresses=CStepEndHelper.getEndAddresses(graph);
+  if (relocatedBlockAddresses.isEmpty()) {
+    CMessageBox.showError(parent,"Couldn't step to the end of the function");
+    return;
+  }
+ else {
+    debugger.getProcessManager().setActiveThread(null);
+    debugger.getBreakpointManager().addBreakpoints(BreakpointType.STEP,relocatedBlockAddresses);
+    try {
+      debugger.resume();
+    }
+ catch (    final DebugExceptionWrapper e) {
+      debugger.getBreakpointManager().removeBreakpoints(BreakpointType.STEP,relocatedBlockAddresses);
+      debugger.getProcessManager().setActiveThread(activeThread);
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00086: " + "Could not send step end command to the debug client";
+      final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the step end command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The state of the debugged process remains unchanged."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return CRemoteBrowserHelpers.isDrive(file) ? file.getAbsolutePath() : file.getName();
+}

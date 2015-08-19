@@ -1,0 +1,9 @@
+{
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    final int row=node.positionToRow(y - node.getY());
+    CGraphDebugger.toggleBreakpoint(m_model.getDebuggerProvider(),(INaviCodeNode)node.getRawNode(),row);
+  }
+ else   if (node.getRawNode() instanceof INaviFunctionNode) {
+    CGraphDebugger.toggleBreakpoint(m_model.getDebuggerProvider(),(INaviFunctionNode)node.getRawNode());
+  }
+}

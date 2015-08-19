@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(project,"IE02356: project argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE02357: Database argument can't be null");
+  Preconditions.checkArgument(database.isLoaded(),"Error: Database must be loaded before functions can be redirected");
+  final String message=String.format("Do you really want to resolve all functions in the project '%s'?",project.getConfiguration().getName());
+  m_targetModules=new ArrayList<INaviModule>();
+  m_sourceModules=new ArrayList<INaviModule>();
+  for (  final INaviAddressSpace addressSpace : project.getContent().getAddressSpaces()) {
+    m_targetModules.addAll(loadModules(addressSpace.getContent().getModules()));
+    m_sourceModules.addAll(loadModules(addressSpace.getContent().getModules()));
+  }
+  resultDialog(questionDialog(owner,message));
+}

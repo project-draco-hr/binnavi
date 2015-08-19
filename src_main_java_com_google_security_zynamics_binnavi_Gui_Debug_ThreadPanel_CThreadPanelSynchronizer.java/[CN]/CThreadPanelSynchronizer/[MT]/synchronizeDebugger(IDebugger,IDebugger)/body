@@ -1,0 +1,8 @@
+{
+  if (oldDebugger != null) {
+    oldDebugger.getProcessManager().removeListener(m_processListener);
+  }
+  if (newDebugger != null) {
+    newDebugger.getProcessManager().addListener(m_processListener);
+  }
+}

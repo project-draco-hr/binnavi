@@ -1,0 +1,14 @@
+{
+  final TreePath path=jtree.getSelectionPath();
+  if (path != null) {
+    final JCriteriumTreeNode criteriumTreeNode=(JCriteriumTreeNode)path.getLastPathComponent();
+    final CCriteriumTreeNode parent=CCriteriumFunctions.findNode(ctree.getRoot(),criteriumTreeNode.getCriterium());
+    final CCriteriumWrapper selectedItem=(CCriteriumWrapper)conditionBox.getSelectedItem();
+    if (selectedItem != null) {
+      final ICriterium criterium=selectedItem.getObject().createCriterium();
+      if (criterium != null) {
+        appendCriterium(ctree,parent,criterium);
+      }
+    }
+  }
+}

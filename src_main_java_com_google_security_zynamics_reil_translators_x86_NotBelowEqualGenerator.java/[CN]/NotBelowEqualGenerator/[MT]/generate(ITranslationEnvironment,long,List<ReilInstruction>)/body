@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument(offset >= 0,"Error: Argument offset can't be less than 0");
+  final String negatedCarry=environment.getNextVariableString();
+  final String negatedZero=environment.getNextVariableString();
+  final String result=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,"1",OperandSize.BYTE,negatedCarry));
+  instructions.add(ReilHelpers.createXor(offset + 1,OperandSize.BYTE,Helpers.OVERFLOW_FLAG,OperandSize.BYTE,"1",OperandSize.BYTE,negatedZero));
+  instructions.add(ReilHelpers.createAnd(offset + 2,OperandSize.BYTE,negatedCarry,OperandSize.BYTE,negatedZero,OperandSize.BYTE,result));
+  return new Pair<OperandSize,String>(OperandSize.BYTE,result);
+}

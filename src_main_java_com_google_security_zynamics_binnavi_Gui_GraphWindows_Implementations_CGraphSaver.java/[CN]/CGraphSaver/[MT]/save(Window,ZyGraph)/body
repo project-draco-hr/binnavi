@@ -1,0 +1,27 @@
+{
+  Preconditions.checkNotNull(parent,"IE01752: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01753: Graph argument can not be null");
+  final CSaveProgress progress=new CSaveProgress(false);
+  new Thread(){
+    @Override public void run(){
+      final CViewSaverOperation operation=new CViewSaverOperation(String.format("Saving view '%s'",graph.getRawView().getName()));
+      try {
+        if (!graph.save()) {
+          throw new CouldntSaveDataException("Something went wrong saving");
+        }
+      }
+ catch (      final CouldntSaveDataException e) {
+        CUtilityFunctions.logException(e);
+        final String innerMessage="E00120: " + "Could not save graph";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("The function '%s' could not be saved.",graph.getRawView().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The graph remains unsaved."});
+        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      }
+ finally {
+        operation.stop();
+        progress.setDone();
+      }
+    }
+  }
+.start();
+  return progress;
+}

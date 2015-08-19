@@ -1,0 +1,11 @@
+{
+  final INaviFunction function=getFunction(view);
+  if (function != null) {
+    try {
+      function.setName(name);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

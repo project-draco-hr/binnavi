@@ -1,0 +1,13 @@
+{
+  final StringBuffer stringBuffer=new StringBuffer(m_address.toHexString());
+  stringBuffer.append(' ');
+  stringBuffer.append(m_mnemonic);
+  stringBuffer.append(' ');
+  for (int i=0; i < m_operands.size(); ++i) {
+    stringBuffer.append(m_operands.get(i).toString());
+    if (i != (m_operands.size() - 1)) {
+      stringBuffer.append(", ");
+    }
+  }
+  return stringBuffer.toString();
+}

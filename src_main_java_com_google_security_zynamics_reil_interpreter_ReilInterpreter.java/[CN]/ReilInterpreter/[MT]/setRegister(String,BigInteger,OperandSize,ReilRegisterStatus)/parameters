@@ -1,0 +1,4 @@
+String register
+BigInteger value
+OperandSize size
+ReilRegisterStatus status

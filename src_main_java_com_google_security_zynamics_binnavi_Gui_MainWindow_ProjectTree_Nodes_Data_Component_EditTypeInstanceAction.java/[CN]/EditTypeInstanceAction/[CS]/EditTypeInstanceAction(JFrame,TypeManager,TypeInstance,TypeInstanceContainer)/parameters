@@ -1,0 +1,4 @@
+JFrame owner
+TypeManager typeManager
+TypeInstance instance
+TypeInstanceContainer instanceContainer

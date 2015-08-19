@@ -1,0 +1,3 @@
+{
+  dse.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
+}

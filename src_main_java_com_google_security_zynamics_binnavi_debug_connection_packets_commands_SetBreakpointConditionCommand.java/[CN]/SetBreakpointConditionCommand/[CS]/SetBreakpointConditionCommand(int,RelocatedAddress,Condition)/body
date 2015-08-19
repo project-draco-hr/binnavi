@@ -1,0 +1,12 @@
+{
+  super(DebugCommandType.CMD_SET_BREAKPOINT_CONDITION,packetId);
+  Preconditions.checkNotNull(address,"IE01027: Address argument can not be null");
+  Preconditions.checkNotNull(condition,"IE01028: Condition argument can not be null");
+  addArgument(new DebugMessageAddressArgument(address.getAddress()));
+  try {
+    addArgument(new DebugMessageRawArgument(ConditionTreeFlattener.flatten(condition.getRoot())));
+  }
+ catch (  final MaybeNullException e) {
+    addArgument(new DebugMessageRawArgument(new byte[0]));
+  }
+}

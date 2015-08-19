@@ -1,0 +1,4 @@
+{
+  codeNode=(CCodeNode)loadCodeNode(getNotepadModule(),"sub_1002B87");
+  instruction=Iterables.getLast(codeNode.getInstructions());
+}

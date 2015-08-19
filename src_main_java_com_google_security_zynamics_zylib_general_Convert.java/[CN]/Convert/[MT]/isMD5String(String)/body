@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(string,"Error: String argument can't be null");
+  return (string.length() == 32) && isHexString(string);
+}

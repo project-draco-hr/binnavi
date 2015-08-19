@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(module,"IE01577: Module argument can not be null");
+  Preconditions.checkNotNull(model,"IE01578: Model argument can not be null");
+  Preconditions.checkNotNull(actionProvider,"IE01579: Action provider argument can not be null");
+  m_module=module;
+  m_model=model;
+  m_actionProvider=actionProvider;
+  m_module.addListener(m_internalModuleListener);
+  createChildren();
+}

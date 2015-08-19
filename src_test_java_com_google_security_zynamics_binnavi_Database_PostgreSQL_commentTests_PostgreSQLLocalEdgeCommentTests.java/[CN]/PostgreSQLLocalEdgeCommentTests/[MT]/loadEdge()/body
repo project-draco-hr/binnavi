@@ -1,0 +1,3 @@
+{
+  edge=(CNaviViewEdge)loadFlowGraphEdge(getNotepadModule(),"sub_1002B87");
+}

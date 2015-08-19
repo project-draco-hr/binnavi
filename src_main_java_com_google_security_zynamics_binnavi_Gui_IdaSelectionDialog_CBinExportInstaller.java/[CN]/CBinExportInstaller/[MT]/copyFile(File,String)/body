@@ -1,0 +1,7 @@
+{
+  final InputStream inFile=CMain.class.getResourceAsStream("exporters/BinExport/" + file);
+  final FileOutputStream outFile=new FileOutputStream(directory.getAbsolutePath() + "/plugins/" + file);
+  ByteStreams.copy(inFile,outFile);
+  inFile.close();
+  outFile.close();
+}

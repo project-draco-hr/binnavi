@@ -1,0 +1,26 @@
+{
+  final ReilOperand in1=ins.getFirstOperand();
+  final ReilOperand in2=ins.getSecondOperand();
+  final ReilOperand out=ins.getThirdOperand();
+  final Set<String> inputRegisters=new TreeSet<String>();
+  if (in1.getType() == OperandType.REGISTER) {
+    inputRegisters.add(in1.getValue());
+  }
+  if (in2.getType() == OperandType.REGISTER) {
+    inputRegisters.add(in2.getValue());
+  }
+  final RegisterSetLatticeElement outputstate=state.copy();
+  if (state.isTainted(out.getValue())) {
+    if (inputRegisters.isEmpty()) {
+      outputstate.untaint(out.getValue());
+    }
+ else {
+      outputstate.untaint(out.getValue());
+      outputstate.addReadReg(out.getValue());
+      for (      final String register : inputRegisters) {
+        outputstate.taint(register);
+      }
+    }
+  }
+  return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(outputstate,null);
+}

@@ -1,0 +1,11 @@
+{
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.setBorder(new TitledBorder("Edit Selection Condition"));
+  final JPanel comboPanel=new JPanel(new BorderLayout());
+  comboPanel.setBorder(new EmptyBorder(5,5,5,5));
+  selectionStateBox.addItem(SelectionState.SELECTED);
+  selectionStateBox.addItem(SelectionState.UNSELECTED);
+  comboPanel.add(selectionStateBox,BorderLayout.CENTER);
+  mainPanel.add(comboPanel,BorderLayout.NORTH);
+  add(mainPanel,BorderLayout.CENTER);
+}

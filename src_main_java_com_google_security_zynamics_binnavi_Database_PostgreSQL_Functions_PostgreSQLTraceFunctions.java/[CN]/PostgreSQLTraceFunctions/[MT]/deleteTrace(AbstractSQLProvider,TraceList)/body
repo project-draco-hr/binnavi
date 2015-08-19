@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(provider,"IE00576: Provider argument can not be null");
+  Preconditions.checkNotNull(trace,"IE00577: Trace argument can not be null");
+  Preconditions.checkArgument(trace.inSameDatabase(provider),"IE00578: Trace list is not part of this database");
+  final CConnection connection=provider.getConnection();
+  final String query="DELETE FROM " + CTableNames.TRACES_TABLE + " WHERE id = "+ trace.getId();
+  try {
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntDeleteException(e);
+  }
+}

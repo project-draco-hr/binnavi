@@ -1,0 +1,3 @@
+{
+  testParser(CTableNames.VIEWS_TABLE,"UPDATE",String.valueOf(view.getConfiguration().getId()),null);
+}

@@ -1,0 +1,7 @@
+{
+  typeSystem.ssArrayMember.setOffset(Optional.<Integer>of(typeSystem.simpleStruct.getBitSize()));
+  final Iterator<TypeMember> iterator=typeSystem.simpleStruct.iterator();
+  assertEquals(typeSystem.ssIntMember,iterator.next());
+  assertEquals(typeSystem.ssUintMember,iterator.next());
+  assertEquals(typeSystem.ssArrayMember,iterator.next());
+}

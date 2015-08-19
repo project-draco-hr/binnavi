@@ -1,0 +1,3 @@
+{
+  return "This table shows information about modules.\n\nName: Name of the module\nDescription: Description of the module\nViews: Number of views in the module\nCreation Date: Date when the module was first created\nModification Date: Date when the module was last modified\n";
+}

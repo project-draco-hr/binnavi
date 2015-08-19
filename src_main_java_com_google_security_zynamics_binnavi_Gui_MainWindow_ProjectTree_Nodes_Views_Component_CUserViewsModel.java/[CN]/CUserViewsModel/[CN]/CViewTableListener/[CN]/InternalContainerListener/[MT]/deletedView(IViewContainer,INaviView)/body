@@ -1,0 +1,5 @@
+{
+  m_cachedViews=null;
+  view.removeListener(m_viewListener);
+  fireTableDataChanged();
+}

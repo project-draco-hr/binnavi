@@ -1,0 +1,18 @@
+{
+  final INaviCodeNode databaseOnecodeNode=databaseOneView.getContent().getBasicBlocks().get(3);
+  final INaviCodeNode databaseTwocodeNode=databaseTwoView.getContent().getBasicBlocks().get(3);
+  final List<IComment> oneBefore=databaseOnecodeNode.getComments().getLocalInstructionComment(databaseOnecodeNode.getLastInstruction()) == null ? new ArrayList<IComment>() : databaseOnecodeNode.getComments().getLocalInstructionComment(databaseOnecodeNode.getLastInstruction());
+  final List<IComment> twoBefore=databaseTwocodeNode.getComments().getLocalInstructionComment(databaseTwocodeNode.getLastInstruction()) == null ? new ArrayList<IComment>() : databaseTwocodeNode.getComments().getLocalInstructionComment(databaseTwocodeNode.getLastInstruction());
+  assertEquals(oneBefore,twoBefore);
+  databaseOnecodeNode.getComments().appendLocalInstructionComment(databaseOnecodeNode.getLastInstruction()," TEST NOTIFICATION PROVIDER TESTS (GLOBAL INSTRUCTION COMMENT)");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOnecodeNode.getComments().getLocalInstructionComment(databaseOnecodeNode.getLastInstruction());
+  final List<IComment> twoAfter=databaseTwocodeNode.getComments().getLocalInstructionComment(databaseTwocodeNode.getLastInstruction());
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+}

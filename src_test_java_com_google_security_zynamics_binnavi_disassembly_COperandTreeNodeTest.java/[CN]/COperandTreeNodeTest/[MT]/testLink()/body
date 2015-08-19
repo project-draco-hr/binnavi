@@ -1,0 +1,23 @@
+{
+  final COperandTreeNode root=new COperandTreeNode(1,1,"value",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childOne=new COperandTreeNode(1,1,"value",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childTwo=new COperandTreeNode(1,1,"value",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  assertNotNull(root);
+  assertNotNull(childOne);
+  assertNotNull(childTwo);
+  COperandTreeNode.link(root,childOne);
+  assertEquals(root,childOne.getParent());
+  assertEquals(childOne,root.getChildren().get(0));
+  try {
+    COperandTreeNode.link(null,childOne);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    COperandTreeNode.link(root,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

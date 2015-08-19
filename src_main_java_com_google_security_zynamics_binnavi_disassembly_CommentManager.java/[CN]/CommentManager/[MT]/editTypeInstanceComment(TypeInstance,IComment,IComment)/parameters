@@ -1,0 +1,3 @@
+TypeInstance typeInstance
+IComment currentComment
+IComment newComment

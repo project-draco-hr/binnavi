@@ -1,0 +1,4 @@
+{
+  final int byteOffset=(bitOffset < 0) ? (bitOffset - 7) / 8 : (bitOffset + 7) / 8;
+  return (bitOffset < 0) ? String.format("%d",byteOffset) : String.format("+%d",byteOffset);
+}

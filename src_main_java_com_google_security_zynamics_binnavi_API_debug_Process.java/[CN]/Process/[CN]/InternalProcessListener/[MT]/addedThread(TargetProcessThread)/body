@@ -1,0 +1,12 @@
+{
+  final Thread newThread=new Thread(thread);
+  threads.add(newThread);
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.addedThread(Process.this,newThread);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

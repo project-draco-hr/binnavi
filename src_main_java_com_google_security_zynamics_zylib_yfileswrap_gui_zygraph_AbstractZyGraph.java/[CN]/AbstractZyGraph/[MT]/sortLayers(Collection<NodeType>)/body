@@ -1,0 +1,37 @@
+{
+  final List<NodeType> sortedNodes=new ArrayList<NodeType>(nodes);
+  Collections.sort(sortedNodes,new Comparator<NodeType>(){
+    private boolean isInsideGroup(    final IViewNode<?> node,    final IGroupNode<?,?> group){
+      final IGroupNode<?,?> parentGroup=node.getParentGroup();
+      if (parentGroup == null) {
+        return false;
+      }
+      if (parentGroup == group) {
+        return true;
+      }
+      return isInsideGroup(node,group.getParentGroup());
+    }
+    @Override public int compare(    final NodeType lhs,    final NodeType rhs){
+      final IViewNode<?> rawLhs=lhs.getRawNode();
+      final IViewNode<?> rawRhs=rhs.getRawNode();
+      if ((rawLhs instanceof IGroupNode<?,?>) && (rawRhs instanceof IGroupNode<?,?>)) {
+        if (isInsideGroup(rawRhs,(IGroupNode<?,?>)rawLhs)) {
+          return 1;
+        }
+        if (isInsideGroup(rawLhs,(IGroupNode<?,?>)rawRhs)) {
+          return -1;
+        }
+        return 0;
+      }
+      if (rawLhs instanceof IGroupNode<?,?>) {
+        return isInsideGroup(rawRhs,(IGroupNode<?,?>)rawLhs) ? 1 : 0;
+      }
+      if (rhs instanceof IGroupNode<?,?>) {
+        return isInsideGroup(rawLhs,(IGroupNode<?,?>)rawRhs) ? 1 : 0;
+      }
+      return 0;
+    }
+  }
+);
+  return sortedNodes;
+}

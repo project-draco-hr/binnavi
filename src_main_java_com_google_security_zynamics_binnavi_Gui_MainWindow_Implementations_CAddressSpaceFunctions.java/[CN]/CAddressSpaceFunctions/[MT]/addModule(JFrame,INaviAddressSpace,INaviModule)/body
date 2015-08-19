@@ -1,0 +1,22 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to add the module '%s' to the address space '%s'?",module.getConfiguration().getName(),addressSpace.getConfiguration().getName())) == JOptionPane.YES_OPTION) {
+    new Thread(){
+      @Override public void run(){
+        final CDefaultProgressOperation operation=new CDefaultProgressOperation("Adding modules to address space",false,true);
+        operation.getProgressPanel().setMaximum(1);
+        operation.getProgressPanel().setText("Adding module to address space" + ": '" + module.getConfiguration().getName() + "'");
+        try {
+          addressSpace.getContent().addModule(module);
+        }
+ catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+          final String message="E00026: " + "Module could not be added to address space";
+          final String description=CUtilityFunctions.createDescription(String.format("The module '%s' could not be added to the address space '%s'. Try adding the module to the address space again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",module.getConfiguration().getName(),addressSpace.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The address space remains unchanged."});
+          CNaviErrorDialog.show(parent,message,description,exception);
+        }
+        operation.stop();
+      }
+    }
+.start();
+  }
+}

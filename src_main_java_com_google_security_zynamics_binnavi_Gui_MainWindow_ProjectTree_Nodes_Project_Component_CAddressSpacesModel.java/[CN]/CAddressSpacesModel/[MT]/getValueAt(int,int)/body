@@ -1,0 +1,17 @@
+{
+  final INaviAddressSpace addressSpace=getAddressSpaces().get(row);
+switch (col) {
+case NAME_COLUMN:
+    return addressSpace.getConfiguration().getName();
+case DESCRIPTION_COLUMN:
+  return addressSpace.getConfiguration().getDescription();
+case MODULES_COLUMN:
+return addressSpace.isLoaded() ? addressSpace.getContent().getModules().size() : "?";
+case CREATION_DATE_COLUMN:
+return addressSpace.getConfiguration().getCreationDate();
+case MODIFICATION_DATE_COLUMN:
+return addressSpace.getConfiguration().getModificationDate();
+default :
+throw new IllegalStateException("IE01169: Invalid column");
+}
+}

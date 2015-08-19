@@ -1,0 +1,5 @@
+{
+  super(tree.getFormulaString());
+  m_graph=graph;
+  m_tree=tree;
+}

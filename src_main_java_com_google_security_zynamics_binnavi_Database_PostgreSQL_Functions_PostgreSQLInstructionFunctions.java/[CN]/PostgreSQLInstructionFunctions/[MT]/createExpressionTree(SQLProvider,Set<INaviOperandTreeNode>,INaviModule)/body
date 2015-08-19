@@ -1,0 +1,18 @@
+{
+  final int moduleId=module.getConfiguration().getId();
+  final ResultSet resultSet=provider.getConnection().executeQuery("select max(id) + 1 AS id from " + CTableNames.EXPRESSION_TREE_IDS_TABLE + " where module_id = "+ moduleId,true);
+  int expressionTreeId=-1;
+  try {
+    if (resultSet.next()) {
+      expressionTreeId=resultSet.getInt("id");
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  provider.getConnection().executeUpdate(String.format("insert into " + CTableNames.EXPRESSION_TREE_IDS_TABLE + " values(%d , %d)",moduleId,expressionTreeId),true);
+  for (  final INaviOperandTreeNode node : nodes) {
+    provider.getConnection().executeUpdate(String.format("insert into " + CTableNames.EXPRESSION_TREE_MAPPING_TABLE + " values(%d, %d, %d)",moduleId,expressionTreeId,node.getId()),true);
+  }
+  return expressionTreeId;
+}

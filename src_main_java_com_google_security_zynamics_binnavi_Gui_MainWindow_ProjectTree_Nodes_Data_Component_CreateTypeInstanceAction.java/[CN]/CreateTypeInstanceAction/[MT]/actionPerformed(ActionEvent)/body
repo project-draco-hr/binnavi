@@ -1,0 +1,16 @@
+{
+  final TypeInstanceDialog dlg=TypeInstanceDialog.instantiateCreateTypeInstanceDialog(owner,typeManager,section,sectionOffset);
+  GuiHelper.centerOnScreen(dlg);
+  dlg.setVisible(true);
+  if (dlg.wasOkClicked()) {
+    try {
+      instanceContainer.createInstance(dlg.getInstanceName(),null,dlg.getInstanceType(),section,dlg.getSectionOffset());
+    }
+ catch (    final CouldntSaveDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+catch (    final CouldntLoadDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

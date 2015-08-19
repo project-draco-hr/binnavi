@@ -1,0 +1,18 @@
+{
+  final INaviGroupNode groupNode=setupGroupNode();
+  final List<IComment> comments=groupNode.getComments() == null ? new ArrayList<IComment>() : groupNode.getComments();
+  final IComment lastComment=comments.size() == 0 ? null : Iterables.getLast(comments);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final String commentText=" GROUP NODE COMMENT TEST BEFORE EDIT ";
+  final Integer commentId=getProvider().appendGroupNodeComment(groupNode,commentText,user.getUserId());
+  final IComment newComment=new CComment(commentId,user,lastComment,commentText);
+  final ArrayList<IComment> newComments=getProvider().loadCommentById(commentId);
+  assertNotNull(newComments);
+  assertEquals(comments.size() + 1,newComments.size());
+  assertEquals(newComment,Iterables.getLast(newComments));
+  final String commentAfterEdit=" GROUP NODE COMMENT TEST AFTER EDIT ";
+  getProvider().editGroupNodeComment(groupNode,commentId,user.getUserId(),commentAfterEdit);
+  final ArrayList<IComment> commentsAfterEdit=PostgreSQLCommentFunctions.loadCommentByCommentId(getProvider(),commentId);
+  assertEquals(commentAfterEdit,Iterables.getLast(commentsAfterEdit).getComment());
+  assertEquals(commentsAfterEdit.size(),newComments.size());
+}

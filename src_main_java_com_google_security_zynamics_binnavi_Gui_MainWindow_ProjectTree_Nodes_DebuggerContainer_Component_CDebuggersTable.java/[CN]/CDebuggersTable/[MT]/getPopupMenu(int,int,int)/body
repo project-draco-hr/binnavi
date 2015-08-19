@@ -1,0 +1,4 @@
+{
+  final CDebuggerNodeMenuBuilder menu=new CDebuggerNodeMenuBuilder(getProjectTree(),null,this,m_database,getSelectedDebuggers(row));
+  return menu.getPopupMenu();
+}

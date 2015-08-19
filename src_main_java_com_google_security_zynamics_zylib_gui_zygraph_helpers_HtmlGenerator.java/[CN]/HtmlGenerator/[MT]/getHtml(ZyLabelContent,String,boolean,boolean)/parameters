@@ -1,0 +1,4 @@
+ZyLabelContent content
+String fontname
+boolean boldFirstLine
+boolean eliminateEmptyLines

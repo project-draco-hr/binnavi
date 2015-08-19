@@ -1,0 +1,4 @@
+{
+  final INodeFilter<NodeType> trueFilter=StandardFilters.getTrueFilter();
+  return getNodes(graph,trueFilter);
+}

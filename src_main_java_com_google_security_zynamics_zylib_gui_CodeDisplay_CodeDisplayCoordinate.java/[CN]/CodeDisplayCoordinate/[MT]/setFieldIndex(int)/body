@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(index >= 0,"Index should be >= 0: %s",index);
+  fieldIndex=index;
+}

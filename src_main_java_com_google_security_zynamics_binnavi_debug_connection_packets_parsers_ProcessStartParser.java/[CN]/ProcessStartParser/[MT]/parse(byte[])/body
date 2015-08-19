@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(data,"IE00066: Data argument can not be null");
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  TargetProcessThread thread=null;
+  MemoryModule module=null;
+  try {
+    final DocumentBuilder builder=factory.newDocumentBuilder();
+    final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+    final NodeList nodes=document.getFirstChild().getChildNodes();
+    for (int i=0; i < nodes.getLength(); ++i) {
+      final Node node=nodes.item(i);
+      final String nodeName=node.getNodeName();
+      if ("thread".equals(nodeName)) {
+        thread=parseThreadInformation(node);
+      }
+ else       if ("module".equals(nodeName)) {
+        module=MemoryModuleParser.parseModule(node);
+      }
+ else {
+        throw new MessageParserException(String.format("Found unknown node '%s' in process start string",nodeName));
+      }
+    }
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+  Preconditions.checkNotNull(thread,"IE01665: E00068: Received invalid process start string (missing thread information)");
+  Preconditions.checkNotNull(module,"IE01668: E00069: Received invalid target process start string (missing module information)");
+  return new ProcessStart(thread,module);
+}

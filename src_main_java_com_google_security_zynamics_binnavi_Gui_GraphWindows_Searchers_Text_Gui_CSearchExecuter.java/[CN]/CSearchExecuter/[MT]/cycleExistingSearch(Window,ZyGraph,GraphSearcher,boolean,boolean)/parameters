@@ -1,0 +1,5 @@
+Window parent
+ZyGraph graph
+GraphSearcher searcher
+boolean cycleBackwards
+boolean zoomToResult

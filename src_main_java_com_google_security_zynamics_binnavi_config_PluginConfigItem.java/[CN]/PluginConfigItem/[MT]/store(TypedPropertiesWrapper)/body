@@ -1,0 +1,5 @@
+{
+  properties.setString(NAME,name);
+  properties.setLong(GUID,guid);
+  properties.setBoolean(LOAD,load);
+}

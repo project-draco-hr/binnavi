@@ -1,0 +1,12 @@
+{
+  if (!FileUtils.containsDirectory(directory,"plugins")) {
+    return InstallationState.InvalidIdaDirectory;
+  }
+  final File pluginsDirectory=new File(directory.getAbsolutePath() + "/plugins");
+  for (  final String pluginFile : CBinExportFiles.getPluginFiles()) {
+    if (!FileUtils.containsFile(pluginsDirectory,pluginFile)) {
+      return InstallationState.NotInstalled;
+    }
+  }
+  return InstallationState.Installed;
+}

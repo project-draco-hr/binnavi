@@ -1,0 +1,5 @@
+{
+  if (processRemovedNode(node)) {
+    m_tableModel.setCrossReferences(m_crossReferences);
+  }
+}

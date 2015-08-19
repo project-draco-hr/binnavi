@@ -1,0 +1,15 @@
+{
+  final List<RegisterValue> registerValues=new ArrayList<>();
+  final long tid=Long.valueOf(node.getAttributes().getNamedItem("id").getNodeValue());
+  final NodeList children=node.getChildNodes();
+  for (int i=0; i < children.getLength(); ++i) {
+    final Node child=children.item(i);
+    final String registerName=getAttribute(child,"name");
+    final BigInteger registerValue=new BigInteger(getAttribute(child,"value"),16);
+    final byte[] memory=MemoryStringParser.parseMemoryString(getAttribute(child,"memory"));
+    final boolean isPc=hasAttribute(child,"pc");
+    final boolean isSp=hasAttribute(child,"sp");
+    registerValues.add(new RegisterValue(registerName,registerValue,memory,isPc,isSp));
+  }
+  return new ThreadRegisters(tid,registerValues);
+}

@@ -1,0 +1,3 @@
+{
+  m_panel=new CColorCriteriumPanel(this,graph);
+}

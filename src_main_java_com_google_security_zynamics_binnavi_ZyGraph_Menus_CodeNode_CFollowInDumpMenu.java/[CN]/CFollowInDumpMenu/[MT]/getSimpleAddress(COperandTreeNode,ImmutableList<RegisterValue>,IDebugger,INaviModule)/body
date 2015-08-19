@@ -1,0 +1,11 @@
+{
+  if ((treeNode.getType() == ExpressionType.REGISTER) || (treeNode.getType() == ExpressionType.IMMEDIATE_INTEGER)) {
+    try {
+      return CExpressionEvaluator.evaluateExpression(treeNode,registerValues,debugger,module);
+    }
+ catch (    final CExpressionEvaluationException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return null;
+}

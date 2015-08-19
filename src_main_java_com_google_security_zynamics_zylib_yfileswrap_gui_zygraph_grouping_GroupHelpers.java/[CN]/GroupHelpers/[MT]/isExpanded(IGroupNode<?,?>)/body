@@ -1,0 +1,3 @@
+{
+  return !group.isCollapsed() && ((group.getParentGroup() == null) || isExpanded(group.getParentGroup()));
+}

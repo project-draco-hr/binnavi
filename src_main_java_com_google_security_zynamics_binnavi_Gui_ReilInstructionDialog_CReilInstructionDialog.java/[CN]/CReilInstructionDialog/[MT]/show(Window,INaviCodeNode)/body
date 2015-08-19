@@ -1,0 +1,8 @@
+{
+  final ReilGraph graph=CNodeFunctions.copyReilCode(parent,node);
+  final String title=String.format("REIL code of %s",node.getAddress().toHexString());
+  final String text=reilGraphToText(graph);
+  final CReilInstructionDialog dialog=new CReilInstructionDialog(parent,title,text);
+  GuiHelper.centerChildToParent(parent,dialog,true);
+  dialog.setVisible(true);
+}

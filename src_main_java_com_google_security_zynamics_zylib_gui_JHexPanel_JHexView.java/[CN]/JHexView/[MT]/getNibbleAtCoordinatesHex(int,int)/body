@@ -1,0 +1,22 @@
+{
+  final int normalizedX=x - (getHexViewLeft() + m_paddingHexLeft);
+  final int columnSize=getColumnSize();
+  final int column=normalizedX / columnSize;
+  if (column >= (m_bytesPerRow / m_bytesPerColumn)) {
+    return -1;
+  }
+  final int xInColumn=normalizedX % columnSize;
+  final int nibbleInColumn=xInColumn / m_charWidth;
+  if (nibbleInColumn >= (2 * m_bytesPerColumn)) {
+    return -1;
+  }
+  final int row=(y - (m_paddingTop - m_charHeight)) / m_rowHeight;
+  final int earlierPositions=2 * getEarlierBytes();
+  final int position=earlierPositions + (2 * ((row * m_bytesPerRow) + (column * m_bytesPerColumn))) + nibbleInColumn;
+  if (position >= (2 * m_dataProvider.getDataLength())) {
+    return -1;
+  }
+ else {
+    return position;
+  }
+}

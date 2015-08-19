@@ -1,0 +1,5 @@
+{
+  final Iterator<ImageWriter> it=ImageIO.getImageWritersBySuffix("png");
+  final ImageWriter iw=it.hasNext() ? it.next() : null;
+  return iw == null ? null : new ImageIoOutputHandler(iw);
+}

@@ -1,0 +1,3 @@
+{
+  CGraphSelecter.selectNodesWithFunctionType(m_graph,m_functionType);
+}

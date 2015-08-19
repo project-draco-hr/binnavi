@@ -1,0 +1,3 @@
+{
+  CEdgeDeleter.deleteEdge(m_view,m_edge);
+}

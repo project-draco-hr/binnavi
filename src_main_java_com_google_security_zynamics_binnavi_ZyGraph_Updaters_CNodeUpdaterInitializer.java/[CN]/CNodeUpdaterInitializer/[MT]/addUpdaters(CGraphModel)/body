@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(model,"IE02240: Model argument can not be null");
+  model.getGraph().iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      addUpdaters(model,node);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

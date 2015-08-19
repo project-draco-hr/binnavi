@@ -1,0 +1,4 @@
+{
+  super(projectTree,new CFunctionViewsModel(database,module),container,new CFunctionViewsTableHelp());
+  setDefaultRenderer(Object.class,new CViewsTableRenderer(this,container));
+}

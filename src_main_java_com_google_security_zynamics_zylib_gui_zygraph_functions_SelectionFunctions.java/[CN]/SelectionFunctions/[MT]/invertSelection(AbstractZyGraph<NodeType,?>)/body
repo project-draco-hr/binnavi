@@ -1,0 +1,17 @@
+{
+  final ArrayList<NodeType> toSelect=new ArrayList<NodeType>();
+  final ArrayList<NodeType> toUnselect=new ArrayList<NodeType>();
+  graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      if (node.isSelected()) {
+        toUnselect.add(node);
+      }
+ else {
+        toSelect.add(node);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  graph.selectNodes(toSelect,toUnselect);
+}

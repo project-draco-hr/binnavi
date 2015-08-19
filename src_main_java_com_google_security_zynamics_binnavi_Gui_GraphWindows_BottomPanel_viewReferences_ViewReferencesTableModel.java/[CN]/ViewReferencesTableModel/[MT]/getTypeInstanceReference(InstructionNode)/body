@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null.");
+  return multiIndex.getTypeInstanceReference(node);
+}

@@ -1,0 +1,15 @@
+{
+  for (  final ICodeEdge<?> nativeEdge : nativeEdges) {
+    final Object source=nativeEdge.getSource();
+    final Object target=nativeEdge.getTarget();
+    if ((source instanceof ICodeContainer) && (target instanceof ICodeContainer)) {
+      final ICodeContainer<?> sourceCodeNode=(ICodeContainer<?>)source;
+      final ICodeContainer<?> targetCodeNode=(ICodeContainer<?>)target;
+      final IInstruction sourceInstruction=getLastInstruction(sourceCodeNode);
+      final IInstruction targetInstruction=getFirstInstruction(targetCodeNode);
+      final ReilInstruction sourceReilInstruction=lastMap.get(sourceInstruction);
+      final ReilInstruction targetReilInstruction=firstMap.get(targetInstruction);
+      insertNativeEdge(nodes,edges,nativeEdge,sourceReilInstruction,targetReilInstruction);
+    }
+  }
+}

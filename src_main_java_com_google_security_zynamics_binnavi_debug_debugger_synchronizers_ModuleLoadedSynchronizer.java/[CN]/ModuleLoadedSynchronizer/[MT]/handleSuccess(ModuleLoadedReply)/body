@@ -1,0 +1,21 @@
+{
+  getDebugger().getProcessManager().addModule(reply.getModule());
+  CRelocationNotifier.relocateModule(getDebugger(),reply.getModule());
+  CBreakpointModuleSynchronizer.enableRegularBreakpoints(getDebugger(),reply.getModule());
+  CBreakpointModuleSynchronizer.enableEchoBreakpoints(getDebugger(),reply.getModule());
+  final TargetInformation targetInformation=getDebugger().getProcessManager().getTargetInformation();
+  if ((targetInformation != null) && targetInformation.getDebuggerOptions().canBreakOnModuleLoad()) {
+    if (needsResume()) {
+      try {
+        getDebugger().resume();
+      }
+ catch (      final DebugExceptionWrapper e) {
+        NaviLogger.severe("Error: Could not resume debugger. Exception: %s",e);
+      }
+    }
+ else {
+      refreshRegisters();
+      setActiveThreadById(getDebugger().getProcessManager(),reply.getThread().getThreadId());
+    }
+  }
+}

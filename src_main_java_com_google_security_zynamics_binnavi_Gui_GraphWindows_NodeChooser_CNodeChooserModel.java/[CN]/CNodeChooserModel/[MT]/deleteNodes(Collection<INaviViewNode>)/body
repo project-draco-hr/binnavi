@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(nodes,"Error: nodes argument can not be null");
+  for (  final INaviViewNode node : nodes) {
+    deleteNode(node);
+  }
+}

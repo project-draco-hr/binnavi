@@ -1,0 +1,3 @@
+{
+  return ReferenceType.convert(m_reference.getType());
+}

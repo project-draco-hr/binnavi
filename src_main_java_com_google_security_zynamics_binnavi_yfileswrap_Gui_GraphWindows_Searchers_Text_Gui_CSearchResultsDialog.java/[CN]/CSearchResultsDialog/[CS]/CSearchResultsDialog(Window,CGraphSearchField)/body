@@ -1,0 +1,14 @@
+{
+  super(parent,"Search Results");
+  m_searchField=searchField;
+  setResults(m_searchField.getGraphSearcher().getResults());
+  setLayout(new BorderLayout());
+  m_searchField.addListener(m_searchListener);
+  m_table.setDefaultRenderer(Object.class,new CMonospaceRenderer());
+  m_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  add(new JScrollPane(m_table));
+  final JPanel panel=new JPanel();
+  panel.add(m_resultsLabel);
+  add(panel,BorderLayout.SOUTH);
+  setSize(400,400);
+}

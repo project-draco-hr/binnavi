@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  m_listeners=listeners;
+  final JPanel innerPanel=new JPanel(new GridLayout(3,1));
+  innerPanel.add(buildRow("Flow graph views",m_flowgraphViewsCheckbox));
+  innerPanel.add(buildRow("Call graph views",m_callgraphViewsCheckbox));
+  innerPanel.add(buildRow("Mixed views",m_mixedViewsCheckbox));
+  add(innerPanel,BorderLayout.NORTH);
+  setBorder(new TitledBorder("View type"));
+}

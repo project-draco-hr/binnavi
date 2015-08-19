@@ -1,0 +1,8 @@
+{
+  for (  final INaviEdge edge : edges) {
+    final NaviNode sourceNode=m_ynodeToNodeMap.get(rawNodeToNodeMap.get(edge.getSource()));
+    final NaviNode targetNode=m_ynodeToNodeMap.get(rawNodeToNodeMap.get(edge.getTarget()));
+    final Pair<Edge,NaviEdge> result=ZyEdgeBuilder.convertEdge(edge,sourceNode,targetNode,graph2D,adjustColors);
+    m_yedgeToEdgeMap.put(result.first(),result.second());
+  }
+}

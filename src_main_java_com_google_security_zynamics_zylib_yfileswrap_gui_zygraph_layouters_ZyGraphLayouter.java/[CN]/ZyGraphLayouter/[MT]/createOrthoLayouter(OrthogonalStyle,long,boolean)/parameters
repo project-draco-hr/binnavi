@@ -1,0 +1,3 @@
+OrthogonalStyle style
+long gridSize
+boolean isVerticalOrientation

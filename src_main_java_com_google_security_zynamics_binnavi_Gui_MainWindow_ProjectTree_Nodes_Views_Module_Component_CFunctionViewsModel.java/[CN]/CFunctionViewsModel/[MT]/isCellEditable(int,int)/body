@@ -1,0 +1,3 @@
+{
+  return (FUNCTIONNAME_COLUM == column) || (DESCRIPTION_COLUMN == column);
+}

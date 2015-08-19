@@ -1,0 +1,8 @@
+{
+  for (  final IGraphPanelExtension extension : m_extensions) {
+    extension.dispose();
+  }
+  m_perspectiveModel.removeListener(m_listener);
+  m_standardBottomPanel.dispose();
+  m_debugBottomPanel.dispose();
+}

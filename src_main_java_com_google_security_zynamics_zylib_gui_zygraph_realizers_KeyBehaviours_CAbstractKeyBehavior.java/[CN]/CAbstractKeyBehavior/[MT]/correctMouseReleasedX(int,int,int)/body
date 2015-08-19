@@ -1,0 +1,7 @@
+{
+  final int lastReleasedXPos=getLastLineXPos(mouseReleased_Y);
+  if ((mouseReleased_X > lastReleasedXPos) && (mouseReleased_Y == mousePressed_Y)) {
+    return lastReleasedXPos;
+  }
+  return mouseReleased_X;
+}

@@ -1,0 +1,7 @@
+{
+  final int lastPressedXPos=getLastLineXPos(m_mouse_pressed_y);
+  if (startPos > lastPressedXPos) {
+    startPos=lastPressedXPos;
+  }
+  m_caret_startpos_x=startPos;
+}

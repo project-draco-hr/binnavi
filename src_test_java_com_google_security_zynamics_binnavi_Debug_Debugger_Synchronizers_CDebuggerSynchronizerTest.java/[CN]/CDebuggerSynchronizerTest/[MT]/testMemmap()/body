@@ -1,0 +1,8 @@
+{
+  final IFilledList<MemorySection> sections=new FilledList<MemorySection>();
+  sections.add(new MemorySection(new CAddress(100),new CAddress(200)));
+  sections.add(new MemorySection(new CAddress(300),new CAddress(400)));
+  debuggerSynchronizer.receivedEvent(new MemoryMapReply(0,0,new MemoryMap(sections)));
+  assertEquals(0,listener.exception);
+  assertEquals(2,mockDebugger.getProcessManager().getMemoryMap().getNumberOfSections());
+}

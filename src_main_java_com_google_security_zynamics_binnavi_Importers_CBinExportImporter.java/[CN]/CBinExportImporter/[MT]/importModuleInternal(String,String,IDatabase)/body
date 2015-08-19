@@ -1,0 +1,26 @@
+{
+  CImporterManager.instance().startImporting(database,idbFile);
+  try {
+    int exitCode=0;
+    do {
+      final String host=getHost(database.getConfiguration().getHost());
+      final int port=getPort(database.getConfiguration().getHost());
+      final String user=database.getConfiguration().getUser();
+      final String password=database.getConfiguration().getPassword();
+      final String name=database.getConfiguration().getName();
+      final Process processInfo=createIdaProcess(idaDirectory + File.separatorChar + (idbFile.endsWith("idb") ? IdaHelpers.IDA32_EXECUTABLE : IdaHelpers.IDA64_EXECUTABLE),idbFile,host,port,user,password,name);
+      try {
+        exitCode=processInfo.waitFor();
+        handleExitCode(exitCode);
+      }
+ catch (      final InterruptedException e) {
+        CUtilityFunctions.logException(e);
+        Thread.currentThread().interrupt();
+      }
+    }
+ while ((exitCode & 0xFE) == 0xFE);
+  }
+  finally {
+    CImporterManager.instance().finishImporting(database,idbFile);
+  }
+}

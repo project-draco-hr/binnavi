@@ -1,0 +1,25 @@
+{
+  final INaviFunction function=node.getFunction();
+  String informationString="";
+  if (function.getBasicBlockCount() > 0) {
+    final StringBuilder builder=new StringBuilder();
+    builder.append(" (");
+    builder.append(function.getBasicBlockCount());
+    builder.append(" basic block");
+    if (function.getBasicBlockCount() > 1) {
+      builder.append('s');
+    }
+    if (function.getEdgeCount() > 0) {
+      builder.append(", ");
+      builder.append(function.getEdgeCount());
+      builder.append(" edge");
+      if (function.getEdgeCount() > 1) {
+        builder.append('s');
+      }
+    }
+    builder.append(')');
+    informationString=builder.toString();
+  }
+  final ZyLineContent nameLine=new ZyLineContent(function.getName() + informationString,NORMAL_FONT,null);
+  content.addLineContent(nameLine);
+}

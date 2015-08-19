@@ -1,0 +1,20 @@
+{
+  final DebuggerTemplate template1=new DebuggerTemplate(1,"A","",0,m_provider);
+  final DebuggerTemplate template2=new DebuggerTemplate(1,"B","",0,m_provider);
+  m_database.getContent().getDebuggerTemplateManager().addDebugger(template1);
+  m_database.getContent().getDebuggerTemplateManager().addDebugger(template2);
+  m_project.getConfiguration().addDebugger(template1);
+  m_project.getConfiguration().addDebugger(template2);
+  sleep();
+  assertFalse(m_saveButton.isEnabled());
+  m_debuggerCombo.setSelectedIndex(3);
+  sleep();
+  assertTrue(m_saveButton.isEnabled());
+  m_module.getConfiguration().setDebuggerTemplate(template2);
+  sleep();
+  assertFalse(m_saveButton.isEnabled());
+  m_module.getConfiguration().setDebuggerTemplate(template1);
+  sleep();
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

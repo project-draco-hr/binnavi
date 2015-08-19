@@ -1,0 +1,2 @@
+CNodeExitState<NodeType,EdgeType> state
+MouseEvent event

@@ -1,0 +1,13 @@
+{
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      if (!listener.closingProject(Project.this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

@@ -1,0 +1,13 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to convert delete the node tag '%s' and all of its children?",tag.getObject().getName())) == JOptionPane.YES_OPTION) {
+    try {
+      tagManager.deleteTagSubTree(tag);
+    }
+ catch (    final CouldntDeleteException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00125: " + "Could not delete tags";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The tag '%s' and its children could not be deleted.",tag.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag and its children still exist."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

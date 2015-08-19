@@ -1,0 +1,6 @@
+JFrame parent
+IViewContainer viewContainer
+ZyGraph graph
+INaviCodeNode node
+INaviInstruction instruction
+INaviFunction function

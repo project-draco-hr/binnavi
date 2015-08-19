@@ -1,0 +1,5 @@
+{
+  this.provider=Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  this.view=Preconditions.checkNotNull(view,"Error: view argument can not be null");
+  this.type=Preconditions.checkNotNull(type,"Error: type argument can not be null");
+}

@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(edge,"IE00300: Edge argument can not be null");
+  graph.removeEdge(edge);
+  edge.removeListener(m_internalEdgeListener);
+  edge.getSource().removeChild(edge.getTarget());
+  edge.getTarget().removeParent(edge.getSource());
+  edge.getSource().removeOutgoingEdge(edge);
+  edge.getTarget().removeIncomingEdge(edge);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.deletedEdge(view,edge);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  int commentRow=coordinate.getRow();
+  IComment comment=null;
+  if (commentRow < cachedComments.size()) {
+    comment=cachedComments.get(commentRow);
+  }
+  if (!isEditable(coordinate)) {
+    return;
+  }
+switch (event.getKeyCode()) {
+case KeyEvent.VK_UNDEFINED:
+    if (commentRow >= cachedComments.size()) {
+      try {
+        commentAccessor.appendComment(String.format("%c",event.getKeyChar()));
+        coordinate.setFieldIndex(1);
+      }
+ catch (      CouldntSaveDataException|CouldntLoadDataException e) {
+        CUtilityFunctions.logException(e);
+      }
+      resetCachedComments();
+      break;
+    }
+switch (event.getKeyChar()) {
+case KeyEvent.VK_ENTER:
+    comment=handleRegularKeyInComment(comment,coordinate,event);
+  coordinate.setLine(coordinate.getLine() < (comment.getNumberOfCommentLines() - 1) ? coordinate.getLine() + 1 : comment.getNumberOfCommentLines() - 1);
+coordinate.setFieldIndex(0);
+break;
+case KeyEvent.VK_BACK_SPACE:
+comment=handleBackspaceKeyInComment(comment,coordinate);
+break;
+case KeyEvent.VK_DELETE:
+comment=handleDeleteKeyInComment(comment,coordinate);
+break;
+default :
+comment=handleRegularKeyInComment(comment,coordinate,event);
+coordinate.setFieldIndex(coordinate.getFieldIndex() + 1);
+break;
+}
+break;
+case KeyEvent.VK_HOME:
+coordinate.setFieldIndex(0);
+break;
+case KeyEvent.VK_END:
+coordinate.setFieldIndex(columns[coordinate.getColumn()].getWidth());
+break;
+default :
+throw new IllegalArgumentException();
+}
+}

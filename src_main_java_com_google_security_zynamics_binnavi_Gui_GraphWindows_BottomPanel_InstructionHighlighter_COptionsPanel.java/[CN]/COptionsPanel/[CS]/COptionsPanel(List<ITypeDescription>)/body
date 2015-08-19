@@ -1,0 +1,24 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(descriptions,"IE00667: Descriptions argument can not be null");
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  final JPanel innerMainPanel=new JPanel(new GridBagLayout());
+  final JPanel functionTypeColorPanel=new JPanel(new GridLayout(descriptions.size(),1,3,3));
+  for (  final ITypeDescription description : descriptions) {
+    final ColorPanel colorPanel=new ColorPanel(description.getColor(),true,true);
+    final InternalColorPanelListener listener=new InternalColorPanelListener(description);
+    colorPanel.addListener(listener);
+    m_listenerMap.put(colorPanel,listener);
+    buildRow(functionTypeColorPanel,description,description.getHint(),colorPanel,false);
+  }
+  functionTypeColorPanel.setBorder(new TitledBorder("Colors"));
+  final GridBagConstraints constraints=new GridBagConstraints();
+  constraints.gridx=0;
+  constraints.gridy=0;
+  constraints.anchor=GridBagConstraints.FIRST_LINE_START;
+  constraints.weightx=1;
+  constraints.fill=GridBagConstraints.HORIZONTAL;
+  innerMainPanel.add(functionTypeColorPanel,constraints);
+  mainPanel.add(innerMainPanel,BorderLayout.NORTH);
+  add(new JScrollPane(mainPanel));
+}

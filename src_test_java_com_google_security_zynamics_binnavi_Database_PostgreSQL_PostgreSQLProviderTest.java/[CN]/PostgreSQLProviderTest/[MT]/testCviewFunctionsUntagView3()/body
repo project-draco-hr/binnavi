@@ -1,0 +1,15 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final CView view=(CView)module.getContent().getViewContainer().getViews().get(224);
+  view.load();
+  final Set<CTag> viewTags=view.getConfiguration().getViewTags();
+  if (viewTags.isEmpty()) {
+    final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+    final CTag tag=tagManager.getRootTag().getChildren().get(0).getObject();
+    getProvider().tagView(view,tag);
+  }
+ else {
+    getProvider().removeTag(view,viewTags.iterator().next());
+  }
+}

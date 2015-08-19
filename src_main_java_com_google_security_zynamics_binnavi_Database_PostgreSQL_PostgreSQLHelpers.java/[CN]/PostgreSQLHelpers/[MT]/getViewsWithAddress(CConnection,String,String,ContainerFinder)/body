@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(finder,"IE00607: Finder argument can not be null");
+  Preconditions.checkNotNull(columnName,"IE00608: Column name argument can not be null");
+  Preconditions.checkNotNull(query,"IE00627: Query argument can not be null");
+  Preconditions.checkNotNull(connection,"IE00628: Connection argument can not be null");
+  final IFilledList<INaviView> views=new FilledList<INaviView>();
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final int containerId=resultSet.getInt(columnName);
+        final int viewId=resultSet.getInt("view_id");
+        final INaviView view=finder.findView(containerId,viewId);
+        views.add(view);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+    return views;
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

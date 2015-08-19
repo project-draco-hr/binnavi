@@ -1,0 +1,45 @@
+{
+  Preconditions.checkNotNull(layouter,"Internal Error: Can not layout the graph without initializing the layouter first");
+  GraphLayout graphLayout=null;
+  final ILayoutSettings layoutSettings=graph.getSettings().getLayoutSettings();
+  if (layoutSettings.getCurrentLayouter().getLayoutOrientation() == LayoutOrientation.TOP_TO_BOTTOM) {
+    graph.getGraph().addDataProvider(PortConstraintKeys.SOURCE_PORT_CONSTRAINT_KEY,DataProviders.createConstantDataProvider(PortConstraint.create(PortConstraint.SOUTH)));
+    graph.getGraph().addDataProvider(PortConstraintKeys.TARGET_PORT_CONSTRAINT_KEY,DataProviders.createConstantDataProvider(PortConstraint.create(PortConstraint.NORTH)));
+  }
+  if (layoutSettings.getCurrentLayouter().getLayoutOrientation() == LayoutOrientation.LEFT_TO_RIGHT) {
+    graph.getGraph().addDataProvider(PortConstraintKeys.SOURCE_PORT_CONSTRAINT_KEY,DataProviders.createConstantDataProvider(PortConstraint.create(PortConstraint.EAST)));
+    graph.getGraph().addDataProvider(PortConstraintKeys.TARGET_PORT_CONSTRAINT_KEY,DataProviders.createConstantDataProvider(PortConstraint.create(PortConstraint.WEST)));
+  }
+  layouter.setLabelLayouter(new LabelLayoutTranslator());
+  layouter.setLabelLayouterEnabled(true);
+  if ((graph.getNodes().size() < layoutSettings.getAnimateLayoutNodeThreshold()) && (graph.getEdges().size() < layoutSettings.getAnimateLayoutEdgeThreshold())) {
+    if (graph.getSettings().getLayoutSettings().getAnimateLayout()) {
+      ((DefaultGraph2DRenderer)graph.getView().getGraph2DRenderer()).setDrawEdgesFirst(true);
+      graphLayout=new BufferedLayouter(layouter).calcLayout(graph.getGraph());
+      final LayoutMorpher layoutMorpher=new LayoutMorpher();
+      layoutMorpher.setSmoothViewTransform(true);
+      layoutMorpher.setPreferredDuration(PREFERRED_ANIMATION_TIME_CONSTANT_FACTOR_MS * graph.getSettings().getDisplaySettings().getAnimationSpeed());
+      final GraphLayout morpherLayout=graphLayout;
+      new SwingInvoker(){
+        @Override protected void operation(){
+          layoutMorpher.execute(graph.getView(),morpherLayout);
+        }
+      }
+.invokeLater();
+      recalculatePorts(layouter,graph.getGraph());
+    }
+ else {
+      graphLayout=new BufferedLayouter(layouter).calcLayout(graph.getGraph());
+      LayoutTool.applyGraphLayout(graph.getGraph(),graphLayout);
+      recalculatePorts(layouter,graph.getGraph());
+    }
+  }
+ else {
+    graphLayout=new BufferedLayouter(layouter).calcLayout(graph.getGraph());
+    LayoutTool.applyGraphLayout(graph.getGraph(),graphLayout);
+    final LayoutMorpher layoutMorpher=new LayoutMorpher();
+    layoutMorpher.setPreferredDuration(PREFERRED_ANIMATION_TIME_CONSTANT_FACTOR_MS * graph.getSettings().getDisplaySettings().getAnimationSpeed());
+    layoutMorpher.execute(graph.getView(),graphLayout);
+  }
+  return graphLayout;
+}

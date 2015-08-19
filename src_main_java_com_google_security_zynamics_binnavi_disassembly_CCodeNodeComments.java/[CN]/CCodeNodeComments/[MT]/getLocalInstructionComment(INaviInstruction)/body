@@ -1,0 +1,3 @@
+{
+  return CommentManager.get(m_provider).getLocalInstructionComment(instruction,m_codeNode);
+}

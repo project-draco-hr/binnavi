@@ -1,0 +1,5 @@
+{
+  final CBendEnterState state=new CBendEnterState(this,m_graph,b);
+  m_factory.createBendEnterAction().execute(state,event);
+  return state;
+}

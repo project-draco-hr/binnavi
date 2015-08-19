@@ -1,0 +1,3 @@
+CNaviViewEdge edge
+ArrayList<IComment> globalComments
+SQLProvider provider

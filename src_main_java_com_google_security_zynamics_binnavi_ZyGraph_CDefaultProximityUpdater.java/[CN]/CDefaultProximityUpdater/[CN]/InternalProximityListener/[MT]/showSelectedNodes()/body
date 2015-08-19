@@ -1,0 +1,6 @@
+{
+  final Set<NaviNode> selectedNodes=m_graph.getSelectedNodes();
+  final List<NaviNode> allNodes=GraphHelpers.getNodes(m_graph);
+  allNodes.removeAll(selectedNodes);
+  showNodes(selectedNodes,allNodes);
+}

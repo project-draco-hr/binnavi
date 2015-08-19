@@ -1,0 +1,12 @@
+{
+  final List<? extends IAbstractCriteriumTreeNode> children=node.getChildren();
+  if (children.size() < 2) {
+    throw new IllegalStateException("IE01141: OR operator has less than two child criteria.");
+  }
+  for (  final IAbstractCriteriumTreeNode child : node.getChildren()) {
+    if (qualifies(child,naviNode)) {
+      return true;
+    }
+  }
+  return false;
+}

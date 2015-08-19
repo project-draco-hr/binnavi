@@ -1,0 +1,3 @@
+{
+  return m_lhs.evaluate().subtract(m_rhs.evaluate());
+}

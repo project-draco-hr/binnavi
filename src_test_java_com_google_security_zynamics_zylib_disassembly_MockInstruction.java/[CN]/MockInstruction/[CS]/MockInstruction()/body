@@ -1,0 +1,3 @@
+{
+  this(0x123,"nop",new ArrayList<MockOperandTree>());
+}

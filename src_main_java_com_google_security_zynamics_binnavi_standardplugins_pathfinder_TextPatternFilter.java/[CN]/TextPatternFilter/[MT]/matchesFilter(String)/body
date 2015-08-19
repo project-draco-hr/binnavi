@@ -1,0 +1,4 @@
+{
+  final String lowText=text.toLowerCase();
+  return (m_pattern.length() == 0) || lowText.contains(m_pattern);
+}

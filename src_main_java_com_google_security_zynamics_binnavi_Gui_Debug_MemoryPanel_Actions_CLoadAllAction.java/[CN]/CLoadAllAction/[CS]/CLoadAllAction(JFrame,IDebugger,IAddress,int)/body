@@ -1,0 +1,10 @@
+{
+  super("Load whole section");
+  Preconditions.checkNotNull(parent,"IE01421: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01422: Debugger argument can not be null");
+  Preconditions.checkNotNull(offset,"IE01423: Offset argument can't be null");
+  m_parent=parent;
+  m_debugger=debugger;
+  m_offset=offset;
+  m_size=size;
+}

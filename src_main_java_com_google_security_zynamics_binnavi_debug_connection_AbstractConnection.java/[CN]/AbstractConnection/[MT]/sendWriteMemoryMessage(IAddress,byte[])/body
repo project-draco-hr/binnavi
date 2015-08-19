@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Write Memory\" message to the debug client");
+  return sendPacket(new WriteMemoryCommand(getMessageId(),address,data));
+}

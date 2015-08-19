@@ -1,0 +1,3 @@
+{
+  return new EdgeCursorProxy(m_nodesMap.inverse().get(n),true);
+}

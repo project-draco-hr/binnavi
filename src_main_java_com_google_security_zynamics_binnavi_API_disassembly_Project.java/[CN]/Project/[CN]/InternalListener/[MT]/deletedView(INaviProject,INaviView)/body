@@ -1,0 +1,12 @@
+{
+  final View deletedView=ObjectFinders.getObject(view,m_views);
+  m_views.remove(deletedView);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.deletedView(Project.this,deletedView);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    return connection.sendRequestFileSystem();
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

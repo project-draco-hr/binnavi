@@ -1,0 +1,11 @@
+{
+  for (  final ReilBlock node : nodes) {
+    if ((sourceReilInstruction == getLastInstruction(node)) && !hasEdge(nodes,node,targetReilInstruction)) {
+      final EdgeType edgeType=ReilHelpers.isJump(sourceReilInstruction) ? nativeEdge.getType() : EdgeType.JUMP_UNCONDITIONAL;
+      final ReilBlock targetNode=getNode(targetReilInstruction,nodes);
+      final ReilEdge newEdge=new ReilEdge(node,targetNode,edgeType);
+      ReilBlock.link(node,targetNode,newEdge);
+      edges.add(newEdge);
+    }
+  }
+}

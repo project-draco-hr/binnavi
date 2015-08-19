@@ -1,0 +1,8 @@
+{
+  super(new BorderLayout());
+  m_window=Preconditions.checkNotNull(window,"IE01830: Window argument can't be null");
+  Preconditions.checkNotNull(databaseManager,"IE01831: Database manager argument can't be null");
+  m_projectTree=new CProjectTree(m_window,databaseManager);
+  add(createMainSplitPane(),BorderLayout.CENTER);
+  PluginInterface.instance().addListener(m_pluginListener);
+}

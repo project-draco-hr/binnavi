@@ -1,0 +1,3 @@
+{
+  CTagSelectionFunctions.unselectNodes(m_graph,m_tag);
+}

@@ -1,0 +1,4 @@
+{
+  final List<Integer> nodeIds=addressModuleIdNodeIdsCache.getIfPresent(new NodeIdentifier(nodeAddress,moduleId));
+  return nodeByIdCache.getAllPresent(nodeIds).values();
+}

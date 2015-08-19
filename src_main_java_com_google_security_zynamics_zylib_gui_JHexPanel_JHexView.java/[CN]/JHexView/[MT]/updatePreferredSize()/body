@@ -1,0 +1,5 @@
+{
+  final int width=m_offsetViewWidth + m_hexViewWidth + (18 * m_charWidth)+ m_scrollbar.getWidth();
+  setPreferredSize(new Dimension(width,getHeight()));
+  revalidate();
+}

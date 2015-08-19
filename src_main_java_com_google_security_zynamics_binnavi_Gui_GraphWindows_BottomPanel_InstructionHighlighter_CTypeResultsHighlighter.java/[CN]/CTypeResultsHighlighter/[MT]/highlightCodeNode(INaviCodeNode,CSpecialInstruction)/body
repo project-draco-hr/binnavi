@@ -1,0 +1,11 @@
+{
+  final INaviInstruction searchInstruction=instructionResult.getInstruction();
+  if (!CCodeNodeHelpers.containsAddress(cnode,searchInstruction.getAddress())) {
+    return;
+  }
+  for (  final INaviInstruction instruction : cnode.getInstructions()) {
+    if (searchInstruction == instruction) {
+      cnode.setInstructionColor(instruction,CHighlightLayers.SPECIAL_INSTRUCTION_LAYER,instructionResult.getType().getColor());
+    }
+  }
+}

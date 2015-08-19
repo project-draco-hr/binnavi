@@ -1,0 +1,33 @@
+{
+  if (!isConnectionValid()) {
+    connect(getURL(),m_properties);
+  }
+  m_debugQueryCount++;
+  long militime=0;
+  if (m_performanceOutput) {
+    militime=new GregorianCalendar().getTimeInMillis();
+  }
+  ResultSet retSet=null;
+  final PreparedStatement prep=m_connection.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+  try {
+    retSet=prep.executeQuery();
+  }
+ catch (  final SQLException error) {
+    if (m_performanceOutput) {
+      NaviLogger.severe(String.format("<%d>    <%d ms>    %s",m_debugQueryCount,Math.abs(militime),query));
+      NaviLogger.severe("Error: Query failed on %s try: %s",retry ? "first" : "second",query);
+    }
+    if (((error.getSQLState() == PostgreSQLErrorCodes.CONNECTION_DOES_NOT_EXIST) || (error.getSQLState() == PostgreSQLErrorCodes.CONNECTION_FAILURE)) && retry) {
+      connect(getDatabaseUrl(m_databaseConfiguration.getUrl(),m_databaseConfiguration.getName()),m_properties);
+      executeQuery(query,false);
+    }
+ else {
+      throw error;
+    }
+  }
+  if (m_performanceOutput) {
+    militime-=new GregorianCalendar().getTimeInMillis();
+    NaviLogger.info("<%d>    <%d ms>    %s",m_debugQueryCount,Math.abs(militime),query.substring(0,Math.min(MAXIMUM_OUTPUT_SIZE,query.length())));
+  }
+  return retSet;
+}

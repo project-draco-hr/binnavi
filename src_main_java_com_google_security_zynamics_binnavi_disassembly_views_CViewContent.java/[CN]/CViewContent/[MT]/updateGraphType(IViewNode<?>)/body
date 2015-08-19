@@ -1,0 +1,22 @@
+{
+  if (m_graphType == GraphType.MIXED_GRAPH) {
+    if (getNodeCount() == 1) {
+      if (node instanceof INaviCodeNode) {
+        setGraphType(GraphType.FLOWGRAPH);
+      }
+ else       if (node instanceof INaviFunctionNode) {
+        setGraphType(GraphType.CALLGRAPH);
+      }
+    }
+  }
+ else   if (m_graphType == GraphType.CALLGRAPH) {
+    if (node instanceof INaviCodeNode) {
+      setGraphType(GraphType.MIXED_GRAPH);
+    }
+  }
+ else {
+    if (node instanceof INaviFunctionNode) {
+      setGraphType(GraphType.MIXED_GRAPH);
+    }
+  }
+}

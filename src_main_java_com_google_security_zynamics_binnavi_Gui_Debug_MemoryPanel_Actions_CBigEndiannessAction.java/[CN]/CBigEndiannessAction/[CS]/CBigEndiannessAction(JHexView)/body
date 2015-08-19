@@ -1,0 +1,4 @@
+{
+  super("Big Endian");
+  this.hexView=Preconditions.checkNotNull(hexView,"IE01409: Memory viewer argument can not be null");
+}

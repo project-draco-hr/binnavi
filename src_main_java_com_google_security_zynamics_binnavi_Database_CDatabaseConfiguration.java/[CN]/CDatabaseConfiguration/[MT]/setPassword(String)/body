@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(password,"IE00691: Database password can not be null");
+  if (password.equals(getPassword())) {
+    return;
+  }
+  m_password=password;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedPassword(m_database,password);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

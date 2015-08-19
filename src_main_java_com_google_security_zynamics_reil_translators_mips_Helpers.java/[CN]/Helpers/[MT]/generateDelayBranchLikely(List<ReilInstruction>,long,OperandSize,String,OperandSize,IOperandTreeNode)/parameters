@@ -1,0 +1,6 @@
+List<ReilInstruction> instructions
+long baseOffset
+OperandSize conditionSize
+String conditionOperand
+OperandSize targetSize
+IOperandTreeNode targetOperand

@@ -1,0 +1,12 @@
+{
+  final Database database=new Database(new MockDatabase());
+  final MockModule mockModule=new MockModule();
+  final TagManager nodeTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.NODE_TAG));
+  final TagManager viewTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.VIEW_TAG));
+  final Module module=new Module(database,mockModule,nodeTagManager,viewTagManager);
+  final MockView mockView=new MockView();
+  final View view=new View(module,mockView,nodeTagManager,viewTagManager);
+  final INaviGroupNode internalGroupNode=new CGroupNode(0,0,0,0,0,Color.RED,false,false,new HashSet<CTag>(),new ArrayList<IComment>(),false,new MockSqlProvider());
+  final GroupNode node=new GroupNode(view,internalGroupNode,viewTagManager);
+  assertEquals("Group Node [0 elements]",node.toString());
+}

@@ -1,0 +1,4 @@
+{
+  addMembersAndVerifyOperation();
+  assertEquals(testMember3,testStruct.getLastMember());
+}

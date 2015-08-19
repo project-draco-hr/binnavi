@@ -1,0 +1,8 @@
+{
+  Assert.assertEquals(rawTypeMember.getName(),member.getName());
+  Assert.assertEquals(rawTypeMember.getNumberOfElements(),member.getNumberOfElements());
+  Assert.assertEquals(rawTypeMember.getId(),member.getId());
+  Assert.assertEquals(rawTypeMember.getOffset().get(),member.getBitOffset().get());
+  Assert.assertEquals(rawTypeMember.getBaseTypeId(),member.getBaseType().getId());
+  Assert.assertEquals(rawTypeMember.getParentId().intValue(),member.getParentType().getId());
+}

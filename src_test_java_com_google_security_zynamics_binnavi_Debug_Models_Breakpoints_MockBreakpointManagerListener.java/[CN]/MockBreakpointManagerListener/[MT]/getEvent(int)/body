@@ -1,0 +1,6 @@
+{
+  if ((index < m_events.size()) && (index >= 0)) {
+    return m_events.get(index);
+  }
+  return "No such event";
+}

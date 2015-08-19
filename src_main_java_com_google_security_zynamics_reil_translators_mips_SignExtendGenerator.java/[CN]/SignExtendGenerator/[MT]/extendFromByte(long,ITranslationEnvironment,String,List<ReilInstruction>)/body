@@ -1,0 +1,10 @@
+{
+  final String targetRegister=environment.getNextVariableString();
+  final String tmpVar1=environment.getNextVariableString();
+  final String tmpVar2=environment.getNextVariableString();
+  final OperandSize dw=OperandSize.DWORD;
+  instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.BYTE,sourceValue,OperandSize.BYTE,String.valueOf(0x00000080),dw,tmpVar1));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpVar1,dw,String.valueOf(0x000000FFL),dw,tmpVar2));
+  instructions.add(ReilHelpers.createSub(baseOffset++,dw,tmpVar2,dw,String.valueOf(0x00000080L),dw,targetRegister));
+  return targetRegister;
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(debugger,"Error: Debugger argument can not be null");
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  this.debugger=debugger;
+  this.module=module;
+  this.project=null;
+}

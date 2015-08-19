@@ -1,0 +1,3 @@
+{
+  return new CCachedVisibilityCriterium(m_panel.getVisibilityState());
+}

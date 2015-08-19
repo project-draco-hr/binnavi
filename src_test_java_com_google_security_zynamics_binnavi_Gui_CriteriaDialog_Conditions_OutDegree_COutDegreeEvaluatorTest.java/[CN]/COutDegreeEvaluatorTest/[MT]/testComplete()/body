@@ -1,0 +1,7 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  assertTrue(COutdegreeEvaluator.matches(node,"=",0));
+  assertFalse(COutdegreeEvaluator.matches(node,"<",0));
+  assertFalse(COutdegreeEvaluator.matches(node,">",0));
+  assertFalse(COutdegreeEvaluator.matches(node,"=",1));
+}

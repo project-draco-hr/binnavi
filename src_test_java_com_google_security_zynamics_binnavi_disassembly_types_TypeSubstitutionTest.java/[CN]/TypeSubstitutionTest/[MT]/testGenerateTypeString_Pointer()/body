@@ -1,0 +1,4 @@
+{
+  final String typeString=TypeSubstitution.generateTypeString(createSubstitution(typeSystem.uintPointerType,0),0);
+  Assert.assertEquals(typeSystem.uintPointerType.getName(),typeString);
+}

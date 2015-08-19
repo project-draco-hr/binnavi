@@ -1,0 +1,17 @@
+{
+  if (isLoaded()) {
+    throw new IllegalStateException("IE00079: Function is already loaded");
+  }
+  try {
+    if (!view.isLoaded()) {
+      view.load();
+    }
+    functionGraph=convert((MutableDirectedGraph<INaviViewNode,INaviEdge>)view.getGraph());
+  }
+ catch (  final CPartialLoadException|LoadCancelledException e) {
+    CUtilityFunctions.logException(e);
+  }
+  for (  final IFunctionListener<IComment> listener : functionListeners) {
+    listener.loadedFunction(this);
+  }
+}

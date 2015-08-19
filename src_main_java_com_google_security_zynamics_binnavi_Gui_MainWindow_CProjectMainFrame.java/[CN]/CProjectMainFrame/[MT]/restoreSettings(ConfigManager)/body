@@ -1,0 +1,16 @@
+{
+  if (configFile.getGeneralSettings().isMaximizeWindow()) {
+    final Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+    setSize(screenSize.width,screenSize.height);
+    setExtendedState(MAXIMIZED_BOTH);
+  }
+ else {
+    final GeneralSettingsConfigItem.LastOpenWindowConfigItem window=configFile.getGeneralSettings().getLastOpenWindow();
+    final int top=window.getTop();
+    final int left=window.getLeft();
+    final int height=window.getHeight();
+    final int width=window.getWidth();
+    setLocation(left,top);
+    setSize(width,height);
+  }
+}

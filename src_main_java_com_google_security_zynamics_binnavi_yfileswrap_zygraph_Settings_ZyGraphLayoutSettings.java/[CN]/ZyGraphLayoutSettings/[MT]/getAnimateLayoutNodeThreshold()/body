@@ -1,0 +1,3 @@
+{
+  return m_type == null ? m_animateLayoutNodeThreshold : m_type.getAnimateLayoutNodeThreshold();
+}

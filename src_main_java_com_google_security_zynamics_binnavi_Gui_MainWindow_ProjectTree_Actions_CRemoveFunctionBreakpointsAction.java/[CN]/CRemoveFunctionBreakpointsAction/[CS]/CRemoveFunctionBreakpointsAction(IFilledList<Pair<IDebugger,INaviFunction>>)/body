@@ -1,0 +1,4 @@
+{
+  super(pairs.size() == 1 ? String.format("Remove breakpoint from function '%s'",pairs.get(0).second().getName()) : "Remove breakpoints from all selected functions");
+  m_pairs=pairs;
+}

@@ -1,0 +1,8 @@
+{
+  for (  final IInstruction instruction : codeNode.getInstructions()) {
+    if (instruction.getAddress().equals(offset)) {
+      return true;
+    }
+  }
+  return false;
+}

@@ -1,0 +1,5 @@
+{
+  final JLabel label=new JLabel(string);
+  label.setBorder(new EmptyBorder(5,5,5,5));
+  return label;
+}

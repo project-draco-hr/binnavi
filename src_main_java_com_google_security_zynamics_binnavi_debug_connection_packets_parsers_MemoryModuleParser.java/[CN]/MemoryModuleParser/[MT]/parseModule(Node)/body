@@ -1,0 +1,12 @@
+{
+  try {
+    final String name=getAttribute(node,"name");
+    final String path=getAttribute(node,"path");
+    final RelocatedAddress baseAddress=new RelocatedAddress(new CAddress(new BigInteger(getAttribute(node,"address"))));
+    final long size=Long.valueOf(getAttribute(node,"size"));
+    return new MemoryModule(name,path,baseAddress,size);
+  }
+ catch (  final Exception exception) {
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+}

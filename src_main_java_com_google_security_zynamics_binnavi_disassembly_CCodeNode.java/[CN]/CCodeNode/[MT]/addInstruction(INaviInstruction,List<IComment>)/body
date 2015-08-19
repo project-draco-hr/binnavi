@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(instruction,"IE00056: Instruction argument can not be null");
+  codeNodeInstructions.add(instruction);
+  if (localComment != null) {
+    m_comments.initializeLocalInstructionComment(instruction,localComment);
+  }
+  for (  final INaviCodeNodeListener listener : m_listeners) {
+    try {
+      listener.addedInstruction(this,instruction);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

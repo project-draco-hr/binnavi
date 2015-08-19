@@ -1,0 +1,6 @@
+{
+  if (this.mainWindow != null) {
+    throw new IllegalStateException("Error: Main window was already set");
+  }
+  this.mainWindow=mainWindow;
+}

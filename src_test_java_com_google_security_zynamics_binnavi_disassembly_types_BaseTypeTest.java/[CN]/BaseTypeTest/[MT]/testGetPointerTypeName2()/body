@@ -1,0 +1,3 @@
+{
+  BaseType.getPointerTypeName(typeSystem.uintType,0);
+}

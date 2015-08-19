@@ -1,0 +1,13 @@
+{
+  for (  final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin : registry) {
+    boolean contains=false;
+    for (    final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin2 : added) {
+      if (plugin == plugin2) {
+        contains=true;
+      }
+    }
+    if (!contains) {
+      model.addElement(new PluginItem<T>(plugin));
+    }
+  }
+}

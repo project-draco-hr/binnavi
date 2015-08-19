@@ -1,0 +1,3 @@
+{
+  return new BitwiseOr(m_lhs.clone(),m_rhs.clone());
+}

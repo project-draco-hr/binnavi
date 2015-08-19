@@ -1,0 +1,7 @@
+{
+  super(nodeId,x,y,width,height,color,color.darker().darker(),selected,visible,tags,provider);
+  m_collapsed=collapsed;
+  m_provider=Preconditions.checkNotNull(provider,"IE02535: provider argument can not be null");
+  CommentManager.get(m_provider).initializeGroupNodeComment(this,comment == null ? Lists.<IComment>newArrayList() : comment);
+  CommentManager.get(m_provider).addListener(m_internalCommentListener);
+}

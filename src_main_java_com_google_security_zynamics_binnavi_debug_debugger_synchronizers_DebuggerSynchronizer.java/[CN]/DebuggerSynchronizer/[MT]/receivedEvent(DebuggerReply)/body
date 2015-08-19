@@ -1,0 +1,138 @@
+{
+  Preconditions.checkNotNull(reply,"IE01211: Debug event can't be null");
+  if (reply instanceof AttachReply) {
+    attachSynchronizer.handle((AttachReply)reply);
+  }
+ else   if (reply instanceof BreakpointHitReply) {
+    breakpointHitSynchronizer.handle((BreakpointHitReply)reply);
+  }
+ else   if (reply instanceof BreakpointsRemovedReply) {
+    breakpointRemovedSynchronizer.handle((BreakpointsRemovedReply)reply);
+  }
+ else   if (reply instanceof BreakpointSetReply) {
+    breakpointSetSynchronizer.handle((BreakpointSetReply)reply);
+  }
+ else   if (reply instanceof CancelTargetSelectionReply) {
+    cancelTargetSelectionSynchronizer.handle((CancelTargetSelectionReply)reply);
+  }
+ else   if (reply instanceof AuthenticationFailedReply) {
+    authenticationFailedSynchronizer.handle((AuthenticationFailedReply)reply);
+  }
+ else   if (reply instanceof DebuggerClosedUnexpectedlyReply) {
+    errorConnectionClosedSynchronizer.handle((DebuggerClosedUnexpectedlyReply)reply);
+  }
+ else   if (reply instanceof DetachReply) {
+    detachSynchronizer.handle((DetachReply)reply);
+  }
+ else   if (reply instanceof EchoBreakpointHitReply) {
+    echoBreakpointHitSynchronizer.handle((EchoBreakpointHitReply)reply);
+  }
+ else   if (reply instanceof EchoBreakpointsRemovedReply) {
+    echoBreakpointRemovedSynchronizer.handle((EchoBreakpointsRemovedReply)reply);
+  }
+ else   if (reply instanceof EchoBreakpointSetReply) {
+    echoBreakpointSetSynchronizer.handle((EchoBreakpointSetReply)reply);
+  }
+ else   if (reply instanceof ExceptionOccurredReply) {
+    exceptionOccurredSynchronizer.handle((ExceptionOccurredReply)reply);
+  }
+ else   if (reply instanceof HaltReply) {
+    haltSynchronizer.handle((HaltReply)reply);
+  }
+ else   if (reply instanceof ListFilesReply) {
+    listFilesSynchronizer.handle((ListFilesReply)reply);
+  }
+ else   if (reply instanceof ListProcessesReply) {
+    listProcessesSynchronizer.handle((ListProcessesReply)reply);
+  }
+ else   if (reply instanceof MemoryMapReply) {
+    memoryMapSynchronizer.handle((MemoryMapReply)reply);
+  }
+ else   if (reply instanceof ModuleLoadedReply) {
+    moduleLoadedSynchronizer.handle((ModuleLoadedReply)reply);
+  }
+ else   if (reply instanceof ModuleUnloadedReply) {
+    moduleUnloadedSynchronizer.handle((ModuleUnloadedReply)reply);
+  }
+ else   if (reply instanceof ProcessClosedReply) {
+    processClosedSynchronizer.handle((ProcessClosedReply)reply);
+  }
+ else   if (reply instanceof ReadMemoryReply) {
+    readMemorySynchronizer.handle((ReadMemoryReply)reply);
+  }
+ else   if (reply instanceof RegistersReply) {
+    readRegistersSynchronizer.handle((RegistersReply)reply);
+  }
+ else   if (reply instanceof RequestTargetReply) {
+    requestTargetSynchronizer.handle((RequestTargetReply)reply);
+  }
+ else   if (reply instanceof ResumeReply) {
+    resumeSynchronizer.handle((ResumeReply)reply);
+  }
+ else   if (reply instanceof SearchReply) {
+    searchSynchronizer.handle((SearchReply)reply);
+  }
+ else   if (reply instanceof SelectFileReply) {
+    fileSelectedSynchronizer.handle((SelectFileReply)reply);
+  }
+ else   if (reply instanceof SelectProcessReply) {
+    processSelectedSynchronizer.handle((SelectProcessReply)reply);
+  }
+ else   if (reply instanceof SetRegisterReply) {
+    setRegisterSynchronizer.handle((SetRegisterReply)reply);
+  }
+ else   if (reply instanceof SingleStepReply) {
+    singleStepSynchronizer.handle((SingleStepReply)reply);
+  }
+ else   if (reply instanceof StepBreakpointHitReply) {
+    stepBreakpointHitSynchronizer.handle((StepBreakpointHitReply)reply);
+  }
+ else   if (reply instanceof StepBreakpointsRemovedReply) {
+    stepBreakpointRemovedSynchronizer.handle((StepBreakpointsRemovedReply)reply);
+  }
+ else   if (reply instanceof StepBreakpointSetReply) {
+    stepBreakpointSetSynchronizer.handle((StepBreakpointSetReply)reply);
+  }
+ else   if (reply instanceof TargetInformationReply) {
+    targetInformationSynchronizer.handle((TargetInformationReply)reply);
+  }
+ else   if (reply instanceof TerminateReply) {
+    terminateSynchronizer.handle((TerminateReply)reply);
+  }
+ else   if (reply instanceof ThreadClosedReply) {
+    threadClosedSynchronizer.handle((ThreadClosedReply)reply);
+  }
+ else   if (reply instanceof ThreadCreatedReply) {
+    threadCreatedSynchronizer.handle((ThreadCreatedReply)reply);
+  }
+ else   if (reply instanceof ValidateMemoryReply) {
+    validateMemorySynchronizer.handle((ValidateMemoryReply)reply);
+  }
+ else   if (reply instanceof ResumeThreadReply) {
+    resumeThreadSynchronizer.handle((ResumeThreadReply)reply);
+  }
+ else   if (reply instanceof SuspendThreadReply) {
+    suspendThreadSynchronizer.handle((SuspendThreadReply)reply);
+  }
+ else   if (reply instanceof BreakpointConditionSetReply) {
+    breakpointConditionSetSynchronizer.handle((BreakpointConditionSetReply)reply);
+  }
+ else   if (reply instanceof WriteMemoryReply) {
+    writeMemorySynchronizer.handle((WriteMemoryReply)reply);
+  }
+ else   if (reply instanceof QueryDebuggerEventSettingsReply) {
+    queryDebuggerEventSettingsSynchronizer.handle((QueryDebuggerEventSettingsReply)reply);
+  }
+ else   if (reply instanceof SetExceptionSettingsReply) {
+    setExceptionSettingsSynchronizer.handle((SetExceptionSettingsReply)reply);
+  }
+ else   if (reply instanceof ProcessStartReply) {
+    processStartSynchronizer.handle((ProcessStartReply)reply);
+  }
+ else   if (reply instanceof SetDebuggerEventSettingsReply) {
+    setDebuggerEventSettingsSynchronizer.handle((SetDebuggerEventSettingsReply)reply);
+  }
+ else {
+    throw new IllegalStateException("IE01105: Unknown reply");
+  }
+}

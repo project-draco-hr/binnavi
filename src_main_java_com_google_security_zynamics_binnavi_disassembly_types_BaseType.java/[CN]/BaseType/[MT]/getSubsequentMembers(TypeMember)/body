@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(BaseTypeCategory.isOffsetCategory(category),"Error: Base type category does not have subsequent members.");
+  return ImmutableList.<TypeMember>copyOf(members.tailSet(member,false));
+}

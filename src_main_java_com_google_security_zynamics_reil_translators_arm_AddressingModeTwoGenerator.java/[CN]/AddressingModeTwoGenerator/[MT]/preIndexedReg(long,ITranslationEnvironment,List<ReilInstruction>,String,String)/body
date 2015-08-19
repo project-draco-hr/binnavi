@@ -1,0 +1,9 @@
+{
+  final String address=environment.getNextVariableString();
+  final String tmpVar1=environment.getNextVariableString();
+  long baseOffset=offset;
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,registerNodeValue1,dw,registerNodeValue2,dw,tmpVar1));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpVar1,dw,dWordBitMask,dw,address));
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,address,dw,registerNodeValue1));
+  return new Pair<String,String>(address,registerNodeValue1);
+}

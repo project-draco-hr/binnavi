@@ -1,0 +1,4 @@
+{
+  this.backend=Preconditions.checkNotNull(backend,"Error: backend argument can not be null");
+  CommentManager.get(provider).addListener(new InternalCommentListener());
+}

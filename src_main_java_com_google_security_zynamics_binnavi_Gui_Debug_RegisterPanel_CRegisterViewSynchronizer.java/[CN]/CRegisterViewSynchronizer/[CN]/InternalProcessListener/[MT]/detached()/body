@@ -1,0 +1,5 @@
+{
+  m_dataProvider.setRegisterDescription(new FilledList<RegisterDescription>());
+  m_dataProvider.setRegisterInformation(new FilledList<RegisterValue>());
+  updateGui();
+}

@@ -1,0 +1,3 @@
+BigInteger pc
+HashMap<BigInteger,List<ReilInstruction>> instructions
+String programCounter

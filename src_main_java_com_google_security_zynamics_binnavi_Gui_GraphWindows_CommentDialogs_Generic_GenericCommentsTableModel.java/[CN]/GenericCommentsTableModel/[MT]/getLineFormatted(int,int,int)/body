@@ -1,0 +1,30 @@
+{
+  Preconditions.checkElementIndex(columnIndex,columns.length);
+  JCodeDisplayColumnDescription column=columns[columnIndex];
+  if (rowIndex >= cachedComments.size()) {
+switch (columnIndex) {
+case USER_INDEX:
+      String username=CodeDisplay.padRight("Your username ...",column.getWidth());
+    return new FormattedCharacterBuffer(username,STANDARD_FONT,column.getDefaultFontColor(),column.getDefaultBackgroundColor());
+case COMMENT_INDEX:
+  String comment=CodeDisplay.padRight("Enter new comment ...",column.getWidth());
+return new FormattedCharacterBuffer(comment,STANDARD_FONT,column.getDefaultFontColor(),column.getDefaultBackgroundColor());
+default :
+break;
+}
+}
+switch (columnIndex) {
+case USER_INDEX:
+String username="";
+if (lineIndex == 0) {
+username=cachedComments.get(rowIndex).getUser().getUserName();
+}
+username=CodeDisplay.padRight(username,column.getWidth());
+return new FormattedCharacterBuffer(username,STANDARD_FONT,column.getDefaultFontColor(),column.getDefaultBackgroundColor());
+case COMMENT_INDEX:
+String commentLine=cachedComments.get(rowIndex).getCommentLine(lineIndex);
+commentLine=CodeDisplay.padRight(commentLine,columns[columnIndex].getWidth());
+return new FormattedCharacterBuffer(commentLine,STANDARD_FONT,column.getDefaultFontColor(),column.getDefaultBackgroundColor());
+}
+return null;
+}

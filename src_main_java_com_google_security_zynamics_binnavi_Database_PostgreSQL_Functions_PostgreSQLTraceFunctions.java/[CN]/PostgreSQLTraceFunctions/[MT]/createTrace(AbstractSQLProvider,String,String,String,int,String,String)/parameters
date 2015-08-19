@@ -1,0 +1,7 @@
+AbstractSQLProvider provider
+String tracesTable
+String tracesColumn
+String containerTable
+int containerId
+String name
+String description

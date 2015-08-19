@@ -1,0 +1,30 @@
+{
+  hotKeys.clear();
+  hotKeys.add(makeTitle("Graph"));
+  loadKeys(HotKeys.graphHotKeys);
+  hotKeys.add(makeTitle("Graph Misc"));
+  hotKeys.add(new Object[]{"Alt-Right Click","Opens instruction comments dialog when clicking on an instruction"});
+  hotKeys.add(new Object[]{"Shift+Alt-Right Click","Opens instruction comments dialog when clicking on an instruction"});
+  hotKeys.add(new Object[]{"Ctrl+Alt-Right Click","Highlights instruction when clicking on an instruction."});
+  hotKeys.add(makeTitle("Graph toolbar"));
+  loadKeys(HotKeys.graphToolbarHotKeys);
+  hotKeys.add(makeTitle("Graph mouse interaction"));
+  hotKeys.add(new Object[]{"Mouse wheel","Zoom to mouse cursor"});
+  hotKeys.add(new Object[]{"Shift-Mouse wheel","Zoom to selection"});
+  hotKeys.add(new Object[]{"Ctrl-Mouse wheel","Scroll vertically"});
+  hotKeys.add(new Object[]{"Ctrl-Alt-Mouse wheel","Scroll horizontally"});
+  hotKeys.add(new Object[]{"Ctrl-Mouse wheel","Resize the magnifying glass"});
+  hotKeys.add(new Object[]{"CTRL-DOUBLE-LEFTCLICK","Opens function when clicking on function nodes"});
+  hotKeys.add(new Object[]{"CTRL-DOUBLE-LEFTCLICK","Opens function when clicking on function calls in code nodes"});
+  hotKeys.add(new Object[]{"MOUSEWHEEL-Click","Sets the focus into a node"});
+  hotKeys.add(new Object[]{"ALT-LEFTCLICK","Sets the focus into a node"});
+  hotKeys.add(new Object[]{"SHIFT-ARROWKEYS","Select the content of a node once the node has the focus"});
+  hotKeys.add(makeTitle("Generic"));
+  loadKeys(HotKeys.genericHotKeys);
+  hotKeys.add(makeTitle("Debugger"));
+  loadKeys(HotKeys.debuggerHotKeys);
+  hotKeys.add(makeTitle("Database dialog"));
+  loadKeys(HotKeys.dbHotKeys);
+  hotKeys.add(makeTitle("Main window"));
+  loadKeys(HotKeys.mainWindowHotKeys);
+}

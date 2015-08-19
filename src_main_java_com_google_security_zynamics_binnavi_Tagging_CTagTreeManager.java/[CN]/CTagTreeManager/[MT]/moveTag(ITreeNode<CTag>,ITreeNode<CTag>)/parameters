@@ -1,0 +1,2 @@
+ITreeNode<CTag> newParentNode
+ITreeNode<CTag> movedNode

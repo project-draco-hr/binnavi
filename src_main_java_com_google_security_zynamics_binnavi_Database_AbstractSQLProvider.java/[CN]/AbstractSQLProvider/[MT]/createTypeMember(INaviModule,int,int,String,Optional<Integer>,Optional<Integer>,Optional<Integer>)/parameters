@@ -1,0 +1,7 @@
+INaviModule module
+int containingTypeId
+int baseTypeId
+String name
+Optional<Integer> offset
+Optional<Integer> numberOfElements
+Optional<Integer> argumentIndex

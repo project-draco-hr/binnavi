@@ -1,0 +1,4 @@
+String idaDirectory
+String idbFile
+IDatabase database
+CBaseExporter exporter

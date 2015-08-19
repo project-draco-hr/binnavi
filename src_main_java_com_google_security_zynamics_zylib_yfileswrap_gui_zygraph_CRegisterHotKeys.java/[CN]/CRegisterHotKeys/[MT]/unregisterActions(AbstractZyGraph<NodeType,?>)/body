@@ -1,0 +1,27 @@
+{
+  final ActionMap amap1=graph.getView().getCanvasComponent().getActionMap();
+  final ActionMap amap2=graph.getView().getActionMap();
+  amap1.remove("F2");
+  amap1.remove("DOWN");
+  amap1.remove("UP");
+  amap1.remove("LEFT");
+  amap1.remove("RIGHT");
+  amap1.remove("+");
+  amap1.remove("-");
+  amap1.remove("m");
+  amap1.remove("s");
+  amap1.remove("<");
+  amap1.remove("SELECT_VISIBLE_NODES");
+  amap1.remove("COPY_CONTENT_FROM_SELECTED_NODES");
+  amap2.remove("DOWN");
+  amap2.remove("UP");
+  amap2.remove("LEFT");
+  amap2.remove("RIGHT");
+  amap2.remove("+");
+  amap2.remove("-");
+  amap2.remove("m");
+  amap2.remove("s");
+  amap2.remove("<");
+  amap2.remove("SELECT_VISIBLE_NODES");
+  amap2.remove("COPY_CONTENT_FROM_SELECTED_NODES");
+}

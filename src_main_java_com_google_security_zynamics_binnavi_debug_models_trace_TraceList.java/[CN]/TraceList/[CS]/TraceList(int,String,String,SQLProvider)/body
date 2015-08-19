@@ -1,0 +1,7 @@
+{
+  Preconditions.checkArgument(id >= 0,"IE00777: ID argument can not be null");
+  traceName=Preconditions.checkNotNull(name,"IE00778: Name can not be null");
+  traceDescription=Preconditions.checkNotNull(description,"IE00779: Comment can not be null");
+  sqlProvider=Preconditions.checkNotNull(provider,"IE00780: Provider argument can not be null");
+  this.id=id;
+}

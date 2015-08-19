@@ -1,0 +1,3 @@
+int packetId
+int errorCode
+RemoteFileSystem fileSystem

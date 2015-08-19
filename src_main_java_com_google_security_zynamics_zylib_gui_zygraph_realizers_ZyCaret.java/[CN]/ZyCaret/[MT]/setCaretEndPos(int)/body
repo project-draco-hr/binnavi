@@ -1,0 +1,7 @@
+{
+  final int lastReleasedXPos=getLastLineXPos(m_mouse_released_y);
+  if (endPos > lastReleasedXPos) {
+    endPos=lastReleasedXPos;
+  }
+  m_caret_endpos_x=endPos;
+}

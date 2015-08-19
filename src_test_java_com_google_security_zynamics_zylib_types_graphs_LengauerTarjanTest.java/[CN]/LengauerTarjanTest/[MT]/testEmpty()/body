@@ -1,0 +1,11 @@
+{
+  final List<MockNode> nodes=new ArrayList<MockNode>();
+  final List<MockEdge> edges=new ArrayList<MockEdge>();
+  final DirectedGraph<MockNode,MockEdge> graph=new DirectedGraph<MockNode,MockEdge>(nodes,edges);
+  try {
+    @SuppressWarnings("unused") final Tree<MockNode> tree=LengauerTarjan.calculate(graph,null).first();
+    fail();
+  }
+ catch (  final NullPointerException ex) {
+  }
+}

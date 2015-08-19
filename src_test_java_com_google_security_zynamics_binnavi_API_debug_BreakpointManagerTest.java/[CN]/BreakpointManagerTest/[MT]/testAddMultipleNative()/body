@@ -1,0 +1,5 @@
+{
+  internalManager.addBreakpoints(BreakpointType.ECHO,Sets.newHashSet(new BreakpointAddress(CommonTestObjects.MODULE,new UnrelocatedAddress(new CAddress(0x124)))));
+  assertTrue(apiManager.hasEchoBreakpoint(module,new Address(0x124)));
+  internalManager.clearBreakpointsPassive(BreakpointType.ECHO);
+}

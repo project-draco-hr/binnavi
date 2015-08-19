@@ -1,0 +1,9 @@
+{
+  if (m_debugger != null) {
+    m_debugger.removeListener(m_listener);
+  }
+  m_debugger=debugger;
+  if (m_debugger != null) {
+    m_debugger.addListener(m_listener);
+  }
+}

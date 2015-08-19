@@ -1,0 +1,6 @@
+{
+  final CDatabaseNode node=new CDatabaseNode(m_tree,new DefaultMutableTreeNode(),m_database);
+  m_database.load();
+  node.dispose();
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")).isEmpty());
+}

@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTypeFunctions.appendTypeInstanceComment(this,moduleId,instanceId,commentText,userId);
+}

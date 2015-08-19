@@ -1,0 +1,9 @@
+{
+  ConfigManager.instance().read();
+  m_database=new MockDatabase(m_provider);
+  final CRawModule rawModule=new CRawModule(1,"",0,false,m_provider);
+  m_module=new CModule(123,"Name","Comment",new Date(),new Date(),"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new DebuggerTemplate(1,"Mock Debugger","localhaus",88,m_provider),rawModule,Integer.MAX_VALUE,false,m_provider);
+  final CProjectTreeModel model=new CProjectTreeModel(m_tree);
+  model.setRoot(new DefaultMutableTreeNode());
+  m_tree.setModel(model);
+}

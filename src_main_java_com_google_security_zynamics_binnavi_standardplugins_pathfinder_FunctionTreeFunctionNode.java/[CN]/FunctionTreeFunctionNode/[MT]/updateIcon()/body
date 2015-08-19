@@ -1,0 +1,3 @@
+{
+  setIcon(m_function.isLoaded() ? ICON_FUNCTION_LOADED : ICON_FUNCTION_CLOSED);
+}

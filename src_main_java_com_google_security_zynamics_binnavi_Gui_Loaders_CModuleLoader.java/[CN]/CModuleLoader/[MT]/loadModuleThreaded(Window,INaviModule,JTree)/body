@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(parent,"IE01193: Parent argument can not be null");
+  Preconditions.checkNotNull(module,"IE01194: Module argument can not be null");
+  if (module.isLoading()) {
+    return;
+  }
+  new Thread(){
+    @Override public void run(){
+      loadModuleInternal(parent,module,projectTree);
+    }
+  }
+.start();
+}

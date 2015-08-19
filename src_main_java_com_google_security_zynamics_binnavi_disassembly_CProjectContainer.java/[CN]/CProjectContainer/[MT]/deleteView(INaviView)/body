@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(view,"IE02216: View argument can not be null");
+  m_project.getContent().deleteView(view);
+}

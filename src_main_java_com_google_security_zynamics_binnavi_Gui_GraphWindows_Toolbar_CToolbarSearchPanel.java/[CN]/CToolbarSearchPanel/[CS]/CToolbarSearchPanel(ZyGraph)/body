@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  m_searchPanel=new CGraphSearchPanel(graph);
+  m_settings=graph.getSettings();
+  m_settings.getSearchSettings().addListener(m_internalSearchListener);
+  add(m_searchPanel);
+}

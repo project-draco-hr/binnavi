@@ -1,0 +1,3 @@
+{
+  return ((lhs instanceof Literal) && ((Literal)lhs).getValue().equals(BigInteger.ZERO)) || ((rhs instanceof Literal) && ((Literal)rhs).getValue().equals(BigInteger.ZERO));
+}

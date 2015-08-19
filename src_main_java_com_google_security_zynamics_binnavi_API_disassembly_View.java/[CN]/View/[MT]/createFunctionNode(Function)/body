@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(function,"Error: Function argument can't be null");
+  Preconditions.checkNotNull(getFunction(function.getNative()),"Error: Function does not belong to this container");
+  final CFunctionNode functionNode=naviView.getContent().createFunctionNode(function.getNative());
+  return (FunctionNode)cachedNodes.get(functionNode);
+}

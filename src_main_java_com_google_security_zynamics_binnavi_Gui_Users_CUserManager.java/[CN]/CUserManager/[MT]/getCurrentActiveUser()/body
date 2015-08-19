@@ -1,0 +1,6 @@
+{
+  if (activeUser == null) {
+    throw new IllegalStateException("IE02727: Current active user is not set.");
+  }
+  return activeUser;
+}

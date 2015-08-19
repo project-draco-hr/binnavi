@@ -1,0 +1,3 @@
+{
+  getProvider().getViewsWithAddress((CProject)null,Lists.newArrayList(new UnrelocatedAddress(new CAddress(0))),true);
+}

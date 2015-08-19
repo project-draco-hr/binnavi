@@ -1,0 +1,16 @@
+{
+  super(projectTree,new CModulesModel(database),new CModulesTableHelp());
+  m_database=Preconditions.checkNotNull(database,"IE02870: database argument can not be null");
+  setDefaultRenderer(Object.class,new ModuleLoadedRenderer());
+  getColumnModel().getColumn(1).setCellRenderer(new CNameRenderer());
+  getColumnModel().getColumn(0).setResizable(false);
+  getColumnModel().getColumn(0).setPreferredWidth(50);
+  getColumnModel().getColumn(0).setMaxWidth(50);
+  if (!GraphicsEnvironment.isHeadless()) {
+    setDragEnabled(true);
+  }
+  setTransferHandler(new CModuleDragHandler(this));
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.LOAD_HK.getKeyStroke(),"LoadKeyStroke");
+  getActionMap().put("LoadKeyStroke",CActionProxy.proxy(new LoadModuleAction()));
+}

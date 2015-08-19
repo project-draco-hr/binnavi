@@ -1,0 +1,11 @@
+{
+  m_debugger=debugger == null ? null : new Debugger(debugger);
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedDebugger(Module.this,m_debugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

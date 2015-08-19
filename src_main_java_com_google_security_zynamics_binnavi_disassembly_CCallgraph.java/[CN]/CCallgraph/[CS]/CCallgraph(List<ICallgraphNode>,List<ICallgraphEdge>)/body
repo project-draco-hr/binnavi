@@ -1,0 +1,9 @@
+{
+  super(nodes,edges);
+  m_functionMap=Maps.uniqueIndex(nodes,new Function<ICallgraphNode,INaviFunction>(){
+    @Override public INaviFunction apply(    final ICallgraphNode input){
+      return input.getFunction();
+    }
+  }
+);
+}

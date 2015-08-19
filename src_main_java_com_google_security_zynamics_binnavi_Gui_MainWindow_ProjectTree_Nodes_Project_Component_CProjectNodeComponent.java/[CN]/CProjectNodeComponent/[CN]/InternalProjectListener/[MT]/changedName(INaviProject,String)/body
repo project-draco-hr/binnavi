@@ -1,0 +1,10 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      m_stdEditPanel.setNameString(name);
+      m_titledBorder.setTitle(getBorderText());
+      updateUI();
+    }
+  }
+.invokeLater();
+}

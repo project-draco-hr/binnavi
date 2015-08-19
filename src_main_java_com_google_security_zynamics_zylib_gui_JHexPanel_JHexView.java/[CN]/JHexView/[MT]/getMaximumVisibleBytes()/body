@@ -1,0 +1,3 @@
+{
+  return getNumberOfVisibleRows() * m_bytesPerRow;
+}

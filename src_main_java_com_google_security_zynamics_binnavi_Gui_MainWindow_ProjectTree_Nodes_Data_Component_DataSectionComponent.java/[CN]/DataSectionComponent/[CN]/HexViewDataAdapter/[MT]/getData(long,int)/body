@@ -1,0 +1,3 @@
+{
+  return Arrays.copyOfRange(getData(),(int)(offset - hexView.getBaseAddress()),(int)(offset - hexView.getBaseAddress() + length));
+}

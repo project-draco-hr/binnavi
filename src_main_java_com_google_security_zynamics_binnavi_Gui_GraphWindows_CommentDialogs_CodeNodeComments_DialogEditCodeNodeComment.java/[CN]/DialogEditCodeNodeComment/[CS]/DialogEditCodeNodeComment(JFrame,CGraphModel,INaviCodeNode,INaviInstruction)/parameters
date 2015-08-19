@@ -1,0 +1,4 @@
+JFrame parent
+CGraphModel graphModel
+INaviCodeNode node
+INaviInstruction instruction

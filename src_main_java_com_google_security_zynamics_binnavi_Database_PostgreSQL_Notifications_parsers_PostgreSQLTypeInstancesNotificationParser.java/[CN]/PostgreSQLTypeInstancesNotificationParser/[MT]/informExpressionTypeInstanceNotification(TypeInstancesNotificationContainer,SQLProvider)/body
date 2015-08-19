@@ -1,0 +1,27 @@
+{
+  final TypeInstanceContainer typeContainer=provider.findModule(container.getModuleId()).getContent().getTypeInstanceContainer();
+  if (container.getDatabaseOperation().equals("INSERT")) {
+    final TypeInstanceReference reference=typeContainer.loadInstanceReference(container.getTypeInstanceId(),container.getAddress().get(),container.getPosition().get(),container.getExpressionId().get());
+    final INaviInstruction instruction=InstructionCache.get(provider).getInstructionByAddress(reference.getAddress(),reference.getTypeInstance().getModule().getConfiguration().getId());
+    if (instruction != null) {
+      final INaviOperandTree operandTree=instruction.getOperands().get(reference.getPosition());
+      final INaviOperandTreeNode root=operandTree.getRootNode();
+      final OperandOrderIterator iterator=new OperandOrderIterator(root);
+      while (iterator.next()) {
+        final INaviOperandTreeNode currentNode=(INaviOperandTreeNode)iterator.current();
+        if (currentNode.getId() == container.getExpressionId().get()) {
+          typeContainer.initializeTypeInstanceReference(reference.getAddress(),reference.getPosition(),container.getTypeInstanceId(),currentNode);
+          break;
+        }
+      }
+    }
+  }
+ else   if (container.getDatabaseOperation().equals("UPDATE")) {
+  }
+ else   if (container.getDatabaseOperation().equals("DELETE")) {
+    typeContainer.deleteReference(container.getTypeInstanceId(),container.getAddress().get(),container.getPosition().get(),container.getExpressionId().get());
+  }
+ else {
+    throw new IllegalStateException("Error: the database operation " + container.getDatabaseOperation() + " is currently not supported.");
+  }
+}

@@ -1,0 +1,29 @@
+{
+  Preconditions.checkNotNull(provider,"IE00416: Provider argument can not be null");
+  final CConnection connection=provider.getConnection();
+  final List<INaviRawModule> modules=new ArrayList<INaviRawModule>();
+  if (!PostgreSQLHelpers.hasTable(connection,CTableNames.RAW_MODULES_TABLE)) {
+    return modules;
+  }
+  final String query="SELECT id, name FROM " + CTableNames.RAW_MODULES_TABLE + " ORDER BY id";
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final int rawModuleId=resultSet.getInt("id");
+        final String name=PostgreSQLHelpers.readString(resultSet,"name");
+        final boolean isComplete=PostgreSQLDatabaseFunctions.checkRawModulesTables(provider.getConnection(),PostgreSQLHelpers.getDatabaseName(provider.getConnection()),rawModuleId);
+        final int functionCount=isComplete ? PostgreSQLDatabaseFunctions.getRawModuleFunctionCount(connection,rawModuleId) : 0;
+        final CRawModule module=new CRawModule(rawModuleId,name,functionCount,isComplete,provider);
+        modules.add(module);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+  return modules;
+}

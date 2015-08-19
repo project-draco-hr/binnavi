@@ -1,0 +1,7 @@
+{
+  final TypeInstance typeInstance=typeInstancContainerBackend.createTypeInstance(" TYPE INSTANCE "," TYPE INSTANCE COMMENT ",baseType,section,0);
+  Assert.assertEquals(typeInstance.getName()," TYPE INSTANCE ");
+  Assert.assertEquals(typeInstance.getBaseType(),baseType);
+  Assert.assertEquals(typeInstance.getSection(),section);
+  Assert.assertEquals(typeInstance.getAddress().getOffset(),0);
+}

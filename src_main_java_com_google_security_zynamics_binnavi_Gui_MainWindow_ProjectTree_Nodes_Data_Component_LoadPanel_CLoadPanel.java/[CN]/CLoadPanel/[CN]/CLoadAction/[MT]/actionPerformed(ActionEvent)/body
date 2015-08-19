@@ -1,0 +1,6 @@
+{
+  final String filename=selectAssociatedFile(SwingUtilities.getWindowAncestor(CLoadPanel.this));
+  if (filename != null) {
+    CDataFunctions.loadFromFile(SwingUtilities.getWindowAncestor(CLoadPanel.this),m_module,filename);
+  }
+}

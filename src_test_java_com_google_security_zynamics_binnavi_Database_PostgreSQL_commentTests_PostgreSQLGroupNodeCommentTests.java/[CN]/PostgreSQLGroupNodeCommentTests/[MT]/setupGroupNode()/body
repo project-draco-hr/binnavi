@@ -1,0 +1,20 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction("sub_1004565");
+  final INaviView view=module.getContent().getViewContainer().getView(function);
+  view.load();
+  assertEquals(42,view.getNodeCount());
+  final INaviViewNode node1=view.getContent().getBasicBlocks().get(1);
+  final INaviViewNode node2=view.getContent().getBasicBlocks().get(2);
+  view.getContent().createGroupNode(Lists.newArrayList(node1,node2));
+  final ZyGraph graph=CGraphBuilder.buildGraph(view);
+  final INaviView nonNativeView=graph.saveAs(new CModuleContainer(getDatabase(),module)," TEST GROUP NODE COMMENTS "," TESTING GROUP NODE COMMENTS ");
+  INaviGroupNode savedGroupNode=null;
+  for (  final INaviViewNode node : nonNativeView.getGraph().getNodes()) {
+    if (node instanceof INaviGroupNode) {
+      savedGroupNode=(INaviGroupNode)node;
+    }
+  }
+  return savedGroupNode;
+}

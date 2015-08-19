@@ -1,0 +1,4 @@
+NodeType parent
+NodeType node
+HashMap<NodeType,NodeType> ancestor
+HashMap<NodeType,NodeType> best

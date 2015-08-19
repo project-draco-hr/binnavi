@@ -1,0 +1,14 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final String mnemonic="burzel";
+  final IAddress iAddress=new CAddress(0x1234);
+  final COperandTreeNode rootNode=module.createOperandExpression("eax",ExpressionType.REGISTER);
+  final COperandTree tree=new COperandTree(rootNode,getProvider(),module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  final List<COperandTree> operands=new ArrayList<COperandTree>();
+  operands.add(tree);
+  final byte[] data={0xF};
+  final String architecture="x86-32";
+  final INaviInstruction instruction=module.createInstruction(iAddress,mnemonic,operands,data,architecture);
+  PostgreSQLInstructionFunctions.createInstructions(getProvider(),Lists.newArrayList(instruction));
+}

@@ -1,0 +1,8 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      deletedNodeImplementation(node);
+    }
+  }
+.invokeAndWait();
+}

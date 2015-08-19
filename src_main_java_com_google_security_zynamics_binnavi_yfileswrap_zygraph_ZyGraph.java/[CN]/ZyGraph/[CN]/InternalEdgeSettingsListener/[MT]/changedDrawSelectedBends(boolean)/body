@@ -1,0 +1,10 @@
+{
+  iterateEdges(new IEdgeCallback<NaviEdge>(){
+    @Override public IterationMode nextEdge(    final NaviEdge node){
+      node.getRealizer().setDrawBends(value);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  updateViews();
+}

@@ -1,0 +1,8 @@
+{
+  final BookmarkManager nativeManager=new BookmarkManager();
+  nativeManager.addBookmark(new CBookmark(new CAddress(0),"foo"));
+  final com.google.security.zynamics.binnavi.API.debug.BookmarkManager apiManager=new com.google.security.zynamics.binnavi.API.debug.BookmarkManager(nativeManager);
+  final Bookmark bm=apiManager.getBookmark(0);
+  assertEquals(0,bm.getAddress().toLong());
+  assertEquals("foo",bm.getDescription());
+}

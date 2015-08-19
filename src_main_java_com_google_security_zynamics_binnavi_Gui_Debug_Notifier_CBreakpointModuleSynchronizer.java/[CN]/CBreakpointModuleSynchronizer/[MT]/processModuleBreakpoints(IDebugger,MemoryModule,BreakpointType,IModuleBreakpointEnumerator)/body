@@ -1,0 +1,10 @@
+{
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  final Set<BreakpointAddress> breakpointAddresses=new HashSet<BreakpointAddress>();
+  for (  final Breakpoint breakpoint : manager.getBreakpointsByModule(breakPointType,module)) {
+    if ((manager.getBreakpointStatus(breakpoint.getAddress(),breakpoint.getType()) != BreakpointStatus.BREAKPOINT_ENABLED) && (manager.getBreakpointStatus(breakpoint.getAddress(),breakpoint.getType()) != BreakpointStatus.BREAKPOINT_DISABLED) && isWithinModule(debugger,module,breakpoint)) {
+      breakpointAddresses.add(breakpoint.getAddress());
+    }
+  }
+  callback.handleAddress(manager,breakpointAddresses);
+}

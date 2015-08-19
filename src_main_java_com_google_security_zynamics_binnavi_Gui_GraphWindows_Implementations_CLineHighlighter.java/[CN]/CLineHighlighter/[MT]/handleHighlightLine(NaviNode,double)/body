@@ -1,0 +1,5 @@
+{
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    highlightLine(node,(INaviCodeNode)node.getRawNode(),y);
+  }
+}

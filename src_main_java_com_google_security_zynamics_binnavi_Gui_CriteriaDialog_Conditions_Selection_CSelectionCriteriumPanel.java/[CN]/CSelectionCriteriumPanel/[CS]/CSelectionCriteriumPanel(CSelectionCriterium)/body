@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  m_criterium=criterium;
+  selectionStateBox.addActionListener(selectionStateBoxListener);
+  initPanel();
+}

@@ -1,0 +1,54 @@
+{
+  Preconditions.checkNotNull(commentNotifications,"Error: commentNotifications argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02524: provider argument can not be null");
+  for (  final PGNotification notification : commentNotifications) {
+    final String notificationParameter=notification.getParameter();
+    final String tableName=notificationParameter.split("\\s")[0];
+    try {
+switch (tableName) {
+case CTableNames.CODENODE_INSTRUCTIONS_TABLE:
+        informNotification(processNodeLocalInstructionCommentNotification(notification,provider),provider);
+      break;
+case CTableNames.INSTRUCTIONS_TABLE:
+    informNotification(processInstructionGlobalCommentNotification(notification,provider),provider);
+  break;
+case CTableNames.CODE_NODES_TABLE:
+informNotification(processNodeLocalNodeCommentNotification(notification,provider),provider);
+break;
+case CTableNames.GLOBAL_NODE_COMMENTS_TABLE:
+informNotification(processNodeGlobalCommentNotification(notification,provider),provider);
+break;
+case CTableNames.EDGES_TABLE:
+informNotification(processEdgeLocalCommentNotification(notification,provider),provider);
+break;
+case CTableNames.GLOBAL_EDGE_COMMENTS_TABLE:
+informNotification(processEdgeGlobalCommentNotification(notification,provider),provider);
+break;
+case CTableNames.FUNCTION_NODES_TABLE:
+informNotification(processFunctionNodeCommentNotification(notification,provider),provider);
+break;
+case CTableNames.FUNCTIONS_TABLE:
+informNotification(processFunctionCommentNotification(notification,provider),provider);
+break;
+case CTableNames.TEXT_NODES_TABLE:
+informNotification(processTextNodeCommentNotification(notification,provider),provider);
+break;
+case CTableNames.GROUP_NODES_TABLE:
+informNotification(processGroupNodeCommentNotification(notification,provider),provider);
+break;
+case CTableNames.TYPE_INSTANCE_TABLE:
+informNotification(processTypeInstanceCommentNotification(notification,provider),provider);
+break;
+case CTableNames.COMMENTS_TABLE:
+informNotification(processCommentNotification(notification,provider),provider);
+break;
+default :
+NaviLogger.warning("Table name %s not known",tableName);
+}
+}
+ catch (CouldntLoadDataException exception) {
+NaviLogger.severe("Error: Could not successfully parse the database comment notification: %s",notification.toString());
+}
+}
+return new ArrayList<>();
+}

@@ -1,0 +1,5 @@
+{
+  super(source,target);
+  m_edge=edge;
+  BasicBlock.link(source,target);
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02764: Base type can not be null.");
+  createTypeNode(baseType,containedRelation,containedRelationMap);
+}

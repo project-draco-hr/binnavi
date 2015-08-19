@@ -1,0 +1,79 @@
+{
+  final int standardSize=2 * getCharacterWidth(g);
+  final int firstX=(-m_firstColumn * m_charWidth) + m_paddingHexLeft + m_offsetViewWidth;
+  int x=firstX;
+  int y=m_paddingTop;
+  boolean evenColumn=true;
+  byte[] data=null;
+  int bytesToDraw;
+  if (m_status == DefinitionStatus.DEFINED) {
+    bytesToDraw=getBytesToDraw();
+    data=m_dataProvider.getData(getFirstVisibleOffset(),bytesToDraw);
+  }
+ else {
+    bytesToDraw=getMaximumVisibleBytes();
+  }
+  long currentOffset=getFirstVisibleOffset();
+  for (int i=0; i < bytesToDraw; i++, currentOffset++) {
+    final ColoredRange range=findColoredRange(currentOffset);
+    if (i != 0) {
+      if ((i % m_bytesPerRow) == 0) {
+        x=firstX;
+        y+=m_rowHeight;
+        evenColumn=true;
+      }
+ else       if ((i % m_bytesPerColumn) == 0) {
+        x+=m_columnSpacing;
+        evenColumn=!evenColumn;
+      }
+    }
+    if (isEnabled()) {
+      if (isSelectedOffset(currentOffset)) {
+        g.setColor(m_selectionColor);
+        g.fillRect(x,y - m_charHeight,2 * m_charWidth,m_charHeight + 2);
+        g.setColor(evenColumn ? m_fontColorHex1 : m_fontColorHex2);
+      }
+ else       if ((range != null) && range.containsOffset(currentOffset)) {
+        final Color bgColor=range.getBackgroundColor();
+        if (bgColor != null) {
+          g.setColor(bgColor);
+        }
+        g.fillRect(x,y - m_charHeight,2 * m_charWidth,m_charHeight + 2);
+        if (range.getColor() != null) {
+          g.setColor(range.getColor());
+        }
+ else {
+          g.setColor(evenColumn ? m_fontColorHex1 : m_fontColorHex2);
+        }
+      }
+ else {
+        if ((m_colormap != null) && m_colormap.colorize(data,i)) {
+          final Color backgroundColor=m_colormap.getBackgroundColor(data,i);
+          final Color foregroundColor=m_colormap.getForegroundColor(data,i);
+          if (backgroundColor != null) {
+            g.setColor(backgroundColor);
+            g.fillRect(x,y - m_charHeight,2 * m_charWidth,m_charHeight + 2);
+          }
+          if (foregroundColor != null) {
+            g.setColor(foregroundColor);
+          }
+        }
+ else {
+          g.setColor(evenColumn ? m_fontColorHex1 : m_fontColorHex2);
+        }
+      }
+    }
+ else {
+      g.setColor(m_disabledColor != m_bgColorHex ? m_disabledColor : Color.WHITE);
+    }
+    if (m_status == DefinitionStatus.DEFINED) {
+      final int columnBytes=Math.min(m_dataProvider.getDataLength() - i,m_bytesPerColumn);
+      final int dataPosition=m_flipBytes ? ((i / m_bytesPerColumn) * m_bytesPerColumn) + (columnBytes - (i % columnBytes) - 1) : i;
+      g.drawString(HEX_BYTES[data[dataPosition] & 0xFF],x,y);
+    }
+ else {
+      g.drawString("??",x,y);
+    }
+    x+=standardSize;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(name,"IE02079: Name argument can not be null");
+  m_savedName=name;
+  m_nameTextField.setText(name);
+  updateSaveFields();
+}

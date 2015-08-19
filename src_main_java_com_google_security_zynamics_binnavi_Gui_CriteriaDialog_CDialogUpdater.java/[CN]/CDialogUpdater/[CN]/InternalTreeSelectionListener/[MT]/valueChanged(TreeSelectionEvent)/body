@@ -1,0 +1,19 @@
+{
+  final TreePath path=event.getPath();
+  if (path == null) {
+    m_addConditionButton.setEnabled(false);
+    updateDefineConditionPanel((JCriteriumTreeNode)m_jtree.getModel().getRoot());
+  }
+ else {
+    final JCriteriumTreeNode selectedNode=(JCriteriumTreeNode)path.getLastPathComponent();
+    boolean enable=selectedNode.allowAppend(CConditionCriterium.class);
+    if (!enable && selectedNode.getLevel() > 0) {
+      final JCriteriumTreeNode parentNode=(JCriteriumTreeNode)selectedNode.getParent();
+      if (parentNode.getLevel() != 0 && !(parentNode.getCriterium() instanceof CNotCriterium) && !(selectedNode.getCriterium() instanceof CNotCriterium)) {
+        enable=true;
+      }
+    }
+    m_addConditionButton.setEnabled(enable);
+    updateDefineConditionPanel(selectedNode);
+  }
+}

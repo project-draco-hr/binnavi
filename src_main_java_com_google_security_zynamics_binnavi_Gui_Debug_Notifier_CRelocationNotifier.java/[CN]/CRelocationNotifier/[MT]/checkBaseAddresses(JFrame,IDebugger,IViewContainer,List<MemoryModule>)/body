@@ -1,0 +1,30 @@
+{
+  final List<Pair<INaviModule,MemoryModule>> wronglyPlacedModules=collectWronglyPlacedModules(debugger,viewContainer,memoryModules);
+  if (!wronglyPlacedModules.isEmpty()) {
+    for (    final Pair<INaviModule,MemoryModule> pair : wronglyPlacedModules) {
+      final INaviModule module=pair.first();
+      final MemoryModule memoryModule=pair.second();
+      final List<INaviAddressSpace> addressSpaces=viewContainer.getAddressSpaces();
+      if (addressSpaces == null) {
+        try {
+          module.getConfiguration().setImageBase(memoryModule.getBaseAddress().getAddress());
+        }
+ catch (        final CouldntSaveDataException e) {
+          CUtilityFunctions.logException(e);
+        }
+      }
+ else {
+        for (        final INaviAddressSpace addressSpace : addressSpaces) {
+          if (addressSpace.getContent().getModules().contains(module)) {
+            try {
+              addressSpace.getContent().setImageBase(module,memoryModule.getBaseAddress().getAddress());
+            }
+ catch (            final CouldntSaveDataException e) {
+              CUtilityFunctions.logException(e);
+            }
+          }
+        }
+      }
+    }
+  }
+}

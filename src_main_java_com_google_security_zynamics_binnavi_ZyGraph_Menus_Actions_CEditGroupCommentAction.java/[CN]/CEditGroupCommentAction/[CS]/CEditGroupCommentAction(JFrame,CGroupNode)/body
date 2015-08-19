@@ -1,0 +1,7 @@
+{
+  super("Edit Group Comment");
+  Preconditions.checkNotNull(parent,"IE00939: Parent argument can't be null");
+  Preconditions.checkNotNull(node,"IE00940: Node argument can't be null");
+  m_parent=parent;
+  m_node=node;
+}

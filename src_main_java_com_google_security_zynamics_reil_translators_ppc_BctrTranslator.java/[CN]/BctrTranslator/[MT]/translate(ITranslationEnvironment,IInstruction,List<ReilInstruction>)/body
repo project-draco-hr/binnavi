@@ -1,0 +1,3 @@
+{
+  BranchGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"bctr",null,Helpers.COUNT_REGISTER,false,true,false,false,false,false);
+}

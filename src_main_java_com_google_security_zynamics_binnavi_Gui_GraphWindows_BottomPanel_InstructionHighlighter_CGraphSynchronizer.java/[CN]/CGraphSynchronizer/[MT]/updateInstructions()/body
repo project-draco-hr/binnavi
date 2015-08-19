@@ -1,0 +1,17 @@
+{
+  final List<CSpecialInstruction> instructions=new ArrayList<CSpecialInstruction>();
+  if (highlightAny()) {
+    try {
+      final ReilFunction reilCode=m_graph.getRawView().getContent().getReilCode();
+      for (      final ITypeDescription description : m_model.getDescriptions()) {
+        if (description.isEnabled()) {
+          instructions.addAll(description.visit(reilCode,m_instructionMap));
+        }
+      }
+    }
+ catch (    final InternalTranslationException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+  return instructions;
+}

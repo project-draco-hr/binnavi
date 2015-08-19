@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(name,"IE00746: Name argument can not be null");
+  id=pid;
+  this.name=name;
+}

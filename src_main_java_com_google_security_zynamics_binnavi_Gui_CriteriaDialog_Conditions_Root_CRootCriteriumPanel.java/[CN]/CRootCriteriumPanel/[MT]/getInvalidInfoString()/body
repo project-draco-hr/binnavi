@@ -1,0 +1,3 @@
+{
+  return "Root node needs exactly one child condition or operator.";
+}

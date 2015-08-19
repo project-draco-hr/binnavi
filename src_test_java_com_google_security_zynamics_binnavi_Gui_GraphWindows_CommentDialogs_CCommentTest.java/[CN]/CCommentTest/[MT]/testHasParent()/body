@@ -1,0 +1,4 @@
+{
+  assertFalse(TEST_COMMENT_1.hasParent());
+  assertTrue(TEST_COMMENT_2.hasParent());
+}

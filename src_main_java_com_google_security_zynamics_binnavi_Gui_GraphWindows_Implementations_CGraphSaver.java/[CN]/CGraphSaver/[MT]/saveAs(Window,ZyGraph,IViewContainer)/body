@@ -1,0 +1,35 @@
+{
+  Preconditions.checkNotNull(parent,"IE01754: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01755: Graph argument can not be null");
+  final INaviView view=graph.getRawView();
+  final CViewCommentDialog dlg=new CViewCommentDialog(parent,"Save",view.getName(),view.getConfiguration().getDescription());
+  dlg.setVisible(true);
+  if (dlg.wasCancelled()) {
+    return new CSaveProgress(true);
+  }
+  final String newName=dlg.getName();
+  final String newDescription=dlg.getComment();
+  final CSaveProgress progress=new CSaveProgress(false);
+  new Thread(){
+    @Override public void run(){
+      final CViewSaverOperation operation=new CViewSaverOperation(String.format("Saving view '%s'",newName));
+      try {
+        if (graph.saveAs(container,newName,newDescription) == null) {
+          throw new CouldntSaveDataException("Failure saving the view.");
+        }
+      }
+ catch (      final CouldntSaveDataException e) {
+        CUtilityFunctions.logException(e);
+        final String innerMessage="E00121: " + "Could not save graph";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be saved.",newName),new String[]{"There was a problem with the database connection."},new String[]{"The new view was not created."});
+        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      }
+ finally {
+        operation.stop();
+        progress.setDone();
+      }
+    }
+  }
+.start();
+  return progress;
+}

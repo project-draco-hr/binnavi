@@ -1,0 +1,6 @@
+{
+  final Triple<IDebugger,BookmarkManager,Integer> bookmarkTriple=CBookmarkTableHelpers.findBookmark(m_debuggerProvider,row);
+  final BookmarkManager manager=bookmarkTriple.second();
+  final int index=bookmarkTriple.third();
+  return manager.getBookmark(index).getDescription();
+}

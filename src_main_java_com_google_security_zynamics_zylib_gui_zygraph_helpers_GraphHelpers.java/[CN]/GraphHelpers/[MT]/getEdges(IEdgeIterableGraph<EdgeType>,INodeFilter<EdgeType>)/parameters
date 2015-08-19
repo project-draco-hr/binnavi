@@ -1,0 +1,2 @@
+IEdgeIterableGraph<EdgeType> graph
+INodeFilter<EdgeType> filter

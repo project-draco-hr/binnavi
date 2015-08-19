@@ -1,0 +1,23 @@
+{
+  if ((exitCode != 0) && ((exitCode & 0xFE) != 0xFE)) {
+    if (exitCode == 1) {
+      throw new ExporterException("Error: IDA could not open the input file (Return Code: 1)");
+    }
+    if (exitCode == 4) {
+      throw new ExporterException("Error: Invalid IDB file (Return Code: 4)");
+    }
+    if (exitCode == 5) {
+      throw new ExporterException("Error: IDA can not process archive files (Return Code: 5)");
+    }
+    if (exitCode == 0x10) {
+      throw new ExporterException("Error: The exporter could not connect to the database");
+    }
+    if (exitCode == 0x11) {
+      throw new ExporterException("Error: Can't import. The module already exists in the database");
+    }
+    if (exitCode == 0x12) {
+      throw new ExporterException("Error: Can't import. Database contains tables from old versions of BinNavi.");
+    }
+    throw new ExporterException("Error: IDA terminated with error code " + exitCode);
+  }
+}

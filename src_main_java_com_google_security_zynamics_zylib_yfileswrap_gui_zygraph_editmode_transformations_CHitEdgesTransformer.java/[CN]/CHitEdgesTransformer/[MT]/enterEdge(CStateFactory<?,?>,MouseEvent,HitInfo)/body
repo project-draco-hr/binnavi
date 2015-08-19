@@ -1,0 +1,4 @@
+{
+  final Edge e=hitInfo.getHitEdge();
+  return new CStateChange(m_factory.createEdgeEnterState(e,event),true);
+}

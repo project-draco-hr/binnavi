@@ -1,0 +1,11 @@
+{
+  CommentManager.get(provider).initializeGlobalInstructionComment(instruction,Lists.newArrayList(comment1,comment2,comment3));
+  final String COMMENTS_TABLE_NOTIFICATION_1="bn_comments UPDATE 3333 2222 " + CommonTestObjects.TEST_USER_3.getUserId() + " AAA";
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processCommentNotification(new MockPGNotification("comment_changes",COMMENTS_TABLE_NOTIFICATION_1),provider);
+  assertNotNull(result);
+  final CommentNotificationContainer container=(CommentNotificationContainer)result;
+  final IComment comment=container.getCurrentComment();
+  assertEquals(comment3,comment);
+  final IComment testComment=new CComment(3333,CommonTestObjects.TEST_USER_3,comment2,"AAA");
+  assertEquals(testComment,container.getNewComment());
+}

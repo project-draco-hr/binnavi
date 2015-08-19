@@ -1,0 +1,4 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().appendTypeInstanceComment(1,1,null,user.getUserId());
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(typeManager,"Error: typeManager argument can not be null");
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  return new TypeEditorPanel(owner,TypesTree.createStackFrameDndTypesTree(function,typeManager),typeManager,"Stack frame");
+}

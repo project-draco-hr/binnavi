@@ -1,0 +1,14 @@
+{
+  if (m_magnifyingGlassMode == value) {
+    return;
+  }
+  m_magnifyingGlassMode=value;
+  for (  final IDisplaySettingsListener listener : m_glisteners) {
+    try {
+      listener.changedMagnifyingGlass(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

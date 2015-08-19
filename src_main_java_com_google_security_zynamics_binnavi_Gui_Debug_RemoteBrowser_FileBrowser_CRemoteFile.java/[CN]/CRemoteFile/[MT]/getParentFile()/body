@@ -1,0 +1,7 @@
+{
+  final String parent=this.getParent();
+  if (parent == null) {
+    return null;
+  }
+  return new CRemoteFile(parent,true);
+}

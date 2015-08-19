@@ -1,0 +1,3 @@
+{
+  CWindowFunctions.showContextHelp(m_parent);
+}

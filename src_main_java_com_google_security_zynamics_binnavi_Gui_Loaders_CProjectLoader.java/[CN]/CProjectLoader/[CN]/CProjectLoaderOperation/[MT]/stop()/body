@@ -1,0 +1,4 @@
+{
+  m_project.removeListener(m_listener);
+  CGlobalProgressManager.instance().remove(this);
+}

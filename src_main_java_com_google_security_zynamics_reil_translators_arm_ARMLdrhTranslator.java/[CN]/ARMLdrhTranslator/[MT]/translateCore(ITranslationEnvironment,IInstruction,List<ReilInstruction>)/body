@@ -1,0 +1,16 @@
+{
+  final Boolean writeBack=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().size() == 1 ? true : false;
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().size() == 1 ? instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(0) : instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode rootNode=instruction.getOperands().get(1).getRootNode();
+  final String registerNodeValue=(registerOperand1.getValue());
+  final OperandSize wd=OperandSize.WORD;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Pair<String,String> resultPair=AddressingModeTwoGenerator.generate(baseOffset,environment,instruction,instructions,rootNode);
+  final String tmpAddress=resultPair.first();
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  instructions.add(ReilHelpers.createLdm(baseOffset++,dw,tmpAddress,wd,registerNodeValue));
+  if (writeBack) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,dw,tmpAddress,dw,registerNodeValue));
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final TypeMember lastMember=members.last();
+  return lastMember.getNumberOfElements().get() * lastMember.getBitSize();
+}

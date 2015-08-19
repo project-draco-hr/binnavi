@@ -1,0 +1,9 @@
+{
+  if (obj instanceof INaviView) {
+    final INaviView other=(INaviView)obj;
+    return Objects.equals(m_configuration.getId(),other.getConfiguration().getId());
+  }
+ else {
+    return false;
+  }
+}

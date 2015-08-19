@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewFunctions.setName((AbstractSQLProvider)getProvider(),new MockView(getProvider()),null);
+}

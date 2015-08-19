@@ -1,0 +1,3 @@
+{
+  CTagSelectionFunctions.selectSubtreeNodes(m_graph,m_tag);
+}

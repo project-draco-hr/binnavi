@@ -1,0 +1,4 @@
+NaviNode node
+MouseEvent event
+double x
+double y

@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument(instruction.getOperands().size() == 1,"Error: Argument instruction is not a conditional jump instruction (invalid number of operands)");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree operand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,offset,operand,true);
+  instructions.addAll(result.getInstructions());
+  final String jumpTarget=result.getRegister();
+  offset=baseOffset + instructions.size();
+  final Pair<OperandSize,String> condition=conditionGenerator.generate(environment,offset,instructions);
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createJcc(offset,condition.first(),condition.second(),environment.getArchitectureSize(),jumpTarget));
+}

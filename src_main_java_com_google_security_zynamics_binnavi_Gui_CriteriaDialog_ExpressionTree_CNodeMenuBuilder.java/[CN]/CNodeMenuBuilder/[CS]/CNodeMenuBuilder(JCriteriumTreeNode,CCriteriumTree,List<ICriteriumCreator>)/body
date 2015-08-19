@@ -1,0 +1,29 @@
+{
+  m_criteriumNode=node;
+  final CCriteriumTreeNode clickedCriterium=CCriteriumFunctions.findNode(ctree.getRoot(),node.getCriterium());
+  m_appendAnd=new JMenuItem(new CAppendAndOperatorAction(ctree,clickedCriterium));
+  m_appendOr=new JMenuItem(new CAppendOrOperatorAction(ctree,clickedCriterium));
+  m_appendNot=new JMenuItem(new CAppendNotOperatorAction(ctree,clickedCriterium));
+  m_popup.add(m_appendAnd);
+  m_popup.add(m_appendOr);
+  m_popup.add(m_appendNot);
+  m_popup.add(new JSeparator());
+  m_insertAnd=new JMenuItem(new CInsertAndOperatorAction(ctree,clickedCriterium));
+  m_insertOr=new JMenuItem(new CInsertOrOperatorAction(ctree,clickedCriterium));
+  m_insertNot=new JMenuItem(new CInsertNotOperatorAction(ctree,clickedCriterium));
+  m_popup.add(m_insertAnd);
+  m_popup.add(m_insertOr);
+  m_popup.add(m_insertNot);
+  m_popup.add(new JSeparator());
+  m_conditionSubmenu=new JMenu("Create Condition");
+  for (  final ICriteriumCreator condition : criteria) {
+    m_conditionSubmenu.add(new JMenuItem(new CAddConditionAction(ctree,clickedCriterium,condition)));
+  }
+  m_popup.add(m_conditionSubmenu);
+  m_popup.add(new JSeparator());
+  m_remove=new JMenuItem(new CRemoveAction(ctree,clickedCriterium));
+  m_popup.add(m_remove);
+  m_popup.add(new JSeparator());
+  m_removeAll=new JMenuItem(new CRemoveAllAction(ctree));
+  m_popup.add(m_removeAll);
+}

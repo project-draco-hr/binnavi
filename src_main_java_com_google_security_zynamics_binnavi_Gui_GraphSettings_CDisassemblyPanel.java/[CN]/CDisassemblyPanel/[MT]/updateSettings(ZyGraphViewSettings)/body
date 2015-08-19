@@ -1,0 +1,4 @@
+{
+  settings.getDisplaySettings().setSimplifiedVariableAccess(m_cbSimplifiedMemoryAccess.getSelectedIndex() == 0);
+  return false;
+}

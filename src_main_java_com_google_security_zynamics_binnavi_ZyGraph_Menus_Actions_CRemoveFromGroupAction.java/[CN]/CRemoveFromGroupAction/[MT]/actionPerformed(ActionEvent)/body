@@ -1,0 +1,3 @@
+{
+  CGraphGrouper.removeFromGroup(m_node);
+}

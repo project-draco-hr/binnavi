@@ -1,0 +1,23 @@
+{
+  Preconditions.checkNotNull(parent,"IE01606: Parent argument can not be null");
+  Preconditions.checkNotNull(panel,"IE01607: Panel argument can not be null");
+  Preconditions.checkNotNull(searchField,"IE01608: Search field argument can not be null");
+  Preconditions.checkNotNull(addressField,"IE01609: Address field argument can not be null");
+  final InputMap inputMap=panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  final ActionMap actionMap=panel.getActionMap();
+  inputMap.put(HotKeys.GRAPH_GOTO_ADDRESS_FIELD_KEY.getKeyStroke(),"GOTO_ADDRESS_FIELD");
+  actionMap.put("GOTO_ADDRESS_FIELD",new AbstractAction(){
+    /** 
+ * Used for serialization.
+ */
+    private static final long serialVersionUID=-8994014581850287793L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      addressField.requestFocusInWindow();
+    }
+  }
+);
+  inputMap.put(HotKeys.GRAPH_SHOW_HOTKEYS_ACCELERATOR_KEY.getKeyStroke(),"SHOW_HOTKEYS");
+  actionMap.put("SHOW_HOTKEYS",new CShowHotkeysAction(parent));
+  registerSearchKeys(panel.getModel().getGraph().getView(),searchField,inputMap,actionMap);
+  registerDebuggerKeys(panel.getModel().getParent(),panel.getModel().getGraph(),debuggerProvider,inputMap,actionMap);
+}

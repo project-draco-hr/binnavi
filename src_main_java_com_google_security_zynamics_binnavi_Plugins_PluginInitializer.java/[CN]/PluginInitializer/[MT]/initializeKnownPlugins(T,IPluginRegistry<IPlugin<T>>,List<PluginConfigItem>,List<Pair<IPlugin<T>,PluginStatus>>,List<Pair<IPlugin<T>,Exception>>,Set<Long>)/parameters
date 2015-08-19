@@ -1,0 +1,6 @@
+T pluginInterface
+IPluginRegistry<IPlugin<T>> registry
+List<PluginConfigItem> xmlPluginOrder
+List<Pair<IPlugin<T>,PluginStatus>> validatedPlugins
+List<Pair<IPlugin<T>,Exception>> initializedPlugins
+Set<Long> processedPlugins

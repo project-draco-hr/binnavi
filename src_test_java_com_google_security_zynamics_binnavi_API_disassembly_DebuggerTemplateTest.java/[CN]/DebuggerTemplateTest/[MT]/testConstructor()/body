@@ -1,0 +1,8 @@
+{
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate internalTemplate=new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate(1,"Name","Host",123,new MockSqlProvider());
+  final DebuggerTemplate template=new DebuggerTemplate(internalTemplate);
+  assertEquals("Name",template.getName());
+  assertEquals("Host",template.getHost());
+  assertEquals(123,template.getPort());
+  assertEquals("Debugger Template 'Name' (Host:123)",template.toString());
+}

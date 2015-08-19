@@ -1,0 +1,3 @@
+{
+  module.writeSetting(key,value);
+}

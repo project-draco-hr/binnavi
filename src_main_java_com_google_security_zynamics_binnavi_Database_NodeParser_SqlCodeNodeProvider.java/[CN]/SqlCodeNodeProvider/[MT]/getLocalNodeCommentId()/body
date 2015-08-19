@@ -1,0 +1,12 @@
+{
+  try {
+    final int localCommentId=m_resultSet.getInt("local_code_node_comment");
+    if (m_resultSet.wasNull()) {
+      return null;
+    }
+    return localCommentId;
+  }
+ catch (  final SQLException exception) {
+    throw new ParserException(exception);
+  }
+}

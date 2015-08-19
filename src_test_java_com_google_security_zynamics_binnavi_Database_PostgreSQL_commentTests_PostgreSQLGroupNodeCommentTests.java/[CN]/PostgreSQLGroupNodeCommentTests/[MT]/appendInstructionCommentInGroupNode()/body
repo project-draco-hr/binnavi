@@ -1,0 +1,24 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction("sub_1004565");
+  final INaviView view=module.getContent().getViewContainer().getView(function);
+  view.load();
+  assertEquals(42,view.getNodeCount());
+  final INaviViewNode node1=view.getContent().getBasicBlocks().get(1);
+  final INaviViewNode node2=view.getContent().getBasicBlocks().get(2);
+  view.getContent().createGroupNode(Lists.newArrayList(node1,node2));
+  final ZyGraph graph=CGraphBuilder.buildGraph(view);
+  final INaviView nonNativeView=graph.saveAs(new CModuleContainer(getDatabase(),module)," TEST INSTRUCTION COMMENTS IN GROUP NODE "," TESTING GROUP NODE COMMENTS ");
+  final INaviInstruction instruction=view.getContent().getBasicBlocks().get(0).getLastInstruction();
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final String firstCommentString="TEST INSTRUCTION COMMENT PROPAGATION";
+  final int firstCommentId=getProvider().appendGlobalInstructionComment(instruction,firstCommentString,user.getUserId());
+  final IComment firstComment=new CComment(firstCommentId,user,null,firstCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(firstCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(1,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(firstComment));
+  final INaviInstruction instruction2=nonNativeView.getBasicBlocks().get(0).getLastInstruction();
+  assertEquals(1,instruction2.getGlobalComment().size());
+}

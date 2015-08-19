@@ -1,0 +1,28 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to delete the following projects?\n\n%s",CNameListGenerators.getNameList(projects))) == JOptionPane.YES_OPTION) {
+    for (    final INaviProject project : projects) {
+      new Thread(){
+        @Override public void run(){
+          final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,true);
+          operation.getProgressPanel().setMaximum(1);
+          operation.getProgressPanel().setText("Deleting project" + ": " + project.getConfiguration().getName());
+          try {
+            database.getContent().delete(project);
+            operation.getProgressPanel().next();
+            updater.update();
+          }
+ catch (          final CouldntDeleteException exception) {
+            CUtilityFunctions.logException(exception);
+            final String message="E00032: " + "Project could not be deleted";
+            final String description=CUtilityFunctions.createDescription(String.format("The project '%s' could not be deleted. " + "Try to delete the project again. If the problem persists, " + "disconnect from and reconnect to the database, "+ "restart BinNavi, or contact the BinNavi support.",project.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The project still exists."});
+            CNaviErrorDialog.show(parent,message,description,exception);
+          }
+ finally {
+            operation.stop();
+          }
+        }
+      }
+.start();
+    }
+  }
+}

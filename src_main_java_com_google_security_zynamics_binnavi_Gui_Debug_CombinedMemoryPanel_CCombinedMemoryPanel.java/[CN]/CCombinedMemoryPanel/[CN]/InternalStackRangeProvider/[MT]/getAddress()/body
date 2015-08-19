@@ -1,0 +1,4 @@
+{
+  final long startAddress=m_stackPanel.getStackProvider().getStartAddress();
+  return startAddress == -1 ? null : new CAddress(startAddress);
+}

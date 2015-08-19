@@ -1,0 +1,11 @@
+{
+  final CAddress address=new CAddress(0x1000);
+  final INaviOperandTreeNode node=new MockOperandTreeNode();
+  final TypeSubstitution substitution=typeManager.createTypeSubstitution(node,typeSystem.intType,0,0,address);
+  final TypeSubstitutionChangedEventCollector events=new TypeSubstitutionChangedEventCollector();
+  typeManager.addListener(events);
+  typeManager.deleteTypeSubstitution(node);
+  final TypeSubstitutionChangedEventCollector expectedEvents=new TypeSubstitutionChangedEventCollector();
+  expectedEvents.substitutionsDeleted(Sets.newHashSet(substitution));
+  Assert.assertEquals(expectedEvents,events);
+}

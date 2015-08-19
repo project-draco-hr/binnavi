@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.any(node.getOutgoingEdges(),new ICollectionFilter<ReilEdge>(){
+    @Override public boolean qualifies(    final ReilEdge outgoingEdge){
+      return getFirstInstruction(outgoingEdge.getTarget()) == instruction;
+    }
+  }
+);
+}

@@ -1,0 +1,3 @@
+{
+  m_tags=Preconditions.checkNotNull(tags,"IE02112: Tags argument can not be null");
+}

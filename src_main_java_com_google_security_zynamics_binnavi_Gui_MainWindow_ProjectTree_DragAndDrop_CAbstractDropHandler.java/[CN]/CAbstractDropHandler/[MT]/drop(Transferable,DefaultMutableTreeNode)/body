@@ -1,0 +1,10 @@
+{
+  if (!transferable.isDataFlavorSupported(m_flavor)) {
+    return;
+  }
+  final Object data=getData(transferable);
+  if (data == null) {
+    return;
+  }
+  drop(parentNode,data);
+}

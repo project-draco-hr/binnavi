@@ -1,0 +1,5 @@
+JPanel panel
+ITypeDescription description
+String hint
+T component
+boolean isLast

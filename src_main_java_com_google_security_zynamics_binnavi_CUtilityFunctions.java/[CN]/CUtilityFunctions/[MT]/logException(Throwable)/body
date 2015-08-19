@@ -1,0 +1,4 @@
+{
+  NaviLogger.severe("Reason" + ": " + exception.getLocalizedMessage());
+  NaviLogger.severe(StackTrace.toString(exception.getStackTrace()));
+}

@@ -1,0 +1,5 @@
+int level
+int line
+int start
+int length
+Color color

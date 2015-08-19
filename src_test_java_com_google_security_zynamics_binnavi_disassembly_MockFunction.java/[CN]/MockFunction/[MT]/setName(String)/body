@@ -1,0 +1,6 @@
+{
+  m_name=name;
+  for (  final IFunctionListener<IComment> listener : m_listeners) {
+    listener.changedName(this,name);
+  }
+}

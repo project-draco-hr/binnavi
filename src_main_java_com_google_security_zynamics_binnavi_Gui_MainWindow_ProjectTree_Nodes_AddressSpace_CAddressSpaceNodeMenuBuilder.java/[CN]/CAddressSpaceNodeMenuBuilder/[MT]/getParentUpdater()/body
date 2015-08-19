@@ -1,0 +1,3 @@
+{
+  return m_parentNode == null ? new CEmptyUpdater() : new CParentSelectionUpdater(getProjectTree(),m_parentNode);
+}

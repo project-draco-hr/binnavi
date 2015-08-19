@@ -1,0 +1,4 @@
+{
+  this.registers=new RegisterInformationInternal[registers.length];
+  initializeRegisterInformation(registers);
+}

@@ -1,0 +1,6 @@
+{
+  commentableToComment.remove(commentable);
+  for (  final CommentType commentType : comments) {
+    commentToCommentable.remove(commentType);
+  }
+}

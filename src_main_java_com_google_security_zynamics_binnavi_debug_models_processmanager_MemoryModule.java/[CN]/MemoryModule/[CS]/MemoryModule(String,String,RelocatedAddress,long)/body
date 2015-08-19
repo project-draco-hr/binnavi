@@ -1,0 +1,6 @@
+{
+  this.name=Preconditions.checkNotNull(name,"IE00751: Name argument can not be null");
+  this.path=Preconditions.checkNotNull(path,"IE00180: Path argument can not be null");
+  relocatedAddress=Preconditions.checkNotNull(baseAddress,"IE00752: Base address argument can not be null");
+  byteSize=size;
+}

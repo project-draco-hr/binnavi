@@ -1,0 +1,19 @@
+{
+  super(new BorderLayout(5,5));
+  this.module=Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  this.container=Preconditions.checkNotNull(container,"Error: type argument can not be null");
+  this.container.addListener(internalViewContainerListener);
+  hexView.setDefinitionStatus(DefinitionStatus.DEFINED);
+  hexView.setEnabled(true);
+  hexView.setMenuCreator(new TypeInstanceMenu());
+  typeDataModel=new TypeInstanceTableDatamodel();
+  typeDisplay=new CodeDisplay(typeDataModel);
+  typeDataModel.registerCodeDisplayToUpdate(typeDisplay);
+  typeDisplay.addMouseListener(new TypeInstanceTableMouseListener());
+  typeDisplay.addCaretChangedListener(new InstancesTableSelectionListener());
+  add(typeDisplay,BorderLayout.CENTER);
+  final JPanel panel=createOptionsPanel();
+  add(panel,BorderLayout.NORTH);
+  add(hexView,BorderLayout.WEST);
+  addressRenderer=new TypeInstanceAddressTableCellRenderer();
+}

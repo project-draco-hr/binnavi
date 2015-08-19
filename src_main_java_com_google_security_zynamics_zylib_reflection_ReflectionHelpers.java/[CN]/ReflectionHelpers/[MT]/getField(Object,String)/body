@@ -1,0 +1,6 @@
+{
+  final Class<?> c=object.getClass();
+  final Field chap=c.getDeclaredField(field);
+  chap.setAccessible(true);
+  return chap.get(object);
+}

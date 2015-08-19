@@ -1,0 +1,37 @@
+{
+  if (m_wasUneditableSelection) {
+    m_caretX=getCaretEndPosX();
+    return;
+  }
+  final int x=getCaretEndPosX();
+  final int y=getCaretMouseReleasedY();
+  m_caretX=x;
+  if (isComment(x,y)) {
+    m_caretX+=1;
+    final ZyLineContent lineContent=getLineContent(y);
+    final IZyEditableObject editableObject=lineContent.getLineFragmentObjectAt(x);
+    if ((editableObject == null) || editableObject.isCommentDelimiter()) {
+      return;
+    }
+    final int textCursor=x - editableObject.getStart();
+    final String text=lineContent.getText().substring(editableObject.getStart(),editableObject.getEnd());
+    final String chr=String.valueOf(getEvent().getKeyChar());
+    String changedText=String.format("%s%s%s",text.substring(0,textCursor),chr,text.substring(textCursor));
+    if (isComment(x,y)) {
+      changedText=getMultilineComment(y,changedText);
+    }
+    editableObject.update(changedText);
+    getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),editableObject.getPersistentModel());
+  }
+ else   if (isEditable(x,y)) {
+    throw new RuntimeException("Not implemented yet.");
+  }
+ else {
+    final ZyLineContent lineContent=getLineContent(y);
+    if ((x == lineContent.getText().length()) && (lineContent.getLineObject() != null)) {
+      lineContent.getLineObject().updateComment(Character.toString(getEvent().getKeyChar()),ECommentPlacement.BEHIND_LINE);
+      getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),lineContent.getLineObject().getPersistentModel());
+      m_caretX=getLineContent(y).getText().length();
+    }
+  }
+}

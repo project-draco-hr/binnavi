@@ -1,0 +1,4 @@
+{
+  addMembersAndVerifyOperation();
+  testStruct.deleteMember(null);
+}

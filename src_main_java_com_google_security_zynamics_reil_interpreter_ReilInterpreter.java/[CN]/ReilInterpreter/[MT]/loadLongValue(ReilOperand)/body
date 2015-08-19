@@ -1,0 +1,14 @@
+{
+  final OperandType type=operand.getType();
+  String value=operand.getValue();
+  if (type == OperandType.INTEGER_LITERAL) {
+    return new Pair<Boolean,BigInteger>(true,new BigInteger(value));
+  }
+ else   if (type == OperandType.REGISTER) {
+    value=(value.charAt(0) == '-') ? operand.getValue().substring(1) : value;
+    return !isDefined(value) ? new Pair<Boolean,BigInteger>(false,BigInteger.ZERO) : new Pair<Boolean,BigInteger>(true,getVariableValue(value));
+  }
+ else {
+    return new Pair<Boolean,BigInteger>(false,BigInteger.ZERO);
+  }
+}

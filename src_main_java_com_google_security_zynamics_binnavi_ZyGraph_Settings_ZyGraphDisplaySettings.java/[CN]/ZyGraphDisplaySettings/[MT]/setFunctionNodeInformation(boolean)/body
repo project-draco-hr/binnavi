@@ -1,0 +1,19 @@
+{
+  if (value == getFunctionNodeInformation()) {
+    return;
+  }
+  if (m_type == null) {
+    m_showFunctionNodeInformation=value;
+  }
+ else {
+    m_type.setFunctionNodeInformation(value);
+  }
+  for (  final IZyGraphDisplaySettingsListener listener : m_listeners) {
+    try {
+      listener.changedFunctionNodeInformation(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

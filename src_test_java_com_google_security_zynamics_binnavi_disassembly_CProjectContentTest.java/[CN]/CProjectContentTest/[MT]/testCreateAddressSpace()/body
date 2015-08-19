@@ -1,0 +1,11 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  final CAddressSpace spaceOne=projectContent.createAddressSpace("Address Space 1");
+  spaceOne.load();
+  try {
+    projectContent.createAddressSpace(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

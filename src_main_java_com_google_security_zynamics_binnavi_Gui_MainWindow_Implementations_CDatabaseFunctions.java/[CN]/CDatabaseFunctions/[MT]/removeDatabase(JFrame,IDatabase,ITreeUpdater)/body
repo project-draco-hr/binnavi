@@ -1,0 +1,7 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to remove the database configuration '%s' from BinNavi?",database.getConfiguration().getDescription())) == JOptionPane.YES_OPTION) {
+    CDatabaseManager.instance().removeDatabase(database);
+    updater.update();
+    ConfigManager.instance().saveSettings(parent);
+  }
+}

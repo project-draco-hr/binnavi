@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(tutorial,"IE01296: Tutorial argument can not be null");
+  tutorial.addListener(m_listener);
+  tutorial.start();
+}

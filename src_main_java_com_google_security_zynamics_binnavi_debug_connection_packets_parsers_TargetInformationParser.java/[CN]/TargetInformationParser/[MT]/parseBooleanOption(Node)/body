@@ -1,0 +1,3 @@
+{
+  return Boolean.valueOf(node.getAttributes().getNamedItem("value").getNodeValue());
+}

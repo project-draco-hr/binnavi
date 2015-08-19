@@ -1,0 +1,30 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bswap");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a lahf instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final String operand=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String masked1st=environment.getNextVariableString();
+  final String masked2nd=environment.getNextVariableString();
+  final String masked3rd=environment.getNextVariableString();
+  final String masked4th=environment.getNextVariableString();
+  final String shifted1st=environment.getNextVariableString();
+  final String shifted2nd=environment.getNextVariableString();
+  final String shifted3rd=environment.getNextVariableString();
+  final String shifted4th=environment.getNextVariableString();
+  final String combined1=environment.getNextVariableString();
+  final String combined2=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(baseOffset + 0,archSize,operand,archSize,"255",archSize,masked1st));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 1,archSize,operand,archSize,"65280",archSize,masked2nd));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 2,archSize,operand,archSize,"16711680",archSize,masked3rd));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 3,archSize,operand,archSize,"4278190080",archSize,masked4th));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 4,archSize,masked1st,archSize,"24",archSize,shifted1st));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 5,archSize,masked2nd,archSize,"8",archSize,shifted2nd));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 6,archSize,masked3rd,archSize,"-8",archSize,shifted3rd));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 7,archSize,masked4th,archSize,"-24",archSize,shifted4th));
+  instructions.add(ReilHelpers.createOr(baseOffset + 8,archSize,shifted1st,archSize,shifted2nd,archSize,combined1));
+  instructions.add(ReilHelpers.createOr(baseOffset + 9,archSize,shifted3rd,archSize,shifted4th,archSize,combined2));
+  instructions.add(ReilHelpers.createOr(baseOffset + 10,archSize,combined1,archSize,combined2,archSize,operand));
+}

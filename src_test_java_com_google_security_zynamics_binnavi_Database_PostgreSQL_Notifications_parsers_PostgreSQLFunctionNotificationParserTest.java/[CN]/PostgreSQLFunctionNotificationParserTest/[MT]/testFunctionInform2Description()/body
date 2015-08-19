@@ -1,0 +1,9 @@
+{
+  final String description="FUNCTION DESCRIPTION CHANGE TEST";
+  function.setDescriptionInternal(description);
+  assertEquals(description,function.getDescription());
+  final FunctionNotificationContainer container=new FunctionNotificationContainer(module.getConfiguration().getId(),module,function.getAddress(),"UPDATE");
+  final PostgreSQLFunctionNotificationParser parser=new PostgreSQLFunctionNotificationParser();
+  parser.inform(Lists.newArrayList(container),provider);
+  assertEquals("Mock Description",function.getDescription());
+}

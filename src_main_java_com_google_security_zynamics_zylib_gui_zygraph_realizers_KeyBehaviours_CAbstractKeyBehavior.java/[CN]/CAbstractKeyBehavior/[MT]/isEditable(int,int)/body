@@ -1,0 +1,4 @@
+{
+  final ZyLineContent lineContent=getLabelContent().getLineContent(lineYPos);
+  return lineContent.isEditable(lineXPos);
+}

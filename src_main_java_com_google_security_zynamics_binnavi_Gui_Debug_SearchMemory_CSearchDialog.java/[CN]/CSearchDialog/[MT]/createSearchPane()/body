@@ -1,0 +1,23 @@
+{
+  final JPanel panel=new JPanel();
+  panel.setLayout(new GridLayout(3,2));
+  panel.setBorder(new TitledBorder("Search for" + " ..."));
+  panel.add(new JLabel("Type"));
+  m_typeBox=new JComboBox<ISearcher>();
+  m_typeBox.addItem(new AsciiSearcher());
+  m_typeBox.addItem(new UnicodeSearcher());
+  m_typeBox.addItem(new HexSearcher());
+  m_typeBox.setSelectedIndex(0);
+  m_typeBox.addActionListener(new InternalTypeListener());
+  panel.add(m_typeBox);
+  panel.add(new JLabel("Value"));
+  m_inputField=new JFormattedTextField();
+  m_inputField.getDocument().addDocumentListener(new InternalTextListener());
+  panel.add(m_inputField);
+  m_otherLabel=new JLabel("Hex");
+  panel.add(m_otherLabel);
+  m_altField.setEnabled(false);
+  panel.add(m_altField);
+  panel.setSize(500,300);
+  return panel;
+}

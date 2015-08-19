@@ -1,0 +1,4 @@
+{
+  final RawBaseType rawBaseType=provider.loadType(module,baseTypeId);
+  return new BaseType(rawBaseType.getId(),rawBaseType.getName(),rawBaseType.getSize(),rawBaseType.isSigned(),rawBaseType.getCategory());
+}

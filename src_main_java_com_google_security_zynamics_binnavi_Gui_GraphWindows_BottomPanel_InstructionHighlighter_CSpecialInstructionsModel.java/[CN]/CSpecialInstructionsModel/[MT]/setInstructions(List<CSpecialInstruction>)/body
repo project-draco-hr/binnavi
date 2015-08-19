@@ -1,0 +1,12 @@
+{
+  m_instructions.clear();
+  m_instructions.addAll(instructions);
+  for (  final ISpecialInstructionsModelListener listener : m_listeners) {
+    try {
+      listener.changedInstructions();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

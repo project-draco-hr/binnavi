@@ -1,0 +1,26 @@
+{
+  final IUser user=CUserManager.get(provider).getCurrentActiveUser();
+  final List<IComment> currentComments=new ArrayList<IComment>();
+  if (strategy.isStored()) {
+    currentComments.addAll(strategy.appendComment(commentText,user.getUserId()));
+  }
+ else {
+    currentComments.addAll(strategy.getComments() == null ? new ArrayList<IComment>() : Lists.newArrayList(strategy.getComments()));
+    final IComment parent=currentComments.isEmpty() ? null : Iterables.getLast(currentComments);
+    final IComment newComment=new CComment(null,user,parent,commentText);
+    currentComments.add(newComment);
+  }
+  strategy.saveComments(currentComments);
+  for (  final IComment comment : currentComments) {
+    commentIdToComment.put(comment.getId(),comment);
+  }
+  for (  final CommentListener listener : listeners) {
+    try {
+      strategy.sendAppendedCommentNotifcation(listener,Iterables.getLast(currentComments));
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return currentComments;
+}

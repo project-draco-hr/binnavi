@@ -1,0 +1,5 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  @SuppressWarnings("unused") final INaviView view=container.createView("foo","berT");
+  assertNull(container.getView(m_function));
+}

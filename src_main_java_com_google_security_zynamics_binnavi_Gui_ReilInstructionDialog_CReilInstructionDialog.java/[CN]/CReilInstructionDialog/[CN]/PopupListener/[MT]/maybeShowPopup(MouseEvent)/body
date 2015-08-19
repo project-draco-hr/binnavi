@@ -1,0 +1,5 @@
+{
+  if (event.isPopupTrigger()) {
+    new CReilInstructionDialogMenu(m_textArea).show(event.getComponent(),event.getX(),event.getY());
+  }
+}

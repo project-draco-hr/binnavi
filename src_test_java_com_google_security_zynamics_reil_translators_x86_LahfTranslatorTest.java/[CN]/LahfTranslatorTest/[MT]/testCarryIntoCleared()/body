@@ -1,0 +1,14 @@
+{
+  interpreter.setRegister("SF",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ZF",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("AF",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("PF",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CF",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("eax",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockInstruction instruction=new MockInstruction("lahf",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(7,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x0300),interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

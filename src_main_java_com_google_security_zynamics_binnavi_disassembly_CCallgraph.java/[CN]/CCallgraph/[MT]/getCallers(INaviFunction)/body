@@ -1,0 +1,4 @@
+{
+  final ICallgraphNode node=m_functionMap.get(calledFunction);
+  return getFunctions(node.getParents());
+}

@@ -1,0 +1,3 @@
+{
+  RlwinmGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"slwi",true,false);
+}

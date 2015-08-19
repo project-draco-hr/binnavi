@@ -1,0 +1,10 @@
+{
+  if (m_model.hasData(m_startAddress,m_numberOfBytes)) {
+    JStackPanel.this.setEnabled(true);
+    setDefinitionStatus(DefinitionStatus.DEFINED);
+    ((Timer)event.getSource()).stop();
+  }
+ else   if (!m_model.keepTrying()) {
+    ((Timer)event.getSource()).stop();
+  }
+}

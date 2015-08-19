@@ -1,0 +1,5 @@
+{
+  m_results.clear();
+  m_results.addAll(results);
+  fireTableDataChanged();
+}

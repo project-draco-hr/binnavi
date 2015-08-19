@@ -1,0 +1,22 @@
+{
+  try {
+    final String query=String.format("INSERT INTO %s (module_id, address, \"position\", \"offset\", expression_id, path, " + "base_type_id) VALUES (?, ?, ?, ?, ?, ?, ?)",CTableNames.EXPRESSION_TYPES_TABLE);
+    final PreparedStatement statement=connection.prepareStatement(query);
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setLong(2,address.toLong());
+      statement.setInt(3,position);
+      statement.setInt(4,offset);
+      statement.setInt(5,treeNodeId);
+      statement.setArray(6,connection.createArrayOf("int4",memberPath.toArray()));
+      statement.setInt(7,baseTypeId);
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

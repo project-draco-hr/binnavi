@@ -1,0 +1,12 @@
+{
+  final TreePath path=tree.getPathForLocation(e.getX(),e.getY());
+  JPopupMenu popupMenu;
+  if (path != null) {
+    popupMenu=createNodeClickedMenu((TreeNode)path.getLastPathComponent());
+  }
+ else {
+    popupMenu=new JPopupMenu();
+    popupMenu.add(new AddTypeAction(owner,typeManager));
+  }
+  popupMenu.show(e.getComponent(),e.getX(),e.getY());
+}

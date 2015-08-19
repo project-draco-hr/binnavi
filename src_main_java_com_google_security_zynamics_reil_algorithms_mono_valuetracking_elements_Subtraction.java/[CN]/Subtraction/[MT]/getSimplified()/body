@@ -1,0 +1,16 @@
+{
+  final IValueElement simplifiedLhs=m_lhs.getSimplified();
+  final IValueElement simplifiedRhs=m_rhs.getSimplified();
+  if (simplifiedRhs instanceof Literal) {
+    if (simplifiedLhs instanceof Literal) {
+      return new Literal(((Literal)simplifiedLhs).getValue().subtract(((Literal)simplifiedRhs).getValue()));
+    }
+ else     if ((simplifiedLhs instanceof Addition) && (((Addition)simplifiedLhs).getRhs() instanceof Literal)) {
+      return new Addition(((Addition)simplifiedLhs).getLhs(),new Literal(((Literal)((Addition)simplifiedLhs).getRhs()).getValue().subtract(((Literal)simplifiedRhs).getValue())));
+    }
+ else     if ((simplifiedLhs instanceof Subtraction) && (((Subtraction)simplifiedLhs).getRhs() instanceof Literal)) {
+      return new Subtraction(((Subtraction)simplifiedLhs).getLhs(),new Literal(((Literal)((Subtraction)simplifiedLhs).getRhs()).getValue().add(((Literal)simplifiedRhs).getValue())));
+    }
+  }
+  return new Subtraction(simplifiedLhs,simplifiedRhs);
+}

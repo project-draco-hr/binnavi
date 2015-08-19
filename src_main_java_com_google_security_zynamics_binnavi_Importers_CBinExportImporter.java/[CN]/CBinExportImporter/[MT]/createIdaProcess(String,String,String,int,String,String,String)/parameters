@@ -1,0 +1,7 @@
+String idaExe
+String idbFileName
+String host
+int port
+String user
+String password
+String name

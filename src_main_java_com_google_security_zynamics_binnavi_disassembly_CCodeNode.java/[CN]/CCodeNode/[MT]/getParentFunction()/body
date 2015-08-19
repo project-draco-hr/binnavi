@@ -1,0 +1,6 @@
+{
+  if (m_parentFunction == null) {
+    throw new MaybeNullException();
+  }
+  return m_parentFunction;
+}

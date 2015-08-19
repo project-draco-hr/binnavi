@@ -1,0 +1,5 @@
+{
+  this.address=new MockAddress(address);
+  this.mnemonic=mnemonic;
+  this.operands=operands;
+}

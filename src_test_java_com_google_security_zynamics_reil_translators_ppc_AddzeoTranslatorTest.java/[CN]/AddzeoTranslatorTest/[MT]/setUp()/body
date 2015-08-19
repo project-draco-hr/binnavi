@@ -1,0 +1,8 @@
+{
+  interpreter.setRegister("XEROV",BigInteger.valueOf(123),OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("XERSO",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0SO",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0GT",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0LT",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0EQ",BigInteger.ZERO,OperandSize.WORD,ReilRegisterStatus.DEFINED);
+}

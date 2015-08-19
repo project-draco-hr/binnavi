@@ -1,0 +1,32 @@
+{
+  final IValueElement simplifiedLhs=m_lhs.getSimplified();
+  final IValueElement simplifiedRhs=m_rhs.getSimplified();
+  if (simplifiedLhs instanceof BitwiseAnd) {
+    if (((BitwiseAnd)simplifiedLhs).getRhs().equals(simplifiedRhs)) {
+      return simplifiedLhs;
+    }
+ else     if (((BitwiseAnd)simplifiedLhs).getLhs().equals(simplifiedRhs)) {
+      return simplifiedLhs;
+    }
+ else {
+      return new BitwiseAnd(simplifiedLhs,simplifiedRhs);
+    }
+  }
+ else   if (simplifiedRhs instanceof BitwiseAnd) {
+    if (((BitwiseAnd)simplifiedRhs).getRhs().equals(simplifiedLhs)) {
+      return simplifiedRhs;
+    }
+ else     if (((BitwiseAnd)simplifiedRhs).getLhs().equals(simplifiedLhs)) {
+      return simplifiedRhs;
+    }
+ else {
+      return new BitwiseAnd(simplifiedLhs,simplifiedRhs);
+    }
+  }
+ else   if ((simplifiedRhs instanceof Literal) && (simplifiedLhs instanceof Literal)) {
+    return new Literal(((Literal)simplifiedLhs).getValue().and(((Literal)simplifiedRhs).getValue()));
+  }
+ else {
+    return new BitwiseAnd(simplifiedLhs,simplifiedRhs);
+  }
+}

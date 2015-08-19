@@ -1,0 +1,6 @@
+{
+  if (totalOffset == 0) {
+    return baseType.getName();
+  }
+  return String.format("%s%s",baseType.getName(),toByteOffsetString(totalOffset));
+}

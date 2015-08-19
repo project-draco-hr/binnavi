@@ -1,0 +1,10 @@
+{
+  for (  final ReilBlock block : blocks) {
+    for (    final ReilInstruction reilInstruction : block) {
+      if (instruction == reilInstruction) {
+        return block;
+      }
+    }
+  }
+  throw new IllegalStateException(String.format("Error: Unknown block (Instruction '%s' not found)",instruction));
+}

@@ -1,0 +1,5 @@
+{
+  final InstallationState cppState=CBinExportInstallationChecker.getState(directory);
+  m_cppStateLabel.setText(getText(cppState));
+  m_cppButton.setEnabled(cppState == InstallationState.NotInstalled);
+}

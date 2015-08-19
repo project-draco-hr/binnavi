@@ -1,0 +1,3 @@
+{
+  return SystemHelpers.getAllUsersApplicationDataDirectory(productName) + configFileName;
+}

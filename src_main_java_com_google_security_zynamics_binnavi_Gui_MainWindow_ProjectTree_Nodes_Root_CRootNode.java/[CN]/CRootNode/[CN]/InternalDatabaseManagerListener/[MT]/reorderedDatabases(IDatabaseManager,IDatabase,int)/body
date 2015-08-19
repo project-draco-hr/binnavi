@@ -1,0 +1,6 @@
+{
+  deleteChildren();
+  removeAllChildren();
+  createChildren();
+  getTreeModel().nodeStructureChanged(CRootNode.this);
+}

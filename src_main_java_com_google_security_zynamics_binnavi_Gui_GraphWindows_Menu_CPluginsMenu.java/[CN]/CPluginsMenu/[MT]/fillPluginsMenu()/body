@@ -1,0 +1,14 @@
+{
+  final List<IGraphMenuPlugin> plugins=new ArrayList<IGraphMenuPlugin>();
+  for (  @SuppressWarnings("rawtypes") final IPlugin plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof IGraphMenuPlugin) {
+      plugins.add((IGraphMenuPlugin)plugin);
+    }
+  }
+  add(CActionProxy.proxy(new CActionGraphScripting(m_model.getGraphPanel())));
+  add(CActionProxy.proxy(new CActionOpenLogConsole()));
+  addSeparator();
+  for (  final IGraphMenuPlugin plugin : plugins) {
+    extendPluginMenu(plugin);
+  }
+}

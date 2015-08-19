@@ -1,0 +1,7 @@
+{
+  try {
+    setDescription(description,false);
+  }
+ catch (  CouldntSaveDataException exception) {
+  }
+}

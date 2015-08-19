@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  final JPanel componentPanel=new JPanel(new GridLayout(2,2));
+  m_breakOnDllLoadCheckbox=new JCheckBox("Break on module load");
+  m_breakOnDllUnloadCheckbox=new JCheckBox("Break on module unload");
+  m_breakOnDllLoadCheckbox.setSelected(eventSettings.getBreakOnDllLoad());
+  m_breakOnDllUnloadCheckbox.setSelected(eventSettings.getBreakOnDllUnload());
+  componentPanel.add(m_breakOnDllLoadCheckbox);
+  componentPanel.add(m_breakOnDllUnloadCheckbox);
+  innerPanel.add(new JScrollPane(componentPanel),BorderLayout.NORTH);
+  add(innerPanel);
+}

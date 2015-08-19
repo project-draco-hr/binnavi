@@ -1,0 +1,5 @@
+TypeSubstitution substitution
+BaseType baseType
+List<Integer> memberPath
+int offset
+INaviModule module

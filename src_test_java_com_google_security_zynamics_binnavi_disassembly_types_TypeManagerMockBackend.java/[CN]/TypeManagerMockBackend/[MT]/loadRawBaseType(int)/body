@@ -1,0 +1,8 @@
+{
+  for (  final BaseType baseType : types) {
+    if (baseType.getId() == baseTypeId) {
+      return baseType;
+    }
+  }
+  throw new CouldntLoadDataException("Base type not found in type manager mock backend.");
+}

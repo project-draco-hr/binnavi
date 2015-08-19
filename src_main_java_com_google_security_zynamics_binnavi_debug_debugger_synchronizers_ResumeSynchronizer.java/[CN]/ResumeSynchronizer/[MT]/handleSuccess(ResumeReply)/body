@@ -1,0 +1,10 @@
+{
+  final BreakpointManager manager=getDebugger().getBreakpointManager();
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  for (  final Breakpoint breakpoint : manager.getBreakpoints(BreakpointType.REGULAR)) {
+    if (manager.getBreakpointStatus(breakpoint.getAddress(),breakpoint.getType()) == BreakpointStatus.BREAKPOINT_HIT) {
+      manager.setBreakpointStatus(Sets.newHashSet(breakpoint.getAddress()),breakpoint.getType(),BreakpointStatus.BREAKPOINT_ACTIVE);
+    }
+  }
+  processManager.setActiveThread(null);
+}

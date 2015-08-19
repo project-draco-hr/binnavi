@@ -1,0 +1,53 @@
+{
+  final MockOperandTree operandTreeFirst1=new MockOperandTree();
+  operandTreeFirst1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTreeFirst1.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"16827245"));
+  final List<MockOperandTree> operandsFirst=Lists.newArrayList(operandTreeFirst1);
+  conditionalJumpInstruction1=new MockInstruction(Long.parseLong("100C32F",16),"jz",operandsFirst);
+  m_options=new RegisterTrackingOptions(true,new HashSet<String>(),true,AnalysisDirection.UP);
+  final List<String> instructionStrings1=new ArrayList<String>();
+  instructionStrings1.add("0000000100C32C00: add [DWORD 12, DWORD ebp, QWORD t0]");
+  instructionStrings1.add("0000000100C32C01: and [QWORD t0, DWORD 4294967295, DWORD t1]");
+  instructionStrings1.add("0000000100C32C02: ldm [DWORD t1, EMPTY , BYTE t2]");
+  instructionStrings1.add("0000000100C32C03: and [DWORD ebx, BYTE 255, BYTE t4]");
+  instructionStrings1.add("0000000100C32C04: and [BYTE t2, BYTE 128, BYTE t5]");
+  instructionStrings1.add("0000000100C32C05: and [BYTE t4, BYTE 128, BYTE t6]");
+  instructionStrings1.add("0000000100C32C06: sub [BYTE t2, BYTE t4, WORD t7]");
+  instructionStrings1.add("0000000100C32C07: and [WORD t7, WORD 128, BYTE t8]");
+  instructionStrings1.add("0000000100C32C08: bsh [BYTE t8, BYTE -7, BYTE SF]");
+  instructionStrings1.add("0000000100C32C09: xor [BYTE t5, BYTE t6, BYTE t9]");
+  instructionStrings1.add("0000000100C32C0A: xor [BYTE t5, BYTE t8, BYTE t10]");
+  instructionStrings1.add("0000000100C32C0B: and [BYTE t9, BYTE t10, BYTE t11]");
+  instructionStrings1.add("0000000100C32C0C: bsh [BYTE t11, BYTE -7, BYTE OF]");
+  instructionStrings1.add("0000000100C32C0D: and [WORD t7, WORD 256, WORD t12]");
+  instructionStrings1.add("0000000100C32C0E: bsh [WORD t12, WORD -8, BYTE CF]");
+  instructionStrings1.add("0000000100C32C0F: and [WORD t7, WORD 255, BYTE t13]");
+  instructionStrings1.add("0000000100C32C10: bisz [BYTE t13, EMPTY , BYTE ZF]");
+  instructionStrings1.add("0000000100C32F00: jcc [BYTE ZF, EMPTY , DWORD 16827245]");
+  final List<List<String>> reilBlocks=new ArrayList<List<String>>();
+  reilBlocks.add(instructionStrings1);
+  generateReilGraph(reilBlocks,new ArrayList<String>());
+  m_function=new ReilFunction("FOLLOWZF",m_graph1);
+  final String trackedRegister="ZF";
+  final MonoReilSolverResult<RegisterSetLatticeElement> result=RegisterTracker.track(m_function,conditionalJumpInstruction1,trackedRegister,m_options);
+  final Map<IAddress,RegisterSetLatticeElement> resultMap=result.generateAddressToStateMapping(conditionalJumpInstruction1,m_options.trackIncoming());
+  System.out.println(m_graph1.toString());
+  for (  final Entry<IAddress,RegisterSetLatticeElement> resultEntry : resultMap.entrySet()) {
+    if (resultEntry.getKey().toLong() == Long.parseLong("0000000100C32F00",16)) {
+      final RegisterSetLatticeElement jzElement=resultEntry.getValue();
+      assertTrue(jzElement.getNewlyTaintedRegisters().contains("ZF"));
+      assertTrue(jzElement.getReadRegisters().isEmpty());
+      assertTrue(jzElement.getTaintedRegisters().contains("ZF"));
+      assertTrue(jzElement.getUntaintedRegisters().isEmpty());
+      assertTrue(jzElement.getUpdatedRegisters().isEmpty());
+    }
+    if (resultEntry.getKey().toLong() == Long.parseLong("0000000100C32C00",16)) {
+      final RegisterSetLatticeElement cmpElement=resultEntry.getValue();
+      assertTrue(cmpElement.getNewlyTaintedRegisters().contains("ebx"));
+      assertTrue(cmpElement.getReadRegisters().contains("ZF"));
+      assertTrue(cmpElement.getTaintedRegisters().contains("ebx"));
+      assertTrue(cmpElement.getUntaintedRegisters().contains("ZF"));
+      assertTrue(cmpElement.getUpdatedRegisters().isEmpty());
+    }
+  }
+}

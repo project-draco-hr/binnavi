@@ -1,0 +1,15 @@
+{
+  ConfigManager.instance().read();
+  m_database=new MockDatabase(m_provider);
+  m_project=new CProject(1,"Mock Project","Mock Project Description",new Date(),new Date(),0,new ArrayList<DebuggerTemplate>(),m_provider);
+  m_project.load();
+  m_addressSpace=m_project.getContent().createAddressSpace("Address Space");
+  final CProjectTreeModel model=new CProjectTreeModel(m_tree);
+  model.setRoot(new DefaultMutableTreeNode());
+  m_tree.setModel(model);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_project,"m_listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_addressSpace,"m_listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ZyGraphBuilderManager.instance(),"m_listeners"),"m_listeners")) == null);
+  m_container=new CProjectContainer(m_database,m_project,m_addressSpace);
+}

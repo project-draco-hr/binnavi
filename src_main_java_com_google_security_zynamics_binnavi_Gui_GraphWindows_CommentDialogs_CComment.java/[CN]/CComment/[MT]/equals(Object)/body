@@ -1,0 +1,10 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (getClass() != obj.getClass()) {
+    return false;
+  }
+  final CComment other=(CComment)obj;
+  return Objects.equals(this.id,other.id) && Objects.equals(this.user,other.user) && Objects.equals(this.parent,other.parent)&& Objects.equals(this.comment,other.comment);
+}

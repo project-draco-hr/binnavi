@@ -1,0 +1,13 @@
+{
+  super(20);
+  Preconditions.checkNotNull(graph,"IE01812: Target view can't be null");
+  m_graph=graph;
+  m_searcher=new GraphSearcher();
+  setEditor(new BasicComboBoxEditor(){
+    @Override protected JTextField createEditorComponent(){
+      return m_textField;
+    }
+  }
+);
+  registerHotkeys();
+}

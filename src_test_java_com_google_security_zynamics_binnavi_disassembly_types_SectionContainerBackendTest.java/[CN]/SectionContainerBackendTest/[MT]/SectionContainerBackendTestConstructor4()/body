@@ -1,0 +1,4 @@
+{
+  final SectionContainerBackend sectionContainerBackend=new SectionContainerBackend(provider,module);
+  Assert.assertNotNull(sectionContainerBackend);
+}

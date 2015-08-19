@@ -1,0 +1,7 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  final TagType type=TagType.NODE_TAG;
+  final CTag tag=new CTag(1,"foo","bar",type,new MockSqlProvider());
+  assertFalse(CTagEvaluator.evaluate(node,true,tag));
+  assertFalse(CTagEvaluator.evaluate(node,false,tag));
+}

@@ -1,0 +1,21 @@
+{
+  m_labelContent=labelContent;
+  m_event=event;
+  setModifier(event);
+  if (labelContent.isEditable()) {
+    initUndoHistory();
+  }
+  updateClipboard();
+  updateSelection();
+  if (labelContent.isEditable()) {
+    updateLabelContent();
+  }
+  updateCaret();
+  if (labelContent.isEditable()) {
+    updateUndoHistory();
+    updateLabelSize();
+  }
+  m_alt=false;
+  m_shift=false;
+  m_ctrl=false;
+}

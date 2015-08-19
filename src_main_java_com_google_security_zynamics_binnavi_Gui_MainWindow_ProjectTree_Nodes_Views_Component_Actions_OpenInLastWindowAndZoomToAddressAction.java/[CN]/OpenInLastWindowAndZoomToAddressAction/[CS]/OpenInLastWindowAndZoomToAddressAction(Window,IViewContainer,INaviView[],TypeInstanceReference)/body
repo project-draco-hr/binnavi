@@ -1,0 +1,7 @@
+{
+  super("Open in last window and zoom to address");
+  m_parent=Preconditions.checkNotNull(parent,"IE02876: parent argument can not be null");
+  m_container=Preconditions.checkNotNull(container,"IE02877: container argument can not be null");
+  m_views=Preconditions.checkNotNull(views,"IE02878: views argument can not be null").clone();
+  this.reference=reference;
+}

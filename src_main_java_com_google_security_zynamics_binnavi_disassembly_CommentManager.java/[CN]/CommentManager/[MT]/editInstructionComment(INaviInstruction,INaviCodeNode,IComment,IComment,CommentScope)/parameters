@@ -1,0 +1,5 @@
+INaviInstruction instruction
+INaviCodeNode node
+IComment comment
+IComment newComment
+CommentScope scope

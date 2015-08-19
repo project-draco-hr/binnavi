@@ -1,0 +1,13 @@
+{
+  m_stepCounter++;
+  if (m_stepCounter == m_steps.size()) {
+    for (    final ITutorialListener listener : m_listeners) {
+      listener.finished(this);
+    }
+  }
+ else {
+    for (    final ITutorialListener listener : m_listeners) {
+      listener.changedStep(this);
+    }
+  }
+}

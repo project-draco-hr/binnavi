@@ -1,0 +1,5 @@
+{
+  for (  final IDataEnteredListener listener : enterlisteners) {
+    listener.registerChanged(index,previousValue,newValue);
+  }
+}

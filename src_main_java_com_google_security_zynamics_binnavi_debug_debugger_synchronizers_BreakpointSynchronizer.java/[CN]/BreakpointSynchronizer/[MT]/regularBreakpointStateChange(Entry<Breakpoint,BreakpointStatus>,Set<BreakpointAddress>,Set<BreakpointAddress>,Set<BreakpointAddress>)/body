@@ -1,0 +1,19 @@
+{
+  final BreakpointStatus oldStatus=breakpointToOldStatus.getValue();
+  if (manager.getBreakpointStatus(breakpointToOldStatus.getKey().getAddress(),BreakpointType.REGULAR) == BreakpointStatus.BREAKPOINT_ENABLED) {
+    toSet.add(breakpointToOldStatus.getKey().getAddress());
+  }
+ else   if (manager.getBreakpointStatus(breakpointToOldStatus.getKey().getAddress(),BreakpointType.REGULAR) == BreakpointStatus.BREAKPOINT_DELETING) {
+    if ((oldStatus == BreakpointStatus.BREAKPOINT_INVALID) || (oldStatus == BreakpointStatus.BREAKPOINT_DISABLED)) {
+      toRemoveFromManager.add(breakpointToOldStatus.getKey().getAddress());
+    }
+ else {
+      toRemoveFromDebugger.add(breakpointToOldStatus.getKey().getAddress());
+    }
+  }
+ else   if (manager.getBreakpointStatus(breakpointToOldStatus.getKey().getAddress(),BreakpointType.REGULAR) == BreakpointStatus.BREAKPOINT_DISABLED) {
+    if ((oldStatus != BreakpointStatus.BREAKPOINT_DELETING) && (oldStatus != BreakpointStatus.BREAKPOINT_INVALID) && (oldStatus != BreakpointStatus.BREAKPOINT_INACTIVE)) {
+      toRemoveFromDebugger.add(breakpointToOldStatus.getKey().getAddress());
+    }
+  }
+}

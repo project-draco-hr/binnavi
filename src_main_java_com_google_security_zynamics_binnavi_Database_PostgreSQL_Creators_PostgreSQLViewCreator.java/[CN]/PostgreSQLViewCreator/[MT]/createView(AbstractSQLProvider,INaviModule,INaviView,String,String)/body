@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(provider,"IE02268: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE02269: Module argument can not be null");
+  Preconditions.checkNotNull(view,"IE02270: View argument can not be null");
+  Preconditions.checkNotNull(name,"IE02271: Name argument can not be null");
+  Preconditions.checkState(module.inSameDatabase(provider),"Error: Module is not part of this database");
+  Preconditions.checkState(view.inSameDatabase(provider),"Error: View is not part of this database");
+  return createView(provider,module.getConfiguration().getId(),view,name,description,"" + CTableNames.MODULES_TABLE + "","" + CTableNames.MODULE_VIEWS_TABLE + "",new CModuleViewGenerator(provider,module));
+}

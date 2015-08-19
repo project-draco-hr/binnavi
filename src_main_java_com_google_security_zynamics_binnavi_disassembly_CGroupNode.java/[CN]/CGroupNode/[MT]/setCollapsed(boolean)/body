@@ -1,0 +1,19 @@
+{
+  if (collapsed == m_collapsed) {
+    return;
+  }
+  if (collapsed) {
+    for (    final INaviViewNode node : m_elements) {
+      node.setVisible(true);
+    }
+  }
+  m_collapsed=collapsed;
+  for (  final INaviGroupNodeListener listener : m_listeners) {
+    try {
+      listener.changedState(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

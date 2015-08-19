@@ -1,0 +1,10 @@
+{
+  for (  final ICallResolverTargetListener listener : listeners) {
+    try {
+      listener.changedDebugger(ModuleCallResolverTarget.this,debugger);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  testUpdateMember(getKernel32Module());
+  testUpdateMember(getNotepadModule());
+}

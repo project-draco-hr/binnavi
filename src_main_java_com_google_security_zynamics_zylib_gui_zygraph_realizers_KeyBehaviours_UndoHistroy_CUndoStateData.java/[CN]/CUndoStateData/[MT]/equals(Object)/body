@@ -1,0 +1,7 @@
+{
+  if (obj instanceof CUndoStateData) {
+    final CUndoStateData undoData=(CUndoStateData)obj;
+    return (m_isAboveLineComment == undoData.m_isAboveLineComment) && (m_isBehindLineComment == undoData.m_isBehindLineComment) && (m_isLabelComment == undoData.m_isLabelComment)&& (m_persistentModel == undoData.m_persistentModel)&& m_text.equals(undoData.m_text);
+  }
+  return false;
+}

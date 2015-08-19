@@ -1,0 +1,6 @@
+int moduleId
+String name
+int size
+Integer previousPointerTypeId
+boolean signed
+BaseTypeCategory category

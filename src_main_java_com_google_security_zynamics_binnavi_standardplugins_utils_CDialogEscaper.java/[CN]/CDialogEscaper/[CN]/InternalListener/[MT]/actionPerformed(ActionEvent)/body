@@ -1,0 +1,4 @@
+{
+  m_dialog.setVisible(false);
+  m_dialog.dispose();
+}

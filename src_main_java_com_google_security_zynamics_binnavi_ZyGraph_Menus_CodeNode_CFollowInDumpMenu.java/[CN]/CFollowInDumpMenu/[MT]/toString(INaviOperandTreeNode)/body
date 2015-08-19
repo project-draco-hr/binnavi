@@ -1,0 +1,11 @@
+{
+switch (node.getType()) {
+case IMMEDIATE_INTEGER:
+case REGISTER:
+    return node.getValue();
+case OPERATOR:
+  return Commafier.commafy(toString(node.getChildren())," " + node.getValue() + " ");
+default :
+throw new IllegalStateException("IE00711: This should not happen");
+}
+}

@@ -1,0 +1,14 @@
+{
+  if (root instanceof CPredicateExpression) {
+    final CPredicateExpression predicate=(CPredicateExpression)root;
+    for (    final IPredicateGenerator<WrapperType> expression : m_expressions) {
+      if (expression.canParse(predicate.getText())) {
+        return true;
+      }
+    }
+    return false;
+  }
+ else {
+    return true;
+  }
+}

@@ -1,0 +1,9 @@
+{
+switch (type) {
+case REGULAR:
+    setBreakpointsStatus(Sets.newHashSet(indexedBreakpointStorage.get(index).getAddress()),newStatus,indexedBreakpointStorage);
+  break;
+default :
+throw new IllegalStateException("IE00727: Invalid breakpoint type " + type + " for indexed breakpoint access");
+}
+}

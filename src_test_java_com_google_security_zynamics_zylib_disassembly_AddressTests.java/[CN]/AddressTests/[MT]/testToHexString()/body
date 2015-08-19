@@ -1,0 +1,6 @@
+{
+  assertTrue(new CAddress(0x876543abL).toHexString().equalsIgnoreCase("876543ab"));
+  assertTrue(new CAddress(0xfedcba9876543210L).toHexString().equalsIgnoreCase("fedcba9876543210"));
+  assertEquals(new CAddress(0x00000100L).toHexString().length(),8);
+  assertEquals(new CAddress(0x100000000L).toHexString().length(),16);
+}

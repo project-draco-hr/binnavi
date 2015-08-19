@@ -1,0 +1,6 @@
+{
+  final CCrossReference reference=new CCrossReference(new MockFunction(),new MockFunction());
+  final CCrossReference reference2=new CCrossReference(new MockFunction(),new MockFunction());
+  assertFalse(reference.equals(reference2));
+  assertTrue(reference.equals(reference));
+}

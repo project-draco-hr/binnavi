@@ -1,0 +1,3 @@
+{
+  return m_project.isLoaded() ? ICON_PROJECTS_CONTAINER : ICON_PROJECTS_CONTAINER_GRAY;
+}

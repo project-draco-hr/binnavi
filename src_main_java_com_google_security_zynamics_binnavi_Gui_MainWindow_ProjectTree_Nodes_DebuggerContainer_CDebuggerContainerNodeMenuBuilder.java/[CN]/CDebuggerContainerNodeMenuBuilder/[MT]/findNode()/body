@@ -1,0 +1,3 @@
+{
+  return findDebuggerContainerNode(CProjectTreeNodeHelpers.findDatabaseNode(getProjectTree(),m_database));
+}

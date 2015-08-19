@@ -1,0 +1,5 @@
+{
+  final double xdiff=x1 - x2;
+  final double ydiff=y1 - y2;
+  return (Math.abs(xdiff) > 15) || (Math.abs(ydiff) > 15);
+}

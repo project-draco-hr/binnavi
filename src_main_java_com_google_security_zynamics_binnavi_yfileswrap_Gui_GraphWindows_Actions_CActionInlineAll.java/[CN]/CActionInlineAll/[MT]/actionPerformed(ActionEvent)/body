@@ -1,0 +1,4 @@
+{
+  CGraphInliner.inlineAll(m_parent,m_container,m_graph);
+  m_graph.doLayout();
+}

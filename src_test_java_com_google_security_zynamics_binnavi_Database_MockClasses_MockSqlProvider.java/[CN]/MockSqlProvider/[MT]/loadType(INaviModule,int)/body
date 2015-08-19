@@ -1,0 +1,11 @@
+{
+  final List<RawBaseType> rawTypes=types.get(module.getConfiguration().getId());
+  if (rawTypes != null) {
+    for (    final RawBaseType rawType : rawTypes) {
+      if (rawType.getId() == baseTypeId) {
+        return rawType;
+      }
+    }
+  }
+  return null;
+}

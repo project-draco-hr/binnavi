@@ -1,0 +1,9 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"B");
+  if (instruction.getMnemonic().startsWith("BL")) {
+    translateAll(environment,instruction,"BL",instructions);
+  }
+ else {
+    translateAll(environment,instruction,"B",instructions);
+  }
+}

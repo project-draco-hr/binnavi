@@ -1,0 +1,6 @@
+{
+  final List<Pair<Integer,Comparator<?>>> sorters=new ArrayList<Pair<Integer,Comparator<?>>>();
+  sorters.add(new Pair<Integer,Comparator<?>>(ADDRESS_COLUMN,new HexStringComparator()));
+  sorters.add(new Pair<Integer,Comparator<?>>(SIZE_COLUMN,new LongComparator()));
+  return sorters;
+}

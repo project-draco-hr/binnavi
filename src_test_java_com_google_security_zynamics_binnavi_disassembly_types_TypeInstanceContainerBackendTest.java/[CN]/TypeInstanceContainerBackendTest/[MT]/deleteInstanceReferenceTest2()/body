@@ -1,0 +1,7 @@
+{
+  final MockOperandTreeNode treeNode=new MockOperandTreeNode();
+  final CAddress address=new CAddress(0x1234);
+  final int position=1;
+  final TypeInstanceReference typeInstanceReference=typeInstancContainerBackend.createTypeInstanceReference(address,position,treeNode,typeInstance,view);
+  typeInstancContainerBackend.deleteInstanceReference(typeInstanceReference);
+}

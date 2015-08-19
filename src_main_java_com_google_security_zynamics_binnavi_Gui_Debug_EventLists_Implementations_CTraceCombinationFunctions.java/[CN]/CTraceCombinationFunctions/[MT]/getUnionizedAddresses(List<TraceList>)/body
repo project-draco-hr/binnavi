@@ -1,0 +1,7 @@
+{
+  final LinkedHashSet<BreakpointAddress> addresses=new LinkedHashSet<BreakpointAddress>();
+  for (  final Collection<BreakpointAddress> collection : getTraceAddresses(traces)) {
+    addresses.addAll(collection);
+  }
+  return addresses;
+}

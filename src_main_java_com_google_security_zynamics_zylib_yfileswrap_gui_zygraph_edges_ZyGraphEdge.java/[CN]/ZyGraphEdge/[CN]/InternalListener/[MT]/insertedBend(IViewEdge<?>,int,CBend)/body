@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(edge,"Edge cannot be null");
+  Preconditions.checkNotNull(bend,"Error: bend argument can not be null");
+  bend.addListener(m_listener);
+  if (m_realizer.bendCount() == edge.getBendCount()) {
+    return;
+  }
+  if (edge == this) {
+    m_realizer.insertBend(bend.getX(),bend.getY());
+  }
+}

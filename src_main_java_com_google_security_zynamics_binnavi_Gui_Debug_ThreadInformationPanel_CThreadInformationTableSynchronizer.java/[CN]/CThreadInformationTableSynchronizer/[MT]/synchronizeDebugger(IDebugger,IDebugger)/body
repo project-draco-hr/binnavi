@@ -1,0 +1,12 @@
+{
+  if (oldDebugger != null) {
+    oldDebugger.getProcessManager().removeListener(m_processListener);
+  }
+  m_model.reset();
+  if (newDebugger != null) {
+    for (    final TargetProcessThread thread : newDebugger.getProcessManager().getThreads()) {
+      m_model.addThread(thread);
+    }
+    newDebugger.getProcessManager().addListener(m_processListener);
+  }
+}

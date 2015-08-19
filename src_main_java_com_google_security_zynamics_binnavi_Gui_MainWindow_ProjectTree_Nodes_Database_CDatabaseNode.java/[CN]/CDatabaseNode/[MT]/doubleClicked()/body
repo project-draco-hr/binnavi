@@ -1,0 +1,6 @@
+{
+  if (!m_database.isConnected() && !m_database.getConfiguration().getIdentity().isEmpty() && !m_database.getConfiguration().getUser().isEmpty()&& !m_database.getConfiguration().getPassword().isEmpty()) {
+    final Action action=CActionProxy.proxy(new COpenDatabaseAction(getProjectTree(),m_database));
+    action.actionPerformed(new ActionEvent(this,0,""));
+  }
+}

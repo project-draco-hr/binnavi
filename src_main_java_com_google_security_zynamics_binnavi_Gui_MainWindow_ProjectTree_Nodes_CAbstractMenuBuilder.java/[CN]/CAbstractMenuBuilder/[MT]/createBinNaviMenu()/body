@@ -1,0 +1,8 @@
+{
+  final JMenu menu=new JMenu("BinNavi");
+  menu.setMnemonic('B');
+  menu.add(CActionProxy.proxy(new CAddDatabaseAction(m_projectTree)));
+  menu.addSeparator();
+  menu.add(CActionProxy.proxy(new CActionExit(getParent())));
+  return menu;
+}

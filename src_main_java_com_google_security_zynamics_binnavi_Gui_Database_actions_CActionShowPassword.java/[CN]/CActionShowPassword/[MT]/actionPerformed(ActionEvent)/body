@@ -1,0 +1,4 @@
+{
+  final boolean isSelected=((JCheckBox)event.getSource()).isSelected();
+  m_passwordField.setEchoChar(isSelected ? (char)0 : m_originalCharacter);
+}

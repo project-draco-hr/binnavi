@@ -1,0 +1,4 @@
+{
+  super(Constants.MENU_EXECUTE_SCRIPT);
+  putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_E,CTRL_MASK));
+}

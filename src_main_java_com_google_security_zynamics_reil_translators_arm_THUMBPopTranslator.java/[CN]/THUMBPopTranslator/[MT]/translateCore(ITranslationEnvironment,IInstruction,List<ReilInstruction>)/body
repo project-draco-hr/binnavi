@@ -1,0 +1,23 @@
+{
+  final int registerListLength=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().size();
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String tmpAddress=environment.getNextVariableString();
+  final String tmpValue=environment.getNextVariableString();
+  final String jmpTarget=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,("SP"),dw,tmpAddress));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,String.valueOf(4 * registerListLength),dw,tmpAddress,dw,("SP")));
+  for (int i=0; i < registerListLength; i++) {
+    if ((instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(i).getValue()).equalsIgnoreCase("PC")) {
+      instructions.add(ReilHelpers.createLdm(baseOffset++,dw,tmpAddress,dw,tmpValue));
+      instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpValue,bt,String.valueOf(1),bt,"T"));
+      instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpValue,dw,String.valueOf(0xFFFFFFFEL),dw,jmpTarget));
+      instructions.add(ReilHelpers.createJcc(baseOffset++,dw,String.valueOf(1L),dw,jmpTarget));
+    }
+ else {
+      instructions.add(ReilHelpers.createLdm(baseOffset++,dw,tmpAddress,dw,(instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(i).getValue())));
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,tmpAddress,bt,String.valueOf(4L),dw,tmpAddress));
+    }
+  }
+}

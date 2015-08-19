@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(node,"IE01700: Node argument can not be null");
+  final ZyLabelContent content=new ZyLabelContent(null);
+  buildContent(content,node);
+  return content;
+}

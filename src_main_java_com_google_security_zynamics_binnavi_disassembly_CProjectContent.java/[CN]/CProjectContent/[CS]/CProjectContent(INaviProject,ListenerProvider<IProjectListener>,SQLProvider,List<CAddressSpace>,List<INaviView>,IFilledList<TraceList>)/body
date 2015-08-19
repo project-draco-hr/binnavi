@@ -1,0 +1,8 @@
+{
+  m_project=Preconditions.checkNotNull(project,"IE02222: Project argument can not be null");
+  m_listeners=Preconditions.checkNotNull(listeners,"IE02223: Listeners argument can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE02224: Provider argument can not be null");
+  m_addressSpaces=Preconditions.checkNotNull(addressSpaces,"IE02225: AddressSpaces argument can not be null");
+  m_views=Preconditions.checkNotNull(views,"IE02226: Views argument can not be null");
+  m_traces=Preconditions.checkNotNull(traces,"IE02227: Traces argument can not be null");
+}

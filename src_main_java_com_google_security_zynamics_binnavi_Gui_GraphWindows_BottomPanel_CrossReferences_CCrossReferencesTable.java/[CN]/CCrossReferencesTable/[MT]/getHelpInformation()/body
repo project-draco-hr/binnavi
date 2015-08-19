@@ -1,0 +1,11 @@
+{
+  return new IHelpInformation(){
+    @Override public String getText(){
+      return "This table shows all the functions that call the function shown in the view. The functions on the left-hand side of the table are called by the functions on the right-hand side of the table.";
+    }
+    @Override public URL getUrl(){
+      return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+    }
+  }
+;
+}

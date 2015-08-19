@@ -1,0 +1,11 @@
+{
+  newNode1.getComments().initializeLocalCodeNodeComment(node.getComments().getLocalCodeNodeComment());
+  for (  final INaviInstruction naviInstruction : node.getInstructions()) {
+    if (newNode1.hasInstruction(naviInstruction)) {
+      newNode1.getComments().initializeLocalInstructionComment(naviInstruction,node.getComments().getLocalInstructionComment(naviInstruction));
+    }
+ else {
+      newNode2.getComments().initializeLocalInstructionComment(naviInstruction,node.getComments().getLocalInstructionComment(naviInstruction));
+    }
+  }
+}

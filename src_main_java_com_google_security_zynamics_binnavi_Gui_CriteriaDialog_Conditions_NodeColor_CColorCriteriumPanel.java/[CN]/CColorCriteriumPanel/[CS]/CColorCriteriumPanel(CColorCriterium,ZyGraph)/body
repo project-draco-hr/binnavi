@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  m_colorCriterium=colorCriterium;
+  m_selectedColorPanel.addListener(m_colorPanelListener);
+  m_selectedColorPanel.addMouseListener(m_colorPanelListener);
+  initPanel(graph);
+}

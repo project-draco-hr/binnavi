@@ -1,0 +1,4 @@
+{
+  m_nodeMap.remove(node.getNode());
+  m_rawNodeMap.remove(node.getRawNode());
+}

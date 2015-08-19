@@ -1,0 +1,5 @@
+{
+  this.parent=Preconditions.checkNotNull(parent,"Error: parent can not be null.");
+  this.typeManager=Preconditions.checkNotNull(typeManager,"Error: type manager can not be null.");
+  this.existingType=existingType;
+}

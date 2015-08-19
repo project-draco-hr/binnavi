@@ -1,0 +1,13 @@
+{
+  final double mouseX=graph.getEditMode().translateX(event.getX());
+  final double mouseY=graph.getEditMode().translateY(event.getY());
+  final IZyNodeRealizer realizer=(IZyNodeRealizer)graph.getGraph().getRealizer(node);
+  final ZyLabelContent labelContent=realizer.getNodeContent();
+  final CDefaultLabelEventHandler labelEventHandler=graph.getEditMode().getLabelEventHandler();
+  if (labelContent.isSelectable()) {
+    final double zoom=graph.getView().getZoom();
+    final double nodeX=realizer.getRealizer().getX();
+    final double nodeY=realizer.getRealizer().getY();
+    labelEventHandler.handleMouseReleasedEvent(nodeX,nodeY,mouseX,mouseY,zoom,event.getClickCount());
+  }
+}

@@ -1,0 +1,23 @@
+{
+  interpreter.setRegister("%r0",BigInteger.valueOf(0xFFL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r1",BigInteger.valueOf(996),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setMemory(1000,0x12345678L,4);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"byte");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"%r0"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.MEMDEREF,"["));
+  operandTree2.root.m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.OPERATOR,"+"));
+  operandTree2.root.m_children.get(0).getChildren().get(0).getChildren().add(new MockOperandTreeNode(ExpressionType.REGISTER,"%r1"));
+  operandTree2.root.m_children.get(0).getChildren().get(0).getChildren().add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"4"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2);
+  final IInstruction instruction=new MockInstruction("stb",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100L));
+  assertEquals(BigInteger.valueOf(996),interpreter.getVariableValue("%r1"));
+  assertEquals(BigInteger.valueOf(0xFF345678),BigInteger.valueOf(interpreter.readMemoryDword(1000)));
+  assertEquals(BigInteger.valueOf(0xFFL),interpreter.getVariableValue("%r0"));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(3,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+}

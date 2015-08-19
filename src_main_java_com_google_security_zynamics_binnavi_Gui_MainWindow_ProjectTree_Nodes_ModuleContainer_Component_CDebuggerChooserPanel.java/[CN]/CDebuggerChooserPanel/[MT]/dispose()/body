@@ -1,0 +1,6 @@
+{
+  if (m_addressSpace != null) {
+    m_addressSpace.removeListener(m_addressSpaceListener);
+    m_addressSpace.getConfiguration().removeListener(m_addressSpaceConfigurationListener);
+  }
+}

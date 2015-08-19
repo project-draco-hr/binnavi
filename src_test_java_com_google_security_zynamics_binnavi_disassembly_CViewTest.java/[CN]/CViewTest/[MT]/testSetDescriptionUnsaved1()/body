@@ -1,0 +1,3 @@
+{
+  m_unsavedView.getConfiguration().setDescription(null);
+}

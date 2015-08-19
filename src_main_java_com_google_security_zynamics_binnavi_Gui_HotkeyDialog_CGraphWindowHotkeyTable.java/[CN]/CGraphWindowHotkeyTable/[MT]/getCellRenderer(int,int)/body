@@ -1,0 +1,15 @@
+{
+  final Object object=getModel().getValueAt(row,col);
+  if (object instanceof HotKey) {
+    return m_hotkeyRenderer;
+  }
+ else   if (object instanceof CLeftTitle) {
+    return m_leftRenderer;
+  }
+ else   if (object instanceof CRightTitle) {
+    return m_rightRenderer;
+  }
+ else {
+    return super.getCellRenderer(row,col);
+  }
+}

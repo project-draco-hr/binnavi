@@ -1,0 +1,10 @@
+{
+  final CProject project=getProvider().createProject("TEST_PROJECT");
+  getProvider().createAddressSpace(project,"SOME_ADDRESS_SPACE_12455");
+  assertNotNull(getProvider().getModificationDate(getProvider().loadAddressSpaces(project).get(0)));
+  assertNotNull(getProvider().getModificationDate(getProvider().loadModules().get(0)));
+  assertNotNull(getProvider().getModificationDate(getProvider().loadProjects().get(0)));
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  assertNotNull(getProvider().getModificationDate(module.getContent().getViewContainer().getViews().get(0)));
+}

@@ -1,0 +1,4 @@
+{
+  caches.remove(provider);
+  provider.removeListener(providerListener);
+}

@@ -1,0 +1,11 @@
+{
+switch (columnIndex) {
+case SOURCE_COLUMN:
+    return getSourceAddress(rowIndex);
+case DESTINATION_COLUMN:
+  return getDestinationAddress(rowIndex);
+case SECTION_COLUMN:
+return getSection(rowIndex);
+}
+return null;
+}

@@ -1,0 +1,23 @@
+{
+  Preconditions.checkArgument((viewId > 0) || (viewId == -1),"IE00270: View IDs must be positive");
+  Preconditions.checkNotNull(name,"IE00138: Name can not be null");
+  Preconditions.checkNotNull(type,"IE00273: View type can not be null");
+  Preconditions.checkNotNull(graphType,"IE00274: Graph type can not be null");
+  Preconditions.checkNotNull(creationDate,"IE00275: Creation date can not be null");
+  Preconditions.checkNotNull(modificationDate,"IE00276: Modification date can not be null");
+  Preconditions.checkArgument(bbcount >= 0,"IE00277: Basic block count argument can not be null");
+  Preconditions.checkArgument(edgecount >= 0,"IE00278: Edge count argument can not be null");
+  Preconditions.checkNotNull(tags,"IE01098: Tags argument can not be null");
+  for (  final CTag tag : tags) {
+    Preconditions.checkNotNull(tag,"IE01097: Tag list contains a null-tag");
+    Preconditions.checkArgument(tag.getType() == TagType.VIEW_TAG,"IE00281: Tag list contains a tag with an invalid type");
+    Preconditions.checkArgument(tag.inSameDatabase(provider),"IE00285: Tag list contains a tag that is stored in a different database than the view");
+  }
+  m_provider=Preconditions.checkNotNull(provider,"IE00470: SQL provider date can not be null");
+  m_configuration=new CViewConfiguration(this,m_listeners,provider,viewId,description,name,type,creationDate,modificationDate,tags,isStared);
+  m_bbcount=bbcount;
+  m_edgecount=edgecount;
+  m_nodeTags=new HashSet<CTag>(nodeTags);
+  m_lastGraphType=graphType;
+  ViewManager.get(m_provider).putView(this);
+}

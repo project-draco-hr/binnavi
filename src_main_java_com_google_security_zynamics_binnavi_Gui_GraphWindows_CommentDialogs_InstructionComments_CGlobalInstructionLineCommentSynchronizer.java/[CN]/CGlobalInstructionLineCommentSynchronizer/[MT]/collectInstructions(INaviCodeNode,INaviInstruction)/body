@@ -1,0 +1,14 @@
+{
+  final List<INaviInstruction> naviinstrlist=new ArrayList<INaviInstruction>();
+  for (  final IInstruction instr : codenode.getInstructions()) {
+    if (instr instanceof INaviInstruction) {
+      final INaviInstruction naviinstr=(INaviInstruction)instr;
+      if (instruction.getAddress().equals(naviinstr.getAddress()) && !naviinstrlist.contains(naviinstr)) {
+        if (naviinstr != instruction) {
+          naviinstrlist.add(naviinstr);
+        }
+      }
+    }
+  }
+  return naviinstrlist;
+}

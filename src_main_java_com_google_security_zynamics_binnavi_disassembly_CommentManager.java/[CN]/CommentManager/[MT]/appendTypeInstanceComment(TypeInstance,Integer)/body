@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instance,"Error: instance argument can not be null");
+  appendComment(new TypeInstanceCommentingStrategy(instance),commentId);
+}

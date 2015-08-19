@@ -1,0 +1,4 @@
+INaviGroupNode groupNode
+Integer id
+Integer userId
+String newComment

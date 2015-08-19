@@ -1,0 +1,7 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviView view=module.getContent().getViewContainer().getViews().get(0);
+  view.load();
+  PostgreSQLNodeFunctions.untagNode(getProvider(),view.getGraph().getNodes().get(0),1);
+}

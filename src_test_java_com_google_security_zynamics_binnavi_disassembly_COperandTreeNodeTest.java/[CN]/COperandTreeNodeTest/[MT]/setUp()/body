@@ -1,0 +1,4 @@
+{
+  final IReference reference=new CReference(new CAddress(0x12345678L),ReferenceType.DATA_STRING);
+  m_references.add(reference);
+}

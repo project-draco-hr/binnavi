@@ -1,0 +1,11 @@
+{
+  final com.google.security.zynamics.binnavi.debug.models.processmanager.MemoryMap m_internalMap=new com.google.security.zynamics.binnavi.debug.models.processmanager.MemoryMap(Lists.newArrayList(new com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection(new CAddress(0),new CAddress(0x100)),new com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection(new CAddress(0x200),new CAddress(0x400))));
+  final MemoryMap map=new MemoryMap(m_internalMap);
+  final List<MemorySection> sections=map.getSections();
+  assertEquals(2,sections.size());
+  assertEquals(0,sections.get(0).getStart().toLong());
+  assertEquals(0x100,sections.get(0).getEnd().toLong());
+  assertEquals(0x200,sections.get(1).getStart().toLong());
+  assertEquals(0x400,sections.get(1).getEnd().toLong());
+  assertEquals("Memory Map (2 sections)",map.toString());
+}

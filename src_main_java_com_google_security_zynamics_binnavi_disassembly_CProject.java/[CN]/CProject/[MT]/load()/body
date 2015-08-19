@@ -1,0 +1,60 @@
+{
+synchronized (m_loadReporter) {
+    if (isLoaded()) {
+      return;
+    }
+    m_isLoading=true;
+    try {
+      if (!m_loadReporter.report(ProjectLoadEvents.Starting)) {
+        throw new LoadCancelledException();
+      }
+      if (!m_loadReporter.report(ProjectLoadEvents.LoadingAddressSpaces)) {
+        throw new LoadCancelledException();
+      }
+      final List<CAddressSpace> addressSpaces=m_provider.loadAddressSpaces(this);
+      for (      final CAddressSpace space : addressSpaces) {
+        space.load();
+      }
+      if (!m_loadReporter.report(ProjectLoadEvents.LoadingCallgraphViews)) {
+        throw new LoadCancelledException();
+      }
+      final List<ICallgraphView> userCallgraphs=m_provider.loadCallgraphViews(this);
+      if (!m_loadReporter.report(ProjectLoadEvents.LoadingFlowgraphViews)) {
+        throw new LoadCancelledException();
+      }
+      final List<IFlowgraphView> userFlowgraphs=m_provider.loadFlowgraphs(this);
+      if (!m_loadReporter.report(ProjectLoadEvents.LoadingMixedgraphViews)) {
+        throw new LoadCancelledException();
+      }
+      final List<INaviView> userMixedgraphs=m_provider.loadMixedgraphs(this);
+      if (!m_loadReporter.report(ProjectLoadEvents.LoadingTraces)) {
+        throw new LoadCancelledException();
+      }
+      final List<TraceList> traces=m_provider.loadTraces(this);
+      final ArrayList<INaviView> views=new ArrayList<INaviView>(userCallgraphs);
+      views.addAll(userFlowgraphs);
+      views.addAll(userMixedgraphs);
+      m_content=new CProjectContent(this,m_listeners,m_provider,addressSpaces,views,new FilledList<TraceList>(traces));
+    }
+ catch (    final CouldntLoadDataException e) {
+      m_isLoading=false;
+      throw e;
+    }
+catch (    final LoadCancelledException e) {
+      m_isLoading=false;
+      throw e;
+    }
+ finally {
+      m_loadReporter.report(ProjectLoadEvents.Finished);
+    }
+    for (    final IProjectListener listener : m_listeners) {
+      try {
+        listener.loadedProject(this);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+    m_isLoading=false;
+  }
+}

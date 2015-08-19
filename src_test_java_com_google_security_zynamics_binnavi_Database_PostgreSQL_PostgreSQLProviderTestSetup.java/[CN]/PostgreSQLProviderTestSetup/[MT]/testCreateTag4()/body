@@ -1,0 +1,4 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  getProvider().createTag(tagManager.getRootTag().getObject(),"Tag Name","Tag Description",null);
+}

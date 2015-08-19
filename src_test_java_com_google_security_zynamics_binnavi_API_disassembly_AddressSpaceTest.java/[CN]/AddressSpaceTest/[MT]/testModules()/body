@@ -1,0 +1,19 @@
+{
+  addressSpace.load();
+  final MockAddressSpaceListener listener=new MockAddressSpaceListener();
+  addressSpace.addListener(listener);
+  addressSpace.addModule(module);
+  assertEquals("addedModule;changedImageBase;changedModificationDate;",listener.events);
+  assertEquals(1,addressSpace.getModules().size());
+  assertTrue(database.getModules().contains(addressSpace.getModules().get(0)));
+  addressSpace.removeModule(module);
+  assertEquals(0,addressSpace.getModules().size());
+  assertEquals("addedModule;changedImageBase;changedModificationDate;removedModule;changedModificationDate;",listener.events);
+  internalAddressSpace.getContent().addModule(module.getNative());
+  assertEquals(1,addressSpace.getModules().size());
+  assertEquals("addedModule;changedImageBase;changedModificationDate;removedModule;changedModificationDate;addedModule;",listener.events);
+  internalAddressSpace.getContent().removeModule(module.getNative());
+  assertEquals(0,addressSpace.getModules().size());
+  assertEquals("addedModule;changedImageBase;changedModificationDate;removedModule;changedModificationDate;addedModule;removedModule;changedModificationDate;",listener.events);
+  addressSpace.removeListener(listener);
+}

@@ -1,0 +1,2 @@
+IGraphNode<NodeType> parentNode
+IGraphNode<NodeType> maximumChildNode

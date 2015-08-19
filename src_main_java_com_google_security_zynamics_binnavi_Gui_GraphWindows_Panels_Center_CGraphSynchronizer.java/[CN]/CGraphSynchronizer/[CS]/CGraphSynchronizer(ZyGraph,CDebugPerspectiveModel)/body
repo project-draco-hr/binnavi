@@ -1,0 +1,6 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE02330: graph argument can not be null");
+  m_debugPerspective=Preconditions.checkNotNull(debugPerspective,"IE02331: debugPerspective argument can not be null");
+  debugPerspective.addListener(m_debugListener);
+  synchronizeDebugger(null,debugPerspective.getCurrentSelectedDebugger());
+}

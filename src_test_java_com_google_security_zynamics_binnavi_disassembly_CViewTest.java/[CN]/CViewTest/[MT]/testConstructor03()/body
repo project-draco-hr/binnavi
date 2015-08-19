@@ -1,0 +1,3 @@
+{
+  new CView(new BigInteger(31,random).intValue(),m_module,"New View",null,ViewType.Native,GraphType.FLOWGRAPH,new Date(),new Date(),0,0,new HashSet<CTag>(),new HashSet<CTag>(),false,m_sql);
+}

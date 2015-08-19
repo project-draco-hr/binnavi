@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(substitution,"Error: substitution argument can not be null");
+  typesContainer.deleteTypeSubstitution(substitution);
+}

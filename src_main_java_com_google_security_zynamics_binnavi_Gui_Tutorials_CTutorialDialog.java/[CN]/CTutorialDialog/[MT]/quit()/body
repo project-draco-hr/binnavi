@@ -1,0 +1,11 @@
+{
+  if (JOptionPane.YES_OPTION == CMessageBox.showYesNoCancelQuestion(this,"Do you really want to quit the current tutorial?")) {
+    m_currentTutorial.removeListener(m_listener);
+    m_currentTutorial=null;
+    m_warningLabel.setText("");
+    updateNextButton();
+    m_skipButton.setEnabled(true);
+    m_descriptionField.setText("");
+    setVisible(false);
+  }
+}

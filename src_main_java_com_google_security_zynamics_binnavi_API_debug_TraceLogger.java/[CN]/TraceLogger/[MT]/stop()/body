@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(logger,"Error: Logger is already stopped");
+  logger.stop();
+  logger=null;
+}

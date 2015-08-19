@@ -1,0 +1,13 @@
+{
+  m_searcher.getCursor().jumpTo(index);
+  final SearchResult result=m_searcher.getCursor().current();
+  if (result == null) {
+    return;
+  }
+  if (result.getObject() instanceof NaviNode) {
+    ZyGraphHelpers.centerNode(m_graph,(NaviNode)result.getObject(),false);
+  }
+ else   if (result.getObject() instanceof NaviEdge) {
+    ZyGraphHelpers.centerEdgeLabel(m_graph,(NaviEdge)result.getObject(),false);
+  }
+}

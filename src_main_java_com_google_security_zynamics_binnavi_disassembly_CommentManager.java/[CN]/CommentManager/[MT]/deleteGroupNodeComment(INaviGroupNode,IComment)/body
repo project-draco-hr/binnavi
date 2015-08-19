@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02571: functionNode argument can not be null");
+  deleteComment(new GroupNodeCommentingStrategy(node),comment);
+}

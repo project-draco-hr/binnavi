@@ -1,0 +1,5 @@
+{
+  provider=new MockSqlProvider();
+  m_configuration=new CProjectConfiguration(this,m_listeners,provider,0,"Mock Project",null,new Date(),new Date(),new ArrayList<DebuggerTemplate>());
+  m_content=new CProjectContent(this,m_listeners,provider,new ArrayList<CAddressSpace>(),new ArrayList<INaviView>(),new FilledList<TraceList>());
+}

@@ -1,0 +1,19 @@
+{
+  final int count=getChildCount();
+  if (isRoot() && getChildCount() > 0) {
+    return false;
+  }
+  if (getCriterium() instanceof CConditionCriterium && !isRoot()) {
+    return false;
+  }
+  if (appendType == CConditionCriterium.class) {
+    return (getCriterium() instanceof CConditionCriterium && isRoot() && count == 0) || !(getCriterium() instanceof CNotCriterium) || count == 0;
+  }
+  if (appendType == CAndCriterium.class || appendType == COrCriterium.class) {
+    return (!(getCriterium() instanceof CNotCriterium) || getChildCount() == 0);
+  }
+  if (appendType == CNotCriterium.class) {
+    return !(getCriterium() instanceof CNotCriterium);
+  }
+  return false;
+}

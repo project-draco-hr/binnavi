@@ -1,0 +1,7 @@
+{
+  super(items);
+  if ((labelAlignment != JLabel.LEFT) && (labelAlignment != JLabel.CENTER) && (labelAlignment != JLabel.RIGHT)) {
+    throw new IllegalArgumentException("Erorr: Label alignment in invalid.");
+  }
+  setRenderer(new ComboBoxRenderer(labelAlignment));
+}

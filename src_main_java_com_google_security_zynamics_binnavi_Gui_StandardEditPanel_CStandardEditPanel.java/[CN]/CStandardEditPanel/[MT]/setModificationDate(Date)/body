@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(date,"IE02078: Date argument can not be null");
+  m_modificationDateValueLabel.setText(DateHelpers.formatDateTime(date));
+}

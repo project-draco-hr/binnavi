@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(function,"Error: Function argument can not be null");
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: The project has not yet been loaded");
+  }
+  for (  final AddressSpace addressSpace : m_addressSpaces) {
+    if (addressSpace.isLoaded()) {
+      for (      final Module module : addressSpace.getModules()) {
+        if (module.isLoaded()) {
+          final Function mfunction=module.getFunction(function);
+          if ((mfunction != null) && (mfunction.getNative() == function)) {
+            return mfunction;
+          }
+        }
+      }
+    }
+  }
+  return null;
+}

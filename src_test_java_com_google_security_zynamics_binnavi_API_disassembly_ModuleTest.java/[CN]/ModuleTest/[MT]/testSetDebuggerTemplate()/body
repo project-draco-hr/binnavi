@@ -1,0 +1,9 @@
+{
+  final MockModuleListener listener=new MockModuleListener();
+  m_module.addListener(listener);
+  final DebuggerTemplate template=m_module.getDatabase().getDebuggerTemplateManager().createDebuggerTemplate("New Debugger","localhaus",88);
+  m_module.setDebuggerTemplate(template);
+  assertEquals(template,m_module.getDebuggerTemplate());
+  assertEquals("changedDebuggerTemplate;changedDebugger;changedModificationDate;",listener.events);
+  m_module.removeListener(listener);
+}

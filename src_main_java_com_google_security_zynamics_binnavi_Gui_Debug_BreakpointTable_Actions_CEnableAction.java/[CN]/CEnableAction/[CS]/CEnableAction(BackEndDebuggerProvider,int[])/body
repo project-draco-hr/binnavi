@@ -1,0 +1,5 @@
+{
+  super(rows.length == 1 ? "Enable Breakpoint" : "Enable Breakpoints");
+  m_debuggerProvider=debuggerProvider;
+  m_rows=rows.clone();
+}

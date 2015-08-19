@@ -1,0 +1,12 @@
+{
+  final ITagManager tagManager=((CTagNode)parentNode).getTagManager();
+  final TreeNode<CTag> parentNodeNode=((CTagNode)parentNode).getObject();
+  final TreeNode<CTag> draggedNodeNode=((CTagNode)draggedNode).getObject();
+  try {
+    tagManager.moveTag(parentNodeNode,draggedNodeNode);
+    CNodeExpander.expandNode(target,parentNodeNode);
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

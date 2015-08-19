@@ -1,0 +1,15 @@
+{
+  try {
+    m_module.getContent().getViewContainer().getFunction((INaviView)null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_module.load();
+  int counter=0;
+  final List<INaviFunction> functions=m_module.getContent().getFunctionContainer().getFunctions();
+  for (  final INaviView view : m_module.getContent().getViewContainer().getNativeFlowgraphViews()) {
+    assertEquals(functions.get(counter),m_module.getContent().getViewContainer().getFunction(view));
+    counter++;
+  }
+}

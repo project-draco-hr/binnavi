@@ -1,0 +1,8 @@
+{
+  final WalkResult result=BaseTypeHelpers.findMember(typeSystem.doubleNestedStruct,96 + 320 - 32);
+  assertNotNull(result);
+  assertTrue(result.isValid());
+  assertEquals(typeSystem.ssArrayMember,result.getMember());
+  assertEquals(Lists.newArrayList(typeSystem.dnsNestedStructMember,typeSystem.nsSimpleStructMember,typeSystem.ssArrayMember),result.getPath());
+  assertEquals(typeSystem.doubleNestedStruct.getName() + "." + typeSystem.dnsNestedStructMember.getName()+ "."+ typeSystem.nsSimpleStructMember.getName()+ "."+ typeSystem.ssArrayMember.getName()+ "[9]",result.getPathString());
+}

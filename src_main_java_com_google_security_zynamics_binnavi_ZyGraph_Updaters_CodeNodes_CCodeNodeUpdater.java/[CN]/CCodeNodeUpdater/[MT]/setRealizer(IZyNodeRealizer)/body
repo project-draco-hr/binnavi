@@ -1,0 +1,10 @@
+{
+  this.realizer=realizer;
+  debuggerUpdater.setRealizer(realizer);
+  functionUpdater.setRealizer(realizer);
+  instructionUpdater.setRealizer(realizer);
+  moduleUpdater.setRealizer(realizer);
+  operandTreeUpdater.setRealizer(realizer);
+  settingsUpdater.setRealizer(realizer);
+  tagUpdater.setRealizer(realizer);
+}

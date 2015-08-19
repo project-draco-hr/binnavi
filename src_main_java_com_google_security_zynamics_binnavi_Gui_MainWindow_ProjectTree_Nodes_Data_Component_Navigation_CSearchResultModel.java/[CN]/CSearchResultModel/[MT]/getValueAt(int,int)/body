@@ -1,0 +1,3 @@
+{
+  return String.format("%08X",m_results.get(rowIndex).m_offset);
+}

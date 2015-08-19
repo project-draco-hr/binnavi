@@ -1,0 +1,16 @@
+{
+  checkArguments(provider,project,viewTagManager);
+  final CConnection connection=provider.getConnection();
+  final String query=" SELECT * FROM load_project_flow_graphs(?, ?) ";
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    statement.setInt(1,project.getConfiguration().getId());
+    statement.setObject(2,"non-native",Types.OTHER);
+    final ResultSet resultSet=statement.executeQuery();
+    final Map<Integer,Set<CTag>> tags=loadTags(connection,project,viewTagManager);
+    return new ArrayList<IFlowgraphView>(processQueryResults(resultSet,project,tags,nodeTagManager,provider,new ArrayList<CView>(),ViewType.NonNative,GraphType.FLOWGRAPH));
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

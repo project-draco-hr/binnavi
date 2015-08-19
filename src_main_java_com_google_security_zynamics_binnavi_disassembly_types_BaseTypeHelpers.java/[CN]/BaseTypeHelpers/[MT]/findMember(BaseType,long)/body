@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02760: Base type can not be null.");
+switch (baseType.getCategory()) {
+case POINTER:
+case ATOMIC:
+    return new WalkResult();
+case ARRAY:
+  return findArrayMember(baseType,offset);
+case STRUCT:
+case UNION:
+return findStructMember(baseType,offset);
+default :
+throw new IllegalStateException("Error: BaseTypeCategory " + baseType.getCategory() + " not supported.");
+}
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(size >= 0,"IE01402: Size can not be negative");
+  m_memoryProvider.hasData(BigInteger.valueOf(offset),size);
+  return m_debugger.getProcessManager().getMemory().hasData(offset,size);
+}

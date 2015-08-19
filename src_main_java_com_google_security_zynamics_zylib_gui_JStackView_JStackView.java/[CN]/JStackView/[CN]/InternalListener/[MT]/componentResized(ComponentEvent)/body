@@ -1,0 +1,4 @@
+{
+  setScrollBarMaximum();
+  setHorizontalScrollBarMaximum();
+}

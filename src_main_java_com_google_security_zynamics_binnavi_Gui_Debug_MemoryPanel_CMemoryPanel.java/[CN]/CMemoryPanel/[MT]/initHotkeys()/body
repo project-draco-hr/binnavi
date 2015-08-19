@@ -1,0 +1,8 @@
+{
+  final InputMap imap=m_hexView.getInputMap();
+  final InputMap windowImap=m_hexView.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  windowImap.put(HotKeys.GOTO_HK.getKeyStroke(),"GOTO");
+  m_hexView.getActionMap().put("GOTO",m_gotoAction);
+  imap.put(HotKeys.SEARCH_HK.getKeyStroke(),"SEARCH");
+  m_hexView.getActionMap().put("SEARCH",m_searchAction);
+}

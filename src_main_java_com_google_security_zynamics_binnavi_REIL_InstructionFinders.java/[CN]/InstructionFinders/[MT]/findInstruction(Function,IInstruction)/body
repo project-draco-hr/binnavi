@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(function,"IE02034: Function argument can not be null");
+  Preconditions.checkNotNull(searchInstruction,"IE02052: Instruction argument can not be null");
+  for (  final BasicBlock block : function.getGraph().getNodes()) {
+    for (    final Instruction instruction : block.getInstructions()) {
+      if (instruction.getNative() == searchInstruction) {
+        return instruction;
+      }
+    }
+  }
+  throw new IllegalStateException("IE01274: Could not determine what instruction could not be translated");
+}

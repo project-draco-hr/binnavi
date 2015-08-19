@@ -1,0 +1,5 @@
+{
+  super(connection);
+  Preconditions.checkNotNull(connection,"IE01210: Database connection can't be null");
+  moduleConverter=new PostgreSQLModuleConverter(this);
+}

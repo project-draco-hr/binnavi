@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(provider,"IE00117: provider argument can not be null");
+  Preconditions.checkNotNull(user,"IE00118: user argument can not be null");
+  Preconditions.checkNotNull(userName,"IE00205: userName argument can not be null");
+  final Connection connection=provider.getConnection().getConnection();
+  final String query="UPDATE " + CTableNames.USER_TABLE + " SET user_name = ? WHERE user_id = ?;";
+  try {
+    final PreparedStatement statement=connection.prepareStatement(query);
+    try {
+      statement.setString(1,userName);
+      statement.setInt(2,user.getUserId());
+      statement.execute();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  return new CUser(user.getUserId(),userName);
+}

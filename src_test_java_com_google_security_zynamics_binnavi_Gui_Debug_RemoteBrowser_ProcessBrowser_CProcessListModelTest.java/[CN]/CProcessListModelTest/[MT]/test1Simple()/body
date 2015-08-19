@@ -1,0 +1,4 @@
+{
+  final ProcessList processList=ProcessList.parse("<foo></foo>".getBytes());
+  @SuppressWarnings("unused") final CProcessListModel listModel=new CProcessListModel(processList);
+}

@@ -1,0 +1,5 @@
+{
+  for (  final Entry<ColorPanel,IColorPanelListener> entry : m_listenerMap.entrySet()) {
+    entry.getKey().removeListener(entry.getValue());
+  }
+}

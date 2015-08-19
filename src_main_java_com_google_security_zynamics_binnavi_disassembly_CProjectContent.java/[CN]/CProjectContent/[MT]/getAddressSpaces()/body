@@ -1,0 +1,4 @@
+{
+  Preconditions.checkState(isLoaded(),"IE00245: You have to load a project before accessing its address spaces");
+  return new ArrayList<INaviAddressSpace>(m_addressSpaces);
+}

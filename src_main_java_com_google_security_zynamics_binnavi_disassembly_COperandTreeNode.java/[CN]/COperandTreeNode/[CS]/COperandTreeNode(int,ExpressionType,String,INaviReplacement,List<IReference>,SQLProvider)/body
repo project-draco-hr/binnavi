@@ -1,0 +1,12 @@
+{
+  expressionType=Preconditions.checkNotNull(type,"IE00182: Type argument can not be null");
+  expressionValue=Preconditions.checkNotNull(value,"IE00183: Value argument can not be null");
+  this.references=new ArrayList<IReference>(Preconditions.checkNotNull(references,"IE00184: References argument can not be null"));
+  this.provider=Preconditions.checkNotNull(provider,"IE00185: Provider argument can not be null");
+  id=nodeId;
+  this.replacement=replacement;
+  if (replacement != null) {
+    replacement.addListener(listener);
+    displayStyle=OperandDisplayStyle.OFFSET;
+  }
+}

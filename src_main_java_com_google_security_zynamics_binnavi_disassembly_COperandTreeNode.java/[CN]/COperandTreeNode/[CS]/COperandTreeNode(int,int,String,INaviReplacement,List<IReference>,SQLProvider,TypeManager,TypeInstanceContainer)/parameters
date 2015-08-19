@@ -1,0 +1,8 @@
+int nodeId
+int type
+String value
+INaviReplacement replacement
+List<IReference> references
+SQLProvider provider
+TypeManager typeManager
+TypeInstanceContainer instanceContainer

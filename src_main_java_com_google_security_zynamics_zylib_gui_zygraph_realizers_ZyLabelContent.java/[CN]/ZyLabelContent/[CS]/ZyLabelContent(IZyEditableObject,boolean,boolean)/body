@@ -1,0 +1,5 @@
+{
+  m_model=Preconditions.checkNotNull(nodeModel,"Error: Node model can't be null.");
+  m_selectable=selectable;
+  m_editable=editable;
+}

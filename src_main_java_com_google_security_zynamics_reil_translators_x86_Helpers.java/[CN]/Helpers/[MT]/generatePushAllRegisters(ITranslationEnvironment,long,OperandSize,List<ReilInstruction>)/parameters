@@ -1,0 +1,4 @@
+ITranslationEnvironment environment
+long baseOffset
+OperandSize size
+List<ReilInstruction> instructions

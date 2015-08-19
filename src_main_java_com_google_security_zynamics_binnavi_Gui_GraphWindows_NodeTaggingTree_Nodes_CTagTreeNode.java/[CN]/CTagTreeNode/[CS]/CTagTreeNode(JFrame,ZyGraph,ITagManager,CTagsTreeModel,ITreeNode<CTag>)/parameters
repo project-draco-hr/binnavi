@@ -1,0 +1,5 @@
+JFrame parent
+ZyGraph graph
+ITagManager tagManager
+CTagsTreeModel model
+ITreeNode<CTag> tag

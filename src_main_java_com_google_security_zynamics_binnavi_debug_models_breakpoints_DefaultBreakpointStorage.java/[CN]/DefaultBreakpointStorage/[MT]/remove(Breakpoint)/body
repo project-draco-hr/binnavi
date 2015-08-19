@@ -1,0 +1,5 @@
+{
+  moduleToBreakpoint.get(breakpoint.getAddress().getModule()).remove(breakpoint);
+  breakpointAddressToBreakpoint.remove(breakpoint.getAddress());
+  breakpointAddressToStatus.remove(breakpoint.getAddress());
+}

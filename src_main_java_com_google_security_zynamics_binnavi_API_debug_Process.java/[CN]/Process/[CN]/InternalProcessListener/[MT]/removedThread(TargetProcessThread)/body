@@ -1,0 +1,12 @@
+{
+  final Thread apiThread=ObjectFinders.getObject(thread,threads);
+  threads.remove(apiThread);
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.removedThread(Process.this,apiThread);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

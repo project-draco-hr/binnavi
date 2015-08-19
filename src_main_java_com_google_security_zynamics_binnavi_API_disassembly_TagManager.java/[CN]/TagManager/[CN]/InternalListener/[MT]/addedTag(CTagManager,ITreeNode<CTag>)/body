@@ -1,0 +1,14 @@
+{
+  final Tag parentTag=m_allTags.get(tag.getParent());
+  final Tag newTag=new Tag(tag);
+  Tag.link(parentTag,newTag);
+  m_allTags.put(tag,newTag);
+  for (  final ITagManagerListener listener : m_listeners) {
+    try {
+      listener.addedTag(TagManager.this,newTag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

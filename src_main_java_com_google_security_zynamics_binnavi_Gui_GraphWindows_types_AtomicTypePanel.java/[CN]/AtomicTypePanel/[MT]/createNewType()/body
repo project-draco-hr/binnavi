@@ -1,0 +1,3 @@
+{
+  typeManager.createAtomicType(name.getText(),Integer.parseInt(size.getText()),signed.isSelected());
+}

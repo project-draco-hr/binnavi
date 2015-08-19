@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01719: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(codeNode,"IE01720: Code node argument can not be null");
+  final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(codeNode,row);
+  if (instruction == null) {
+    return;
+  }
+  final IDebugger debugger=getDebugger(debuggerProvider,instruction);
+  if (debugger == null) {
+    return;
+  }
+  toggleBreakpoint(debugger.getBreakpointManager(),instruction.getModule(),new UnrelocatedAddress(instruction.getAddress()));
+}

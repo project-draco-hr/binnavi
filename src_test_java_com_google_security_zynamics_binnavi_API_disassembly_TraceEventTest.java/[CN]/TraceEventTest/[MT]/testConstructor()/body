@@ -1,0 +1,7 @@
+{
+  final MockModule module=new MockModule();
+  final TraceEvent event=new TraceEvent(new com.google.security.zynamics.binnavi.debug.models.trace.TraceEvent(0,new BreakpointAddress(module,new UnrelocatedAddress(new CAddress(0x123))),TraceEventType.ECHO_BREAKPOINT,new ArrayList<com.google.security.zynamics.binnavi.debug.models.trace.TraceRegister>()));
+  assertEquals(0x123,event.getAddress().toLong());
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.TraceEventType.EchoBreakpoint,event.getType());
+  assertEquals("Trace Event [EchoBreakpoint : 123]",event.toString());
+}

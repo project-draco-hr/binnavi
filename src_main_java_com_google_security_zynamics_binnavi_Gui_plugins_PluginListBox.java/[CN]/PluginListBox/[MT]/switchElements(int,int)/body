@@ -1,0 +1,9 @@
+{
+  final boolean oldFirst=isChecked(first);
+  setChecked(first,isChecked(second));
+  setChecked(second,oldFirst);
+  final PluginItem<T> oldFirstObject=model.getElementAt(first);
+  model.remove(first);
+  model.insertElementAt(oldFirstObject,second);
+  setSelectedIndex(second);
+}

@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(nodes,"IE00297: Nodes argument can not be null");
+  Preconditions.checkArgument(!nodes.isEmpty(),"IE00298: Nodes list can not be empty");
+  final CGroupNode groupNode=new CGroupNode(-1,0,0,0,0,TEXTNODE_COLOR,false,true,new HashSet<CTag>(),null,false,provider);
+  for (  final INaviViewNode node : nodes) {
+    Preconditions.checkNotNull(node,"IE00299: Nodes list contains a null-argument");
+    groupNode.addElement(node);
+  }
+  addNode(groupNode);
+  groupNode.addListener(m_internalNodeListener);
+  groupNode.addGroupListener(m_internalNodeListener);
+  return groupNode;
+}

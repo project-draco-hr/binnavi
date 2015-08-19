@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE01992: Provider argument can not be null");
+  Preconditions.checkArgument(newViewId > 0,"IE01993: New View ID argument must be greater then zero");
+  Preconditions.checkNotNull(nodes,"IE01994: Nodes argument can not be null");
+}

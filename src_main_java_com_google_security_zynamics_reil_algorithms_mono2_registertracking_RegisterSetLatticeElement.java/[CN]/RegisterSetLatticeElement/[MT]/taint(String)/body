@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(register,"Error: Register argument can not be null");
+  if (isTainted(register) || m_untaintedRegs.contains(register)) {
+    m_updatedRegs.add(register);
+  }
+ else {
+    m_newlyTaintedRegs.add(register);
+  }
+  m_taintedRegs.add(register);
+  m_untaintedRegs.remove(register);
+}

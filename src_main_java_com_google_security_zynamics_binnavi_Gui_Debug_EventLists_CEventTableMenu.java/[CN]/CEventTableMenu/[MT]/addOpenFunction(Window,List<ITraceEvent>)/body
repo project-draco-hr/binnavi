@@ -1,0 +1,17 @@
+{
+  if (traces.size() == 1) {
+    final ITraceEvent trace=traces.get(0);
+    final INaviModule module=trace.getOffset().getModule();
+    if (module.isLoaded()) {
+      final INaviFunction function=module.getContent().getFunctionContainer().getFunction(trace.getOffset().getAddress().getAddress());
+      if (function != null) {
+        final IViewContainer container=graphModel.getViewContainer();
+        final INaviView view=container.getView(function);
+        if (view != null) {
+          add(new JMenuItem(CActionProxy.proxy(new COpenInLastWindowAction(parent,container,new INaviView[]{view}))));
+          addSeparator();
+        }
+      }
+    }
+  }
+}

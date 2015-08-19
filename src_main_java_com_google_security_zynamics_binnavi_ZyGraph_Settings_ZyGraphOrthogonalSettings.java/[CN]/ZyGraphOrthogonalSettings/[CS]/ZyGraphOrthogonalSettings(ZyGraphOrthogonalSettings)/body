@@ -1,0 +1,6 @@
+{
+  m_type=null;
+  m_mininmumNodeDistance=settings.getMinimumNodeDistance();
+  m_orientation=settings.getOrientation();
+  m_style=settings.getStyle();
+}

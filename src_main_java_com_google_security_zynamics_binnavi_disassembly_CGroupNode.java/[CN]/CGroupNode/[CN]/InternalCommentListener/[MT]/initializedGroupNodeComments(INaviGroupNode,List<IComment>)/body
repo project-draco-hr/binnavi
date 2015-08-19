@@ -1,0 +1,12 @@
+{
+  if (CGroupNode.this.equals(node)) {
+    for (    final INaviGroupNodeListener listener : m_listeners) {
+      try {
+        listener.initializedGroupNodeComment(node,comments);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

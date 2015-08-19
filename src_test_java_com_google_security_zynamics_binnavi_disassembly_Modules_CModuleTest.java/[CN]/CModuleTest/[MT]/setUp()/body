@@ -1,0 +1,5 @@
+{
+  m_listener=new MockModuleListener();
+  m_module=MockCreator.createModule(m_sql);
+  m_module.addListener(m_listener);
+}

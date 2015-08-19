@@ -1,0 +1,11 @@
+{
+  for (final NodeCursor nc=hm.getChildren(groupNode); nc.ok(); nc.next()) {
+    final Node n=nc.node();
+    if (hm.isGroupNode(n)) {
+      addChildren(hm,n,childNodes);
+    }
+ else {
+      childNodes.add(n);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      listener.loadedDatabase(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

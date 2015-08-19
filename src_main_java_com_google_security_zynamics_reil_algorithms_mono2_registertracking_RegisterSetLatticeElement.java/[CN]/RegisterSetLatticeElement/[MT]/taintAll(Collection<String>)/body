@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(registers,"Error: State argument can not be null");
+  for (  final String taintedRegister : registers) {
+    taint(taintedRegister);
+  }
+}

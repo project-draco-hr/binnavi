@@ -1,0 +1,10 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  final CCodeBookmark bookmark=new CCodeBookmark(new MockModule(),new MockAddress(),"burzel");
+  bookmarkManager.addBookmark(bookmark);
+  assertEquals("burzel",tableModel.getValueAt(0,2));
+  tableModel.setValueAt("working",0,2);
+  assertEquals(1,tableModel.getRowCount());
+  assertEquals("working",tableModel.getValueAt(0,2));
+}

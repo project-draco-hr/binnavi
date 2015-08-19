@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(commentable,"Error: commentable argument can not be null");
+  Preconditions.checkNotNull(scope,"Error: scope argument can not be null");
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(data,"IE01037: Data argument can not be null");
+  try {
+    final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+    final DocumentBuilder builder=factory.newDocumentBuilder();
+    final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+    return parseModule(document.getFirstChild());
+  }
+ catch (  final Exception exception) {
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+}

@@ -1,0 +1,26 @@
+{
+  final StringBuilder stringBuilder=new StringBuilder();
+  final List<INaviViewNode> rawNodes=new ArrayList<INaviViewNode>();
+  final INaviGroupNode commonParent=getCommonParent(nodes);
+  for (  final NaviNode node : nodes) {
+    if (node.getRawNode().getParentGroup() != null) {
+      node.getRawNode().getParentGroup().removeElement(node.getRawNode());
+    }
+    rawNodes.add(node.getRawNode());
+    stringBuilder.append(determineNodeText(node));
+    stringBuilder.append('\n');
+  }
+  final CGroupNode groupNode=graph.getRawView().getContent().createGroupNode(rawNodes);
+  if (commonParent != null) {
+    commonParent.addElement(groupNode);
+  }
+  try {
+    groupNode.appendComment(stringBuilder.toString());
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

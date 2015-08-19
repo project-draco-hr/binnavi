@@ -1,0 +1,3 @@
+{
+  CNodeDeleter.removeSelectedNodes(m_graph);
+}

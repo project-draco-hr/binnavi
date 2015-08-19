@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(comment,"Error: comment argument can not be null");
+  Preconditions.checkNotNull(commentText,"Error: newComment argument can not be null");
+  Preconditions.checkArgument(CUserManager.get(m_provider).getCurrentActiveUser().equals(comment.getUser()));
+  final int index=m_globalComment.indexOf(comment);
+  final IComment newComment=new CComment(comment.getId(),comment.getUser(),comment.getParent(),commentText);
+  m_globalComment.set(index,newComment);
+  return newComment;
+}

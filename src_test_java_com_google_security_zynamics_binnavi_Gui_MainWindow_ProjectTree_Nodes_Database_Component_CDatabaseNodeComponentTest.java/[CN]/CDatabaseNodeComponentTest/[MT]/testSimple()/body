@@ -1,0 +1,5 @@
+{
+  final CDatabaseNodeComponent component=new CDatabaseNodeComponent(m_database);
+  component.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")).isEmpty());
+}

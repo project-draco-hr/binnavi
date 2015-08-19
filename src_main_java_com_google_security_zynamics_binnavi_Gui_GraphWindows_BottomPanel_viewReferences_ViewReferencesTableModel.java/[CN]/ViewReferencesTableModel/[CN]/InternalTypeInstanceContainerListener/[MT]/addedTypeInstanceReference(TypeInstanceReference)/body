@@ -1,0 +1,6 @@
+{
+  if (needsRefresh(reference)) {
+    final INaviInstruction instruction=findInstruction(reference.getAddress());
+    addTypeInstancesToTree(Lists.newArrayList(reference),instruction);
+  }
+}

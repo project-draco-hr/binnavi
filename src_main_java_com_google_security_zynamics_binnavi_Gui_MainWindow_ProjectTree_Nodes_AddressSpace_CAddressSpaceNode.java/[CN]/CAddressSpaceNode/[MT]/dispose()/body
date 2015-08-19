@@ -1,0 +1,9 @@
+{
+  super.dispose();
+  if (m_addressSpace.isLoaded()) {
+    m_addressSpace.getContent().removeListener(m_addrSpaceContentListener);
+  }
+  m_addressSpace.removeListener(m_addrSpaceListener);
+  m_addressSpace.getConfiguration().removeListener(m_addrSpaceConfigurationListener);
+  deleteChildren();
+}

@@ -1,0 +1,10 @@
+{
+  final MockDebuggerTemplateManagerListener listener=new MockDebuggerTemplateManagerListener();
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplateManager internalManager=new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplateManager(new MockSqlProvider());
+  final DebuggerTemplateManager manager=new DebuggerTemplateManager(internalManager);
+  manager.addListener(listener);
+  final DebuggerTemplate template1=manager.createDebuggerTemplate("Hannes","Host",123);
+  @SuppressWarnings("unused") final DebuggerTemplate template2=manager.createDebuggerTemplate("Hannes","Host",123);
+  manager.deleteDebugger(template1);
+  manager.dispose();
+}

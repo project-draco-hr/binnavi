@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(graph,"IE01732: Graph argument can not be null");
+  final List<NaviNode> selectedNodes=filterHiddenNodes(graph.getSelectedNodes());
+  graph.deleteNodes(selectedNodes);
+}

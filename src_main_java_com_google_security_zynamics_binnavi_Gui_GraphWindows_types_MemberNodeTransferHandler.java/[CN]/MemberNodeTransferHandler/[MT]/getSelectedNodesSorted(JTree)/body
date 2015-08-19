@@ -1,0 +1,19 @@
+{
+  final List<TypeMemberTreeNode> nodes=Lists.newArrayList();
+  for (  final TreePath path : tree.getSelectionPaths()) {
+    final DefaultMutableTreeNode node=(DefaultMutableTreeNode)path.getLastPathComponent();
+    if (node instanceof TypeMemberTreeNode) {
+      nodes.add((TypeMemberTreeNode)node);
+    }
+ else {
+      return Lists.newArrayList();
+    }
+  }
+  Collections.sort(nodes,new Comparator<TypeMemberTreeNode>(){
+    @Override public int compare(    final TypeMemberTreeNode node0,    final TypeMemberTreeNode node1){
+      return node0.getTypeMember().compareTo(node1.getTypeMember());
+    }
+  }
+);
+  return nodes;
+}

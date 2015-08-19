@@ -1,0 +1,11 @@
+{
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    CMemorySelectionFunctions.refreshMemory(m_parent,debugger,m_rangeProvider.getAddress(),m_rangeProvider.getSize());
+    final IAddress stackAddress=m_stackRangeProvider.getAddress();
+    final int size=m_stackRangeProvider.getSize();
+    if (stackAddress != null && size != 0) {
+      CMemorySelectionFunctions.refreshMemory(m_parent,debugger,stackAddress,size);
+    }
+  }
+}

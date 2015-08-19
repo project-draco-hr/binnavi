@@ -1,0 +1,3 @@
+{
+  return new TypeEditorPanel(owner,TypesTree.createDefaultDndTypesTree(typeManager),typeManager,"Type editor");
+}

@@ -1,0 +1,14 @@
+{
+  final String typeInstanceName=" TYPE INSTANCE NAME ";
+  module.load();
+  final Section section=module.getContent().getSections().getSections().get(0);
+  final BaseType type=module.getTypeManager().getTypes().get(0);
+  final int typeInstanceId=provider.createTypeInstance(module.getConfiguration().getId(),typeInstanceName,null,type.getId(),section.getId(),0);
+  module.close();
+  module.load();
+  final TypeInstance typeInstance=module.getContent().getTypeInstanceContainer().getTypeInstanceById(typeInstanceId);
+  Assert.assertEquals(typeInstanceId,typeInstance.getId());
+  Assert.assertEquals(typeInstanceName,typeInstance.getName());
+  Assert.assertEquals(module,typeInstance.getModule());
+  Assert.assertEquals(section.getId(),typeInstance.getSection().getId());
+}

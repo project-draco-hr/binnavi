@@ -1,0 +1,30 @@
+{
+  final List<RawTypeInstance> instances=new ArrayList<RawTypeInstance>();
+  try {
+    final String query="SELECT * FROM load_type_instances(?)";
+    final PreparedStatement statement=connection.prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    try {
+      final ResultSet result=statement.executeQuery();
+      while (result.next()) {
+        final int id=result.getInt("id");
+        final String name=result.getString("name");
+        Integer commentId=result.getInt("comment_id");
+        if (result.wasNull()) {
+          commentId=null;
+        }
+        final int typeId=result.getInt("type_id");
+        final int sectionId=result.getInt("section_id");
+        final long sectionOffset=result.getLong("section_offset");
+        instances.add(new RawTypeInstance(module.getConfiguration().getId(),id,name,commentId,typeId,sectionId,sectionOffset));
+      }
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return instances;
+}

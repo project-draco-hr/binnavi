@@ -1,0 +1,4 @@
+ReilInterpreter interpreter
+ICpuPolicy cpuPolicy
+String[] registers
+String[] flags

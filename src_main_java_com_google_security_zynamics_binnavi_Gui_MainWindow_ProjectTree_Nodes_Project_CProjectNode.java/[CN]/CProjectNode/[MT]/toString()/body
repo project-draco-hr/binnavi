@@ -1,0 +1,3 @@
+{
+  return m_project.getConfiguration().getName() + " (" + m_project.getAddressSpaceCount()+ ")";
+}

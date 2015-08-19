@@ -1,0 +1,42 @@
+{
+  if (!(node.getRawNode() instanceof INaviCodeNode)) {
+    return;
+  }
+  final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+  final double yPos=y - node.getY();
+  final int row=node.positionToRow(yPos);
+  final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(codeNode,row);
+  if (instruction == null) {
+    return;
+  }
+  if (!operand.getType().equals(ExpressionType.REGISTER)) {
+    return;
+  }
+  final Set<String> clearedRegisters=Sets.newHashSet();
+  if (instruction.getArchitecture().equalsIgnoreCase("x86-32")) {
+    clearedRegisters.add("eax");
+  }
+ else   if (instruction.getArchitecture().equalsIgnoreCase("x86-64")) {
+    clearedRegisters.add("rax");
+  }
+ else   if (instruction.getArchitecture().equalsIgnoreCase("PowerPC-32")) {
+    clearedRegisters.addAll(Lists.newArrayList("R3","R4","R5","R6","R7","R8","R9","R10","R11","R12"));
+  }
+ else   if (instruction.getArchitecture().equalsIgnoreCase("ARM-32")) {
+    clearedRegisters.addAll(Lists.newArrayList("r0","r1","r2","r3","r12","r14"));
+  }
+ else   if (instruction.getArchitecture().equalsIgnoreCase("MIPS-32")) {
+    clearedRegisters.addAll(Lists.newArrayList("$a0","$a1","$a2","$a3","$t0","$t1","$t2","$t3","$t4","$t5","$t6","$t7","$v0","$v1"));
+  }
+ else {
+    return;
+  }
+  final boolean trackIncoming=instruction.getOperandPosition(operand.getOperand()) != 0;
+  final RegisterTrackingOptions options=new RegisterTrackingOptions(false,clearedRegisters,trackIncoming,direction);
+  try {
+    CTracking.track(m_model.getGraph().getRawView(),instruction,operand.getValue(),options);
+  }
+ catch (  final InternalTranslationException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

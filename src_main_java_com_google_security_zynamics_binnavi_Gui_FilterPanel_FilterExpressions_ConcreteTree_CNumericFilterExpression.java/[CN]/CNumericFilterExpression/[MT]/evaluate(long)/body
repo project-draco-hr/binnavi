@@ -1,0 +1,18 @@
+{
+switch (m_relation) {
+case EQUAL_TO:
+    return dynamicValue == m_value;
+case GREATER_EQUAL_THAN:
+  return dynamicValue >= m_value;
+case GREATER_THAN:
+return dynamicValue > m_value;
+case LESS_EQUAL_TO:
+return dynamicValue <= m_value;
+case LESS_THAN:
+return dynamicValue < m_value;
+case NOT_EQUAL_TO:
+return dynamicValue != m_value;
+default :
+throw new IllegalStateException("IE01144: Unknown predicate");
+}
+}

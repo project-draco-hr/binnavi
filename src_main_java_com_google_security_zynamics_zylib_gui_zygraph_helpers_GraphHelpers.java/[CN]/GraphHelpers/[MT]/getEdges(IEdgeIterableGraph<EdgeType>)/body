@@ -1,0 +1,4 @@
+{
+  final INodeFilter<EdgeType> trueFilter=StandardFilters.getTrueFilter();
+  return getEdges(graph,trueFilter);
+}

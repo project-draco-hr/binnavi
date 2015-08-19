@@ -1,0 +1,49 @@
+{
+  super("Operand Type");
+  final JCheckBoxMenuItem unsignedDecimalMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.UNSIGNED_DECIMAL,"Unsigned Decimal"));
+  final JCheckBoxMenuItem signedDecimalMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.SIGNED_DECIMAL,"Signed Decimal"));
+  final JCheckBoxMenuItem unsignedHexadecimalMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.UNSIGNED_HEXADECIMAL,"Unsigned Hexadecimal"));
+  final JCheckBoxMenuItem signedHexadecimalMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.SIGNED_HEXADECIMAL,"Signed Hexadecimal"));
+  final JCheckBoxMenuItem unsignedOctalMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.OCTAL,"Octal"));
+  final JCheckBoxMenuItem unsignedBinaryMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.BINARY,"Binary"));
+  final JCheckBoxMenuItem charMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.CHAR,"Char"));
+  final JCheckBoxMenuItem offsetMenu=new JCheckBoxMenuItem(new CDisplayOperandAction(treeNode,OperandDisplayStyle.OFFSET,"Offset"));
+  add(unsignedHexadecimalMenu);
+  add(signedHexadecimalMenu);
+  add(unsignedDecimalMenu);
+  add(signedDecimalMenu);
+  add(unsignedOctalMenu);
+  add(unsignedBinaryMenu);
+  add(charMenu);
+  if (replacement != null) {
+    add(offsetMenu);
+  }
+switch (treeNode.getDisplayStyle()) {
+case UNSIGNED_HEXADECIMAL:
+    unsignedHexadecimalMenu.setSelected(true);
+  break;
+case SIGNED_HEXADECIMAL:
+signedHexadecimalMenu.setSelected(true);
+break;
+case UNSIGNED_DECIMAL:
+unsignedDecimalMenu.setSelected(true);
+break;
+case SIGNED_DECIMAL:
+signedDecimalMenu.setSelected(true);
+break;
+case OCTAL:
+unsignedOctalMenu.setSelected(true);
+break;
+case BINARY:
+unsignedBinaryMenu.setSelected(true);
+break;
+case CHAR:
+charMenu.setSelected(true);
+break;
+case OFFSET:
+offsetMenu.setSelected(true);
+break;
+default :
+throw new IllegalStateException("IE02248: Unknown selection");
+}
+}

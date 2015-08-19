@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.addDebugger(m_parent,m_database,m_name,m_host,m_port,m_updater);
+}

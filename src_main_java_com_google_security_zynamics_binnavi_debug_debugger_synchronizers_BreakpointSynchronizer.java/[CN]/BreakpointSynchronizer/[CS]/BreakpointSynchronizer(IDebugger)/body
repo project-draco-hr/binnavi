@@ -1,0 +1,5 @@
+{
+  this.debugger=Preconditions.checkNotNull(debugger,"IE00795: Debugger argument can not be null");
+  manager=Preconditions.checkNotNull(debugger.getBreakpointManager(),"Error: debugger.getBreakpointManager() argument can not be null");
+  manager.addListener(managerListener);
+}

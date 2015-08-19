@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(parent,"Error: Parent argument can not be null");
+  Preconditions.checkNotNull(child,"Error: Child argument can not be null");
+  parent.m_children.add(child);
+  child.m_parents.add(parent);
+}

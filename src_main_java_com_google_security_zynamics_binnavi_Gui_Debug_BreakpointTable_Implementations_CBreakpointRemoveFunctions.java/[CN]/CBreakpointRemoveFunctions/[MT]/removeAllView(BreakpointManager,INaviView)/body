@@ -1,0 +1,10 @@
+{
+  final Set<BreakpointAddress> addresses=new HashSet<BreakpointAddress>();
+  for (int i=0; i < manager.getNumberOfBreakpoints(BreakpointType.REGULAR); i++) {
+    final BreakpointAddress address=manager.getBreakpoint(BreakpointType.REGULAR,i).getAddress();
+    if (CViewHelpers.containsAddress(view,address.getAddress())) {
+      addresses.add(address);
+    }
+  }
+  CGraphDebugger.removeBreakpoints(addresses,manager);
+}

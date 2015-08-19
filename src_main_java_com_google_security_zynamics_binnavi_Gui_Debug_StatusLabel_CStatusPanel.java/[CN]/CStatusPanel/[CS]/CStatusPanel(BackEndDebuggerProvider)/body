@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debuggerProvider,"IE1094: Debugger provider argument can not be null");
+  m_label.setForeground(Color.BLACK);
+  add(m_label);
+  m_synchronizer=new CStatusLabelSynchronizer(m_label,debuggerProvider);
+}

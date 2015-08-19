@@ -1,0 +1,30 @@
+{
+  final INaviView view=project.getContent().createView("Combined Callgraph","");
+  final Map<INaviFunction,CFunctionNode> nodeMap=new HashMap<INaviFunction,CFunctionNode>();
+  final Map<INaviFunction,INaviFunction> resolvedMap=new HashMap<INaviFunction,INaviFunction>();
+  final List<INaviModule> modules=addressSpace.getContent().getModules();
+  for (  final INaviModule module : modules) {
+    final CCallgraph callgraph=module.getContent().getNativeCallgraph();
+    for (    final ICallgraphNode callgraphNode : callgraph) {
+      final INaviFunction function=callgraphNode.getFunction();
+      final INaviFunction resolvedFunction=getResolvedFunction(function,modules);
+      if (resolvedFunction == null) {
+        final CFunctionNode node=view.getContent().createFunctionNode(function);
+        node.setColor(CFunctionNodeColorizer.getFunctionColor(function.getType()));
+        nodeMap.put(function,node);
+      }
+ else {
+        resolvedMap.put(function,resolvedFunction);
+      }
+    }
+  }
+  for (  final INaviModule module : modules) {
+    final CCallgraph callgraph=module.getContent().getNativeCallgraph();
+    for (    final ICallgraphEdge callgraphEdge : callgraph.getEdges()) {
+      final INaviFunction source=resolvedMap.containsKey(callgraphEdge.getSource().getFunction()) ? resolvedMap.get(callgraphEdge.getSource().getFunction()) : callgraphEdge.getSource().getFunction();
+      final INaviFunction target=resolvedMap.containsKey(callgraphEdge.getTarget().getFunction()) ? resolvedMap.get(callgraphEdge.getTarget().getFunction()) : callgraphEdge.getTarget().getFunction();
+      view.getContent().createEdge(nodeMap.get(source),nodeMap.get(target),EdgeType.JUMP_UNCONDITIONAL);
+    }
+  }
+  return view;
+}

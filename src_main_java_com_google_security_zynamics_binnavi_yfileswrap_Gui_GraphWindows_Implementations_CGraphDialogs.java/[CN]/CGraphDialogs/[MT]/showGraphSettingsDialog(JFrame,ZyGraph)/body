@@ -1,0 +1,18 @@
+{
+  final CGraphSettingsDialog dlg=new CGraphSettingsDialog(parent,"Graph Settings",graph.getSettings(),false,false);
+  dlg.setVisible(true);
+  if (!dlg.wasCanceled()) {
+    if (graph.getSettings().getLayoutSettings().getCurrentLayouter() instanceof CircularLayouter) {
+      graph.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.CIRCULAR);
+    }
+ else     if (graph.getSettings().getLayoutSettings().getCurrentLayouter() instanceof IncrementalHierarchicLayouter) {
+      graph.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.HIERARCHIC);
+    }
+ else     if (graph.getSettings().getLayoutSettings().getCurrentLayouter() instanceof OrthogonalLayouter) {
+      graph.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.ORTHOGONAL);
+    }
+    if (dlg.needsLayouting()) {
+      CGraphLayouter.refreshLayout(parent,graph);
+    }
+  }
+}

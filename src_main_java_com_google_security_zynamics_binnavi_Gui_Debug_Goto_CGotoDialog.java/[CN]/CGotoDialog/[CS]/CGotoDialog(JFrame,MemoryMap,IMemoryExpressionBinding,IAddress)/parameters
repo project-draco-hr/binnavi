@@ -1,0 +1,4 @@
+JFrame parent
+MemoryMap memoryMap
+IMemoryExpressionBinding bindings
+IAddress address

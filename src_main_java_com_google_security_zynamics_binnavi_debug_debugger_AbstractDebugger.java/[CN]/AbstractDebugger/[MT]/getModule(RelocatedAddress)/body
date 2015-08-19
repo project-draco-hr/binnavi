@@ -1,0 +1,20 @@
+{
+  final List<Entry<INaviModule,IAddress>> baseList=new ArrayList<>(baseAddresses.entrySet());
+  Collections.sort(baseList,new Comparator<Entry<INaviModule,IAddress>>(){
+    @Override public int compare(    final Entry<INaviModule,IAddress> lhs,    final Entry<INaviModule,IAddress> rhs){
+      return lhs.getValue().toBigInteger().compareTo(rhs.getValue().toBigInteger());
+    }
+  }
+);
+  for (int i=0; i < baseList.size(); i++) {
+    final Entry<INaviModule,IAddress> current=baseList.get(i);
+    if (i == (baseList.size() - 1)) {
+      return current.getKey();
+    }
+    final Entry<INaviModule,IAddress> next=baseList.get(i + 1);
+    if ((address.getAddress().toBigInteger().compareTo(current.getValue().toBigInteger()) >= 0) && (address.getAddress().toBigInteger().compareTo(next.getValue().toBigInteger()) == -1)) {
+      return current.getKey();
+    }
+  }
+  return null;
+}

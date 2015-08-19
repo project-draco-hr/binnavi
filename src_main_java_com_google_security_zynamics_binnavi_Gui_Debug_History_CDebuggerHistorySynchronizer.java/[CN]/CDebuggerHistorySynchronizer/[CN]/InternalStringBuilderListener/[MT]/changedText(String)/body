@@ -1,0 +1,4 @@
+{
+  m_area.setText(text);
+  m_area.setSelectionStart(m_area.getText().length());
+}

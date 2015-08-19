@@ -1,0 +1,4 @@
+{
+  final ScriptEngine engine=manager.getEngineByName("python");
+  runScript(engine,script,bindings);
+}

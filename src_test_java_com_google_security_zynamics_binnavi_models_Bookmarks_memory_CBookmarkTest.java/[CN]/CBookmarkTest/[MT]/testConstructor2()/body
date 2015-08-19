@@ -1,0 +1,3 @@
+{
+  new CBookmark(new CAddress(BigInteger.ZERO),null);
+}

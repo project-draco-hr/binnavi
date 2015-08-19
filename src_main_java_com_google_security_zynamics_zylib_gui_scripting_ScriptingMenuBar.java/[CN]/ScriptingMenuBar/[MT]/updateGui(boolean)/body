@@ -1,0 +1,5 @@
+{
+  cutAction.setEnabled(hasOptions);
+  copyAction.setEnabled(hasOptions);
+  pasteAction.setEnabled(hasOptions);
+}

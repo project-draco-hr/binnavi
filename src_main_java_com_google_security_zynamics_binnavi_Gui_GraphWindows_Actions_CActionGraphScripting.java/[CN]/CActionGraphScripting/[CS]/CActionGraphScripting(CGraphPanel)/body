@@ -1,0 +1,4 @@
+{
+  super("New Scripting Window");
+  m_graphPanel=graphPanel;
+}

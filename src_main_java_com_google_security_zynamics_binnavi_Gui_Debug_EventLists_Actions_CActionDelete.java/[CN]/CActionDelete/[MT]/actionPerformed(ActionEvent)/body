@@ -1,0 +1,3 @@
+{
+  CTraceFunctions.deleteTrace(m_parent,m_traceListProvider,m_traces);
+}

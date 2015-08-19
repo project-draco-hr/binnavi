@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(provider,"IE00088: provider argument can not be null");
+  Preconditions.checkNotNull(user,"IE00106: user argument can not be null");
+  final Connection connection=provider.getConnection().getConnection();
+  final String query="DELETE FROM " + CTableNames.USER_TABLE + " WHERE user_id = ?;";
+  try {
+    final PreparedStatement statement=connection.prepareStatement(query);
+    try {
+      statement.setInt(1,user.getUserId());
+      statement.execute();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

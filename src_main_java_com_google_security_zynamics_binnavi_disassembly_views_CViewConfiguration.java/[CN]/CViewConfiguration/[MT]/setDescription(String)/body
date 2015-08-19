@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(description,"IE00316: Description string can not be null");
+  if (description.equals(viewDescription)) {
+    return;
+  }
+  if (isStored()) {
+    provider.setDescription(view,description);
+  }
+  viewDescription=description;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedDescription(view,description);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

@@ -1,0 +1,4 @@
+{
+  m_closedByOk=event.getActionCommand().equals("Execute");
+  dispose();
+}

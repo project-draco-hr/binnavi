@@ -1,0 +1,10 @@
+{
+  if (FileUtils.exists("tests/postgresql.txt")) {
+    String text=FileUtils.readTextfile("tests/postgresql.txt");
+    text=text.replaceAll("\r","");
+    return text.split("\\n");
+  }
+ else {
+    return new String[]{"127.0.0.1","user","CENSORED","test_user"};
+  }
+}

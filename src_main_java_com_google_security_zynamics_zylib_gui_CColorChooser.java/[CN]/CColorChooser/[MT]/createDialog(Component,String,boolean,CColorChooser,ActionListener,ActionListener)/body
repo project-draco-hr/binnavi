@@ -1,0 +1,3 @@
+{
+  return JColorChooser.createDialog(parent,title,modal,chooserPane,okListener,cancelListener);
+}

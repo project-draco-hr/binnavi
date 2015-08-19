@@ -1,0 +1,5 @@
+{
+  final CEdgeHoverState state=new CEdgeHoverState(this,m_graph,e);
+  m_factory.createEdgeHoverAction().execute(state,event);
+  return state;
+}

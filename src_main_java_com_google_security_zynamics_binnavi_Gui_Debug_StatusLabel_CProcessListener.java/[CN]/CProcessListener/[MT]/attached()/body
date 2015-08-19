@@ -1,0 +1,3 @@
+{
+  m_label.setText("Successfully attached to the target process");
+}

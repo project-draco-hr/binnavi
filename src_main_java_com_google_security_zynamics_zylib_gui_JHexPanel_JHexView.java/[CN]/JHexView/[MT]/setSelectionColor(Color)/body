@@ -1,0 +1,4 @@
+{
+  m_selectionColor=Preconditions.checkNotNull(color,"Error: Color can't be null");
+  repaint();
+}

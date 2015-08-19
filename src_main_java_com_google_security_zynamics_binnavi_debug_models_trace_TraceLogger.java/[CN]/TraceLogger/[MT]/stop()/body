@@ -1,0 +1,28 @@
+{
+  NaviLogger.info("Finalizing event list %s with %d events",eventList.getName(),eventList.getEventCount());
+  if (activeEchoBreakpointCount() == 0) {
+    return new HashSet<BreakpointAddress>();
+  }
+  lock.lock();
+  removeListeners();
+  final Set<BreakpointAddress> ebps=new HashSet<>(activeEchoBreakpoints.keySet());
+  breakpointManager.removeBreakpoints(BreakpointType.ECHO,ebps);
+  try {
+    for (    final ITraceLoggerListener listener : listeners) {
+      listener.removedBreakpoint();
+    }
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  activeEchoBreakpoints.clear();
+  lock.unlock();
+  for (  final ITraceLoggerListener listener : listeners) {
+    try {
+      listener.finished(eventList);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return ebps;
+}

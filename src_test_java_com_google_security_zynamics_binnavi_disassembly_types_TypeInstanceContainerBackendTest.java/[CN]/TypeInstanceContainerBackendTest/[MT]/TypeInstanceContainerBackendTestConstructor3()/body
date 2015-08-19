@@ -1,0 +1,3 @@
+{
+  new TypeInstanceContainerBackend(provider,module,null,null);
+}

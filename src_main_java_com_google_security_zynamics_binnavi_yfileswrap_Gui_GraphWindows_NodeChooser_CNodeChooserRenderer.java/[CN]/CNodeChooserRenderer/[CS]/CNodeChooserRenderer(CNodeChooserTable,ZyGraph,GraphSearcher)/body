@@ -1,0 +1,6 @@
+{
+  m_table=Preconditions.checkNotNull(nodeChooserTable,"IE01770: Table can't be null.");
+  m_graph=Preconditions.checkNotNull(graph,"IE01771: Graph can't be null.");
+  m_searcher=Preconditions.checkNotNull(searcher,"IE01772: Graph searcher can't be null.");
+  setOpaque(true);
+}

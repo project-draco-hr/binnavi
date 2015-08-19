@@ -1,0 +1,6 @@
+{
+  for (  final CTag tag : tags) {
+    tag.removeListener(m_listener);
+  }
+  rebuildNode();
+}

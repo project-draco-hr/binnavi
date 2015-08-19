@@ -1,0 +1,38 @@
+{
+  if (sourceNode == destinationNode) {
+    final ArrayList<NodeType> nodeList=new ArrayList<NodeType>();
+    nodeList.add(sourceNode);
+    return new HashSet<NodeType>(nodeList);
+  }
+  final ArrayList<NodeType> upwardsNodes=new ArrayList<NodeType>();
+  upwardsNodes.add(destinationNode);
+  final Set<NodeType> resolveUpwards=new HashSet<NodeType>(upwardsNodes);
+  final Stack<NodeType> upwardsWorkingList=new Stack<NodeType>();
+  upwardsWorkingList.push(sourceNode);
+  while (!upwardsWorkingList.empty()) {
+    final NodeType currentNode=upwardsWorkingList.pop();
+    resolveUpwards.add(currentNode);
+    for (    final NodeType currentParentNode : currentNode.getParents()) {
+      if (!resolveUpwards.contains(currentParentNode)) {
+        resolveUpwards.add(currentParentNode);
+        upwardsWorkingList.push(currentParentNode);
+      }
+    }
+  }
+  final ArrayList<NodeType> downwardsNodes=new ArrayList<NodeType>();
+  final Set<NodeType> resolveDownwards=new HashSet<NodeType>(downwardsNodes);
+  final Stack<NodeType> downwardsWorkingList=new Stack<NodeType>();
+  downwardsWorkingList.push(destinationNode);
+  while (!downwardsWorkingList.empty()) {
+    final NodeType currentNode=downwardsWorkingList.pop();
+    resolveDownwards.add(currentNode);
+    for (    final NodeType currentChildNode : currentNode.getChildren()) {
+      if (!resolveDownwards.contains(currentChildNode)) {
+        resolveDownwards.add(currentChildNode);
+        downwardsWorkingList.push(currentChildNode);
+      }
+    }
+  }
+  resolveUpwards.retainAll(resolveDownwards);
+  return resolveUpwards;
+}

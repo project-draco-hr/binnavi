@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  return this.provider.equals(provider);
+}

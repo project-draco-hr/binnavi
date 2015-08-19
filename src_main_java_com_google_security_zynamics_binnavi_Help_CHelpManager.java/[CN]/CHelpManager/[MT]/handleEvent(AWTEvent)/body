@@ -1,0 +1,28 @@
+{
+  final MouseEvent kevent=(MouseEvent)event;
+  if (kevent.getID() == MouseEvent.MOUSE_CLICKED && SwingUtilities.isLeftMouseButton(kevent)) {
+    final Window window=SwingUtilities.getWindowAncestor(kevent.getComponent());
+    if (m_activeWindow == window) {
+      final JFrame frame=(JFrame)window;
+      frame.getGlassPane().setVisible(false);
+      final Component component=GuiHelper.findComponentAt(frame,kevent.getLocationOnScreen());
+      frame.getGlassPane().setVisible(true);
+      if (component instanceof IHelpProvider) {
+        final IHelpProvider helpProvider=(IHelpProvider)component;
+        final IHelpInformation help=helpProvider.getHelpInformation();
+        m_helpDialog.setInformation(help);
+        m_helpDialog.setLocation(getDialogLocation(kevent));
+        m_helpDialog.setVisible(true);
+      }
+    }
+  }
+ else   if (kevent.getID() == MouseEvent.MOUSE_CLICKED && SwingUtilities.isRightMouseButton(kevent)) {
+    final Window window=SwingUtilities.getWindowAncestor(kevent.getComponent());
+    if (m_activeWindow == window) {
+      ((JFrame)window).getGlassPane().setVisible(false);
+      ((JFrame)window).getGlassPane().removeMouseListener(m_listener);
+      window.setCursor(Cursor.getDefaultCursor());
+      m_activeWindow=null;
+    }
+  }
+}

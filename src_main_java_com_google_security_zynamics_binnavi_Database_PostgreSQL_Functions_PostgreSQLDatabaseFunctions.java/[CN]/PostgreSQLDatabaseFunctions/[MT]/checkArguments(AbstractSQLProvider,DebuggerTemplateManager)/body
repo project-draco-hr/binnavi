@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00413: Provider argument can not be null");
+  Preconditions.checkNotNull(debuggerManager,"IE01227: Debugger final manager argument can final not be null");
+  Preconditions.checkArgument(debuggerManager.inSameDatabase(provider),"IE00415: Debugger manager is not part of the given database");
+}

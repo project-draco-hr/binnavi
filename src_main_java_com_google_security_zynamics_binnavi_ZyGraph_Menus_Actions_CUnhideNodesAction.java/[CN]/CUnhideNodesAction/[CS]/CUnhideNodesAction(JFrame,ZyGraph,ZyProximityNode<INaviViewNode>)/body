@@ -1,0 +1,9 @@
+{
+  super("Unhide Nodes");
+  Preconditions.checkNotNull(parent,"IE00953: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE00954: Graph argument can't be null");
+  Preconditions.checkNotNull(node,"IE00955: Node argument can't be null");
+  m_parent=parent;
+  m_graph=graph;
+  m_node=node;
+}

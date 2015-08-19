@@ -1,0 +1,3 @@
+{
+  CShowViewFunctions.showViewInNewWindow(parentWindow,viewContainer,views);
+}

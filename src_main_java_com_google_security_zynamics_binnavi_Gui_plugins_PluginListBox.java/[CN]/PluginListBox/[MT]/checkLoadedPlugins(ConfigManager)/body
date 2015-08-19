@@ -1,0 +1,14 @@
+{
+  final ArrayList<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>> checked=new ArrayList<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>>();
+  for (int i=0; i < model.getSize(); i++) {
+    for (    final PluginConfigItem plugin : configFile.getGeneralSettings().getPlugins()) {
+      if (plugin.getGUID() == model.get(i).getObject().getGuid()) {
+        setChecked(i,plugin.isLoad());
+      }
+      checked.add(model.get(i).getObject());
+    }
+  }
+  for (int i=configFile.getGeneralSettings().getPlugins().size(); i < model.getSize(); i++) {
+    setChecked(i,true);
+  }
+}

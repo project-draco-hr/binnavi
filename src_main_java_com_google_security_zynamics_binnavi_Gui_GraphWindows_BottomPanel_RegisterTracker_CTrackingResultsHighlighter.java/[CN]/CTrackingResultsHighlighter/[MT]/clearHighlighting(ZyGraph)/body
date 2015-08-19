@@ -1,0 +1,15 @@
+{
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      if (node.getRawNode() instanceof INaviCodeNode) {
+        final INaviCodeNode cnode=(INaviCodeNode)node.getRawNode();
+        for (        final INaviInstruction instruction : cnode.getInstructions()) {
+          final int line=CCodeNodeHelpers.instructionToLine(cnode,instruction);
+          node.clearHighlighting(CHighlightLayers.REGISTER_TRACKING_LAYER,line);
+        }
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

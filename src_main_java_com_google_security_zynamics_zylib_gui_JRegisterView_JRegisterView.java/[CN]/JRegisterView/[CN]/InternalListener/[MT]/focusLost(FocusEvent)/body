@@ -1,0 +1,5 @@
+{
+  if (m_editedRegister != 1) {
+    leaveEditMode(false);
+  }
+}

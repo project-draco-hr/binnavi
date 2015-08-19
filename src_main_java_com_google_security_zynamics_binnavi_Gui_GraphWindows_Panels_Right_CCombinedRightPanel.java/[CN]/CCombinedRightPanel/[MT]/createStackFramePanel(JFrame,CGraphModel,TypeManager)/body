@@ -1,0 +1,5 @@
+{
+  final JPanel stackFramePanel=new JPanel(new BorderLayout());
+  stackFramePanel.add(TypeEditorPanel.CreateStackFrameEditor(parent,typeManager,model.getViewContainer().getFunction(model.getGraph().getRawView())),BorderLayout.CENTER);
+  return stackFramePanel;
+}

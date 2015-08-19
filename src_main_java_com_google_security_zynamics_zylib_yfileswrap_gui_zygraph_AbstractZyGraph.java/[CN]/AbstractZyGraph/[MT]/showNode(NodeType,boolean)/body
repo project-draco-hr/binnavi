@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(node,"Node argument can't be null");
+  ((IViewNode<?>)node.getRawNode()).setVisible(show);
+  if (show) {
+    @SuppressWarnings("unchecked") final ArrayList<NodeType> nodes=Lists.newArrayList(node);
+    showNeighbors(nodes);
+  }
+  notifyVisibilityListeners();
+}

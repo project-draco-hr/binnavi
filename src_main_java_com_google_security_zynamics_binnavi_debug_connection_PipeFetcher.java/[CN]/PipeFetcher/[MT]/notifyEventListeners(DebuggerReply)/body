@@ -1,0 +1,18 @@
+{
+  for (  final DebugEventListener listener : listeners) {
+    try {
+      listener.receivedEvent(event);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  for (  final DebugEventListener listener : protocolListeners) {
+    try {
+      listener.receivedEvent(event);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

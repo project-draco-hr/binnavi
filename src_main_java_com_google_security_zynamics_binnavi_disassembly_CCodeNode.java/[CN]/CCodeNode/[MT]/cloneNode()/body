@@ -1,0 +1,7 @@
+{
+  final CCodeNode codeNode=new CCodeNode(-1,getX(),getY(),getWidth(),getHeight(),getColor(),getBorderColor(),isSelected(),isVisible(),m_comments.getLocalCodeNodeComment(),m_parentFunction,getTags(),m_provider);
+  for (  final INaviInstruction instruction : codeNodeInstructions) {
+    codeNode.addInstruction(instruction.cloneInstruction(),m_comments.getLocalInstructionComment(instruction));
+  }
+  return codeNode;
+}

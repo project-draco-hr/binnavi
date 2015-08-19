@@ -1,0 +1,5 @@
+{
+  m_project=project;
+  CGlobalProgressManager.instance().add(this);
+  project.addListener(m_listener);
+}

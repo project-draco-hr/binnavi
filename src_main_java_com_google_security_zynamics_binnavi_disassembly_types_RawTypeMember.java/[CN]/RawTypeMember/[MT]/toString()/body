@@ -1,0 +1,3 @@
+{
+  return String.format("name=%s, id=%d, offset=%d, numberOfElements=%d, parentId=%d, baseTypeId=%d, argument=%d",name,id,offset,numberOfElements,parentId,baseTypeId,argument);
+}

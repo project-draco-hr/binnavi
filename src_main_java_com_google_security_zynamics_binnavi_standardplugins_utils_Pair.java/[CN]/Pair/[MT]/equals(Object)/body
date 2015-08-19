@@ -1,0 +1,7 @@
+{
+  if (!(obj instanceof Pair)) {
+    return false;
+  }
+  final Pair<?,?> p=(Pair<?,?>)obj;
+  return p.first.equals(first) && p.second.equals(second);
+}

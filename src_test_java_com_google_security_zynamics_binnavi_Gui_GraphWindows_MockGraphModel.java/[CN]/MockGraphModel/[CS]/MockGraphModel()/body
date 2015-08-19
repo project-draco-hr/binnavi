@@ -1,0 +1,4 @@
+{
+  m_debuggerProvider=new MockDebuggerProvider();
+  m_viewContainer=new MockViewContainer();
+}

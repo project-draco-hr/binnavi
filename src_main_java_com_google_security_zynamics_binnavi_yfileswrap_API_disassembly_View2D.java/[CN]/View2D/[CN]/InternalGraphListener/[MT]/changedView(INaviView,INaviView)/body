@@ -1,0 +1,12 @@
+{
+  final View oldPluginView=m_view;
+  m_view=findView(m_database,m_graph.getRawView(),m_pluginInterface.getDatabaseManager().getDatabases());
+  for (  final IView2DListener listener : m_listeners) {
+    try {
+      listener.changedView2D(View2D.this,oldPluginView,m_view);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

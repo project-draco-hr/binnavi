@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(query,"IE00729: Query argument can not be null");
+  return provider.executeQuery(query);
+}

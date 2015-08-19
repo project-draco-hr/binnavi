@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(project,"IE00674: Project can not be null");
+  Preconditions.checkArgument(m_database.isConnected(),"IE00675: Database must be connected before you can delete projects");
+  Preconditions.checkArgument(m_database.isLoaded(),"IE00676: Database must be loaded before you can delete projects");
+  Preconditions.checkArgument(m_projects.contains(project),"IE00677: Project does not belong to the database");
+  m_provider.deleteProject(project);
+  m_projects.remove(project);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.deletedProject(m_database,project);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

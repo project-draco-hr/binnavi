@@ -1,0 +1,6 @@
+{
+  final RawTypeSubstitution rawSubstitution=findSubstitution(typeSubstitution.getAddress().toBigInteger(),typeSubstitution.getPosition(),typeSubstitution.getOperandTreeNode().getId(),module);
+  if (rawSubstitution != null) {
+    substitutions.remove(module,rawSubstitution);
+  }
+}

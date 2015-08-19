@@ -1,0 +1,20 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0x12345678),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("esi",BigInteger.valueOf(0x1000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("edi",BigInteger.valueOf(0x2000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ecx",BigInteger.valueOf(0x4),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("DF",BigInteger.valueOf(0),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ZF",BigInteger.valueOf(0),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.getMemory().store(0x1000,0x12345678,4);
+  interpreter.getMemory().store(0x2000,0x11345678,4);
+  final MockInstruction instruction=new MockInstruction("repe cmpsb",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(10,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x12345678),interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.valueOf(0x1004),interpreter.getVariableValue("esi"));
+  assertEquals(BigInteger.valueOf(0x2004),interpreter.getVariableValue("edi"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("ZF"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("ecx"));
+  assertEquals(BigInteger.valueOf(8L),BigInteger.valueOf(interpreter.getMemorySize()));
+}

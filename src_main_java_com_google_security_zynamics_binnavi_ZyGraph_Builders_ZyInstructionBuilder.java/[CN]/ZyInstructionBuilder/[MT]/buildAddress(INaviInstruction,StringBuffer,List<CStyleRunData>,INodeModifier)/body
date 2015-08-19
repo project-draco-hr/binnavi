@@ -1,0 +1,12 @@
+{
+  final String normalAddress=instruction.getAddress().toHexString();
+  final String address=modifier == null ? normalAddress : modifier.getAddress(instruction);
+  line.append(address);
+  if (address.equals(normalAddress)) {
+    styleRun.add(new CStyleRunData(0,address.length(),ConfigManager.instance().getColorSettings().getAddressColor()));
+  }
+ else {
+    styleRun.add(new CStyleRunData(0,address.length(),Color.RED));
+  }
+  line.append(PADDING_AFTER_ADDRESS);
+}

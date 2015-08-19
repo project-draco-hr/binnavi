@@ -1,0 +1,10 @@
+{
+  final Collection<NaviNode> nodes;
+  if (mustBeVisible) {
+    nodes=GraphHelpers.filter(graph,new CGraphNodeTaggedFilter(tags));
+  }
+ else {
+    nodes=GraphHelpers.filter(graph,new CGraphNodeTaggedAndVisibleFilter(tags));
+  }
+  graph.selectNodes(nodes,false);
+}

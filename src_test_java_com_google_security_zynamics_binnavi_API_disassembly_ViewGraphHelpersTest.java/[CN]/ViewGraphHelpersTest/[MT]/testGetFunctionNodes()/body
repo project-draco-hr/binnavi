@@ -1,0 +1,5 @@
+{
+  final List<FunctionNode> functionNodes=ViewGraphHelpers.getFunctionNodes(m_graph);
+  assertEquals(1,functionNodes.size());
+  assertEquals(m_functionNode,functionNodes.get(0));
+}

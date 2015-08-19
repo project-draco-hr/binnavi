@@ -1,0 +1,5 @@
+{
+  CommentManager.get(provider).initializeGlobalInstructionComment(instruction,Lists.newArrayList(comment1,comment2,comment3));
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processCommentNotification(new MockPGNotification("comment_changes","bn_comments UPDATE 1 2222 " + CommonTestObjects.TEST_USER_3.getUserId() + " AAA"),provider);
+  assertNull(result);
+}

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(addressSpace,"IE02353: addressSpace argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE02354: Database argument can't be null");
+  Preconditions.checkArgument(database.isLoaded(),"Error: Database must be loaded before functions can be redirected");
+  m_targetModules=loadModules(addressSpace.getContent().getModules());
+  m_sourceModules=loadModules(addressSpace.getContent().getModules());
+  final String message=String.format("Do you really want to resolve all functions in the address space '%s'?",addressSpace.getConfiguration().getName());
+  resultDialog(questionDialog(owner,message));
+}

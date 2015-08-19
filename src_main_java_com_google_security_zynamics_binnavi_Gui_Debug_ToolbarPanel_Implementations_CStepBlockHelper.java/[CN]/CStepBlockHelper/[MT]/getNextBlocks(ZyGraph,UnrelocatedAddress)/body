@@ -1,0 +1,13 @@
+{
+  final Set<BreakpointAddress> instructions=new HashSet<BreakpointAddress>();
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      if (containsAddress(node.getRawNode(),address)) {
+        instructions.addAll(CSteppingHelper.getSuccessors(node.getRawNode()));
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return instructions;
+}

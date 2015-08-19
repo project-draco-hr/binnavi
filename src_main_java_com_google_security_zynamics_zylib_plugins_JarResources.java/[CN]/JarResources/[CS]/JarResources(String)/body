@@ -1,0 +1,4 @@
+{
+  this.jarFileName=jarFileName;
+  init();
+}

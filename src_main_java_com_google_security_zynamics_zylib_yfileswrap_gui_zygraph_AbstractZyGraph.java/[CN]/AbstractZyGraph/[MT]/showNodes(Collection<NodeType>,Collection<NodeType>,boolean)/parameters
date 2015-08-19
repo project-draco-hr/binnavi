@@ -1,0 +1,3 @@
+Collection<NodeType> toShow
+Collection<NodeType> toHide
+boolean addNeighbours

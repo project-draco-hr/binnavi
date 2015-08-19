@@ -1,0 +1,14 @@
+{
+  final StringBuffer buf=new StringBuffer();
+  final int len=str == null ? 0 : str.length();
+  for (int i=0; i < len; i++) {
+    final char ch=str.charAt(i);
+    if (Character.isLetterOrDigit(ch)) {
+      buf.append(ch);
+    }
+ else {
+      buf.append("&#" + (int)ch + ";");
+    }
+  }
+  return buf.toString();
+}

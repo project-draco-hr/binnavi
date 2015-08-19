@@ -1,0 +1,10 @@
+{
+  for (  final IZyGraphVisibilityListener listener : m_visibilityListener) {
+    try {
+      listener.nodeDeleted();
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

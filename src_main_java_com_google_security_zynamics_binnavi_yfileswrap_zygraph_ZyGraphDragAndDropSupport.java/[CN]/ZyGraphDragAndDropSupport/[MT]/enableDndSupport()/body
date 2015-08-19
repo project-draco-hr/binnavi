@@ -1,0 +1,24 @@
+{
+  graph.getView().setTransferHandler(transferHandler);
+  try {
+    graph.getView().getDropTarget().addDropTargetListener(new DropTargetListener(){
+      @Override public void dragEnter(      final DropTargetDragEvent dtde){
+      }
+      @Override public void dragExit(      final DropTargetEvent dte){
+        clearHighlighting(null);
+      }
+      @Override public void dragOver(      final DropTargetDragEvent dtde){
+        handleDragOver(dtde.getLocation());
+      }
+      @Override public void drop(      final DropTargetDropEvent dtde){
+        clearHighlighting(null);
+      }
+      @Override public void dropActionChanged(      final DropTargetDragEvent dtde){
+      }
+    }
+);
+  }
+ catch (  final TooManyListenersException e) {
+    e.printStackTrace();
+  }
+}

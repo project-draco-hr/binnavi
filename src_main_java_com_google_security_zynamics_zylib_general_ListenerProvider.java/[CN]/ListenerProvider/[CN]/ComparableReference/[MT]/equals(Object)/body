@@ -1,0 +1,15 @@
+{
+  if (rhs == null) {
+    return false;
+  }
+  @SuppressWarnings("unchecked") final ComparableReference rhso=(ComparableReference)rhs;
+  final T lhsElement=get();
+  final T rhsElement=rhso.get();
+  if ((lhsElement == null) && (rhsElement == null)) {
+    return true;
+  }
+  if ((lhsElement == null) || (rhsElement == null)) {
+    return false;
+  }
+  return lhsElement.equals(rhsElement);
+}

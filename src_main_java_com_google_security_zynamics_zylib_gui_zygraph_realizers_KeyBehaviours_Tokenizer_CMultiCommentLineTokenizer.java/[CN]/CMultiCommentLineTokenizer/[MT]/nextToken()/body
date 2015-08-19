@@ -1,0 +1,16 @@
+{
+  if (m_pointer >= m_text.length()) {
+    return null;
+  }
+  final int startPointer=m_pointer;
+  int endPointer=m_text.indexOf(m_delimiter,startPointer) + 1;
+  if (endPointer == 0) {
+    endPointer=m_text.length();
+  }
+  m_pointer=endPointer;
+  String token=m_text.substring(startPointer,endPointer);
+  if (!hasMoreTokens() && !token.isEmpty() && !token.endsWith("\r")) {
+    token+="\r";
+  }
+  return token;
+}

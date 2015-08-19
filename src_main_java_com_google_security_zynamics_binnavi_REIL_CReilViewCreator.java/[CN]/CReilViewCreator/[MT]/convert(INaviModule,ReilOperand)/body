@@ -1,0 +1,6 @@
+{
+  final COperandTreeNode rootNode=module.createOperandExpression(toDatabaseString(operand.getSize()),ExpressionType.SIZE_PREFIX);
+  final COperandTreeNode childNode=module.createOperandExpression(operand.getValue(),getType(operand));
+  COperandTreeNode.link(rootNode,childNode);
+  return module.createOperand(rootNode);
+}

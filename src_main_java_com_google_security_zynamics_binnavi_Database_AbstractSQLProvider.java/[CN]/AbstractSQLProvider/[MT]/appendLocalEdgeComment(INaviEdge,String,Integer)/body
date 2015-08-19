@@ -1,0 +1,3 @@
+{
+  return PostgreSQLEdgeFunctions.appendLocalEdgeComment(this,edge,commentText,userId);
+}

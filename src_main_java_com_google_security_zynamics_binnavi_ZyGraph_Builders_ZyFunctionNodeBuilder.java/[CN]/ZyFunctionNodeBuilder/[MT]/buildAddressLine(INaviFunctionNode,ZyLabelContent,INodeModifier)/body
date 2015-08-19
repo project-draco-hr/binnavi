@@ -1,0 +1,8 @@
+{
+  final String module=node.getFunction().getModule().getConfiguration().getName();
+  final String standardAddress=node.getFunction().getAddress().toHexString();
+  final String address=modifier == null ? standardAddress : modifier.getAddress(node);
+  final CStyleRunData styleRun=address.equals(standardAddress) ? new CStyleRunData(0,-1,Color.BLACK) : new CStyleRunData(0,-1,Color.RED);
+  final ZyLineContent addressLine=new ZyLineContent(module + "::" + address,BOLD_FONT,Lists.newArrayList(styleRun),null);
+  content.addLineContent(addressLine);
+}

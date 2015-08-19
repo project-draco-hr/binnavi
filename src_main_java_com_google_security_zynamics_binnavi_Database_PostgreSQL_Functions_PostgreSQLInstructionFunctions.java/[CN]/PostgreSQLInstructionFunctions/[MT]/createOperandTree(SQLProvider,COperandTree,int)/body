@@ -1,0 +1,8 @@
+{
+  final Set<INaviOperandTreeNode> nodes=new HashSet<INaviOperandTreeNode>();
+  createOperandExpression(provider,operand.getRootNode(),0,nodes);
+  final int expressionTreeId=createExpressionTree(provider,nodes,operand.getInstruction().getModule());
+  final BigInteger address=operand.getInstruction().getAddress().toBigInteger();
+  final int moduleId=operand.getInstruction().getModule().getConfiguration().getId();
+  createOperand(provider,moduleId,address,position,expressionTreeId);
+}

@@ -1,0 +1,3 @@
+{
+  return isLocal ? TypeSystemIcons.LOCAL_VARIABLE_ICON : TypeSystemIcons.GLOBAL_VARIABLE_ICON;
+}

@@ -1,0 +1,3 @@
+{
+  CAddressSpaceFunctions.loadAddressSpaces(m_tree,m_spaces);
+}

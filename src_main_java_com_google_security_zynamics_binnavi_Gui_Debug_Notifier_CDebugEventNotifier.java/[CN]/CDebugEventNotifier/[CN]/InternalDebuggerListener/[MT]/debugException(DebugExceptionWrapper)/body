@@ -1,0 +1,5 @@
+{
+  final String innerMessage="E00074: " + "An exception occurred during debugging";
+  final String innerDescription="An exception occurred in the BinNavi debugger. You may want to check the stack trace to " + "get more information.";
+  CNaviErrorDialog.show(activateWindow(),innerMessage,innerDescription,debugException);
+}

@@ -1,0 +1,4 @@
+{
+  String value=segmentOverride.getValue();
+  return value.substring(0,value.length() - 1) + "base";
+}

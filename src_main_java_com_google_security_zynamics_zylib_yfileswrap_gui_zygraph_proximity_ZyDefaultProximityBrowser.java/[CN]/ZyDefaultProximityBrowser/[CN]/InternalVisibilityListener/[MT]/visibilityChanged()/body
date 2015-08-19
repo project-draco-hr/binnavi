@@ -1,0 +1,8 @@
+{
+  if (m_changedProximityBrowsing) {
+    m_doLayout=false;
+  }
+  final Set<NodeType> nodes=GraphHelpers.getVisibleNodes(ViewableGraph.wrap(m_graph));
+  updateProximityBrowsing(nodes);
+  m_doLayout=true;
+}

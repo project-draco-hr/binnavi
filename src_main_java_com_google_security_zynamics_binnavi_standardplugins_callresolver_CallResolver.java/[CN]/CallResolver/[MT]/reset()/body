@@ -1,0 +1,12 @@
+{
+  if (step != 6) {
+    stopResolving();
+  }
+  resolvedAddresses.clear();
+  resolvedFunctions.clear();
+  hitCounter.clear();
+  removedBreakpoints.clear();
+  lastHits.clear();
+  indirectCallAddresses=null;
+  step=0;
+}

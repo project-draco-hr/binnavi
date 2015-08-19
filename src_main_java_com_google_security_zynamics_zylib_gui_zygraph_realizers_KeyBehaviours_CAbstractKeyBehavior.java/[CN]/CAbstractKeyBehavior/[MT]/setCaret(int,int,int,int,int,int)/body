@@ -1,0 +1,3 @@
+{
+  getCaret().setCaret(caretStartPos_X,mousePressed_X,mousePressed_Y,caretEndPos_X,mouseReleased_X,mouseReleased_Y);
+}

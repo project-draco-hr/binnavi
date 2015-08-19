@@ -1,0 +1,82 @@
+{
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  final String lowSatResult=String.valueOf(0);
+  final String highSatResult=String.valueOf((long)Math.pow(2,size) - 1);
+  final String inRange=environment.getNextVariableString();
+  final String inRangeMask=environment.getNextVariableString();
+  final String isGreaterCondition=environment.getNextVariableString();
+  final String isGreaterMask=environment.getNextVariableString();
+  final String isLessCondition=environment.getNextVariableString();
+  final String isLessMask=environment.getNextVariableString();
+  final String tmpLowResult1=environment.getNextVariableString();
+  final String tmpLowResult2=environment.getNextVariableString();
+  final String tmpLowResult3=environment.getNextVariableString();
+  final String tmpLowResult4=environment.getNextVariableString();
+  final String overflow=environment.getNextVariableString();
+  final String isNegative=environment.getNextVariableString();
+  final String isPositive=environment.getNextVariableString();
+  long baseOffset=offset;
+  final String addOperation="ADD";
+  if ((operation.equalsIgnoreCase(addOperation)) || (operation.equalsIgnoreCase("SUB"))) {
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dw,resultOperand,dw,"-" + String.valueOf(size),bt,overflow));
+    if (operation.equalsIgnoreCase(addOperation)) {
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,String.valueOf(1L),bt,isPositive));
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,String.valueOf(0L),bt,isNegative));
+    }
+ else {
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,String.valueOf(0L),bt,isPositive));
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,String.valueOf(1L),bt,isNegative));
+    }
+    instructions.add(ReilHelpers.createAnd(baseOffset++,bt,isNegative,bt,overflow,bt,isLessCondition));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,bt,isPositive,bt,overflow,bt,isGreaterCondition));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,overflow,bt,inRange));
+    instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,isLessCondition,dw,isLessMask));
+    instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,isGreaterCondition,dw,isGreaterMask));
+    instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,inRange,dw,inRangeMask));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,resultOperand,dw,inRangeMask,dw,tmpLowResult1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,lowSatResult,dw,isLessMask,dw,tmpLowResult2));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,highSatResult,dw,isGreaterMask,dw,tmpLowResult3));
+    instructions.add(ReilHelpers.createOr(baseOffset++,dw,tmpLowResult1,dw,tmpLowResult2,dw,tmpLowResult4));
+    instructions.add(ReilHelpers.createOr(baseOffset++,dw,tmpLowResult4,dw,tmpLowResult3,dw,tmpResultVar));
+  }
+ else {
+    final String needsShiftCompare=environment.getNextVariableString();
+    final String xMinusy=environment.getNextVariableString();
+    final String xMinusyXorx=environment.getNextVariableString();
+    final String xXory=environment.getNextVariableString();
+    final String xXoryAndxMinusXorx=environment.getNextVariableString();
+    final String lowOverflow=environment.getNextVariableString();
+    final String highOverflow=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createSub(baseOffset++,dw,firstOperand,dw,lowSatResult,dw,xMinusy));
+    instructions.add(ReilHelpers.createXor(baseOffset++,dw,firstOperand,dw,lowSatResult,dw,xXory));
+    instructions.add(ReilHelpers.createXor(baseOffset++,dw,xMinusy,dw,firstOperand,dw,xMinusyXorx));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,xXory,dw,xMinusyXorx,dw,xXoryAndxMinusXorx));
+    instructions.add(ReilHelpers.createXor(baseOffset++,dw,xMinusy,dw,xXoryAndxMinusXorx,dw,needsShiftCompare));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dw,needsShiftCompare,dw,String.valueOf(-31L),bt,lowOverflow));
+    baseOffset++;
+    instructions.add(ReilHelpers.createSub(baseOffset++,dw,highSatResult,dw,firstOperand,dw,xMinusy));
+    instructions.add(ReilHelpers.createXor(baseOffset++,dw,highSatResult,dw,firstOperand,dw,xXory));
+    instructions.add(ReilHelpers.createXor(baseOffset++,dw,xMinusy,dw,highSatResult,dw,xMinusyXorx));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,xXory,dw,xMinusyXorx,dw,xXoryAndxMinusXorx));
+    instructions.add(ReilHelpers.createXor(baseOffset++,dw,xMinusy,dw,xXoryAndxMinusXorx,dw,needsShiftCompare));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dw,needsShiftCompare,dw,String.valueOf(-31L),bt,highOverflow));
+    instructions.add(ReilHelpers.createOr(baseOffset++,bt,lowOverflow,bt,highOverflow,bt,overflow));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,bt,overflow,bt,inRange));
+    if (operation.equalsIgnoreCase("USAT")) {
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,lowOverflow,dw,isLessMask));
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,highOverflow,dw,isGreaterMask));
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,inRange,dw,inRangeMask));
+    }
+ else {
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,highOverflow,dw,isLessMask));
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,lowOverflow,dw,isGreaterMask));
+      instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0),bt,inRange,dw,inRangeMask));
+    }
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,resultOperand,dw,inRangeMask,dw,tmpLowResult1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,lowSatResult,dw,isLessMask,dw,tmpLowResult2));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,highSatResult,dw,isGreaterMask,dw,tmpLowResult3));
+    instructions.add(ReilHelpers.createOr(baseOffset++,dw,tmpLowResult1,dw,tmpLowResult2,dw,tmpLowResult4));
+    instructions.add(ReilHelpers.createOr(baseOffset++,dw,tmpLowResult4,dw,tmpLowResult3,dw,tmpResultVar));
+  }
+}

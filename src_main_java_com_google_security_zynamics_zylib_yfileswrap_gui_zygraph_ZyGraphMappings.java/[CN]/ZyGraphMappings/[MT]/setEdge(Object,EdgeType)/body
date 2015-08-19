@@ -1,0 +1,3 @@
+{
+  m_rawEdgeMap.put(newEdge,oldEdge);
+}

@@ -1,0 +1,5 @@
+{
+  closing=true;
+  m_model.getGraph().getRawView().removeListener(m_viewListener);
+  m_model.getGraph().removeListener(m_graphListener);
+}

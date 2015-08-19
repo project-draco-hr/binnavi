@@ -1,0 +1,13 @@
+{
+  m_debuggerBox=Preconditions.checkNotNull(debuggerBox,"IE01366: Debugger box can not be null");
+  m_debugPerspectiveModel=Preconditions.checkNotNull(debugPerspectiveModel,"IE01367: Debug perspective model can not be null");
+  m_debuggerBox.addItemListener(m_internalItemListener);
+  if (m_debuggerBox.getItemCount() != 0) {
+    final IDebugger debugger=m_debuggerBox.getSelectedItem().getObject();
+    final TargetProcessThread activeThread=debugger == null ? null : debugger.getProcessManager().getActiveThread();
+    m_debugPerspectiveModel.setActiveDebugger(debugger);
+    if (debugger != null) {
+      debugger.getProcessManager().setActiveThread(activeThread);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final CProjectNodeMenuBuilder menu=new CProjectNodeMenuBuilder(getProjectTree(),null,m_database,getSelectedProjects(row),this);
+  return menu.getPopupMenu();
+}

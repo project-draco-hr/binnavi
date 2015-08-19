@@ -1,0 +1,13 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  @SuppressWarnings("unused") final INaviView view=container.createView("view1","information");
+  final UnrelocatedAddress address=new UnrelocatedAddress(new MockAddress());
+  final IFilledList<UnrelocatedAddress> addresses=new FilledList<UnrelocatedAddress>();
+  addresses.add(address);
+  try {
+    container.getViewsWithAddresses(null,true);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

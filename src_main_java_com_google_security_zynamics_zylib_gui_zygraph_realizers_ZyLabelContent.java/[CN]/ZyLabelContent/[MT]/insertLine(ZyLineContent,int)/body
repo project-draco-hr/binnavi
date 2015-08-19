@@ -1,0 +1,17 @@
+{
+  final ArrayList<ZyLineContent> newContent=new ArrayList<ZyLineContent>();
+  if (insertIndex >= m_content.size()) {
+    m_content.add(insertLine);
+  }
+ else {
+    int index=0;
+    for (    final ZyLineContent line : getContent()) {
+      if (index++ == insertIndex) {
+        newContent.add(insertLine);
+      }
+      newContent.add(line);
+    }
+    m_content.clear();
+    m_content.addAll(newContent);
+  }
+}

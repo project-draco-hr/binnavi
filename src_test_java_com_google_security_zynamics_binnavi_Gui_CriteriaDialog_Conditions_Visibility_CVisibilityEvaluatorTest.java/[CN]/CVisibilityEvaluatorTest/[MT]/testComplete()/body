@@ -1,0 +1,5 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  assertTrue(CVisibilityEvaluator.evaluate(node,VisibilityState.VISIBLE));
+  assertFalse(CVisibilityEvaluator.evaluate(node,VisibilityState.UNVISIBLE));
+}

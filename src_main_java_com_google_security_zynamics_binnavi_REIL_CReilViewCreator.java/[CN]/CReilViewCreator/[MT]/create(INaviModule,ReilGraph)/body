@@ -1,0 +1,40 @@
+{
+  Preconditions.checkNotNull(container,"IE01809: Container argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01815: Graph argument can not be null");
+  final INaviView view=container.getContent().getViewContainer().createView("REIL View","");
+  final Map<ReilBlock,CCodeNode> nodeMap=new HashMap<ReilBlock,CCodeNode>();
+  for (  final ReilBlock block : graph) {
+    final List<INaviInstruction> instructions=new ArrayList<INaviInstruction>();
+    for (    final ReilInstruction reilInstruction : block) {
+      final List<COperandTree> operands=new ArrayList<COperandTree>();
+      if (reilInstruction.getFirstOperand().getType() == OperandType.EMPTY) {
+        operands.add(getEmptyOperand(container));
+      }
+ else {
+        operands.add(convert(container,reilInstruction.getFirstOperand()));
+      }
+      if (reilInstruction.getSecondOperand().getType() == OperandType.EMPTY) {
+        operands.add(getEmptyOperand(container));
+      }
+ else {
+        operands.add(convert(container,reilInstruction.getSecondOperand()));
+      }
+      if (reilInstruction.getThirdOperand().getType() == OperandType.EMPTY) {
+        operands.add(getEmptyOperand(container));
+      }
+ else {
+        operands.add(convert(container,reilInstruction.getThirdOperand()));
+      }
+      final INaviInstruction convertedInstruction=container.createInstruction(reilInstruction.getAddress(),reilInstruction.getMnemonic(),operands,new byte[0],"REIL");
+      instructions.add(convertedInstruction);
+    }
+    final CCodeNode node=view.getContent().createCodeNode(null,instructions);
+    node.setColor(ConfigManager.instance().getColorSettings().getBasicBlocksColor());
+    nodeMap.put(block,node);
+  }
+  for (  final ReilEdge edge : graph.getEdges()) {
+    final CNaviViewEdge reilEdge=view.getContent().createEdge(nodeMap.get(edge.getSource()),nodeMap.get(edge.getTarget()),edge.getType());
+    EdgeInitializer.adjustColor(reilEdge);
+  }
+  return view;
+}

@@ -1,0 +1,18 @@
+{
+  final List<DefaultMutableTreeNode> nodeList=new ArrayList<DefaultMutableTreeNode>();
+  final int rowCount=tree.getRowCount();
+  for (int i=0; i < rowCount; i++) {
+    final TreePath path=tree.getPathForRow(i);
+    DefaultMutableTreeNode lastPathComponent=null;
+    try {
+      lastPathComponent=(DefaultMutableTreeNode)path.getLastPathComponent();
+    }
+ catch (    final Exception e) {
+      throw new IllegalArgumentException("Cast failed! JTree must contain DefaultMuteableTreeNode or derived instances.");
+    }
+    if (lastPathComponent.isLeaf() || !tree.isExpanded(path)) {
+      nodeList.add((DefaultMutableTreeNode)lastPathComponent.getParent());
+    }
+  }
+  return nodeList;
+}

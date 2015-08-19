@@ -1,0 +1,3 @@
+{
+  return debugger.getProcessManager().getMemory().hasData(offset.longValue(),size);
+}

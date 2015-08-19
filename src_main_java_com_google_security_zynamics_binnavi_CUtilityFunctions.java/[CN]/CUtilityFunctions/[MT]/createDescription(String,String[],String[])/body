@@ -1,0 +1,24 @@
+{
+  final StringBuilder stringBuilder=new StringBuilder();
+  stringBuilder.append(description);
+  stringBuilder.append('\n');
+  if (causes.length != 0) {
+    stringBuilder.append('\n');
+    stringBuilder.append("Possible causes" + ":\n");
+    for (    final String cause : causes) {
+      stringBuilder.append("  - ");
+      stringBuilder.append(cause);
+      stringBuilder.append('\n');
+    }
+  }
+  if (impacts.length != 0) {
+    stringBuilder.append('\n');
+    stringBuilder.append("Problem impact" + ":\n");
+    for (    final String impact : impacts) {
+      stringBuilder.append("  - ");
+      stringBuilder.append(impact);
+      stringBuilder.append('\n');
+    }
+  }
+  return stringBuilder.toString();
+}

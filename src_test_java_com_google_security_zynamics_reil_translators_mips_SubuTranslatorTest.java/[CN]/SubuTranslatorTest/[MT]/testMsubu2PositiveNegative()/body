@@ -1,0 +1,23 @@
+{
+  interpreter.setRegister("$v0",BigInteger.valueOf(0xDEADBEEFL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("$v1",BigInteger.valueOf(0x7L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("$v2",BigInteger.valueOf(0xFFFFFFFDL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree0=new MockOperandTree();
+  operandTree0.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"b4");
+  operandTree0.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"$v0"));
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"b4");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"$v1"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"b4");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"$v2"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree0,operandTree1,operandTree2);
+  final IInstruction instruction=new MockInstruction("subu",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(4,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0xAL),interpreter.getVariableValue("$v0"));
+  assertEquals(BigInteger.valueOf(0x7L),interpreter.getVariableValue("$v1"));
+  assertEquals(BigInteger.valueOf(0xFFFFFFFDL),interpreter.getVariableValue("$v2"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

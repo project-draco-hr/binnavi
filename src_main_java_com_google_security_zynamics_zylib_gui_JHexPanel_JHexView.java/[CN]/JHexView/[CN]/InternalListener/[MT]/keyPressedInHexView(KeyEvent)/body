@@ -1,0 +1,19 @@
+{
+  final byte[] data=m_dataProvider.getData(getCurrentOffset(),1);
+  final long pos=m_baseAddress + getSelectionStart();
+  if (getSelectionStart() >= (m_dataProvider.getDataLength() * 2)) {
+    return;
+  }
+  final int value=Character.digit(key.getKeyChar(),16);
+  if (value == -1) {
+    return;
+  }
+  if ((pos % 2) == 0) {
+    data[0]=(byte)((data[0] & 0x0F) | (value << 4));
+  }
+ else {
+    data[0]=(byte)((data[0] & 0xF0) | value);
+  }
+  m_dataProvider.setData(getCurrentOffset(),data);
+  setSelectionStart(getSelectionStart() + 1);
+}

@@ -1,0 +1,13 @@
+{
+  final MockTagListener listener=new MockTagListener();
+  tag.addListener(listener);
+  tag.setName("N1");
+  assertEquals("N1",tag.getName());
+  assertEquals("N1",tagNode.getObject().getName());
+  assertEquals("changedName;",listener.events);
+  tagNode.getObject().setName("N2");
+  assertEquals("N2",tag.getName());
+  assertEquals("N2",tagNode.getObject().getName());
+  assertEquals("changedName;changedName;",listener.events);
+  tag.removeListener(listener);
+}

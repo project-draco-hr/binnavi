@@ -1,0 +1,8 @@
+{
+  final List<INodeUpdater> updaters=new ArrayList<INodeUpdater>();
+  updaters.add(new CCodeNodeUpdaterCreator());
+  updaters.add(new CFunctionNodeUpdaterCreator());
+  updaters.add(new CGroupNodeUpdaterCreator());
+  updaters.add(new CTextNodeUpdaterCreator());
+  return updaters;
+}

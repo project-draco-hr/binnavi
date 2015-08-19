@@ -1,0 +1,6 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE00980: Graph argument can not be null");
+  m_areEdgesVisible=CEdgeDrawingFunctions.calcDrawSloppyEdges(m_graph);
+  m_graph.getSettings().getEdgeSettings().addListener(m_settingsListener);
+  m_graph.getSettings().getProximitySettings().addListener(m_proximityListener);
+}

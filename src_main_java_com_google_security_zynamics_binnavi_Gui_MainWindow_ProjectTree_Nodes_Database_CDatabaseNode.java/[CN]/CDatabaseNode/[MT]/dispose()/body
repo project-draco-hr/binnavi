@@ -1,0 +1,6 @@
+{
+  super.dispose();
+  ((CDatabaseNodeComponent)getComponent()).getPanel().removeListener(m_panelListener);
+  m_database.removeListener(m_listener);
+  deleteChildren();
+}

@@ -1,0 +1,3 @@
+{
+  return comboboxElements.get(index);
+}

@@ -1,0 +1,12 @@
+{
+  final StringBuilder stringBuilder=new StringBuilder();
+  stringBuilder.append("{\n");
+  for (  final InstructionGraphNode node : getNodes()) {
+    for (    final InstructionGraphEdge edge : node.getOutgoingEdges()) {
+      stringBuilder.append(node + " -> " + edge.getTarget());
+      stringBuilder.append('\n');
+    }
+  }
+  stringBuilder.append("}\n");
+  return stringBuilder.toString();
+}

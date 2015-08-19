@@ -1,0 +1,7 @@
+{
+  m_selectionHistory.removeHistoryListener(m_selectionHistoryListener);
+  m_graph.removeListener(m_graphSelectionListener);
+  m_tree.removeMouseListener(m_treeMouseListener);
+  m_tree.removeTreeSelectionListener(m_treeSelectionListener);
+  m_tree.setSelectionModel(new DefaultTreeSelectionModel());
+}

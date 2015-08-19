@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(graph,"IE02114: Graph argument can not be null");
+  final boolean drawSloppyEdges=CEdgeDrawingFunctions.calcDrawSloppyEdges(graph);
+  graph.iterateEdges(new IEdgeCallback<NaviEdge>(){
+    @Override public IterationMode nextEdge(    final NaviEdge edge){
+      edge.initializeDrawingMode(graph,drawSloppyEdges);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

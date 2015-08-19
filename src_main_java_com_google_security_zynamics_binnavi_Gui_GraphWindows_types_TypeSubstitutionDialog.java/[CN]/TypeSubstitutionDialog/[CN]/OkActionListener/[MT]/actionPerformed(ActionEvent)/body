@@ -1,0 +1,13 @@
+{
+  try {
+    final TypeSelectionPath path=types.determineTypePath();
+    if (validateUserInput(path)) {
+      createOrUpdateSubstitution(path);
+      dispose();
+    }
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    dispose();
+  }
+}

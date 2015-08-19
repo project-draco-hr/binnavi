@@ -1,0 +1,3 @@
+{
+  CMouseCursorHelper.setMoveCursor(state.getGraph());
+}

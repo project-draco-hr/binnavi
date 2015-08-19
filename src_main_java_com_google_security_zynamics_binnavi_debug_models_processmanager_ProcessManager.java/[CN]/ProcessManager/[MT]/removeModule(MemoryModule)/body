@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(module,"IE00758: Module argument can not be null");
+  if (!addressSpaceModules.remove(module)) {
+    throw new IllegalStateException("IE00759: Module was not part of this process");
+  }
+  moduleAddresses.remove(module.getBaseAddress().getAddress());
+  moduleByAddress.remove(module.getBaseAddress().getAddress());
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.removedModule(module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

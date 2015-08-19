@@ -1,0 +1,6 @@
+{
+  if (getGraph() == null) {
+    return;
+  }
+  getGraph().updateViews();
+}

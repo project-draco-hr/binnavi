@@ -1,0 +1,3 @@
+{
+  PostgreSQLInstructionFunctions.deleteLocalInstructionComment(this,codeNode,instruction,commentId,userId);
+}

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(nodes,"Nodes argument can't be null");
+  m_graph.firePreEvent();
+  for (  final NodeType node : nodes) {
+    Preconditions.checkNotNull(node,"Error: The list of nodes to select contained an invalid node.");
+    ((IViewNode<?>)node.getRawNode()).setSelected(selected);
+  }
+  m_graph.firePostEvent();
+}

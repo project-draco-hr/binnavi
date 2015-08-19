@@ -1,0 +1,23 @@
+{
+switch (operandTreeNode.getDisplayStyle()) {
+case CHAR:
+    return bigIntegerToAsciiString(treeNodeValue);
+case OFFSET:
+  break;
+case SIGNED_DECIMAL:
+return treeNodeValue.toString(10) + "d";
+case SIGNED_HEXADECIMAL:
+return treeNodeValue.toString(16) + "h";
+case BINARY:
+return treeNodeValue.toString(2) + "b";
+case UNSIGNED_DECIMAL:
+return getUnsignedBigIntegerString(treeNodeValue,operandTreeNode,10) + "d";
+case UNSIGNED_HEXADECIMAL:
+return getUnsignedBigIntegerString(treeNodeValue,operandTreeNode,16) + "h";
+case OCTAL:
+return getUnsignedBigIntegerString(treeNodeValue,operandTreeNode,8) + "o";
+default :
+return operandTreeNode.getValue();
+}
+return operandTreeNode.getValue();
+}

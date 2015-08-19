@@ -1,0 +1,6 @@
+{
+  assertEquals("",FileUtils.ensureTrailingSlash(null));
+  assertEquals("",FileUtils.ensureTrailingSlash(""));
+  assertEquals(String.format("%sPATH%1$s",File.separator),FileUtils.ensureTrailingSlash(String.format("%sPATH",File.separator)));
+  assertEquals(String.format("%sPATH%1$s",File.separator),FileUtils.ensureTrailingSlash(String.format("%sPATH%1$s%1$s",File.separator)));
+}

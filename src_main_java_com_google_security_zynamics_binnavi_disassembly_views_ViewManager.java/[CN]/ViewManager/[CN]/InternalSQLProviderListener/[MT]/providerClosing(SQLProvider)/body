@@ -1,0 +1,5 @@
+{
+  if (ViewManager.this.provider.equals(provider)) {
+    ViewManager.this.close();
+  }
+}

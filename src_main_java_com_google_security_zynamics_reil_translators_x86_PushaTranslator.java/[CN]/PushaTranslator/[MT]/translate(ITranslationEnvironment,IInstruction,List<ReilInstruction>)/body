@@ -1,0 +1,8 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"pusha");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a pusha instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  Helpers.generatePushAllRegisters(environment,baseOffset,OperandSize.DWORD,instructions);
+}

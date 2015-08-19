@@ -1,0 +1,18 @@
+{
+  m_thread=new Thread(){
+    @Override public void run(){
+      try {
+        engine.eval(buffered);
+      }
+ catch (      final ScriptException e) {
+        getOutputPane().setText(e.getLocalizedMessage());
+        quitProperly=false;
+      }
+      for (      final IEndlessProgressListener listener : listeners) {
+        listener.finished();
+      }
+    }
+  }
+;
+  m_thread.start();
+}

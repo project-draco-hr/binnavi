@@ -1,0 +1,10 @@
+{
+  int i=0;
+  for (  final TypeMember m : compoundType) {
+    if (m == member) {
+      return i;
+    }
+    ++i;
+  }
+  return -1;
+}

@@ -1,0 +1,4 @@
+{
+  add(new CDebuggerNode(getProjectTree(),CDebuggerContainerNode.this,m_database,debugger));
+  getTreeModel().nodeStructureChanged(CDebuggerContainerNode.this);
+}

@@ -1,0 +1,12 @@
+{
+  setRootVisible(false);
+  setDragEnabled(true);
+  setDropMode(DropMode.INSERT);
+  setToggleClickCount(1);
+  final DefaultTreeSelectionModel selectionModel=new DefaultTreeSelectionModel();
+  selectionModel.setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+  setSelectionModel(selectionModel);
+  final IconNodeRenderer renderer=new IconNodeRenderer();
+  renderer.setFont(GuiHelper.MONOSPACED_FONT);
+  setCellRenderer(renderer);
+}

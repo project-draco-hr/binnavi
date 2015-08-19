@@ -1,0 +1,12 @@
+{
+  final TypeManager manager=module.getTypeManager();
+  final BaseType baseType=manager.createAtomicType(TypeName,32,true);
+  final BaseType containingType=manager.createAtomicType(CompoundTypeName,0,false);
+  final TypeMember member=manager.appendMember(containingType,baseType,MemberName);
+  final List<RawTypeMember> foundMembers=findRawMembers(MemberName,getProvider().loadTypeMembers(module));
+  Assert.assertTrue(foundMembers.size() == 1);
+  matchMember(member,foundMembers.get(0));
+  manager.deleteMember(member);
+  manager.deleteType(containingType);
+  manager.deleteType(baseType);
+}

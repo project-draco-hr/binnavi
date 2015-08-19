@@ -1,0 +1,3 @@
+{
+  return "In this field you can edit the port of the debugger. This is the port of the host where BinNavi expects to find a listening remote debugger.";
+}

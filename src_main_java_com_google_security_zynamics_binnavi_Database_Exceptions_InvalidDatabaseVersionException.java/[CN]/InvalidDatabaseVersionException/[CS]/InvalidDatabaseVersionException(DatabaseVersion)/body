@@ -1,0 +1,3 @@
+{
+  m_version=Preconditions.checkNotNull(version,"IE01093: Version argument can not be null");
+}

@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(reply,"Error: reply argument can not be null");
+  Preconditions.checkNotNull(reply.getAddress(),"Error: reply.getAddress() argument can not be null");
+  Preconditions.checkNotNull(reply.getAddress().getAddress(),"Error: reply.getAddress().getAddress() argument can not be null");
+  Preconditions.checkNotNull(reply.getRegisterValues(),"Error: reply.getRegisterValues() argument can not be null");
+  for (  final IDebuggerListener listener : m_listeners) {
+    try {
+      listener.singleStep(new DebuggerSingleStepReply(reply));
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

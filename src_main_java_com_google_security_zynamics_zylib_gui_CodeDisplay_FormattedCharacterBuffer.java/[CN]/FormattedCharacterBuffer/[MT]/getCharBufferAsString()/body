@@ -1,0 +1,8 @@
+{
+  StringBuilder buffer=new StringBuilder(numberOfLinesInBuffer * numberOfColumnsInBuffer);
+  for (int lineIndex=0; lineIndex < numberOfLinesInBuffer; lineIndex++) {
+    buffer.append(charBuffer,numberOfColumnsInBuffer * lineIndex,numberOfColumnsInBuffer);
+    buffer.append("\n");
+  }
+  return buffer.toString();
+}

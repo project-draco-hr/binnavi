@@ -1,0 +1,16 @@
+{
+  checkArguments(provider,module,viewTagManager);
+  final String query=" SELECT * FROM load_module_flow_graphs(?, ?) ";
+  final CConnection connection=provider.getConnection();
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    statement.setObject(2,viewType == ViewType.Native ? "native" : "non-native",Types.OTHER);
+    final ResultSet resultSet=statement.executeQuery();
+    final Map<Integer,Set<CTag>> tags=loadTags(connection,module,viewTagManager);
+    return new ImmutableList.Builder<IFlowgraphView>().addAll(processQueryResults(resultSet,module,tags,nodeTagManager,provider,new ArrayList<CView>(),viewType,GraphType.FLOWGRAPH)).build();
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

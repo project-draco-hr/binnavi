@@ -1,0 +1,14 @@
+{
+  assertFalse(m_saveButton.isEnabled());
+  m_imageBaseAddr.setText("1");
+  Thread.sleep(100);
+  assertTrue(m_saveButton.isEnabled());
+  m_module.getConfiguration().setImageBase(new CAddress(1));
+  Thread.sleep(100);
+  assertFalse(m_saveButton.isEnabled());
+  m_module.getConfiguration().setImageBase(new CAddress(2));
+  Thread.sleep(100);
+  assertEquals("00000002",m_imageBaseAddr.getText());
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

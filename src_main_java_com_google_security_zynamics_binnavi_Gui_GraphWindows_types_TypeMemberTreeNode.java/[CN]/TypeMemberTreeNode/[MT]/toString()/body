@@ -1,0 +1,12 @@
+{
+  if (getTypeMember().isOffsetType()) {
+    return String.format("+%d %s %s",getTypeMember().getByteOffset().get(),getTypeMember().getBaseType().getName(),getTypeMember().getName());
+  }
+ else   if (getTypeMember().isIndexType()) {
+    final String argument_prefix=getTypeMember().getArgumentIndex().get() == 0 ? "ret" : "arg_" + String.valueOf(getTypeMember().getArgumentIndex().get() - 1);
+    return String.format("[%s] %s %s",argument_prefix,getTypeMember().getBaseType().getName(),getTypeMember().getName());
+  }
+ else {
+    throw new IllegalStateException("Error: can not render type member tree node");
+  }
+}

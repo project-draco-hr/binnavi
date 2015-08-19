@@ -1,0 +1,32 @@
+{
+  final int registerNumber=getRegisterNumber(event.getX(),event.getY());
+  if (event.getButton() == MouseEvent.BUTTON1) {
+    if (event.getClickCount() == 1) {
+      if ((m_editedRegister != -1) && (registerNumber != m_editedRegister)) {
+        leaveEditMode(false);
+      }
+    }
+ else     if (event.getClickCount() == 2) {
+      if ((registerNumber != -1) && (m_editedRegister == -1)) {
+        final RegisterInformationInternal register=m_registerModel.getRegisterInformation(registerNumber);
+        if (register.getRegisterSize() == 0) {
+          m_registerModel.setValue(register.getRegisterName(),register.getValue().xor(BigInteger.ONE));
+        }
+ else {
+          enterEditMode(m_highlightedRegister);
+        }
+      }
+    }
+  }
+ else   if (event.getButton() == MouseEvent.BUTTON3) {
+    if (event.getClickCount() == 1) {
+      if ((m_editedRegister != -1) && (registerNumber != m_editedRegister)) {
+        leaveEditMode(false);
+      }
+      final JPopupMenu menu=m_menuProvider.getRegisterMenu(registerNumber);
+      if (menu != null) {
+        menu.show(JRegisterView.this,event.getX(),event.getY());
+      }
+    }
+  }
+}

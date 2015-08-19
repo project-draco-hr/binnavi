@@ -1,0 +1,6 @@
+{
+  if (isShiftPressed() && !isCtrlPressed() && !isAltPressed()) {
+    final String clipboardText=getSelectedText();
+    ClipboardHelpers.copyToClipboard(clipboardText);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super(new BorderLayout());
+  m_inputField=new CTextInputField(criterium,null);
+  initPanel();
+}

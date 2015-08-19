@@ -1,0 +1,12 @@
+{
+  if (m_codeNode.equals(codeNode)) {
+    for (    final INaviCodeNodeListener listener : m_listeners) {
+      try {
+        listener.appendedLocalCodeNodeComment(m_codeNode,comment);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  layouter.setFromScratchLayeringStrategy(strategy);
+  layouter.setOrthogonallyRouted(routeOrthogonally);
+  edgeLayout.setRoutingStyle(new RoutingStyle(routingStyle));
+}

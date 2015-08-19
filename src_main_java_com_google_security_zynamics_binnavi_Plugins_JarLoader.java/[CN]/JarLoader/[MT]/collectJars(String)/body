@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(rootPath,"IE00827: BinNavi root path can't be null");
+  final Set<File> jarFiles=Sets.newHashSet();
+  final File jarDirectory=new File(rootPath + File.separator + JAR_DIRECTORY);
+  DirUtils.traverse(jarDirectory,new IDirectoryTraversalCallback(){
+    @Override public void entering(    final File directory){
+    }
+    @Override public void leaving(    final File directory){
+    }
+    @Override public void nextFile(    final File file){
+      if (!FileUtils.getFileExtension(file).equals("jar")) {
+        return;
+      }
+      jarFiles.add(file);
+    }
+  }
+);
+  return jarFiles;
+}

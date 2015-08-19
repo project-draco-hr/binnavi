@@ -1,0 +1,7 @@
+{
+  indirectCallAddresses=target.getIndirectCalls();
+  if (!indirectCallAddresses.isEmpty()) {
+    step++;
+  }
+  foundIndirectCallAddresses(indirectCallAddresses);
+}

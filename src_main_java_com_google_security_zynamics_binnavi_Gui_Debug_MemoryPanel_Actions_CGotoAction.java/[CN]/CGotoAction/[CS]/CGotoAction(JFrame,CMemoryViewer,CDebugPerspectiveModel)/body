@@ -1,0 +1,8 @@
+{
+  super("Goto Address");
+  Preconditions.checkNotNull(parent,"IE01418: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01419: Process manager argument can not be null");
+  m_parent=parent;
+  m_view=view;
+  m_debugger=debugger;
+}

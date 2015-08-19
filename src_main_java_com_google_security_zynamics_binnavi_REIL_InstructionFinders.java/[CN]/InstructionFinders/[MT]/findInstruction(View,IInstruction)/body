@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(view,"IE02056: View argument can not be null");
+  Preconditions.checkNotNull(searchInstruction,"IE02060: Instruction argument can not be null");
+  for (  final ViewNode node : view.getGraph().getNodes()) {
+    if (node instanceof CodeNode) {
+      final CodeNode codeNode=(CodeNode)node;
+      for (      final Instruction instruction : codeNode.getInstructions()) {
+        if (instruction.getNative() == searchInstruction) {
+          return instruction;
+        }
+      }
+    }
+  }
+  throw new IllegalStateException("IE01275: Could not determine what instruction could not be translated");
+}

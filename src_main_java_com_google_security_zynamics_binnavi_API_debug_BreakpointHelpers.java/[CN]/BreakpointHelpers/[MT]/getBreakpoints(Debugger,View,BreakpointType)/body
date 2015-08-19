@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(debugger,"Error: Debugger argument can not be null");
+  Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  final List<Address> breakpoints=new ArrayList<Address>();
+  for (  final ViewNode node : view.getGraph().getNodes()) {
+    if (node instanceof CodeNode) {
+      breakpoints.addAll(getBreakpoints(debugger,(CodeNode)node,type));
+    }
+ else     if (node instanceof FunctionNode) {
+      final FunctionNode fnode=(FunctionNode)node;
+      final BreakpointAddress address=new BreakpointAddress(fnode.getFunction().getNative().getModule(),new UnrelocatedAddress(fnode.getFunction().getNative().getAddress()));
+      if (manager.getNative().hasBreakpoint(type,address)) {
+        breakpoints.add(new Address(address.getAddress().getAddress().toBigInteger()));
+      }
+    }
+  }
+  return breakpoints;
+}

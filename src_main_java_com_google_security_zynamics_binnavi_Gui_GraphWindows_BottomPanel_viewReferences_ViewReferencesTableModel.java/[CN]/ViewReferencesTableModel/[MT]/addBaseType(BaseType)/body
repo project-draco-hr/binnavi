@@ -1,0 +1,8 @@
+{
+  if (!baseTypeToTreeNode.containsKey(baseType)) {
+    final BaseTypeTreeNode baseTypeNode=new BaseTypeTreeNode(baseType);
+    baseTypeToTreeNode.put(baseType,baseTypeNode);
+    insertNodeInto(baseTypeNode,(DefaultMutableTreeNode)getRoot(),((DefaultMutableTreeNode)getRoot()).getChildCount());
+    reload((DefaultMutableTreeNode)getRoot());
+  }
+}

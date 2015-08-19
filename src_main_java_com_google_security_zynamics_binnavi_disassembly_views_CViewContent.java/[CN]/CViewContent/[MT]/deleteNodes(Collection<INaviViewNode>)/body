@@ -1,0 +1,41 @@
+{
+  Preconditions.checkNotNull(nodes,"IE00305: Nodes argument can not be null");
+  final Collection<INaviViewNode> nodesCopy=new ArrayList<INaviViewNode>(nodes);
+  final List<INaviViewNode> gnodes=graph.getNodes();
+  for (  final INaviViewNode naviViewNode : nodesCopy) {
+    Preconditions.checkNotNull(naviViewNode,"IE00307: Node list contains a null-node");
+    Preconditions.checkArgument(gnodes.contains(naviViewNode),"IE00308: Node list contains at least one node that is not part of this view");
+  }
+  final List<INaviGroupNode> parentsToDelete=new ArrayList<INaviGroupNode>();
+  for (  final INaviViewNode node : nodesCopy) {
+    if (node instanceof INaviGroupNode) {
+      if (((INaviGroupNode)node).getNumberOfElements() != 0) {
+        deleteGroupNode((INaviGroupNode)node);
+      }
+      continue;
+    }
+    removeEdges(node);
+    graph.removeNode(node);
+    node.removeListener(m_internalNodeListener);
+    final INaviGroupNode parent=node.getParentGroup();
+    if (parent != null) {
+      parent.removeElement(node);
+      if (parent.getParentGroup() != null) {
+        parent.getParentGroup().addElement(node);
+      }
+      if (parent.getNumberOfElements() == 0) {
+        parentsToDelete.add(parent);
+      }
+    }
+  }
+  final Collection<INaviViewNode> filteredNodes=filterGroupNodes(nodesCopy);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.deletedNodes(view,filteredNodes);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateGraphType();
+}

@@ -1,0 +1,5 @@
+{
+  final RawTypeInstance instance=new RawTypeInstance(module.getConfiguration().getId(),typeInstanceId,"TEST_INSTANCE",null,module.getTypeManager().getTypes().get(0).getId(),0,11143);
+  typeInstances.put(typeInstanceId,instance);
+  return instance;
+}

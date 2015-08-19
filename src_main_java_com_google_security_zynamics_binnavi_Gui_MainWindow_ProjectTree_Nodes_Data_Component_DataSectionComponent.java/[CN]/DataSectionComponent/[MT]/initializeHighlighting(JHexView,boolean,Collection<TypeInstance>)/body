@@ -1,0 +1,6 @@
+{
+  hexView.uncolorizeAll(DEFAULT_INSTANCE_HIGHLIGHT_LEVEL);
+  for (  final TypeInstance instance : instances) {
+    hexView.colorize(DEFAULT_INSTANCE_HIGHLIGHT_LEVEL,useVirtualAddresses ? instance.getAddress().getVirtualAddress() : instance.getAddress().getOffset(),instance.getBaseType().getByteSize(),Color.BLACK,Color.YELLOW);
+  }
+}

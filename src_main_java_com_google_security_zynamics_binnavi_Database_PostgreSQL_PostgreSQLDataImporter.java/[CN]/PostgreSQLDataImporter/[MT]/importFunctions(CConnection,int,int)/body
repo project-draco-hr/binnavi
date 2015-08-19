@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(connection,"IE00435: connection argument can not be null");
+  Preconditions.checkArgument(rawModuleId >= 0,"Error: raw module id can only be a positive number.");
+  Preconditions.checkArgument(moduleId >= 0,"Error: module if can only be a positive number");
+  final String query="INSERT INTO " + CTableNames.FUNCTIONS_TABLE + " (module_id, address, name, original_name, type, description, "+ "parent_module_name, parent_module_id, parent_module_function, comment_id) "+ " SELECT "+ moduleId+ ", address, demangled_name, name, (ENUM_RANGE(NULL::function_type))[type + 1], "+ "'', module_name, null, null, null "+ " FROM ex_"+ rawModuleId+ "_functions";
+  connection.executeUpdate(query,true);
+}

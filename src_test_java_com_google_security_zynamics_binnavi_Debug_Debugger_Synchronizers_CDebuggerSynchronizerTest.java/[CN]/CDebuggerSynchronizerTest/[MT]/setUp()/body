@@ -1,0 +1,10 @@
+{
+  mockDebugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  mockDebugger.setAddressTranslator(CommonTestObjects.MODULE,new CAddress(0),new CAddress(0x1000));
+  breakpointManager=mockDebugger.getBreakpointManager();
+  debuggerSynchronizer=new DebuggerSynchronizer(mockDebugger);
+  debuggerSynchronizer.addListener(listener);
+  final Field synchronizerField=AbstractDebugger.class.getDeclaredField("synchronizer");
+  synchronizerField.setAccessible(true);
+  synchronizerField.set(mockDebugger,debuggerSynchronizer);
+}

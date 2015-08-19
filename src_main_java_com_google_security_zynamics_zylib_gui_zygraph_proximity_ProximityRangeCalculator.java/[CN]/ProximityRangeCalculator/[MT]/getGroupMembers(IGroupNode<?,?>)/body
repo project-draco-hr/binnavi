@@ -1,0 +1,7 @@
+{
+  final Set<ViewNodeAdapter> groupMembers=new HashSet<ViewNodeAdapter>();
+  for (  final IViewNode<?> member : node.getElements()) {
+    groupMembers.add(new ViewNodeAdapter(member));
+  }
+  return groupMembers;
+}

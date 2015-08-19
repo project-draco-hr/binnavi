@@ -1,0 +1,3 @@
+AbstractZyGraph<?,?> graph
+double dx
+double dy

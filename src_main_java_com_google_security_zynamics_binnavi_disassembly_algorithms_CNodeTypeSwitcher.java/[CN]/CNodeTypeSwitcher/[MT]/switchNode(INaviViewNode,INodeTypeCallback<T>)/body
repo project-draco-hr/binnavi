@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(node,"IE00121: Node argument can not be null");
+  Preconditions.checkNotNull(callback,"IE00970: Callback argument can not be null");
+  if (node instanceof INaviCodeNode) {
+    return callback.handle((INaviCodeNode)node);
+  }
+ else   if (node instanceof INaviFunctionNode) {
+    return callback.handle((INaviFunctionNode)node);
+  }
+ else   if (node instanceof INaviGroupNode) {
+    return callback.handle((INaviGroupNode)node);
+  }
+ else   if (node instanceof INaviTextNode) {
+    return callback.handle((INaviTextNode)node);
+  }
+ else {
+    throw new IllegalStateException("IE00021: Unknown node type " + node.getClass());
+  }
+}

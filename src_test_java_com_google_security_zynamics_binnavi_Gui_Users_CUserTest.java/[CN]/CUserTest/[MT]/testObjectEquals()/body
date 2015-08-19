@@ -1,0 +1,5 @@
+{
+  assertTrue(TESTUSER_1.equals(TESTUSER_1));
+  assertFalse(TESTUSER_1.equals(TESTUSER_2));
+  assertFalse(TESTUSER_1.equals(null));
+}

@@ -1,0 +1,4 @@
+{
+  m_address=Preconditions.checkNotNull(address,"IE00333: Bookmark addresses can't be null");
+  m_description=Preconditions.checkNotNull(description,"IE00334: Bookmark descriptions can't be null");
+}

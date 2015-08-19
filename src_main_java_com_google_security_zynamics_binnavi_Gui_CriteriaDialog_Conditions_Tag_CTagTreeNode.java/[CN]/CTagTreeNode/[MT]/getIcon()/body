@@ -1,0 +1,6 @@
+{
+  if (getLevel() == 1) {
+    return ICON_GREEN_ROOTTAG;
+  }
+  return ICON_GREEN_TAG;
+}

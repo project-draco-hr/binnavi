@@ -1,0 +1,31 @@
+{
+  if (type == ExpressionType.SIZE_PREFIX) {
+    if ("byte".equals(value)) {
+      return "b1";
+    }
+ else     if ("word".equals(value)) {
+      return "b2";
+    }
+ else     if ("dword".equals(value)) {
+      return "b4";
+    }
+ else     if ("fword".equals(value)) {
+      return "b6";
+    }
+ else     if ("qword".equals(value)) {
+      return "b8";
+    }
+ else     if ("oword".equals(value)) {
+      return "b16";
+    }
+ else     if ("b_var".equals(value)) {
+      return "b_var";
+    }
+ else {
+      throw new IllegalStateException("IE01104: Unknown size " + value);
+    }
+  }
+ else {
+    return value;
+  }
+}

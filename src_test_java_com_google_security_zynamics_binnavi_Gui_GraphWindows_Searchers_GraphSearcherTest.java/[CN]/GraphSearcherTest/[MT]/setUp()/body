@@ -1,0 +1,15 @@
+{
+  final Graph2D g=new Graph2D();
+  m_ynode=g.createNode();
+  final MockSqlProvider sql=new MockSqlProvider();
+  final CModule module=MockCreator.createModule(sql);
+  module.load();
+  final CFunction function=MockCreator.createFunction(module,sql);
+  final CView m_view=MockCreator.createView(sql,module);
+  final CInstruction instruction1=MockCreator.createInstruction(module,sql);
+  final CInstruction instruction2=MockCreator.createInstruction(module,sql);
+  final CInstruction instruction3=MockCreator.createInstruction(module,sql);
+  m_view.load();
+  m_codeNode1=m_view.getContent().createCodeNode(function,Lists.newArrayList(instruction1,instruction2,instruction3));
+  m_content=new ZyLabelContent(null);
+}

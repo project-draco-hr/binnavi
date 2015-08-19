@@ -1,0 +1,4 @@
+{
+  m_operand=Preconditions.checkNotNull(operand,"Error: Operand argument can't be null");
+  m_root=clone(operand.getRootNode(),null);
+}

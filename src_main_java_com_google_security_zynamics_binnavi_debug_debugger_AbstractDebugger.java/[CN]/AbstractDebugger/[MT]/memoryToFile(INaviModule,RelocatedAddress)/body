@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(module,"IE00792: Module argument can not be null");
+  Preconditions.checkNotNull(address,"IE00793: Address argument can not be null");
+  final IAddressConverter converter=addressConverters.get(module);
+  Preconditions.checkNotNull(converter,"IE00162: Module addresses can not be converted because the debugger has no relocation information for the module");
+  return converter.memoryToFile(address);
+}

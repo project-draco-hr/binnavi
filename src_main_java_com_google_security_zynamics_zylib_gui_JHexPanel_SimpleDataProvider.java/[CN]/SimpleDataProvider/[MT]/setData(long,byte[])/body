@@ -1,0 +1,3 @@
+{
+  System.arraycopy(data,0,m_data,(int)offset,data.length);
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(environment,ErrorStrings.ENVIRONMENT_ARGUMENT_ERROR);
+  Preconditions.checkNotNull(instruction,ErrorStrings.INSTRUCTION_ARGUMENT_ERROR);
+  Preconditions.checkNotNull(instructions,ErrorStrings.INSTRUCTIONS_ARGUMENT_ERROR);
+}

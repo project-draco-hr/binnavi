@@ -1,0 +1,3 @@
+{
+  view.removeListener(m_viewListener);
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(provider,"IE01239: Provider argument can not be null");
+  if (!caches.containsKey(provider)) {
+    caches.put(provider,new InstructionCache(provider));
+  }
+  return caches.get(provider);
+}

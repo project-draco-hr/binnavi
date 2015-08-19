@@ -1,0 +1,5 @@
+{
+  final ZyLineContent lineContent=m_realizer.getNodeContent().getLineContent(line);
+  lineContent.setTextColor(index,size,color);
+  updateViews();
+}

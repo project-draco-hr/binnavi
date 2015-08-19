@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(type,"IE01011: Type argument can not be null");
+  NaviLogger.info("Clearing all breakpoints of type '%s' passively",type);
+switch (type) {
+case REGULAR:
+    throw new IllegalStateException("IE01018: Regular breakpoints can not be cleared passively");
+case ECHO:
+  echoBreakpointStorage.clear();
+return;
+case STEP:
+stepBreakpointStorage.clear();
+return;
+default :
+throw new IllegalStateException(String.format("IE01017: Invalid breakpoint type '%s'",type));
+}
+}

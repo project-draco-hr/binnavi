@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(debugger,"IE01487: Debugger argument can not be null");
+  Preconditions.checkNotNull(wronglyPlacedModules,"IE01488: Wrongly placed modules argument can not be null");
+  m_debugger=debugger;
+  m_wronglyPlacedModules=new FilledList<Pair<INaviModule,MemoryModule>>(wronglyPlacedModules);
+}

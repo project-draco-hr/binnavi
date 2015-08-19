@@ -1,0 +1,3 @@
+{
+  CGraphSelecter.selectNodesWithParentFunction(m_graph,m_function);
+}

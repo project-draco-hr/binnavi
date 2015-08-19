@@ -1,0 +1,6 @@
+{
+  final int selectedRow=m_table.getSelectedRow();
+  if (selectedRow != -1) {
+    m_selectionResult=m_modules.get(selectedRow);
+  }
+}

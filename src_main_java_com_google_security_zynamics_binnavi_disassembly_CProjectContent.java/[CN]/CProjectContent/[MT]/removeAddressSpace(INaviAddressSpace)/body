@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(addressSpace,"IE00251: The value null is not a valid address space");
+  Preconditions.checkState(m_project.isLoaded(),"IE00252: You can only delete address spaces from loaded projects");
+  Preconditions.checkArgument(m_addressSpaces.contains(addressSpace),"IE00253: Address space does not belong to the project");
+  Preconditions.checkState(!addressSpace.isLoaded(),"IE00868: You can only delete unloaded address spaces");
+  m_provider.deleteAddressSpace(addressSpace);
+  m_addressSpaces.remove(addressSpace);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.removedAddressSpace(m_project,addressSpace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_project.getConfiguration().updateModificationDate();
+  return true;
+}

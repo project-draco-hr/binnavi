@@ -1,0 +1,15 @@
+{
+  if (node.getCriterium() instanceof IAbstractRootCriterium) {
+    return qualifiesRootNode(node,naviNode);
+  }
+ else   if (node.getCriterium() instanceof IAbstractAndCriterium) {
+    return qualifiesAndNode(node,naviNode);
+  }
+ else   if (node.getCriterium() instanceof IAbstractOrCriterium) {
+    return qualifiesOrNode(node,naviNode);
+  }
+ else   if (node.getCriterium() instanceof IAbstractNotCriterium) {
+    return qualifiesNotNode(node,naviNode);
+  }
+  return node.getCriterium().matches(naviNode);
+}

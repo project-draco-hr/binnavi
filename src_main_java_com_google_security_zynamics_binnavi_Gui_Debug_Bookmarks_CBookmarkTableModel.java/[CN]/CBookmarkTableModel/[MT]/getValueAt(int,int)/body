@@ -1,0 +1,12 @@
+{
+switch (col) {
+case DEBUGGER_COLUMN:
+    return getDebugger(row);
+case ADDRESS_COLUMN:
+  return getBookmarkAddress(row);
+case DESCRIPTION_COLUMN:
+return getBookmarkDescription(row);
+default :
+throw new IllegalArgumentException("IE01326: Unknown column");
+}
+}

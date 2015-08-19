@@ -1,0 +1,2 @@
+IFilterFactory<T> filterFactory
+IHelpInformation filterHelp

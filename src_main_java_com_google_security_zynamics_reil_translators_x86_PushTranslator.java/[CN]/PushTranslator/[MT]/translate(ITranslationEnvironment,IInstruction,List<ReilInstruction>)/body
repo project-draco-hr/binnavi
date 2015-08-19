@@ -1,0 +1,23 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"push");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a push instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree operand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,offset,operand,true);
+  instructions.addAll(result.getInstructions());
+  offset=baseOffset + instructions.size();
+  final OperandSize resultSize=(result.getSize() == OperandSize.BYTE) ? OperandSize.DWORD : result.getSize();
+  final String loadedValue=result.getRegister();
+  final String tempRegister;
+  if (result.getInstructions().isEmpty() && loadedValue.equalsIgnoreCase("esp")) {
+    tempRegister=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createStr(offset++,resultSize,loadedValue,resultSize,tempRegister));
+  }
+ else {
+    tempRegister=loadedValue;
+  }
+  Helpers.generatePush(environment,offset,tempRegister,resultSize,instructions);
+}

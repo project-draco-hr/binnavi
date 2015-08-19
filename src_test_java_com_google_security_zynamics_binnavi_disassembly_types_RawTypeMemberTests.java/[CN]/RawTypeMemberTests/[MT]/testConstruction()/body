@@ -1,0 +1,10 @@
+{
+  final RawTypeMember rawMember=new RawTypeMember(ID,NAME,BASE_TYPE_ID,PARENT_ID,OFFSET,null,NUMBER_OF_ELEMENTS);
+  assertEquals(ID,rawMember.getId());
+  assertEquals(NAME,rawMember.getName());
+  assertEquals(BASE_TYPE_ID,rawMember.getBaseTypeId());
+  assertEquals(PARENT_ID,rawMember.getParentId());
+  assertEquals(Optional.<Integer>of(OFFSET),rawMember.getOffset());
+  assertEquals(Optional.<Integer>absent(),rawMember.getArgumentIndex());
+  assertEquals(Optional.<Integer>of(NUMBER_OF_ELEMENTS),rawMember.getNumberOfElements());
+}

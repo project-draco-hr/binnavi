@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(provider,"IE00440: connection argument can not be null");
+  final HashMap<Integer,IComment> commentIdToComment=new HashMap<Integer,IComment>();
+  final ArrayList<IComment> comments=new ArrayList<IComment>();
+  final String commentQuery="SELECT * FROM get_all_comment_ancestors(" + commentRootId + ");";
+  try {
+    final ResultSet resultSet=provider.getConnection().executeQuery(commentQuery,true);
+    try {
+      while (resultSet.next()) {
+        resultSet.getInt("level");
+        final int commentId=resultSet.getInt("id");
+        Integer parentId=resultSet.getInt("parent_id");
+        if (resultSet.wasNull()) {
+          parentId=null;
+        }
+        final int userId=resultSet.getInt("user_id");
+        final String commentText=resultSet.getString("comment");
+        final CComment comment=new CComment(commentId,CUserManager.get(provider).getUserById(userId),commentIdToComment.get(parentId),commentText);
+        commentIdToComment.put(commentId,comment);
+        comments.add(comment);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return comments;
+}

@@ -1,0 +1,10 @@
+{
+  if (reference == null) {
+    return NO_REFERENCE;
+  }
+  final StringBuilder builder=new StringBuilder();
+  builder.append(reference.getView().getConfiguration().getName());
+  builder.append(" :: ");
+  builder.append(reference.getAddress().toHexString());
+  return builder.toString();
+}

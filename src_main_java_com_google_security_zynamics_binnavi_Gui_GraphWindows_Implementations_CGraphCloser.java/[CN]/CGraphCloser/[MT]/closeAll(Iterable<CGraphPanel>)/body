@@ -1,0 +1,5 @@
+{
+  for (  final CGraphPanel panel : panels) {
+    panel.close(false);
+  }
+}

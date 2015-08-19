@@ -1,0 +1,9 @@
+{
+  if (m_visible == visible) {
+    return;
+  }
+  m_visible=visible;
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.changedVisibility(this,m_visible);
+  }
+}

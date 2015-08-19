@@ -1,0 +1,14 @@
+{
+  interpreter.setRegister("esi",BigInteger.valueOf(0x1000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("edi",BigInteger.valueOf(0x2000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("DF",BigInteger.valueOf(0),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.getMemory().store(0x1000,0x98765432,4);
+  final MockInstruction instruction=new MockInstruction("movsd",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(4,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x1004),interpreter.getVariableValue("esi"));
+  assertEquals(BigInteger.valueOf(0x2004),interpreter.getVariableValue("edi"));
+  assertEquals(BigInteger.valueOf(8L),BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(0x98765432,interpreter.getMemory().load(0x2000,4));
+}

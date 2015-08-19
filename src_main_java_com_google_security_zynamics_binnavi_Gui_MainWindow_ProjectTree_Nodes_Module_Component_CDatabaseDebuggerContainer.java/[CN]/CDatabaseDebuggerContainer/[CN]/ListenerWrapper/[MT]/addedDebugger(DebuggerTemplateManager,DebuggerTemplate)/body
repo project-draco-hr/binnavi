@@ -1,0 +1,3 @@
+{
+  m_listener.addedDebugger(CDatabaseDebuggerContainer.this,debugger);
+}

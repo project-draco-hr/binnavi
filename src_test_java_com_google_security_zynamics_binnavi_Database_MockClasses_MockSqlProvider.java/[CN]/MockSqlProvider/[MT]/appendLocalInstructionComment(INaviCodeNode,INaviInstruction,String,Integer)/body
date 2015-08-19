@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(codeNode,"Error: codeNode argument can not be null");
+  Preconditions.checkNotNull(instruction,"Error: instruction argument can not be null");
+  return appendComment(new Commentable(instruction,CommentScope.LOCAL),userId,commentText);
+}

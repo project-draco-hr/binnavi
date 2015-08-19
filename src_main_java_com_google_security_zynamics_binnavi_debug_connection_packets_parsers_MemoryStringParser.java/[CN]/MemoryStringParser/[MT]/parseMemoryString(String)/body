@@ -1,0 +1,7 @@
+{
+  final byte[] memoryData=new byte[memoryString.length() / 2];
+  for (int i=0, j=0; i < memoryString.length(); i+=2, j++) {
+    memoryData[j]=(byte)(lookup1[memoryString.charAt(i)] + lookup2[memoryString.charAt(i + 1)]);
+  }
+  return memoryData;
+}

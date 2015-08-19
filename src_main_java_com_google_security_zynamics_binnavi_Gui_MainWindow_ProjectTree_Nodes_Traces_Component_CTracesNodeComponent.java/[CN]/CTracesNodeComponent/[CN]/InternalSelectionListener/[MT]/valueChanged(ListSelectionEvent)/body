@@ -1,0 +1,19 @@
+{
+  final int first=m_tracesPanel.getTracesTable().getSelectionModel().getMinSelectionIndex();
+  if (first == -1) {
+    m_model.setViews(new FilledList<INaviView>());
+    return;
+  }
+  final boolean single=first == m_tracesPanel.getTracesTable().getSelectionModel().getMaxSelectionIndex();
+  if (single) {
+    final JTable table=m_tracesPanel.getTracesTable();
+    final TraceList list=m_tracesPanel.getTracesTable().getTreeTableModel().getTraces().get(table.convertRowIndexToModel(first));
+    final LoadRelevantViewsThread thread=new LoadRelevantViewsThread(list);
+    CProgressDialog.showEndless(SwingUtilities.getWindowAncestor(getParent()),"Loading views that belong to the selected trace",thread);
+    if (thread.getException() != null) {
+      final String innerMessage="E00042: " + "Could not load relevant views";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not load the views that belong to the trace '%s'.",list.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The views that belong to the trace can not be shown."});
+      CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(getParent()),innerMessage,innerDescription,thread.getException());
+    }
+  }
+}

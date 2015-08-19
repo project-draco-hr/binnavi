@@ -1,0 +1,25 @@
+{
+  if (moduleViewNotificationContainer.getDatabaseOperation().equals("INSERT")) {
+    final INaviModule module=moduleViewNotificationContainer.getNotificationModule().get();
+    if (!module.isLoaded()) {
+      return;
+    }
+    final Integer viewId=moduleViewNotificationContainer.getViewId();
+    final ImmutableNaviViewConfiguration databaseViewConfiguration=provider.loadFlowGraphInformation(module,viewId);
+    final CModuleViewGenerator generator=new CModuleViewGenerator(provider,module);
+    final INaviView view=generator.generate(databaseViewConfiguration,GraphType.FLOWGRAPH);
+    module.getContent().getViewContainer().addView(view);
+  }
+  if (moduleViewNotificationContainer.getDatabaseOperation().equals("UPDATE")) {
+    return;
+  }
+  if (moduleViewNotificationContainer.getDatabaseOperation().equals("DELETE")) {
+    final INaviModule module=moduleViewNotificationContainer.getNotificationModule().get();
+    if (!module.isLoaded()) {
+      return;
+    }
+    final Integer viewId=moduleViewNotificationContainer.getViewId();
+    final INaviView view=ViewManager.get(provider).getView(viewId);
+    module.getContent().getViewContainer().deleteViewInternal(view);
+  }
+}

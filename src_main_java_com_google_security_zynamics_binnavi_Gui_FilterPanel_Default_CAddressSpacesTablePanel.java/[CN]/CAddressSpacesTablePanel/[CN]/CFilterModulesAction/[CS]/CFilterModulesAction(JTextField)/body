@@ -1,0 +1,4 @@
+{
+  super("Filter by module count");
+  m_filterField=filterField;
+}

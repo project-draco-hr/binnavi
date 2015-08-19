@@ -1,0 +1,4 @@
+ZyGraph graph
+INaviInstruction startInstruction
+String trackedRegister
+List<CInstructionResult> instructionResults

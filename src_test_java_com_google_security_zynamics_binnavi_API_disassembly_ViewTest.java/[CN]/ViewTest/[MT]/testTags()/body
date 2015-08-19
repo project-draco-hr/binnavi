@@ -1,0 +1,14 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  final Tag tag=m_viewTagManager.addTag(null,"Hannes");
+  m_view.addListener(listener);
+  m_view.load();
+  m_view.addTag(tag);
+  assertEquals(2,m_view.getTags().size());
+  assertEquals(tag,m_view.getTags().get(1));
+  assertEquals(listener.events,"taggedView;");
+  m_view.removeTag(tag);
+  assertEquals(1,m_view.getTags().size());
+  assertEquals(listener.events,"taggedView;untaggedView;");
+  m_view.removeListener(listener);
+}

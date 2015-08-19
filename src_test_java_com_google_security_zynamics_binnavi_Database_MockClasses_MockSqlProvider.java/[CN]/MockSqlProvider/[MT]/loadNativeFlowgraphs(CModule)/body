@@ -1,0 +1,5 @@
+{
+  final IFlowgraphView view=MockCreator.createView(this,module,ViewType.Native);
+  flowGraphViews.add(view);
+  return new ImmutableList.Builder<IFlowgraphView>().add(view).build();
+}

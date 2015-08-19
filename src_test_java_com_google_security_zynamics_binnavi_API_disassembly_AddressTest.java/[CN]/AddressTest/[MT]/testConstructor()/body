@@ -1,0 +1,6 @@
+{
+  final Address address=new Address(0x123);
+  assertEquals(0x123,address.toLong());
+  assertEquals("123",address.toHexString());
+  assertEquals("123",address.toString());
+}

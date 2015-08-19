@@ -1,0 +1,16 @@
+{
+  final TypeManager manager=module.getTypeManager();
+  final BaseType baseType=manager.createAtomicType(TypeName,32,true);
+  final BaseType compoundType=manager.createAtomicType(CompoundTypeName,0,false);
+  final TypeMember member0=manager.appendMember(compoundType,baseType,MemberName);
+  final TypeMember member1=manager.appendMember(compoundType,baseType,MemberName1);
+  final TypeMember member2=manager.appendMember(compoundType,baseType,MemberName2);
+  manager.deleteMember(member0);
+  Assert.assertTrue(indexOfMember(compoundType,member0) == -1);
+  Assert.assertTrue(indexOfMember(compoundType,member1) != -1);
+  Assert.assertTrue(indexOfMember(compoundType,member2) != -1);
+  final List<RawTypeMember> rawMembers=getProvider().loadTypeMembers(module);
+  Assert.assertTrue(findRawMembers(MemberName,rawMembers).isEmpty());
+  manager.deleteType(baseType);
+  manager.deleteType(compoundType);
+}

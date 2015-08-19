@@ -1,0 +1,3 @@
+{
+  return m_panel.isAny() ? String.format("Nodes with any Tag") : String.format("Nodes with Tag '%s'",m_panel.getTag() == null ? "" : m_panel.getTag().getName());
+}

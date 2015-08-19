@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,module);
+  Preconditions.checkNotNull(name,"IE00496: Name argument can not be null");
+  PostgreSQLHelpers.setName(provider.getConnection(),module.getConfiguration().getId(),name,CTableNames.MODULES_TABLE);
+}

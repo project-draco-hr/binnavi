@@ -1,0 +1,5 @@
+{
+  super("Add database");
+  m_projectTree=Preconditions.checkNotNull(projectTree,"IE01851: Tree argument can't be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_ADD_DATABASE".charAt(0));
+}

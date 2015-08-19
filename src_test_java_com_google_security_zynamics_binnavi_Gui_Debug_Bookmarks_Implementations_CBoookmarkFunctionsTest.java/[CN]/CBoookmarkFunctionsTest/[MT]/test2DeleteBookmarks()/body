@@ -1,0 +1,16 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final CBookmarkTableModel model=new CBookmarkTableModel(debuggerProvider);
+  final CBookmark bookmark=new CBookmark(new MockAddress(),"foo");
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_0_SET);
+  debuggerProvider.addDebugger(debugger);
+  final BookmarkManager bookmarkManager=debugger.getBookmarkManager();
+  bookmarkManager.addBookmark(bookmark);
+  assertEquals(1,bookmarkManager.getNumberOfBookmarks());
+  final int[] rows={0};
+  CBookmarkFunctions.deleteBookmarks(debuggerProvider,rows);
+  assertEquals(0,bookmarkManager.getNumberOfBookmarks());
+  model.dispose();
+}

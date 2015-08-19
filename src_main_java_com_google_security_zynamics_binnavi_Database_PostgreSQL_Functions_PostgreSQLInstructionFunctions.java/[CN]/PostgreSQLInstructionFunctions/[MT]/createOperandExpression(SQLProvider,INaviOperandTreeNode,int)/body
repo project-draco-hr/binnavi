@@ -1,0 +1,31 @@
+{
+  if (node.getId() != -1) {
+    return;
+  }
+  final ExpressionType type=node.getType();
+  final String value=getValue(type,node.getValue());
+  final int moduleId=node.getOperand().getInstruction().getModule().getConfiguration().getId();
+  final int typeId=COperandTypeConverter.convert(type);
+  final String immediate=Convert.isDecString(value) ? value : "null";
+  final String symbol=Convert.isDecString(value) ? "null" : value;
+  final String parentString=parent == 0 ? "null" : String.valueOf(parent);
+  final ResultSet resultSet=provider.getConnection().executeQuery("select max(id)+1 AS id from " + CTableNames.EXPRESSION_TREE_TABLE + " where module_id = "+ moduleId,true);
+  try {
+    if (resultSet.next()) {
+      final int id=resultSet.getInt("id");
+      final String query=String.format("insert into " + CTableNames.EXPRESSION_TREE_TABLE + "(module_id, id, type, symbol, immediate, position, parent_id) "+ " values(%d, %d , %d, ?, %s, 0, %s)",moduleId,id,typeId,immediate,parentString);
+      final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+      try {
+        statement.setString(1,symbol);
+        statement.executeUpdate();
+      }
+  finally {
+        statement.close();
+      }
+      node.setId(id);
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+}

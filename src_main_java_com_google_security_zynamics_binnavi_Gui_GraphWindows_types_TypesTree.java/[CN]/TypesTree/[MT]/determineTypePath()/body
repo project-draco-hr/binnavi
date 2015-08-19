@@ -1,0 +1,13 @@
+{
+  final TreePath path=getSelectionModel().getSelectionPath();
+  if (path == null || path.getPathCount() == 0) {
+    return new TypeSelectionPath(null,new ArrayList<TypeMember>());
+  }
+  final Object[] nodes=path.getPath();
+  final BaseType rootType=((BaseTypeTreeNode)nodes[1]).getBaseType();
+  final List<TypeMember> memberPath=Lists.newArrayList();
+  for (int i=2; i < path.getPathCount(); ++i) {
+    memberPath.add(((TypeMemberTreeNode)nodes[i]).getTypeMember());
+  }
+  return new TypeSelectionPath(rootType,memberPath);
+}

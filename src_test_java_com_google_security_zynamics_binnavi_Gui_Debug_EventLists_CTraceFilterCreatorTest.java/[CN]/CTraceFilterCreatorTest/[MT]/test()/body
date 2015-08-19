@@ -1,0 +1,21 @@
+{
+  final INaviModule mockModule=new MockModule();
+  final INaviModule mockModule2=new MockModule(true);
+  final INaviModule mockModule3=new MockModule();
+  final List<ITraceEvent> events=new ArrayList<ITraceEvent>();
+  final TraceEvent event1=new TraceEvent(77,new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0x123))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{05})));
+  final TraceEvent event2=new TraceEvent(88,new BreakpointAddress(mockModule2,new UnrelocatedAddress(new CAddress(0x124))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{06})));
+  final TraceEvent event3=new TraceEvent(99,new BreakpointAddress(mockModule3,new UnrelocatedAddress(new CAddress(0x125))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{07,05})));
+  events.add(event1);
+  events.add(event2);
+  events.add(event3);
+  final CTraceFilterCreator creator=new CTraceFilterCreator();
+  final IFilter<ITraceEvent> defaultFilter=creator.createFilter("99");
+  assertEquals(1,defaultFilter.get(events).size());
+  assertEquals(event3,defaultFilter.get(events).get(0));
+  final IFilter<ITraceEvent> memoryFilter=creator.createFilter("mem == 06");
+  assertEquals(1,memoryFilter.get(events).size());
+  assertEquals(event2,memoryFilter.get(events).get(0));
+  final IFilter<ITraceEvent> registerFilter=creator.createFilter("eax == 291");
+  assertEquals(3,registerFilter.get(events).size());
+}

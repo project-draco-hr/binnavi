@@ -1,0 +1,3 @@
+{
+  return new ValidateMemoryReply(packetId,parseInteger(),null,null);
+}

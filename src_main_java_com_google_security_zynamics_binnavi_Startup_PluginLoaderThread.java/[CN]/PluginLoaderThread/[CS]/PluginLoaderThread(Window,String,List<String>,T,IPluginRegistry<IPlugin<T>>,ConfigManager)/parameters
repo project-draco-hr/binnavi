@@ -1,0 +1,6 @@
+Window parent
+String rootPath
+List<String> pluginPaths
+T pluginInterface
+IPluginRegistry<IPlugin<T>> registry
+ConfigManager configFile

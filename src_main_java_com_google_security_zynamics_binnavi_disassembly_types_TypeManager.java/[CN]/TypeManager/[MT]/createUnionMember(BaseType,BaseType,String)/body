@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(containingType.getCategory() == BaseTypeCategory.UNION,"Error: can not create a union member in a non union compound type.");
+  return createStructureMember(containingType,memberType,memberName,0);
+}

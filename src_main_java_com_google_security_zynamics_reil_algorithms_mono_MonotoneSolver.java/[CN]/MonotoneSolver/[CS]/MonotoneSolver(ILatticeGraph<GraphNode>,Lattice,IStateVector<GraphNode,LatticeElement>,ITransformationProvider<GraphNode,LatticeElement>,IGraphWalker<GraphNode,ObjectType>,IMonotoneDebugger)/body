@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(lattice,"Error: Lattice argument can not be null");
+  Preconditions.checkNotNull(startVector,"Error: Start vector argument can not be null");
+  Preconditions.checkNotNull(transformationProvider,"Error: Transformation list argument can not be null");
+  final List<GraphNode> nodes=graph.getNodes();
+  Preconditions.checkArgument(nodes.size() == startVector.size(),String.format("Error: Invalid start vector (%d states for %d nodes)",startVector.size(),nodes.size()));
+  for (  final GraphNode node : nodes) {
+    Preconditions.checkArgument(startVector.hasState(node),"Error: Node " + node + " does not have a state in the initial state vector");
+  }
+  this.graph=graph;
+  this.lattice=lattice;
+  this.state=startVector;
+  this.transformationList=transformationProvider;
+  this.walker=walker;
+  this.debugger=debugger;
+}

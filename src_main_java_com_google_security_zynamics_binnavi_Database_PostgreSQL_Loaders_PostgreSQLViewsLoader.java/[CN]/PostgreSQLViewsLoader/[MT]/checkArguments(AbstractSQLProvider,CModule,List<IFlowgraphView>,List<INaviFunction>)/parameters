@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+CModule module
+List<IFlowgraphView> flowgraphs
+List<INaviFunction> functions

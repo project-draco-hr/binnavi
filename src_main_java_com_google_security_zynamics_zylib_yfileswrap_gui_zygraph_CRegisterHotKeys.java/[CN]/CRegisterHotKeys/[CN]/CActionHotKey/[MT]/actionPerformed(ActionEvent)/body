@@ -1,0 +1,33 @@
+{
+  if (m_action.equals("UP")) {
+    MoveFunctions.pan(m_graph,0,-1);
+  }
+ else   if (m_action.equals("DOWN")) {
+    MoveFunctions.pan(m_graph,0,1);
+  }
+ else   if (m_action.equals("LEFT")) {
+    MoveFunctions.pan(m_graph,-1,0);
+  }
+ else   if (m_action.equals("RIGHT")) {
+    MoveFunctions.pan(m_graph,1,0);
+  }
+ else   if (m_action.equals("+")) {
+    m_graph.zoomIn();
+  }
+ else   if (m_action.equals("-")) {
+    m_graph.zoomOut();
+  }
+ else   if (m_action.equals("m")) {
+    m_graph.getView().fitContent(true);
+  }
+ else   if (m_action.equals("s")) {
+    ZoomFunctions.zoomToNodes(m_graph,SelectedVisibleFilter.filter(m_graph.getSelectedNodes()));
+  }
+ else   if (m_action.equals("SELECT_VISIBLE_NODES")) {
+    final Collection<NodeType> nodes=NodeFunctions.getVisibleNodes(m_graph);
+    m_graph.selectNodes(nodes,true);
+  }
+ else   if (m_action.equals("COPY_CONTENT_FROM_SELECTED_NODES")) {
+    ClipboardHelpers.copyToClipboard(GraphHelpers.getSelectedContent(m_graph));
+  }
+}

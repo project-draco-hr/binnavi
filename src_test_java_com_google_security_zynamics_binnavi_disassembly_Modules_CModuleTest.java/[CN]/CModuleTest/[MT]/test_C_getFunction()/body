@@ -1,0 +1,13 @@
+{
+  try {
+    m_module.getContent().getFunctionContainer().getFunction((IAddress)null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_module.load();
+  for (  final INaviFunction function : m_module.getContent().getFunctionContainer().getFunctions()) {
+    assertEquals(function,m_module.getContent().getFunctionContainer().getFunction(function.getAddress()));
+    assertEquals(function,m_module.getContent().getFunctionContainer().getFunction(function.getName()));
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super("Show Available Hotkeys");
+  m_parent=Preconditions.checkNotNull(parent,"IE02838: parent argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_SHOW_HOTKEYS_ACCELERATOR_KEY.getKeyStroke());
+}

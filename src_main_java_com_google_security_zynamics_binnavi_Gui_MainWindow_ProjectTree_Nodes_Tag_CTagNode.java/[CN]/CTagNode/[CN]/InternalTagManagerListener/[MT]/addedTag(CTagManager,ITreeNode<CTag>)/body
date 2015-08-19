@@ -1,0 +1,6 @@
+{
+  if (tag.getParent() == m_tag) {
+    add(new CTagNode(getProjectTree(),m_database,(TreeNode<CTag>)tag));
+    getTreeModel().nodeStructureChanged(CTagNode.this);
+  }
+}

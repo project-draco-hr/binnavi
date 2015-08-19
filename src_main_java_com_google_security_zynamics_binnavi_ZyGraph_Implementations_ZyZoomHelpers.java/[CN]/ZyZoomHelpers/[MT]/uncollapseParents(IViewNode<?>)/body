@@ -1,0 +1,6 @@
+{
+  if (node.getParentGroup() != null) {
+    uncollapseParents(node.getParentGroup());
+    node.getParentGroup().setCollapsed(false);
+  }
+}

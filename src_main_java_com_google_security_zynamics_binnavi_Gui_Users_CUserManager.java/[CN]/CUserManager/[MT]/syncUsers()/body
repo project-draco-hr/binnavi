@@ -1,0 +1,9 @@
+{
+  try {
+    users.clear();
+    users.addAll(provider.loadUsers());
+  }
+ catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

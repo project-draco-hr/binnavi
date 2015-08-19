@@ -1,0 +1,26 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"popa");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a popa instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"edi",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"esi",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"ebp",instructions);
+  offset=baseOffset + instructions.size();
+  final String newEsp=environment.getNextVariableString();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,newEsp,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"ebx",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"edx",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"ecx",instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,"eax",instructions);
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createStr(offset,OperandSize.DWORD,newEsp,OperandSize.DWORD,"esp"));
+}

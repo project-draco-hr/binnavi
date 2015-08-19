@@ -1,0 +1,12 @@
+{
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.getBreakpointStatus(address);
+case ECHO:
+  return echoBreakpointStorage.getBreakpointStatus(address);
+case STEP:
+return stepBreakpointStorage.getBreakpointStatus(address);
+default :
+throw new IllegalStateException("IE00726: Invalid Breakpoint Type");
+}
+}

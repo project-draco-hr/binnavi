@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(node,"IE01533: Node argument can not be null");
+  while (content.getLineCount() != 0) {
+    content.removeLine(0);
+  }
+  buildFunctionLine(node,content,modifier);
+  buildInstructionLines(node,content,graphSettings,modifier);
+}

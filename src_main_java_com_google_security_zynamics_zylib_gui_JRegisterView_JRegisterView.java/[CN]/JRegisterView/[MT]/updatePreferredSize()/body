@@ -1,0 +1,8 @@
+{
+  final int PADDING_TOP=m_font.getSize() + 5;
+  final int lineHeight=m_font.getSize();
+  final int height=PADDING_TOP + (m_registerModel.getNumberOfRegisters() * lineHeight);
+  setPreferredSize(new Dimension(200,height));
+  revalidate();
+  updateUI();
+}

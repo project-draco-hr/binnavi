@@ -1,0 +1,8 @@
+{
+  for (  final RawTypeSubstitution rawSubstitution : substitutions.get(module)) {
+    if (rawSubstitution.getAddress().toBigInteger().equals(address) && rawSubstitution.getPosition() == position && rawSubstitution.getExpressionId() == expressionId) {
+      return rawSubstitution;
+    }
+  }
+  return null;
+}

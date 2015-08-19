@@ -1,0 +1,8 @@
+{
+  super();
+  setAutoscrolls(true);
+  setRootVisible(false);
+  setShowsRootHandles(false);
+  getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  setEditable(false);
+}

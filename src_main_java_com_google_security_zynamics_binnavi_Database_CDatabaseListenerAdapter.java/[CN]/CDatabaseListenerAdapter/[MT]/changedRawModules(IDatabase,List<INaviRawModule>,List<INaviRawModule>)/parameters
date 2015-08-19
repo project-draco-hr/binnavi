@@ -1,0 +1,3 @@
+IDatabase database
+List<INaviRawModule> oldModules
+List<INaviRawModule> newModules

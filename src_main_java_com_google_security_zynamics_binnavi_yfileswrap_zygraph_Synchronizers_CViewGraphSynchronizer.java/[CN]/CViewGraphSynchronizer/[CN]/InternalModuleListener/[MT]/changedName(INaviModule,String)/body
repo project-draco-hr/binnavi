@@ -1,0 +1,15 @@
+{
+  m_graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      final INaviViewNode rawNode=node.getRawNode();
+      if (rawNode instanceof INaviFunctionNode) {
+        final INaviFunctionNode fnode=(INaviFunctionNode)rawNode;
+        if (fnode.getFunction().getModule().equals(module)) {
+          rebuildNode(node);
+        }
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

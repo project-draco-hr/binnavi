@@ -1,0 +1,21 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"call");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a call instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize nextSize=TranslationHelpers.getNextSize(archSize);
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String tempEsp=environment.getNextVariableString();
+  final String returnAddress=String.valueOf(instruction.getAddress().toLong() + instruction.getLength());
+  instructions.add(ReilHelpers.createSub(offset,archSize,"esp",archSize,"4",nextSize,tempEsp));
+  instructions.add(ReilHelpers.createAnd(offset + 1,nextSize,tempEsp,archSize,truncateMask,archSize,"esp"));
+  instructions.add(ReilHelpers.createStm(offset + 2,archSize,returnAddress,archSize,"esp"));
+  final IOperandTree targetOperand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,offset + 3,targetOperand,true);
+  instructions.addAll(result.getInstructions());
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createJcc(offset,OperandSize.DWORD,"1",result.getSize(),result.getRegister(),"isCall","true"));
+}

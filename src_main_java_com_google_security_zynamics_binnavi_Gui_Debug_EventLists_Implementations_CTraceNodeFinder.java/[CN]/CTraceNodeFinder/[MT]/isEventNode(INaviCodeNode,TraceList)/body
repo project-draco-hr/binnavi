@@ -1,0 +1,13 @@
+{
+  for (  final ITraceEvent traceEvent : eventList) {
+    final BreakpointAddress eventAddress=traceEvent.getOffset();
+    try {
+      if (node.getParentFunction().getModule() == eventAddress.getModule() && CCodeNodeHelpers.containsAddress(node,eventAddress.getAddress().getAddress())) {
+        return true;
+      }
+    }
+ catch (    final MaybeNullException e) {
+    }
+  }
+  return false;
+}

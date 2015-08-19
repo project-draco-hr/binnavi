@@ -1,0 +1,9 @@
+{
+  final List<INaviProject> projects=provider.getProjects();
+  if (!projects.isEmpty()) {
+    return projects.get(0);
+  }
+ else {
+    return provider.createProject("PROJECT");
+  }
+}

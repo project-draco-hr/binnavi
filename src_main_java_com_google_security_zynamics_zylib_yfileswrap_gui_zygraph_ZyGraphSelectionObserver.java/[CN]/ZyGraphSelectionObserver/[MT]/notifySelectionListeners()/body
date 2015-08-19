@@ -1,0 +1,10 @@
+{
+  for (  final IZyGraphSelectionListener listener : m_selectionListeners) {
+    try {
+      listener.selectionChanged();
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

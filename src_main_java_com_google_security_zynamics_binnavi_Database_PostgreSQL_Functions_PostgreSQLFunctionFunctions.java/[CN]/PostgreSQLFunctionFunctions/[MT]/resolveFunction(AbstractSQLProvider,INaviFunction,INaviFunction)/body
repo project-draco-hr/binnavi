@@ -1,0 +1,37 @@
+{
+  Preconditions.checkNotNull(provider,"IE00444: Provider argument can not be null");
+  Preconditions.checkNotNull(source,"IE00445: Source argument can not be null");
+  Preconditions.checkArgument(source.inSameDatabase(provider),"IE00446: Source is not part of this database");
+  if ((target != null) && !target.inSameDatabase(provider)) {
+    throw new IllegalArgumentException("IE00447: Target is not part of this database");
+  }
+  final Integer parentModuleId=target == null ? null : target.getModule().getConfiguration().getId();
+  final BigInteger parentModuleAddress=target == null ? null : target.getAddress().toBigInteger();
+  final String query="UPDATE " + CTableNames.FUNCTIONS_TABLE + " SET parent_module_id = ?, "+ " parent_module_function = ? WHERE module_id = ? AND address = ?";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+    try {
+      if (parentModuleId != null) {
+        statement.setInt(1,parentModuleId);
+      }
+ else {
+        statement.setNull(1,Types.INTEGER);
+      }
+      if (parentModuleAddress != null) {
+        statement.setObject(2,parentModuleAddress,Types.BIGINT);
+      }
+ else {
+        statement.setNull(2,Types.BIGINT);
+      }
+      statement.setInt(3,source.getModule().getConfiguration().getId());
+      statement.setObject(4,source.getAddress().toBigInteger().toString(),Types.BIGINT);
+      statement.execute();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

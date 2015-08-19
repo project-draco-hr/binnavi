@@ -1,0 +1,7 @@
+{
+  int newIdCounter=firstNode;
+  for (  final INaviViewNode node : nodes) {
+    node.setId(newIdCounter);
+    newIdCounter++;
+  }
+}

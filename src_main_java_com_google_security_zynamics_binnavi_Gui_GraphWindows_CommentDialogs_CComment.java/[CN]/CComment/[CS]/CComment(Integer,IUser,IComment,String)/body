@@ -1,0 +1,10 @@
+{
+  Preconditions.checkArgument(((id == null) || (id > 0)),"Error: id can only be larger then zero or null");
+  this.id=id;
+  this.user=Preconditions.checkNotNull(user,"IE02631: user argument can not be null");
+  this.parent=parent;
+  this.comment=Preconditions.checkNotNull(comment,"IE02632: comment argument can not be null");
+  Preconditions.checkArgument(!comment.isEmpty(),"Error: comment must be a non empty string");
+  List<String> linesList=Splitter.on('\n').splitToList(comment);
+  lines=linesList.toArray(new String[linesList.size()]);
+}

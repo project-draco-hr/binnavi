@@ -1,0 +1,13 @@
+{
+  autoConnectBox.setEnabled(enabled);
+  databaseDescriptionField.setEnabled(enabled);
+  passwordField.setEnabled(enabled);
+  showPasswordBox.setEnabled(enabled);
+  saveButton.setEnabled(enabled);
+  testButton.setEnabled(enabled);
+  savePasswordBox.setEnabled(enabled);
+  databaseHostField.setEnabled(enabled);
+  databaseNameField.setEnabled(enabled);
+  databaseUserField.setEnabled(enabled);
+  databaseIdentityField.setEnabled(enabled);
+}

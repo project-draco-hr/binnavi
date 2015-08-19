@@ -1,0 +1,10 @@
+{
+  final INaviModule calc=m_database.getContent().getModule(2);
+  calc.load();
+  for (  final INaviFunction function : calc.getContent().getFunctionContainer().getFunctions()) {
+    function.load();
+    m_translator.translate(new StandardEnvironment(),function);
+    function.close();
+  }
+  calc.close();
+}

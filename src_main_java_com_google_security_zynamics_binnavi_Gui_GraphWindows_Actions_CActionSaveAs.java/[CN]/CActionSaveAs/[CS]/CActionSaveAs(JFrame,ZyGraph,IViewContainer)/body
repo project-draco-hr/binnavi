@@ -1,0 +1,6 @@
+{
+  super("Save View As");
+  m_parent=parent;
+  m_graph=graph;
+  m_container=container;
+}

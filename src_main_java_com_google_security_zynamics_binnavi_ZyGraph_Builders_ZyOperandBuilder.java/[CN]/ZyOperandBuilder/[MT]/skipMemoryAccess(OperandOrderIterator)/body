@@ -1,0 +1,12 @@
+{
+  do {
+    if (iter.current().getType() == ExpressionType.MEMDEREF) {
+      iter.next();
+      while (iter.current().getType() != ExpressionType.IMMEDIATE_INTEGER) {
+        iter.next();
+      }
+      return;
+    }
+  }
+ while (iter.next());
+}

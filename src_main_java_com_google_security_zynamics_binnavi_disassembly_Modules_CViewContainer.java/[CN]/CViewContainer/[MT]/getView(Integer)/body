@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(viewId,"Error: viewId argument can not be null");
+  Preconditions.checkArgument(viewId > 0,"Error: only saved views can be querried by id");
+  return viewIdView.get(viewId);
+}

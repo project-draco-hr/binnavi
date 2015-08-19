@@ -1,0 +1,5 @@
+{
+  super(rows.length == 1 ? "Delete Bookmark" : "Delete Bookmarks");
+  m_manager=Preconditions.checkNotNull(manager,"IE01314: Bookmark manager argument can not be null");
+  m_rows=rows.clone();
+}

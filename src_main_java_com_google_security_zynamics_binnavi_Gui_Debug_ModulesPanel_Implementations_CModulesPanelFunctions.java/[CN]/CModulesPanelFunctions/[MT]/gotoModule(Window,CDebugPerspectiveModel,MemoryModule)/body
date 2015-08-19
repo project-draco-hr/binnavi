@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(parent,"IE01462: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01463: Debug perspective model argument can not be null");
+  Preconditions.checkNotNull(module,"IE01464: Module argument can not be null");
+  final IDebugger debugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    return;
+  }
+  final MemoryMap memoryMap=debugger.getProcessManager().getMemoryMap();
+  final MemorySection section=ProcessHelpers.getSectionWith(memoryMap,module.getBaseAddress().getAddress());
+  if (section == null) {
+    final String message=String.format("E00046: " + "Could not display module '%s' in the memory view",module.getName());
+    final String description=String.format("The module '%s' could not be displayed in the memory view because " + "the offset %s is not currently known to BinNavi. " + "Try refreshing the memory map to fix this issue.",module.getName(),module.getBaseAddress());
+    CNaviErrorDialog.show(parent,message,description);
+  }
+ else {
+    CMemoryFunctions.gotoOffset(debugPerspectiveModel,module.getBaseAddress().getAddress(),true);
+  }
+}

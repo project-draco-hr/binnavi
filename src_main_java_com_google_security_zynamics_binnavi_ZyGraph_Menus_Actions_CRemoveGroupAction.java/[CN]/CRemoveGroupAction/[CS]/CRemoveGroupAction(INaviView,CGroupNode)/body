@@ -1,0 +1,5 @@
+{
+  super("Remove Group");
+  m_graph=view;
+  m_node=node;
+}

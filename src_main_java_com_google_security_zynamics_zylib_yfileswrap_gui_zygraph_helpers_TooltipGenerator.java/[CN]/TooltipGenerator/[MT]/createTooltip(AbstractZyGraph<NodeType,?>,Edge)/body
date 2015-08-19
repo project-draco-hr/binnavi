@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(edge,"Error: Edge argument can not be null");
+  String text=createTooltip(graph,edge.source()).replace("</html>","");
+  final ZyEdgeRealizer<?> realizer=(ZyEdgeRealizer<?>)graph.getGraph().getRealizer(edge);
+  if (realizer.labelCount() > 0) {
+    final ZyEdgeLabel edgeLabel=(ZyEdgeLabel)realizer.getLabel();
+    final ZyLabelContent content=edgeLabel.getLabelContent();
+    text+="<hr>" + HtmlGenerator.getHtml(content,GuiHelper.getMonospaceFont(),false).replace("<html>","").replace("</html>","");
+  }
+  text+="<hr>" + createTooltip(graph,edge.target()).replace("<html>","");
+  return text;
+}

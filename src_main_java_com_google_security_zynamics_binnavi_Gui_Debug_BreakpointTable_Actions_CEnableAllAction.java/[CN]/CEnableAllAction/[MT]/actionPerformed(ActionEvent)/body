@@ -1,0 +1,3 @@
+{
+  CBreakpointSetFunctions.enableAll(m_debuggerProvider);
+}

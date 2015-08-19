@@ -1,0 +1,11 @@
+{
+  m_color=color;
+  for (  final ITypeDescriptionListener listener : m_listeners) {
+    try {
+      listener.changedColor(color);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

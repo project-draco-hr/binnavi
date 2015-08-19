@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"IE00820: Address argument can not be null");
+  return new RelocatedAddress(new CAddress(address.getAddress().toLong() - fileMemoryStartAddress.toLong() + sectionMemoryStartAddress.toLong()));
+}

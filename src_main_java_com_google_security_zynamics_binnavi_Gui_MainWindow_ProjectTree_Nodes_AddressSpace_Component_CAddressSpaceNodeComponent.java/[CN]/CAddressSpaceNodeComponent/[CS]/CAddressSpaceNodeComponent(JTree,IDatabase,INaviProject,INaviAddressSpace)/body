@@ -1,0 +1,23 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(database,"IE01948: Database argument can not be null");
+  Preconditions.checkNotNull(project,"IE01949: Project argument can't be null");
+  Preconditions.checkNotNull(addressSpace,"IE01950: Address space argument can't be null");
+  Preconditions.checkArgument(database.inSameDatabase(project),"IE01951: The project is not in the given database");
+  Preconditions.checkArgument(database.inSameDatabase(addressSpace),"IE01952: The address space is not in the given database");
+  Preconditions.checkArgument(project.getContent().getAddressSpaces().contains(addressSpace),"IE01953: Address space does not belong to the given project");
+  m_addressSpace=addressSpace;
+  m_table=new CProjectModulesTable(projectTree,database,addressSpace);
+  final CDefaultFieldDescription<String> nameInfo=new CDefaultFieldDescription<String>(addressSpace.getConfiguration().getName(),new CNameHelp());
+  final CDefaultFieldDescription<String> descriptionInfo=new CDefaultFieldDescription<String>(addressSpace.getConfiguration().getDescription(),new CDescriptionHelp());
+  final CDefaultFieldDescription<Date> creationInfo=new CDefaultFieldDescription<Date>(addressSpace.getConfiguration().getCreationDate(),new CCreationDateHelp());
+  final CDefaultFieldDescription<Date> modificationInfo=new CDefaultFieldDescription<Date>(addressSpace.getConfiguration().getModificationDate(),new CModificationDateHelp());
+  m_stdEditPanel=new CStandardEditPanel("Address Space",nameInfo,descriptionInfo,creationInfo,modificationInfo);
+  m_debuggerContainer=new CProjectDebuggerContainer(project);
+  m_titledBorder=new TitledBorder("");
+  createGui();
+  m_synchronizer=new CComponentSynchronizer(this,addressSpace,m_stdEditPanel,m_debuggerCombo,m_titledBorder);
+  updateSaveButton();
+  m_stdEditPanel.addInputListener(m_updateListener);
+  m_debuggerCombo.addActionListener(m_updateListener);
+}

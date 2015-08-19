@@ -1,0 +1,3 @@
+{
+  return getBreakpoints(debugger,view,BreakpointType.REGULAR);
+}

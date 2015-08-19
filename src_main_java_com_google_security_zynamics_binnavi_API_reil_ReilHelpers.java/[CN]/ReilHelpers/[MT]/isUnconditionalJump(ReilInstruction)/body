@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"Instruction argument can not be null");
+  return com.google.security.zynamics.reil.ReilHelpers.isUnconditionalJump(instruction.getNative());
+}

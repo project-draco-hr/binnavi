@@ -1,0 +1,14 @@
+{
+  m_node=Preconditions.checkNotNull(node,"Node argument cannot be null");
+  m_realizer=Preconditions.checkNotNull(realizer,"Node realizer argument cannot be null");
+  m_rawNode=Preconditions.checkNotNull(rawNode,"Raw node argument cannot be null");
+  m_realizer.setX(m_rawNode.getX());
+  m_realizer.setY(m_rawNode.getY());
+  m_realizer.setFillColor(m_rawNode.getColor());
+  m_realizer.setLineColor(m_rawNode.getBorderColor());
+  m_realizer.setSelected(m_rawNode.isSelected());
+  getGraph().setRealizer(m_node,realizer.getRealizer());
+  m_listener=new InternalListener(getGraph());
+  realizer.addListener(m_listener);
+  rawNode.addListener(m_listener);
+}

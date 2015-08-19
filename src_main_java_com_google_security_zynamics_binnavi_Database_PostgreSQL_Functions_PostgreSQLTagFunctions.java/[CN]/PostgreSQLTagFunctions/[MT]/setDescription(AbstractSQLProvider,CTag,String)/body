@@ -1,0 +1,19 @@
+{
+  checkArguments(provider,tag);
+  Preconditions.checkNotNull(description,"IE00713: Description argument can not be null");
+  final CConnection connection=provider.getConnection();
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement("update " + CTableNames.TAGS_TABLE + " set description = ? where id = ?");
+    try {
+      statement.setString(1,description);
+      statement.setInt(2,tag.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

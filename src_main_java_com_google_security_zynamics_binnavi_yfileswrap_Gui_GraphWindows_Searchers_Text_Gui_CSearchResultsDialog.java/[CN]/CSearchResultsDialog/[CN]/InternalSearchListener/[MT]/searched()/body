@@ -1,0 +1,3 @@
+{
+  setResults(m_searchField.getGraphSearcher().getResults());
+}

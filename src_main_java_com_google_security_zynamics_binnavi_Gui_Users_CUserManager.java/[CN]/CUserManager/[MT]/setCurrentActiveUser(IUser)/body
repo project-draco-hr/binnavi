@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(user,"IE02729: user argument can not be null.");
+  if (users.contains(user)) {
+    activeUser=user;
+  }
+ else {
+    throw new IllegalStateException("Error: User to be set active is not known to user management.");
+  }
+}

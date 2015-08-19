@@ -1,0 +1,19 @@
+{
+  List<ITraceEvent> localCachedValues=m_cachedValues;
+  if (localCachedValues == null) {
+    localCachedValues=new ArrayList<ITraceEvent>();
+    if (m_eventList == null) {
+      m_cachedValues=localCachedValues;
+      return localCachedValues;
+    }
+    final IFilter<ITraceEvent> filter=getFilter();
+    if (filter == null) {
+      localCachedValues=m_eventList.getEvents();
+    }
+ else {
+      localCachedValues=filter.get(m_eventList.getEvents());
+    }
+  }
+  m_cachedValues=localCachedValues;
+  return localCachedValues;
+}

@@ -1,0 +1,4 @@
+{
+  m_infoNode.getRealizer().setY((m_infoNode.getY() + ypos) - m_y);
+  m_y=ypos;
+}

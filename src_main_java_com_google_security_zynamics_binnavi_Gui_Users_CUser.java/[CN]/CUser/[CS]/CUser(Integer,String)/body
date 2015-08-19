@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument((userId != null) && (userId > 0),"Error: userId must be non null and larger then zero.");
+  m_id=userId;
+  m_userName=Preconditions.checkNotNull(userName,"IE02715: userName argument can not be null");
+}

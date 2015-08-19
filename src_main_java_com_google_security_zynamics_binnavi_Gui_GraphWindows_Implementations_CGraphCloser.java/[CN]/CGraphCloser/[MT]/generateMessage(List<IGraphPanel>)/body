@@ -1,0 +1,9 @@
+{
+  final StringBuilder stringBuilder=new StringBuilder();
+  stringBuilder.append("Save changes to the following graphs?");
+  stringBuilder.append('\n');
+  for (  final IGraphPanel panel : modifiedGraphs) {
+    stringBuilder.append("- " + CNameShortener.shorten(panel.getModel().getGraph().getRawView()) + "\n");
+  }
+  return stringBuilder.toString();
+}

@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null.");
+  Preconditions.checkNotNull(memberPathIds,"Error: member path ids can not be null.");
+  final BaseType baseType=typesContainer.getBaseTypeById(baseTypeId);
+  final TypeSubstitution typeSubstitution=node.getTypeSubstitution();
+  typesContainer.updateTypeSubstitution(typeSubstitution,baseType,idsToMembers(memberPathIds),offset);
+  notifySubstitutionChanged(typeSubstitution);
+}

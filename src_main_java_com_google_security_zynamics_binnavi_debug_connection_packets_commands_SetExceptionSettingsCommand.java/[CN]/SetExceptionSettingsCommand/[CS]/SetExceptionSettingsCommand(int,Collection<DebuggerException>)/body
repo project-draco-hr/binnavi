@@ -1,0 +1,8 @@
+{
+  super(DebugCommandType.CMD_SET_EXCEPTIONS,packetId);
+  Preconditions.checkNotNull(exceptions,"IE00055: Exceptions argument can not be null");
+  for (  final DebuggerException pe : exceptions) {
+    addArgument(new DebugMessageLongArgument(pe.getExceptionCode()));
+    addArgument(new DebugMessageIntegerArgument(pe.getExceptionAction().getValue()));
+  }
+}

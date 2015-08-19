@@ -1,0 +1,3 @@
+{
+  return ByteHelpers.toArray(flatten(root,NodeIdCollector.getNodeIds(root)));
+}

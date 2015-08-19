@@ -1,0 +1,9 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  new MockModule();
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS_SET);
+  debuggerProvider.addDebugger(debugger);
+  @SuppressWarnings("unused") final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+}

@@ -1,0 +1,10 @@
+{
+  if ((activeView == PerspectiveType.DebugPerspective) && (getDebugPerspective().getCurrentSelectedDebugger() != null)) {
+    final COptionsPanel optionsPanel=new COptionsPanel(model.getParent(),model.getDebuggerProvider().getDebugTarget(),model.getGraph(),getDebugPerspective());
+    debugPerspectivePanel.add(optionsPanel);
+  }
+ else {
+    debugPerspectivePanel.removeAll();
+  }
+  debugPerspectivePanel.setVisible(activeView == PerspectiveType.DebugPerspective);
+}

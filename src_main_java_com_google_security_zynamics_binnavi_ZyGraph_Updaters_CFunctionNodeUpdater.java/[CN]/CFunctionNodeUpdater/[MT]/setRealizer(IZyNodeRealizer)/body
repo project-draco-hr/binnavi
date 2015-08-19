@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(realizer,"IE00996: Realizer argument can't be null");
+  m_realizer=realizer;
+}

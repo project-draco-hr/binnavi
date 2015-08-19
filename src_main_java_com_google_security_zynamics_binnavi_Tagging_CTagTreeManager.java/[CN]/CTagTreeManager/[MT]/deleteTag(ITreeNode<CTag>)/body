@@ -1,0 +1,20 @@
+{
+  validateTag(tag);
+  Preconditions.checkArgument(tag != getRootTag(),"IE00864: Can not delete the root tag");
+  m_provider.deleteTag(tag);
+  final ITreeNode<CTag> parent=tag.getParent();
+  for (  final ITreeNode<CTag> child : tag.getChildren()) {
+    link(parent,child);
+  }
+  parent.removeChild(tag);
+  tag.setParent(null);
+  tag.getObject().deleteTag();
+  for (  final ITagTreeManagerListener listener : m_listeners) {
+    try {
+      listener.deletedTag(this,parent,tag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

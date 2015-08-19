@@ -1,0 +1,43 @@
+{
+  try {
+    final int _type=HEX_NUMBER;
+    final int _channel=DEFAULT_TOKEN_CHANNEL;
+{
+      match("0x");
+      int cnt2=0;
+      loop2:       do {
+        int alt2=2;
+        final int LA2_0=input.LA(1);
+        if (((LA2_0 >= '0' && LA2_0 <= '9') || (LA2_0 >= 'A' && LA2_0 <= 'F') || (LA2_0 >= 'a' && LA2_0 <= 'f'))) {
+          alt2=1;
+        }
+switch (alt2) {
+case 1:
+{
+            if ((input.LA(1) >= '0' && input.LA(1) <= '9') || (input.LA(1) >= 'A' && input.LA(1) <= 'F') || (input.LA(1) >= 'a' && input.LA(1) <= 'f')) {
+              input.consume();
+            }
+ else {
+              final MismatchedSetException mse=new MismatchedSetException(null,input);
+              recover(mse);
+              throw mse;
+            }
+          }
+        break;
+default :
+      if (cnt2 >= 1) {
+        break loop2;
+      }
+    final EarlyExitException eee=new EarlyExitException(2,input);
+  throw eee;
+}
+cnt2++;
+}
+ while (true);
+}
+state.type=_type;
+state.channel=_channel;
+}
+  finally {
+}
+}

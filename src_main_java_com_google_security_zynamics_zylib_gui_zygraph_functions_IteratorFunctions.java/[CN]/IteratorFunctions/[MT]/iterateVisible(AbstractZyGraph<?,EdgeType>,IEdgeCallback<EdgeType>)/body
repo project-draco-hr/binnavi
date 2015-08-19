@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(callback,"Error: Callback argument can't be null");
+  graph.iterateEdges(new IEdgeCallback<EdgeType>(){
+    @Override public IterationMode nextEdge(    final EdgeType edge){
+      if (!edge.isVisible()) {
+        return IterationMode.CONTINUE;
+      }
+      return callback.nextEdge(edge);
+    }
+  }
+);
+}

@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.map(m_fileSystem.getDrives(),new ICollectionMapper<RemoteDrive,File>(){
+    @Override public File map(    final RemoteDrive item){
+      return new CRemoteFile(item.getName() + "/",true);
+    }
+  }
+).toArray(new CRemoteFile[0]);
+}

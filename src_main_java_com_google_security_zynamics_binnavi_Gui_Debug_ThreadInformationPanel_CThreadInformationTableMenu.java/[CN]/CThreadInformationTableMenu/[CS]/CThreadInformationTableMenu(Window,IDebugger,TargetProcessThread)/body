@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(parent,"IE00648: Parent argument can not be null");
+  Preconditions.checkNotNull(thread,"IE00650: Thread argument can not be null");
+  if (debugger != null) {
+    if (thread.getState() == ThreadState.RUNNING) {
+      add(CActionProxy.proxy(new CSuspendThreadAction(thread)));
+    }
+ else {
+      add(CActionProxy.proxy(new CResumeThreadAction(thread)));
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  memberAction.actionPerformed(event);
+  typeAction.actionPerformed(event);
+}

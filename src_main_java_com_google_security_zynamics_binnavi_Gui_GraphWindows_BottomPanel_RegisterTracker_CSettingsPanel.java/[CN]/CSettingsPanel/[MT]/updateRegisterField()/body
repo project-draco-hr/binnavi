@@ -1,0 +1,12 @@
+{
+  if (m_clearRegisterCheckbox.isSelected()) {
+    m_clearRegisterField.setEditable(false);
+    m_clearRegisterField.setText("Enter a list of whitespace-separated registers here");
+    m_clearRegisterField.setBackground(Color.LIGHT_GRAY);
+  }
+ else {
+    m_clearRegisterField.setEditable(true);
+    m_clearRegisterField.setText("");
+    m_clearRegisterField.setBackground(Color.WHITE);
+  }
+}

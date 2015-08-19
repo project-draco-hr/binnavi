@@ -1,0 +1,6 @@
+{
+  m_graph=null;
+  m_reilGraph=null;
+  m_function.close();
+  m_function.removeListener(m_listener);
+}

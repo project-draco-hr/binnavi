@@ -1,0 +1,7 @@
+{
+  super(new GridLayout(1,2,5,5));
+  globalCommentTable=new GenericCommentsTable(new GlobalCodeNodeCommentAccessor(codeNode),"Local code node comment");
+  localCommentTable=new GenericCommentsTable(new LocalCodeNodeCommentAccessor(codeNode),"Global code node comment");
+  add(localCommentTable);
+  add(globalCommentTable);
+}

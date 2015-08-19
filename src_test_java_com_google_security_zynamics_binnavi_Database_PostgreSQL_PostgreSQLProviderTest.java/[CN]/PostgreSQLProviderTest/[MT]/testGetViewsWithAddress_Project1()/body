@@ -1,0 +1,5 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  project.load();
+  assertEquals(0,getProvider().getViewsWithAddress(project,Lists.newArrayList(new UnrelocatedAddress(new CAddress(0x01002B69))),true).size());
+}

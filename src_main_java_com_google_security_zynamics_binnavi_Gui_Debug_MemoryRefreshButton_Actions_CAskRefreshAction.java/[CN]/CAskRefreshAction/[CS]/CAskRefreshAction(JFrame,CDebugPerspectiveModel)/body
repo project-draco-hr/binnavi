@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(parent,"IE01446: Parent argument can not be null");
+  m_debugPerspectiveModel=Preconditions.checkNotNull(debugPerspectiveModel,"IE01447: Debug perspective model argument can not be null");
+  m_dialog=new CMemoryRangeDialog(parent);
+}

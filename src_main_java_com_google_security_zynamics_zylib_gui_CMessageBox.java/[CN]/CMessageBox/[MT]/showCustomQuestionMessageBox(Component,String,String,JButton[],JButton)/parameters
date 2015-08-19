@@ -1,0 +1,5 @@
+Component parent
+String description
+String title
+JButton[] buttons
+JButton defaultButton

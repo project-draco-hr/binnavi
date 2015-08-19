@@ -1,0 +1,31 @@
+{
+  final INaviEdge databaseOneEdge=databaseOneView.getContent().getGraph().getEdges().get(3);
+  final INaviEdge databaseTwoEdge=databaseTwoView.getContent().getGraph().getEdges().get(3);
+  final List<IComment> oneBefore=databaseOneEdge.getLocalComment() == null ? new ArrayList<IComment>() : databaseOneEdge.getLocalComment();
+  final List<IComment> twoBefore=databaseTwoEdge.getLocalComment() == null ? new ArrayList<IComment>() : databaseTwoEdge.getLocalComment();
+  assertEquals(oneBefore,twoBefore);
+  final List<IComment> comments=databaseOneEdge.appendLocalComment(" TEST NOTIFICATION PROVIDER TESTS (LOCAL EDGE COMMENT) BEFORE ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneEdge.getLocalComment();
+  final List<IComment> twoAfter=databaseTwoEdge.getLocalComment();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+  final int oneTwoSize=oneAfter.size();
+  final int twoTwoSize=twoAfter.size();
+  databaseOneEdge.editLocalComment(Iterables.getLast(comments)," TEST NOTIFICATION PROVIDER TESTS (LOCAL EDGE COMMENT) AFTER ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneThree=databaseOneEdge.getLocalComment();
+  final List<IComment> twoThree=databaseTwoEdge.getLocalComment();
+  assertEquals(oneTwoSize,oneThree.size());
+  assertEquals(twoTwoSize,twoThree.size());
+  assertEquals(oneThree,twoThree);
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (LOCAL EDGE COMMENT) AFTER ",Iterables.getLast(oneThree).getComment());
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (LOCAL EDGE COMMENT) AFTER ",Iterables.getLast(twoThree).getComment());
+}

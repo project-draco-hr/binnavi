@@ -1,0 +1,17 @@
+{
+  Preconditions.checkArgument(debugger.isConnected(),"Error: Debugger must be connected");
+  Preconditions.checkArgument(logger == null,"Error: Addresses argument can not be null");
+  Preconditions.checkNotNull(addresses,"Error: Addresses argument can not be null");
+  for (  final TracePoint address : addresses) {
+    Preconditions.checkNotNull(address,"Error: Addresses list contains null-elements");
+  }
+  try {
+    final TraceList trace=createTrace(name,description);
+    logger=createLogger();
+    logger.start(trace,convertAddresses(addresses),3);
+    return ObjectFinders.getObject(trace,getTraces());
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

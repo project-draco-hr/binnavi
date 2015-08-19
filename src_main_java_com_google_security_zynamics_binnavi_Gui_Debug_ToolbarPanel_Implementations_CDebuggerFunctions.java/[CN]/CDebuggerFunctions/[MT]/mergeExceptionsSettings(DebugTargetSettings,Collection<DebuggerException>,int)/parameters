@@ -1,0 +1,3 @@
+DebugTargetSettings target
+Collection<DebuggerException> exceptions
+int debuggerId

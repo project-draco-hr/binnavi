@@ -1,0 +1,4 @@
+ITranslationEnvironment environment
+long offset
+IOperandTree operand
+boolean loadOperand

@@ -1,0 +1,3 @@
+{
+  return m_sourceFunction.hashCode() * m_targetFunction.hashCode();
+}

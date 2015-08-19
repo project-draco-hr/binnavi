@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null.");
+  Preconditions.checkArgument(!node.isRoot(),"Error: node argument can not be the root node.");
+  final Set<DefaultMutableTreeNode> nodesToDelete=Sets.newHashSet();
+  nodesToDelete.add(node);
+  while (node.getSiblingCount() == 1 && node.getParent() != getRoot()) {
+    node=(DefaultMutableTreeNode)node.getParent();
+    nodesToDelete.add(node);
+  }
+  for (  DefaultMutableTreeNode currentNode : nodesToDelete) {
+    removeNodeFromParent(currentNode);
+    if (currentNode instanceof InstructionNode) {
+      multiIndex.removeInstructionNode((InstructionNode)currentNode);
+    }
+    if (currentNode instanceof BaseTypeTreeNode) {
+      baseTypeToTreeNode.remove(((BaseTypeTreeNode)currentNode).getBaseType());
+    }
+    if (currentNode instanceof TypeMemberTreeNode) {
+      typeMemberToTreeNode.remove(((TypeMemberTreeNode)currentNode).getTypeMember(),currentNode);
+    }
+  }
+}

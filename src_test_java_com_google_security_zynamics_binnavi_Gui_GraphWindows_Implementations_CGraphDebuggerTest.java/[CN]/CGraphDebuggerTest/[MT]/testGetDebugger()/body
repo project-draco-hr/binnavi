@@ -1,0 +1,10 @@
+{
+  final MockModule module=new MockModule();
+  module.getConfiguration().setDebugger(m_debugger);
+  final DebugTargetSettings target=new ModuleTargetSettings(module);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  debuggerProvider.addDebugger(m_debugger);
+  final CFunction function=new CFunction(module,new MockView(),new CAddress(0x123),"Mock Function","Mock Function","Mock Description",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,m_provider);
+  final CFunctionNode functionNode=new CFunctionNode(0,function,0,0,0,0,Color.RED,false,false,null,new HashSet<CTag>(),m_provider);
+  assertEquals(m_debugger,CGraphDebugger.getDebugger(debuggerProvider,functionNode));
+}

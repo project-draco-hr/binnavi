@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(name,"IE00257: Project name can't be null");
+  if (m_name.equals(name)) {
+    return;
+  }
+  m_provider.setName(m_project,name);
+  m_name=name;
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.changedName(m_project,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

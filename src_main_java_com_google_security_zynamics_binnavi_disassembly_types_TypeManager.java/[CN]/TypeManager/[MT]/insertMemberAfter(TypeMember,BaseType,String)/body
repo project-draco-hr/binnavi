@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(existingMember,"Error: existing member can not be null.");
+switch (existingMember.getParentType().getCategory()) {
+case STRUCT:
+    return createStructureMember(existingMember.getParentType(),memberType,memberName,existingMember.getBitSize() + existingMember.getBitOffset().get());
+case UNION:
+  return createUnionMember(existingMember.getParentType(),memberType,memberName);
+case FUNCTION_PROTOTYPE:
+return createFunctionPrototypeMember(existingMember.getParentType(),memberType,memberName,existingMember.getArgumentIndex().get() + 1);
+default :
+throw new IllegalStateException("Error: cannot insert member into non-compound type.");
+}
+}

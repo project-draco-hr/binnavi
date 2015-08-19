@@ -1,0 +1,3 @@
+{
+  new RawTypeMember(ID,NAME,BASE_TYPE_ID,PARENT_ID,OFFSET,ARGUMENT,-1);
+}

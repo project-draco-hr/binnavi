@@ -1,0 +1,7 @@
+{
+  final List<Color> colors=new ArrayList<Color>();
+  for (  final Entry<Color,Integer> entry : colorList) {
+    colors.add(entry.getKey());
+  }
+  return colors;
+}

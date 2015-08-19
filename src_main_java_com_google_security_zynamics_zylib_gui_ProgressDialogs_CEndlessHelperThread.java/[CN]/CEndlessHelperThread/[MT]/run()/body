@@ -1,0 +1,11 @@
+{
+  try {
+    runExpensiveCommand();
+  }
+ catch (  final Exception exception) {
+    m_exception=exception;
+  }
+ finally {
+    notifyListeners();
+  }
+}

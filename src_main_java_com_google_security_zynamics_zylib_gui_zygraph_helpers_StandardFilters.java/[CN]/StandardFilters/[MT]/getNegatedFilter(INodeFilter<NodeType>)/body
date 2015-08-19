@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(filter,"Error: Filter argument can't be null");
+  return new INodeFilter<NodeType>(){
+    @Override public boolean qualifies(    final NodeType node){
+      return !filter.qualifies(node);
+    }
+  }
+;
+}

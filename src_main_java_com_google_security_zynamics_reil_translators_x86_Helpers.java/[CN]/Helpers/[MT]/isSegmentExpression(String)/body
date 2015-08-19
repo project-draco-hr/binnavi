@@ -1,0 +1,3 @@
+{
+  return (value.endsWith(":") && isSegment(value.substring(0,value.length() - 1)));
+}

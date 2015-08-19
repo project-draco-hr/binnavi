@@ -1,0 +1,11 @@
+{
+  try {
+    node.getRawNode().tagNode(tag);
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00131: " + "Could not tag node";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The selected node could not be tagged with the tag '%s'.",tag.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The node remains untagged."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+  }
+}

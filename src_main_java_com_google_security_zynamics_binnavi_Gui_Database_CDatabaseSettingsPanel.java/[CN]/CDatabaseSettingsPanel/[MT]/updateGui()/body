@@ -1,0 +1,6 @@
+{
+  autoConnectBox.setEnabled(savePasswordBox.isSelected());
+  if (!savePasswordBox.isSelected()) {
+    autoConnectBox.setSelected(false);
+  }
+}

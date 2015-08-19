@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(provider,"IE01627: Provider argument can not be null");
+  Preconditions.checkNotNull(operandTreeNode,"IE01629: operandTreeNode argument can not be null");
+  Preconditions.checkNotNull(replacement,"IE01635: Replacement argument can not be null");
+  final String query="UPDATE " + CTableNames.EXPRESSION_SUBSTITUTIONS_TABLE + " SET replacement = ? WHERE expression_id = ?";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+    try {
+      statement.setString(1,replacement);
+      statement.setInt(2,operandTreeNode.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

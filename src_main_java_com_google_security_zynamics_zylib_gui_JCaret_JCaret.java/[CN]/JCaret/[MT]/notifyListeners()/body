@@ -1,0 +1,5 @@
+{
+  for (  final ICaretListener listener : m_listeners) {
+    listener.caretStatusChanged(JCaret.this);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  final List<CGraphPanel> graphs=new ArrayList<CGraphPanel>();
+  for (int i=0; i < graphTab.getTabCount(); i++) {
+    final CGraphPanel currentPanel=((CGraphPanel)graphTab.getComponentAt(i));
+    if (currentPanel != panel) {
+      graphs.add(currentPanel);
+    }
+  }
+  close(SwingUtilities.getWindowAncestor(graphTab),graphs);
+}

@@ -1,0 +1,7 @@
+{
+  super("Plugins");
+  m_model=model;
+  setMnemonic("HK_MENU_PLUGINS".charAt(0));
+  fillPluginsMenu();
+  PluginInterface.instance().addListener(m_listener);
+}

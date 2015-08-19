@@ -1,0 +1,10 @@
+{
+  requests+="REMOVE_BREAKPOINTS/";
+  for (  final BreakpointAddress breakpointAddress : breakpoints) {
+    requests+=breakpointAddress.getAddress().getAddress().toHexString();
+    requests+="/";
+    requests+=type;
+  }
+  requests+=";";
+  processCounter();
+}

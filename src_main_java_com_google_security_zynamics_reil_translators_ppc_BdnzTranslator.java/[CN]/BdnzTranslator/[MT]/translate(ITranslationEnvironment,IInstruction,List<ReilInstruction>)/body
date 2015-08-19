@@ -1,0 +1,13 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bdnz");
+  final IOperandTreeNode addressOperand=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode BIOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  String suffix="";
+  if (instruction.getMnemonic().endsWith("+")) {
+    suffix="+";
+  }
+  if (instruction.getMnemonic().endsWith("-")) {
+    suffix="-";
+  }
+  BranchGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"bdnz" + suffix,BIOperand.getValue(),addressOperand.getValue(),false,false,true,false,false,false);
+}

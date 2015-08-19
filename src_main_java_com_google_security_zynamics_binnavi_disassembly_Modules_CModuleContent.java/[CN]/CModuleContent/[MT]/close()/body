@@ -1,0 +1,11 @@
+{
+  Preconditions.checkState(!m_closed,"IE00203: Module content was closed before.");
+  if (!m_functions.close()) {
+    return false;
+  }
+  if (!m_viewContainer.close()) {
+    return false;
+  }
+  m_closed=true;
+  return true;
+}

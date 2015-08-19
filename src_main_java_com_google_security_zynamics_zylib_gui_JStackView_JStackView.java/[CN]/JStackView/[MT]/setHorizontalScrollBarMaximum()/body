@@ -1,0 +1,12 @@
+{
+  final int totalWidth=m_panel.getOffsetViewWidth() + 10 + 80;
+  final int realWidth=getWidth();
+  if ((realWidth >= totalWidth) || (m_panel.getCharWidth() == 0)) {
+    m_bottomScrollbar.setValue(0);
+    m_bottomScrollbar.setEnabled(false);
+  }
+ else {
+    m_bottomScrollbar.setMaximum(((totalWidth - realWidth) / m_panel.getCharWidth()) + 1);
+    m_bottomScrollbar.setEnabled(true);
+  }
+}

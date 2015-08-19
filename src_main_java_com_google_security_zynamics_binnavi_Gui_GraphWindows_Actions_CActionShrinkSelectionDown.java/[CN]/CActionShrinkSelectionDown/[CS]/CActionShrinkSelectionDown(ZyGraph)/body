@@ -1,0 +1,4 @@
+{
+  super("Shrink Selection Down");
+  m_graph=graph;
+}

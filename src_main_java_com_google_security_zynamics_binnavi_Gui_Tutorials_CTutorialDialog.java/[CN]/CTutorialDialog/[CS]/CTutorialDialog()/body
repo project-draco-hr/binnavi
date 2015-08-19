@@ -1,0 +1,33 @@
+{
+  super((Window)null,"BinNavi Tutorial");
+  CIconInitializer.initializeWindowIcons(this);
+  setLayout(new BorderLayout());
+  m_topicLabel.setBorder(new EmptyBorder(5,5,5,5));
+  m_descriptionField.setContentType("text/html");
+  m_descriptionField.setEditable(false);
+  m_descriptionField.setBorder(new TitledBorder(""));
+  final JPanel topPanel=new JPanel();
+  topPanel.add(m_topicLabel);
+  add(m_topicLabel,BorderLayout.NORTH);
+  add(new JScrollPane(m_descriptionField));
+  final JPanel bottomPanel=new JPanel(new BorderLayout());
+  final JButton cancelButton=new JButton(new QuitAction());
+  final JPanel leftPanel=new JPanel(new BorderLayout());
+  m_warningLabel.setEditable(false);
+  m_warningLabel.setForeground(Color.RED);
+  m_warningLabel.setBorder(new EmptyBorder(0,5,0,0));
+  leftPanel.add(cancelButton,BorderLayout.WEST);
+  leftPanel.add(m_warningLabel);
+  final JPanel buttonsPanel=new JPanel(new GridLayout(0,2));
+  buttonsPanel.add(m_skipButton);
+  buttonsPanel.add(m_nextButton);
+  bottomPanel.add(leftPanel,BorderLayout.WEST);
+  bottomPanel.add(buttonsPanel,BorderLayout.EAST);
+  add(bottomPanel,BorderLayout.SOUTH);
+  setSize(550,300);
+  GuiHelper.centerOnScreen(this);
+  setLocation(getLocation().x + 200,getLocation().y - 200);
+  setAlwaysOnTop(true);
+  setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+  addWindowListener(new InternalWindowListener());
+}

@@ -1,0 +1,2 @@
+CFilterPanel<T> filterPanel
+IFilter<T> filter

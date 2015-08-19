@@ -1,0 +1,8 @@
+{
+  try {
+    return node.getParentFunction();
+  }
+ catch (  final MaybeNullException e) {
+    return null;
+  }
+}

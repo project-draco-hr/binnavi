@@ -1,0 +1,3 @@
+{
+  return "".equals(m_text) || (m_text == null);
+}

@@ -1,0 +1,4 @@
+{
+  testDeleteType(getKernel32Module());
+  testDeleteType(getNotepadModule());
+}

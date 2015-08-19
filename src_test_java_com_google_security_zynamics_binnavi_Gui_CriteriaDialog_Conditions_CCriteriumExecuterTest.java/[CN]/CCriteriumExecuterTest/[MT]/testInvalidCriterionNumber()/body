@@ -1,0 +1,9 @@
+{
+  final CCachedColorCriterium criterium2=new CCachedColorCriterium(Color.BLUE);
+  final CCachedExpressionTreeNode node2=new CCachedExpressionTreeNode(criterium2);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node2);
+  final CCachedColorCriterium criterium3=new CCachedColorCriterium(Color.RED);
+  final CCachedExpressionTreeNode node3=new CCachedExpressionTreeNode(criterium3);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node3);
+  CCriteriumExecuter.execute(m_tree,m_graph);
+}

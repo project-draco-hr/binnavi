@@ -1,0 +1,10 @@
+{
+  m_parent=model.getParent();
+  m_viewContainer=model.getViewContainer();
+  for (  final INaviViewNode node : model.getGraph().getRawView().getGraph().getNodes()) {
+    processNewNode(node);
+  }
+  m_tableModel.setCrossReferences(m_crossReferences);
+  extender.addTab("Calling Functions",this);
+  model.getGraph().getRawView().addListener(m_internalListener);
+}

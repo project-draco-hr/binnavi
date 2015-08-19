@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: Project must be loaded first");
+  }
+  return new ArrayList<View>(m_views);
+}

@@ -1,0 +1,3 @@
+{
+  return getNodePopup(model,node,clickedObject,y,contentSelectionActive,extensions);
+}

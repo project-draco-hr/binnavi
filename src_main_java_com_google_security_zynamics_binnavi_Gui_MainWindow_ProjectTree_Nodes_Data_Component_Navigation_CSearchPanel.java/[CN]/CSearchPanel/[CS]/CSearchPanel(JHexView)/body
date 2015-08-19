@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  setBorder(new TitledBorder("Search"));
+  final CSearchOutputPanel outputPanel=new CSearchOutputPanel(hexView);
+  add(new CSearchInputPanel(hexView,outputPanel.getTableModel()),BorderLayout.NORTH);
+  add(outputPanel);
+}

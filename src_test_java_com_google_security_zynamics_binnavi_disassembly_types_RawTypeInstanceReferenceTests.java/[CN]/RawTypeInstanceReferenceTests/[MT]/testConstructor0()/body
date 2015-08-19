@@ -1,0 +1,9 @@
+{
+  final RawTypeInstanceReference rawReference=new RawTypeInstanceReference(MODULE_ID,VIEW_ID,ADDRESS,OPERAND_POSITION,EXPRESSION_ID,TYPE_INSTANCE_ID);
+  assertEquals(MODULE_ID,rawReference.getModuleId());
+  assertEquals(VIEW_ID,rawReference.getViewId());
+  assertEquals(ADDRESS,rawReference.getAddress());
+  assertEquals(OPERAND_POSITION,rawReference.getOperandPosition());
+  assertEquals(EXPRESSION_ID,rawReference.getExpressionId());
+  assertEquals(TYPE_INSTANCE_ID,rawReference.getTypeInstanceId());
+}

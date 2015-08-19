@@ -1,0 +1,14 @@
+{
+  StyleConstants.setFontFamily(outputAttrA,GuiHelper.getMonospaceFont());
+  StyleConstants.setFontSize(outputAttrA,11);
+  StyleConstants.setForeground(outputAttrA,new Color((float).4,(float).4,(float).4));
+  StyleConstants.setFontFamily(outputAttrB,GuiHelper.getMonospaceFont());
+  StyleConstants.setFontSize(outputAttrB,11);
+  StyleConstants.setForeground(outputAttrB,new Color((float).1,(float).1,(float).1));
+  StyleConstants.setFontFamily(outputErrAttr,GuiHelper.getMonospaceFont());
+  StyleConstants.setFontSize(outputErrAttr,11);
+  StyleConstants.setForeground(outputErrAttr,new Color(1,(float).2,(float).2));
+  lastPosition=0;
+  flipflop=false;
+  outputAttr=outputAttrA;
+}

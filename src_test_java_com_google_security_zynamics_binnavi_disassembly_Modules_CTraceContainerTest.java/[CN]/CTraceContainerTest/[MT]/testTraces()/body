@@ -1,0 +1,51 @@
+{
+  assertEquals(0,m_content.getTraceCount());
+  try {
+    m_content.createTrace(null,"New Trace Description");
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_content.createTrace("New Trace",null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  final TraceList newTrace=m_content.createTrace("New Trace","New Trace Description");
+  assertEquals("addedTrace/",m_listener.eventList);
+  assertEquals(newTrace,m_listener.addedTraces.get(0));
+  assertEquals(1,m_content.getTraceCount());
+  assertEquals(newTrace,m_content.getTraces().get(0));
+  assertEquals("New Trace",newTrace.getName());
+  assertEquals("New Trace Description",newTrace.getDescription());
+  final TraceList newTrace2=m_content.createTrace("New Trace II","New Trace Description II");
+  assertEquals("addedTrace/addedTrace/",m_listener.eventList);
+  assertEquals(newTrace2,m_listener.addedTraces.get(1));
+  assertEquals(2,m_content.getTraceCount());
+  assertEquals(newTrace,m_content.getTraces().get(0));
+  assertEquals(newTrace2,m_content.getTraces().get(1));
+  assertEquals("New Trace II",newTrace2.getName());
+  assertEquals("New Trace Description II",newTrace2.getDescription());
+  m_content.deleteTrace(newTrace);
+  assertEquals("addedTrace/addedTrace/deletedTrace/",m_listener.eventList);
+  assertEquals(newTrace,m_listener.deletedTraces.get(0));
+  assertEquals(1,m_content.getTraceCount());
+  assertEquals(newTrace2,m_content.getTraces().get(0));
+  m_content.deleteTrace(newTrace2);
+  assertEquals("addedTrace/addedTrace/deletedTrace/deletedTrace/",m_listener.eventList);
+  assertEquals(newTrace2,m_listener.deletedTraces.get(1));
+  assertEquals(0,m_content.getTraceCount());
+  try {
+    m_content.deleteTrace(newTrace2);
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  try {
+    m_content.deleteTrace(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+}

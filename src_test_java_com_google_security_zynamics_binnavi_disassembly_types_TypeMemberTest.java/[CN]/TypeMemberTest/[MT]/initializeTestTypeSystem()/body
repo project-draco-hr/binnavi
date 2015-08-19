@@ -1,0 +1,7 @@
+{
+  typeSystem=new TestTypeSystem(new TypeManager(new TypeManagerMockBackend()));
+  memberOffset0Id0=TypeMember.createStructureMember(0,typeSystem.simpleStruct,typeSystem.intType,"",0);
+  memberOffset1Id0=TypeMember.createStructureMember(0,typeSystem.simpleStruct,typeSystem.intType,"",1);
+  memberOffset0Id1=TypeMember.createStructureMember(1,typeSystem.simpleStruct,typeSystem.intType,"",0);
+  memberOffset1Id1=TypeMember.createStructureMember(1,typeSystem.simpleStruct,typeSystem.intType,"",1);
+}

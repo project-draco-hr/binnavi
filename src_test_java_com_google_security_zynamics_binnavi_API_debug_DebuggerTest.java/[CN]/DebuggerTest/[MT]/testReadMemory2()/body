@@ -1,0 +1,5 @@
+{
+  debugger.connect();
+  debugger.readMemory(new Address(0),0x100);
+  assertEquals("CONNECT;READMEM/00000000/256;",mockDebugger.requests);
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    if (size.getText().isEmpty() || Integer.parseInt(size.getText()) < 0) {
+      return false;
+    }
+  }
+ catch (  final NumberFormatException exception) {
+    return false;
+  }
+  return true;
+}

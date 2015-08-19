@@ -1,0 +1,3 @@
+{
+  getProvider().appendGlobalEdgeComment(edge,null,null);
+}

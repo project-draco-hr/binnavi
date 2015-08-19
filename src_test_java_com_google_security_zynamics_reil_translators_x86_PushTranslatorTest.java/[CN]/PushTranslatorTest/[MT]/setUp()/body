@@ -1,0 +1,3 @@
+{
+  interpreter.setRegister("esp",BigInteger.valueOf(0x2000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+}

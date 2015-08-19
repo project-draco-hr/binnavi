@@ -1,0 +1,4 @@
+{
+  provider.createTypeSubstitution(node.getId(),baseType.getId(),memberPath,position,offset,address,module);
+  return new TypeSubstitution(node,baseType,node.getId(),position,offset,address);
+}

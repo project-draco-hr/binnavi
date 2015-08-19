@@ -1,0 +1,2 @@
+IDebugger debugger
+IFilledList<Pair<INaviModule,MemoryModule>> wronglyPlacedModules

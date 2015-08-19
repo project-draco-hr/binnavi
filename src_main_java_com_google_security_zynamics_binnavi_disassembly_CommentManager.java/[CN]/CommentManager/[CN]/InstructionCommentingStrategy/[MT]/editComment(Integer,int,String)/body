@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    provider.editGlobalInstructionComment(instruction,id,userId,commentText);
+  }
+ else {
+    provider.editLocalInstructionComment(codeNode,instruction,id,userId,commentText);
+  }
+}

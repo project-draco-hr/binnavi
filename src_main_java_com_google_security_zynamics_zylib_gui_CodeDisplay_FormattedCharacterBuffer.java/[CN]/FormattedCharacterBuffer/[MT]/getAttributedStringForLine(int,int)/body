@@ -1,0 +1,11 @@
+{
+  String newLine=new String(charBuffer,(numberOfColumnsInBuffer * lineIndex) + skip,numberOfColumnsInBuffer - skip);
+  AttributedString attributedString=new AttributedString(newLine);
+  int lineStart=(lineIndex * numberOfColumnsInBuffer) + skip;
+  for (int index=0; index < numberOfColumnsInBuffer - skip; index++) {
+    attributedString.addAttribute(java.awt.font.TextAttribute.FONT,perCharFonts[lineStart + index],index,index + 1);
+    attributedString.addAttribute(java.awt.font.TextAttribute.BACKGROUND,perCharBackgroundColor[lineStart + index],index,index + 1);
+    attributedString.addAttribute(java.awt.font.TextAttribute.FOREGROUND,perCharForegroundColor[lineStart + index],index,index + 1);
+  }
+  return attributedString;
+}

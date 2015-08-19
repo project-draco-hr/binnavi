@@ -1,0 +1,8 @@
+{
+  if (isEmpty()) {
+    final AttributedString dummyString=new AttributedString(" ");
+    final TextLayout dummyLayout=new TextLayout(dummyString.getIterator(),m_fontContext);
+    return dummyLayout.getBounds();
+  }
+  return new Rectangle2D.Double(0,0,m_charWidth * m_text.length(),m_charHeight);
+}

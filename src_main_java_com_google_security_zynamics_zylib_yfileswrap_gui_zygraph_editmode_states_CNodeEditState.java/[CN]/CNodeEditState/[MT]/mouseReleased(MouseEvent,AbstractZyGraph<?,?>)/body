@@ -1,0 +1,73 @@
+{
+  final double x=graph.getEditMode().translateX(event.getX());
+  final double y=graph.getEditMode().translateY(event.getY());
+  final HitInfo hitInfo=graph.getGraph().getHitInfo(x,y);
+  if (hitInfo.hasHitNodes()) {
+    final Node n=hitInfo.getHitNode();
+    if (SwingUtilities.isLeftMouseButton(event) && !event.isAltDown()) {
+      if (n == m_node) {
+        if (!m_isDragging) {
+          CEditNodeHelper.setCaretEnd(graph,n,event);
+        }
+ else {
+          m_isDragging=false;
+        }
+        return new CStateChange(this,false);
+      }
+ else {
+        m_factory.createNodeEditExitState(m_node,event);
+        return new CStateChange(m_factory.createNodePressedLeftState(n,event),true);
+      }
+    }
+ else     if (SwingUtilities.isRightMouseButton(event)) {
+      if (n == m_node) {
+        return new CStateChange(this,false);
+      }
+ else {
+        m_factory.createNodeEditExitState(m_node,event);
+        return new CStateChange(m_factory.createNodePressedRightState(n,event),true);
+      }
+    }
+ else     if (SwingUtilities.isMiddleMouseButton(event) || (event.isAltDown() && SwingUtilities.isLeftMouseButton(event))) {
+      if (n == m_node) {
+        if (!m_isDragging) {
+          CEditNodeHelper.setCaretEnd(graph,n,event);
+        }
+ else {
+          m_isDragging=false;
+        }
+        return new CStateChange(this,false);
+      }
+ else {
+        m_factory.createNodeEditExitState(m_node,event);
+        return new CStateChange(m_factory.createNodePressedMiddleState(n,event),true);
+      }
+    }
+ else {
+      return new CStateChange(this,false);
+    }
+  }
+ else   if (hitInfo.hasHitNodeLabels()) {
+    throw new IllegalStateException();
+  }
+ else   if (hitInfo.hasHitEdges()) {
+    m_factory.createNodeEditExitState(m_node,event);
+    return new CStateChange(m_factory.createEdgePressedLeftState(hitInfo.getHitEdge(),event),true);
+  }
+ else   if (hitInfo.hasHitEdgeLabels()) {
+    m_factory.createNodeEditExitState(m_node,event);
+    return new CStateChange(m_factory.createEdgePressedLeftState(hitInfo.getHitEdgeLabel().getEdge(),event),true);
+  }
+ else   if (hitInfo.hasHitBends()) {
+    m_factory.createNodeEditExitState(m_node,event);
+    return new CStateChange(m_factory.createBendPressedLeftState(hitInfo.getHitBend(),event),true);
+  }
+ else   if (hitInfo.hasHitPorts()) {
+    m_factory.createNodeEditExitState(m_node,event);
+    return new CStateChange(m_factory.createDefaultState(),true);
+  }
+ else {
+    m_factory.createNodeEditExitState(m_node,event);
+    return new CStateChange(m_factory.createBackgroundPressedLeftState(event),true);
+  }
+}

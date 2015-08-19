@@ -1,0 +1,6 @@
+{
+  final ZyGraphViewSettings graphSettings=graphModel.getGraph().getSettings();
+  final BackEndDebuggerProvider provider=graphModel.getDebuggerProvider();
+  final INodeModifier modifier=new CDefaultModifier(graphSettings,provider);
+  return ZyInstructionBuilder.buildInstructionLine(instruction,graphSettings,modifier).first();
+}

@@ -1,0 +1,4 @@
+{
+  m_memory=memory;
+  memory.addMemoryListener(m_listener);
+}

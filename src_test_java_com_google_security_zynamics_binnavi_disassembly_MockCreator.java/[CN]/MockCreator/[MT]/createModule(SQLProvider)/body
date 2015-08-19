@@ -1,0 +1,3 @@
+{
+  return new CModule(123,"Mock Name","Mock Comment",new Date(),new Date(),CommonTestObjects.MD5,CommonTestObjects.SHA1,55,66,new CAddress(0x555),new CAddress(0x666),null,null,Integer.MAX_VALUE,false,sql);
+}

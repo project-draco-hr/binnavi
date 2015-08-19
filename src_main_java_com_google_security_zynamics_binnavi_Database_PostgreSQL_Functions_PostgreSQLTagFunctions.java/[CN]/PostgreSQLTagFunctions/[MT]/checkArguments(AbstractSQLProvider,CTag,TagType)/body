@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,tag);
+  Preconditions.checkNotNull(type,"IE00549: Type argument can not be null");
+  Preconditions.checkArgument(tag.getType() == type,"IE00550: Type of the node is different from the type of the given node");
+}

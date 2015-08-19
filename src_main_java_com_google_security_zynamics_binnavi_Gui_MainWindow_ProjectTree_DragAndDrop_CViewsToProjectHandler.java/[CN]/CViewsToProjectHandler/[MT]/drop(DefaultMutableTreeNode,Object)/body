@@ -1,0 +1,8 @@
+{
+  final CProjectViewsContainerNode projectNode=(CProjectViewsContainerNode)parentNode;
+  final INaviProject project=projectNode.getObject();
+  final List<INaviView> views=(List<INaviView>)data;
+  for (  final INaviView view : views) {
+    CProjectFunctions.copyView(m_parent,project,view);
+  }
+}

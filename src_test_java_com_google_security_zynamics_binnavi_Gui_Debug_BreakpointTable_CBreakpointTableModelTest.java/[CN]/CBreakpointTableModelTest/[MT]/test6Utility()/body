@@ -1,0 +1,23 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS_SET);
+  final Breakpoint breakPoint=debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,BREAKPOINT_ADDRESS);
+  @SuppressWarnings("unused") final CAddress address=new CAddress(0);
+  final BaseNode root=new BaseNode();
+  final BreakpointCondition bpCondition=new BreakpointCondition("foo",root);
+  breakPoint.setCondition(bpCondition);
+  breakPoint.setDescription("purzel");
+  debuggerProvider.addDebugger(debugger);
+  final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+  assertEquals(7,tableModel.getColumnCount());
+  assertEquals("Status",tableModel.getColumnName(0));
+  assertEquals("Debugger",tableModel.getColumnName(1));
+  assertEquals("Unrelocated Address",tableModel.getColumnName(2));
+  assertEquals("Relocated Address",tableModel.getColumnName(3));
+  assertEquals("Module",tableModel.getColumnName(4));
+  assertEquals("Condition",tableModel.getColumnName(5));
+  assertEquals("Description",tableModel.getColumnName(6));
+  assertEquals(1,tableModel.getRowCount());
+}

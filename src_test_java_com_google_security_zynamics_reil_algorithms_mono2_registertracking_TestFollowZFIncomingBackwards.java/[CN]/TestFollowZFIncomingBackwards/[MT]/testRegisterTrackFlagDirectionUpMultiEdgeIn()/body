@@ -1,0 +1,57 @@
+{
+  final MockInstruction startInstruction=new MockInstruction(Long.parseLong("4"),"jz",new ArrayList<MockOperandTree>());
+  m_options=new RegisterTrackingOptions(true,new HashSet<String>(),true,AnalysisDirection.UP);
+  final List<String> nop1=new ArrayList<String>();
+  nop1.add("100: nop [,,]");
+  final List<String> nop2=new ArrayList<String>();
+  nop2.add("200: nop [,,]");
+  final List<String> inst=new ArrayList<String>();
+  inst.add("300: bisz [DWORD eax, EMPTY , BYTE ZF]");
+  inst.add("400: jcc [BYTE ZF, EMPTY, DWORD 123456]");
+  final List<List<String>> blocks=Lists.newArrayList();
+  blocks.add(nop1);
+  blocks.add(nop2);
+  blocks.add(inst);
+  final List<String> edgeStrings=new ArrayList<String>();
+  edgeStrings.add("100 [JUMP_UNCONDITIONAL]-> 300");
+  edgeStrings.add("200 [JUMP_UNCONDITIONAL]-> 300");
+  generateReilGraph(blocks,edgeStrings);
+  m_function=new ReilFunction("FOLLOWZF",m_graph1);
+  final String trackedRegister="ZF";
+  final MonoReilSolverResult<RegisterSetLatticeElement> result=RegisterTracker.track(m_function,startInstruction,trackedRegister,m_options);
+  final Map<IAddress,RegisterSetLatticeElement> resultMap=result.generateAddressToStateMapping(startInstruction,m_options.trackIncoming());
+  for (  final Entry<IAddress,RegisterSetLatticeElement> resultEntry : resultMap.entrySet()) {
+    if (resultEntry.getKey().toLong() == Long.parseLong("100",16)) {
+      final RegisterSetLatticeElement jzElement=resultEntry.getValue();
+      assertTrue(jzElement.getNewlyTaintedRegisters().isEmpty());
+      assertTrue(jzElement.getReadRegisters().isEmpty());
+      assertTrue(jzElement.getTaintedRegisters().contains("eax"));
+      assertTrue(jzElement.getUntaintedRegisters().isEmpty());
+      assertTrue(jzElement.getUpdatedRegisters().isEmpty());
+    }
+    if (resultEntry.getKey().toLong() == Long.parseLong("200",16)) {
+      final RegisterSetLatticeElement jzElement=resultEntry.getValue();
+      assertTrue(jzElement.getNewlyTaintedRegisters().isEmpty());
+      assertTrue(jzElement.getReadRegisters().isEmpty());
+      assertTrue(jzElement.getTaintedRegisters().contains("eax"));
+      assertTrue(jzElement.getUntaintedRegisters().isEmpty());
+      assertTrue(jzElement.getUpdatedRegisters().isEmpty());
+    }
+    if (resultEntry.getKey().toLong() == Long.parseLong("300",16)) {
+      final RegisterSetLatticeElement jzElement=resultEntry.getValue();
+      assertTrue(jzElement.getNewlyTaintedRegisters().contains("eax"));
+      assertTrue(jzElement.getReadRegisters().contains("ZF"));
+      assertTrue(jzElement.getTaintedRegisters().contains("eax"));
+      assertTrue(jzElement.getUntaintedRegisters().contains("ZF"));
+      assertTrue(jzElement.getUpdatedRegisters().isEmpty());
+    }
+    if (resultEntry.getKey().toLong() == Long.parseLong("400",16)) {
+      final RegisterSetLatticeElement jzElement=resultEntry.getValue();
+      assertTrue(jzElement.getNewlyTaintedRegisters().contains("ZF"));
+      assertTrue(jzElement.getReadRegisters().isEmpty());
+      assertTrue(jzElement.getTaintedRegisters().contains("ZF"));
+      assertTrue(jzElement.getUntaintedRegisters().isEmpty());
+      assertTrue(jzElement.getUpdatedRegisters().isEmpty());
+    }
+  }
+}

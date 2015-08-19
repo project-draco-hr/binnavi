@@ -1,0 +1,6 @@
+{
+  m_parent=parent;
+  m_debugTarget=Preconditions.checkNotNull(debugTarget,"IE02292: debugTarget argument can not be null");
+  m_viewContainer=Preconditions.checkNotNull(viewContainer,"IE02293: viewContainer argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE02294: debugger argument can not be null");
+}

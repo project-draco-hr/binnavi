@@ -1,0 +1,12 @@
+{
+  final Collection<DebuggerException> nativeExceptions=Collections.emptyList();
+  for (  final DebuggerDebugException exception : exceptions) {
+    nativeExceptions.add(exception.getNative());
+  }
+  try {
+    m_debugger.setExceptionSettings(nativeExceptions);
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    throw new DebugException(exception);
+  }
+}

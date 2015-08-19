@@ -1,0 +1,3 @@
+{
+  m_partialEvaluationMap.put(expression,expression.getValue());
+}

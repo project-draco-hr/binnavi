@@ -1,0 +1,9 @@
+{
+  final byte[] data=m_dataProvider.getData(getCurrentOffset(),1);
+  if (getSelectionStart() >= (m_dataProvider.getDataLength() * 2)) {
+    return;
+  }
+  data[0]=(byte)event.getKeyChar();
+  m_dataProvider.setData(getCurrentOffset(),data);
+  setSelectionStart(getSelectionStart() + 2);
+}

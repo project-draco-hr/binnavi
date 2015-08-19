@@ -1,0 +1,16 @@
+{
+  try {
+    debugger.readRegisters();
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    NaviLogger.severe("Error: Could not read registers: Exception %s",exception);
+    for (    final IDebugEventListener listener : listeners) {
+      try {
+        listener.debugException(exception);
+      }
+ catch (      final Exception exception2) {
+        CUtilityFunctions.logException(exception2);
+      }
+    }
+  }
+}

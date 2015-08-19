@@ -1,0 +1,9 @@
+{
+  graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      hideMultipleEdgesInternal(node);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

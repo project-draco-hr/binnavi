@@ -1,0 +1,6 @@
+{
+  Assert.assertEquals(substitution.getAddress(),rawSubstitution.getAddress());
+  Assert.assertTrue(substitution.getBaseType().getId() == rawSubstitution.getBaseTypeId());
+  Assert.assertTrue(substitution.getExpressionId() == rawSubstitution.getExpressionId());
+  Assert.assertTrue(substitution.getOffset() == rawSubstitution.getPosition());
+}

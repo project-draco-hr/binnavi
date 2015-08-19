@@ -1,0 +1,10 @@
+{
+  final EdgeLabel label=hitInfo.getHitEdgeLabel();
+  if (label == oldLabel) {
+    return new CStateChange(m_factory.createEdgeLabelHoverState(label,event),true);
+  }
+ else {
+    m_factory.createEdgeLabelExitState(oldLabel,event);
+    return new CStateChange(m_factory.createEdgeLabelEnterState(label,event),true);
+  }
+}

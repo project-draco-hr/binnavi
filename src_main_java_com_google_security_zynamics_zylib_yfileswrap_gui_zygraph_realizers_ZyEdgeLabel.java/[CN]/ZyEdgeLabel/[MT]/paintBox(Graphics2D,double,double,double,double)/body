@@ -1,0 +1,14 @@
+{
+  final int roundedX=(int)(x - (m_width / 2));
+  final int roundedY=(int)(y - (m_height / 2));
+  final BasicStroke oldStroke=(BasicStroke)gfx.getStroke();
+  gfx.setStroke(new BasicStroke(oldStroke.getLineWidth()));
+  gfx.setColor(m_backGroundColor);
+  gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.80f));
+  gfx.fillRoundRect(roundedX,roundedY,m_roundedWidth,m_roundedHeight,5,5);
+  gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.95f));
+  gfx.setColor(borderColor);
+  gfx.drawRoundRect(roundedX,roundedY,m_roundedWidth,m_roundedHeight,SHADOW_SIZE,SHADOW_SIZE);
+  gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1.00f));
+  gfx.setStroke(oldStroke);
+}

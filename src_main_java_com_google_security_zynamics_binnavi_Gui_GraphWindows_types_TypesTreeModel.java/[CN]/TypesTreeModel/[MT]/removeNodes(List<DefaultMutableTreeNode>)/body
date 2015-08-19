@@ -1,0 +1,10 @@
+{
+  for (  final DefaultMutableTreeNode node : nodes) {
+    if (node instanceof TypeMemberTreeNode) {
+      final TypeMember member=((TypeMemberTreeNode)node).getTypeMember();
+      nestedStructNodes.get(member.getBaseType()).removeAll(memberNodes.get(member));
+      memberNodes.remove(member,node);
+    }
+    node.removeFromParent();
+  }
+}

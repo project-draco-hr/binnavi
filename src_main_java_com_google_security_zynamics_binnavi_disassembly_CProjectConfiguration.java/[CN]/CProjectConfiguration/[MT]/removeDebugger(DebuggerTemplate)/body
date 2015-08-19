@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00254: Debugger argument can't be null");
+  Preconditions.checkArgument(m_assignedDebuggers.contains(debugger),"IE00255: Debugger template was not assigned to the project");
+  m_provider.removeDebugger(m_project,debugger);
+  m_assignedDebuggers.remove(debugger);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.removedDebugger(m_project,debugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

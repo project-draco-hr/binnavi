@@ -1,0 +1,9 @@
+{
+  final long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Pattern condPattern=Pattern.compile(prefix + "(AL|CC|LO|CS|HS|EQ|GE|GT|HI|LE|LS|LT|MI|NE|NV|PL|VC|VS).{0,2}$");
+  final Matcher condMatcher=condPattern.matcher(instruction.getMnemonic());
+  if (condMatcher.matches()) {
+    final String jmpGoal=String.format("%d.%d",instruction.getAddress().toLong(),nopIndex);
+    ConditionGenerator.generate(baseOffset,environment,instruction,instructions,condMatcher.group(1),jmpGoal);
+  }
+}

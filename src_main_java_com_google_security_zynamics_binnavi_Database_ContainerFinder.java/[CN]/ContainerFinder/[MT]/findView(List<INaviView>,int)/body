@@ -1,0 +1,8 @@
+{
+  for (  final INaviView naviView : views) {
+    if (naviView.getConfiguration().getId() == viewId) {
+      return naviView;
+    }
+  }
+  throw new IllegalArgumentException("IE00649: Can not find view");
+}

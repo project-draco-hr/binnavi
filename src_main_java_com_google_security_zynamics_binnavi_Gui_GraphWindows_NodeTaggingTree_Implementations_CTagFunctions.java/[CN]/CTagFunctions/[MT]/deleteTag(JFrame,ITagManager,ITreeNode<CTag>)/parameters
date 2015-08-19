@@ -1,0 +1,3 @@
+JFrame parent
+ITagManager tagManager
+ITreeNode<CTag> tag

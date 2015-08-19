@@ -1,0 +1,10 @@
+{
+  final IUser user=CGenericSQLUserFunctions.addUser(getProvider(),"TEST USER FOR EDIT TEST BEFORE EDIT");
+  assertNotNull(user);
+  assertEquals("TEST USER FOR EDIT TEST BEFORE EDIT",user.getUserName());
+  assertNotNull(user.getUserId());
+  final IUser newUser=CGenericSQLUserFunctions.editUserName(getProvider(),user,"TEST USER FOR EDIT TEST AFTER EDIT");
+  assertNotNull(newUser);
+  assertEquals(user.getUserId(),newUser.getUserId());
+  assertEquals("TEST USER FOR EDIT TEST AFTER EDIT",newUser.getUserName());
+}

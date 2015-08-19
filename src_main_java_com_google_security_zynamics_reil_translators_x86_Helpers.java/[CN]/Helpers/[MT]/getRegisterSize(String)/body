@@ -1,0 +1,12 @@
+{
+  if (register.equals("al") || register.equals("ah") || register.equals("bl")|| register.equals("bh")|| register.equals("cl")|| register.equals("ch")|| register.equals("dl")|| register.equals("dh")) {
+    return OperandSize.BYTE;
+  }
+ else   if (register.equals("ax") || register.equals("bx") || register.equals("cx")|| register.equals("dx")|| register.equals("si")|| register.equals("di")|| register.equals("sp")|| register.equals("bp")|| register.equals("ip")|| isSegment(register)) {
+    return OperandSize.WORD;
+  }
+ else   if (register.equals("eax") || register.equals("ebx") || register.equals("ecx")|| register.equals("edx")|| register.equals("esi")|| register.equals("edi")|| register.equals("esp")|| register.equals("ebp")) {
+    return OperandSize.DWORD;
+  }
+  throw new InternalTranslationException(String.format("Error: Invalid register name %s",register));
+}

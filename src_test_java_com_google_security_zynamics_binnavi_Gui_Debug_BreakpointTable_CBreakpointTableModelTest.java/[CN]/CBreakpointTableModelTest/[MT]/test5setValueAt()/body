@@ -1,0 +1,17 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS_SET);
+  final Breakpoint breakPoint=debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,BREAKPOINT_ADDRESS);
+  final BaseNode root=new BaseNode();
+  final BreakpointCondition bpCondition=new BreakpointCondition("foo",root);
+  breakPoint.setCondition(bpCondition);
+  breakPoint.setDescription("purzel");
+  debuggerProvider.addDebugger(debugger);
+  final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+  tableModel.setValueAt("piff==0",0,5);
+  tableModel.setValueAt("puff",0,6);
+  assertEquals("piff==0",tableModel.getValueAt(0,5));
+  assertEquals("puff",tableModel.getValueAt(0,6));
+}

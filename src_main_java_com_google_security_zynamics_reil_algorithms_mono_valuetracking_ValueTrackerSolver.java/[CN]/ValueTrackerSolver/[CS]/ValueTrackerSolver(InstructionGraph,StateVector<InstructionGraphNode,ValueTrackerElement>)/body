@@ -1,0 +1,3 @@
+{
+  super(graph,new ValueTrackerLattice(),startVector,new ValueTrackerLattice(),new DownWalker(),null);
+}

@@ -1,0 +1,8 @@
+{
+  final StringBuilder strinBuilder=new StringBuilder();
+  for (  final ReilInstruction instruction : m_instructions) {
+    strinBuilder.append(instruction.toString());
+    strinBuilder.append('\n');
+  }
+  return strinBuilder.toString();
+}

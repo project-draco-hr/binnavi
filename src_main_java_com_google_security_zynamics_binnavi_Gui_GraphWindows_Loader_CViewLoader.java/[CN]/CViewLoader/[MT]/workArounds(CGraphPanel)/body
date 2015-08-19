@@ -1,0 +1,9 @@
+{
+  EventQueue.invokeLater(new Runnable(){
+    @Override public void run(){
+      panel.updateSplitters();
+      workaroundCase874(panel.getModel().getGraph());
+    }
+  }
+);
+}

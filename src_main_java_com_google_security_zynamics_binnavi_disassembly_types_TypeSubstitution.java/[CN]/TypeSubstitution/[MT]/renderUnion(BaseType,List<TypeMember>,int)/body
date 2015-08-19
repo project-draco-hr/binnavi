@@ -1,0 +1,11 @@
+{
+  final StringBuilder path=new StringBuilder(baseType.getName());
+  for (  final TypeMember member : memberPath) {
+    path.append('.');
+    path.append(member.getName());
+  }
+  if (offset != 0) {
+    path.append(toByteOffsetString(offset));
+  }
+  return path.toString();
+}

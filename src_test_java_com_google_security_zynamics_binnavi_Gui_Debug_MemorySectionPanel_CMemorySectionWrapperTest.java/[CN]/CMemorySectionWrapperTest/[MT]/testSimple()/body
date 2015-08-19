@@ -1,0 +1,6 @@
+{
+  assertEquals("00000000 - 000003FE (1023 bytes)",new CMemorySectionWrapper(new MemorySection(new CAddress(0),new CAddress(1022))).toString());
+  assertEquals("00000000 - 000003FF (1.00 KB)",new CMemorySectionWrapper(new MemorySection(new CAddress(0),new CAddress(1023))).toString());
+  assertEquals("00000000 - 000005DC (1.47 KB)",new CMemorySectionWrapper(new MemorySection(new CAddress(0),new CAddress(1500))).toString());
+  assertEquals("00000000 - 00102710 (1.01 MB)",new CMemorySectionWrapper(new MemorySection(new CAddress(0),new CAddress((1024 * 1024) + 10000))).toString());
+}

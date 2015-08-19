@@ -1,0 +1,4 @@
+{
+  notifyMemberUpdated(member);
+  notifySubstitutionsChanged(affectedTypes);
+}

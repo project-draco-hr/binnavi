@@ -1,0 +1,8 @@
+{
+  final Set<CTag> tags=new HashSet<CTag>();
+  tags.add(tag.getObject());
+  for (  final ITreeNode<CTag> t : BreadthFirstSorter.getSortedList(tag)) {
+    tags.add(t.getObject());
+  }
+  return tags;
+}

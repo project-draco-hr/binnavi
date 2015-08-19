@@ -1,0 +1,8 @@
+{
+  super(parent,"Edit Group Node Comments",true);
+  groupNode=Preconditions.checkNotNull(node,"IE02679: node argument can not be null");
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  commentsPanel=new GroupNodesCommentsPanel(groupNode);
+  createGui();
+}

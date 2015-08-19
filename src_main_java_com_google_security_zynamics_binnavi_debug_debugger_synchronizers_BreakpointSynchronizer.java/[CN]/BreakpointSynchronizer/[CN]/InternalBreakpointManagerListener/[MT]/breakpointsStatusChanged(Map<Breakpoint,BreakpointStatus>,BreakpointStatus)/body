@@ -1,0 +1,62 @@
+{
+  final Set<BreakpointAddress> regularBreakpointAddressesToAdd=new HashSet<BreakpointAddress>();
+  final Set<BreakpointAddress> regularBreakpointAddressesToRemoveFromDebugger=new HashSet<BreakpointAddress>();
+  final Set<BreakpointAddress> regularBreakpointAddressesToRemoveFromManager=new HashSet<BreakpointAddress>();
+  final Set<BreakpointAddress> stepBreakpointAddressesToAdd=new HashSet<BreakpointAddress>();
+  final Set<BreakpointAddress> stepBreakpointAddressesToRemove=new HashSet<BreakpointAddress>();
+  final Set<BreakpointAddress> echoBreakPointAddressesToAdd=new HashSet<BreakpointAddress>();
+  for (  final Entry<Breakpoint,BreakpointStatus> breakpointToOldStatus : breakpointsToOldStatus.entrySet()) {
+    final BreakpointType type=breakpointToOldStatus.getKey().getType();
+switch (type) {
+case REGULAR:
+      regularBreakpointStateChange(breakpointToOldStatus,regularBreakpointAddressesToAdd,regularBreakpointAddressesToRemoveFromDebugger,regularBreakpointAddressesToRemoveFromManager);
+    break;
+case ECHO:
+  echoBreakpointStateChange(breakpointToOldStatus,echoBreakPointAddressesToAdd);
+break;
+case STEP:
+stepBreakpointStateChange(breakpointToOldStatus,stepBreakpointAddressesToAdd,stepBreakpointAddressesToRemove);
+break;
+default :
+break;
+}
+}
+if (debugger.isConnected()) {
+if (!echoBreakPointAddressesToAdd.isEmpty()) {
+setBreakPoints(echoBreakPointAddressesToAdd,BreakpointType.ECHO);
+}
+if (!stepBreakpointAddressesToAdd.isEmpty()) {
+setBreakPoints(stepBreakpointAddressesToAdd,BreakpointType.STEP);
+}
+if (!regularBreakpointAddressesToAdd.isEmpty()) {
+setBreakPoints(regularBreakpointAddressesToAdd,BreakpointType.REGULAR);
+breakpointAddressesConditionChanged(regularBreakpointAddressesToAdd);
+}
+if (!regularBreakpointAddressesToRemoveFromDebugger.isEmpty()) {
+deleteBreakPoints(regularBreakpointAddressesToRemoveFromDebugger,BreakpointType.REGULAR);
+}
+if (!regularBreakpointAddressesToRemoveFromManager.isEmpty()) {
+manager.removeBreakpointsPassive(BreakpointType.REGULAR,regularBreakpointAddressesToRemoveFromManager);
+}
+}
+ else {
+if (!echoBreakPointAddressesToAdd.isEmpty()) {
+manager.setBreakpointStatus(echoBreakPointAddressesToAdd,BreakpointType.ECHO,BreakpointStatus.BREAKPOINT_INACTIVE);
+}
+if (!regularBreakpointAddressesToAdd.isEmpty()) {
+manager.setBreakpointStatus(regularBreakpointAddressesToAdd,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_INACTIVE);
+}
+if (!stepBreakpointAddressesToAdd.isEmpty()) {
+manager.setBreakpointStatus(stepBreakpointAddressesToAdd,BreakpointType.STEP,BreakpointStatus.BREAKPOINT_DELETING);
+}
+if (!stepBreakpointAddressesToRemove.isEmpty()) {
+manager.removeBreakpointsPassive(BreakpointType.STEP,stepBreakpointAddressesToRemove);
+}
+if (!regularBreakpointAddressesToRemoveFromDebugger.isEmpty()) {
+manager.removeBreakpointsPassive(BreakpointType.REGULAR,regularBreakpointAddressesToRemoveFromDebugger);
+}
+if (!regularBreakpointAddressesToRemoveFromManager.isEmpty()) {
+manager.removeBreakpointsPassive(BreakpointType.REGULAR,regularBreakpointAddressesToRemoveFromManager);
+}
+}
+}

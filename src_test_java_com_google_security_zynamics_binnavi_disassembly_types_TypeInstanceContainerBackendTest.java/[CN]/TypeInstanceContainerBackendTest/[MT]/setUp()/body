@@ -1,0 +1,12 @@
+{
+  typeManager=new TypeManager(new TypeManagerMockBackend());
+  sectionContainer=new SectionContainer(new SectionContainerBackend(provider,module));
+  section=sectionContainer.createSection(" SECTION NAME ",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{});
+  typeInstancContainerBackend=new TypeInstanceContainerBackend(provider,module,typeManager,sectionContainer);
+  new UniqueTestUserGenerator(provider).nextActiveUser();
+  baseType=typeManager.getTypes().get(0);
+  Assert.assertNotNull(baseType);
+  typeInstance=typeInstancContainerBackend.createTypeInstance(" TYPE INSTANCE "," TYPE INSTANCE COMMENT ",baseType,section,0);
+  Assert.assertNotNull(typeInstancContainerBackend);
+  view=module.getContent().getViewContainer().getViews().get(0);
+}

@@ -1,0 +1,97 @@
+{
+  Preconditions.checkNotNull(container,"IE02029: Container can't be null");
+  Preconditions.checkNotNull(views,"IE02030: View argument can't be null");
+  final List<CGraphWindow> windows=CWindowManager.instance().getOpenWindows();
+  if (!windows.isEmpty()) {
+    add(CActionProxy.proxy(new COpenInLastWindowAction(parent,container,views)));
+  }
+  add(CActionProxy.proxy(new OpenInNewWindowAction(parent,container,views)));
+  if (!windows.isEmpty()) {
+    final JMenu openInItem=new JMenu("Open in window ...");
+    for (    final CGraphWindow graphContainer : windows) {
+      openInItem.add(CActionProxy.proxy(new OpenInWindowAction(parent,container,views,graphContainer)));
+    }
+    add(openInItem);
+  }
+  addSeparator();
+  if (CStaredItemFunctions.allStared(views)) {
+    add(CActionProxy.proxy(new CUnstarViewAction(parent,views)));
+  }
+ else   if (CStaredItemFunctions.allNotStared(views)) {
+    add(CActionProxy.proxy(new CStarViewsAction(parent,views)));
+  }
+ else {
+    add(CActionProxy.proxy(new CToggleStarViewsAction(parent,views)));
+  }
+  if (canDelete(views)) {
+    addSeparator();
+    add(CActionProxy.proxy(new DeleteViewAction(parent,container,views)));
+  }
+  final boolean singleSelection=views.length == 1;
+  if (singleSelection) {
+    final INaviView view=views[0];
+    final INaviFunction function=container.getFunction(view);
+    if ((function != null) && CFunctionHelpers.isForwardableFunction(function)) {
+      addSeparator();
+      if (function.getForwardedFunctionAddress() == null) {
+        add(CActionProxy.proxy(new CConnectFunctionAction(parent,container.getDatabase(),function)));
+      }
+ else {
+        add(CActionProxy.proxy(new CRemoveConnectedFunctionAction(parent,function)));
+      }
+    }
+    if ((function != null) && !function.getName().equals(function.getOriginalName())) {
+      addSeparator();
+      add(CActionProxy.proxy(new CRenameBackAction(parent,view,function.getOriginalName())));
+    }
+  }
+  addSeparator();
+  final List<INaviFunction> functions=new ArrayList<INaviFunction>();
+  boolean anyNull=false;
+  for (  final INaviView view : views) {
+    final INaviFunction func=container.getFunction(view);
+    anyNull=func == null;
+    if (anyNull) {
+      break;
+    }
+    functions.add(func);
+  }
+  if (!anyNull) {
+    final List<IDebugger> debuggers=new ArrayList<IDebugger>();
+    anyNull=false;
+    for (    final INaviFunction func : functions) {
+      final IDebugger dbg=container.getDebuggerProvider().getDebugger(func.getModule());
+      anyNull=dbg == null;
+      if (anyNull) {
+        break;
+      }
+      debuggers.add(dbg);
+    }
+    if (!anyNull) {
+      final IFilledList<Pair<IDebugger,INaviFunction>> pairs=new FilledList<Pair<IDebugger,INaviFunction>>();
+      for (int i=0; i < debuggers.size(); i++) {
+        pairs.add(new Pair<IDebugger,INaviFunction>(debuggers.get(i),functions.get(i)));
+      }
+      if (singleSelection) {
+        if (pairs.get(0).second().getType() != FunctionType.IMPORT) {
+          if (CGraphDebugger.hasBreakpoint(pairs.get(0).first().getBreakpointManager(),pairs.get(0).second().getModule(),new UnrelocatedAddress(pairs.get(0).second().getAddress()))) {
+            add(CActionProxy.proxy(new CRemoveFunctionBreakpointsAction(pairs)));
+          }
+ else {
+            add(CActionProxy.proxy(new CSetFunctionBreakpointsAction(pairs)));
+          }
+          addSeparator();
+        }
+      }
+ else {
+        add(CActionProxy.proxy(new CSetFunctionBreakpointsAction(pairs)));
+        add(CActionProxy.proxy(new CRemoveFunctionBreakpointsAction(pairs)));
+        addSeparator();
+      }
+    }
+  }
+  add(CActionProxy.proxy(new CopySelectionAction(table)));
+  add(CActionProxy.proxy(new CopyCellAction(table,x,y)));
+  add(new JSeparator());
+  add(new JMenuItem(CActionProxy.proxy(new CSearchTableAction(parent,table))));
+}

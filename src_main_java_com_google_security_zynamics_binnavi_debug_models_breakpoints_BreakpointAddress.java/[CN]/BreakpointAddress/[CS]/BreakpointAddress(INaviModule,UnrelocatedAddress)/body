@@ -1,0 +1,4 @@
+{
+  unrelocatedBreakpointAddress=Preconditions.checkNotNull(address,"IE00234: Address argument can not be null");
+  this.module=Preconditions.checkNotNull(module,"IE01693: Module arguemnt can not be null");
+}

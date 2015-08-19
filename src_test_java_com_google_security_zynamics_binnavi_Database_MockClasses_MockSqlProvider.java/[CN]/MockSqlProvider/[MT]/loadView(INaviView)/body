@@ -1,0 +1,6 @@
+{
+  if (view.isLoaded()) {
+    return (MutableDirectedGraph<INaviViewNode,INaviEdge>)view.getGraph();
+  }
+  return new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),new ArrayList<INaviEdge>());
+}

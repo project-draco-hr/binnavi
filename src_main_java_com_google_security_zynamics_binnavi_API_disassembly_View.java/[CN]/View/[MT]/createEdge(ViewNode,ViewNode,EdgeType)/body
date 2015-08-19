@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(source,"Error: Source argument can not be null");
+  Preconditions.checkNotNull(target,"Error: Target argument can not be null");
+  Preconditions.checkNotNull(edgeType,"Error: Edge type argument can not be null");
+  final CNaviViewEdge newEdge=naviView.getContent().createEdge(source.getNative(),target.getNative(),edgeType.getNative());
+  return cachedEdges.get(newEdge);
+}

@@ -1,0 +1,5 @@
+{
+  final CBendExitState state=new CBendExitState(this,m_graph,b);
+  m_factory.createBendExitAction().execute(state,event);
+  return state;
+}

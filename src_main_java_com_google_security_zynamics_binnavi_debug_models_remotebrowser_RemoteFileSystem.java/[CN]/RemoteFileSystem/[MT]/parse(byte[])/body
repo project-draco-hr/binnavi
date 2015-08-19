@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(data,"IE00771: Data argument can not be null");
+  RemoteDirectory directory=null;
+  final List<RemoteDrive> drives=new ArrayList<>();
+  final List<RemoteDirectory> directories=new ArrayList<>();
+  final List<RemoteFile> files=new ArrayList<>();
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  final DocumentBuilder builder=factory.newDocumentBuilder();
+  final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+  final NodeList nodes=document.getFirstChild().getChildNodes();
+  for (int i=0; i < nodes.getLength(); ++i) {
+    final Node node=nodes.item(i);
+    final String nodeName=node.getNodeName();
+    if ("Drives".equals(nodeName)) {
+      parseDrivesInformation(node,drives);
+    }
+ else     if ("Directories".equals(nodeName)) {
+      parseDirectoriesInformation(node,directories);
+    }
+ else     if ("Files".equals(nodeName)) {
+      parseFilesInformation(node,files);
+    }
+ else     if ("Directory".equals(nodeName)) {
+      directory=new RemoteDirectory(node.getAttributes().getNamedItem("name").getNodeValue());
+    }
+ else {
+      NaviLogger.severe("Error: Unknown node name " + nodeName);
+    }
+  }
+  return new RemoteFileSystem(directory,drives,directories,files);
+}

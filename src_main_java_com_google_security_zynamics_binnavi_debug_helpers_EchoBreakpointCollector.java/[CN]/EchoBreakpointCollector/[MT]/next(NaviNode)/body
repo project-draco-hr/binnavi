@@ -1,0 +1,25 @@
+{
+  final INaviViewNode viewNode=node.getRawNode();
+  if (viewNode instanceof INaviCodeNode) {
+    final INaviCodeNode codeNode=(INaviCodeNode)viewNode;
+    final INaviInstruction instruction=Iterables.getFirst(codeNode.getInstructions(),null);
+    final INaviModule module=instruction.getModule();
+    final BreakpointAddress address=new BreakpointAddress(module,new UnrelocatedAddress(instruction.getAddress()));
+    if (isBlocked(manager,address)) {
+      return IterationMode.CONTINUE;
+    }
+    NaviLogger.info("Adding Echo breakpoint %s to the active list",address.getAddress().getAddress().toHexString());
+    echoBreakpointAbleAddresses.add(address);
+  }
+ else   if (viewNode instanceof INaviFunctionNode) {
+    final INaviFunctionNode functionNode=(INaviFunctionNode)viewNode;
+    final INaviModule module=functionNode.getFunction().getModule();
+    final BreakpointAddress address=new BreakpointAddress(module,new UnrelocatedAddress(functionNode.getFunction().getAddress()));
+    if (isBlocked(manager,address)) {
+      return IterationMode.CONTINUE;
+    }
+    NaviLogger.info("Adding Echo breakpoint %s to the active list",address.getAddress().getAddress().toHexString());
+    echoBreakpointAbleAddresses.add(address);
+  }
+  return IterationMode.CONTINUE;
+}

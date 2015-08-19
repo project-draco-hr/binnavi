@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewFunctions.getDerivedViews((AbstractSQLProvider)getProvider(),null);
+}

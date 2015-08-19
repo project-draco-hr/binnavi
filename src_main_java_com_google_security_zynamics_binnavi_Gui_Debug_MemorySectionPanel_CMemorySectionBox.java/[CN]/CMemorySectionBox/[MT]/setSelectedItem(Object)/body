@@ -1,0 +1,17 @@
+{
+  if (section == null) {
+    return;
+  }
+  for (int i=0; i < getItemCount(); i++) {
+    final CMemorySectionWrapper wrapper=getItemAt(i);
+    if (wrapper == section || wrapper.getObject() == section) {
+      super.setSelectedItem(wrapper);
+      new SwingInvoker(){
+        @Override protected void operation(){
+          updateUI();
+        }
+      }
+.invokeLater();
+    }
+  }
+}

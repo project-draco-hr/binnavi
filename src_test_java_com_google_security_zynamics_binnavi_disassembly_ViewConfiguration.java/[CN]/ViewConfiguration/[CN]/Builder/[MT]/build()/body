@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(module != null || project != null,"Error: the final module is not final associated to a final module or final a project");
+  return new ViewConfiguration(this);
+}

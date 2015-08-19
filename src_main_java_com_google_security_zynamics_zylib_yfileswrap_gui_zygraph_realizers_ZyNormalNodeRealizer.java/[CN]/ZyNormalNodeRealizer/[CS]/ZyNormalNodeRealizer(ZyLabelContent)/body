@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(content,"Error: Node content can't be null.");
+  m_content=content;
+  setShapeType(ShapeNodeRealizer.ROUND_RECT);
+  setLineType(LineType.LINE_2);
+  setDropShadowOffsetX(SHADOW_SIZE);
+  setDropShadowOffsetY(SHADOW_SIZE);
+  setDropShadowColor(SHADOW_COLOR);
+  final Rectangle2D bounds=getNodeContent().getBounds();
+  setSize(bounds.getWidth(),bounds.getHeight());
+}

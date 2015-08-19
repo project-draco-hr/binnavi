@@ -1,0 +1,4 @@
+{
+  final DebuggerTemplate debuggerTemplate=getProvider().loadDebuggers().getDebugger(0);
+  getProvider().setPort(debuggerTemplate,123);
+}

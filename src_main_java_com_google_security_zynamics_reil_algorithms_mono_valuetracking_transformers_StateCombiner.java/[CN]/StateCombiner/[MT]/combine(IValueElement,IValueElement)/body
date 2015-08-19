@@ -1,0 +1,21 @@
+{
+  if (lhs.equals(rhs)) {
+    return lhs.clone();
+  }
+ else   if ((lhs instanceof Literal) && (rhs instanceof Literal)) {
+    final Literal llhs=(Literal)lhs;
+    final Literal lrhs=(Literal)rhs;
+    if (llhs.getValue().compareTo(lrhs.getValue()) == -1) {
+      return new Range(llhs,lrhs);
+    }
+ else {
+      return new Range(lrhs,llhs);
+    }
+  }
+ else   if ((lhs instanceof Undefined) || (rhs instanceof Undefined)) {
+    return new Undefined();
+  }
+ else {
+    return new Undefined();
+  }
+}

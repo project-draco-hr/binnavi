@@ -1,0 +1,8 @@
+{
+  if (extendedSize == OperandSize.QWORD) {
+    return String.valueOf(0xFFFFFFFF00000000L);
+  }
+ else {
+    return String.valueOf(TranslationHelpers.getAllButMask(extendedSize,combinedSize));
+  }
+}

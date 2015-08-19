@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.deleteProjects(m_parent,m_database,m_projects,m_updater);
+}

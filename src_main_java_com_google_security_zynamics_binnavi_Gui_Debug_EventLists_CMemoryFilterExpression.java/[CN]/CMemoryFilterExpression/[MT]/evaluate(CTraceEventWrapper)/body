@@ -1,0 +1,8 @@
+{
+  for (  final TraceRegister register : element.unwrap().getRegisterValues()) {
+    if (toComparableString(register.getMemory()).contains(m_data)) {
+      return true;
+    }
+  }
+  return false;
+}

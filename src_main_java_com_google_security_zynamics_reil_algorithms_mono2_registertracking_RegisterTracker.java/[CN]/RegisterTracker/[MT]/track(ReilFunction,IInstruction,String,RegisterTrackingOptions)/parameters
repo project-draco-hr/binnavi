@@ -1,0 +1,4 @@
+ReilFunction function
+IInstruction startInstruction
+String trackedRegister
+RegisterTrackingOptions options

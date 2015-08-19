@@ -1,0 +1,27 @@
+{
+  final OperandSize archSize=environment.getArchitectureSize();
+  final String childResult=intermediateResult.getRegister();
+  final String loadTarget=environment.getNextVariableString();
+  if (segmentOverride != null) {
+    final String pseudoRegister=getSegmentOverridePseudoRegister(segmentOverride);
+    final String nextVariableString=environment.getNextVariableString();
+    intermediateResult.addInstruction(ReilHelpers.createAdd(0,archSize,childResult,archSize,pseudoRegister,archSize,nextVariableString));
+    if (loadOperand) {
+      intermediateResult.addInstruction(ReilHelpers.createLdm(0,archSize,nextVariableString,size,loadTarget));
+      intermediateResult.updateResult(loadTarget,size,nextVariableString,TranslationResultType.MEMORY_ACCESS);
+    }
+ else {
+      intermediateResult.updateResult(nextVariableString,size,nextVariableString,TranslationResultType.MEMORY_ACCESS);
+    }
+  }
+ else {
+    if (loadOperand) {
+      intermediateResult.addInstruction(ReilHelpers.createLdm(0,archSize,childResult,size,loadTarget));
+      intermediateResult.updateResult(loadTarget,size,childResult,TranslationResultType.MEMORY_ACCESS);
+    }
+ else {
+      intermediateResult.updateResult(intermediateResult.getRegister(),size,childResult,TranslationResultType.MEMORY_ACCESS);
+    }
+  }
+  return intermediateResult;
+}

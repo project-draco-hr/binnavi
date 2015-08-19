@@ -1,0 +1,4 @@
+{
+  final INaviGroupNode parentGroup=m_node.getParentGroup();
+  return parentGroup == null ? null : (GroupNode)ObjectFinders.getObject(m_node.getParentGroup(),m_view.getGraph().getNodes());
+}

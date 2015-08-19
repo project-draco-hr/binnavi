@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(column >= 0,"Column should be >= 0: %s",column);
+  columnIndex=column;
+}

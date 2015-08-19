@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTraceFunctions.createTrace(this,module,name,description);
+}

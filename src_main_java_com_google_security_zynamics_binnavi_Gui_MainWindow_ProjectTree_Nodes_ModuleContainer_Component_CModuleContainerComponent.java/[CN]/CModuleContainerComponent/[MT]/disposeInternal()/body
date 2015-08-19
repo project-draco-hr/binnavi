@@ -1,0 +1,4 @@
+{
+  m_database.removeListener(m_listener);
+  removeListener(m_filterFieldListener);
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLProjectCreator.createProject((AbstractSQLProvider)getProvider(),null);
+}

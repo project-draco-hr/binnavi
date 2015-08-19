@@ -1,0 +1,5 @@
+NaviNode source
+NaviNode target
+Edge edge
+ZyEdgeRealizer<NaviEdge> realizer
+INaviEdge rawEdge

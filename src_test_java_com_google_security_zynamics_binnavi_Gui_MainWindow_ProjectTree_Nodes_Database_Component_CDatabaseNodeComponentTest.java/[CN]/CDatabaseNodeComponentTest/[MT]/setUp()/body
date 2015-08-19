@@ -1,0 +1,4 @@
+{
+  ConfigManager.instance().read();
+  m_database=new MockDatabase(m_provider);
+}

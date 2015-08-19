@@ -1,0 +1,5 @@
+{
+  super(view,node,manager);
+  m_node=node;
+  m_node.addGroupListener(m_internalListener);
+}

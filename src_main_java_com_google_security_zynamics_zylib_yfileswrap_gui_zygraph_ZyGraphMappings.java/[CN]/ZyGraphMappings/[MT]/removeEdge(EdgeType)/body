@@ -1,0 +1,4 @@
+{
+  m_edgeMap.remove(edge.getEdge());
+  m_rawEdgeMap.remove(edge.getRawEdge());
+}

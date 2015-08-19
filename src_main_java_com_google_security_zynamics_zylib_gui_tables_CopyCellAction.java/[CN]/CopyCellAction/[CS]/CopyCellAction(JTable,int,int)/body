@@ -1,0 +1,6 @@
+{
+  super("Copy Cell");
+  m_table=table;
+  m_x=x;
+  m_y=y;
+}

@@ -1,0 +1,7 @@
+{
+  final ArrayList<Image> imageList=new ArrayList<Image>();
+  imageList.add(APPICON_16x16);
+  imageList.add(APPICON_32x32);
+  imageList.add(APPICON_48x48);
+  window.setIconImages(imageList);
+}

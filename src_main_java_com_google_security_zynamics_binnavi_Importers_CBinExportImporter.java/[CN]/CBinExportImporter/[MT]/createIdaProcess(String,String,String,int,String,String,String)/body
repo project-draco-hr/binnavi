@@ -1,0 +1,43 @@
+{
+  final String tempPath=SystemHelpers.getTempDirectory();
+  final File idcFile=new File(tempPath + BINEXPORT_IDC_FILE);
+  try {
+    if (!idcFile.exists()) {
+      idcFile.createNewFile();
+    }
+    FileWriter fw=new FileWriter(idcFile.getAbsoluteFile());
+    BufferedWriter bw=new BufferedWriter(fw);
+    bw.write(BINEXPORT_IDC_FILE_CONTENT);
+    bw.close();
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  final String idcPath=idcFile.getAbsolutePath();
+  final ProcessBuilder processBuilder=new ProcessBuilder(idaExe,"-A","-OExporterHost:" + host,"-OExporterPort:" + port,"-OExporterUser:" + user,"-OExporterPassword:" + password,"-OExporterDatabase:" + name,"-OExporterSchema:public",IdaHelpers.getSArgument(idcPath,SystemHelpers.isRunningWindows()),idbFileName);
+  try {
+    Process processInfo=null;
+    processBuilder.redirectErrorStream(true);
+    processInfo=processBuilder.start();
+    final BufferedReader reader=new BufferedReader(new InputStreamReader(processInfo.getInputStream()));
+    @SuppressWarnings("unused") String line;
+    try {
+      while ((line=reader.readLine()) != null) {
+        System.out.println(line);
+      }
+    }
+ catch (    final IOException exception) {
+      reader.close();
+    }
+    reader.close();
+    return processInfo;
+  }
+ catch (  final Exception exception) {
+    try {
+      CUtilityFunctions.logException(exception);
+    }
+ catch (    final UnknownFormatConversionException e) {
+    }
+    throw new IdaException("E00210: Failed attempting to launch the importer with IDA: " + exception,exception);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super("Delete Node");
+  m_view=Preconditions.checkNotNull(view,"IE00930: View argument can't be null");
+  m_node=Preconditions.checkNotNull(node,"IE00931: Node argument can't be null");
+}

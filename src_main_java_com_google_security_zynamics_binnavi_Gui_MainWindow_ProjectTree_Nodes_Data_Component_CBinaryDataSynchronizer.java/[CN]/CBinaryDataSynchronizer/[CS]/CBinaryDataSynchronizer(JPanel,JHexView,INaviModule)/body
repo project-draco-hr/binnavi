@@ -1,0 +1,8 @@
+{
+  m_hexPanel=Preconditions.checkNotNull(hexPanel,"IE01957: Hex panel argument can not be null");
+  Preconditions.checkNotNull(hexView,"IE01958: Hex view argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"IE01959: Module argument can not be null");
+  updateBorder();
+  hexView.setData(m_provider=new CDataProvider(module));
+  module.addListener(m_moduleListener);
+}

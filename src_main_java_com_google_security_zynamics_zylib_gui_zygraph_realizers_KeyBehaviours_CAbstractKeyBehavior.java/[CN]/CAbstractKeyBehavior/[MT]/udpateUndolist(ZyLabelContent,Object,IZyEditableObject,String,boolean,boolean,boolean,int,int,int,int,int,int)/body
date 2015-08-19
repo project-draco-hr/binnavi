@@ -1,0 +1,3 @@
+{
+  m_undoManager.addUndoState(labelContent,persistantModel,editableObject,changedText,isAboveLineComment,isBehindLineComment,isLabelComment,caretStartX,caretMousePressedX,caretMousePressedY,caretEndX,caretMouseReleasedX,caretMouseReleasedY);
+}

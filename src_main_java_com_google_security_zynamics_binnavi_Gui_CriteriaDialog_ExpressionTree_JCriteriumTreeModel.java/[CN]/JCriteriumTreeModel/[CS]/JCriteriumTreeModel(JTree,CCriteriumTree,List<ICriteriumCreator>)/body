@@ -1,0 +1,7 @@
+{
+  super(new JCriteriumTreeNode(criteriumTree,criteriumTree.getRoot().getCriterium(),criteria));
+  m_jtree=jtree;
+  m_criteriumTree=criteriumTree;
+  m_criteria=criteria;
+  m_criteriumTree.addListener(m_internalTreeListener);
+}

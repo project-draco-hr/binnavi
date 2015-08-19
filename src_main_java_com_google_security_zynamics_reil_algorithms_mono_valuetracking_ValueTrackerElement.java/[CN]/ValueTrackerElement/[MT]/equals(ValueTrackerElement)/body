@@ -1,0 +1,3 @@
+{
+  return m_values.equals(rhs.m_values) && m_lastWritten.equals(rhs.m_lastWritten);
+}

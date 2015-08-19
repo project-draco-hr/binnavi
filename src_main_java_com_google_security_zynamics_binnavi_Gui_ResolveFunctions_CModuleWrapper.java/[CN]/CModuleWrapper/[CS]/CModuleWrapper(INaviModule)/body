@@ -1,0 +1,4 @@
+{
+  super(module);
+  Preconditions.checkNotNull(module,"IE02061: Module argument can not be null");
+}

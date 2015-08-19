@@ -1,0 +1,40 @@
+{
+  Preconditions.checkNotNull(relocatedAddresses,"IE00762: Address list can not be null");
+  Preconditions.checkArgument(!relocatedAddresses.isEmpty(),"IE00787: Address list can not be empty");
+  for (  final BreakpointAddress address : relocatedAddresses) {
+    Preconditions.checkNotNull(address,"IE00788: Address list contains invalid elements");
+  }
+  lock.lock();
+  eventList=trace;
+  debugger.addListener(m_debuggerListener);
+  debugger.getProcessManager().addListener(m_processListener);
+  breakpointManager.addListener(m_breakpointManagerListener);
+  NaviLogger.info("Starting new event list with name %s",trace.getName());
+  final Set<BreakpointAddress> collectedAddresses=new HashSet<BreakpointAddress>();
+  for (  final BreakpointAddress address : relocatedAddresses) {
+    if (EchoBreakpointCollector.isBlocked(breakpointManager,address)) {
+      continue;
+    }
+    if (!debugger.isConnected()) {
+      lock.unlock();
+      return;
+    }
+    collectedAddresses.add(address);
+  }
+  breakpointManager.addBreakpoints(BreakpointType.ECHO,collectedAddresses);
+  for (  final BreakpointAddress address : collectedAddresses) {
+    try {
+      activeEchoBreakpoints.put(address,maximumHits);
+      for (      final ITraceLoggerListener listener : listeners) {
+        listener.addedBreakpoint();
+      }
+    }
+ catch (    final IllegalArgumentException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  if (activeEchoBreakpoints.isEmpty()) {
+    removeListeners();
+  }
+  lock.unlock();
+}

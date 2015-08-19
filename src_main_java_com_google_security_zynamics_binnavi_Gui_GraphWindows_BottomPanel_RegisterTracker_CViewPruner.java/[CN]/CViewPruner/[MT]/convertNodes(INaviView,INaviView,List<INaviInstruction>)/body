@@ -1,0 +1,28 @@
+{
+  final Map<INaviViewNode,INaviViewNode> nodeMap=new HashMap<INaviViewNode,INaviViewNode>();
+  for (  final INaviViewNode node : view.getGraph().getNodes()) {
+    if (node instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)node;
+      final ArrayList<INaviInstruction> newInstructions=Lists.newArrayList(cnode.getInstructions());
+      newInstructions.retainAll(keptInstructions);
+      if (!newInstructions.isEmpty()) {
+        CCodeNode newNode;
+        try {
+          newNode=prunedView.getContent().createCodeNode(cnode.getParentFunction(),newInstructions);
+        }
+ catch (        final MaybeNullException e) {
+          newNode=prunedView.getContent().createCodeNode(null,newInstructions);
+        }
+        newNode.setBorderColor(node.getBorderColor());
+        newNode.setColor(node.getColor());
+        nodeMap.put(node,newNode);
+      }
+    }
+ else     if (node instanceof INaviFunctionNode) {
+      final INaviFunction function=((INaviFunctionNode)node).getFunction();
+      final CFunctionNode newNode=prunedView.getContent().createFunctionNode(function);
+      nodeMap.put(node,newNode);
+    }
+  }
+  return nodeMap;
+}

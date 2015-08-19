@@ -1,0 +1,10 @@
+{
+  if (parentNode instanceof CProjectViewsContainerNode) {
+    final List<INaviView> views=(List<INaviView>)data;
+    if (views.isEmpty()) {
+      return false;
+    }
+    return views.get(0).inSameDatabase(((CProjectViewsContainerNode)parentNode).getObject());
+  }
+  return false;
+}

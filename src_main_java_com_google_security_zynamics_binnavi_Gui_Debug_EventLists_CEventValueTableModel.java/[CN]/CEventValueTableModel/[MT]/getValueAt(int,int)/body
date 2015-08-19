@@ -1,0 +1,13 @@
+{
+  final TraceRegister value=event.getRegisterValues().get(rowIndex);
+switch (columnIndex) {
+case NAME_COLUMN:
+    return value.getName();
+case VALUE_COLUMN:
+  return value.getValue().toHexString();
+case MEMORY_COLUMN:
+return getMemoryString(value.getMemory());
+default :
+throw new IllegalStateException("IE00609: Invalid column name");
+}
+}

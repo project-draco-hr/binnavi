@@ -1,0 +1,2 @@
+ImmutableCollection<BaseType> types
+ImmutableCollection<TypeMember> members

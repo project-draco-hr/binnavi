@@ -1,0 +1,3 @@
+{
+  NaviLogger.warning(message,objects);
+}

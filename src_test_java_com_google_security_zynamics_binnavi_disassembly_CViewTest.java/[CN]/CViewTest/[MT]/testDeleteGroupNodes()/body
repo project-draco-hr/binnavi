@@ -1,0 +1,17 @@
+{
+  m_view.load();
+  assertEquals(0,m_view.getNodeCount());
+  assertEquals("loadedView/",m_listener.eventList);
+  final INaviViewNode node1=m_view.getContent().createCodeNode(m_function,Lists.newArrayList(m_instruction));
+  final INaviViewNode node2=m_view.getContent().createCodeNode(m_function,Lists.newArrayList(m_instruction));
+  final CGroupNode groupNode=m_view.getContent().createGroupNode(Lists.newArrayList(node1,node2));
+  final CGroupNode outerGroupNode=m_view.getContent().createGroupNode(Lists.newArrayList((INaviViewNode)groupNode));
+  assertEquals(4,m_view.getNodeCount());
+  assertEquals(groupNode,node1.getParentGroup());
+  assertEquals(groupNode,node2.getParentGroup());
+  assertEquals(2,groupNode.getElements().size());
+  m_view.getContent().deleteNodes(Lists.newArrayList((INaviViewNode)groupNode,outerGroupNode));
+  assertEquals(2,m_view.getNodeCount());
+  assertEquals(null,node1.getParentGroup());
+  assertEquals(null,node2.getParentGroup());
+}

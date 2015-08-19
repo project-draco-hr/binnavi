@@ -1,0 +1,12 @@
+{
+  if (m_connection != null) {
+    closeConnection();
+  }
+  try {
+    m_connection=DriverManager.getConnection(databaseUrl,properties);
+  }
+ catch (  final SQLException exception) {
+    NaviLogger.severe("Error: Connection to the database server could not be established: %s",exception);
+    throw exception;
+  }
+}

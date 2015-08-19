@@ -1,0 +1,4 @@
+{
+  final Section section=new Section(1,"SECTION1",commentManager,module,new CAddress("100",16),new CAddress("200",16),SectionPermission.READ,new byte[]{(byte)0x90,(byte)0xFF,(byte)0x00});
+  Assert.assertEquals(3,section.getRawSize());
+}

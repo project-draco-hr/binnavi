@@ -1,0 +1,6 @@
+{
+  for (  final CBend bend : m_rawEdge.getBends()) {
+    bend.removeListener(this);
+  }
+  m_rawEdge.clearBends();
+}

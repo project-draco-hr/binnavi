@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(settings,"IE00875: Settings argument can't be null");
+  m_layoutSettings=new ZyGraphLayoutSettings(settings.getLayoutSettings());
+  m_proximitySettings=new ZyGraphProximitySettings(settings.getProximitySettings());
+  m_searchSettings=new ZyGraphSearchSettings(settings.getSearchSettings());
+  m_edgeSettings=new ZyGraphEdgeSettings(settings.getEdgeSettings());
+  m_displaySettings=new ZyGraphDisplaySettings(settings.getDisplaySettings());
+  m_mouseSettings=new ZyGraphMouseSettings(settings.getMouseSettings());
+}

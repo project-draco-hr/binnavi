@@ -1,0 +1,3 @@
+List<ReilBlock> nodes
+List<ReilEdge> edges
+List<List<ReilInstruction>> delayedTrueBranches

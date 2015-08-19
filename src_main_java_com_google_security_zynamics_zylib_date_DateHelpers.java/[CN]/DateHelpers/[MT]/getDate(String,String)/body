@@ -1,0 +1,26 @@
+{
+  Preconditions.checkArgument(dateString.length() == format.length(),"Date string format exception. Format string must have the same length as the date string.");
+  String day="";
+  String month="";
+  String year="";
+  for (int i=0; i < format.length(); ++i) {
+    final char chr=format.charAt(i);
+    if (chr == 'D') {
+      day+=dateString.charAt(i);
+    }
+ else     if (chr == 'M') {
+      month+=dateString.charAt(i);
+    }
+ else     if (chr == 'Y') {
+      year+=dateString.charAt(i);
+    }
+  }
+  Preconditions.checkArgument(day.length() == 2,"Date string format exception. Date string's day field must have two chars.");
+  Preconditions.checkArgument(month.length() == 2,"Date string format exception. Date string's month field must have two chars.");
+  Preconditions.checkArgument(year.length() == 4,"Date string format exception. Date string's years field must have four chars.");
+  final int iday=Integer.parseInt(day);
+  final int imonth=Integer.parseInt(month) - 1;
+  final int iyear=Integer.parseInt(year);
+  final GregorianCalendar calendar=new GregorianCalendar(iyear,imonth,iday);
+  return calendar.getTime();
+}

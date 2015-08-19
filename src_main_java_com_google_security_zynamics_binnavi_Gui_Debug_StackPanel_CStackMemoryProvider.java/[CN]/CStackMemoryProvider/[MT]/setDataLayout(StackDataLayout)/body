@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(dataLayout,"IE01502: Layout argument can not be null");
+  m_dataLayout=dataLayout;
+  notifyListeners();
+}

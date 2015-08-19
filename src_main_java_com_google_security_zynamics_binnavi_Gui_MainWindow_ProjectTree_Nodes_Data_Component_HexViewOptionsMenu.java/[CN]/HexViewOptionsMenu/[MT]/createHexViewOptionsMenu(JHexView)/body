@@ -1,0 +1,46 @@
+{
+  final JMenu menu=new JMenu("Options");
+  final JMenu groupingMenu=new JMenu("Byte Grouping");
+  final ButtonGroup group=new ButtonGroup();
+  final JRadioButtonMenuItem groupingByteMenu=new JRadioButtonMenuItem(CActionProxy.proxy(new CSelectGroupingAction(hexView,"Byte",1)));
+  group.add(groupingByteMenu);
+  final JRadioButtonMenuItem groupingWordMenu=new JRadioButtonMenuItem(CActionProxy.proxy(new CSelectGroupingAction(hexView,"Word",2)));
+  group.add(groupingWordMenu);
+  final JRadioButtonMenuItem groupingDwordMenu=new JRadioButtonMenuItem(CActionProxy.proxy(new CSelectGroupingAction(hexView,"Double Word",4)));
+  group.add(groupingDwordMenu);
+  final int grouping=hexView.getBytesPerColumn();
+switch (grouping) {
+case 1:
+    groupingByteMenu.setSelected(true);
+  break;
+case 2:
+groupingWordMenu.setSelected(true);
+break;
+case 4:
+groupingDwordMenu.setSelected(true);
+break;
+default :
+throw new IllegalStateException("IE01123: Unknown grouping value: " + grouping);
+}
+groupingMenu.add(groupingByteMenu);
+groupingMenu.add(groupingWordMenu);
+groupingMenu.add(groupingDwordMenu);
+menu.add(groupingMenu);
+final JMenu endiannessMenu=new JMenu("Endianness");
+final ButtonGroup endiannessGroup=new ButtonGroup();
+final JRadioButtonMenuItem littleEndiannessMenu=new JRadioButtonMenuItem(CActionProxy.proxy(new CLittleEndiannessAction(hexView)));
+endiannessGroup.add(littleEndiannessMenu);
+final JRadioButtonMenuItem bigEndiannessMenu=new JRadioButtonMenuItem(CActionProxy.proxy(new CBigEndiannessAction(hexView)));
+endiannessGroup.add(bigEndiannessMenu);
+final boolean flip=hexView.doFlipBytes();
+if (flip) {
+littleEndiannessMenu.setSelected(true);
+}
+ else {
+bigEndiannessMenu.setSelected(true);
+}
+endiannessMenu.add(bigEndiannessMenu);
+endiannessMenu.add(littleEndiannessMenu);
+menu.add(endiannessMenu);
+return menu;
+}

@@ -1,0 +1,22 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"loope");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a loope instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(archSize);
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String loopTarget=Helpers.getLeafValue(operands.get(0).getRootNode());
+  final String tempEcx=environment.getNextVariableString();
+  final String ecxZero=environment.getNextVariableString();
+  final String ecxNotZero=environment.getNextVariableString();
+  final String condition=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(baseOffset,archSize,"ecx",archSize,"1",archSize,tempEcx));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 1,resultSize,tempEcx,archSize,truncateMask,archSize,"ecx"));
+  instructions.add(ReilHelpers.createBisz(baseOffset + 2,archSize,"ecx",OperandSize.BYTE,ecxZero));
+  instructions.add(ReilHelpers.createBisz(baseOffset + 3,OperandSize.BYTE,ecxZero,OperandSize.BYTE,ecxNotZero));
+  instructions.add(ReilHelpers.createAnd(baseOffset + 4,OperandSize.BYTE,ecxNotZero,OperandSize.BYTE,Helpers.ZERO_FLAG,OperandSize.BYTE,condition));
+  instructions.add(ReilHelpers.createJcc(baseOffset + 5,OperandSize.BYTE,condition,archSize,loopTarget));
+}

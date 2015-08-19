@@ -1,0 +1,3 @@
+{
+  CSettingsDialogFunctions.showCallgraphSettingsDialog(m_parent);
+}

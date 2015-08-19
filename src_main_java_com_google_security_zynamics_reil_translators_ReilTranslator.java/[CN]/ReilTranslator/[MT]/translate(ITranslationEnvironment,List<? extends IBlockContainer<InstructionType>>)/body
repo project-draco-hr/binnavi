@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  final ReilProgram<InstructionType> program=new ReilProgram<InstructionType>();
+  for (  final IBlockContainer<InstructionType> function : functions) {
+    program.addFunction(function,translate(environment,function));
+  }
+  return program;
+}

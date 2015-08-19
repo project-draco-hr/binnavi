@@ -1,0 +1,4 @@
+{
+  m_sql=new MockSqlProvider();
+  m_addressSpace=MockCreator.createAddressSpace(m_sql);
+}

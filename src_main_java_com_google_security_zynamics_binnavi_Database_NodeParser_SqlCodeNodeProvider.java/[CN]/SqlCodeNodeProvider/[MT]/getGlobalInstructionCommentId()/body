@@ -1,0 +1,12 @@
+{
+  try {
+    final int instructionCommentId=m_resultSet.getInt("global_instruction_comment");
+    if (m_resultSet.wasNull()) {
+      return null;
+    }
+    return instructionCommentId;
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

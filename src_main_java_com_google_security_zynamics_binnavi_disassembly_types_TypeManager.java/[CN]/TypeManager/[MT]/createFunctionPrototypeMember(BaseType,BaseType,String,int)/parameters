@@ -1,0 +1,4 @@
+BaseType containingType
+BaseType memberType
+String memberName
+int memberArgumentIndex

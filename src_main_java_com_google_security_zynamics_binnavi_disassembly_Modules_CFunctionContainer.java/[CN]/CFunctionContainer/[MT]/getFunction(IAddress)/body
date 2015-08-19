@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"IE00197: Address argument can not be null");
+  return m_functionMap.get(address);
+}

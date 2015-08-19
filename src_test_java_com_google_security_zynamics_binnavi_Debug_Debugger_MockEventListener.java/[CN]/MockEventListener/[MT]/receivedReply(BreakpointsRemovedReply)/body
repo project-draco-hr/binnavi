@@ -1,0 +1,9 @@
+{
+  for (  final Pair<RelocatedAddress,Integer> resultPair : reply.getAddresses()) {
+    if (resultPair.second() == 0) {
+    }
+ else {
+      events+="ERROR_REMOVE_BREAKPOINTS/" + resultPair.first().getAddress().toHexString() + "/"+ resultPair.second()+ ";";
+    }
+  }
+}

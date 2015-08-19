@@ -1,0 +1,6 @@
+{
+  final List<NaviNode> nodes=GraphHelpers.filter(graph,new CriteriumFilter(tree));
+  final List<NaviNode> allNodes=GraphHelpers.getNodes(graph);
+  graph.selectNodes(allNodes,false);
+  graph.selectNodes(nodes,true);
+}

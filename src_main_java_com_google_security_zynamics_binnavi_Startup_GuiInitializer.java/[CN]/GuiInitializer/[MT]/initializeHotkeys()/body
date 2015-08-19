@@ -1,0 +1,5 @@
+{
+  final InputMap map=(InputMap)UIManager.get("SplitPane.ancestorInputMap");
+  map.remove(HotKeys.GUI_INITIALIZER_KEY_1.getKeyStroke());
+  map.remove(HotKeys.GUI_INITIALIZER_KEY_2.getKeyStroke());
+}

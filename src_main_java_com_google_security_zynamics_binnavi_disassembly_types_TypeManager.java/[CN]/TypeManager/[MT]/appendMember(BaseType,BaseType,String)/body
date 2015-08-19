@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(containingType,"IE02775: Containing type can not be null.");
+  Preconditions.checkNotNull(memberType,"IE02776: Base type can not be null.");
+  Preconditions.checkNotNull(memberName,"IE02777: Member name can not be null.");
+switch (containingType.getCategory()) {
+case STRUCT:
+    return createStructureMember(containingType,memberType,memberName,determineAppendOffset(containingType));
+case UNION:
+  return createUnionMember(containingType,memberType,memberName);
+case FUNCTION_PROTOTYPE:
+return createFunctionPrototypeMember(containingType,memberType,memberName,determineAppendIndex(containingType));
+default :
+throw new IllegalStateException("Error: cannot insert member into non-compound type.");
+}
+}

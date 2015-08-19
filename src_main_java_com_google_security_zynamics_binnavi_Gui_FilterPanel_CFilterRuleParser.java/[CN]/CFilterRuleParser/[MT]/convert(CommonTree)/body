@@ -1,0 +1,18 @@
+{
+  if (ast.getType() == FilterParser.PREDICATE) {
+    return new CPredicateExpression(ast.getText());
+  }
+ else   if (ast.getType() == FilterParser.AND) {
+    return convertAnd(ast);
+  }
+ else   if (ast.getType() == FilterParser.OR) {
+    return convertOr(ast);
+  }
+ else   if (ast.getType() == 0) {
+    throw new RecognitionException();
+  }
+ else   if (ast.getType() == FilterParser.SUB_EXPRESSION) {
+    return convert((CommonTree)ast.getChild(0));
+  }
+  throw new IllegalStateException("IE00960: Not yet implemented (" + ast.getType() + ")");
+}

@@ -1,0 +1,12 @@
+{
+  final double x=graph.getEditMode().translateX(event.getX());
+  final double y=graph.getEditMode().translateY(event.getY());
+  final HitInfo hitInfo=graph.getGraph().getHitInfo(x,y);
+  if (hitInfo.hasHitEdges()) {
+    return CHitEdgesTransformer.changeEdge(m_factory,event,hitInfo,m_edge);
+  }
+ else {
+    m_factory.createEdgeExitState(m_edge,event);
+    return CHitEdgesTransformer.exitEdge(m_factory,event,hitInfo,this);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  for (  final IMemoryListener listener : m_listeners) {
+    listener.memoryChanged(address,size);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (table.getModel().isCellEditable(row,column)) {
+    table.getModel().setValueAt(null,row,column);
+  }
+}

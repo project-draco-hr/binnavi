@@ -1,0 +1,11 @@
+{
+  final GeneralSettingsConfigItem.GraphWindowConfigItem settings=ConfigManager.instance().getGeneralSettings().getGraphWindow();
+  final Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+  final int leftPanelSize=CSizeSettingsNormalizer.getSize(settings.getSizeLeftPanel(),screenSize.width,200);
+  final int rightPanelSize=CSizeSettingsNormalizer.getSize(settings.getSizeRightPanel(),screenSize.width,screenSize.width - 200);
+  final int bottomPanelSize=CSizeSettingsNormalizer.getSize(settings.getSizeBottomPanel(),screenSize.height,screenSize.height - 400);
+  m_graphTaggingSplitter.setDividerLocation(0,leftPanelSize);
+  m_graphTaggingSplitter.setDividerLocation(1,rightPanelSize);
+  m_graphSplitter.setDividerLocation(0,bottomPanelSize);
+  CGraphPanelSettingsSynchronizer.initializeSynchronizer(m_graphSplitter,m_graphTaggingSplitter);
+}

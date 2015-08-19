@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(notifications,"IE02629: notifications argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02630: provider argument can not be null");
+  final Collection<FunctionNotificationContainer> containers=new ArrayList<FunctionNotificationContainer>();
+  for (  final PGNotification notification : notifications) {
+    if (notification.getParameter().startsWith(CTableNames.FUNCTIONS_TABLE)) {
+      containers.add(parseFunctionNotification(notification,provider));
+    }
+ else {
+      throw new IllegalStateException("IE02738: Table name supplied in notification: " + notification.getParameter() + " does not match tables where function notifications are accepted on.");
+    }
+  }
+  return containers;
+}

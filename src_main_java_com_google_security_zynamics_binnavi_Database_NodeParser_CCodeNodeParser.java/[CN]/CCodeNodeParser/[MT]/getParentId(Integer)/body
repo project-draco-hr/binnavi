@@ -1,0 +1,3 @@
+{
+  return parentId == 0 ? null : parentId;
+}

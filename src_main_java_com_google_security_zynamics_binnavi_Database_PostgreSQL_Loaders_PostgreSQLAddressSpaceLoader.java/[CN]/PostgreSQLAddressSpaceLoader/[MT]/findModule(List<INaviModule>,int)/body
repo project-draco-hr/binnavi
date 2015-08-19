@@ -1,0 +1,8 @@
+{
+  for (  final INaviModule module : list) {
+    if (module.getConfiguration().getId() == moduleId) {
+      return module;
+    }
+  }
+  throw new MaybeNullException();
+}

@@ -1,0 +1,4 @@
+Integer typeInstanceId
+BigInteger address
+Integer position
+Integer expressionId

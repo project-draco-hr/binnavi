@@ -1,0 +1,11 @@
+{
+  new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  MockPGNotification notification=new MockPGNotification("comment_changes","bn_function_nodes UPDATE 1 6666 4608 3333");
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processFunctionNodeCommentNotification(notification,provider);
+  assertNotNull(result);
+  final FunctionNodeCommentNotificationContainer container=(FunctionNodeCommentNotificationContainer)result;
+  final INaviFunction function=container.getNode().getFunction();
+  assertEquals(new CAddress(4608),function.getAddress());
+  assertEquals(CommentOperation.APPEND,container.getOperation());
+  assertEquals(new Integer(3333),container.getCommentId());
+}

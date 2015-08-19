@@ -1,0 +1,3 @@
+{
+  return m_database.isLoaded() ? ICON_DATABASE_LOADED : ICON_DATABASE_CLOSED;
+}

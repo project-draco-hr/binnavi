@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  final Predicate<Section> predicate=new Predicate<Section>(){
+    @Override public boolean apply(    final Section section){
+      return (address.toBigInteger().compareTo(section.getStartAddress().toBigInteger()) >= 0 && address.toBigInteger().compareTo(section.getEndAddress().toBigInteger()) <= 0);
+    }
+  }
+;
+  return Lists.newArrayList(Collections2.filter(sections,predicate));
+}

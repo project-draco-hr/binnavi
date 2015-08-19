@@ -1,0 +1,14 @@
+{
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(123,ThreadState.RUNNING));
+  NaviLogger.setLevel(Level.OFF);
+  try {
+    debuggerSynchronizer.receivedEvent(new RegistersReply(0,0,RegisterValuesParser.parse("Hannes".getBytes())));
+    fail();
+  }
+ catch (  final MessageParserException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+ finally {
+    NaviLogger.setLevel(Level.SEVERE);
+  }
+}

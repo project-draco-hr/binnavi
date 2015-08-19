@@ -1,0 +1,3 @@
+List<INaviViewNode> nodes
+List<INaviEdge> edges
+SQLProvider provider

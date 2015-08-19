@@ -1,0 +1,6 @@
+{
+  if (m_nodeCache == null) {
+    m_nodeCache=CollectionHelpers.filter(getNodes(),new NodeFilter());
+  }
+  return m_nodeCache.size();
+}

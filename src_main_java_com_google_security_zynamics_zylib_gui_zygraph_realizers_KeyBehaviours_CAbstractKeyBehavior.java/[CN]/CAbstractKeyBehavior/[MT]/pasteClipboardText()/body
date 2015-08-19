@@ -1,0 +1,58 @@
+{
+  int caretX=getCaretEndPosX();
+  int caretY=getCaretMouseReleasedY();
+  boolean isNewComment=false;
+  final ZyLineContent lineContent=getLineContent(caretY);
+  IZyEditableObject editObject=lineContent.getLineFragmentObjectAt(caretX);
+  if ((editObject == null) && (caretX == lineContent.getText().length())) {
+    final int nonModelLineY=getLabelContent().getNonPureCommentLineIndexOfModelAt(caretY);
+    if ((nonModelLineY != -1) && (nonModelLineY == caretY)) {
+      editObject=lineContent.getLineObject();
+      isNewComment=true;
+    }
+  }
+  if (editObject != null) {
+    String insertText=ClipboardHelpers.getClipboardString();
+    if (editObject.isCommentDelimiter()) {
+      caretX=editObject.getEnd();
+      editObject=lineContent.getLineFragmentObjectAt(caretX);
+      if (editObject == null) {
+        return null;
+      }
+    }
+    if (isComment(caretX,caretY)) {
+      final int insertedLineCount=StringHelper.count(insertText,'\n');
+      final int lastLineBreak=insertText.lastIndexOf("\n");
+      final int textCursor=caretX - editObject.getStart();
+      final String lineText=lineContent.getText().substring(editObject.getStart(),editObject.getEnd());
+      String changedText=String.format("%s%s%s",lineText.substring(0,textCursor),insertText,lineText.substring(textCursor));
+      changedText=getMultilineComment(caretY,changedText);
+      editObject.update(changedText);
+      getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),editObject.getPersistentModel());
+      caretX+=insertText.length() - lastLineBreak - 1;
+      caretY+=insertedLineCount;
+    }
+ else     if (isNewComment) {
+      editObject.updateComment(insertText,ECommentPlacement.BEHIND_LINE);
+      if (!isLabelComment(caretY)) {
+        getLabelContent().getLineEditor().recreateLabelLines(getLabelContent(),editObject.getPersistentModel());
+        final int insertedLineCount=StringHelper.count(insertText,'\n');
+        caretY+=insertedLineCount;
+        final ZyLineContent lastInsertedLineContent=getLineContent(caretY);
+        caretX+=lastInsertedLineContent.getText().length() - 1;
+      }
+    }
+ else {
+      insertText=insertText.replace("\n","");
+      insertText=insertText.replace("\r","");
+      final int tempCaretX=caretX;
+      caretX=caretX + insertText.length();
+      final String lineText=lineContent.getText();
+      String changedText=lineText.substring(editObject.getStart(),editObject.getEnd());
+      final int insertXpos=tempCaretX - editObject.getStart();
+      changedText=String.format("%s%s%s",lineText.substring(editObject.getStart(),insertXpos),insertText,lineText.substring(caretX,editObject.getEnd()));
+      editObject.update(changedText);
+    }
+  }
+  return new Point(caretX,caretY);
+}

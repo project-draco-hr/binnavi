@@ -1,0 +1,3 @@
+{
+  return (int)getCurrentNibble() % (NIBBLES_PER_BYTE * m_bytesPerRow);
+}

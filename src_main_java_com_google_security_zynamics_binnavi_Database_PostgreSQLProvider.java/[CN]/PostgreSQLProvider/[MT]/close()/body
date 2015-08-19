@@ -1,0 +1,6 @@
+{
+  for (  SQLProviderListener listener : listeners) {
+    listener.providerClosing(this);
+  }
+  this.connection.closeConnection();
+}

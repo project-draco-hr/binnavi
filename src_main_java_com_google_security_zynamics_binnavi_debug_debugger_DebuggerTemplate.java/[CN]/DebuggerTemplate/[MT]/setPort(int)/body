@@ -1,0 +1,16 @@
+{
+  Preconditions.checkArgument(NetHelpers.isValidPort(port),"IE00804: Invalid port");
+  if (debugClientPort == port) {
+    return;
+  }
+  sqlProvider.setPort(this,port);
+  debugClientPort=port;
+  for (  final IDebuggerTemplateListener listener : listeners) {
+    try {
+      listener.changedPort(this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

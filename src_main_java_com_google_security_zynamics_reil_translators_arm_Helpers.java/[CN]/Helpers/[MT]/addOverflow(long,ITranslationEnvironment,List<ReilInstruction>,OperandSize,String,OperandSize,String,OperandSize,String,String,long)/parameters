@@ -1,0 +1,11 @@
+long offset
+ITranslationEnvironment environment
+List<ReilInstruction> instructions
+OperandSize firstOperandSize
+String firstOperand
+OperandSize secondOperandSize
+String secondOperand
+OperandSize resultOperandSize
+String resultOperand
+String overflow
+long size

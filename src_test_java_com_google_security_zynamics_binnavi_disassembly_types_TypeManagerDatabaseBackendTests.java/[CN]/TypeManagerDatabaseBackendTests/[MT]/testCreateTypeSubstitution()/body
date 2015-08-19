@@ -1,0 +1,13 @@
+{
+  final CAddress address=new CAddress(0x1000);
+  final int position=0;
+  final int offset=32;
+  final MockOperandTreeNode node=new MockOperandTreeNode();
+  final BaseType baseType=backend.createType("test_type",32,true,null,BaseTypeCategory.ATOMIC);
+  final TypeSubstitution substitution=backend.createTypeSubstitution(node,baseType,new ArrayList<Integer>(),position,offset,address);
+  Assert.assertEquals(node,substitution.getOperandTreeNode());
+  Assert.assertEquals(baseType,substitution.getBaseType());
+  Assert.assertEquals(position,substitution.getPosition());
+  Assert.assertEquals(offset,substitution.getOffset());
+  Assert.assertEquals(address,substitution.getAddress());
+}

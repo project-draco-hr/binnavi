@@ -1,0 +1,4 @@
+{
+  parent.addChild(child);
+  child.addParent(parent);
+}

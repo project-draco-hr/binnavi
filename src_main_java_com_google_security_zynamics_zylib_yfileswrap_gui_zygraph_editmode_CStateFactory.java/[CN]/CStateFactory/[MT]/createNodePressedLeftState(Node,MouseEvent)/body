@@ -1,0 +1,5 @@
+{
+  final CNodePressedLeftState<NodeType,EdgeType> state=new CNodePressedLeftState<NodeType,EdgeType>(this,m_graph,n,event);
+  m_factory.createNodePressedLeftAction().execute(state,event);
+  return state;
+}

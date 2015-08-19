@@ -1,0 +1,4 @@
+{
+  final String query="INSERT INTO " + CTableNames.EXPRESSION_TYPES_TABLE + " SELECT "+ moduleId+ ", address, \"position\", \"offset\", expression_id, type"+ " FROM "+ String.format(CTableNames.RAW_EXPRESSION_TYPES_TABLE,rawModuleId);
+  connection.executeUpdate(query,true);
+}

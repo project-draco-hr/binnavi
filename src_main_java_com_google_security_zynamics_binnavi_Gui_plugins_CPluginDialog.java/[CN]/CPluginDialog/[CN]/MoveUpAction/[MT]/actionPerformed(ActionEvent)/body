@@ -1,0 +1,7 @@
+{
+  final int selected=pluginList.getSelectedIndex();
+  if ((selected == -1) || (selected == 0)) {
+    return;
+  }
+  pluginList.switchElements(selected,selected - 1);
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLProjectFunctions.setDescription(this,project,description);
+}

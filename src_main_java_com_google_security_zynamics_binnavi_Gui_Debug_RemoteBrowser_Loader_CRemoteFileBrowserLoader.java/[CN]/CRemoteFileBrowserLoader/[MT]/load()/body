@@ -1,0 +1,14 @@
+{
+  CProgressDialog.showEndless(m_parent,"Loading available drives",m_loaderThread);
+  m_debugger.removeListener(m_listener);
+  if (m_loaderThread.getException() != null) {
+    CUtilityFunctions.logException(m_loaderThread.getException());
+    final String message="E00038: " + "Could not request remote file system information";
+    final String description=CUtilityFunctions.createDescription("BinNavi could not retrieve information about the remote file system.",new String[]{"The connection to the debug client was closed before the request could be sent."},new String[]{"You can not select a target file from the remote system."});
+    CNaviErrorDialog.show(m_parent,message,description,m_loaderThread.getException());
+  }
+ else   if ((m_fileSystem != null) && (m_processList != null)) {
+    showRemoteBrowser();
+  }
+  return m_selectedTarget;
+}

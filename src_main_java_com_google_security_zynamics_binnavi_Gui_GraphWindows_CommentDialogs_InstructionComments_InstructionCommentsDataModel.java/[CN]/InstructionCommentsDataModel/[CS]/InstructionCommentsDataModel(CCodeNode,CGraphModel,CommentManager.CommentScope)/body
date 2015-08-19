@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(codeNode);
+  Preconditions.checkNotNull(model);
+  if (scope == CommentManager.CommentScope.LOCAL) {
+    commentAccessor=new LocalInstructionCommentAccessor(codeNode);
+  }
+ else {
+    commentAccessor=new CGlobalInstructionCommentAccessor(codeNode);
+  }
+  graphModel=model;
+  node=codeNode;
+  updateDataRepresentation();
+}

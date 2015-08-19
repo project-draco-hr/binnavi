@@ -1,0 +1,2 @@
+List<INaviInstruction> instructions
+Set<INaviInstruction> calls

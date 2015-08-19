@@ -1,0 +1,12 @@
+{
+switch (action) {
+case Continue:
+    return DebuggerExceptionHandlingAction.Continue;
+case Halt:
+  return DebuggerExceptionHandlingAction.Halt;
+case Ignore:
+return DebuggerExceptionHandlingAction.Ignore;
+default :
+return DebuggerExceptionHandlingAction.Continue;
+}
+}

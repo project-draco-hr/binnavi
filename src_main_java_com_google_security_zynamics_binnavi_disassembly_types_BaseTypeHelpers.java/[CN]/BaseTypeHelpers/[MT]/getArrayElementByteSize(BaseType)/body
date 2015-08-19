@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(arrayType,"Error: array type argument can not be null.");
+  Preconditions.checkArgument(arrayType.getCategory() == BaseTypeCategory.ARRAY,"Error: arrayType argument not of type ARRAY.");
+  return getArrayElementType(arrayType).getByteSize();
+}

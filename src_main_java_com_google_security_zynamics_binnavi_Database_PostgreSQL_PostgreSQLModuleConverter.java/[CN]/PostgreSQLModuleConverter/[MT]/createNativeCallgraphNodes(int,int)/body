@@ -1,0 +1,3 @@
+{
+  PostgreSQLNativeViewCreator.createNativeCallgraphNodes(m_provider.getConnection(),viewId,moduleId);
+}

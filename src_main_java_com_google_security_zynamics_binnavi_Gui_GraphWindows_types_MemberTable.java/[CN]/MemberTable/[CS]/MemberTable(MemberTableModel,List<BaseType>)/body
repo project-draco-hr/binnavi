@@ -1,0 +1,10 @@
+{
+  super(model);
+  setSurrendersFocusOnKeystroke(true);
+  addMouseListener(new MemberTableMouseListener(this));
+  getColumnModel().getColumn(MemberTableModel.TYPE_COLUMN).setCellEditor(new DefaultCellEditor(new TypeComboBox(new TypeListModel(baseTypes,new TypeListModel.PrototypesFilter()))));
+  getColumnModel().getColumn(MemberTableModel.TYPE_COLUMN).setCellRenderer(new BaseTypeCellRenderer());
+  setFillsViewportHeight(true);
+  getColumnModel().getColumn(MemberTableModel.NAME_COLUMN).setCellRenderer(new InvalidRowTableCellRenderer());
+  getColumnModel().getColumn(MemberTableModel.INDEX_COLUMN).setCellRenderer(new InvalidRowTableCellRenderer());
+}

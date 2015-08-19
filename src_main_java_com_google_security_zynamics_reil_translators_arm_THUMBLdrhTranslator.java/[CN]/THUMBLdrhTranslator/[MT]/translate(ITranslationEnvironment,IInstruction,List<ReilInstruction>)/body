@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"LDRH");
+  translateAll(environment,instruction,"LDRH",instructions);
+}

@@ -1,0 +1,3 @@
+{
+  functionsToAddressModule.forcePut(function,new Pair<IAddress,Integer>(function.getAddress(),function.getModule().getConfiguration().getId()));
+}

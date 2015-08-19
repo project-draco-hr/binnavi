@@ -1,0 +1,3 @@
+{
+  return m_selectionState == SelectionState.SELECTED ? "SELECTED" : "NOT SELECTED";
+}

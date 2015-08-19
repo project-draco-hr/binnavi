@@ -1,0 +1,7 @@
+{
+  super("Open in new window");
+  parentWindow=Preconditions.checkNotNull(parent,"IE02378: parent argument can not be null");
+  viewContainer=Preconditions.checkNotNull(container,"IE02379: container argument can not be null");
+  this.views=Preconditions.checkNotNull(views,"IE02875: views argument can not be null").clone();
+  putValue(ACCELERATOR_KEY,HotKeys.LOAD_NEW_WINDOW_HK.getKeyStroke());
+}

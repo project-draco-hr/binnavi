@@ -1,0 +1,3 @@
+{
+  new CProximityFunctions().showHiddenNodes(m_parent,m_graph,m_node);
+}

@@ -1,0 +1,8 @@
+{
+  super("Select successors of selection");
+  m_graph=Preconditions.checkNotNull(graph,"IE02830: graph argument can not be null");
+  if (showIcon) {
+    putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/selallchild_up.jpg")));
+  }
+  putValue(Action.SHORT_DESCRIPTION,"Select successors of selection");
+}

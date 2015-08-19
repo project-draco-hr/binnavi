@@ -1,0 +1,5 @@
+{
+  this.window=window;
+  this.container=Preconditions.checkNotNull(container,"Error: Container argument can not be null.");
+  this.view=Preconditions.checkNotNull(view,"Error: View argument can not be null.");
+}

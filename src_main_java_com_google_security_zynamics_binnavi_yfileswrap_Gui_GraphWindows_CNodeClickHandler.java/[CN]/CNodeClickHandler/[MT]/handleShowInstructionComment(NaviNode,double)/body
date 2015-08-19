@@ -1,0 +1,13 @@
+{
+  if (!(node.getRawNode() instanceof INaviCodeNode)) {
+    return;
+  }
+  final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+  final double yPos=y - node.getY();
+  final int row=node.positionToRow(yPos);
+  final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(codeNode,row);
+  if (instruction == null) {
+    return;
+  }
+  CGraphDialogs.showInstructionCommentDialog(m_model.getParent(),m_model,codeNode,instruction);
+}

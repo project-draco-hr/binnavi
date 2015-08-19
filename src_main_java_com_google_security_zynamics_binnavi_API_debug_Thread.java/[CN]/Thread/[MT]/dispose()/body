@@ -1,0 +1,3 @@
+{
+  m_thread.removeListener(m_listener);
+}

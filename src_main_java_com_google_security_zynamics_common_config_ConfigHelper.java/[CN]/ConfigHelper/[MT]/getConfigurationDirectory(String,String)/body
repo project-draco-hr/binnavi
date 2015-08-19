@@ -1,0 +1,3 @@
+{
+  return getZynamicsDirectory(companyName) + productName + File.separator;
+}

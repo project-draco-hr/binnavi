@@ -1,0 +1,13 @@
+{
+  m_databaseConfiguration=Preconditions.checkNotNull(databaseConfiguration,"IE02409: m_databaseConfiguration argument can not be null");
+  final String url=Preconditions.checkNotNull(databaseConfiguration.getUrl(),"IE03409: m_databaseConfiguration.getUrl() argument can not be null");
+  Preconditions.checkNotNull(databaseConfiguration.getName(),"IE03410: m_databaseConfiguration.getName() argument can not be null");
+  final String user=Preconditions.checkNotNull(databaseConfiguration.getUser(),"IE03411: databaseConfiguration.getUser() argument can not be null");
+  final String password=Preconditions.checkNotNull(databaseConfiguration.getPassword(),"IE03412: databaseConfiguration.getPassword() argument can not be null");
+  m_properties=new Properties();
+  m_properties.put("user",user);
+  m_properties.put("password",password);
+  m_properties.put("application_name",Constants.PROJECT_NAME);
+  testDriver();
+  connect(url,m_properties);
+}

@@ -1,0 +1,3 @@
+{
+  m_debugPerspectiveModel.setActiveMemoryAddress(new CAddress(m_hexView.getCurrentOffset()),false);
+}

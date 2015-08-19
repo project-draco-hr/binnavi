@@ -1,0 +1,11 @@
+{
+  final Set<BreakpointAddress> addresses=new HashSet<BreakpointAddress>();
+  final List<INaviEdge> edges=node.getOutgoingEdges();
+  for (  final INaviEdge edge : edges) {
+    final BreakpointAddress childAddress=CSteppingHelper.getAddress(edge.getTarget());
+    if (childAddress != null) {
+      addresses.add(childAddress);
+    }
+  }
+  return addresses;
+}

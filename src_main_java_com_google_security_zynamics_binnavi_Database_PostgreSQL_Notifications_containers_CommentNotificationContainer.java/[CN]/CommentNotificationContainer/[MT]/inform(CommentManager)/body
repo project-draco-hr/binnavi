@@ -1,0 +1,8 @@
+{
+  if (operation == CommentOperation.EDIT) {
+    informEdit(manager);
+  }
+ else   if (operation == CommentOperation.DELETE) {
+    informDelete(manager);
+  }
+}

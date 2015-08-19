@@ -1,0 +1,22 @@
+{
+  super(model.getParent(),"Edit Function Node Comments",true);
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  m_commentsPanel=new CFunctionCommentsPanel(node.getFunction(),node);
+  add(m_commentsPanel,BorderLayout.CENTER);
+  add(new OKButtonPanel(this),BorderLayout.SOUTH);
+  final Dimension dim=getPreferredSize();
+  if (dim.height < 300) {
+    dim.height=300;
+  }
+  dim.width=600;
+  setPreferredSize(dim);
+  setMinimumSize(dim);
+  pack();
+  if (initialTab == InitialTab.GlobalNodeComments) {
+    m_commentsPanel.focusGlobalField();
+  }
+ else {
+    m_commentsPanel.focusLocalField();
+  }
+}

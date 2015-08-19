@@ -1,0 +1,9 @@
+{
+  final RawTypeSubstitution rawSubstitution=new RawTypeSubstitution(ADDRESS,POSITION,EXPRESSION_ID,BASE_TYPE_ID,PATH,OFFSET);
+  assertEquals(ADDRESS,rawSubstitution.getAddress());
+  assertEquals(POSITION,rawSubstitution.getPosition());
+  assertEquals(EXPRESSION_ID,rawSubstitution.getExpressionId());
+  assertEquals(BASE_TYPE_ID,rawSubstitution.getBaseTypeId());
+  assertArrayEquals(PATH,rawSubstitution.getPath());
+  assertEquals(OFFSET,rawSubstitution.getOffset());
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  Preconditions.checkArgument(!m_nodeCache.contains(node),"Error: node can not be added more then once");
+  m_nodeCache.add(node);
+  final int index=m_nodeCache.indexOf(node);
+  fireTableRowsInserted(index,index);
+}

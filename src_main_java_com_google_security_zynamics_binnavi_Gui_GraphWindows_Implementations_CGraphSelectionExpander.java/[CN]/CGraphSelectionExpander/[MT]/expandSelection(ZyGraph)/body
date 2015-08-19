@@ -1,0 +1,6 @@
+{
+  checkArguments(graph);
+  final SelectableGraph<NaviNode> selectableGraph=SelectableGraph.wrap(graph);
+  GraphHelpers.expandSelectionUp(selectableGraph);
+  GraphHelpers.expandSelectionDown(selectableGraph);
+}

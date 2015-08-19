@@ -1,0 +1,6 @@
+{
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  m_database=new CDatabase("None",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_import",parts[1],parts[2],parts[3],false,false);
+  m_database.connect();
+  m_database.load();
+}

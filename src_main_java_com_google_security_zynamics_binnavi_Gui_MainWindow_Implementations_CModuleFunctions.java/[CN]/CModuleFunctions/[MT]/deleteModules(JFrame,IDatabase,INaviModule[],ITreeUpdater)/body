@@ -1,0 +1,28 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to delete the following modules from the database?\n\n%s",CNameListGenerators.getNameList(modules))) == JOptionPane.YES_OPTION) {
+    for (    final INaviModule module : modules) {
+      new Thread(){
+        @Override public void run(){
+          final CDefaultProgressOperation operation=new CDefaultProgressOperation("",true,false);
+          operation.getProgressPanel().setMaximum(1);
+          operation.getProgressPanel().setText("Deleting module" + ": " + module.getConfiguration().getName());
+          try {
+            database.getContent().delete(module);
+            operation.getProgressPanel().next();
+            updater.update();
+          }
+ catch (          final CouldntDeleteException e) {
+            CUtilityFunctions.logException(e);
+            final String message="E00031: " + "Module could not be deleted";
+            final String description=CUtilityFunctions.createDescription(String.format("The module '%s' could not be deleted. Try to delete the module again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",module.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The module still exists."});
+            CNaviErrorDialog.show(parent,message,description,e);
+          }
+ finally {
+            operation.stop();
+          }
+        }
+      }
+.start();
+    }
+  }
+}

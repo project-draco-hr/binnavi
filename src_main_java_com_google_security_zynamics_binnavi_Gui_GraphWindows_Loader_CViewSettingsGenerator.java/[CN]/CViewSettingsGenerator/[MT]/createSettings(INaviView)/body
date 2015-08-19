@@ -1,0 +1,62 @@
+{
+  final ZyGraphViewSettings defaultSettings=view.getGraphType() == GraphType.CALLGRAPH ? ConfigManager.instance().getDefaultCallGraphSettings() : ConfigManager.instance().getDefaultFlowGraphSettings();
+  final Map<String,String> rawSettings=view.loadSettings();
+  final ZyGraphViewSettings settings=new ZyGraphViewSettings(defaultSettings);
+  settings.getDisplaySettings().setAnimationSpeed(createIntegerSetting(rawSettings,CViewSettings.ANIMATION_SPEED,defaultSettings.getDisplaySettings().getAnimationSpeed()));
+  settings.getLayoutSettings().setAutolayoutActivisionThreshold(createIntegerSetting(rawSettings,CViewSettings.AUTOLAYOUT_THRESHOLD,defaultSettings.getLayoutSettings().getAutolayoutDeactivationThreshold()));
+  settings.getLayoutSettings().setAutomaticLayouting(createBooleanSetting(rawSettings,CViewSettings.AUTOMATIC_LAYOUTING,defaultSettings.getLayoutSettings().getAutomaticLayouting()));
+  settings.getLayoutSettings().getCircularSettings().setStyle(createEnumerationSetting(rawSettings,CViewSettings.CIRCULAR_LAYOUT_STYLE,defaultSettings.getLayoutSettings().getCircularSettings().getStyle(),new IParser<CircularStyle>(){
+    @Override public CircularStyle parse(    final int value){
+      return CircularStyle.parseInt(value);
+    }
+  }
+));
+  settings.getEdgeSettings().setDisplayMultipleEdgesAsOne(createBooleanSetting(rawSettings,CViewSettings.DISPLAY_MULTIPLE_EDGES_AS_ONE,defaultSettings.getEdgeSettings().getDisplayMultipleEdgesAsOne()));
+  settings.getDisplaySettings().setFunctionNodeInformation(createBooleanSetting(rawSettings,CViewSettings.FUNCTION_NODE_INFORMATION,defaultSettings.getDisplaySettings().getFunctionNodeInformation()));
+  settings.getDisplaySettings().setGradientBackground(createBooleanSetting(rawSettings,CViewSettings.GRADIENT_BACKGROUND,defaultSettings.getDisplaySettings().getGradientBackground()));
+  settings.getLayoutSettings().getHierarchicalSettings().setStyle(createEnumerationSetting(rawSettings,CViewSettings.HIERARCHIC_LAYOUT_STYLE,defaultSettings.getLayoutSettings().getHierarchicalSettings().getStyle(),new IParser<HierarchicStyle>(){
+    @Override public HierarchicStyle parse(    final int value){
+      return HierarchicStyle.parseInt(value);
+    }
+  }
+));
+  settings.getLayoutSettings().setAnimateLayout(createBooleanSetting(rawSettings,CViewSettings.LAYOUT_ANIMATION,defaultSettings.getLayoutSettings().getAnimateLayout()));
+  settings.getLayoutSettings().setLayoutCalculationTimeWarningThreshold(createIntegerSetting(rawSettings,CViewSettings.LAYOUT_CALCULATION_TRESHOLD,defaultSettings.getLayoutSettings().getLayoutCalculationTimeWarningThreshold()));
+  settings.getLayoutSettings().getCircularSettings().setMinimumNodeDistance(createIntegerSetting(rawSettings,CViewSettings.MINIMUM_CIRCULAR_NODE_DISTANCE,defaultSettings.getLayoutSettings().getCircularSettings().getMinimumNodeDistance()));
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumEdgeDistance(createIntegerSetting(rawSettings,CViewSettings.MINIMUM_HIERARCHIC_EDGE_DISTANCE,defaultSettings.getLayoutSettings().getHierarchicalSettings().getMinimumEdgeDistance()));
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumLayerDistance(createIntegerSetting(rawSettings,CViewSettings.MINIMUM_HIERARCHIC_LAYER_DISTANCE,defaultSettings.getLayoutSettings().getHierarchicalSettings().getMinimumLayerDistance()));
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumNodeDistance(createIntegerSetting(rawSettings,CViewSettings.MINIMUM_HIERARCHIC_NODE_DISTANCE,defaultSettings.getLayoutSettings().getHierarchicalSettings().getMinimumNodeDistance()));
+  settings.getLayoutSettings().getOrthogonalSettings().setMinimumNodeDistance(createIntegerSetting(rawSettings,CViewSettings.MINIMUM_ORTHOGONAL_NODE_DISTANCE,defaultSettings.getLayoutSettings().getOrthogonalSettings().getMinimumNodeDistance()));
+  settings.getMouseSettings().setMousewheelAction(createEnumerationSetting(rawSettings,CViewSettings.MOUSEWHEEL_ACTION,defaultSettings.getMouseSettings().getMouseWheelAction(),new IParser<MouseWheelAction>(){
+    @Override public MouseWheelAction parse(    final int value) throws ParseException {
+      return MouseWheelAction.parseInt(value);
+    }
+  }
+));
+  settings.getLayoutSettings().getOrthogonalSettings().setStyle(createEnumerationSetting(rawSettings,CViewSettings.ORTHOGONAL_LAYOUT_STYLE,defaultSettings.getLayoutSettings().getOrthogonalSettings().getStyle(),new IParser<OrthogonalStyle>(){
+    @Override public OrthogonalStyle parse(    final int value){
+      return OrthogonalStyle.parseInt(value);
+    }
+  }
+));
+  settings.getLayoutSettings().getOrthogonalSettings().setOrientation(createEnumerationSetting(rawSettings,CViewSettings.ORTHOGONAL_ORIENTATION,defaultSettings.getLayoutSettings().getOrthogonalSettings().getOrientation(),new IParser<OrthogonalOrientation>(){
+    @Override public OrthogonalOrientation parse(    final int value){
+      return OrthogonalOrientation.parseInt(value);
+    }
+  }
+));
+  settings.getProximitySettings().setProximityBrowsing(createBooleanSetting(rawSettings,CViewSettings.PROXIMITY_BROWSING,defaultSettings.getProximitySettings().getProximityBrowsing()));
+  settings.getProximitySettings().setProximityBrowsingActivationThreshold(createIntegerSetting(rawSettings,CViewSettings.PROXIMITY_BROWSING_THRESHOLD,defaultSettings.getProximitySettings().getProximityBrowsingActivationThreshold()));
+  settings.getProximitySettings().setProximityBrowsingChildren(createIntegerSetting(rawSettings,CViewSettings.PROXIMITY_BROWSING_CHILDREN,defaultSettings.getProximitySettings().getProximityBrowsingChildren()));
+  settings.getProximitySettings().setProximityBrowsingFrozen(createBooleanSetting(rawSettings,CViewSettings.PROXIMITY_BROWSING_FROZEN,defaultSettings.getProximitySettings().getProximityBrowsingFrozen()));
+  settings.getProximitySettings().setProximityBrowsingPreview(createBooleanSetting(rawSettings,CViewSettings.PROXIMITY_BROWSING_PREVIEW,defaultSettings.getProximitySettings().getProximityBrowsingPreview()));
+  settings.getProximitySettings().setProximityBrowsingParents(createIntegerSetting(rawSettings,CViewSettings.PROXIMITY_BROWSING_PARENTS,defaultSettings.getProximitySettings().getProximityBrowsingParents()));
+  settings.getMouseSettings().setScrollSensitivity(createIntegerSetting(rawSettings,CViewSettings.SCROLL_SENSIBILITY,defaultSettings.getMouseSettings().getScrollSensitivity()));
+  settings.getSearchSettings().setSearchCaseSensitive(createBooleanSetting(rawSettings,CViewSettings.SEARCH_CASE_SENSITIVE,defaultSettings.getSearchSettings().getSearchCaseSensitive()));
+  settings.getSearchSettings().setSearchRegEx(createBooleanSetting(rawSettings,CViewSettings.SEARCH_REGEX,defaultSettings.getSearchSettings().getSearchRegEx()));
+  settings.getSearchSettings().setSearchSelectedNodesOnly(createBooleanSetting(rawSettings,CViewSettings.SEARCH_SELECTED_ONLY,defaultSettings.getSearchSettings().getSearchSelectedNodesOnly()));
+  settings.getSearchSettings().setSearchVisibleNodesOnly(createBooleanSetting(rawSettings,CViewSettings.SEARCH_VISIBLE_ONLY,defaultSettings.getSearchSettings().getSearchVisibleNodesOnly()));
+  settings.getMouseSettings().setZoomSensitivity(createIntegerSetting(rawSettings,CViewSettings.ZOOM_SENSIBILITY,defaultSettings.getMouseSettings().getZoomSensitivity()));
+  settings.getDisplaySettings().setSimplifiedVariableAccess(createBooleanSetting(rawSettings,CViewSettings.SIMPLIFIED_VARIABLE_ACCESS,defaultSettings.getDisplaySettings().getSimplifiedVariableAccess()));
+  return new Pair<Map<String,String>,ZyGraphViewSettings>(rawSettings,settings);
+}

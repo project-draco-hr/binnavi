@@ -1,0 +1,12 @@
+{
+  final IDatabase draggedDatabase=((CDatabaseNode)draggedNode).getObject();
+  final IDatabase parentDatabase=((CDatabaseNode)parentNode).getObject();
+  int pnIndex=0;
+  for (  final IDatabase database : m_manager) {
+    if (database == parentDatabase) {
+      break;
+    }
+    pnIndex++;
+  }
+  m_manager.moveDatabase(draggedDatabase,pnIndex + 1);
+}

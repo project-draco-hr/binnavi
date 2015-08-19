@@ -1,0 +1,5 @@
+{
+  for (  CodeDisplayEventListener listener : eventListeners) {
+    listener.caretChanged(caretPosition);
+  }
+}

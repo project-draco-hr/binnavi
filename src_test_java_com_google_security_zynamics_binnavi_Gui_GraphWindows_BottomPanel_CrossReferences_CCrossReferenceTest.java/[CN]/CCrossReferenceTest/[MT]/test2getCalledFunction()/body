@@ -1,0 +1,6 @@
+{
+  final MockFunction function=new MockFunction();
+  final CCrossReference reference=new CCrossReference(function,function);
+  assertEquals(function,reference.getCalledFunction());
+  assertEquals(function,reference.getCallingFunction());
+}

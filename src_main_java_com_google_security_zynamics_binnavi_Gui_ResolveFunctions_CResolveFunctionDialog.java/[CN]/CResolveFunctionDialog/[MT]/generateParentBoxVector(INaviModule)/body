@@ -1,0 +1,10 @@
+{
+  final HashSet<String> parents=new HashSet<String>();
+  for (  final INaviFunction function : module.getContent().getFunctionContainer().getFunctions()) {
+    final String name=function.getOriginalModulename();
+    if (!name.equals(module.getConfiguration().getName())) {
+      parents.add(name);
+    }
+  }
+  return new Vector<String>(parents);
+}

@@ -1,0 +1,4 @@
+{
+  reporter.report(ViewLoadEvents.Started);
+  reporter.report(ViewLoadEvents.Finished);
+}

@@ -1,0 +1,7 @@
+{
+  removeNode(m_mappings.getNode(node));
+  if (m_graph.getSettings().getLayoutSettings().getAutomaticLayouting() && isCollapsedGroupNode(node)) {
+    m_graph.doLayout();
+  }
+  m_graphInternals.notifyNodeDeleted();
+}

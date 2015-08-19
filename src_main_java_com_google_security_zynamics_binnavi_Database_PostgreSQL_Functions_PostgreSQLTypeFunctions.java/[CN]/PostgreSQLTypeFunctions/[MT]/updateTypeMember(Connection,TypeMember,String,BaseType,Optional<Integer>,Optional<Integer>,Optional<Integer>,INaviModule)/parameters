@@ -1,0 +1,8 @@
+Connection connection
+TypeMember member
+String newName
+BaseType newBaseType
+Optional<Integer> offset
+Optional<Integer> newNumberOfElements
+Optional<Integer> newArgumentIndex
+INaviModule module

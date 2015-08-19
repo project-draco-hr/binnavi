@@ -1,0 +1,4 @@
+{
+  setModel(m_model);
+  setDefaultRenderer(Object.class,m_renderer);
+}

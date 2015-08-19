@@ -1,0 +1,3 @@
+JFrame parent
+BackEndDebuggerProvider debuggerProvider
+INaviView view

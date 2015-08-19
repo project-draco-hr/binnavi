@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"QDADD");
+  translateAll(environment,instruction,"QDADD",instructions);
+}

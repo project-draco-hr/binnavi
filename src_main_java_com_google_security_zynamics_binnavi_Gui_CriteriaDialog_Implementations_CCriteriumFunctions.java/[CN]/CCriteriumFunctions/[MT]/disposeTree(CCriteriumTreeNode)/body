@@ -1,0 +1,6 @@
+{
+  root.getCriterium().dispose();
+  for (  final CCriteriumTreeNode child : root.getChildren()) {
+    disposeTree(child);
+  }
+}

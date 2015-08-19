@@ -1,0 +1,4 @@
+{
+  sourceNode.m_children.add(targetNode);
+  targetNode.m_parents.add(sourceNode);
+}

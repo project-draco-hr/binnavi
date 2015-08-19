@@ -1,0 +1,15 @@
+{
+  final List<Byte> flattenedTree=new ArrayList<Byte>();
+  addAll(flattenedTree,getType(root));
+  final List<Byte> payload=getPayload(root);
+  addAll(flattenedTree,ByteHelpers.toBigEndianDword(payload.size()));
+  flattenedTree.addAll(payload);
+  addAll(flattenedTree,ByteHelpers.toBigEndianDword(root.getChildren().size()));
+  for (  final ConditionNode child : root.getChildren()) {
+    addAll(flattenedTree,ByteHelpers.toBigEndianDword(nodeIds.get(child)));
+  }
+  for (  final ConditionNode child : root.getChildren()) {
+    flattenedTree.addAll(flatten(child,nodeIds));
+  }
+  return flattenedTree;
+}

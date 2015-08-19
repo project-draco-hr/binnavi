@@ -1,0 +1,22 @@
+{
+switch (type) {
+case EXPRESSION_LIST:
+    return IOperandTree.NODE_TYPE_SYMBOL_ID;
+case IMMEDIATE_FLOAT:
+  return IOperandTree.NODE_TYPE_IMMEDIATE_FLOAT_ID;
+case IMMEDIATE_INTEGER:
+return IOperandTree.NODE_TYPE_IMMEDIATE_INT_ID;
+case MEMDEREF:
+return IOperandTree.NODE_TYPE_DEREFERENCE_ID;
+case OPERATOR:
+return IOperandTree.NODE_TYPE_OPERATOR_ID;
+case REGISTER:
+return IOperandTree.NODE_TYPE_REGISTER_ID;
+case SIZE_PREFIX:
+return IOperandTree.NODE_TYPE_SIZE_PREFIX_ID;
+case SYMBOL:
+return IOperandTree.NODE_TYPE_SYMBOL_ID;
+default :
+throw new IllegalStateException(String.format("IE00225: Unknown expression type '%s'",type));
+}
+}

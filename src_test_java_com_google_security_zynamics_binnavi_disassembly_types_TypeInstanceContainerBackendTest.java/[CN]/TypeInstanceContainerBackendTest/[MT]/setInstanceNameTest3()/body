@@ -1,0 +1,15 @@
+{
+  typeInstancContainerBackend.createTypeInstance(" TYPE INSTANCE "," TYPE INSTANCE COMMENT ",baseType,section,0);
+  typeInstancContainerBackend.setInstanceName(typeInstance," NEW NAME ");
+  final Set<TypeInstance> instances=typeInstancContainerBackend.loadTypeInstances();
+  final TypeInstance instance=Iterables.find(instances,new Predicate<TypeInstance>(){
+    @Override public boolean apply(    final TypeInstance instance){
+      return instance.getName().equals(" NEW NAME ");
+    }
+  }
+);
+  Assert.assertNotNull(instance);
+  Assert.assertEquals(" NEW NAME ",instance.getName());
+  Assert.assertEquals(baseType,instance.getBaseType());
+  Assert.assertEquals(section,instance.getSection());
+}

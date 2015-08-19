@@ -1,0 +1,11 @@
+{
+  final Set<INaviViewNode> toDelete=new HashSet<INaviViewNode>();
+  for (  final INaviViewNode node : nodes) {
+    for (    final INaviViewNode parent : node.getParents()) {
+      if (parent instanceof INaviTextNode) {
+        toDelete.add(parent);
+      }
+    }
+  }
+  view.getContent().deleteNodes(toDelete);
+}

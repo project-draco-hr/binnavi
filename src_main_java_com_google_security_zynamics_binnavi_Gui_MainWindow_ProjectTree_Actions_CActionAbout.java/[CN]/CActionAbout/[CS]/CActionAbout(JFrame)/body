@@ -1,0 +1,5 @@
+{
+  super(String.format("About %s",Constants.PROJECT_NAME));
+  m_parent=Preconditions.checkNotNull(parent,"IE01843: Parent argument can not be null");
+  putValue(MNEMONIC_KEY,(int)'A');
+}

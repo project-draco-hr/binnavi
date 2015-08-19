@@ -1,0 +1,16 @@
+{
+  final TargetProcessThread thread=reply.getProcessStart().getThread();
+  final MemoryModule module=reply.getProcessStart().getModule();
+  getDebugger().getProcessManager().addThread(thread);
+  getDebugger().getProcessManager().setActiveThread(thread);
+  refreshRegisters();
+  CRelocationNotifier.relocateModule(getDebugger(),module);
+  getDebugger().getProcessManager().addModule(module);
+  CBreakpointModuleSynchronizer.enableRegularBreakpoints(getDebugger(),module);
+  try {
+    getDebugger().resume();
+  }
+ catch (  final DebugExceptionWrapper e) {
+    NaviLogger.severe("Error: Could not resume debugger. Exception: %s",e);
+  }
+}

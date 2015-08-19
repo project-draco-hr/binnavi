@@ -1,0 +1,4 @@
+{
+  final Integer commentId=provider.appendTextNodeComment(textNode,commentText,userId);
+  return provider.loadCommentById(commentId);
+}

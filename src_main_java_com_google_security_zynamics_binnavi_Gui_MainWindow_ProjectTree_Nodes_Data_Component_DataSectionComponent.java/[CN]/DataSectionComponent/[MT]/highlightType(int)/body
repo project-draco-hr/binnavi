@@ -1,0 +1,6 @@
+{
+  final TypeInstance instance=typeDataModel.getTypeAtRow(row);
+  hexView.uncolorizeAll(SELECTED_INSTANCE_HIGHLIGHT_LEVEL);
+  hexView.colorize(SELECTED_INSTANCE_HIGHLIGHT_LEVEL,instance.getAddress().getOffset() + hexView.getBaseAddress(),instance.getBaseType().getByteSize(),Color.GREEN,Color.BLACK);
+  hexView.gotoOffset(instance.getAddress().getOffset() + hexView.getBaseAddress());
+}

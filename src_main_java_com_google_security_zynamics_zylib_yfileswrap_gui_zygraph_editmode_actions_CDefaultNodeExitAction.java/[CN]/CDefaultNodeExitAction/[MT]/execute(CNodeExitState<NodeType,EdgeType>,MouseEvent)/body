@@ -1,0 +1,18 @@
+{
+  clearTooltip(state.getGraph());
+  if (state.getNode().getGraph() != null) {
+    unhighlightNode(state.getNode());
+    unhighlightEdges(state.getNode());
+  }
+  final NodeType node=state.getGraph().getNode(state.getNode());
+  if (node != null) {
+    for (    final IZyEditModeListener<NodeType,EdgeType> listener : state.getStateFactory().getListeners()) {
+      try {
+        listener.nodeLeft(node);
+      }
+ catch (      final Exception exception) {
+      }
+    }
+  }
+  state.getGraph().updateViews();
+}

@@ -1,0 +1,8 @@
+{
+  final MockModuleListener listener=new MockModuleListener();
+  m_module.addListener(listener);
+  m_module.setName("New Name");
+  assertEquals("New Name",m_module.getName());
+  assertEquals("changedName;changedModificationDate;",listener.events);
+  m_module.removeListener(listener);
+}

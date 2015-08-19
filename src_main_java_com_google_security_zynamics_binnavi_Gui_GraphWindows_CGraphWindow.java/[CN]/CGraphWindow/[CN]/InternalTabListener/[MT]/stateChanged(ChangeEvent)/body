@@ -1,0 +1,8 @@
+{
+  updateWindow();
+  final int index=m_tabbedPane.getSelectedIndex();
+  for (int i=0; i < m_tabbedPane.getTabCount(); i++) {
+    final CGraphPanel panel=(CGraphPanel)m_tabbedPane.getComponentAt(i);
+    panel.getToolbar().getSearchPanel().showResultsDialog(i == index);
+  }
+}

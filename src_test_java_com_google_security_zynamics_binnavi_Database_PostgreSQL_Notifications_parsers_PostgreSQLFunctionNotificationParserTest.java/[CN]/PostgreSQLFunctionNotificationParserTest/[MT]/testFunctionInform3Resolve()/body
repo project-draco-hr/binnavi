@@ -1,0 +1,13 @@
+{
+  final INaviFunction forwardFunction=new MockFunction(provider);
+  function.setForwardedFunctionInternal(forwardFunction);
+  assertTrue(function.isForwarded());
+  assertEquals(forwardFunction.getAddress(),function.getForwardedFunctionAddress());
+  assertEquals(forwardFunction.getModule().getConfiguration().getId(),function.getForwardedFunctionModuleId());
+  final FunctionNotificationContainer container=new FunctionNotificationContainer(module.getConfiguration().getId(),module,function.getAddress(),"UPDATE");
+  final PostgreSQLFunctionNotificationParser parser=new PostgreSQLFunctionNotificationParser();
+  parser.inform(Lists.newArrayList(container),provider);
+  assertFalse(function.isForwarded());
+  assertNull(function.getForwardedFunctionAddress());
+  assertEquals(0,function.getForwardedFunctionModuleId());
+}

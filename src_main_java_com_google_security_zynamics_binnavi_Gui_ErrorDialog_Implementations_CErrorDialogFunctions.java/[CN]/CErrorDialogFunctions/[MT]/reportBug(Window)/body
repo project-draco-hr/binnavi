@@ -1,0 +1,9 @@
+{
+  try {
+    Desktop.getDesktop().browse(new URL("http://bugs.zynamics.com/BinNavi").toURI());
+  }
+ catch (  final Exception e) {
+    CUtilityFunctions.logException(e);
+    CMessageBox.showError(parent,"Could not open the bugtracker URL in the browser.");
+  }
+}

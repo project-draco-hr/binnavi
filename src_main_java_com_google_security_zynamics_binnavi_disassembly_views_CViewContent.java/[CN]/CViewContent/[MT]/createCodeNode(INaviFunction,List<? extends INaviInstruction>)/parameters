@@ -1,0 +1,2 @@
+INaviFunction parentFunction
+List<? extends INaviInstruction> instructions

@@ -1,0 +1,7 @@
+{
+  super("Save View");
+  m_parent=new WeakReference<JFrame>(Preconditions.checkNotNull(parent,"IE01646: Parent can't be null"));
+  m_graph=new WeakReference<ZyGraph>(Preconditions.checkNotNull(graph,"IE01222: Graph argument can not be null"));
+  setEnabled(graph.getRawView().getType() != ViewType.Native);
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_SAVE_VIEW_HK.getKeyStroke());
+}

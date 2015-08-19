@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(value,"IE00877: Edge hiding mode can't be null");
+  if (value == getEdgeHidingMode()) {
+    return;
+  }
+  if (type == null) {
+    edgeHidingMode=value;
+  }
+ else {
+    type.setEdgeHidingMode(value.ordinal());
+  }
+  for (  final IZyGraphEdgeSettingsListener listener : listeners) {
+    try {
+      listener.changedEdgeHidingMode(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return AndTransformer.transform(instruction,state);
+}

@@ -1,0 +1,12 @@
+{
+switch (columnIndex) {
+case TYPE_COLUMN:
+    return ITypeDescription.class;
+case ADDRESS_COLUMN:
+  return String.class;
+case INSTRUCTION_COLUMN:
+return String.class;
+default :
+throw new IllegalArgumentException("IE02258: unexpected column index while resolving column class");
+}
+}

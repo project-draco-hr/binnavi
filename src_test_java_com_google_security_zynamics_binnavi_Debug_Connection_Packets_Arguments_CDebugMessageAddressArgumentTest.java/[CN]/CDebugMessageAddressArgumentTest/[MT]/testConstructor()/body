@@ -1,0 +1,12 @@
+{
+  try {
+    new DebugMessageAddressArgument(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  final CAddress address=new CAddress(0x123);
+  final DebugMessageAddressArgument argument=new DebugMessageAddressArgument(address);
+  assertEquals(address,argument.getAddress());
+  assertEquals("00000123",argument.toString());
+}

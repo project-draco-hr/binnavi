@@ -1,0 +1,29 @@
+{
+  boolean switched=false;
+  int lp=m_mouse_pressed_y;
+  int lr=m_mouse_released_y;
+  if (lp > lr) {
+    lp=m_mouse_released_y;
+    lr=m_mouse_pressed_y;
+    switched=true;
+  }
+  final int linecount=m_content.getLineCount();
+  final double height=(float)m_content.getLineHeight();
+  int maxIndex=caretPosition;
+  for (int line=lp; line <= lr; line++) {
+    double deltaY=0;
+    if (switched) {
+      deltaY=height * zoomFactor * line;
+    }
+ else {
+      deltaY=-(height * zoomFactor * (linecount - line));
+    }
+    final TextLayout textLayout=m_content.getLineContent(line).getTextLayout();
+    final TextHitInfo hitInfo=textLayout.hitTestChar((float)x,(float)(y + deltaY),textLayout.getBounds());
+    final int insertionIndex=hitInfo.getInsertionIndex();
+    if ((caretPosition < insertionIndex) && (insertionIndex > maxIndex)) {
+      maxIndex=insertionIndex;
+    }
+  }
+  return maxIndex;
+}

@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(name,"IE00317: Name string can not be null");
+  Preconditions.checkArgument(!name.equals(""),"IE00318: Names can not be empty");
+  if (name.equals(viewName)) {
+    return;
+  }
+  if (isStored()) {
+    provider.setName(view,name);
+  }
+  viewName=name;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedName(view,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

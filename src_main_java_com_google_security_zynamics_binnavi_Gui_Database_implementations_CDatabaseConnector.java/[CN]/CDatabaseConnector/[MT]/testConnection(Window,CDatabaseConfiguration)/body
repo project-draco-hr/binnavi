@@ -1,0 +1,27 @@
+{
+  try {
+    connect(configuration).closeConnection();
+    CMessageBox.showInformation(parent,"Successfully connected to the database.");
+  }
+ catch (  final CouldntLoadDriverException exception) {
+    final String message="E00021: " + "Database driver could not be loaded";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not create a database connection because the database " + "driver '%s' could not be loaded",configuration.getDriver()),new String[]{"The database driver string is wrong.","The database driver file could not be found."},new String[]{"BinNavi can not load data from the given database until the " + "problem is resolved."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+catch (  final CouldntConnectException exception) {
+    if (exception.getSqlState().equalsIgnoreCase(PostgreSQLErrorCodes.INVALID_PASSWORD)) {
+      CMessageBox.showInformation(parent,String.format("The password for user '%s' on database '%s' is invalid",configuration.getUser(),configuration.getUrl()));
+      return;
+    }
+ else     if (exception.getSqlState().equalsIgnoreCase(PostgreSQLErrorCodes.POSTGRES_INVALID_CATALOG_NAME)) {
+      if (JOptionPane.YES_OPTION == CMessageBox.showYesNoCancelQuestion(parent,String.format("The database '%s' does not exist. Do you want to create it now?",configuration.getUrl()))) {
+        CDatabaseCreator.createDatabase(parent,configuration);
+      }
+    }
+ else {
+      final String message="E00022: " + "Database connection could not be established";
+      final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not connect to the database '%s'",configuration.getUrl()),new String[]{exception.getMessage()},new String[]{"BinNavi can not load data from the given database until the " + "problem is resolved."});
+      CNaviErrorDialog.show(parent,message,description,exception);
+    }
+  }
+}

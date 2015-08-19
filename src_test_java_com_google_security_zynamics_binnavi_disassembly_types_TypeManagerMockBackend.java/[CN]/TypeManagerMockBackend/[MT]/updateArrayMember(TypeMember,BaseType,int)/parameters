@@ -1,0 +1,3 @@
+TypeMember member
+BaseType baseType
+int numberOfElements

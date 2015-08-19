@@ -1,0 +1,17 @@
+{
+  return CNodeTypeSwitcher.switchNode(node,new INodeTypeCallback<IAddress>(){
+    @Override public IAddress handle(    final INaviCodeNode node){
+      return node.getAddress();
+    }
+    @Override public IAddress handle(    final INaviFunctionNode node){
+      return node.getAddress();
+    }
+    @Override public IAddress handle(    final INaviGroupNode node){
+      return getAddress(node.getElements().get(0));
+    }
+    @Override public IAddress handle(    final INaviTextNode node){
+      return getAddress(node.getChildren().get(0));
+    }
+  }
+);
+}

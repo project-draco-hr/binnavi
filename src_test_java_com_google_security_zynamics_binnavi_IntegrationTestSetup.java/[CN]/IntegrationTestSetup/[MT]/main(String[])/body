@@ -1,0 +1,17 @@
+{
+  try {
+    new IntegrationTestSetup();
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  if (args.length > 0 && !args[0].isEmpty()) {
+    path=new File(new File(args[0]),TEST_DATA_DIRECTORY);
+  }
+ else {
+    path=new File(new File("/tmp/"),TEST_DATA_DIRECTORY);
+  }
+  System.out.println("Saving test data to: " + path);
+  createTestDataset(TEST_DISASSEMBLY);
+  createTestDataset(TEST_IMPORT);
+}

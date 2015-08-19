@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(parent,"IE02115: Parent argument can not be null");
+  Preconditions.checkNotNull(edge,"IE02116: Edge argument can not be null");
+  final CDialogEditEdgeComment dlg=new CDialogEditEdgeComment(parent,edge.getRawEdge());
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+}

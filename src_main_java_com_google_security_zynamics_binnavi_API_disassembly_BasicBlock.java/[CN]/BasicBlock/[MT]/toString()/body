@@ -1,0 +1,8 @@
+{
+  final StringBuilder blockString=new StringBuilder();
+  for (  final Instruction instruction : m_instructions) {
+    blockString.append(instruction.toString());
+    blockString.append('\n');
+  }
+  return blockString.toString();
+}

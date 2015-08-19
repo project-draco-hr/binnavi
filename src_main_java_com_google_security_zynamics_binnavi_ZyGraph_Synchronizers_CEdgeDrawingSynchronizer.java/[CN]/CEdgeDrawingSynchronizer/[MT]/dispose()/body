@@ -1,0 +1,4 @@
+{
+  m_graph.getSettings().getEdgeSettings().removeListener(m_settingsListener);
+  m_graph.getSettings().getProximitySettings().removeListener(m_proximityListener);
+}

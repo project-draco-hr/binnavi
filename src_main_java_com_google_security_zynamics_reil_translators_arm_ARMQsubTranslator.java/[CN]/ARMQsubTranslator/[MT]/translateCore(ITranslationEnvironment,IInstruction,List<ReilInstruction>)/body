@@ -1,0 +1,14 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize qw=OperandSize.QWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String tmpResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(baseOffset++,dw,sourceRegister1,dw,sourceRegister2,qw,tmpResult));
+  Helpers.signedSat(baseOffset,environment,instruction,instructions,dw,sourceRegister1,dw,sourceRegister2,qw,tmpResult,"SUB",targetRegister,32L,"Q");
+}

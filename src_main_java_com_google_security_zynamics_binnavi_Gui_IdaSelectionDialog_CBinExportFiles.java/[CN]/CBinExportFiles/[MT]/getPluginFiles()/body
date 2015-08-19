@@ -1,0 +1,11 @@
+{
+  if (SystemHelpers.isRunningWindows()) {
+    return PLUGIN_FILES_WINDOWS.clone();
+  }
+ else   if (SystemHelpers.isRunningLinux()) {
+    return PLUGIN_FILES_LINUX.clone();
+  }
+ else {
+    return PLUGIN_FILES_MACOSX.clone();
+  }
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    new CView(new BigInteger(31,random).intValue(),(INaviProject)null,"Foo","Bar",ViewType.Native,new Date(1234),new Date(12345),new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),new ArrayList<INaviEdge>()),new HashSet<CTag>(),false,new MockSqlProvider());
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  final int viewId=new BigInteger(31,random).intValue();
+  final CView view=new CView(viewId,new MockProject(),"Foo","Bar",ViewType.Native,new Date(1234),new Date(12345),new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),new ArrayList<INaviEdge>()),new HashSet<CTag>(),false,new MockSqlProvider());
+  assertEquals(viewId,view.getConfiguration().getId());
+}

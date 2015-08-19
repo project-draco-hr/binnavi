@@ -1,0 +1,6 @@
+{
+  if (m_tagTreeNode.getObject().getId() == tag.getParent().getObject().getId()) {
+    m_tableBorder.setTitle(getBorderTitle());
+    updateUI();
+  }
+}

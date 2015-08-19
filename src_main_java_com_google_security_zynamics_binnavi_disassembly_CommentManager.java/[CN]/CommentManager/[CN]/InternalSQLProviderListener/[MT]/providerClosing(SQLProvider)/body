@@ -1,0 +1,5 @@
+{
+  if (CommentManager.this.provider.equals(provider)) {
+    CommentManager.this.close();
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return "If selected, the password to the database is stored in the configuration file.";
+}

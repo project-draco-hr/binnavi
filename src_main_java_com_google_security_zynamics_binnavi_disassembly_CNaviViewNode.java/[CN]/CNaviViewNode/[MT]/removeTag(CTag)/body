@@ -1,0 +1,13 @@
+{
+  if (isTagged(tag)) {
+    if (isStored()) {
+      m_provider.removeTagFromNode(this,tag.getId());
+    }
+    m_tags.remove(tag);
+    final List<CTag> tagList=Lists.newArrayList(tag);
+    for (    final INaviViewNodeListener listener : m_naviViewNodeListeners) {
+      listener.untaggedNodes(this,tagList);
+    }
+    tag.removeListener(m_tagListener);
+  }
+}

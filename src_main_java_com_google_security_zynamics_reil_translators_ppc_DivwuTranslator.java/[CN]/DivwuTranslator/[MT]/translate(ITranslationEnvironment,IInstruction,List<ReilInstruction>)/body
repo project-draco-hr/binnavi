@@ -1,0 +1,3 @@
+{
+  DivGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"divwu",false,false,false);
+}

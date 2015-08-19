@@ -1,0 +1,9 @@
+{
+  m_lastSearchString=searchString;
+  clearResults();
+  final List<NaviNode> filteredNodes=CResultFilter.filteredNodes(nodes,m_settings.isOnlySelected(),m_settings.isOnlyVisible());
+  final List<NaviEdge> filteredEdges=CResultFilter.filteredEdges(edges,m_settings.isOnlySelected(),m_settings.isOnlyVisible());
+  searchAll(filteredNodes,filteredEdges,searchString);
+  Collections.sort(m_results,new CSearchResultComparator());
+  m_cursor.setResults(m_results);
+}

@@ -1,0 +1,3 @@
+{
+  CNodeFunctions.splitAfter(m_view,m_node,m_instruction);
+}

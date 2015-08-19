@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  if (typeValue.equals("DA") || (typeValue.equals("FA") && instruction.getMnemonic().startsWith(matchLDM)) || (typeValue.equals("ED") && instruction.getMnemonic().startsWith(matchSTM))) {
+    return generateDA(baseOffset,environment,instructions,registerNodeValue,wBit,rootNodeOfRegisterList);
+  }
+ else   if (typeValue.equals("DB") || (typeValue.equals("EA") && instruction.getMnemonic().startsWith(matchLDM)) || (typeValue.equals("FD") && instruction.getMnemonic().startsWith(matchSTM))) {
+    return generateDB(baseOffset,environment,instructions,registerNodeValue,wBit,rootNodeOfRegisterList);
+  }
+ else   if (typeValue.equals("IA") || (typeValue.equals("FD") && instruction.getMnemonic().startsWith(matchLDM)) || (typeValue.equals("EA") && instruction.getMnemonic().startsWith(matchSTM))) {
+    return generateIA(baseOffset,environment,instructions,registerNodeValue,wBit,rootNodeOfRegisterList);
+  }
+ else   if (typeValue.equals("IB") || (typeValue.equals("ED") && instruction.getMnemonic().startsWith(matchLDM)) || (typeValue.equals("FA") && instruction.getMnemonic().startsWith(matchSTM))) {
+    return generateIB(baseOffset,environment,instructions,registerNodeValue,wBit,rootNodeOfRegisterList);
+  }
+ else {
+    throw new InternalTranslationException("ERROR: there is no such AddressingMode :" + typeValue);
+  }
+}

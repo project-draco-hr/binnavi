@@ -1,0 +1,4 @@
+{
+  setIcon(new ImageIcon(CMain.class.getResource("data/memoryupdate_up.jpg")));
+  setPreferredSize(new Dimension(32,32));
+}

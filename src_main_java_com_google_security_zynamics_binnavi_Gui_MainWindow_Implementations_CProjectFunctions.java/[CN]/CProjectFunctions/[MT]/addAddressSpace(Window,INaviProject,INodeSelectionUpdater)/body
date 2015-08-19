@@ -1,0 +1,34 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,true);
+      operation.getProgressPanel().setMaximum(2);
+      try {
+        operation.getProgressPanel().setText("Creating new address space");
+        operation.getProgressPanel().next();
+        final CAddressSpace addressSpace=project.getContent().createAddressSpace("New Address Space");
+        operation.getProgressPanel().setText("Loading new address space");
+        addressSpace.load();
+        operation.getProgressPanel().next();
+        operation.stop();
+        updater.setObject(addressSpace);
+        updater.update();
+      }
+ catch (      final CouldntSaveDataException exception) {
+        CUtilityFunctions.logException(exception);
+        final String innerMessage="E00136: " + "Could not add address space";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("It was not possible to add a new address space to the project '%s'.",project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The address space was not created."});
+        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+      }
+catch (      final CouldntLoadDataException exception) {
+        CUtilityFunctions.logException(exception);
+        final String innerMessage="E00137: " + "Could not load the new address space";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("The new address space in project '%s' was created but it could not be loaded.",project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The address space was created but not loaded."});
+        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+      }
+catch (      final LoadCancelledException e) {
+      }
+    }
+  }
+.start();
+}

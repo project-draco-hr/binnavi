@@ -1,0 +1,8 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(provider,"IE01364: Provider can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01365: Debug perspective model can not be null");
+  m_debuggerBox=new CDebuggerComboBox(provider);
+  add(m_debuggerBox);
+  m_synchronizer=new CDebuggerSelectionPanelSynchronizer(m_debuggerBox,debugPerspectiveModel);
+}

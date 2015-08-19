@@ -1,0 +1,7 @@
+{
+  final List<Pair<String,List<CStyleRunData>>> lines=new ArrayList<Pair<String,List<CStyleRunData>>>();
+  final HashMap<Pair<String,List<CStyleRunData>>,ArrayList<CommentContainer>> comments=new HashMap<Pair<String,List<CStyleRunData>>,ArrayList<CommentContainer>>();
+  final int maxLine=createLines(node,lines,comments,graphSettings,modifier);
+  insertLines(content,lines,comments,maxLine);
+  ZyNodeBuilder.addCommentTagLines(content,node,node.getComments().getLocalCodeNodeComment(),node.getComments().getGlobalCodeNodeComment());
+}

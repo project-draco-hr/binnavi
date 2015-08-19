@@ -1,0 +1,16 @@
+{
+  ConfigManager.instance().read();
+  final INaviModule mockModule=new MockModule();
+  final DebugTargetSettings target=new ModuleTargetSettings(mockModule);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final ZyGraphViewSettings settings=new ZyGraphViewSettings(new FlowGraphSettingsConfigItem());
+  settings.getLayoutSettings().setDefaultGraphLayout(LayoutStyle.CIRCULAR);
+  final ZyGraph graph=new ZyGraph(new MockView(),new LinkedHashMap<Node,NaviNode>(),new LinkedHashMap<Edge,NaviEdge>(),settings,new ZyGraph2DView());
+  final IViewContainer viewContainer=new MockViewContainer();
+  final CBreakpointTable table=new CBreakpointTable(debuggerProvider,graph,viewContainer);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(mockModule));
+  final MockModule module=new MockModule();
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(module,new UnrelocatedAddress(new CAddress(0)))));
+  debuggerProvider.addDebugger(debugger);
+  table.dispose();
+}

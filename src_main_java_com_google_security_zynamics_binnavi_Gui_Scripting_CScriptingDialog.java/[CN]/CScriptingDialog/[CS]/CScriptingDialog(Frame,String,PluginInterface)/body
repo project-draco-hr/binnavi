@@ -1,0 +1,3 @@
+{
+  this(owner,defaultLanguage,pluginInterface,new HashMap<String,Object>());
+}

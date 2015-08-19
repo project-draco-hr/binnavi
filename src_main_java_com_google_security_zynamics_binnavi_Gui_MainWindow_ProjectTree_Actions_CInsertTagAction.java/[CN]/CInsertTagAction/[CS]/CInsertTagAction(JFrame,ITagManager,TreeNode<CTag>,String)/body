@@ -1,0 +1,8 @@
+{
+  super("Insert Tag");
+  m_parent=parent;
+  m_tagManager=tagManager;
+  m_parentTag=tag;
+  m_name=name;
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_INSERT_TAG".charAt(0));
+}

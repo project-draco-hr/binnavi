@@ -1,0 +1,13 @@
+{
+  checkArguments(provider,view,list,nodeTagManager);
+  try {
+    final List<INaviViewNode> nodes=PostgreSQLNodeLoader.loadNodes(provider,view,list,nodeTagManager);
+    NodeCache.get(provider).addNodes(nodes);
+    final List<INaviEdge> edges=PostgreSQLEdgeLoader.loadEdges(provider,view,nodes);
+    EdgeCache.get(provider).addEdges(edges);
+    return new MutableDirectedGraph<INaviViewNode,INaviEdge>(nodes,edges);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

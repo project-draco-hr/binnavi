@@ -1,0 +1,3 @@
+{
+  processModuleBreakpoints(debugger,module,BreakpointType.ECHO,new EnableBreakpointsAction(BreakpointType.ECHO));
+}

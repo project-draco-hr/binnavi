@@ -1,0 +1,5 @@
+{
+  m_loadProgressPanel.setMaximum(LoadEvents.values().length);
+  m_loadProgressPanel.setVisible(true);
+  return m_loadProgressPanel;
+}

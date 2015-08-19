@@ -1,0 +1,6 @@
+{
+  super(collection);
+  for (  final T t : collection) {
+    Preconditions.checkNotNull(t,"Error: Can not add null-elements to filled lists");
+  }
+}

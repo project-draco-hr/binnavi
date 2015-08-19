@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(chunk,"Error: Memory chunk can't be null");
+  final int index=findChunkPosition(chunk);
+  m_chunks.add(index,chunk);
+}

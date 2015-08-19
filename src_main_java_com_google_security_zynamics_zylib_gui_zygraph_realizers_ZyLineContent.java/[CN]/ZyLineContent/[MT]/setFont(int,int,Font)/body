@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(font,"Error: Font argument can't be null");
+  if (!isEmpty()) {
+    final int realLength=calculateRealLength(position,length);
+    validatePartialLineArguments(position,realLength);
+    Preconditions.checkNotNull(font,"Error: Font argument can't be null");
+    m_atext.addAttribute(TextAttribute.FONT,font,position,position + realLength);
+    m_textLayout=new TextLayout(m_atext.getIterator(),m_fontContext);
+    updateCharBounds(font);
+  }
+}

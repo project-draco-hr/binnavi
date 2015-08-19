@@ -1,0 +1,12 @@
+{
+  final Matcher matcher=projectViewNotificationPattern.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    throw new IllegalStateException("IE02744: compiled pattern: " + projectViewNotificationPattern.toString() + " did not match notification: "+ notification.getParameter());
+  }
+  final Integer viewId=Integer.parseInt(matcher.group(3));
+  final Optional<INaviView> view=Optional.fromNullable(ViewManager.get(provider).getView(viewId));
+  final Optional<Integer> projectId=Optional.fromNullable(Integer.parseInt(matcher.group(4)));
+  final Optional<INaviProject> project=Optional.fromNullable(provider.findProject(projectId.get()));
+  final String databaseOperation=matcher.group(2);
+  return new ViewNotificationContainer(viewId,view,projectId,Optional.<INaviModule>absent(),project,databaseOperation);
+}

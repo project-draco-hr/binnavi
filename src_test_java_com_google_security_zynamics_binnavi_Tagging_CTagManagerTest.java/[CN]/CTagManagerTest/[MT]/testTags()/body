@@ -1,0 +1,108 @@
+{
+  final MockSqlProvider sql=new MockSqlProvider();
+  final CTagManager manager=new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Foo","Bar",TagType.VIEW_TAG,sql))),TagType.VIEW_TAG,sql);
+  final MockTagManagerListener listener=new MockTagManagerListener();
+  manager.addListener(listener);
+  try {
+    manager.addTag(null,"Tag I");
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("",listener.eventList);
+  try {
+    manager.addTag(manager.getRootTag(),null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("",listener.eventList);
+  final ITreeNode<CTag> tag1=manager.addTag(manager.getRootTag(),"Tag I");
+  assertEquals("addedTag/",listener.eventList);
+  assertEquals(manager.getRootTag(),tag1.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag1));
+  final ITreeNode<CTag> tag2=manager.addTag(manager.getRootTag(),"Tag II");
+  assertEquals("addedTag/addedTag/",listener.eventList);
+  assertEquals(manager.getRootTag(),tag1.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag1));
+  assertEquals(manager.getRootTag(),tag2.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag2));
+  final ITreeNode<CTag> tag3=manager.addTag(tag2,"Tag III");
+  assertEquals("addedTag/addedTag/addedTag/",listener.eventList);
+  assertEquals(manager.getRootTag(),tag1.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag1));
+  assertEquals(manager.getRootTag(),tag2.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag2));
+  assertEquals(tag2,tag3.getParent());
+  assertTrue(tag2.getChildren().contains(tag3));
+  try {
+    manager.insertTag(null,"Foo");
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    manager.insertTag(manager.getRootTag(),null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  final ITreeNode<CTag> tag4=manager.insertTag(manager.getRootTag(),"Tag IV");
+  assertEquals("addedTag/addedTag/addedTag/insertedTag/",listener.eventList);
+  assertEquals(tag4,tag1.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag1));
+  assertTrue(tag4.getChildren().contains(tag1));
+  assertEquals(tag4,tag2.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag2));
+  assertTrue(tag4.getChildren().contains(tag2));
+  assertEquals(tag2,tag3.getParent());
+  assertTrue(tag2.getChildren().contains(tag3));
+  final ITreeNode<CTag> tag5=manager.insertTag(tag3,"Tag V");
+  assertEquals("addedTag/addedTag/addedTag/insertedTag/insertedTag/",listener.eventList);
+  assertEquals(tag4,tag1.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag1));
+  assertTrue(tag4.getChildren().contains(tag1));
+  assertEquals(tag4,tag2.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag2));
+  assertTrue(tag4.getChildren().contains(tag2));
+  assertEquals(tag2,tag3.getParent());
+  assertTrue(tag2.getChildren().contains(tag3));
+  assertEquals(tag3,tag5.getParent());
+  assertTrue(tag3.getChildren().contains(tag5));
+  try {
+    manager.deleteTag(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    manager.deleteTag(manager.getRootTag());
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+  manager.deleteTag(tag5);
+  assertEquals("addedTag/addedTag/addedTag/insertedTag/insertedTag/deletedTag/",listener.eventList);
+  assertEquals(tag4,tag1.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag1));
+  assertTrue(tag4.getChildren().contains(tag1));
+  assertEquals(tag4,tag2.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag2));
+  assertTrue(tag4.getChildren().contains(tag2));
+  assertEquals(tag2,tag3.getParent());
+  assertTrue(tag2.getChildren().contains(tag3));
+  assertNull(tag5.getParent());
+  assertFalse(tag3.getChildren().contains(tag5));
+  assertNull(CTagHelpers.findTag(manager.getRootTag(),5));
+  manager.deleteTag(tag4);
+  assertEquals("addedTag/addedTag/addedTag/insertedTag/insertedTag/deletedTag/deletedTag/",listener.eventList);
+  assertEquals(manager.getRootTag(),tag1.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag1));
+  assertEquals(manager.getRootTag(),tag2.getParent());
+  assertTrue(manager.getRootTag().getChildren().contains(tag2));
+  assertEquals(tag2,tag3.getParent());
+  assertTrue(tag2.getChildren().contains(tag3));
+  assertNull(tag4.getParent());
+  assertFalse(manager.getRootTag().getChildren().contains(tag4));
+  assertNull(CTagHelpers.findTag(manager.getRootTag(),4));
+}

@@ -1,0 +1,30 @@
+{
+  int counter=0;
+  for (  final INaviModule currentModule : m_targetModules) {
+    for (    final INaviFunction currentFunction : currentModule.getContent().getFunctionContainer().getFunctions()) {
+      final String originalName=currentFunction.getOriginalModulename();
+      if (!originalName.equalsIgnoreCase(currentModule.getConfiguration().getName()) && !originalName.equalsIgnoreCase("")) {
+        for (        final INaviModule targetModule : m_sourceModules) {
+          final String targetModuleName=targetModule.getConfiguration().getName();
+          if (targetModuleName.toUpperCase().contains(originalName.toUpperCase()) && CFunctionHelpers.isForwardableFunction(currentFunction) && (currentFunction.getForwardedFunctionModuleId() == 0)) {
+            String currentFunctionName=currentFunction.getName();
+            if (currentFunctionName.startsWith("__imp_")) {
+              currentFunctionName=currentFunctionName.substring("__imp_".length());
+            }
+            try {
+              final INaviFunction targetFunction=targetModule.getContent().getFunctionContainer().getFunction(currentFunctionName);
+              currentFunction.setForwardedFunction(targetFunction);
+              ++counter;
+            }
+ catch (            final MaybeNullException exception) {
+            }
+catch (            final CouldntSaveDataException exception) {
+              CUtilityFunctions.logException(exception);
+            }
+          }
+        }
+      }
+    }
+  }
+  return counter;
+}

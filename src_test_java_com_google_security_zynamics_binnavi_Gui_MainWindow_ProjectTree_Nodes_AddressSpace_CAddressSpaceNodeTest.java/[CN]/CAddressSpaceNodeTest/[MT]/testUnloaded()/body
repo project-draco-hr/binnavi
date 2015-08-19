@@ -1,0 +1,20 @@
+{
+  final CAddressSpaceNode node=new CAddressSpaceNode(m_tree,new DefaultMutableTreeNode(),m_database,m_project,m_addressSpace,m_container);
+  assertEquals("Address Space (?)",node.toString());
+  m_addressSpace.load();
+  assertEquals("Address Space (0)",node.toString());
+  final MockModule unloadedModule=new MockModule(m_provider,false);
+  m_addressSpace.getContent().addModule(new MockModule(m_provider,true));
+  m_addressSpace.getContent().addModule(unloadedModule);
+  assertEquals("Address Space (2)",node.toString());
+  assertEquals(2,node.getChildCount());
+  m_addressSpace.getContent().removeModule(unloadedModule);
+  assertEquals("Address Space (1)",node.toString());
+  assertEquals(1,node.getChildCount());
+  node.dispose();
+  m_container.dispose();
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_project,"m_listeners"),"m_listeners")).isEmpty());
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_addressSpace,"m_listeners"),"m_listeners")).isEmpty());
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ZyGraphBuilderManager.instance(),"m_listeners"),"m_listeners")) == null);
+}

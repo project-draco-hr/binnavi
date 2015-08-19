@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(inputState,"Error: Input state argument can not be null");
+  final Set<String> tempNativeNewlyTaintedRegisters=Sets.newHashSet();
+  final Set<String> tempNativeUntaintedRegisters=Sets.newHashSet();
+  final Set<String> tempNativeReadRegisters=Sets.newHashSet();
+  final Set<String> tempNativeUpdatedRegisters=Sets.newHashSet();
+  for (  final RegisterSetLatticeElement element : inputState) {
+    tempNativeNewlyTaintedRegisters.addAll(element.m_nativeNewlyTaintedRegs);
+    tempNativeUntaintedRegisters.addAll(element.m_nativeUntaintedRegs);
+    tempNativeReadRegisters.addAll(element.m_nativeReadRegs);
+    tempNativeUpdatedRegisters.addAll(element.m_nativeUpdatedRegs);
+    m_taintedRegs.addAll(element.m_taintedRegs);
+    m_newlyTaintedRegs.addAll(element.m_newlyTaintedRegs);
+    m_untaintedRegs.addAll(element.m_untaintedRegs);
+    m_readRegs.addAll(element.m_readRegs);
+    m_updatedRegs.addAll(element.m_updatedRegs);
+  }
+  m_nativeNewlyTaintedRegs=ImmutableSet.copyOf(tempNativeNewlyTaintedRegisters);
+  m_nativeUntaintedRegs=ImmutableSet.copyOf(tempNativeUntaintedRegisters);
+  m_nativeReadRegs=ImmutableSet.copyOf(tempNativeReadRegisters);
+  m_nativeUpdatedRegs=ImmutableSet.copyOf(tempNativeUpdatedRegisters);
+}

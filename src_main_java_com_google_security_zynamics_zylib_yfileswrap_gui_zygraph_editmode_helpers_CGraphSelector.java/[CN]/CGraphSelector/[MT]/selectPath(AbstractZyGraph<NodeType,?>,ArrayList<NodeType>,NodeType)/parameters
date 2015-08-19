@@ -1,0 +1,3 @@
+AbstractZyGraph<NodeType,?> graph
+ArrayList<NodeType> alreadySelectedNodes
+NodeType newlySelectedNode

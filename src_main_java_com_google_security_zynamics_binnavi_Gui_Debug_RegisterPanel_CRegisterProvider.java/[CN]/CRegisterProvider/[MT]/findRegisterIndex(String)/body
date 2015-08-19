@@ -1,0 +1,10 @@
+{
+  int counter=0;
+  for (  final RegisterInformationInternal info : registerInformation) {
+    if (info.getRegisterName().equals(registerName)) {
+      return counter;
+    }
+    ++counter;
+  }
+  return -1;
+}

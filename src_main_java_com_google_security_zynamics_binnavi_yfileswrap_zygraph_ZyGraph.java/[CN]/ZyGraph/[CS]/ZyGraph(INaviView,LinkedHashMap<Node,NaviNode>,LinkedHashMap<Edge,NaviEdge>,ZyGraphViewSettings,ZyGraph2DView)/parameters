@@ -1,0 +1,5 @@
+INaviView view
+LinkedHashMap<Node,NaviNode> nodeMap
+LinkedHashMap<Edge,NaviEdge> edgeMap
+ZyGraphViewSettings settings
+ZyGraph2DView g2dview

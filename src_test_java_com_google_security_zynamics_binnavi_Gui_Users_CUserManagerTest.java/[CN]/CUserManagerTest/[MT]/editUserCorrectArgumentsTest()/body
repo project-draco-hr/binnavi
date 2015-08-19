@@ -1,0 +1,8 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  final IUser user1=manager.addUser("TWO");
+  final IUser user2=manager.editUserName(user1,"TWO AFTER EDIT");
+  assertEquals("TWO",user1.getUserName());
+  assertEquals("TWO AFTER EDIT",user2.getUserName());
+  assertTrue(user1.getUserId() == user2.getUserId());
+}

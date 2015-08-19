@@ -1,0 +1,8 @@
+{
+  for (  final TagType tagType : TagType.values()) {
+    assertEquals(tagType,TagType.convert(tagType.getNative()));
+  }
+  for (  final com.google.security.zynamics.binnavi.Tagging.TagType tagType : com.google.security.zynamics.binnavi.Tagging.TagType.values()) {
+    assertEquals(tagType,TagType.convert(tagType).getNative());
+  }
+}

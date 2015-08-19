@@ -1,0 +1,4 @@
+JTree projectTree
+IDatabase database
+INaviProject project
+IViewContainer container

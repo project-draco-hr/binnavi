@@ -1,0 +1,3 @@
+{
+  getProvider().setName((INaviFunction)null,null);
+}

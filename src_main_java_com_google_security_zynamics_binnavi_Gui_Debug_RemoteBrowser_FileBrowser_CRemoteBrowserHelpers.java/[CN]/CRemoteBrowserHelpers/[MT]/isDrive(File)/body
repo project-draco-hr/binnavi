@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(file,"IE01493: File argument can not be null");
+  return file.getParent() == null;
+}

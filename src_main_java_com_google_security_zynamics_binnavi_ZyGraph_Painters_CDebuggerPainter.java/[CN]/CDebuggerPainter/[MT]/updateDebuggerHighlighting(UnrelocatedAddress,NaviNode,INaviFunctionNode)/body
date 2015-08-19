@@ -1,0 +1,5 @@
+{
+  if (functionNode.getFunction().getAddress().equals(address.getAddress())) {
+    node.setHighlighting(CHighlightLayers.PROGRAM_COUNTER_LAYER,1,ConfigManager.instance().getDebuggerColorSettings().getActiveLine());
+  }
+}

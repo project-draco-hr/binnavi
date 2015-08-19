@@ -1,0 +1,3 @@
+{
+  return 77777 * m_value.hashCode();
+}

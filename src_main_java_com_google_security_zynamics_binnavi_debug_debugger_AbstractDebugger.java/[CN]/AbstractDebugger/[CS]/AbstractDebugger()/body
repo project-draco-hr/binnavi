@@ -1,0 +1,4 @@
+{
+  synchronizer=new DebuggerSynchronizer(this);
+  memorySynchronizer=new MemorySynchronizer(this);
+}

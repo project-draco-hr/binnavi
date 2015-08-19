@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmpsw");
+  new CmpsGenerator().generate(environment,ReilHelpers.toReilAddress(instruction.getAddress()).toLong(),OperandSize.WORD,instructions);
+}

@@ -1,0 +1,10 @@
+{
+  super(new CRemoteFileSystemView(fileSystem));
+  this.parent=Preconditions.checkNotNull(parent,"IE01494: Parent argument can not be null");
+  this.debugger=Preconditions.checkNotNull(debugger,"IE01495: Debugger argument can not be null");
+  setFileView(new CRemoteFileView());
+  final String lastDir=ConfigManager.instance().getGeneralSettings().getLastDirectory();
+  if (!lastDir.isEmpty()) {
+    setCurrentDirectory(new CRemoteFile(lastDir,true));
+  }
+}

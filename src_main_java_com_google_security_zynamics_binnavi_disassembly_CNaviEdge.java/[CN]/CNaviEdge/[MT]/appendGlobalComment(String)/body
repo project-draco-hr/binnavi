@@ -1,0 +1,6 @@
+{
+  if ((getSource() instanceof IAddressNode) && (getSource() instanceof IAddressNode)) {
+    return CommentManager.get(m_provider).appendGlobalEdgeComment(this,commentText);
+  }
+  return null;
+}

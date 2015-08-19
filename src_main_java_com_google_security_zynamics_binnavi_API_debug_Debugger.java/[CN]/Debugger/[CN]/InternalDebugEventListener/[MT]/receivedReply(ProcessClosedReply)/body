@@ -1,0 +1,10 @@
+{
+  for (  final IDebuggerListener listener : m_listeners) {
+    try {
+      listener.processClosed(new DebuggerProcessClosedReply(reply));
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

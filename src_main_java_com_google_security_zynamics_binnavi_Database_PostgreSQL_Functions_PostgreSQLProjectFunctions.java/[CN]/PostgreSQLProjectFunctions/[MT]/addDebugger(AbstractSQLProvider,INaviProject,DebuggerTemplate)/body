@@ -1,0 +1,36 @@
+{
+  checkArguments(provider,project);
+  Preconditions.checkNotNull(debugger,"IE00519: Debugger argument can't be null");
+  Preconditions.checkArgument(debugger.inSameDatabase(provider),"IE00520: The given debugger template is not part of this database");
+  final CConnection connection=provider.getConnection();
+  try {
+    final String insertQuery=String.format("INSERT INTO %s values(?, ?)",CTableNames.PROJECT_DEBUGGERS_TABLE);
+    final PreparedStatement insertStatement=connection.getConnection().prepareStatement(insertQuery);
+    final String deleteQuery=String.format("DELETE FROM %s WHERE project_id = ? AND debugger_id = ?",CTableNames.PROJECT_DEBUGGERS_TABLE);
+    final PreparedStatement deleteStatement=connection.getConnection().prepareStatement(deleteQuery);
+    try {
+      PostgreSQLHelpers.beginTransaction(connection);
+      deleteStatement.setInt(1,project.getConfiguration().getId());
+      deleteStatement.setInt(2,debugger.getId());
+      deleteStatement.execute();
+      insertStatement.setInt(1,project.getConfiguration().getId());
+      insertStatement.setInt(2,debugger.getId());
+      insertStatement.execute();
+      PostgreSQLHelpers.endTransaction(connection);
+    }
+  finally {
+      deleteStatement.close();
+      insertStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    try {
+      PostgreSQLHelpers.rollback(connection);
+    }
+ catch (    final SQLException e) {
+      throw new CouldntSaveDataException("E00056: Could not rollback transaction");
+    }
+    throw new CouldntSaveDataException("E00057: Could not update project debugger");
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,"" + CTableNames.PROJECTS_TABLE + "",project.getConfiguration().getId());
+}

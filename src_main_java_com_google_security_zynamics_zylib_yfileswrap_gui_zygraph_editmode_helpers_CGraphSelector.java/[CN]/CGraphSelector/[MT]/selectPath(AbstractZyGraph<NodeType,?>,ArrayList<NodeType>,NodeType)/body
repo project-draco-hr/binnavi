@@ -1,0 +1,43 @@
+{
+  final Function<NodeType,Node> function=new Function<NodeType,Node>(){
+    @Override public Node apply(    final NodeType input){
+      return input.getNode();
+    }
+  }
+;
+  final Collection<Node> foo=Collections2.transform(alreadySelectedNodes,function);
+  final NodeList startNodes=new NodeList(foo.iterator());
+  final NodeList endNodes=new NodeList(newlySelectedNode.getNode());
+  final Set<Node> startSuccSet=new HashSet<Node>();
+  final NodeList[] nodeListsStartSucc=Bfs.getLayers(graph.getGraph(),startNodes,Bfs.DIRECTION_SUCCESSOR,graph.getGraph().createNodeMap(),0);
+  for (  final NodeList nodeList : nodeListsStartSucc) {
+    startSuccSet.addAll(nodeList);
+  }
+  final Set<Node> endPredSet=new HashSet<Node>();
+  final NodeList[] nodeListsEndPred=Bfs.getLayers(graph.getGraph(),endNodes,Bfs.DIRECTION_PREDECESSOR,graph.getGraph().createNodeMap(),0);
+  for (  final NodeList nodeList : nodeListsEndPred) {
+    endPredSet.addAll(nodeList);
+  }
+  final SetView<Node> startBeforeEndSetView=Sets.intersection(startSuccSet,endPredSet);
+  if (!startBeforeEndSetView.isEmpty()) {
+    for (    final Node node : startBeforeEndSetView) {
+      graph.getGraph().setSelected(node,true);
+    }
+  }
+  final Set<Node> startPredSet=new HashSet<Node>();
+  final NodeList[] nodeListsStartPred=Bfs.getLayers(graph.getGraph(),startNodes,Bfs.DIRECTION_PREDECESSOR,graph.getGraph().createNodeMap(),0);
+  for (  final NodeList nodeList : nodeListsStartPred) {
+    startPredSet.addAll(nodeList);
+  }
+  final Set<Node> endSuccSet=new HashSet<Node>();
+  final NodeList[] nodeListsEndSucc=Bfs.getLayers(graph.getGraph(),endNodes,Bfs.DIRECTION_SUCCESSOR,graph.getGraph().createNodeMap(),0);
+  for (  final NodeList nodeList : nodeListsEndSucc) {
+    endSuccSet.addAll(nodeList);
+  }
+  final SetView<Node> endBeforeStartSetView=Sets.intersection(startPredSet,endSuccSet);
+  if (!endBeforeStartSetView.isEmpty()) {
+    for (    final Node node : endBeforeStartSetView) {
+      graph.getGraph().setSelected(node,true);
+    }
+  }
+}

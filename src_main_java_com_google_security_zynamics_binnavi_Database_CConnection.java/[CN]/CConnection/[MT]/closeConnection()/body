@@ -1,0 +1,11 @@
+{
+  try {
+    if (m_connection != null) {
+      m_connection.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    NaviLogger.severe("Error: Closing the database connection failed with exception: %s",exception);
+  }
+  m_connection=null;
+}

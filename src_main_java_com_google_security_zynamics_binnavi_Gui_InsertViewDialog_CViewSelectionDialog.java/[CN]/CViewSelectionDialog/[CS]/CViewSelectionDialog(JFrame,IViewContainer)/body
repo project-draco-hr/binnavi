@@ -1,0 +1,11 @@
+{
+  super(parent,"Insert View",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(parent,"IE01824: Parent argument can not be null");
+  Preconditions.checkNotNull(container,"IE01825: Container argument can not be null");
+  setLayout(new BorderLayout());
+  m_tree=new CViewSelectionTree(this,container);
+  add(new JScrollPane(m_tree));
+  final CPanelTwoButtons buttons=new CPanelTwoButtons(new InternalListener(),"OK","Cancel");
+  add(buttons,BorderLayout.SOUTH);
+  pack();
+}

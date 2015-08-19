@@ -1,0 +1,11 @@
+{
+  final INaviOperandTreeNode parent=treeNode.getParent();
+  if (parent != null && parent.getValue().equals("+")) {
+    final INaviOperandTreeNode otherChild=getSibling(treeNode);
+    if (otherChild != null && otherChild.getTypeSubstitution() != null) {
+      final long operandValue=Long.parseLong(treeNode.getValue());
+      return TypeSubstitution.generateTypeString(otherChild.getTypeSubstitution(),operandValue);
+    }
+  }
+  return "";
+}

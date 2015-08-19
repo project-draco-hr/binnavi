@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Select Process\" message to the debug client");
+  return sendPacket(new SelectProcessCommand(getMessageId(),pid));
+}

@@ -1,0 +1,12 @@
+{
+  setLayout(new BorderLayout());
+  final JLabel leftLabel=new JLabel(leftText);
+  m_slider=new JSlider(min,max);
+  m_slider.setMinorTickSpacing(1);
+  m_slider.setPaintTicks(true);
+  m_slider.setPaintLabels(true);
+  final JLabel rightLabel=new JLabel(rightText);
+  add(leftLabel,BorderLayout.WEST);
+  add(m_slider);
+  add(rightLabel,BorderLayout.EAST);
+}

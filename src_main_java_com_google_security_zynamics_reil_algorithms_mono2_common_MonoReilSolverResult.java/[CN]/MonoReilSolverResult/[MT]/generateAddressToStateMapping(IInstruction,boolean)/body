@@ -1,0 +1,36 @@
+{
+  final Map<IAddress,LatticeElementType> addressToLatticeElementMap=new TreeMap<IAddress,LatticeElementType>();
+  final Iterator<Pair<IInstructionGraphEdge,LatticeElementType>> iter=resultIterator();
+  while (iter.hasNext()) {
+    final Pair<IInstructionGraphEdge,LatticeElementType> edgeToLatticeElement=iter.next();
+    if (edgeToLatticeElement.first().isInstructionExit()) {
+      IAddress address;
+      if (hasResult(edgeToLatticeElement.first())) {
+        if (direction == AnalysisDirection.DOWN) {
+          address=graph.getSource(edgeToLatticeElement.first()).getReilInstruction().getAddress();
+        }
+ else {
+          address=graph.getDestination(edgeToLatticeElement.first()).getReilInstruction().getAddress();
+        }
+        if (addressToLatticeElementMap.containsKey(address)) {
+          final ArrayList<LatticeElementType> combinelist=new ArrayList<LatticeElementType>();
+          combinelist.add(edgeToLatticeElement.second());
+          combinelist.add(addressToLatticeElementMap.get(address));
+          addressToLatticeElementMap.put(address,lattice.combine(combinelist));
+        }
+ else {
+          addressToLatticeElementMap.put(address,edgeToLatticeElement.second());
+        }
+      }
+ else       if (ReilHelpers.toNativeAddress(graph.getSource(edgeToLatticeElement.first()).getReilInstruction().getAddress()).equals(startInstruction.getAddress()) && (direction == AnalysisDirection.DOWN) && !trackIncoming) {
+        address=graph.getSource(edgeToLatticeElement.first()).getReilInstruction().getAddress();
+        addressToLatticeElementMap.put(address,edgeToLatticeElement.second());
+      }
+ else       if (ReilHelpers.toNativeAddress(graph.getDestination(edgeToLatticeElement.first()).getReilInstruction().getAddress()).equals(startInstruction.getAddress()) && (direction == AnalysisDirection.UP) && trackIncoming) {
+        address=graph.getDestination(edgeToLatticeElement.first()).getReilInstruction().getAddress();
+        addressToLatticeElementMap.put(address,edgeToLatticeElement.second());
+      }
+    }
+  }
+  return addressToLatticeElementMap;
+}

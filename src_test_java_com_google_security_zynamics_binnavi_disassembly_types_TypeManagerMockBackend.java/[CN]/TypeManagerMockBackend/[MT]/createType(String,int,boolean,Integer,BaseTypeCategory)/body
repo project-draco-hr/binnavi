@@ -1,0 +1,5 @@
+{
+  final BaseType baseType=new BaseType(++baseTypeId,name,size,isSigned,category);
+  types.add(baseType);
+  return baseType;
+}

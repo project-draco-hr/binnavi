@@ -1,0 +1,13 @@
+{
+  checkBox.setEnabled(JCheckedListbox.this.isEnabled());
+  if (m_selectCompleteLine) {
+    setBorder(iss ? SELECTED_BORDER : UNSELECTED_BORDER);
+    setBackground(iss ? SELECTED_COLOR : UNSELECTED_COLOR);
+    checkBox.setBackground(iss ? SELECTED_COLOR : UNSELECTED_COLOR);
+  }
+  checkBox.setText(value.toString());
+  checkBox.setSelected(m_selected[index]);
+  checkBox.updateUI();
+  add(checkBox,BorderLayout.WEST);
+  return this;
+}

@@ -1,0 +1,8 @@
+{
+  final RegisterValue internalRegister=new RegisterValue("eax",BigInteger.TEN,new byte[0],false,true);
+  final Register register=new Register(internalRegister);
+  assertEquals("eax",register.getName());
+  assertEquals(BigInteger.TEN,register.getValue());
+  assertFalse(register.isProgramCounter());
+  assertTrue(register.isStackPointer());
+}

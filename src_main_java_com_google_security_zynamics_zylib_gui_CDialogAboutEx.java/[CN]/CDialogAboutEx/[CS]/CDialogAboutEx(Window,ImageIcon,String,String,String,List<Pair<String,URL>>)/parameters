@@ -1,0 +1,6 @@
+Window owner
+ImageIcon logo
+String productName
+String message
+String description
+List<Pair<String,URL>> urls

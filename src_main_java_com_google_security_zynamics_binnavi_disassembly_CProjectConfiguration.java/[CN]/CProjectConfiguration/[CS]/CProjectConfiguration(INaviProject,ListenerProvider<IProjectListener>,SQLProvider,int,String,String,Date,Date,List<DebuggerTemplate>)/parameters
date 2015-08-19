@@ -1,0 +1,9 @@
+INaviProject project
+ListenerProvider<IProjectListener> listeners
+SQLProvider provider
+int projectId
+String name
+String description
+Date creationDate
+Date modificationDate
+List<DebuggerTemplate> assignedDebuggers

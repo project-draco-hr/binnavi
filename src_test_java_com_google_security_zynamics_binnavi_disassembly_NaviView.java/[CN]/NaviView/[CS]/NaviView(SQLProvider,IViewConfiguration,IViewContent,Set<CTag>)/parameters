@@ -1,0 +1,4 @@
+SQLProvider provider
+IViewConfiguration configuration
+IViewContent content
+Set<CTag> viewNodeTags

@@ -1,0 +1,3 @@
+{
+  debugger.writeMemory(null,new byte[10]);
+}

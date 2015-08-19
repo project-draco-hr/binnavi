@@ -1,0 +1,3 @@
+{
+  CMemoryFunctions.gotoOffset(m_perspectiveModel,m_offset,true);
+}

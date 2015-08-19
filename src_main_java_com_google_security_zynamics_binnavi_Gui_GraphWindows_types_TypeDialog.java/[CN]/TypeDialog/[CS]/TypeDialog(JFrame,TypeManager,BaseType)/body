@@ -1,0 +1,6 @@
+{
+  super(owner,"Edit type",true);
+  this.typeManager=Preconditions.checkNotNull(typeManager,"IE02853: Type typeManager can not be null.");
+  createControls(baseType);
+  new CDialogEscaper(this);
+}

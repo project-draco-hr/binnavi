@@ -1,0 +1,10 @@
+{
+  if (location.getChildIndex() == 0) {
+    return 0;
+  }
+ else   if (location.getPath().getLastPathComponent() == typesTree.getModel().getRoot()) {
+    return parentNode.getBaseType().getLastMember().getBitOffset().get();
+  }
+  final TypeMember destinationMember=((TypeMemberTreeNode)parentNode.getChildAt(location.getChildIndex() - 1)).getTypeMember();
+  return destinationMember.getBitOffset().get();
+}

@@ -1,0 +1,15 @@
+{
+  final MockDatabaseListener listener=new MockDatabaseListener();
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  database.addListener(listener);
+  database.setAutoConnect(false);
+  assertEquals("changedAutoConnect;",listener.events);
+  assertFalse(database.isAutoConnect());
+  assertFalse(mockDatabase.getConfiguration().isAutoConnect());
+  mockDatabase.getConfiguration().setAutoConnect(true);
+  assertEquals("changedAutoConnect;changedAutoConnect;",listener.events);
+  assertTrue(database.isAutoConnect());
+  assertTrue(mockDatabase.getConfiguration().isAutoConnect());
+  database.removeListener(listener);
+}

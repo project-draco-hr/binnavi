@@ -1,0 +1,52 @@
+{
+  if (ast == null) {
+    throw new RecognitionException();
+  }
+switch (ast.getType()) {
+case 0:
+    return convert((CommonTree)ast.getChild(0));
+case ConditionParser.SUB_EXPRESSION:
+  return new SubNode(convert((CommonTree)ast.getChild(0)));
+case ConditionParser.MEMORY_EXPRESSION:
+return new MemoryNode(convert((CommonTree)ast.getChild(0)));
+case ConditionParser.NUMBER:
+try {
+return new NumberNode(Long.valueOf(ast.getText()));
+}
+ catch (final NumberFormatException exception) {
+throw new RecognitionException();
+}
+case ConditionParser.HEX_NUMBER:
+try {
+return new NumberNode(Long.valueOf(ast.getText().substring(2),16));
+}
+ catch (final NumberFormatException exception) {
+throw new RecognitionException();
+}
+case ConditionParser.IDENTIFIER:
+return new IdentifierNode(ast.getText());
+case ConditionParser.EQ_SIGN:
+case ConditionParser.GEQ_SIGN:
+case ConditionParser.LEQ_SIGN:
+case ConditionParser.GT_SIGN:
+case ConditionParser.LT_SIGN:
+case ConditionParser.NEQ_SIGN:
+case ConditionParser.NEQ_SIGN_2:
+return new RelationNode(ast.getText(),convert((CommonTree)ast.getChild(0)),convert((CommonTree)ast.getChild(1)));
+case ConditionParser.AND:
+case ConditionParser.OR:
+return new ExpressionNode(ast.getText(),createOperator(ast));
+case ConditionParser.ADD:
+case ConditionParser.SUB:
+case ConditionParser.MULT:
+case ConditionParser.DIV:
+case ConditionParser.MOD:
+case ConditionParser.LSH:
+case ConditionParser.RSH:
+case ConditionParser.B_AND:
+case ConditionParser.B_OR:
+case ConditionParser.B_XOR:
+return new FormulaNode(ast.getText(),createOperator(ast));
+}
+throw new IllegalStateException("IE01140: Not yet implemented (" + ast.getType() + ")");
+}

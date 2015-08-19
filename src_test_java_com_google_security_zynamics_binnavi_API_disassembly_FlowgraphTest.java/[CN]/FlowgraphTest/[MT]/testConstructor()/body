@@ -1,0 +1,6 @@
+{
+  final FlowGraph graph=new FlowGraph(new ArrayList<BasicBlock>(),new ArrayList<BlockEdge>());
+  assertTrue(graph.getNodes().isEmpty());
+  assertTrue(graph.getEdges().isEmpty());
+  assertEquals("Flow graph [0 nodes, 0 edges]",graph.toString());
+}

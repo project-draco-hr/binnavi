@@ -1,0 +1,23 @@
+{
+  final JPanel topPanel=new JPanel(new BorderLayout());
+  final JPanel innerTopPanel=new JPanel(new BorderLayout());
+  topPanel.add(innerTopPanel);
+  innerTopPanel.add(m_stdEditPanel);
+  innerTopPanel.add(m_debuggerPanel,BorderLayout.SOUTH);
+  final JPanel buttonPanel=new JPanel(new GridLayout(1,2));
+  buttonPanel.setBorder(new EmptyBorder(0,0,5,2));
+  buttonPanel.add(new JPanel());
+  buttonPanel.add(m_saveButton);
+  topPanel.add(buttonPanel,BorderLayout.SOUTH);
+  final JPanel innerSp=new JPanel(new BorderLayout());
+  m_middlePanel.setPreferredSize(new Dimension(m_middlePanel.getPreferredSize().width,75));
+  innerSp.add(m_middlePanel,BorderLayout.NORTH);
+  innerSp.add(m_bottomPanel,BorderLayout.CENTER);
+  final JSplitPane outerSp=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true,topPanel,innerSp);
+  outerSp.setOneTouchExpandable(true);
+  outerSp.setDividerLocation(outerSp.getMinimumDividerLocation());
+  outerSp.setResizeWeight(0.5);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.add(outerSp);
+  add(innerPanel);
+}

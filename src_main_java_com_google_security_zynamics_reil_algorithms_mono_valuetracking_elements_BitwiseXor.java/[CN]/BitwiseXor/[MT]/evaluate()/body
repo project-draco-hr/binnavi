@@ -1,0 +1,3 @@
+{
+  return m_lhs.evaluate().xor(m_rhs.evaluate());
+}

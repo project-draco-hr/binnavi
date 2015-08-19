@@ -1,0 +1,4 @@
+{
+  final String query="INSERT INTO " + CTableNames.OPERANDS_TABLE + " SELECT "+ moduleId+ ", address, expression_tree_id, position "+ " FROM ex_"+ rawModuleId+ "_operands";
+  connection.executeUpdate(query,true);
+}

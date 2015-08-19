@@ -1,0 +1,20 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  @SuppressWarnings("unused") final INaviView view=new MockView(m_provider);
+  final INaviView view2=projectContent.createView("Name","description");
+  assertNotNull(view2);
+  try {
+    projectContent.deleteView(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  projectContent.deleteView(view2);
+  final INaviView view3=new MockView(new MockSqlProvider());
+  try {
+    projectContent.deleteView(view3);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+}

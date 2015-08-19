@@ -1,0 +1,39 @@
+{
+  if (!(obj instanceof Quad)) {
+    return false;
+  }
+  final Quad<?,?,?,?> q=(Quad<?,?,?,?>)obj;
+  if (!((q.first() == null) && (m_first == null))) {
+    if ((q.first() == null) || (m_first == null)) {
+      return false;
+    }
+ else     if (!q.m_first.equals(m_first)) {
+      return false;
+    }
+  }
+  if (!((q.second() == null) && (m_second == null))) {
+    if ((q.second() == null) || (m_second == null)) {
+      return false;
+    }
+ else     if (!q.m_second.equals(m_second)) {
+      return false;
+    }
+  }
+  if (!((q.third() == null) && (m_third == null))) {
+    if ((q.third() == null) || (m_third == null)) {
+      return false;
+    }
+ else     if (!q.m_third.equals(m_third)) {
+      return false;
+    }
+  }
+  if (!((q.fourth() == null) && (m_fourth == null))) {
+    if ((q.fourth() == null) || (m_fourth == null)) {
+      return false;
+    }
+ else     if (!q.m_fourth.equals(m_fourth)) {
+      return false;
+    }
+  }
+  return true;
+}

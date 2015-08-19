@@ -1,0 +1,5 @@
+{
+  final CEdgeExitState state=new CEdgeExitState(this,m_graph,e);
+  m_factory.createEdgeExitAction().execute(state,event);
+  return state;
+}

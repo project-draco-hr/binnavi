@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(thread,"IE00766: Thread argument can not be null");
+  activeProcessThreads.add(thread);
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      listener.addedThread(thread);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

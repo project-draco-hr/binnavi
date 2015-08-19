@@ -1,0 +1,4 @@
+{
+  m_module.removeListener(m_moduleListener);
+  m_provider.dispose();
+}

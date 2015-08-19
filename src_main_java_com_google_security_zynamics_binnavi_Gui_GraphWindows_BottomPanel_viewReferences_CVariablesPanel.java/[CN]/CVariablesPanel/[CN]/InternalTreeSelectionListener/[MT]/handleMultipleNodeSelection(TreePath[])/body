@@ -1,0 +1,3 @@
+{
+  CVariableHighlighter.highlightInstructions(graphModel.getGraph(),getSelectedVariables(paths));
+}

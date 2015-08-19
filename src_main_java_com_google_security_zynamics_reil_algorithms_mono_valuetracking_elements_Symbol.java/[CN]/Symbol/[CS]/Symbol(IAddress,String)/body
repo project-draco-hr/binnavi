@@ -1,0 +1,7 @@
+{
+  if (Convert.isDecString(value)) {
+    throw new IllegalStateException();
+  }
+  m_address=address;
+  m_value=value;
+}

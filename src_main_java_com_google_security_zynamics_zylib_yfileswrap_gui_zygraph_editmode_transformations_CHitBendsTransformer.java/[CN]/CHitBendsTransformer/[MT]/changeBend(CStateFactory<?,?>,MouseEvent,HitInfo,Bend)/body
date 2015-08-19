@@ -1,0 +1,10 @@
+{
+  final Bend bend=hitInfo.getHitBend();
+  if (bend == oldBend) {
+    return new CStateChange(m_factory.createBendHoverState(bend,event),true);
+  }
+ else {
+    m_factory.createBendExitState(oldBend,event);
+    return new CStateChange(m_factory.createBendEnterState(bend,event),true);
+  }
+}

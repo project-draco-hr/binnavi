@@ -1,0 +1,5 @@
+{
+  final EdgeIdentifier edgeAddressModuleIds=new EdgeIdentifier(sourceAddress,sourceModuleId,targetAddress,targetModuleId);
+  final List<Integer> edgeIds=edgeAddressToEdgeIdsCache.getIfPresent(edgeAddressModuleIds);
+  return edgesByIdCache.getAllPresent(edgeIds).values();
+}

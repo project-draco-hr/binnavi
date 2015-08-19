@@ -1,0 +1,3 @@
+{
+  return Strings.padStart(Long.toHexString(m_address).toUpperCase(),(m_address & 0x7fffffffffffffffL) < 0x100000000L ? 8 : 16,'0');
+}

@@ -1,0 +1,11 @@
+{
+  final MemoryExpressionElement child=memoryExpression.getChild();
+  child.visit(this);
+  final BigInteger address=getValue(child);
+  try {
+    m_partialEvaluationMap.put(memoryExpression,m_binding.getValue(address));
+  }
+ catch (  final CEvaluationException e) {
+    m_errorMessages.add(String.format("Unknown memory address %s",address.toString(16)));
+  }
+}

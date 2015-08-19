@@ -1,0 +1,23 @@
+{
+  final INaviViewNode viewNode=node.getRawNode();
+  if (viewNode instanceof INaviCodeNode) {
+    final INaviCodeNode codeNode=(INaviCodeNode)viewNode;
+    final INaviInstruction instruction=Iterables.getFirst(codeNode.getInstructions(),null);
+    final INaviModule module=instruction.getModule();
+    final BreakpointAddress address=new BreakpointAddress(module,new UnrelocatedAddress(instruction.getAddress()));
+    if (EchoBreakpointCollector.isBlocked(breakpointManager,address)) {
+      return IterationMode.CONTINUE;
+    }
+    ++breakpointAbleNodeCount;
+  }
+ else   if (viewNode instanceof INaviFunctionNode) {
+    final INaviFunctionNode functionNode=(INaviFunctionNode)viewNode;
+    final INaviModule module=functionNode.getFunction().getModule();
+    final BreakpointAddress address=new BreakpointAddress(module,new UnrelocatedAddress(functionNode.getFunction().getAddress()));
+    if (EchoBreakpointCollector.isBlocked(breakpointManager,address)) {
+      return IterationMode.CONTINUE;
+    }
+    ++breakpointAbleNodeCount;
+  }
+  return IterationMode.CONTINUE;
+}

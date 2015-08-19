@@ -1,0 +1,3 @@
+{
+  return PostgreSQLNodeFunctions.appendLocalFunctionNodeComment(this,functionNode,commentText,userId);
+}

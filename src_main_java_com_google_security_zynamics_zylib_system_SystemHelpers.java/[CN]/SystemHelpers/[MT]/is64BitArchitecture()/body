@@ -1,0 +1,6 @@
+{
+  if (isRunningWindows()) {
+    return "AMD64".equals(System.getenv("PROCESSOR_ARCHITECTURE")) || "AMD64".equals(System.getenv("PROCESSOR_ARCHITEW6432"));
+  }
+  throw new RuntimeException("Not implememted for Linux or Mac yet.");
+}

@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(parent,"IE02150: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE00972: Graph argument can't be null");
+  Preconditions.checkNotNull(node,"IE00973: Node argument can't be null");
+  add(CActionProxy.proxy(new CUnhideNodesAction(parent,graph,node)));
+  addSeparator();
+  final JMenuItem unhideParentItem=new JMenuItem(CActionProxy.proxy(new CUnhideParentsAction(parent,graph,node)));
+  unhideParentItem.setEnabled(!node.isIncoming());
+  add(unhideParentItem);
+  final JMenuItem unhideChildrenItem=new JMenuItem(CActionProxy.proxy(new CUnhideChildrenAction(parent,graph,node)));
+  unhideChildrenItem.setEnabled(node.isIncoming());
+  add(unhideChildrenItem);
+  addSeparator();
+  add(CActionProxy.proxy(new CUnhideAndSelectAction(graph,node)));
+  add(CActionProxy.proxy(new CUnhideAndAddToSelectionAction(graph,node)));
+}

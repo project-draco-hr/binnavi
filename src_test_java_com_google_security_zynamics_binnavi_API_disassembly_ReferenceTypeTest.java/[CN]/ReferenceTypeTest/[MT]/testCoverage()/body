@@ -1,0 +1,8 @@
+{
+  for (  final ReferenceType referenceType : ReferenceType.values()) {
+    assertEquals(referenceType,ReferenceType.convert(referenceType.getNative()));
+  }
+  for (  final com.google.security.zynamics.zylib.disassembly.ReferenceType referenceType : com.google.security.zynamics.zylib.disassembly.ReferenceType.values()) {
+    assertEquals(referenceType,ReferenceType.convert(referenceType).getNative());
+  }
+}

@@ -1,0 +1,19 @@
+{
+  final int index=determineInsertIndex(member);
+  final BaseType parentType=member.getParentType();
+  final Set<TreeNode> parentsToUpdate=new HashSet<TreeNode>();
+  if (nestedStructNodes.containsKey(parentType)) {
+    for (    final TypeMemberTreeNode node : nestedStructNodes.get(parentType)) {
+      insertMemberAt(member,node,index);
+      parentsToUpdate.add(node);
+    }
+  }
+  final ChildNodeDescriptor descriptor=getBaseTypeTreeNode(parentType);
+  if (descriptor.getNode() != null) {
+    insertMemberAt(member,descriptor.getNode(),index);
+    parentsToUpdate.add(descriptor.getNode());
+  }
+  for (  TreeNode parent : parentsToUpdate) {
+    nodeStructureChanged(parent);
+  }
+}

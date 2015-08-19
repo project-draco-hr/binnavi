@@ -1,0 +1,6 @@
+int lineIndex
+int columnIndex
+char value
+Font font
+Color foreground
+Color background

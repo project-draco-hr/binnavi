@@ -1,0 +1,6 @@
+{
+  final int firstVisibleByte=getFirstVisibleByte();
+  final int maxBytes=getMaximumVisibleBytes();
+  final int restBytes=m_dataProvider.getDataLength() - firstVisibleByte;
+  return Math.min(maxBytes,restBytes);
+}

@@ -1,0 +1,5 @@
+{
+  for (  final TypeSubstitutionChangedListener listener : substitutionListeners) {
+    listener.substitutionsAdded(Sets.newHashSet(substitution));
+  }
+}

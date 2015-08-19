@@ -1,0 +1,16 @@
+{
+  int count=0;
+  final StringBuilder list=new StringBuilder();
+  for (  final DebuggerTemplate debugger : debuggers) {
+    list.append("- ");
+    list.append(debugger.getName());
+    list.append('\n');
+    count++;
+    if ((count == MAX_LIST_LENGTH) && (debuggers.length != MAX_LIST_LENGTH)) {
+      list.append("\n... ");
+      list.append(String.format("%d others ...",debuggers.length - count));
+      break;
+    }
+  }
+  return list.toString();
+}

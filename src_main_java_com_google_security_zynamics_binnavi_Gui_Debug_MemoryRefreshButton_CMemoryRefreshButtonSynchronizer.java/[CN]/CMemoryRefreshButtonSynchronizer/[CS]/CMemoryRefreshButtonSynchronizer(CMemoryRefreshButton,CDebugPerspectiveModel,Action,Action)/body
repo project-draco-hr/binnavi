@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(refreshButton,"IE01442: Refresh button argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01443: Debug perspective model argument can not be null");
+  Preconditions.checkNotNull(defaultAction,"IE01444: Default action argument can not be null");
+  Preconditions.checkNotNull(askAction,"IE01445: Ask action argument can not be null");
+  m_refreshButton=refreshButton;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  m_defaultAction=defaultAction;
+  m_askAction=askAction;
+  m_refreshButton.setAction(m_defaultAction);
+  synchronizeDebugger(null,debugPerspectiveModel.getCurrentSelectedDebugger());
+  debugPerspectiveModel.addListener(m_debugListener);
+}

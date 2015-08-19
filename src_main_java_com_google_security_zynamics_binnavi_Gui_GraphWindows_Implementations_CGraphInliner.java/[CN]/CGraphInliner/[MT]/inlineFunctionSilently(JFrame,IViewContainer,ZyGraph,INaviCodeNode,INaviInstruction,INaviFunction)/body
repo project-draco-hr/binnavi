@@ -1,0 +1,21 @@
+{
+  final INaviFunction inlineFunction=prepareFunctionInlining(parent,node,instruction,function,viewContainer);
+  if (inlineFunction == null) {
+    return null;
+  }
+ else   if (inlineFunction.getBasicBlockCount() == 0) {
+    return null;
+  }
+ else {
+    try {
+      if (!inlineFunction.isLoaded()) {
+        inlineFunction.load();
+      }
+      return CInliningHelper.inlineCodeNode(graph.getRawView(),node,instruction,inlineFunction);
+    }
+ catch (    final CouldntLoadDataException e) {
+      exceptionDialog(parent,inlineFunction,e);
+    }
+  }
+  return null;
+}

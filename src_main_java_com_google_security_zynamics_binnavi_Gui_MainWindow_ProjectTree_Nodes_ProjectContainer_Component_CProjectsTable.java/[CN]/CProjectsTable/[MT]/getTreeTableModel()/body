@@ -1,0 +1,3 @@
+{
+  return (CProjectsModel)super.getTreeTableModel();
+}

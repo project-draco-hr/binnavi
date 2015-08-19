@@ -1,0 +1,5 @@
+{
+  if (InstructionCache.this.provider.equals(provider)) {
+    InstructionCache.this.close();
+  }
+}

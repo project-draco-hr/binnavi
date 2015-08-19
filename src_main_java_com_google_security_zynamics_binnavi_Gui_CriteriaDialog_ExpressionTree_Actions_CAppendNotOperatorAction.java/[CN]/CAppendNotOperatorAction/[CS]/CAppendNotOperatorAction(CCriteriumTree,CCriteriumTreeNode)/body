@@ -1,0 +1,5 @@
+{
+  super("Append NOT");
+  m_tree=tree;
+  m_parent=parent;
+}

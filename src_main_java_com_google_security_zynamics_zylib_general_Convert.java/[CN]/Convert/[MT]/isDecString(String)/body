@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(string);
+  final CharMatcher cm=CharMatcher.inRange('0','9');
+  for (int i=0; i < string.length(); i++) {
+    if (!cm.apply(string.charAt(i))) {
+      return false;
+    }
+  }
+  return string.length() != 0;
+}

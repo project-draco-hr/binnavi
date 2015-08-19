@@ -1,0 +1,4 @@
+Window owner
+String shortMessage
+String description
+Throwable exception

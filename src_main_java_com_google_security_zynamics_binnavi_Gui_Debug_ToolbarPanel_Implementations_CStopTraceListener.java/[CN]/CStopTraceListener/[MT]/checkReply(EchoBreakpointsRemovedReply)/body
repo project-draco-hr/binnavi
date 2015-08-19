@@ -1,0 +1,12 @@
+{
+  final List<Pair<RelocatedAddress,Integer>> receivedAddresses=reply.getAddresses();
+  if (receivedAddresses.size() != m_removedAddresses.size()) {
+    for (    final Pair<RelocatedAddress,Integer> pair : receivedAddresses) {
+      final RelocatedAddress receivedAddress=pair.first();
+      if (!m_removedAddresses.contains(DebuggerHelpers.getBreakpointAddress(m_debugger,receivedAddress))) {
+        throw new IllegalStateException("IE00680: the number of breakpoints removed differs from the number of received breakpoints in the debugger reply\n" + "The first breakpoint address missmatch is:" + DebuggerHelpers.getBreakpointAddress(m_debugger,receivedAddress));
+      }
+    }
+  }
+  return true;
+}

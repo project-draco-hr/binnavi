@@ -1,0 +1,5 @@
+JFrame parent
+ZyGraph graph
+IFrontEndDebuggerProvider debuggerProvider
+InputMap inputMap
+ActionMap actionMap

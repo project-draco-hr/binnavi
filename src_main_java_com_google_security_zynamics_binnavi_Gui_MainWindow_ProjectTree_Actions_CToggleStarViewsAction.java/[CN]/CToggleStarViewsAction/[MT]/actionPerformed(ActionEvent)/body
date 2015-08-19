@@ -1,0 +1,3 @@
+{
+  CViewFunctions.toggleStars(m_parent,m_views);
+}

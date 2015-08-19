@@ -1,0 +1,6 @@
+int nodeId
+ExpressionType type
+String value
+INaviReplacement replacement
+List<IReference> references
+SQLProvider provider

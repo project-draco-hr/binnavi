@@ -1,0 +1,84 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final ListenerProvider<IModuleListener> listeners=new ListenerProvider<IModuleListener>();
+  final CCallgraph callgraph=module.getContent().getNativeCallgraph();
+  final IFilledList<INaviFunction> functions=new FilledList<INaviFunction>();
+  functions.add(module.getContent().getFunctionContainer().getFunctions().get(0));
+  final ICallgraphView nativeCallgraph=module.getContent().getViewContainer().getNativeCallgraphView();
+  final ImmutableList<IFlowgraphView> nativeFlowgraphs=module.getContent().getViewContainer().getNativeFlowgraphViews();
+  final List<INaviView> customViews=new ArrayList<INaviView>();
+  final ImmutableBiMap<INaviView,INaviFunction> viewFunctionMap=new ImmutableBiMap.Builder<INaviView,INaviFunction>().build();
+  new Pair<HashMap<INaviView,INaviFunction>,HashMap<INaviFunction,INaviView>>(null,null);
+  final IFilledList<TraceList> traces=new FilledList<TraceList>();
+  final SectionContainer sections=new SectionContainer(new SectionContainerBackend(getProvider(),module));
+  final TypeInstanceContainer instances=new TypeInstanceContainer(new TypeInstanceContainerBackend(getProvider(),module,module.getTypeManager(),sections),getProvider());
+  final CModuleContent moduleContent1=new CModuleContent(module,getProvider(),listeners,callgraph,functions,nativeCallgraph,nativeFlowgraphs,customViews,viewFunctionMap,traces,sections,instances);
+  assertNotNull(moduleContent1);
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(null,null,null,null,null,null,null,null,null,null,sections,instances);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,null,null,null,null,null,null,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),null,null,null,null,null,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,null,null,null,null,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,null,null,null,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,functions,null,null,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,functions,nativeCallgraph,null,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,functions,nativeCallgraph,nativeFlowgraphs,null,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,functions,nativeCallgraph,nativeFlowgraphs,customViews,null,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,functions,nativeCallgraph,nativeFlowgraphs,customViews,viewFunctionMap,null,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    @SuppressWarnings("unused") final CModuleContent moduleContent=new CModuleContent(module,getProvider(),listeners,callgraph,functions,nativeCallgraph,nativeFlowgraphs,customViews,viewFunctionMap,traces,null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

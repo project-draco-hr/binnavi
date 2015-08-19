@@ -1,0 +1,11 @@
+{
+  if (lineIndex == 0) {
+    String instruction=CCommentUtilities.createInstructionLine(internalData.get(rowIndex).first(),graphModel);
+    instruction=CodeDisplay.padRight(instruction,getColumnWidthInCharacters(columnIndex));
+    return new FormattedCharacterBuffer(instruction,STANDARD_FONT,columns[INSTRUCTION_INDEX].getDefaultFontColor(),columns[INSTRUCTION_INDEX].getDefaultBackgroundColor());
+  }
+ else {
+    String buf=CodeDisplay.padRight("",getColumnWidthInCharacters(columnIndex));
+    return new FormattedCharacterBuffer(buf,STANDARD_FONT,columns[INSTRUCTION_INDEX].getDefaultFontColor(),columns[INSTRUCTION_INDEX].getDefaultBackgroundColor());
+  }
+}

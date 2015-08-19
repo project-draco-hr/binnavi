@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: The project has not yet been loaded");
+  }
+  return new ArrayList<AddressSpace>(m_addressSpaces);
+}

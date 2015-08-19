@@ -1,0 +1,27 @@
+{
+  final ArrayList<RawTypeInstanceReference> rawReferences=Lists.newArrayList();
+  final String query=" SELECT * FROM load_expression_type_instances(?) ";
+  try {
+    final PreparedStatement statement=connection.prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    try {
+      final ResultSet resultSet=statement.executeQuery();
+      while (resultSet.next()) {
+        final int viewId=resultSet.getInt("view_id");
+        final int moduleId=resultSet.getInt("module_id");
+        final IAddress address=PostgreSQLHelpers.loadAddress(resultSet,"address");
+        final int position=resultSet.getInt("position");
+        final int expressionId=resultSet.getInt("expression_id");
+        final int typeInstanceId=resultSet.getInt("type_instance_id");
+        rawReferences.add(new RawTypeInstanceReference(moduleId,viewId,address,position,expressionId,typeInstanceId));
+      }
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return rawReferences;
+}

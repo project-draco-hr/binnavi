@@ -1,0 +1,7 @@
+{
+  final TypeInstanceReferencesDialog dlg=new TypeInstanceReferencesDialog(owner,references);
+  dlg.setVisible(true);
+  if (!dlg.wasCancelled()) {
+    CModuleNodeComponent.focusTypeInstance(module,dlg.getSelectedXRef().getTypeInstance());
+  }
+}

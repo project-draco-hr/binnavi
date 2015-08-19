@@ -1,0 +1,5 @@
+{
+  if (log.isLoggable(Level.INFO)) {
+    log.info(String.format(string,args));
+  }
+}

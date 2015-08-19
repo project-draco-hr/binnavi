@@ -1,0 +1,5 @@
+{
+  super("Settings");
+  m_parent=Preconditions.checkNotNull(parent,"IE01848: Parent argument can not be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_SHOW_SETTINGS_DIALOG".charAt(0));
+}

@@ -1,0 +1,5 @@
+List<ReilBlock> nodes
+List<ReilEdge> edges
+ICodeEdge<?> nativeEdge
+ReilInstruction sourceReilInstruction
+ReilInstruction targetReilInstruction

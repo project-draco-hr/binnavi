@@ -1,0 +1,6 @@
+{
+  if (children.size() != 1) {
+    throw new IllegalStateException("IE01115: NOT operator has more or less than one child criterium.");
+  }
+  return "!(" + children.get(0).getCriterium().getFormulaString(children.get(0).getChildren()) + ")";
+}

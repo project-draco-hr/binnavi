@@ -1,0 +1,8 @@
+{
+  return Iterables.find(projects,new Predicate<INaviProject>(){
+    @Override public boolean apply(    final INaviProject project){
+      return project.getConfiguration().getId() == projectId;
+    }
+  }
+);
+}

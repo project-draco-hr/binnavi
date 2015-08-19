@@ -1,0 +1,3 @@
+{
+  createOrUpdateMembers(typeManager.createPrototype(),members.getModel());
+}

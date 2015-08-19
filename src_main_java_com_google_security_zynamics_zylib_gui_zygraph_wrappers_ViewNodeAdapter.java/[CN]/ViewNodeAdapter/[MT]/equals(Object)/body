@@ -1,0 +1,3 @@
+{
+  return (ohs instanceof ViewNodeAdapter) && (((ViewNodeAdapter)ohs).getNode() == getNode());
+}

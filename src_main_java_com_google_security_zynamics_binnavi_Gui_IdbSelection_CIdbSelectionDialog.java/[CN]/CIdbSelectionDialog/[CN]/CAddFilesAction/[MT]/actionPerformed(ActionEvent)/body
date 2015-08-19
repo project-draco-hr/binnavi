@@ -1,0 +1,5 @@
+{
+  for (  final File file : m_chooser.getSelectedFiles()) {
+    m_selectionList.addFile(file);
+  }
+}

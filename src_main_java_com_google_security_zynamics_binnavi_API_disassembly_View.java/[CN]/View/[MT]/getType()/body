@@ -1,0 +1,3 @@
+{
+  return ViewType.convert(naviView.getType());
+}

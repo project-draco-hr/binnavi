@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(typeInstanceId,"Error: typeInstanceId argument can not be null");
+  if (backend.lookupTypeInstance(typeInstanceId) == null) {
+    return loadInstance(typeInstanceId);
+  }
+ else {
+    final TypeInstance instance=backend.loadTypeInstance(typeInstanceId);
+    final TypeInstance storedInstance=instancesByAddress.get(instance.getAddress());
+    storedInstance.setName(instance.getName());
+    notifyInstanceChanged(storedInstance);
+    return storedInstance;
+  }
+}

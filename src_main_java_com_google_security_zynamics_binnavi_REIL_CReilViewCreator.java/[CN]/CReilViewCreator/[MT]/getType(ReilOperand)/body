@@ -1,0 +1,8 @@
+{
+  if (Convert.isDecString(operand.getValue())) {
+    return ExpressionType.IMMEDIATE_INTEGER;
+  }
+ else {
+    return ExpressionType.REGISTER;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    memoryLoader.requestMemory(new CAddress(offset),size);
+  }
+ catch (  final DebugExceptionWrapper e) {
+    CUtilityFunctions.logException(e);
+  }
+  return memoryLoader.hasData(cacheOffset,cacheSize);
+}

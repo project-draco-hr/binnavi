@@ -1,0 +1,4 @@
+{
+  assertEquals("Fark",m_node.getComments().get(0).getComment());
+  assertEquals("Text Node with: '1' comments.",m_node.toString());
+}

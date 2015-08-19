@@ -1,0 +1,5 @@
+{
+  m_lastShown.clear();
+  final Set<NodeType> nodes=GraphHelpers.getVisibleNodes(ViewableGraph.wrap(m_graph));
+  updateProximityBrowsing(nodes);
+}

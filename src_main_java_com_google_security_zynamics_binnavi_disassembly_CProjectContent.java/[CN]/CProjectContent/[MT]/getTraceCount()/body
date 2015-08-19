@@ -1,0 +1,4 @@
+{
+  Preconditions.checkState(isLoaded(),"IE00247: Project must be loaded first");
+  return m_traces.size();
+}

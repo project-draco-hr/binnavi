@@ -1,0 +1,10 @@
+{
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedVisibility(view,edge);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

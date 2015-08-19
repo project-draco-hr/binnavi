@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(zygraph,"IE00992: Graph argument can't be null");
+  Preconditions.checkNotNull(node,"IE00993: Node argument can't be null");
+  m_graph=zygraph.getGraph();
+  m_node=node;
+  m_listener=new CTagUpdater(zygraph.getGraph());
+  initializeListeners();
+}

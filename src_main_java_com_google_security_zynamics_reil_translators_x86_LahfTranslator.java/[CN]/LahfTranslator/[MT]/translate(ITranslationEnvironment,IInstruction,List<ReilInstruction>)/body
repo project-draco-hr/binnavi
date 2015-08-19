@@ -1,0 +1,31 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"lahf");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a lahf instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final String clearedEax=environment.getNextVariableString();
+  final String shiftedSf=environment.getNextVariableString();
+  final String clearedEaxSf=environment.getNextVariableString();
+  final String shiftedZf=environment.getNextVariableString();
+  final String clearedEaxZf=environment.getNextVariableString();
+  final String shiftedAf=environment.getNextVariableString();
+  final String clearedEaxAf=environment.getNextVariableString();
+  final String shiftedPf=environment.getNextVariableString();
+  final String clearedEaxPf=environment.getNextVariableString();
+  final String shiftedCf=environment.getNextVariableString();
+  final String clearedEaxCf=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(baseOffset,archSize,"eax",archSize,"4294902015",archSize,clearedEax));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 1,OperandSize.BYTE,Helpers.SIGN_FLAG,OperandSize.BYTE,"15",OperandSize.WORD,shiftedSf));
+  instructions.add(ReilHelpers.createOr(baseOffset + 2,archSize,clearedEax,OperandSize.WORD,shiftedSf,archSize,clearedEaxSf));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 3,OperandSize.BYTE,Helpers.ZERO_FLAG,OperandSize.BYTE,"14",OperandSize.WORD,shiftedZf));
+  instructions.add(ReilHelpers.createOr(baseOffset + 4,archSize,clearedEaxSf,OperandSize.WORD,shiftedZf,archSize,clearedEaxZf));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 5,OperandSize.BYTE,Helpers.AUXILIARY_FLAG,OperandSize.BYTE,"12",OperandSize.WORD,shiftedAf));
+  instructions.add(ReilHelpers.createOr(baseOffset + 6,archSize,clearedEaxZf,OperandSize.WORD,shiftedAf,archSize,clearedEaxAf));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 7,OperandSize.BYTE,Helpers.PARITY_FLAG,OperandSize.BYTE,"10",OperandSize.WORD,shiftedPf));
+  instructions.add(ReilHelpers.createOr(baseOffset + 8,archSize,clearedEaxAf,OperandSize.WORD,shiftedPf,archSize,clearedEaxPf));
+  instructions.add(ReilHelpers.createBsh(baseOffset + 9,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,"8",OperandSize.WORD,shiftedCf));
+  instructions.add(ReilHelpers.createOr(baseOffset + 10,archSize,clearedEaxPf,OperandSize.WORD,shiftedCf,archSize,clearedEaxCf));
+  instructions.add(ReilHelpers.createOr(baseOffset + 11,archSize,clearedEaxCf,archSize,"512",archSize,"eax"));
+}

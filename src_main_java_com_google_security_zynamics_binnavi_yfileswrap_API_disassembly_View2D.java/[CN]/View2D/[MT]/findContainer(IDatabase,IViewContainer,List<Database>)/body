@@ -1,0 +1,9 @@
+{
+  final Database apiDatabase=ObjectFinders.getObject(database,databases);
+  if (container.getAddressSpaces() == null) {
+    return ObjectFinders.getObject(container.getNative(),apiDatabase.getModules());
+  }
+ else {
+    return ObjectFinders.getObject(container.getNative(),apiDatabase.getProjects());
+  }
+}

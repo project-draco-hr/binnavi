@@ -1,0 +1,33 @@
+{
+  checkArguments(parent,debugger,logger);
+  Preconditions.checkNotNull(graph,"IE01569: Graph argument can not be null");
+  if (!debugger.isConnected()) {
+    return;
+  }
+  if (logger.hasEchoBreakpoints()) {
+    final TraceList trace=createTrace(parent,logger);
+    if (trace == null) {
+      return;
+    }
+    final TraceList oldTrace=logger.switchTargetList(trace);
+    saveTrace(oldTrace);
+  }
+ else {
+    final int bps=countEchoBreakpoints(debugger.getBreakpointManager(),graph);
+    if (bps == 0) {
+      CMessageBox.showError(parent,"All nodes of the graph are already covered by another active trace");
+    }
+ else {
+      final CTraceOptionsDialog dlg=CTraceOptionsDialog.show(parent);
+      if (!dlg.wasCancelled()) {
+        final int maximumHits=dlg.getMaximumHits();
+        if (maximumHits == 0) {
+          return;
+        }
+        final EchoBreakpointCollector ebc=new EchoBreakpointCollector(debugger.getBreakpointManager());
+        graph.iterate(new NodeBreakpointDecider(ebc));
+        showStartTraceProgressWindow(parent,ebc.getBreakpoints(),logger,maximumHits);
+      }
+    }
+  }
+}

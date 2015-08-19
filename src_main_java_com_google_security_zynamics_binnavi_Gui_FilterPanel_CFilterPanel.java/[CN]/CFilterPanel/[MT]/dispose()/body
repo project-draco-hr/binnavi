@@ -1,0 +1,6 @@
+{
+  final IFilterComponent<T> filterComponent=m_filterFactory.getFilterComponent();
+  if (filterComponent != null) {
+    filterComponent.removeListener(m_filterComponentListener);
+  }
+}

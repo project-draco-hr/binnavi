@@ -1,0 +1,3 @@
+{
+  appendOutput(String.format("Error loading module '%s' (%s)",module.getName(),e.getMessage()));
+}

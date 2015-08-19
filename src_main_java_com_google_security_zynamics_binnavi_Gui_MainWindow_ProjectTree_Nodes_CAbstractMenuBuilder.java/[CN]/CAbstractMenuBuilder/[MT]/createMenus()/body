@@ -1,0 +1,14 @@
+{
+  m_mainMenu=new JMenuBar();
+  m_mainMenu.add(createBinNaviMenu());
+  final JMenu menu=getMenu();
+  if (menu != null) {
+    createMenu(menu);
+    m_mainMenu.add(menu);
+  }
+  m_mainMenu.add(createPluginsMenu());
+  m_mainMenu.add(createSettingsMenu());
+  m_mainMenu.add(createAboutMenu());
+  m_popupMenu=new JPopupMenu();
+  createMenu(m_popupMenu);
+}

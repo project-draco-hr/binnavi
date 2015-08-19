@@ -1,0 +1,4 @@
+T pluginInterface
+IPluginRegistry<IPlugin<T>> registry
+List<Pair<IPlugin<T>,PluginStatus>> list
+ConfigManager configFile

@@ -1,0 +1,5 @@
+{
+  if (m_dialog != null) {
+    m_dialog.setVisible(visible);
+  }
+}

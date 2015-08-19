@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  add(new JLabel("Debugger options overview"),BorderLayout.NORTH);
+  final JTable table=new JTable(new CMissingOptionsTableModel(options));
+  table.setDefaultRenderer(Object.class,new COptionRenderer());
+  add(new JScrollPane(table),BorderLayout.CENTER);
+}

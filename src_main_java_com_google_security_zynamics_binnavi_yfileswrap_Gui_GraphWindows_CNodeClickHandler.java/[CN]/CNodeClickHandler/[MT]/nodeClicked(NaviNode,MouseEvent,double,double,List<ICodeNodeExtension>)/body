@@ -1,0 +1,41 @@
+{
+  if (event.getButton() == MouseEvent.BUTTON3) {
+    handleRightClick(node,event,x,y,extensions);
+  }
+ else   if ((event.getButton() == MouseEvent.BUTTON1) && (event.getClickCount() == 2) && event.isControlDown()) {
+    final INaviViewNode rawNode=node.getRawNode();
+    if (rawNode instanceof INaviFunctionNode) {
+      final INaviFunction function=((INaviFunctionNode)rawNode).getFunction();
+      CGraphOpener.showFunction(m_model.getParent(),m_model.getViewContainer(),function);
+    }
+ else     if (rawNode instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)rawNode;
+      final int row=node.positionToRow(y - node.getY());
+      final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(cnode,row);
+      if (instruction == null) {
+        return;
+      }
+      final Set<IAddress> references=new HashSet<IAddress>();
+      for (      final INaviOperandTree operand : instruction.getOperands()) {
+        collectReferences(operand.getRootNode(),references);
+      }
+      final List<INaviFunction> functions=m_model.getViewContainer().getFunctions();
+      for (      final INaviFunction function : functions) {
+        for (        final IAddress address : references) {
+          if (function.getAddress().equals(address)) {
+            CGraphOpener.showFunction(m_model.getParent(),m_model.getViewContainer(),function);
+          }
+        }
+      }
+    }
+  }
+ else   if (!m_model.getGraph().getEditMode().getLabelEventHandler().isActive() && (event.getButton() == MouseEvent.BUTTON1) && (event.getClickCount() == 2)) {
+    if ((node.getRawNode() instanceof INaviGroupNode) && event.isShiftDown()) {
+      final INaviGroupNode gnode=(INaviGroupNode)node.getRawNode();
+      gnode.setCollapsed(!gnode.isCollapsed());
+    }
+ else {
+      CGraphZoomer.zoomNode(m_model.getGraph(),node);
+    }
+  }
+}

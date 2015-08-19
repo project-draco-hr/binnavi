@@ -1,0 +1,7 @@
+{
+  final List<ViewNodeAdapter> nodes=new ArrayList<ViewNodeAdapter>();
+  for (  final ViewNodeAdapter node : selectedNodes) {
+    nodes.addAll(getSuccessors(node,depth));
+  }
+  return nodes;
+}

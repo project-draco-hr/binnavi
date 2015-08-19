@@ -1,0 +1,6 @@
+{
+  super("Delete View");
+  parentWindow=Preconditions.checkNotNull(parent,"IE02260: parent argument can not be null");
+  this.views=Preconditions.checkNotNull(views.clone(),"IE03413: views.clone() argument can not be null");
+  this.viewContainer=Preconditions.checkNotNull(viewContainer,"IE02297: viewContainer argument can not be null");
+}

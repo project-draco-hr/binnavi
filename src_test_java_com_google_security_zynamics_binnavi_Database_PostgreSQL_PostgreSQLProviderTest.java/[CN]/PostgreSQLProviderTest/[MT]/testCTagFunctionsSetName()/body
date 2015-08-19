@@ -1,0 +1,15 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  tagManager.addTag(tagManager.getRootTag(),"Node Tag I");
+  tagManager.addTag(tagManager.getRootTag(),"Node Tag II");
+  tagManager.addTag(tagManager.getRootTag().getChildren().get(0),"Node Tag III");
+  final ITreeNode<CTag> tag1=tagManager.getRootTag().getChildren().get(0);
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  PostgreSQLTagFunctions.setName((AbstractSQLProvider)getProvider(),tag1.getObject(),"foobar");
+  module.close();
+  final INaviModule module2=getProvider().loadModules().get(0);
+  module2.load();
+  final CTagManager tagManager1=getProvider().loadTagManager(TagType.VIEW_TAG);
+  assertEquals("foobar",tagManager1.getRootTag().getChildren().get(0).getObject().getName());
+}

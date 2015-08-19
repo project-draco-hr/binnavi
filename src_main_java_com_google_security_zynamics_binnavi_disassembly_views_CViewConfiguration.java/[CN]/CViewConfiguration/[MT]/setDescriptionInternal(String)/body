@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(description,"IE02804: description argument can not be null");
+  if (viewDescription != null && viewDescription.equals(description)) {
+    return;
+  }
+  viewDescription=description;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedDescription(view,description);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

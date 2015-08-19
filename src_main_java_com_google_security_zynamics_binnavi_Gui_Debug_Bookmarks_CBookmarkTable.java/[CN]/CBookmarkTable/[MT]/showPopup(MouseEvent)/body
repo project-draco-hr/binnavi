@@ -1,0 +1,15 @@
+{
+  int[] rows=getSelectedRows();
+  if ((rows.length == 0) || (rows.length == 1)) {
+    final int row=rowAtPoint(event.getPoint());
+    final int column=columnAtPoint(event.getPoint());
+    if ((row == -1) || (column == -1)) {
+      return;
+    }
+    changeSelection(row,column,false,false);
+    rows=getSelectedRows();
+  }
+  final JPopupMenu menu=new JPopupMenu();
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteBookmarkAction(m_debuggerProvider,rows))));
+  menu.show(event.getComponent(),event.getX(),event.getY());
+}

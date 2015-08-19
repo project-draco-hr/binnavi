@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Request File System + Path\" message to the debug client");
+  sendPacket(new RequestFilesPathCommand(getMessageId(),path));
+}

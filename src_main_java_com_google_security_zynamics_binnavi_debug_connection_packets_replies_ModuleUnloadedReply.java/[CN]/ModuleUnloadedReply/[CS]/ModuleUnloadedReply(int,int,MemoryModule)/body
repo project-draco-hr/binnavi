@@ -1,0 +1,4 @@
+{
+  super(packetId,errorCode);
+  this.module=module;
+}

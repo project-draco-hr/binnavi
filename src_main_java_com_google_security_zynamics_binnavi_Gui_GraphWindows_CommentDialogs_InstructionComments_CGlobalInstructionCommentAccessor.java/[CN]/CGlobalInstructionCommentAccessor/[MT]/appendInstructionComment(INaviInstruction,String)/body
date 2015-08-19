@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(instruction,"IE02685: instruction argument can not be null");
+  Preconditions.checkNotNull(commentText,"IE02686: comment argument can not be null");
+  return instruction.appendGlobalComment(commentText);
+}

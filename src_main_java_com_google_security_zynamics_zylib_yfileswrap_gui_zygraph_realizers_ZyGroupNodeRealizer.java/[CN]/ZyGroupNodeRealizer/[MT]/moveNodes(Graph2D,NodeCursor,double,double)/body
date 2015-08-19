@@ -1,0 +1,9 @@
+{
+  for (; nodes.ok(); nodes.next()) {
+    final NodeRealizer nr=graph.getRealizer(nodes.node());
+    if ((nr.getAutoBoundsFeature() != null) && nr.getAutoBoundsFeature().isAutoBoundsEnabled()) {
+      continue;
+    }
+    nr.moveBy(dx,dy);
+  }
+}

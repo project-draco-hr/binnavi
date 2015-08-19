@@ -1,0 +1,9 @@
+{
+  final List<INaviModule> unloadedModules=new ArrayList<INaviModule>();
+  for (  final INaviModule module : modules) {
+    if (module.getConfiguration().getRawModule().isComplete() && !module.isLoaded()) {
+      unloadedModules.add(module);
+    }
+  }
+  return unloadedModules.toArray(new INaviModule[]{});
+}

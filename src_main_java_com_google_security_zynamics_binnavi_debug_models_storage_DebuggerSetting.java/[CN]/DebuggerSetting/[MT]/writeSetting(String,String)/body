@@ -1,0 +1,3 @@
+{
+  debugTargetSettings.writeSetting(getUniqueKey(key),value);
+}

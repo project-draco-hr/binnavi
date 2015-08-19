@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(object,"Error: object argument can not be null");
+  m_objects.add(new ObjectWrapper(start,length,object));
+}

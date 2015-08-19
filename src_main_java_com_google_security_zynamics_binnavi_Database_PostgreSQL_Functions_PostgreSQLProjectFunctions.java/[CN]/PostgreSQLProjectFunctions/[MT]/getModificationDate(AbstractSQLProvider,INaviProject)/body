@@ -1,0 +1,4 @@
+{
+  checkArguments(provider,project);
+  return PostgreSQLHelpers.getModificationDate(provider.getConnection(),"" + CTableNames.PROJECTS_TABLE + "",project.getConfiguration().getId());
+}

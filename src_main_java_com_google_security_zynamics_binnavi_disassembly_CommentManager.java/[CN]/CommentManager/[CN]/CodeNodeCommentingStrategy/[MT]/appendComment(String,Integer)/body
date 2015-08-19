@@ -1,0 +1,4 @@
+{
+  final Integer commentId=scope.equals(CommentScope.GLOBAL) ? provider.appendGlobalCodeNodeComment(codeNode,commentText,userId) : provider.appendLocalCodeNodeComment(codeNode,commentText,userId);
+  return provider.loadCommentById(commentId);
+}

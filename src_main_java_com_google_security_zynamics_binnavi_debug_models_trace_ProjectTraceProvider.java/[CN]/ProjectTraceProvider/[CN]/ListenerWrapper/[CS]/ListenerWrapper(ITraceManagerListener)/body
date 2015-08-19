@@ -1,0 +1,3 @@
+{
+  this.listener=Preconditions.checkNotNull(listener,"IE00774: Listener argument can't be null");
+}

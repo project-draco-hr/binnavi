@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(member,"IE02765: Member can not be null.");
+  return deleteMember(member.getParentType(),member.getBaseType());
+}

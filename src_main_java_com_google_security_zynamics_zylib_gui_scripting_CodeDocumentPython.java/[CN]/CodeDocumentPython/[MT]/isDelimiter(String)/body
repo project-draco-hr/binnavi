@@ -1,0 +1,9 @@
+{
+  final String operands=";:{}()[]+-/%<=>!&|^~*,";
+  if (Character.isWhitespace(character.charAt(0)) || (operands.indexOf(character) != -1)) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

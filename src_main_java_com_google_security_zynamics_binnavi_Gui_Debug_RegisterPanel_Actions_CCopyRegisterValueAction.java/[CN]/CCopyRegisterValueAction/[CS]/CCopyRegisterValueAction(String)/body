@@ -1,0 +1,4 @@
+{
+  super(String.format("Copy value %s to the clipboard",value));
+  this.value=Preconditions.checkNotNull(value,"IE01482: Value argument can not be null");
+}

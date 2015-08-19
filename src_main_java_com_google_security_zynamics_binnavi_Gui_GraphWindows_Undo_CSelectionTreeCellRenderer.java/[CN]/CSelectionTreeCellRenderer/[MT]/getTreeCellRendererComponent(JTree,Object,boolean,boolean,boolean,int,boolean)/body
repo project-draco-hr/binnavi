@@ -1,0 +1,13 @@
+{
+  setBackgroundSelectionColor(Color.WHITE);
+  setBorderSelectionColor(Color.WHITE);
+  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,hasFocus);
+  setForeground(NORMAL_FONT_COLOR);
+  if (value instanceof CSelectionHistoryTreeNode) {
+    renderHistoryTreeNode((CSelectionHistoryTreeNode)value);
+  }
+ else   if (value instanceof CNodeNode) {
+    renderLeafNode((CNodeNode)value);
+  }
+  return this;
+}

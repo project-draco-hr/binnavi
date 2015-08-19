@@ -1,0 +1,4 @@
+CConnection connection
+int id
+String name
+String tableName

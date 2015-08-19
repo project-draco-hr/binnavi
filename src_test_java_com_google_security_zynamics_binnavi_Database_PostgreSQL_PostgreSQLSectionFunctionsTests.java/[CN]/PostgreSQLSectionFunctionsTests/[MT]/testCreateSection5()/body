@@ -1,0 +1,3 @@
+{
+  getProvider().createSection(getKernel32Module().getConfiguration().getId()," SECTION NAME ",null,new BigInteger("10000",16),new BigInteger("20000",16),null,new byte[]{});
+}

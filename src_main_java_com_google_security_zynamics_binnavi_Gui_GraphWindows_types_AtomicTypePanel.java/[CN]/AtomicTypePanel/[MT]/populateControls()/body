@@ -1,0 +1,9 @@
+{
+  if (existingType == null) {
+    return;
+  }
+  name.setText(existingType.getName());
+  signed.setSelected(existingType.isSigned());
+  size.setText(String.valueOf(existingType.getBitSize()));
+  updatePreview();
+}

@@ -1,0 +1,7 @@
+{
+  super("Connect to database");
+  m_projectTree=Preconditions.checkNotNull(projectTree,"IE01907: Project tree argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE01908: Database argument can't be null");
+  putValue(ACCELERATOR_KEY,HotKeys.OPEN_DATABASE_ACCELERATOR_KEY.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_OPEN_DATABASE".charAt(0));
+}

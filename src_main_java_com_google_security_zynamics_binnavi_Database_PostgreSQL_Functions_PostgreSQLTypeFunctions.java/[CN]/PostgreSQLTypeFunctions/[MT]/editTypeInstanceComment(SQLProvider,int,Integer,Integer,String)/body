@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be greater then zero");
+  Preconditions.checkNotNull(commentId,"Error: commentId argument can not be null");
+  Preconditions.checkNotNull(userId,"Error: userId argument can not be null");
+  Preconditions.checkNotNull(commentText,"Error: commentText argument can not be null");
+  PostgreSQLCommentFunctions.editComment(provider,commentId,userId,commentText);
+}

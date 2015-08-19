@@ -1,0 +1,17 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(database,"IE01977: Database argument can't be null");
+  this.module=Preconditions.checkNotNull(module,"IE01978: Module argument can't be null");
+  tabbedPane.addTab("Overview",OVERVIEW_ICON,overviewPanel=new CModuleOverviewPanel(projectTree,database,addressSpace,module,container));
+  tabbedPane.addTab("Functions" + String.format(" (%d)",module.getFunctionCount()),FUNCTIONS_ICON,functionsPanel=new CNativeFunctionViewsNodeComponent(projectTree,database,module,container));
+  tabbedPane.addTab("Views" + String.format(" (%d)",module.getCustomViewCount()),VIEWS_ICON,viewsPanel=new CModuleViewsContainerComponent(projectTree,container));
+  tabbedPane.addTab("Debug Traces",TRACES_ICON,tracesPanel=new CTracesNodeComponent(projectTree,container));
+  tabbedPane.addTab("Sections and Types",DATA_ICON,dataPanel=new CDataNodeComponent(module,container));
+  tabbedPane.setEnabledAt(1,module.isLoaded());
+  tabbedPane.setEnabledAt(2,module.isLoaded());
+  tabbedPane.setEnabledAt(3,module.isLoaded());
+  tabbedPane.setEnabledAt(4,module.isLoaded());
+  module.addListener(internalModuleListener);
+  add(tabbedPane);
+  lookup.put(module,this);
+}

@@ -1,0 +1,4 @@
+{
+  final long currentOffset=m_baseAddress + (getCurrentNibble() / 2);
+  return m_flipBytes ? ((currentOffset & -m_bytesPerColumn) + m_bytesPerColumn) - (currentOffset % m_bytesPerColumn) - 1 : currentOffset;
+}

@@ -1,0 +1,11 @@
+{
+  final Address newAddress=new Address(fileBase.toBigInteger());
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedFilebase(Module.this,newAddress);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

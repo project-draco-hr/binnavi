@@ -1,0 +1,4 @@
+JFrame parent
+IDebugger debugger
+DebugTargetSettings debugTarget
+IViewContainer viewContainer

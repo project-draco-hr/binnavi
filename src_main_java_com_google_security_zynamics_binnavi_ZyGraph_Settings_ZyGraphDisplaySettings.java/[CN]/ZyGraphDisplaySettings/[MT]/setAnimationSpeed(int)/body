@@ -1,0 +1,11 @@
+{
+  if (animationSpeed == getAnimationSpeed()) {
+    return;
+  }
+  if (m_type == null) {
+    m_animationSpeed=animationSpeed;
+  }
+ else {
+    m_type.setAnimationSpeed(animationSpeed);
+  }
+}

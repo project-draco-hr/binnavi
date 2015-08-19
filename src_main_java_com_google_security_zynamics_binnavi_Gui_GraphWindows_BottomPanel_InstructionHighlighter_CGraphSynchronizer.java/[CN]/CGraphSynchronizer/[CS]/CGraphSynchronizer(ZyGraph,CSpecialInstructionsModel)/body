@@ -1,0 +1,11 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE02843: graph argument can not be null");
+  m_model=Preconditions.checkNotNull(model,"IE02844: model argument can not be null");
+  updateInstructionMap();
+  m_model.setInstructions(updateInstructions());
+  m_graph.addListener(m_graphListener);
+  m_graph.getRawView().addListener(m_listener);
+  for (  final ITypeDescription description : model.getDescriptions()) {
+    description.addListener(m_descriptionListener);
+  }
+}

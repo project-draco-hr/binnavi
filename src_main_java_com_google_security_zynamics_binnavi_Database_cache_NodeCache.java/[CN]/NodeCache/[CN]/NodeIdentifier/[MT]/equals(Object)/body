@@ -1,0 +1,9 @@
+{
+  if (this == other) {
+    return true;
+  }
+  if (other instanceof NodeIdentifier) {
+    return Objects.equals(address,((NodeIdentifier)other).address) && Objects.equals(moduleId,((NodeIdentifier)other).moduleId);
+  }
+  return false;
+}

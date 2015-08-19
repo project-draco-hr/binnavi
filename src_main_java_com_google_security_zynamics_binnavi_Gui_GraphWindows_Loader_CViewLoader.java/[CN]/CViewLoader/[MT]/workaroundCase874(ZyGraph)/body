@@ -1,0 +1,13 @@
+{
+  EventQueue.invokeLater(new Runnable(){
+    @Override public void run(){
+      if (view.getType() == ViewType.Native) {
+        ZoomFunctions.zoomToScreen(graph);
+      }
+ else {
+        graph.workAroundCase874();
+      }
+    }
+  }
+);
+}

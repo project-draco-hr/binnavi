@@ -1,0 +1,4 @@
+{
+  m_module.load();
+  assertFalse(m_module.isStared());
+}

@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null.");
+  Preconditions.checkNotNull(module,"Error: module argument can not be null.");
+  Preconditions.checkNotNull(baseTypeId,"Error: baseTypeId argument can not be null.");
+  final String query=" SELECT * FROM load_type(?, ?) ";
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+    statement.setInt(1,module.getConfiguration().getId());
+    statement.setInt(2,baseTypeId);
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        if (resultSet.first()) {
+          Integer pointer=resultSet.getInt("pointer");
+          if (resultSet.wasNull()) {
+            pointer=null;
+          }
+          return new RawBaseType(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getInt("size"),pointer,resultSet.getBoolean("signed"),BaseTypeCategory.fromString(resultSet.getString("category")));
+        }
+      }
+    }
+  finally {
+      resultSet.close();
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  throw new CouldntLoadDataException("Error: could not load single base type from the database.");
+}

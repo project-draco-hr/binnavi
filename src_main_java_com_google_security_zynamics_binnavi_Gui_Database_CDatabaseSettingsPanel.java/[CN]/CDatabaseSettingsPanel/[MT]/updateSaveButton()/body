@@ -1,0 +1,29 @@
+{
+  final boolean userChanged=!databaseUserField.getText().equals(database.getConfiguration().getUser());
+  final boolean descriptionChanged=!databaseDescriptionField.getText().equals(database.getConfiguration().getDescription());
+  final boolean hostChanged=!databaseHostField.getText().equals(database.getConfiguration().getHost());
+  final boolean nameChanged=!databaseNameField.getText().equals(database.getConfiguration().getName());
+  final boolean passwordChanged=!new String(passwordField.getPassword()).equals(database.getConfiguration().getPassword());
+  final boolean savePasswordChanged=savePasswordBox.isSelected() != database.getConfiguration().isSavePassword();
+  final boolean autoConnectChanged=autoConnectBox.isSelected() != database.getConfiguration().isAutoConnect();
+  final boolean identityChanged=!databaseIdentityField.getText().equals(database.getConfiguration().getIdentity());
+  databaseDescriptionField.setModified(descriptionChanged);
+  databaseHostField.setModified(hostChanged);
+  databaseNameField.setModified(nameChanged);
+  databaseUserField.setModified(userChanged);
+  passwordField.setModified(passwordChanged);
+  savePasswordBox.setModified(savePasswordChanged);
+  autoConnectBox.setModified(autoConnectChanged);
+  databaseIdentityField.setModified(identityChanged);
+  saveButton.setEnabled(descriptionChanged || hostChanged || nameChanged|| userChanged|| passwordChanged|| savePasswordChanged|| autoConnectChanged|| identityChanged);
+  saveLabel.setVisible(saveButton.isEnabled());
+  final boolean connectionChanged=hostChanged || nameChanged || userChanged|| passwordChanged;
+  for (  final IDatabaseSettingsPanelListener listener : listeners) {
+    try {
+      listener.changedConnectionSettings(this,connectionChanged);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

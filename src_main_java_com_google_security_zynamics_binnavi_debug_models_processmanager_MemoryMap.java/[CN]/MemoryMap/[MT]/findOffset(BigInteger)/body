@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(offset,"IE00749: Offset argument can not be null");
+  for (  final MemorySection section : memorySections) {
+    if ((section.getStart().toBigInteger().compareTo(offset) <= 0) && (section.getEnd().toBigInteger().compareTo(offset) >= 0)) {
+      return section;
+    }
+  }
+  return null;
+}

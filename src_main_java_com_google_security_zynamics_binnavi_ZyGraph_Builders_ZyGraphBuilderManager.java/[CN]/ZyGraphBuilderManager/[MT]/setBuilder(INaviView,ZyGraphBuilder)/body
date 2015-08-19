@@ -1,0 +1,11 @@
+{
+  m_builders.put(view,builder);
+  for (  final IGraphBuilderManagerListener listener : m_listeners) {
+    try {
+      listener.addedBuilder(view,builder);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

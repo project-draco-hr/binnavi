@@ -1,0 +1,8 @@
+{
+  this.moduleId=moduleId;
+  this.viewId=viewId;
+  this.address=Preconditions.checkNotNull(address,"Error: address can not be null.");
+  this.operandPosition=operandPosition;
+  this.expressionId=expressionId;
+  this.typeInstanceId=typeInstanceId;
+}

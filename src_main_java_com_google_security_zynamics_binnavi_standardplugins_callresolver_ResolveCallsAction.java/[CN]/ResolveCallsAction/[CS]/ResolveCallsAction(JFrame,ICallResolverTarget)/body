@@ -1,0 +1,5 @@
+{
+  super("Resolve Calls");
+  this.parent=parent;
+  this.module=module;
+}

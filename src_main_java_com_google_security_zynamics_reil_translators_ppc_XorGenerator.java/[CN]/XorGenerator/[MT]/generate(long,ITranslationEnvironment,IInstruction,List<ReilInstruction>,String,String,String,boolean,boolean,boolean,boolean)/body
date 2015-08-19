@@ -1,0 +1,34 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,mnemonic);
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final String targetRegister=registerOperand1.getValue();
+  final String crTemp=setCr ? environment.getNextVariableString() : null;
+  final String negTemp=isNeg ? environment.getNextVariableString() : null;
+  final String negTemp2=isNeg ? environment.getNextVariableString() : null;
+  final String overflowTmp=setOverflow ? environment.getNextVariableString() : null;
+  final String eqvTmp=isEqv ? environment.getNextVariableString() : null;
+  if (isNeg) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,secondOperand,OperandSize.DWORD,negTemp));
+    instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.DWORD,negTemp,OperandSize.BYTE,"1",OperandSize.QWORD,negTemp2));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,OperandSize.QWORD,negTemp2,OperandSize.DWORD,"4294967295",OperandSize.DWORD,targetRegister));
+    if (setOverflow) {
+      instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.DWORD,String.valueOf(0x80000000L),OperandSize.DWORD,overflowTmp));
+      instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.DWORD,overflowTmp,OperandSize.WORD,Helpers.XER_OVERFLOW));
+      instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.WORD,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.DWORD,Helpers.XER_OVERFLOW,OperandSize.WORD,Helpers.XER_SUMMARY_OVERFLOW));
+    }
+  }
+ else   if (isEqv) {
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,secondOperand,OperandSize.DWORD,eqvTmp));
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,eqvTmp,OperandSize.DWORD,String.valueOf(0xFFFFFFFFL),OperandSize.DWORD,targetRegister));
+  }
+ else {
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,secondOperand,OperandSize.DWORD,targetRegister));
+  }
+  if (setCr) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.BYTE,Helpers.CR0_EQUAL));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.WORD,"-31",OperandSize.BYTE,Helpers.CR0_LESS_THEN));
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,Helpers.CR0_EQUAL,OperandSize.BYTE,Helpers.CR0_LESS_THEN,OperandSize.BYTE,crTemp));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.BYTE,crTemp,OperandSize.BYTE,Helpers.CR0_GREATER_THEN));
+    instructions.add(ReilHelpers.createStr(baseOffset,OperandSize.BYTE,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.BYTE,Helpers.CRO_SUMMARY_OVERFLOW));
+  }
+}

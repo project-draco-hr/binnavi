@@ -1,0 +1,4 @@
+{
+  super(inputView);
+  setLayeredPainting(true);
+}

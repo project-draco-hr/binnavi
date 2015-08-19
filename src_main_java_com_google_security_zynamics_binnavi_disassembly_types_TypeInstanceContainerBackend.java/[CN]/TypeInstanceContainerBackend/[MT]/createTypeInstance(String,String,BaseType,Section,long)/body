@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null");
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  Preconditions.checkArgument(sectionOffset >= 0,"Error: section offset must be greater or equal to zero");
+  final CommentManager commentManager=CommentManager.get(provider);
+  final int typeId=baseType.getId();
+  final int sectionId=section.getId();
+  final int instanceId=provider.createTypeInstance(module.getConfiguration().getId(),name,null,typeId,sectionId,sectionOffset);
+  final TypeInstance instance=new TypeInstance(instanceId,name,baseType,section,sectionOffset,module);
+  instancesById.put(instanceId,instance);
+  if (commentString != null) {
+    commentManager.appendTypeInstanceComment(instance,commentString);
+  }
+  return instance;
+}

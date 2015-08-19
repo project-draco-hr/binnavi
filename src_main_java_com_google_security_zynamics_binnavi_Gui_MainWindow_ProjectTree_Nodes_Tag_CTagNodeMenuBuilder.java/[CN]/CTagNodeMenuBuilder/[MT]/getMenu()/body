@@ -1,0 +1,5 @@
+{
+  final JMenu menu=new JMenu("Tagging");
+  menu.setMnemonic("HK_MENU_TAGGING".charAt(0));
+  return menu;
+}

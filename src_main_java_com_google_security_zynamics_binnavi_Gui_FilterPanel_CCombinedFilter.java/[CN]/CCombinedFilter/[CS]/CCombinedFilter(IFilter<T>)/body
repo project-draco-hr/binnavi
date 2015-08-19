@@ -1,0 +1,5 @@
+{
+  for (  final IFilter<T> filter : filters) {
+    m_filters.add(filter);
+  }
+}

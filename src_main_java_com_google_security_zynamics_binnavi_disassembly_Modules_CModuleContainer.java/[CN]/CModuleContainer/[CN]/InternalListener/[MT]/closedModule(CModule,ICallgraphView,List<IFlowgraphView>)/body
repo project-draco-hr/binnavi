@@ -1,0 +1,12 @@
+{
+  final List<INaviView> views=new ArrayList<INaviView>(flowgraphs);
+  views.add(callgraphView);
+  for (  final IViewContainerListener listener : m_listeners) {
+    try {
+      listener.closedContainer(CModuleContainer.this,views);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

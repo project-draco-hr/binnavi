@@ -1,0 +1,4 @@
+{
+  setPreferredSize(new Dimension(130,20));
+  setRenderer(new CTIDBoxRenderer());
+}

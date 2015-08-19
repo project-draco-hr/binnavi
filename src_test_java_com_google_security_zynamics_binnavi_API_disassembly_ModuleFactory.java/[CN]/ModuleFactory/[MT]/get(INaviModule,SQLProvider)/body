@@ -1,0 +1,6 @@
+{
+  final TagManager nodeTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider));
+  final TagManager viewTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.VIEW_TAG,provider))),TagType.VIEW_TAG,provider));
+  final Database db=new Database(new MockDatabase());
+  return new Module(db,module,nodeTagManager,viewTagManager);
+}

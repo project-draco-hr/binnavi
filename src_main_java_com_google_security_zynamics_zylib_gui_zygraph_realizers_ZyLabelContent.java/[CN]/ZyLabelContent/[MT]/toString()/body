@@ -1,0 +1,8 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  for (  final ZyLineContent content : m_content) {
+    builder.append(content.toString());
+    builder.append('\n');
+  }
+  return builder.toString();
+}

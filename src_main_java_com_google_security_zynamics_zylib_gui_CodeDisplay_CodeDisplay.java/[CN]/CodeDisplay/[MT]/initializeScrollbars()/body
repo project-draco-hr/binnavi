@@ -1,0 +1,6 @@
+{
+  verticalScrollbar.addAdjustmentListener(listener);
+  add(verticalScrollbar,BorderLayout.EAST);
+  horizontalScrollbar.addAdjustmentListener(listener);
+  add(horizontalScrollbar,BorderLayout.SOUTH);
+}

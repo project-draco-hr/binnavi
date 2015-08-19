@@ -1,0 +1,10 @@
+{
+  final ZyGraph graph=ZyGraphFactory.generateTestGraph();
+  final CTagsTreeModel model=new CTagsTreeModel(null);
+  final CTag tag=new CTag(0,"tag","description",TagType.NODE_TAG,new MockSqlProvider());
+  final TreeNode<CTag> treeNode=new TreeNode<CTag>(tag);
+  final CTaggedGraphNodesContainerNode containerNode=new CTaggedGraphNodesContainerNode(graph,model,treeNode);
+  assertEquals("Tagged Nodes (0/0/1/1)",containerNode.toString());
+  assertEquals(null,containerNode.getIconName());
+  containerNode.getIcon();
+}

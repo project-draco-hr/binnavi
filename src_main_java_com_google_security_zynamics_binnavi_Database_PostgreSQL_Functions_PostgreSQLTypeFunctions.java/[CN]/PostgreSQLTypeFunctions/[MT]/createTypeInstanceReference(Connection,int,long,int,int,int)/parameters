@@ -1,0 +1,6 @@
+Connection connection
+int moduleId
+long address
+int position
+int expressionId
+int typeInstanceId

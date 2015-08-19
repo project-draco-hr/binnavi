@@ -1,0 +1,14 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final ViewEdge viewEdge=cachedEdges.get(edge);
+  for (  final IViewEdgeListener listener : viewEdge.getListeners()) {
+    try {
+      listener.changedVisibility(viewEdge,viewEdge.isVisible());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

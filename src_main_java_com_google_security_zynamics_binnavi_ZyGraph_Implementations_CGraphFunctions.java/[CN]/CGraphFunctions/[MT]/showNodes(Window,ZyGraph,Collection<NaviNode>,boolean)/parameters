@@ -1,0 +1,4 @@
+Window parent
+ZyGraph graph
+Collection<NaviNode> nodes
+boolean visible

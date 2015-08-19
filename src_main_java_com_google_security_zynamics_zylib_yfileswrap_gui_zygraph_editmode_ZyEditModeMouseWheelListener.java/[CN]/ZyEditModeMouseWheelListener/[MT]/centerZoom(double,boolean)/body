@@ -1,0 +1,9 @@
+{
+  if (centerSelected) {
+    final Set<NodeType> selectedNodes=m_zyGraph.getSelectedNodes();
+    if (selectedNodes.size() != 0) {
+      MoveFunctions.centerNodes(m_zyGraph,selectedNodes);
+    }
+  }
+  m_zyGraph.zoom(factor);
+}

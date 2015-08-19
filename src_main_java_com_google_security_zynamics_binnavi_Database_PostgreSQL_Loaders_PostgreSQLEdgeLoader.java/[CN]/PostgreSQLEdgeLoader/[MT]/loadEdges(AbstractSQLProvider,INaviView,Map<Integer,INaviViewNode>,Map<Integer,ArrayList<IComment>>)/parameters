@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviView view
+Map<Integer,INaviViewNode> nodeLookup
+Map<Integer,ArrayList<IComment>> edgeToGlobalCommentMap

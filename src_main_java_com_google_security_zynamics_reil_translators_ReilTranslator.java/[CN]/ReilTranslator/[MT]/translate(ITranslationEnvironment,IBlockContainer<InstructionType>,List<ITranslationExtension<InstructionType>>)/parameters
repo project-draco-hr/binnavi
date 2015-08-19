@@ -1,0 +1,3 @@
+ITranslationEnvironment environment
+IBlockContainer<InstructionType> function
+List<ITranslationExtension<InstructionType>> extensions

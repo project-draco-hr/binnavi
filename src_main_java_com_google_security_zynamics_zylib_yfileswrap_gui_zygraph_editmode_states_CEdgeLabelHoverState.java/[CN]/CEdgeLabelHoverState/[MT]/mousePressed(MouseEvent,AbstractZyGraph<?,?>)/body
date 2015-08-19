@@ -1,0 +1,33 @@
+{
+  final double x=m_graph.getEditMode().translateX(event.getX());
+  final double y=m_graph.getEditMode().translateY(event.getY());
+  final HitInfo hitInfo=m_graph.getGraph().getHitInfo(x,y);
+  if (hitInfo.hasHitNodes()) {
+    throw new IllegalStateException();
+  }
+ else   if (hitInfo.hasHitNodeLabels()) {
+    throw new IllegalStateException();
+  }
+ else   if (hitInfo.hasHitEdges()) {
+    throw new IllegalStateException();
+  }
+ else   if (hitInfo.hasHitEdgeLabels()) {
+    final EdgeLabel label=hitInfo.getHitEdgeLabel();
+    if (label == m_label) {
+      return new CStateChange(this,true);
+    }
+ else {
+      throw new IllegalStateException();
+    }
+  }
+ else   if (hitInfo.hasHitBends()) {
+    throw new IllegalStateException();
+  }
+ else   if (hitInfo.hasHitPorts()) {
+    return new CStateChange(this,true);
+  }
+ else {
+    m_factory.createEdgeLabelExitState(m_label,event);
+    return new CStateChange(this,true);
+  }
+}

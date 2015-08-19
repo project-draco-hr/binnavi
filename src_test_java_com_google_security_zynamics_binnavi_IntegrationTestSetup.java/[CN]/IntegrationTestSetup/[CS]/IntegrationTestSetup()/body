@@ -1,0 +1,7 @@
+{
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  databaseProperties.setProperty("user",parts[1]);
+  databaseProperties.setProperty("password",parts[2]);
+  databaseProperties.setProperty("allowEncodingChanges","true");
+  url="jdbc:postgresql://" + parts[0] + "/";
+}

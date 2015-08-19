@@ -1,0 +1,3 @@
+{
+  m_database.getContent().getDebuggerTemplateManager().removeListener(m_listener);
+}

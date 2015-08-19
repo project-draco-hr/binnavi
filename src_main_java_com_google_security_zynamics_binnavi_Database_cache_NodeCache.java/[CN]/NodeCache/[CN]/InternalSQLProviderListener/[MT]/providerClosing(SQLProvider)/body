@@ -1,0 +1,5 @@
+{
+  if (NodeCache.this.provider.equals(provider)) {
+    NodeCache.this.close();
+  }
+}

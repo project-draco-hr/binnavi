@@ -1,0 +1,5 @@
+{
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction(name);
+  function.load();
+  return function;
+}

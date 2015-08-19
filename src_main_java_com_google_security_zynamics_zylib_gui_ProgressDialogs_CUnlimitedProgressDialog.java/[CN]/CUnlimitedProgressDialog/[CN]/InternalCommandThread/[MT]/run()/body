@@ -1,0 +1,24 @@
+{
+  try {
+    m_command.execute();
+  }
+ catch (  final Exception e) {
+    setException(e);
+  }
+  try {
+    SwingUtilities.invokeLater(new Runnable(){
+      @Override public void run(){
+        CUnlimitedProgressDialog.super.dispose();
+        CUnlimitedProgressDialog.super.setVisible(false);
+        m_countDownLatch.countDown();
+      }
+    }
+);
+  }
+ catch (  final Exception e) {
+    setException(e);
+  }
+ finally {
+    m_countDownLatch.countDown();
+  }
+}

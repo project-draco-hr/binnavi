@@ -1,0 +1,3 @@
+{
+  StoreGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"stwu",OperandSize.DWORD,false,true,false,false);
+}

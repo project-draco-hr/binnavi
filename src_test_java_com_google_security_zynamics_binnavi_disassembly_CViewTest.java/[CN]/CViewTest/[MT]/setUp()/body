@@ -1,0 +1,13 @@
+{
+  ConfigManager.instance().read();
+  m_sql=new MockSqlProvider();
+  m_module=MockCreator.createModule(m_sql);
+  m_module.load();
+  m_view=MockCreator.createView(m_sql,m_module);
+  m_unsavedView=m_module.getContent().getViewContainer().createView("Unsaved","");
+  m_function=MockCreator.createFunction(m_module,m_sql);
+  m_instruction=MockCreator.createInstruction(m_module,m_sql);
+  m_listener=new MockViewListener();
+  m_view.addListener(m_listener);
+  m_unsavedView.addListener(m_listener);
+}

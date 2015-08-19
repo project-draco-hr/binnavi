@@ -1,0 +1,6 @@
+{
+  m_module.removeListener(m_moduleListener);
+  if (m_module.isLoaded()) {
+    m_module.getContent().getViewContainer().getNativeCallgraphView().removeListener(m_viewListener);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  new CComment(1,CommonTestObjects.TEST_USER_1,TEST_COMMENT_1,null);
+}

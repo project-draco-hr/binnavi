@@ -1,0 +1,8 @@
+{
+  for (  final RawTypeMember rawMember : members.get(module)) {
+    if (rawMember.getId() == member.getId()) {
+      return rawMember;
+    }
+  }
+  return null;
+}

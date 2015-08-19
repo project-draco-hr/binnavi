@@ -1,0 +1,6 @@
+{
+  checkArguments(debuggerProvider,view);
+  for (  final IDebugger debugger : debuggerProvider) {
+    enableAllView(debugger.getBreakpointManager(),view);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final AbstractSQLProvider connectionProvider=(AbstractSQLProvider)getProvider();
+  final CConnection connection=connectionProvider.getConnection();
+  PostgreSQLHelpers.deleteById(connection,null,0);
+}

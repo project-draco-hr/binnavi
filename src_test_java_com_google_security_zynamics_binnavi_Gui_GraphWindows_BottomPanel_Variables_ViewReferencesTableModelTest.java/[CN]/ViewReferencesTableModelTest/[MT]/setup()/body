@@ -1,0 +1,4 @@
+{
+  typeSystem=new TestTypeSystem(new TypeManager(new TypeManagerMockBackend()));
+  view=MockView.getFullView(new MockSqlProvider(),ViewType.Native,123);
+}

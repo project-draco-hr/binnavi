@@ -1,0 +1,29 @@
+{
+  final Map<Integer,Set<CTag>> setTag=new HashMap<Integer,Set<CTag>>();
+  final String query="SELECT " + CTableNames.TAGGED_VIEWS_TABLE + ".view_id, tag_id"+ " FROM "+ CTableNames.TAGGED_VIEWS_TABLE+ " JOIN "+ tableName+ " ON "+ tableName+ ".view_id = "+ CTableNames.TAGGED_VIEWS_TABLE+ ".view_id"+ " WHERE "+ containerColumn+ " = "+ containerId+ " ORDER BY view_id";
+  final ResultSet resultSet=connection.executeQuery(query,true);
+  try {
+    int currentView=0;
+    Set<CTag> currentTags=new HashSet<CTag>();
+    while (resultSet.next()) {
+      final int view=resultSet.getInt("view_id");
+      final int tagId=resultSet.getInt("tag_id");
+      if (currentView == 0) {
+        currentView=view;
+      }
+      if (currentView != view) {
+        setTag.put(currentView,currentTags);
+        currentTags=new HashSet<CTag>();
+        currentView=view;
+      }
+      currentTags.add(CTagHelpers.findTag(viewTagManager.getRootTag(),tagId));
+    }
+    if (!currentTags.isEmpty()) {
+      setTag.put(currentView,currentTags);
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  return setTag;
+}

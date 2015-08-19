@@ -1,0 +1,17 @@
+{
+  final Graph2D graph=(Graph2D)n.getGraph();
+  final HierarchyManager hierarchy=graph.getHierarchyManager();
+  if (hierarchy == null) {
+    return false;
+  }
+  boolean result=false;
+  Node parent=hierarchy.getParentNode(n);
+  while (parent != null) {
+    if (graph.isSelected(parent)) {
+      result=true;
+      break;
+    }
+    parent=hierarchy.getParentNode(parent);
+  }
+  return result;
+}

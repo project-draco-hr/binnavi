@@ -1,0 +1,6 @@
+{
+  mockDebugger.connect();
+  debuggerSynchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(CommonTestObjects.MEMORY_MODULE));
+  breakpointManager.addBreakpoints(BreakpointType.STEP,CommonTestObjects.BP_ADDRESS_456_SET);
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.STEP));
+}

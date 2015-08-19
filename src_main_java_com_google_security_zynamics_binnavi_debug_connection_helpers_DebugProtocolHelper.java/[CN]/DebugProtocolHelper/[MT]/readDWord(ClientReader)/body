@@ -1,0 +1,24 @@
+{
+  long dword, readByte;
+  readByte=inputStream.read();
+  if (readByte == -1) {
+    throw new IOException("End of input stream");
+  }
+  dword=(readByte & 0xFF) << 24 & 0xFF000000;
+  readByte=inputStream.read();
+  if (readByte == -1) {
+    throw new IOException("End of input stream");
+  }
+  dword|=(readByte & 0xFF) << 16 & 0x00FF0000;
+  readByte=inputStream.read();
+  if (readByte == -1) {
+    throw new IOException("End of input stream");
+  }
+  dword|=(readByte & 0xFF) << 8 & 0x0000FF00;
+  readByte=inputStream.read();
+  if (readByte == -1) {
+    throw new IOException("End of input stream");
+  }
+  dword|=(readByte & 0xFF) & 0x000000FF;
+  return dword;
+}

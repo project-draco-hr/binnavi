@@ -1,0 +1,5 @@
+{
+  super("Show REIL Code");
+  m_parent=parent;
+  m_instruction=instruction;
+}

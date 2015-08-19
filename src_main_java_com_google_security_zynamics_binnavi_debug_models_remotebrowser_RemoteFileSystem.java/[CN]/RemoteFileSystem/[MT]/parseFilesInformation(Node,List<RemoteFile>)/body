@@ -1,0 +1,10 @@
+{
+  final NodeList nodes=registersNode.getChildNodes();
+  for (int i=0; i < nodes.getLength(); ++i) {
+    final Node node=nodes.item(i);
+    final String nodeName=node.getNodeName();
+    if ("File".equals(nodeName)) {
+      files.add(new RemoteFile(node.getAttributes().getNamedItem("name").getNodeValue()));
+    }
+  }
+}

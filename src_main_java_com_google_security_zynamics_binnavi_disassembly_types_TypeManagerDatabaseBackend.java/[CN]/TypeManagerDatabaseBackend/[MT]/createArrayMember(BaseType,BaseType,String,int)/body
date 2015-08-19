@@ -1,0 +1,4 @@
+{
+  final int typeId=provider.createTypeMember(module,containingType.getId(),memberType.getId(),memberName,Optional.<Integer>absent(),Optional.of(memberNumberOfElements),Optional.<Integer>absent());
+  return TypeMember.createArrayMember(typeId,containingType,memberType,memberName,memberNumberOfElements);
+}

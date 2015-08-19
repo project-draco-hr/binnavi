@@ -1,0 +1,6 @@
+{
+  final ZyGraph graph=ZyGraphFactory.generateTestGraph();
+  final CCodeNode node=graph.getRawView().getBasicBlocks().get(0);
+  final NaviNode naviNode=graph.getNode(node);
+  @SuppressWarnings("unused") final CTaggedGraphNodeNode taggedNode=new CTaggedGraphNodeNode(graph,naviNode);
+}

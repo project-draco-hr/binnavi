@@ -1,0 +1,3 @@
+{
+  return offset.isPresent() ? Optional.of((offset.get() + 7) / 8) : offset;
+}

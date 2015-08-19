@@ -1,0 +1,10 @@
+{
+  final Node node=hitInfo.getHitNode();
+  if (node == oldNode) {
+    return new CStateChange(m_factory.createNodeHoverState(node,event),false);
+  }
+ else {
+    m_factory.createNodeExitState(oldNode,event);
+    return new CStateChange(m_factory.createNodeEnterState(node,event),true);
+  }
+}

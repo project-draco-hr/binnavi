@@ -1,0 +1,3 @@
+{
+  return getProjects(new int[]{convertRowIndexToModel(row)})[0].isLoaded();
+}

@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(debugException,"IE01045: Debug exception argument can not be null");
+  for (  final IDebugEventListener listener : listeners) {
+    try {
+      listener.debugException(debugException);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

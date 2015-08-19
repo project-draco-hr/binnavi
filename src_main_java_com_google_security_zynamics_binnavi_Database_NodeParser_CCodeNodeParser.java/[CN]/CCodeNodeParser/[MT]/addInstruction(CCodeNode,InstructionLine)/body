@@ -1,0 +1,9 @@
+{
+  final CInstruction instruction=InstructionConverter.createInstruction(line,sqlProvider);
+  InstructionCache.get(sqlProvider).addInstruction(instruction);
+  localCommentIdToInstruction.put(line.getLocalInstructionCommentId(),new Pair<INaviInstruction,INaviCodeNode>(instruction,node));
+  globalCommentIdToInstruction.put(line.getGlobalInstructionComment(),instruction);
+  localCommentIdToCodeNode.put(line.getLocalNodeCommentId(),node);
+  globalCommentIdToCodeNode.put(line.getGlobalNodeCommentId(),node);
+  node.addInstruction(instruction,null);
+}

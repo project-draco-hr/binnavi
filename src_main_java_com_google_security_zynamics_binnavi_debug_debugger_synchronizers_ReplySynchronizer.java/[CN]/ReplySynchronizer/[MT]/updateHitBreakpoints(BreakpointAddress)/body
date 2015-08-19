@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(address,"IE01048: Address argument can not be null");
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  for (  final Breakpoint breakpoint : manager.getBreakpoints(BreakpointType.REGULAR)) {
+    final boolean isAddressSame=address.equals(breakpoint.getAddress());
+    if ((manager.getBreakpointStatus(breakpoint.getAddress(),BreakpointType.REGULAR) == BreakpointStatus.BREAKPOINT_HIT) && !isAddressSame) {
+      manager.setBreakpointStatus(Sets.newHashSet(breakpoint.getAddress()),BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_ACTIVE);
+      break;
+    }
+ else     if (isAddressSame) {
+      try {
+        manager.setBreakpointStatus(Sets.newHashSet(breakpoint.getAddress()),BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_HIT);
+      }
+ catch (      final IllegalArgumentException exception) {
+        return;
+      }
+    }
+  }
+}

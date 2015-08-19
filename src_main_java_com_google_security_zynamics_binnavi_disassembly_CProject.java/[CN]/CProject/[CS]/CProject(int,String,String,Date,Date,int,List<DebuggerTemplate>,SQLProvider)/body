@@ -1,0 +1,11 @@
+{
+  Preconditions.checkArgument(projectId > 0,String.format("IE00226: Project ID %d is invalid. Project IDs must be strictly positive",projectId));
+  Preconditions.checkNotNull(name,"IE00227: Project names can't be null");
+  Preconditions.checkNotNull(description,"IE00228: Project descriptions can't be null");
+  Preconditions.checkNotNull(creationDate,"IE00229: Project creation dates can't be null");
+  Preconditions.checkNotNull(modificationDate,"IE00230: Project modification dates can't be null");
+  Preconditions.checkNotNull(provider,"IE00231: The SQL provider of the project can't be null");
+  m_configuration=new CProjectConfiguration(this,m_listeners,provider,projectId,name,description,creationDate,modificationDate,assignedDebuggers);
+  m_addressSpaceCount=addressSpaceCount;
+  m_provider=provider;
+}

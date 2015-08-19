@@ -1,0 +1,3 @@
+{
+  ProgressDialog.show(parent,"Removing remaining breakpoints ...",new CleanupThread());
+}

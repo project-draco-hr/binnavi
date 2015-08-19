@@ -1,0 +1,12 @@
+{
+  final Element element=document.getParagraphElement(pos);
+  String line="";
+  try {
+    line=document.getText(element.getStartOffset(),element.getEndOffset() - element.getStartOffset());
+  }
+ catch (  final BadLocationException e) {
+    System.out.println("Bad location!");
+    e.printStackTrace();
+  }
+  return line;
+}

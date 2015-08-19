@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(module,"IE01821: Module argument can not be null");
+  m_dialog=parent;
+  m_module=module;
+  m_model=model;
+  m_module.addListener(m_internalModuleListener);
+  createChildren();
+}

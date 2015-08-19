@@ -1,0 +1,3 @@
+BaseType baseType
+Graph graph
+BiMap<BaseType,Node> map

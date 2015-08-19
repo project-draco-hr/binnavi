@@ -1,0 +1,2 @@
+INaviFunctionNode functionNode
+List<IComment> comments

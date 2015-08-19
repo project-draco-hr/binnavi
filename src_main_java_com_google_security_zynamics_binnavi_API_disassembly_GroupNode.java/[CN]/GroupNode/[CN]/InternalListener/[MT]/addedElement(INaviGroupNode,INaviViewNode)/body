@@ -1,0 +1,11 @@
+{
+  final ViewNode apiNode=addElement(node);
+  for (  final IGroupNodeListener listener : m_listeners) {
+    try {
+      listener.addedNode(GroupNode.this,apiNode);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

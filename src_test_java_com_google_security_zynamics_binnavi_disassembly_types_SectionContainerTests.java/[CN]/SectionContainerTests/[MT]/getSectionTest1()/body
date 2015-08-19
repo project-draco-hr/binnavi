@@ -1,0 +1,6 @@
+{
+  final SectionContainer sectionContainer=new SectionContainer(backend);
+  Assert.assertNotNull(sectionContainer);
+  final Section section=sectionContainer.createSection("SECTION1",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  Assert.assertEquals(section,sectionContainer.getSection(section.getId()));
+}

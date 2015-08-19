@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(model,"IE02236: Model argument can not be null");
+  Preconditions.checkNotNull(node,"IE02237: Node argument can not be null");
+  for (  final INodeUpdater updater : CNodeUpdaterFactory.getUpdaters()) {
+    updater.visit(model,node);
+  }
+}

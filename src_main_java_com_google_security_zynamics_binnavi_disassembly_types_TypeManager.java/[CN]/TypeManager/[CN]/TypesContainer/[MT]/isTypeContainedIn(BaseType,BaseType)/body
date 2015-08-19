@@ -1,0 +1,3 @@
+{
+  return dependenceGraph.isTypeContainedIn(superType,baseType);
+}

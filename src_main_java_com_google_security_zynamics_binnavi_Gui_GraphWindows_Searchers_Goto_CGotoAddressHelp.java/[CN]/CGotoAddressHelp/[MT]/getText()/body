@@ -1,0 +1,3 @@
+{
+  return "Use this field to search for addresses. Enter a hexadecimal address and hit Enter to jump to the instruction at that address.\n\nHotkey: CTRL-G";
+}

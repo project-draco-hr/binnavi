@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(manager,"IE01723: Manager argument can not be null");
+  Preconditions.checkNotNull(module,"IE01724: Module argument can not be null");
+  Preconditions.checkNotNull(unrelocatedAddress,"IE01725: Address argument can not be null");
+  final BreakpointAddress address=new BreakpointAddress(module,unrelocatedAddress);
+  toggleBreakpoint(manager,address);
+}

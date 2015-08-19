@@ -1,0 +1,3 @@
+{
+  PostgreSQLInstructionFunctions.editLocalInstructionComment(this,commentId,userId,newCommentText);
+}

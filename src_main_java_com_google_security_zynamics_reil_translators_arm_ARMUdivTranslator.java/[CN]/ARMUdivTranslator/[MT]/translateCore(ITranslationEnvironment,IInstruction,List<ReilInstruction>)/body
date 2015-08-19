@@ -1,0 +1,9 @@
+{
+  final String destination=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String dividend=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final String divisor=instruction.getOperands().get(2).getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  long offset=baseOffset;
+  instructions.add(ReilHelpers.createDiv(offset++,dw,dividend,dw,divisor,dw,destination));
+}

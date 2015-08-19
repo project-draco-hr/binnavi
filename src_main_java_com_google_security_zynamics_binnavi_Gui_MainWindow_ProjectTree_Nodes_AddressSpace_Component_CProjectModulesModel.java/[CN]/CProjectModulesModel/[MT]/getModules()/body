@@ -1,0 +1,14 @@
+{
+  List<INaviModule> localCachedValues=m_cachedValues;
+  if (localCachedValues == null) {
+    final IFilter<INaviModule> filter=getFilter();
+    if (m_addressSpace.isLoaded()) {
+      localCachedValues=filter == null ? m_addressSpace.getContent().getModules() : filter.get(m_addressSpace.getContent().getModules());
+    }
+ else {
+      localCachedValues=new ArrayList<INaviModule>();
+    }
+  }
+  m_cachedValues=localCachedValues;
+  return new ArrayList<INaviModule>(localCachedValues);
+}

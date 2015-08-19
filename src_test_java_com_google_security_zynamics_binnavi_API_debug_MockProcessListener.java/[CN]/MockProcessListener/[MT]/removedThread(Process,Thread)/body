@@ -1,0 +1,3 @@
+{
+  events+=String.format("removedThread/%d;",thread.getThreadId());
+}

@@ -1,0 +1,20 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE00075: Function is not loaded");
+  }
+  for (  final IBlockNode block : functionGraph.getNodes()) {
+    for (    final INaviInstruction instruction : block.getInstructions()) {
+      instruction.close();
+    }
+  }
+  functionGraph=null;
+  for (  final IFunctionListener<IComment> listener : functionListeners) {
+    listener.closed(this);
+  }
+  if (view.isLoaded() && !CWindowManager.instance().isOpen(view)) {
+    view.close();
+  }
+  CommentManager.get(provider).unloadGlobalFunctionComment(this,getGlobalComment());
+  CommentManager.get(provider).removeListener(commentListener);
+  return true;
+}

@@ -1,0 +1,11 @@
+{
+  m_node.initializeLocalFunctionComment(comments);
+  for (  final IFunctionNodeListener listener : m_listeners) {
+    try {
+      listener.initializedComment(this,comments);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

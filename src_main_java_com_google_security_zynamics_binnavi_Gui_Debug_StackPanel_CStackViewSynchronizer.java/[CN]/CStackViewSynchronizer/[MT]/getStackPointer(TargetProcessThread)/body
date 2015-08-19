@@ -1,0 +1,8 @@
+{
+  for (  final RegisterValue registerValue : activeThread.getRegisterValues()) {
+    if (registerValue.isSp()) {
+      return registerValue.getValue().longValue();
+    }
+  }
+  return 0;
+}

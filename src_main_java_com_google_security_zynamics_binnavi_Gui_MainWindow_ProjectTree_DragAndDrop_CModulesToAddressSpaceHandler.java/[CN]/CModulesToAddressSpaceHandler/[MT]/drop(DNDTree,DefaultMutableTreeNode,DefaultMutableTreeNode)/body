@@ -1,0 +1,7 @@
+{
+  final CModuleNode draggedNodeNode=(CModuleNode)draggedNode;
+  final CAddressSpaceNode parentNodeNode=(CAddressSpaceNode)parentNode;
+  CAddressSpaceFunctions.addModule(m_parent,parentNodeNode.getObject(),draggedNodeNode.getObject());
+  target.setSelectionPath(new TreePath(parentNodeNode.getLastLeaf().getPath()));
+  target.setSelectionPath(new TreePath(draggedNodeNode.getPath()));
+}

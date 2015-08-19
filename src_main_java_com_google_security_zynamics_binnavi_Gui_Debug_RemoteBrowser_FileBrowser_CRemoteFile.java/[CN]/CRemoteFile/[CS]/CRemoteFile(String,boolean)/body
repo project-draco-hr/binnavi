@@ -1,0 +1,5 @@
+{
+  super(pathname);
+  m_pathname=pathname;
+  m_isDirectory=isDirectory;
+}

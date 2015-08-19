@@ -1,0 +1,3 @@
+{
+  return containsOffset(memoryMap,new CAddress(offset)) && containsOffset(memoryMap,new CAddress(offset + 3));
+}

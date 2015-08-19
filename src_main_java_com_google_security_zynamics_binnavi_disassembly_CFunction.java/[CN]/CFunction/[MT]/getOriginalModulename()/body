@@ -1,0 +1,3 @@
+{
+  return forwardedFunctionModuleName == null ? module.getConfiguration().getName() : forwardedFunctionModuleName;
+}

@@ -1,0 +1,8 @@
+{
+  removeElement(string);
+  insertElementAt(string,0);
+  while (getSize() > m_maximum) {
+    removeElementAt(m_maximum);
+  }
+  setSelectedItem(string);
+}

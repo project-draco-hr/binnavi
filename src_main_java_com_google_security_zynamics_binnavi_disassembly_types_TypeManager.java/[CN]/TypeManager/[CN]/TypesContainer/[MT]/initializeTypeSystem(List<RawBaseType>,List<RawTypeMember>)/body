@@ -1,0 +1,40 @@
+{
+  ImmutableList.Builder<BaseType> baseTypes=ImmutableList.<BaseType>builder();
+  for (  final RawBaseType rawType : rawBaseTypes) {
+    final BaseType newType=new BaseType(rawType.getId(),rawType.getName(),rawType.getSize(),rawType.isSigned(),rawType.getCategory());
+    types.add(newType);
+    typesById.put(newType.getId(),newType);
+    typesByName.put(newType.getName(),newType);
+    stableTypeList.clear();
+    baseTypes.add(newType);
+  }
+  ImmutableList.Builder<TypeMember> typeMembers=ImmutableList.<TypeMember>builder();
+  for (  final RawTypeMember rawMember : rawMembers) {
+    final BaseType parentType=typesById.get(rawMember.getParentId());
+    TypeMember newMember=null;
+    if (rawMember.getOffset().isPresent()) {
+      newMember=TypeMember.createStructureMember(rawMember.getId(),parentType,typesById.get(rawMember.getBaseTypeId()),rawMember.getName(),rawMember.getOffset().get());
+    }
+ else     if (rawMember.getArgumentIndex().isPresent()) {
+      newMember=TypeMember.createFunctionPrototypeMember(rawMember.getId(),parentType,typesById.get(rawMember.getBaseTypeId()),rawMember.getName(),rawMember.getArgumentIndex().get());
+    }
+ else     if (rawMember.getNumberOfElements().isPresent()) {
+      newMember=TypeMember.createArrayMember(rawMember.getId(),parentType,typesById.get(rawMember.getBaseTypeId()),rawMember.getName(),rawMember.getNumberOfElements().get());
+    }
+ else {
+      throw new IllegalStateException("Error: can not associate the raw member to a compound type.");
+    }
+    typeMembers.add(newMember);
+    memberById.put(newMember.getId(),newMember);
+    newMember.getParentType().addMember(newMember);
+  }
+  for (  final RawBaseType rawType : rawBaseTypes) {
+    final Integer pointerId=rawType.getPointerId();
+    if (pointerId != null) {
+      final BaseType child=typesById.get(pointerId);
+      final BaseType parent=typesById.get(rawType.getId());
+      BaseType.appendToPointerHierarchy(child,parent);
+    }
+  }
+  return new TypeDependenceGraph(baseTypes.build(),typeMembers.build());
+}

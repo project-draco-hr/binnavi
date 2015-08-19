@@ -1,0 +1,5 @@
+double labelParentX
+double labelParentY
+double mouseX
+double mouseY
+double zoomFactor

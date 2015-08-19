@@ -1,0 +1,3 @@
+{
+  CViewInserter.insertView(m_parent,m_graph,m_viewContainer);
+}

@@ -1,0 +1,6 @@
+{
+  for (  final ICriteriumTreeNode child : node.getChildren()) {
+    remove(child);
+  }
+  node.getChildren().clear();
+}

@@ -1,0 +1,50 @@
+{
+  final MemoryExpressionParser.multExpression_return retval=new MemoryExpressionParser.multExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token OPERAND_MULT9=null;
+  MemoryExpressionParser.primaryExpression_return primaryExpression8=null;
+  MemoryExpressionParser.primaryExpression_return primaryExpression10=null;
+  Object OPERAND_MULT9_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_primaryExpression_in_multExpression239);
+      primaryExpression8=primaryExpression();
+      state._fsp--;
+      adaptor.addChild(root_0,primaryExpression8.getTree());
+      loop3:       do {
+        int alt3=2;
+        final int LA3_0=input.LA(1);
+        if ((LA3_0 == OPERAND_MULT)) {
+          alt3=1;
+        }
+switch (alt3) {
+case 1:
+{
+            OPERAND_MULT9=(Token)match(input,OPERAND_MULT,FOLLOW_OPERAND_MULT_in_multExpression242);
+            OPERAND_MULT9_tree=(Object)adaptor.create(OPERAND_MULT9);
+            root_0=(Object)adaptor.becomeRoot(OPERAND_MULT9_tree,root_0);
+            pushFollow(FOLLOW_primaryExpression_in_multExpression245);
+            primaryExpression10=primaryExpression();
+            state._fsp--;
+            adaptor.addChild(root_0,primaryExpression10.getTree());
+          }
+        break;
+default :
+      break loop3;
+  }
+}
+ while (true);
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException e) {
+throw e;
+}
+ finally {
+}
+return retval;
+}

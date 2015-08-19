@@ -1,0 +1,3 @@
+{
+  instructionByAddressCache.put(new Pair<IAddress,Integer>(instruction.getAddress(),instruction.getModule().getConfiguration().getId()),instruction);
+}

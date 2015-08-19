@@ -1,0 +1,5 @@
+{
+  final BreakpointableNodeCounter ebc=new BreakpointableNodeCounter(manager);
+  NodeBreakpointIterator.iterate(graph,ebc);
+  return ebc.getCount();
+}

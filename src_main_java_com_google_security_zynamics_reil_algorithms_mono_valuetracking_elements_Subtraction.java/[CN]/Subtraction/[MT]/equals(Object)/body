@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Subtraction) && ((Subtraction)rhs).m_lhs.equals(m_lhs) && ((Subtraction)rhs).m_rhs.equals(m_rhs);
+}

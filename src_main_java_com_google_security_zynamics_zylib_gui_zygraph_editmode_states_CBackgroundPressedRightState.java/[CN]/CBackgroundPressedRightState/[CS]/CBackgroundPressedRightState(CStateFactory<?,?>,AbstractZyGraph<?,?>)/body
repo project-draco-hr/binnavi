@@ -1,0 +1,4 @@
+{
+  m_factory=Preconditions.checkNotNull(factory,"Error: factory argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"Error: graph argument can not be null");
+}

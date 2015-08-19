@@ -1,0 +1,13 @@
+{
+  super(new CUserViewsTable(projectTree,container,container),new CViewFilterCreator(container),new CViewFilterHelp());
+  Preconditions.checkNotNull(projectTree,"IE02013: Project tree argument can not be null");
+  Preconditions.checkNotNull(container,"IE02014: Original container argument can not be null");
+  this.container=container;
+  container.addListener(m_containerListener);
+  if (container.isLoaded()) {
+    for (    final INaviView view : container.getViews()) {
+      view.addListener(m_viewListener);
+    }
+  }
+  updateBorderText(getBorderText());
+}

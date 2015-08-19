@@ -1,0 +1,10 @@
+{
+  final ITraceEvent trace=element.unwrap();
+  boolean returnValue=false;
+  for (  final TraceRegister register : trace.getRegisterValues()) {
+    if ("any".equalsIgnoreCase(m_register) || register.getName().equalsIgnoreCase(m_register)) {
+      returnValue|=evaluateExpression(m_predicate,register,m_value);
+    }
+  }
+  return returnValue;
+}

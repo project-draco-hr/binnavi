@@ -1,0 +1,7 @@
+{
+  m_manager=manager;
+  m_manager.addListener(m_internalListener);
+  for (  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate debuggerTemplate : manager) {
+    m_debuggerTemplates.add(new DebuggerTemplate(debuggerTemplate));
+  }
+}

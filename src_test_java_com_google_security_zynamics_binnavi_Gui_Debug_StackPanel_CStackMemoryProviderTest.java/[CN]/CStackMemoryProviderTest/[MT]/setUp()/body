@@ -1,0 +1,3 @@
+{
+  m_debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+}

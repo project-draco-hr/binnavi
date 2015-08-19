@@ -1,0 +1,3 @@
+{
+  getProvider().editLocalCodeNodeComment(codeNode,null,null,null);
+}

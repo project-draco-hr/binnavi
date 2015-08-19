@@ -1,0 +1,19 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent=module.getContent();
+  try {
+    moduleContent.getFunctionContainer().getFunction((String)null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  moduleContent.getFunctionContainer().getFunction(module.getContent().getFunctionContainer().getFunctions().get(0).getName());
+  module.close();
+  try {
+    moduleContent.getFunctionContainer().getFunction(module.getContent().getFunctionContainer().getFunctions().get(0).getName());
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

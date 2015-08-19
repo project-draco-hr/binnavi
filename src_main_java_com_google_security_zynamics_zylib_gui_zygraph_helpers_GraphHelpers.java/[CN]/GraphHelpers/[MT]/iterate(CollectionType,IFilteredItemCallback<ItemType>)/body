@@ -1,0 +1,11 @@
+{
+  collection.iterate(new INodeCallback<ItemType>(){
+    @Override public IterationMode next(    final ItemType node){
+      if (callback.qualifies(node)) {
+        return callback.next(node);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

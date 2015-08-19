@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  deleteComment(new Commentable(function,CommentScope.LOCAL),commentId,userId);
+}

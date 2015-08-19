@@ -1,0 +1,6 @@
+{
+  m_changedProximityBrowsing=true;
+  setActive();
+  m_changedProximityBrowsing=false;
+  m_graph.updateViews();
+}

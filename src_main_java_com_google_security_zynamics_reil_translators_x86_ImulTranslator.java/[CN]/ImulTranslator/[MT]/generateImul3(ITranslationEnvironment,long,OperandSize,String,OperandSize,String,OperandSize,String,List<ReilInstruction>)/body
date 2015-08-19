@@ -1,0 +1,6 @@
+{
+  final TranslationResult result=generateImul(environment,offset,register2,register3,size2,size3);
+  instructions.addAll(result.getInstructions());
+  final String resultRegister=result.getRegister();
+  writeSingleRegisterMulResult(environment,offset + result.getInstructions().size(),resultRegister,register1,size1,instructions);
+}

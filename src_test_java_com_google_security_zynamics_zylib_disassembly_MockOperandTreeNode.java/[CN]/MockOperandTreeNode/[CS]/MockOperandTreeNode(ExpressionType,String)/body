@@ -1,0 +1,4 @@
+{
+  m_type=Preconditions.checkNotNull(type,"Error: type argument can not be null");
+  m_value=Preconditions.checkNotNull(value,"Error: value argument can not be null");
+}

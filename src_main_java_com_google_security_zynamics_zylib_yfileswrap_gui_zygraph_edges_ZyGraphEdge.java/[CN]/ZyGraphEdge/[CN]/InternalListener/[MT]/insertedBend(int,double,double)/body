@@ -1,0 +1,6 @@
+{
+  if (m_realizer.bendCount() == m_rawEdge.getBendCount()) {
+    return;
+  }
+  m_rawEdge.insertBend(index,x,y);
+}

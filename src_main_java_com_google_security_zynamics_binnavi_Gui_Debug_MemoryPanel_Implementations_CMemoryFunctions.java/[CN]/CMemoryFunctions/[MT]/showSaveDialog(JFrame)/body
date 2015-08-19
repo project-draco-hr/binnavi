@@ -1,0 +1,6 @@
+{
+  final LastDirFileChooser fileChooser=new LastDirFileChooser();
+  fileChooser.setDialogTitle("Save Data to File");
+  final int val=fileChooser.showSaveDialog(parent);
+  return new Pair<Integer,File>(val,fileChooser.getSelectedFile());
+}

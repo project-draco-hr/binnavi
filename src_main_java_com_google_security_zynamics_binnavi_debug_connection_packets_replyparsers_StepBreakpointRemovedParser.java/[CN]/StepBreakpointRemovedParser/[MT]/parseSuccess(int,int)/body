@@ -1,0 +1,8 @@
+{
+  final List<Pair<RelocatedAddress,Integer>> addresses=new ArrayList<>();
+  for (int i=0; i < parseInteger(); i++) {
+    final RelocatedAddress address=new RelocatedAddress(parseAddress());
+    addresses.add(new Pair<RelocatedAddress,Integer>(address,parseInteger()));
+  }
+  return new StepBreakpointsRemovedReply(packetId,0,addresses);
+}

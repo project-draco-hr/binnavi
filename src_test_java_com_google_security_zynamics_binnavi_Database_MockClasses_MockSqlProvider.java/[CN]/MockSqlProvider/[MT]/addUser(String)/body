@@ -1,0 +1,7 @@
+{
+  final Random generator=new Random();
+  final int userId=generator.nextInt(Integer.MAX_VALUE) == 0 ? generator.nextInt(Integer.MAX_VALUE) : generator.nextInt(Integer.MAX_VALUE);
+  final CUser user=new CUser(userId,userName);
+  users.add(user);
+  return user;
+}

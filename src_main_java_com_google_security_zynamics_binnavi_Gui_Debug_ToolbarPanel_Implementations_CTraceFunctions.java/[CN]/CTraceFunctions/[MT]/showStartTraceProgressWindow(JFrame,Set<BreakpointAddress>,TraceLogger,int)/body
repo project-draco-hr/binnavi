@@ -1,0 +1,5 @@
+{
+  final TraceList trace=createTrace(parent,logger);
+  final CStartTraceListener bpl=new CStartTraceListener(logger,trace,addresses,maximumHits);
+  CProgressDialog.showEndless(parent,"Setting echo breakpoints",bpl);
+}

@@ -1,0 +1,12 @@
+{
+  final ArrayList<COperandTree> operands=new ArrayList<COperandTree>();
+  final INaviModule module=line.getModule();
+  for (  final OperandTree rawTree : line.getOperands()) {
+    operands.add(generateTree(rawTree,provider,module));
+  }
+  final IAddress address=line.getAddress();
+  final String mnemonic=line.getMnemonic();
+  final String architecture=line.getArchitecture();
+  final CInstruction instruction=new CInstruction(true,module,address,mnemonic,operands,line.getData(),architecture,provider);
+  return instruction;
+}

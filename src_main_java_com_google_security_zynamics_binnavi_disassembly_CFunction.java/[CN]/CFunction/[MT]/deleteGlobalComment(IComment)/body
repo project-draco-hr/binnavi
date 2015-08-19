@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02532: New comment can not be null");
+  CommentManager.get(provider).deleteGlobalFunctionComment(this,comment);
+}

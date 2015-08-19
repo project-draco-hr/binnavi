@@ -1,0 +1,8 @@
+{
+  super("Remove Database");
+  m_parent=Preconditions.checkNotNull(parent,"IE01871: Parent argument can't be null");
+  m_database=Preconditions.checkNotNull(database,"IE01872: Database argument can't be null");
+  m_updater=Preconditions.checkNotNull(updater,"IE02866: updater argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_DATABASE".charAt(0));
+}

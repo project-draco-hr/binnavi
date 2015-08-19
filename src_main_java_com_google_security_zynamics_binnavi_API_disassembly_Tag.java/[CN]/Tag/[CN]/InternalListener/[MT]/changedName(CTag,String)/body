@@ -1,0 +1,10 @@
+{
+  for (  final ITagListener listener : m_listeners) {
+    try {
+      listener.changedName(Tag.this,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

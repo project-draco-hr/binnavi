@@ -1,0 +1,10 @@
+{
+  if (instruction.getMnemonic().startsWith("SHSAX")) {
+    TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SHSAX");
+    translateAll(environment,instruction,"SHSAX",instructions);
+  }
+ else {
+    TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SHSUBADDX");
+    translateAll(environment,instruction,"SHSUBADDX",instructions);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(edge,"IE02563: edge argument can not be null");
+  deleteCommentInternal(new EdgeCommentingStrategy(edge,scope),comment);
+}

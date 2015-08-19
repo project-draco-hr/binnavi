@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(description,"IE00783: Comment can not be null");
+  if (traceDescription.equals(description)) {
+    return;
+  }
+  sqlProvider.setDescription(this,description);
+  traceDescription=description;
+  for (  final ITraceListListener listener : listeners) {
+    try {
+      listener.changedDescription(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

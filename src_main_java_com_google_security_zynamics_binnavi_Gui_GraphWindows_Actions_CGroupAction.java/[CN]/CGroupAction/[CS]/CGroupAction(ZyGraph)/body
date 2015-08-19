@@ -1,0 +1,5 @@
+{
+  super("Group Selection");
+  m_graph=Preconditions.checkNotNull(graph,"IE02837: graph argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_GROUP_SELECTION_HK.getKeyStroke());
+}

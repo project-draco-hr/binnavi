@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(manager,"IE01708: Manager argument can not be null");
+  Preconditions.checkNotNull(addresses,"IE01709: Address argument can not be null");
+  final Set<BreakpointAddress> addressesToRemoveFromManager=new HashSet<BreakpointAddress>();
+  final Set<BreakpointAddress> addressesToRemoveFromDebugger=new HashSet<BreakpointAddress>();
+  for (  final BreakpointAddress address : addresses) {
+    final BreakpointStatus status=manager.getBreakpointStatus(address,BreakpointType.REGULAR);
+    if ((status == BreakpointStatus.BREAKPOINT_DISABLED) || (status == BreakpointStatus.BREAKPOINT_INACTIVE)) {
+      addressesToRemoveFromManager.add(address);
+    }
+    if (status != BreakpointStatus.BREAKPOINT_DELETING) {
+      addressesToRemoveFromDebugger.add(address);
+    }
+  }
+  if (addressesToRemoveFromManager.size() != 0) {
+    manager.removeBreakpoints(BreakpointType.REGULAR,addressesToRemoveFromManager);
+  }
+  if (addressesToRemoveFromDebugger.size() != 0) {
+    manager.setBreakpointStatus(addressesToRemoveFromDebugger,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DELETING);
+  }
+}

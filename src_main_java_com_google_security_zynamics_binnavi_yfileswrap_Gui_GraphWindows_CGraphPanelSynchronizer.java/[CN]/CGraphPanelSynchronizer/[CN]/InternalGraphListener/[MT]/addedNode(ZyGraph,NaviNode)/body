@@ -1,0 +1,3 @@
+{
+  CNodeUpdaterInitializer.addUpdaters(m_model,node);
+}

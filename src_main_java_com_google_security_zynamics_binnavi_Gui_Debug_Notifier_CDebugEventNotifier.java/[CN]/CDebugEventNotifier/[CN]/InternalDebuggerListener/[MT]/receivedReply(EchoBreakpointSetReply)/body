@@ -1,0 +1,11 @@
+{
+  final List<Pair<RelocatedAddress,Integer>> receivedAddresses=reply.getAddresses();
+  for (  final Pair<RelocatedAddress,Integer> addressErrorPair : receivedAddresses) {
+    final RelocatedAddress relocatedAddress=addressErrorPair.first();
+    final BreakpointAddress breakPointAddress=DebuggerHelpers.getBreakpointAddress(m_debugger,relocatedAddress);
+    if (!m_debugger.getBreakpointManager().hasBreakpoint(BreakpointType.ECHO,breakPointAddress)) {
+      CMessageBox.showError(activateWindow(),String.format("Breakpoint manager does not know break point with address: %x",breakPointAddress.getAddress().getAddress().toLong()));
+      break;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  final List<CTutorialStep> steps=new ArrayList<CTutorialStep>();
+  for (int i=0; i < node.getChildNodes().getLength(); ++i) {
+    final Node child=node.getChildNodes().item(i);
+    final String childText=child.getNodeName();
+    if ("step".equals(childText)) {
+      final List<Long> identifiers=new ArrayList<Long>();
+      final List<Long> allows=new ArrayList<Long>();
+      String actionDescription=null;
+      boolean next=false;
+      for (int j=0; j < child.getChildNodes().getLength(); ++j) {
+        final Node child2=child.getChildNodes().item(j);
+        final String childName=child2.getNodeName();
+        if ("action".equals(childName)) {
+          final long index=Long.valueOf(child2.getTextContent());
+          if (index == 0) {
+            next=true;
+            continue;
+          }
+          identifiers.add(index);
+        }
+ else         if ("allowed".equals(childName)) {
+          final long index=Long.valueOf(child2.getTextContent());
+          allows.add(index);
+        }
+ else         if ("description".equals(childName)) {
+          actionDescription=child2.getTextContent();
+        }
+      }
+      steps.add(new CTutorialStep(actionDescription,identifiers,allows,next));
+    }
+  }
+  return steps;
+}

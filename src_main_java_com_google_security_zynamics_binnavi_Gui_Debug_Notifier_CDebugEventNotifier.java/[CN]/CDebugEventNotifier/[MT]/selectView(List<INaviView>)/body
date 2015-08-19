@@ -1,0 +1,8 @@
+{
+  final CGraphSelectionDialog dlg=new CGraphSelectionDialog(m_parent,views);
+  dlg.setVisible(true);
+  final INaviView result=dlg.getSelectionResult();
+  if (result != null) {
+    CViewOpener.showView(m_parent,m_viewContainer,result,CWindowManager.instance().getLastWindow());
+  }
+}

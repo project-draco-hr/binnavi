@@ -1,0 +1,7 @@
+{
+  checkDeleteArguments(view);
+  if (view.getConfiguration().getId() != -1) {
+    m_provider.deleteView(view);
+  }
+  delete(view);
+}

@@ -1,0 +1,26 @@
+{
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+    try {
+      if (module.equals(codeNode.getParentFunction().getModule())) {
+        if (ZyZoomHelpers.zoomToAddress(graph,address,animate,node,codeNode)) {
+          nodeFound=true;
+          return IterationMode.STOP;
+        }
+      }
+    }
+ catch (    final MaybeNullException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+ else   if (node.getRawNode() instanceof INaviFunctionNode) {
+    final INaviFunctionNode functionNode=(INaviFunctionNode)node.getRawNode();
+    if (module.equals(functionNode.getFunction().getModule())) {
+      if (ZyZoomHelpers.zoomToAddress(graph,address,node,functionNode)) {
+        nodeFound=true;
+        return IterationMode.STOP;
+      }
+    }
+  }
+  return IterationMode.CONTINUE;
+}

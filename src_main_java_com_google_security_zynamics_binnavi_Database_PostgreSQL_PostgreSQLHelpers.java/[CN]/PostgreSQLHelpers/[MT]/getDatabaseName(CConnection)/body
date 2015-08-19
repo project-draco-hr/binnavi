@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(connection,"IE00600: Connection argument can not be null");
+  final String url=connection.getURL();
+  final int index=url.lastIndexOf('/');
+  if (index == -1) {
+    return url;
+  }
+ else {
+    return url.substring(index + 1);
+  }
+}

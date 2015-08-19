@@ -1,0 +1,21 @@
+{
+  final Graph2D graph=(Graph2D)node.getGraph();
+  final double wScaling=wOld > 0 ? wNew / wOld : 1.0d;
+  final double hScaling=hOld > 0 ? hNew / hOld : 1.0d;
+  for (Edge e=node.firstOutEdge(); e != null; e=e.nextOutEdge()) {
+    final EdgeRealizer er=graph.getRealizer(e);
+    final Port port=er.getSourcePort();
+    final double px=port.getOffsetX() * wScaling;
+    final double py=port.getOffsetY() * hScaling;
+    port.setOffsets(px,py);
+    graph.setSourcePointRel(e,new YPoint(px,py));
+  }
+  for (Edge e=node.firstInEdge(); e != null; e=e.nextInEdge()) {
+    final EdgeRealizer er=graph.getRealizer(e);
+    final Port port=er.getTargetPort();
+    final double px=port.getOffsetX() * wScaling;
+    final double py=port.getOffsetY() * hScaling;
+    port.setOffsets(px,py);
+    graph.setTargetPointRel(e,new YPoint(px,py));
+  }
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    return PostgreSQLHelpers.readString(m_resultSet,"architecture");
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

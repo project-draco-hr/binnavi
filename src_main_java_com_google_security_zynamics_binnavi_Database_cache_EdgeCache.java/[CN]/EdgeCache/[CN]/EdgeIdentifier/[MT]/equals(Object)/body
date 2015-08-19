@@ -1,0 +1,9 @@
+{
+  if (this == other) {
+    return true;
+  }
+  if (other instanceof EdgeIdentifier) {
+    return Objects.equals(sourceAddress,((EdgeIdentifier)other).sourceAddress) && Objects.equals(sourceModuleId,((EdgeIdentifier)other).sourceModuleId) && Objects.equals(targetAddress,((EdgeIdentifier)other).targetAddress)&& Objects.equals(targetModuleId,((EdgeIdentifier)other).targetModuleId);
+  }
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  final StringBuffer stringBuffer=new StringBuffer();
+  for (  final byte b : memory) {
+    stringBuffer.append(Convert.byteToHexString(b));
+  }
+  return stringBuffer.toString();
+}

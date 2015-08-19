@@ -1,0 +1,19 @@
+{
+  for (  final CCachedExpressionTree cachedTree : m_trees) {
+    if (cachedTree.getFormulaString().equals(tree.getFormulaString())) {
+      return;
+    }
+  }
+  m_trees.add(tree);
+  while (m_trees.size() > MAXIMUM_CACHE_SIZE) {
+    m_trees.remove(0);
+  }
+  for (  final ICriteriumCacheListener listener : m_listeners) {
+    try {
+      listener.changedCriteria(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

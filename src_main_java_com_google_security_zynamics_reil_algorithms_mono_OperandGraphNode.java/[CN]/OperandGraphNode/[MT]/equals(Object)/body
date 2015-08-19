@@ -1,0 +1,7 @@
+{
+  if (!(rhs instanceof OperandGraphNode)) {
+    return false;
+  }
+  final OperandGraphNode rhsNode=(OperandGraphNode)rhs;
+  return (m_index == rhsNode.getIndex()) && m_instruction.equals(rhsNode.getInstruction());
+}

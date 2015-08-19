@@ -1,0 +1,6 @@
+{
+  m_instruction.initializeGlobalComment(comment);
+  for (  final IInstructionListener listener : m_listeners) {
+    listener.initializedComment(this,comment);
+  }
+}

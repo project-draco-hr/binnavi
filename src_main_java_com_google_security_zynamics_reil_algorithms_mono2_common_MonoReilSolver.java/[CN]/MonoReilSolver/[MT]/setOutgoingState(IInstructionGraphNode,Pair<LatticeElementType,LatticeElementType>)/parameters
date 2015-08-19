@@ -1,0 +1,2 @@
+IInstructionGraphNode n
+Pair<LatticeElementType,LatticeElementType> states

@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(value,"Error: Argument value can't be null");
+  Preconditions.checkNotNull(valueSize,"Error: Argument valueSize can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final String maskValue=environment.getNextVariableString();
+  final String mask=String.valueOf(TranslationHelpers.getMsbMask(valueSize));
+  final String shiftValue=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(valueSize));
+  instructions.add(ReilHelpers.createAnd(offset,valueSize,value,valueSize,mask,valueSize,maskValue));
+  instructions.add(ReilHelpers.createBsh(offset + 1,valueSize,maskValue,valueSize,shiftValue,OperandSize.BYTE,Helpers.SIGN_FLAG));
+}

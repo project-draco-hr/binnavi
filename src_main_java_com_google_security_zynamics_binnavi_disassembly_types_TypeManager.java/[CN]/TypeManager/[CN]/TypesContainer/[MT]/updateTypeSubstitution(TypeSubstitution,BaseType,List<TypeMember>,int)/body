@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(typeSubstitution,"Error: TypeSubstitution argument can not be null.");
+  Preconditions.checkNotNull(baseType,"Error: BaseType argument can not be null.");
+  Preconditions.checkNotNull(memberPath,"Error: Member path can not be null.");
+  substitutionsByType.remove(typeSubstitution.getBaseType(),typeSubstitution);
+  typeSubstitution.setBaseType(baseType);
+  typeSubstitution.setOffset(offset);
+  typeSubstitution.setMemberPath(memberPath);
+  substitutionsByType.put(baseType,typeSubstitution);
+}

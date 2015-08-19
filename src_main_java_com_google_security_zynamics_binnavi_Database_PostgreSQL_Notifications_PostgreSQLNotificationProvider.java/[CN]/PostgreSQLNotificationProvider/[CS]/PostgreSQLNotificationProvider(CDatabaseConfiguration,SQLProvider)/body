@@ -1,0 +1,7 @@
+{
+  m_configuration=configuration;
+  m_provider=provider;
+  m_backendPID=PostgreSQLHelpers.getBackendPID(((PostgreSQLProvider)m_provider).getConnection());
+  m_connection=new CConnection(m_configuration);
+  m_notificationPoller=new CNotificationQueuePoller();
+}

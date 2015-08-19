@@ -1,0 +1,20 @@
+{
+  final CharStream charStream=new ANTLRStringStream(memoryExpression);
+  final MemoryExpressionLexer lexer=new MemoryExpressionLexer(charStream);
+  final CommonTokenStream tokens=new CommonTokenStream();
+  tokens.setTokenSource(lexer);
+  final MemoryExpressionParser parser=new MemoryExpressionParser(tokens){
+    @Override public void recover(    final IntStream input,    final RecognitionException exception){
+    }
+    @Override public Object recoverFromMismatchedToken(    final IntStream input,    final int ttype,    final org.antlr.runtime.BitSet follow) throws RecognitionException {
+      throw new MismatchedTokenException(ttype,input);
+    }
+    @Override public void reportError(    final RecognitionException exception){
+    }
+  }
+;
+  parser.setTreeAdaptor(adaptor);
+  final MemoryExpressionParser.prog_return parserResult=parser.prog();
+  final CommonTree ast=(CommonTree)parserResult.getTree();
+  return convert(ast);
+}

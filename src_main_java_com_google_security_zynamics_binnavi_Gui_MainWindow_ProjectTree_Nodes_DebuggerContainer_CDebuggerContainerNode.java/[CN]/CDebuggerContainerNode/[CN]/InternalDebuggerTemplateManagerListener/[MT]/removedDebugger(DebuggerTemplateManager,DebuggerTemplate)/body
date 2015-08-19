@@ -1,0 +1,11 @@
+{
+  for (int i=0; i < getChildCount(); i++) {
+    final CDebuggerNode node=(CDebuggerNode)getChildAt(i);
+    if (node.getObject() == debugger) {
+      node.dispose();
+      remove(node);
+      break;
+    }
+  }
+  getTreeModel().nodeStructureChanged(CDebuggerContainerNode.this);
+}

@@ -1,0 +1,6 @@
+{
+  final URL jarUrl=new URL("jar","",file.toURI().toURL() + "!/");
+  final JarURLConnection urlConnection=(JarURLConnection)jarUrl.openConnection();
+  final Attributes attr=urlConnection.getMainAttributes();
+  return attr == null ? null : attr.getValue(Attributes.Name.MAIN_CLASS);
+}

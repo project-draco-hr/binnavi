@@ -1,0 +1,34 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  new Processor(){
+    @Override protected String[] process(    final long offset,    final String[] firstTwo,    final String[] secondTwo){
+      final String tmpResult1Not=environment.getNextVariableString();
+      final String tmpResult2Not=environment.getNextVariableString();
+      final String diff1=environment.getNextVariableString();
+      final String sum1=environment.getNextVariableString();
+      final String trueDiff1=environment.getNextVariableString();
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[0],dw,firstTwo[0],16);
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[1],dw,firstTwo[1],16);
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[0],dw,secondTwo[0],16);
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[1],dw,secondTwo[1],16);
+      long baseOffset=offset;
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[0],dw,secondTwo[1],dw,sum1));
+      Helpers.signedSub(baseOffset,environment,instruction,instructions,secondTwo[0],firstTwo[1],diff1,trueDiff1);
+      instructions.add(ReilHelpers.createXor(baseOffset++,dw,sum1,dw,String.valueOf(0xFFFFL),dw,tmpResult1Not));
+      instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpResult1Not,dw,String.valueOf(-15L),bt,"CPSR_GE_0"));
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CPSR_GE_0",bt,"CPSR_GE_1"));
+      instructions.add(ReilHelpers.createXor(baseOffset++,dw,trueDiff1,dw,String.valueOf(0xFFFFL),dw,tmpResult2Not));
+      instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpResult2Not,dw,String.valueOf(-15L),bt,"CPSR_GE_2"));
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CPSR_GE_2",bt,"CPSR_GE_3"));
+      return new String[]{sum1,trueDiff1};
+    }
+  }
+.generate(environment,baseOffset,16,sourceRegister1,sourceRegister2,targetRegister,instructions);
+}

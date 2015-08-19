@@ -1,0 +1,11 @@
+{
+  final BreakpointManager manager=new BreakpointManager();
+  manager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123_SET);
+  manager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  manager.setBreakpointStatus(BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_ACTIVE,1);
+  CGraphDebugger.removeBreakpoints(CommonTestObjects.BP_ADDRESS_123_SET,manager);
+  CGraphDebugger.removeBreakpoints(CommonTestObjects.BP_ADDRESS_456_SET,manager);
+  assertEquals(1,manager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  assertEquals(0x123,manager.getBreakpoint(BreakpointType.REGULAR,0).getAddress().getAddress().getAddress().toLong());
+  assertEquals(BreakpointStatus.BREAKPOINT_DELETING,manager.getBreakpointStatus(BreakpointType.REGULAR,1));
+}

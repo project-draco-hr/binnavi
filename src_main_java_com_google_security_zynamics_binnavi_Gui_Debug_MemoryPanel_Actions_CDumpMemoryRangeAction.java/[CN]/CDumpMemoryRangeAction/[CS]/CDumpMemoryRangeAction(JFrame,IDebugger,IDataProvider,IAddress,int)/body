@@ -1,0 +1,8 @@
+{
+  super("Dump whole section");
+  m_parent=Preconditions.checkNotNull(parent,"IE01412: Parent argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01413: Debugger argument can not be null");
+  m_dataProvider=Preconditions.checkNotNull(dataProvider,"IE01414: Data provider argument can not be null");
+  m_start=Preconditions.checkNotNull(start,"IE01415: Start argument can not be null");
+  m_size=size;
+}

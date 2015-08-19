@@ -1,0 +1,18 @@
+{
+  if (value && !isVisible()) {
+    m_exception=null;
+    final CountDownLatch countDownLatch=new CountDownLatch(2);
+    final Thread mainWorkerThread=new Thread(new InternalCommandThread(countDownLatch));
+    mainWorkerThread.start();
+    super.setVisible(value);
+    try {
+      countDownLatch.await();
+    }
+ catch (    final InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+  }
+ else   if (!value && isVisible()) {
+    super.setVisible(false);
+  }
+}

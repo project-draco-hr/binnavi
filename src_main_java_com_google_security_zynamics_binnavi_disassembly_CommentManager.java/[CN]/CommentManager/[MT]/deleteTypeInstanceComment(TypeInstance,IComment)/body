@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(typeInstance,"Error: type instance can not be null");
+  deleteComment(new TypeInstanceCommentingStrategy(typeInstance),comment);
+}

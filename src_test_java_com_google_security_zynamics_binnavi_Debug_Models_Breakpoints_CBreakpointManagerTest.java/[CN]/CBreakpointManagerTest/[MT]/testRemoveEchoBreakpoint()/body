@@ -1,0 +1,13 @@
+{
+  try {
+    m_manager.removeBreakpoints(BreakpointType.ECHO,null);
+    fail("Exception not raised");
+  }
+ catch (  final NullPointerException ex) {
+  }
+  assertEquals(2,m_manager.getNumberOfBreakpoints(BreakpointType.ECHO));
+  m_manager.removeBreakpoints(BreakpointType.ECHO,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x111)))));
+  assertEquals(1,m_manager.getNumberOfBreakpoints(BreakpointType.ECHO));
+  m_manager.removeBreakpoints(BreakpointType.ECHO,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x222)))));
+  assertEquals(0,m_manager.getNumberOfBreakpoints(BreakpointType.ECHO));
+}

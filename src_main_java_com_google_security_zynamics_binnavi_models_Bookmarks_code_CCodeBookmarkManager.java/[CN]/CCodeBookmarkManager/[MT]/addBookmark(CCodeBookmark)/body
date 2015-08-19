@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(bookmark,"IE00328: Bookmark argument can not be null");
+  Preconditions.checkArgument(!m_bookmarks.contains(bookmark),"IE00329: Bookmark can not be added more than once");
+  m_bookmarks.add(bookmark);
+  for (  final ICodeBookmarkManagerListener listener : m_listeners) {
+    try {
+      listener.addedBookmark(this,bookmark);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  for (  final IGroupNodeListener listener : m_listeners) {
+    try {
+      listener.deletedComment(GroupNode.this,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

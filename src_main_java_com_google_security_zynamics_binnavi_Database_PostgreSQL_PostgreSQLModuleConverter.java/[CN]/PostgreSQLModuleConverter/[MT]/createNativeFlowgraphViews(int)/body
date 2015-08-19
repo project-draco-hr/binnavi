@@ -1,0 +1,3 @@
+{
+  return PostgreSQLNativeViewCreator.createNativeFlowgraphViews(m_provider.getConnection(),moduleId);
+}

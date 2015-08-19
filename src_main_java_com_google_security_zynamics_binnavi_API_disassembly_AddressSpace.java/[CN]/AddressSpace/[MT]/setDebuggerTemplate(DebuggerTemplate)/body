@@ -1,0 +1,8 @@
+{
+  try {
+    m_addressSpace.getConfiguration().setDebuggerTemplate(template == null ? null : template.getNative());
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

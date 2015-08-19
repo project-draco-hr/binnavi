@@ -1,0 +1,3 @@
+{
+  return new RegisterSetLatticeElement(m_taintedRegs,m_newlyTaintedRegs,m_untaintedRegs,m_readRegs,m_updatedRegs);
+}

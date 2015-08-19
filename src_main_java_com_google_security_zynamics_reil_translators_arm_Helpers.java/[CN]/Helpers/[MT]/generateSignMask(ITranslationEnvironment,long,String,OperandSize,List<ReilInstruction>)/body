@@ -1,0 +1,11 @@
+{
+  final String msbMask=String.valueOf(TranslationHelpers.getMsbMask(size));
+  final String shiftValue=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(size));
+  final String maskedMsb=environment.getNextVariableString();
+  final String msbInLsb=environment.getNextVariableString();
+  final String signMask=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset++,size,value,size,msbMask,size,maskedMsb));
+  instructions.add(ReilHelpers.createBsh(offset++,size,maskedMsb,size,shiftValue,size,msbInLsb));
+  instructions.add(ReilHelpers.createSub(offset++,size,"0",size,msbInLsb,size,signMask));
+  return new Pair<String,String>(msbInLsb,signMask);
+}

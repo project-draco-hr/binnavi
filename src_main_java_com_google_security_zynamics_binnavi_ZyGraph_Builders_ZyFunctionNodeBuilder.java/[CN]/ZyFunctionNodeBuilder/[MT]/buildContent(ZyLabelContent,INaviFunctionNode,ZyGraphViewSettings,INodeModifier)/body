@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(node,"IE00903: Argument node can't be null");
+  while (content.getLineCount() != 0) {
+    content.removeLine(0);
+  }
+  buildAddressLine(node,content,modifier);
+  buildNameLine(node,content,graphSettings.getDisplaySettings().getFunctionNodeInformation());
+  ZyNodeBuilder.addCommentTagLines(content,node,node.getLocalFunctionComment(),node.getFunction().getGlobalComment());
+}

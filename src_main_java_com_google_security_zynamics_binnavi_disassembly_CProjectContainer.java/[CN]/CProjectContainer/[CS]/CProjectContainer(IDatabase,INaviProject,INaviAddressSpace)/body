@@ -1,0 +1,14 @@
+{
+  m_database=Preconditions.checkNotNull(database,"IE01788: database argument can not be null");
+  m_project=Preconditions.checkNotNull(project,"IE01789: project argument can not be null");
+  m_addressSpace=addressSpace;
+  m_provider=new ProjectTraceProvider(m_project);
+  m_debuggerProvider=new DebuggerProvider(new ProjectTargetSettings(m_project));
+  final IDebugger debugger=m_addressSpace.getConfiguration().getDebugger();
+  if (debugger != null) {
+    m_activeDebuggers.put(addressSpace,debugger);
+    m_debuggerProvider.addDebugger(debugger);
+  }
+  m_project.addListener(m_listener);
+  initializeAddressSpaceListeners(addressSpace);
+}

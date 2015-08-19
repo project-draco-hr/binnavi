@@ -1,0 +1,25 @@
+{
+  parents.put(rootNode,parent);
+  vertex.put(dfnum,rootNode);
+  dfnums.put(rootNode,dfnum);
+  dfnum++;
+  final Stack<Pair<NodeType,NodeType>> nodeStack=new Stack<Pair<NodeType,NodeType>>();
+  for (  final NodeType child : Lists.reverse(rootNode.getChildren())) {
+    nodeStack.push(new Pair<NodeType,NodeType>(child,rootNode));
+  }
+  while (!nodeStack.empty()) {
+    final Pair<NodeType,NodeType> currentElement=nodeStack.pop();
+    final NodeType currentNode=currentElement.first();
+    final NodeType currentParent=currentElement.second();
+    if (dfnums.get(currentNode) == -1) {
+      dfnums.put(currentNode,dfnum);
+      vertex.put(dfnum,currentNode);
+      parents.put(currentNode,currentParent);
+      dfnum++;
+      for (      final NodeType child : Lists.reverse(currentNode.getChildren())) {
+        nodeStack.push(new Pair<NodeType,NodeType>(child,currentNode));
+      }
+    }
+  }
+  return dfnum - 1;
+}

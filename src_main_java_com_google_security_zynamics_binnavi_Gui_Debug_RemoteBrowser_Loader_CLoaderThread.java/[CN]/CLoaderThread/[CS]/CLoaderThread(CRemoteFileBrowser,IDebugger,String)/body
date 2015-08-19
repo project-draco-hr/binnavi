@@ -1,0 +1,6 @@
+{
+  m_debugger=debugger;
+  m_path=path;
+  m_listener=new CDebuggerListener(browser,this);
+  m_debugger.addListener(m_listener);
+}

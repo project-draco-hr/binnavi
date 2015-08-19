@@ -1,0 +1,14 @@
+{
+  final JPopupMenu popupMenu=new JPopupMenu();
+  final TypeInstanceContainer instanceContainer=module.getContent().getTypeInstanceContainer();
+  final TypeInstance existingInstance=instanceContainer.getTypeInstance(new TypeInstanceAddress(currentSection.getStartAddress(),offset));
+  if (existingInstance != null) {
+    popupMenu.add(new EditTypeInstanceAction((JFrame)SwingUtilities.getAncestorOfClass(JFrame.class,DataSectionComponent.this),module.getTypeManager(),existingInstance,instanceContainer));
+  }
+ else {
+    popupMenu.add(new CreateTypeInstanceAction((JFrame)SwingUtilities.getAncestorOfClass(JFrame.class,DataSectionComponent.this),instanceContainer,module.getTypeManager(),currentSection,offset));
+  }
+  popupMenu.addSeparator();
+  popupMenu.add(HexViewOptionsMenu.createHexViewOptionsMenu(hexView));
+  return popupMenu;
+}

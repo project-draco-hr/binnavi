@@ -1,0 +1,10 @@
+{
+  removeAll();
+  if (activeView == PerspectiveType.DebugPerspective) {
+    add(m_debugLeftPanel);
+  }
+ else {
+    add(m_leftPanel);
+  }
+  updateUI();
+}

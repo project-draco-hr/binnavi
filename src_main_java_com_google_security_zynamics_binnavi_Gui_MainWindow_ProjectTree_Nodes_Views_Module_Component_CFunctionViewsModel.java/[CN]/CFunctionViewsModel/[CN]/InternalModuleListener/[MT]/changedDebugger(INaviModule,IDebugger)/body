@@ -1,0 +1,10 @@
+{
+  if (m_activeDebugger != null) {
+    m_activeDebugger.getBreakpointManager().removeListener(m_breakpointManagerListener);
+  }
+  m_activeDebugger=debugger;
+  if (debugger != null) {
+    debugger.getBreakpointManager().addListener(m_breakpointManagerListener);
+  }
+  fireTableDataChanged();
+}

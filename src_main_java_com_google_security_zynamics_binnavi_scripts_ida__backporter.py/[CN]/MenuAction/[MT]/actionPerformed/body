@@ -1,0 +1,7 @@
+def actionPerformed(self, e):
+    fc = JFileChooser()
+    returnValue = fc.showSaveDialog(self.pi.mainWindow.frame)
+    if (returnValue == JFileChooser.APPROVE_OPTION):
+        fileName = fc.selectedFile.absolutePath
+        createIdcFile(fileName, self.module)
+        MessageBox.showInformation(self.pi.mainWindow.frame, 'Module information was successfully written to the selected IDC file. Please run the IDC file in IDA Pro now.')

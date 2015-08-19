@@ -1,0 +1,11 @@
+{
+  final LoadFromDatabaseThread thread=new LoadFromDatabaseThread(module);
+  CProgressDialog.showEndless(parent,"Loading data from the database" + " ...",thread);
+  final Exception exception=thread.getException();
+  if (exception != null) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00199: " + "Could not load module data";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the module data of module '%s' from the database.",module.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The module data was not loaded from the database."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+}

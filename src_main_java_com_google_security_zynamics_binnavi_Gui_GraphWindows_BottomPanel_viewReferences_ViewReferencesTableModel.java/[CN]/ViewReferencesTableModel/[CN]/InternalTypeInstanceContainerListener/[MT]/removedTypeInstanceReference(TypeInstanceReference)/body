@@ -1,0 +1,5 @@
+{
+  if (needsRefresh(reference)) {
+    removeFromTree(multiIndex.getInstructionNode(reference));
+  }
+}

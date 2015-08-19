@@ -1,0 +1,7 @@
+{
+  assertEquals(0,typeSystem.uintType.getPointerLevel());
+  assertEquals(0,typeSystem.intType.getPointerLevel());
+  BaseType.appendToPointerHierarchy(typeSystem.uintType,typeSystem.intType);
+  assertEquals(0,typeSystem.uintType.getPointerLevel());
+  assertEquals(1,typeSystem.intType.getPointerLevel());
+}

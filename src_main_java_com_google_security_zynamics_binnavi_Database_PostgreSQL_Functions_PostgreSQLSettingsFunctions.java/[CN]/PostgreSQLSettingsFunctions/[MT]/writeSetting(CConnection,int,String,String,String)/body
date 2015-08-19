@@ -1,0 +1,20 @@
+{
+  String id_column="";
+  if (table.equalsIgnoreCase(CTableNames.MODULE_SETTINGS_TABLE)) {
+    id_column="module_id";
+  }
+ else {
+    id_column="project_id";
+  }
+  final String deleteQuery="DELETE FROM " + table + " WHERE "+ id_column+ " = "+ containerId+ " AND \"name\" = \'"+ key+ "\'";
+  final String insertQuery="INSERT INTO " + table + " VALUES(\'"+ containerId+ "\',\'"+ key+ "\',"+ value+ ")";
+  try {
+    PostgreSQLHelpers.beginTransaction(connection);
+    connection.executeUpdate(deleteQuery,true);
+    connection.executeUpdate(insertQuery,true);
+    PostgreSQLHelpers.endTransaction(connection);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException("E00058: Could not update setting on " + table);
+  }
+}

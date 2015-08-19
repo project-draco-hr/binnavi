@@ -1,0 +1,32 @@
+{
+  if (!m_started) {
+    pushLongestPathFrom(m_root);
+    m_started=true;
+  }
+ else {
+    if (traversalStack.empty()) {
+      throw new RuntimeException("Internal Error: Traversal already finished");
+    }
+    do {
+      if (traversalStack.empty()) {
+        return false;
+      }
+      final Pair<IZyTreeNode,Integer> parentElement=traversalStack.pop();
+      final int childrenProcessed=parentElement.second() + 1;
+      if (childrenProcessed > parentElement.first().getChildren().size()) {
+        continue;
+      }
+ else       if (childrenProcessed == parentElement.first().getChildren().size()) {
+        traversalStack.push(new Pair<IZyTreeNode,Integer>(parentElement.first(),childrenProcessed));
+        return true;
+      }
+ else {
+        traversalStack.push(new Pair<IZyTreeNode,Integer>(parentElement.first(),childrenProcessed));
+        pushLongestPathFrom(parentElement.first().getChildren().get(childrenProcessed));
+        return true;
+      }
+    }
+ while (true);
+  }
+  return !traversalStack.empty();
+}

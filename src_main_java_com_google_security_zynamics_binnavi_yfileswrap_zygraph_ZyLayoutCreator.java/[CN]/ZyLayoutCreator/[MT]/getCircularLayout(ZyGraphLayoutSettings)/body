@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(settings,"IE00894: Settings argument can not be null");
+  final CircularStyle style=settings.getCircularSettings().getStyle();
+  final long minNodeDist=settings.getCircularSettings().getMinimumNodeDistance();
+  return ZyGraphLayouter.createCircularLayouter(style,minNodeDist);
+}

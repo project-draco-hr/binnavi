@@ -1,0 +1,3 @@
+{
+  CGraphLayouter.toggleAutomaticLayouting(m_graph);
+}

@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.deleteProjects(getParentWindow(),m_database,getProjects(getSortSelectedRows()),new CEmptyUpdater());
+}

@@ -1,0 +1,6 @@
+{
+  m_graph=graph;
+  m_settings=settings.getProximitySettings();
+  addVisibilityListener();
+  addSettingsListener();
+}

@@ -1,0 +1,6 @@
+{
+  final INaviProject project=new MockProject(provider);
+  final ViewNotificationContainer container=new ViewNotificationContainer(view.getConfiguration().getId(),Optional.fromNullable(view),Optional.of(project.getConfiguration().getId()),Optional.<INaviModule>absent(),Optional.of(project),"UPDATE");
+  final PostgreSQLViewNotificationParser parser=new PostgreSQLViewNotificationParser();
+  parser.inform(Lists.<ViewNotificationContainer>newArrayList(container),provider);
+}

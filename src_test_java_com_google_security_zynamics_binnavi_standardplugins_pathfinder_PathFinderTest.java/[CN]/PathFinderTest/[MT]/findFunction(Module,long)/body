@@ -1,0 +1,8 @@
+{
+  for (  final Function function : module.getFunctions()) {
+    if (function.getAddress().toLong() == offset) {
+      return function;
+    }
+  }
+  return null;
+}

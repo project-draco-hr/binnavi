@@ -1,0 +1,4 @@
+{
+  testUpdateType(getKernel32Module());
+  testUpdateType(getNotepadModule());
+}

@@ -1,0 +1,7 @@
+{
+  final INaviModule module=model.getViewContainer().getModules().get(0);
+  final List<TypeInstanceReference> references=treeNode.getTypeInstanceReferences();
+  add(new ShowTypeInstanceReferencesAction(model.getParent(),references,module));
+  add(new GotoTypeInstanceAction(references.get(0).getTypeInstance()));
+  add(new RenameTypeInstanceAction(model.getParent(),module.getContent().getTypeInstanceContainer(),references.get(0).getTypeInstance()));
+}

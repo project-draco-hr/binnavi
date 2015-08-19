@@ -1,0 +1,9 @@
+{
+  if (m_isloaded) {
+    m_isloaded=false;
+    return true;
+  }
+ else {
+    return false;
+  }
+}

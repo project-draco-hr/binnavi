@@ -1,0 +1,5 @@
+{
+  super("Test connection");
+  m_settingsPanel=settingsPanel;
+  putValue(SHORT_DESCRIPTION,"Tries to establish a connection to the configured database (CTRL-T)");
+}

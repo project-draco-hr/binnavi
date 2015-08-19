@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.createTypeSubstitution(getConnection().getConnection(),treeNodeId,baseTypeId,memberPath,position,offset,address,module);
+}

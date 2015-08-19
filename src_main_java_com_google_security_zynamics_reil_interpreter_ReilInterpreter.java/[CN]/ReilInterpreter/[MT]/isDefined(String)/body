@@ -1,0 +1,4 @@
+{
+  System.out.println(registers.keySet());
+  return registers.containsKey(register);
+}

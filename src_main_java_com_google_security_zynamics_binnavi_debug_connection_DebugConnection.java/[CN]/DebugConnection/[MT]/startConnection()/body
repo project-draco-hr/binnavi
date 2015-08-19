@@ -1,0 +1,10 @@
+{
+  NaviLogger.info("Trying to connect to the debug client via TCP/IP");
+  try {
+    debugClientSocket=new Socket(debugClientHost,debugClientPort);
+    super.startConnection(new SocketReader(debugClientSocket));
+  }
+ catch (  final Exception e) {
+    throw new ConnectException(e.getMessage());
+  }
+}

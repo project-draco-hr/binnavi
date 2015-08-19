@@ -1,0 +1,3 @@
+{
+  return new CModuleNameLabel(CModulesTable.this,getModules(new int[]{convertRowIndexToModel(row)})[0],isSelected ? table.getSelectionBackground() : Color.WHITE);
+}

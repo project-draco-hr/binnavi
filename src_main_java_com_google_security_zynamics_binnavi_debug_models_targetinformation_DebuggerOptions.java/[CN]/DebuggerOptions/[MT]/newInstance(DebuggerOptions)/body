@@ -1,0 +1,3 @@
+{
+  return new DebuggerOptions(options.canDetach,options.canAttach,options.canTerminate,options.canMemmap,options.stackAvailable,options.canValidMemory,options.canHalt,options.haltBeforeCommunicating,options.canMultithread,options.canSoftwareBreakpoints,options.breakpointCounter,options.pageSize,new ArrayList<DebuggerException>(options.exceptions),options.canBreakOnModuleLoad,options.canBreakOnModuleUnload,options.canTraceCount);
+}

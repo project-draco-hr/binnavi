@@ -1,0 +1,4 @@
+{
+  if (!(node.getRawNode() instanceof INaviFunctionNode))   return;
+  node.getRealizer().setUpdater(new CFunctionNodeUpdater(model.getGraph(),(INaviFunctionNode)node.getRawNode(),model.getDebuggerProvider()));
+}

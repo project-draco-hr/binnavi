@@ -1,0 +1,5 @@
+{
+  final List<INaviOperandTreeNode> nodes=new ArrayList<INaviOperandTreeNode>();
+  collect(root,nodes);
+  return nodes;
+}

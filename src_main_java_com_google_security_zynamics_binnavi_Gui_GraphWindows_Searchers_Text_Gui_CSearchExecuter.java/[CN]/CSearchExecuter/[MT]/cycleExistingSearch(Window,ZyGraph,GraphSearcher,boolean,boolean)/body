@@ -1,0 +1,24 @@
+{
+  if (cycleBackwards) {
+    searcher.getCursor().previous();
+    if (searcher.getCursor().isBeforeFirst()) {
+      CMessageBox.showInformation(parent,"All search results were displayed. Going back to the last one");
+    }
+  }
+ else {
+    searcher.getCursor().next();
+    if (searcher.getCursor().isAfterLast()) {
+      CMessageBox.showInformation(parent,"All search results were displayed. Going back to the first one");
+    }
+  }
+  final SearchResult result=searcher.getCursor().current();
+  if (result == null) {
+    return;
+  }
+  if (result.getObject() instanceof NaviNode) {
+    ZyGraphHelpers.centerNode(graph,(NaviNode)result.getObject(),zoomToResult);
+  }
+ else   if (result.getObject() instanceof NaviEdge) {
+    ZyGraphHelpers.centerEdgeLabel(graph,(NaviEdge)result.getObject(),zoomToResult);
+  }
+}

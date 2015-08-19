@@ -1,0 +1,40 @@
+{
+  Preconditions.checkNotNull(provider,"IE02445: provider argument can not be null");
+  Preconditions.checkNotNull(codeNode,"IE02446: codeNode argument can not be null");
+  Preconditions.checkNotNull(commentText,"IE02447: commentText argument can not be null");
+  Preconditions.checkNotNull(userId,"IE02448: userId argument can not be null");
+  final Connection connection=provider.getConnection().getConnection();
+  Integer moduleId=null;
+  final int nodeId=codeNode.getId();
+  final BigInteger nodeAddress=codeNode.getAddress().toBigInteger();
+  try {
+    moduleId=codeNode.getParentFunction().getModule().getConfiguration().getId();
+  }
+ catch (  final MaybeNullException exception) {
+    throw new CouldntSaveDataException("Error: Can not append global code node comments for nodes without a parent function");
+  }
+  final String function="{ ? = call append_global_code_node_comment( ?, ?, ?, ?, ?) }";
+  try {
+    final CallableStatement appendCommentFunction=connection.prepareCall(function);
+    try {
+      appendCommentFunction.registerOutParameter(1,Types.INTEGER);
+      appendCommentFunction.setInt(2,moduleId);
+      appendCommentFunction.setInt(3,nodeId);
+      appendCommentFunction.setObject(4,nodeAddress,java.sql.Types.BIGINT);
+      appendCommentFunction.setInt(5,userId);
+      appendCommentFunction.setString(6,commentText);
+      appendCommentFunction.execute();
+      final int commentId=appendCommentFunction.getInt(1);
+      if (appendCommentFunction.wasNull()) {
+        throw new CouldntSaveDataException("Error: Got an comment id of null from the database");
+      }
+      return commentId;
+    }
+  finally {
+      appendCommentFunction.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  final List<INaviViewNode> convertedNodes=GraphConverters.convert(nodes);
+  getGraph().firePreEvent();
+  getRawView().getContent().deleteNodes(convertedNodes);
+  getGraph().firePostEvent();
+}

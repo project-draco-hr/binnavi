@@ -1,0 +1,15 @@
+{
+  Preconditions.checkArgument(userId >= 0,"Error: User id must be a positive number");
+  for (  final IUser storedUser : users) {
+    if (storedUser.getUserId() == userId) {
+      return storedUser;
+    }
+  }
+  syncUsers();
+  for (  final IUser storedUser : users) {
+    if (storedUser.getUserId() == userId) {
+      return storedUser;
+    }
+  }
+  return null;
+}

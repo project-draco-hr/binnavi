@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(this.offset.isPresent() == offset.isPresent(),"Error: can not change an array type to a non array type and vice versa.");
+  parentType.deleteMember(this);
+  this.offset=offset;
+  parentType.addMember(this);
+}

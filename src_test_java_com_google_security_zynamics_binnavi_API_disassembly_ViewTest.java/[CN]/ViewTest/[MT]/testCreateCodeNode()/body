@@ -1,0 +1,14 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  m_view.addListener(listener);
+  final CModule internalModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,m_provider);
+  final CFunction parentFunction=new CFunction(internalModule,new MockView(),new CAddress(0x123),"Mock Function","Mock Function","Mock Description",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,m_provider);
+  final Function function=new Function(module,parentFunction);
+  final List<Instruction> instructions=Lists.newArrayList(new Instruction(new MockInstruction()));
+  m_view.load();
+  final CodeNode node=m_view.createCodeNode(function,instructions);
+  assertEquals(node,m_view.getGraph().getNodes().get(0));
+  assertEquals(listener.events,"addedNode;changedGraphType;");
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.GraphType.Flowgraph,m_view.getGraphType());
+  m_view.removeListener(listener);
+}

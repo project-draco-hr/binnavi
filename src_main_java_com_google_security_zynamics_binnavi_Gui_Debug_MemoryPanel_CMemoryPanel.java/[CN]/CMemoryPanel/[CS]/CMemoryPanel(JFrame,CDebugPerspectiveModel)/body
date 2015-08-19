@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01399: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01400: Debugger argument can not be null");
+  m_hexView=new CMemoryViewer(parent,debugger);
+  m_searchAction=CActionProxy.proxy(new CSearchAction(parent,debugger,m_hexView));
+  m_gotoAction=CActionProxy.proxy(new CGotoAction(parent,m_hexView,debugger));
+  add(m_hexView);
+  add(m_offsetLabel,BorderLayout.SOUTH);
+  updateOffsetLabel();
+  m_hexView.getHexView().addHexListener(m_hexPanelListener);
+  initHotkeys();
+}

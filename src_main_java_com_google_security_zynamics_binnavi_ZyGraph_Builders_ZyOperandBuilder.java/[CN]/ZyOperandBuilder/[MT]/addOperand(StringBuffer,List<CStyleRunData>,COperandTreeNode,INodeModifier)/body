@@ -1,0 +1,39 @@
+{
+  final ColorsConfigItem colors=ConfigManager.instance().getColorSettings();
+  final String typeSubstitution=getTypeSubstitution(treeNode);
+  if (!typeSubstitution.isEmpty()) {
+    styleRuns.add(new CStyleRunData(line.length(),typeSubstitution.length(),colors.getVariableColor(),treeNode));
+    line.append(typeSubstitution);
+    return;
+  }
+  final IReplacement replacement=treeNode.getDisplayStyle() == OperandDisplayStyle.OFFSET ? treeNode.getReplacement() : null;
+  if (replacement == null) {
+    final Color color=getOperandColor(treeNode.getType());
+    final String value=adjustValue(treeNode,modifier);
+    styleRuns.add(new CStyleRunData(line.length(),value.length(),color,treeNode));
+    line.append(value);
+  }
+ else {
+    final String replacementString=determineReplacementString(treeNode,replacement);
+    if (replacementString.equalsIgnoreCase("")) {
+      final Color color=getOperandColor(treeNode.getType());
+      final String value=adjustValue(treeNode,modifier);
+      styleRuns.add(new CStyleRunData(line.length(),value.length(),color,treeNode));
+      line.append(value);
+      return;
+    }
+    if (treeNode.getType() == ExpressionType.IMMEDIATE_INTEGER) {
+      if (replacement instanceof CFunctionReplacement) {
+        styleRuns.add(new CStyleRunData(line.length(),replacementString.length(),colors.getFunctionColor(),treeNode));
+      }
+ else {
+        styleRuns.add(new CStyleRunData(line.length(),replacementString.length(),colors.getVariableColor(),treeNode));
+      }
+    }
+ else {
+      final Color color=getOperandColor(treeNode.getType());
+      styleRuns.add(new CStyleRunData(line.length(),replacementString.length(),color,treeNode));
+    }
+    line.append(replacementString);
+  }
+}

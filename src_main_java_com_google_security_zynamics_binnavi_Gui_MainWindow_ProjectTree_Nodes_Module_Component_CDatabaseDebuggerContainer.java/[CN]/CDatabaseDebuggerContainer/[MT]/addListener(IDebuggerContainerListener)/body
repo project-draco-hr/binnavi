@@ -1,0 +1,5 @@
+{
+  final ListenerWrapper wrapper=new ListenerWrapper(listener);
+  m_database.getContent().getDebuggerTemplateManager().addListener(wrapper);
+  m_wrappers.add(wrapper);
+}

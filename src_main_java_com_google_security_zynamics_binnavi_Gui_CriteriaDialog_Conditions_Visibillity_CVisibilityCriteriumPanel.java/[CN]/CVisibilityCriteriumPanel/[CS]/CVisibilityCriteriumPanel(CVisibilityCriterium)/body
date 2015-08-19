@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  visibilityCriterium=criterium;
+  visibilityStateBox.addActionListener(visibilityStateBoxListener);
+  initPanel();
+}

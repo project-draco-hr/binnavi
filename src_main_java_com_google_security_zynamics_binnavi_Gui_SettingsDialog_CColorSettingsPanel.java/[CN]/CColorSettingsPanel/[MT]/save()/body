@@ -1,0 +1,38 @@
+{
+  final ColorsConfigItem colors=ConfigManager.instance().getColorSettings();
+  colors.setNormalFunctionColor(m_normalFunctionColorPanel.getColor());
+  colors.setImportedFunctionColor(m_importFunctionColorPanel.getColor());
+  colors.setLibraryFunctionColor(m_libraryFunctionColorPanel.getColor());
+  colors.setThunkFunctionColor(m_thunkFunctionColorPanel.getColor());
+  colors.setAdjustorThunkFunctionColor(m_adjustorThunkFunctionColorPanel.getColor());
+  colors.setAddressColor(m_addressColorPanel.getColor());
+  colors.setMnemonicColor(m_mnemonicColorPanel.getColor());
+  colors.setImmediateColor(m_literalsColorPanel.getColor());
+  colors.setRegisterColor(m_registersColorPanel.getColor());
+  colors.setFunctionColor(m_functionColorPanel.getColor());
+  colors.setVariableColor(m_variableColorPanel.getColor());
+  colors.setExpressionListColor(m_expressionListColorPanel.getColor());
+  colors.setMemRefColor(m_memoryReferencesColorPanel.getColor());
+  colors.setOperatorColor(m_operatorColorPanel.getColor());
+  colors.setOperandSeperatorColor(m_operandSeparatorColorPanel.getColor());
+  colors.setPrefixColor(m_prefixColorPanel.getColor());
+  colors.setAddressColor(m_addressColorPanel.getColor());
+  colors.setBasicBlocksColor(m_basicblocksPanel.getColor());
+  colors.setUnconditionalJumpColor(m_unconditionalJumpsPanel.getColor());
+  colors.setConditionalJumpTrueColor(m_conditionalJumpsTakenPanel.getColor());
+  colors.setConditionalJumpFalseColor(m_conditionalJumpsNotTakenPanel.getColor());
+  colors.setEnterInlinedJumpColor(m_enterInlinedJumpsPanel.getColor());
+  colors.setLeaveInlinedJumpColor(m_leaveInlinedJumpsPanel.getColor());
+  colors.setSwitchJumpColor(m_switchPanel.getColor());
+  colors.setTextEdgeColor(m_textJumpsPanel.getColor());
+  final DebugColorsConfigItem debuggerColors=ConfigManager.instance().getDebuggerColorSettings();
+  debuggerColors.setActiveLine(m_activeLineColorPanel.getColor());
+  debuggerColors.setBreakpointActive(m_activeBreakpointColorPanel.getColor());
+  debuggerColors.setBreakpointInactive(m_inactiveBreakpointColorPanel.getColor());
+  debuggerColors.setBreakpointEnabled(m_enabledBreakpointColorPanel.getColor());
+  debuggerColors.setBreakpointDisabled(m_disabledBreakpointColorPanel.getColor());
+  debuggerColors.setBreakpointInvalid(m_invalidBreakpointColorPanel.getColor());
+  debuggerColors.setBreakpointDeleting(m_deletingBreakpointColorPanel.getColor());
+  debuggerColors.setBreakpointHit(m_hitBreakpointColorPanel.getColor());
+  return false;
+}

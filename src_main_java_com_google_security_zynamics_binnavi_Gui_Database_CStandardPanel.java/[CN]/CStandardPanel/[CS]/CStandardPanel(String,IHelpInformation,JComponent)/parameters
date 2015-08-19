@@ -1,0 +1,3 @@
+String labelText
+IHelpInformation helpInformation
+JComponent component

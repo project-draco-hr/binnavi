@@ -1,0 +1,4 @@
+{
+  edge=Preconditions.checkNotNull(currentEdge,"IE02605: edge argument can not be null");
+  scope=Preconditions.checkNotNull(currentScope,"IE02606: currentScope argument can not be null");
+}

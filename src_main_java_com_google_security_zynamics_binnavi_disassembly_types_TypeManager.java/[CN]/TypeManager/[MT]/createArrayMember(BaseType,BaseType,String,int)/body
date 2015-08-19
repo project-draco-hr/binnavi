@@ -1,0 +1,10 @@
+{
+  if (!typesContainer.willTypeCreateCyclicReference(containingType,memberType)) {
+    final TypeMember member=backend.createArrayMember(containingType,memberType,memberName,memberNumberOfElements);
+    typesContainer.addMember(member);
+    return member;
+  }
+ else {
+    throw new IllegalStateException("Error: cannot create cyclic member declaration.");
+  }
+}

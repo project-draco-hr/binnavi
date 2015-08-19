@@ -1,0 +1,4 @@
+{
+  m_settings.put(key,value);
+  m_provider.writeSetting(this,key,value);
+}

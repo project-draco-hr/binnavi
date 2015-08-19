@@ -1,0 +1,8 @@
+{
+  return !CollectionHelpers.any(group.getElements(),new ICollectionFilter<INaviViewNode>(){
+    @Override public boolean qualifies(    final INaviViewNode node){
+      return !node.isSelected();
+    }
+  }
+);
+}

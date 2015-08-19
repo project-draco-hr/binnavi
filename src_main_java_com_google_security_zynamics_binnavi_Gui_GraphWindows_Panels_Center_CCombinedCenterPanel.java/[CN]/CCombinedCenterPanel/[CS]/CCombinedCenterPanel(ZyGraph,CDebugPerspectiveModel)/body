@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(graph,"IE01223: Graph argument can not be null");
+  Preconditions.checkNotNull(debugPerspective,"IE01224: Debug perspective argument can not be null");
+  add(graph.getViewAsComponent());
+  m_graphSynchronizer=new CGraphSynchronizer(graph,debugPerspective);
+}

@@ -1,0 +1,3 @@
+{
+  testParser(CTableNames.MODULE_VIEWS_TABLE,"XXXXXX",String.valueOf(view.getConfiguration().getId()),"1");
+}

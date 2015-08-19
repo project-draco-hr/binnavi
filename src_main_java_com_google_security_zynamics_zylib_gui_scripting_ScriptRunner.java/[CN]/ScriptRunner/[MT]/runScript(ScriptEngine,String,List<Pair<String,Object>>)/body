@@ -1,0 +1,6 @@
+{
+  for (  final Pair<String,Object> pair : bindings) {
+    engine.put(pair.first(),pair.second());
+  }
+  return engine.eval(script);
+}

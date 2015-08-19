@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(manager,"IE02179: Manager argument can not be null");
+  Preconditions.checkNotNull(graph,"IE02180: Graph argument can not be null");
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      paintBreakpoints(manager,node);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

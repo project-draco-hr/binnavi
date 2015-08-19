@@ -1,0 +1,3 @@
+{
+  return new DirectedGraph<IBlockNode,IBlockEdge>(m_nodes,m_edges);
+}

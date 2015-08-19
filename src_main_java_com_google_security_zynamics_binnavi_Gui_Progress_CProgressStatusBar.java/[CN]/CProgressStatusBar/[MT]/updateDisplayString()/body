@@ -1,0 +1,13 @@
+{
+  final List<IProgressOperation> operations=CGlobalProgressManager.instance().getOperations();
+  if (operations.isEmpty()) {
+    m_progressPanel.setProgressText("");
+    this.setVisible(false);
+  }
+ else {
+    final IProgressOperation firstOperation=operations.get(0);
+    final String displayString=firstOperation.getDescription() + (operations.size() == 1 ? "" : " ( +" + (operations.size() - 1) + ")");
+    m_progressPanel.setProgressText(displayString);
+    this.setVisible(true);
+  }
+}

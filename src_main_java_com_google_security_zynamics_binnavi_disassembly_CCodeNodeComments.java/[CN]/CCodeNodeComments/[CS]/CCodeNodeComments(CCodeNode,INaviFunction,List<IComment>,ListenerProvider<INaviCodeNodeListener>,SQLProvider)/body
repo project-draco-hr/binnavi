@@ -1,0 +1,10 @@
+{
+  m_codeNode=Preconditions.checkNotNull(codeNode,"IE02391: codeNode argument can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE02392: provider argument can not be null");
+  m_parentFunction=parentFunction;
+  m_listeners=listeners;
+  CommentManager.get(m_provider).addListener(m_internalCommentListener);
+  if ((localComments != null) && !localComments.isEmpty()) {
+    CommentManager.get(m_provider).initializeLocalCodeNodeComment(m_codeNode,localComments);
+  }
+}

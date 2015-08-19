@@ -1,0 +1,10 @@
+{
+  INaviModule module1=getProvider().loadModules().get(0);
+  module1.load();
+  INaviFunction function1=module1.getContent().getFunctionContainer().getFunctions().get(25);
+  getProvider().setName(function1,"name");
+  module1=getProvider().loadModules().get(0);
+  module1.load();
+  function1=module1.getContent().getFunctionContainer().getFunctions().get(25);
+  assertEquals("name",function1.getName());
+}

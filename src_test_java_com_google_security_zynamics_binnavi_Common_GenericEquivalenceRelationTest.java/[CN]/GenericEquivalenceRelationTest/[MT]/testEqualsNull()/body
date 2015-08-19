@@ -1,0 +1,5 @@
+{
+  assertFalse(factory.createFirstInstance().equals(null));
+  assertFalse(factory.createSecondInstance().equals(null));
+  assertFalse(factory.createThirdInstance().equals(null));
+}

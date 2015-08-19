@@ -1,0 +1,14 @@
+{
+  if (undo) {
+    if (m_undoIndex != 0) {
+      m_undoIndex--;
+    }
+    return getSnapshot(m_undoIndex);
+  }
+ else {
+    if (m_undoIndex != (size() - 1)) {
+      m_undoIndex++;
+    }
+    return getSnapshot(m_undoIndex);
+  }
+}

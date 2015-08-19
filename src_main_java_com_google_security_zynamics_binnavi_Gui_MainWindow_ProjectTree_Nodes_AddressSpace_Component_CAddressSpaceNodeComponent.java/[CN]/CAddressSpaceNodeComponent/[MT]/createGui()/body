@@ -1,0 +1,28 @@
+{
+  final JPanel topPanel=new JPanel(new BorderLayout());
+  final JPanel innerTopPanel=new JPanel(new BorderLayout());
+  final JPanel debuggerChooserPanel=new JPanel(new BorderLayout());
+  debuggerChooserPanel.setBorder(new TitledBorder("Address Space Debugger"));
+  m_debuggerCombo=new CDebuggerComboBox(new CDebuggerComboModel(m_debuggerContainer));
+  m_debuggerCombo.setSelectedDebugger(m_addressSpace.getConfiguration().getDebuggerTemplate());
+  final JPanel debuggerComboPanel=new JPanel(new BorderLayout());
+  debuggerComboPanel.add(m_debuggerCombo,BorderLayout.CENTER);
+  debuggerChooserPanel.add(debuggerComboPanel,BorderLayout.CENTER);
+  innerTopPanel.add(m_stdEditPanel);
+  innerTopPanel.add(debuggerChooserPanel,BorderLayout.SOUTH);
+  topPanel.add(innerTopPanel);
+  final JPanel buttonPanel=new JPanel(new GridLayout(1,2));
+  buttonPanel.setBorder(new EmptyBorder(0,0,5,2));
+  buttonPanel.add(new JPanel());
+  buttonPanel.add(m_saveButton);
+  topPanel.add(buttonPanel,BorderLayout.SOUTH);
+  final JPanel bottomPanel=new CTablePanel<INaviModule>(m_table,new CModuleFilterCreator(),new CModuleFilterHelp());
+  bottomPanel.setBorder(m_titledBorder);
+  bottomPanel.add(new JScrollPane(m_table));
+  final JSplitPane splitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true,topPanel,bottomPanel);
+  splitPane.setOneTouchExpandable(true);
+  splitPane.setDividerLocation(splitPane.getMinimumDividerLocation());
+  splitPane.setResizeWeight(0.5);
+  setBorder(new EmptyBorder(0,0,0,1));
+  add(splitPane);
+}

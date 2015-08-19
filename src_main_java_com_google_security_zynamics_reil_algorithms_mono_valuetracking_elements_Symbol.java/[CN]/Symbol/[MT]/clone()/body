@@ -1,0 +1,3 @@
+{
+  return new Symbol(m_address,m_value);
+}

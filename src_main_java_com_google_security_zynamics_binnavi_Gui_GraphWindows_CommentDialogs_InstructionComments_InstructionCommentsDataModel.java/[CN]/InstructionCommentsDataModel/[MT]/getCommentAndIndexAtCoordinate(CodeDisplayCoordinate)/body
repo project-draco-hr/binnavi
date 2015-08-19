@@ -1,0 +1,27 @@
+{
+  ArrayList<IComment> comments=internalData.get(coordinate.getRow()).second();
+  int currentLineIndex=0;
+  for (  IComment comment : comments) {
+    int numberOfCommentLines=Math.max(comment.getNumberOfCommentLines(),1);
+    if ((currentLineIndex + numberOfCommentLines - 1) >= coordinate.getLine()) {
+      if (comment.getNumberOfCommentLines() == 0) {
+        return new Pair<IComment,Pair<Integer,Integer>>(comment,new Pair<Integer,Integer>(0,0));
+      }
+      String commentString=comment.getComment();
+      int beginIndex=0;
+      int endIndex=0;
+      int targetSubstringIndex=coordinate.getLine() - currentLineIndex;
+      int newlineCounter=0;
+      while (newlineCounter != targetSubstringIndex) {
+        if (commentString.charAt(beginIndex++) == '\n') {
+          newlineCounter++;
+        }
+      }
+      endIndex=commentString.indexOf('\n',beginIndex);
+      endIndex=(endIndex == -1) ? commentString.length() : endIndex;
+      return new Pair<IComment,Pair<Integer,Integer>>(comment,new Pair<Integer,Integer>(beginIndex,endIndex));
+    }
+    currentLineIndex+=numberOfCommentLines;
+  }
+  return null;
+}

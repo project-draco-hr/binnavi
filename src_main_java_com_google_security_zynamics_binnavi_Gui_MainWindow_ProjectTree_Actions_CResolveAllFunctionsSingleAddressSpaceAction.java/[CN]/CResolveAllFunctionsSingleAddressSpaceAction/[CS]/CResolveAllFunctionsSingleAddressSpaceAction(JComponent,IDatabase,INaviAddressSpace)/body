@@ -1,0 +1,6 @@
+{
+  super("Resolve all imported functions");
+  m_parent=Preconditions.checkNotNull(parent,"IE01915: Parent argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE01916: Database argument can not be null");
+  m_addressSpace=Preconditions.checkNotNull(addressSpace,"IE02340: module argument can not be null");
+}

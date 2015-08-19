@@ -1,0 +1,5 @@
+{
+  m_manager=manager;
+  m_root=clone(manager.getRootTag(),null);
+  manager.addListener(m_listener);
+}

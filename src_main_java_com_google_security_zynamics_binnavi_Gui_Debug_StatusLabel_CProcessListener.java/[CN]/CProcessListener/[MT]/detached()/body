@@ -1,0 +1,3 @@
+{
+  m_label.setText("Detached from the target process");
+}

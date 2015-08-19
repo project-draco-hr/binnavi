@@ -1,0 +1,7 @@
+{
+  final List<? extends IAbstractCriteriumTreeNode> children=node.getChildren();
+  if (children.size() != 1) {
+    throw new IllegalStateException("IE01142: NOT operator has more or less than one child criterium.");
+  }
+  return !qualifies(children.get(0),naviNode);
+}

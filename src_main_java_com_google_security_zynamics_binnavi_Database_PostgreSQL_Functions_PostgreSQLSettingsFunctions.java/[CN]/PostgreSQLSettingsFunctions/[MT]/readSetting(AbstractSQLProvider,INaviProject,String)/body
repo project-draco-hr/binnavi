@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(project,"IE00537: Project argument can not be null");
+  Preconditions.checkNotNull(key,"IE00538: Key argument can not be null");
+  Preconditions.checkArgument(project.inSameDatabase(provider),"IE00539: Project is not part of this database");
+  return readSetting(provider.getConnection(),project.getConfiguration().getId(),key,"project_id",CTableNames.PROJECT_SETTINGS_TABLE);
+}

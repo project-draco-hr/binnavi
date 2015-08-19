@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  final String mnemonic=instruction.getMnemonic();
+  if (translators.containsKey(mnemonic)) {
+    final IInstructionTranslator translator=translators.get(mnemonic);
+    final ArrayList<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+    translator.translate(environment,instruction,instructions);
+    for (    final ITranslationExtension<InstructionType> extension : extensions) {
+      extension.postProcess(environment,instruction,instructions);
+    }
+    return instructions;
+  }
+ else   if (mnemonic == null) {
+    return new ArrayList<ReilInstruction>();
+  }
+ else {
+    System.out.println("Unknown mnemonic: " + mnemonic);
+    return Lists.newArrayList(ReilHelpers.createUnknown(ReilHelpers.toReilAddress(instruction.getAddress()).toLong()));
+  }
+}

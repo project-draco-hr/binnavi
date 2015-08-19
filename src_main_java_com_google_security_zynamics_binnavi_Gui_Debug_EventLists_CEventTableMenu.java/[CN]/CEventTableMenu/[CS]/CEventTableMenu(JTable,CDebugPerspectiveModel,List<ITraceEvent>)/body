@@ -1,0 +1,8 @@
+{
+  graphModel=model.getGraphModel();
+  addOpenFunction(SwingUtilities.getWindowAncestor(table),traces);
+  add(new JMenuItem(CActionProxy.proxy(new CSetBreakpointsAction(model,traces))));
+  addSeparator();
+  add(new JMenuItem(CActionProxy.proxy(new CSearchTableAction(SwingUtilities.getWindowAncestor(table),table))));
+  add(new CopySelectionAction(table));
+}

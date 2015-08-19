@@ -1,0 +1,4 @@
+INaviOperandTreeNode node
+ImmutableList<RegisterValue> registers
+IDebugger debugger
+INaviModule module

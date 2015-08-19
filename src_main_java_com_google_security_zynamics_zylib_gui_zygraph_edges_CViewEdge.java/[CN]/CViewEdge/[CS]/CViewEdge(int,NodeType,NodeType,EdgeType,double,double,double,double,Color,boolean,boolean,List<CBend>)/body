@@ -1,0 +1,14 @@
+{
+  m_sourceNode=Preconditions.checkNotNull(sourceNode,"Error: Source node argument can't be null");
+  m_targetNode=Preconditions.checkNotNull(targetNode,"Error: Target node argument can't be null");
+  m_id=id;
+  m_type=type;
+  m_x1=x1;
+  m_y1=y1;
+  m_x2=x2;
+  m_y2=y2;
+  m_color=color;
+  m_visible=visible;
+  m_selected=selected;
+  m_paths=edgePaths;
+}

@@ -1,0 +1,7 @@
+{
+  final IMouseStateChange result=m_state.mouseReleased(e,m_graph);
+  m_state=result.getNextState();
+  if (result.notifyYFiles()) {
+    super.mouseReleased(e);
+  }
+}

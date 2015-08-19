@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(root,"Internal Error: Root node can't be null");
+  m_root=root;
+}

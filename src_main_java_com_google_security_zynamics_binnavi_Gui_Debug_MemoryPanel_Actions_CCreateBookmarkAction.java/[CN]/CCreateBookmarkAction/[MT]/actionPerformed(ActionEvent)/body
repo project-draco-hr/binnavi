@@ -1,0 +1,3 @@
+{
+  m_manager.addBookmark(new CBookmark(m_offset,""));
+}

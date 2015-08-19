@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(type,"Error: type argument can not be null.");
+  Preconditions.checkNotNull(pointer,"Error: pointer argument can not be null.");
+  Preconditions.checkArgument(type != pointer,"Error: Can not establish pointer relation between identical types.");
+  Preconditions.checkArgument(pointer.pointedToBy != type,"Error: Can not establish circular pointer relation.");
+  Preconditions.checkArgument(type.pointsTo != pointer,"Error: Can not establish circular pointer relation.");
+  pointer.pointsTo=type;
+  type.pointedToBy=pointer;
+}

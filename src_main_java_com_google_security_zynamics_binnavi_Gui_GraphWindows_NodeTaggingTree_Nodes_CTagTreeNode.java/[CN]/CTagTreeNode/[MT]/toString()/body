@@ -1,0 +1,3 @@
+{
+  return String.format("%s (%s/%s)",m_tag.getObject().getName(),getChildCount() - 1,getDeepChildCount());
+}

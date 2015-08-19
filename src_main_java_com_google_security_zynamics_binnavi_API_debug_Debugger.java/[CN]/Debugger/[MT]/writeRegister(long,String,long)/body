@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(register,"Error: Register argument can not be null");
+  Preconditions.checkNotNull(m_debugger.getProcessManager().getTargetInformation(),"Error: Target information string has not yet been received");
+  final List<RegisterDescription> registers=m_debugger.getProcessManager().getTargetInformation().getRegisters();
+  int index=0;
+  for (  final RegisterDescription description : registers) {
+    if (description.getName().equalsIgnoreCase(register)) {
+      if (!description.isEditable()) {
+        throw new IllegalArgumentException("Error: Selected register can not be edited");
+      }
+      break;
+    }
+    index++;
+  }
+  if (index == registers.size()) {
+    throw new IllegalArgumentException("Error: Unknown register name");
+  }
+  try {
+    m_debugger.setRegister(tid,index,BigInteger.valueOf(value));
+  }
+ catch (  final DebugExceptionWrapper e) {
+    throw new DebugException(e);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  m_rawNode.setWidth(x);
+  m_rawNode.setHeight(y);
+}

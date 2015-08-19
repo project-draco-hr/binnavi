@@ -1,0 +1,7 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"scasb");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a scasb instruction (invalid number of operands)");
+  }
+  new ScasGenerator().generate(environment,ReilHelpers.toReilAddress(instruction.getAddress()).toLong(),OperandSize.BYTE,instructions);
+}

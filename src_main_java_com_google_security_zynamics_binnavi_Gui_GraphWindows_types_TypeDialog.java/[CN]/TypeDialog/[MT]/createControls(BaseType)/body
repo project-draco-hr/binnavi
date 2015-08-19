@@ -1,0 +1,53 @@
+{
+  if (baseType == null) {
+    atomicTypePanel=new AtomicTypePanel(this,typeManager);
+    pointerTypePanel=new PointerTypePanel(this,typeManager);
+    arrayTypePanel=new ArrayTypePanel(this,typeManager);
+    structureTypePanel=new StructureTypePanel(this,typeManager);
+    unionTypePanel=new UnionTypePanel(this,typeManager);
+    functionPrototypePanel=new PrototypeTypePanel(this,typeManager);
+  }
+ else {
+switch (baseType.getCategory()) {
+case ATOMIC:
+      atomicTypePanel=new AtomicTypePanel(this,typeManager,baseType);
+    break;
+case POINTER:
+  pointerTypePanel=new PointerTypePanel(this,typeManager,baseType);
+break;
+case ARRAY:
+arrayTypePanel=new ArrayTypePanel(this,typeManager,baseType);
+break;
+case STRUCT:
+structureTypePanel=new StructureTypePanel(this,typeManager,baseType);
+break;
+case UNION:
+unionTypePanel=new UnionTypePanel(this,typeManager,baseType);
+break;
+case FUNCTION_PROTOTYPE:
+functionPrototypePanel=new PrototypeTypePanel(this,typeManager,baseType);
+break;
+default :
+throw new IllegalStateException("IE02854: Unknown type category.");
+}
+}
+tabbedPane=new JTabbedPane();
+addTab(atomicTypePanel,"Atomic type");
+addTab(pointerTypePanel,"Pointer type");
+addTab(arrayTypePanel,"Array type");
+addTab(structureTypePanel,"Structure type");
+addTab(unionTypePanel,"Union type");
+addTab(functionPrototypePanel,"Function prototype");
+tabbedPane.addChangeListener(new ChangeListener(){
+@Override public void stateChanged(final ChangeEvent e){
+final JTabbedPane pane=(JTabbedPane)e.getSource();
+TypeDialog.this.currentPanel=panels.get(pane.getSelectedIndex());
+}
+}
+);
+setActivePanel(baseType);
+setBounds(100,100,516,325);
+getContentPane().setLayout(new BorderLayout());
+getContentPane().add(tabbedPane);
+createButtons();
+}

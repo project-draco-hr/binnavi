@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(provider,"IE00436: provider argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE00437: commentId argument can not be null");
+  Preconditions.checkNotNull(userId,"IE00438: userId argument can not be null");
+  Preconditions.checkNotNull(newComment,"IE00439: newComment argument can not be null");
+  final String function="{ call edit_comment(?, ?, ?) }";
+  try {
+    final CallableStatement editCommentFunction=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      editCommentFunction.setInt(1,commentId);
+      editCommentFunction.setInt(2,userId);
+      editCommentFunction.setString(3,newComment);
+      editCommentFunction.execute();
+    }
+ catch (    final SQLException exception) {
+      throw new CouldntSaveDataException(exception);
+    }
+ finally {
+      editCommentFunction.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

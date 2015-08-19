@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(tree,"IE01221: Tree argument can not be null");
+  Preconditions.checkNotNull(parent,"IE01292: Parent argument can not be null");
+  m_tree=tree;
+  m_parent=parent;
+}

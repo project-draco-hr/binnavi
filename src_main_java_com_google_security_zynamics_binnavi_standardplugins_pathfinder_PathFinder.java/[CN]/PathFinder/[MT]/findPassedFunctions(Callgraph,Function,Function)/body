@@ -1,0 +1,13 @@
+{
+  final FunctionBlock sourceCallgraphNode=findBlock(callgraph,startFunction);
+  final FunctionBlock targetCallgraphNode=findBlock(callgraph,targetFunction);
+  Logger.info("Source block: %s\n",sourceCallgraphNode.getFunction().getName());
+  Logger.info("Target block: %s\n",targetCallgraphNode.getFunction().getName());
+  final Collection<FunctionBlock> successorFunctions=GraphAlgorithms.getSuccessors(sourceCallgraphNode);
+  final Collection<FunctionBlock> predecessorFunctions=GraphAlgorithms.getPredecessors(targetCallgraphNode);
+  final LinkedHashSet<FunctionBlock> sharedFunctions=new LinkedHashSet<FunctionBlock>(successorFunctions);
+  sharedFunctions.retainAll(predecessorFunctions);
+  sharedFunctions.add(sourceCallgraphNode);
+  sharedFunctions.add(targetCallgraphNode);
+  return sharedFunctions;
+}

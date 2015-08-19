@@ -1,0 +1,17 @@
+{
+  final MockOperandExpressionListener listener=new MockOperandExpressionListener();
+  final MockOperandTreeNode node=new MockOperandTreeNode();
+  final OperandExpression expression=new OperandExpression(node);
+  expression.addListener(listener);
+  final Reference reference1=expression.addReference(new Address(0x123),ReferenceType.CALL_VIRTUAL);
+  final Reference reference2=expression.addReference(new Address(0x124),ReferenceType.DATA);
+  final List<Reference> references=expression.getReferences();
+  assertEquals(2,references.size());
+  assertEquals(reference1,references.get(0));
+  assertEquals(reference2,references.get(1));
+  assertEquals("addedReference;addedReference;",listener.events);
+  expression.deleteReference(reference1);
+  assertEquals(1,expression.getReferences().size());
+  assertEquals("addedReference;addedReference;removedReference;",listener.events);
+  expression.removeListener(listener);
+}

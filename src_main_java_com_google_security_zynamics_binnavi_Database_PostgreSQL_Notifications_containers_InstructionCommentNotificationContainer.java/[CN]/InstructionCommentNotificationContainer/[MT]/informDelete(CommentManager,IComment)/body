@@ -1,0 +1,3 @@
+{
+  manager.deleteInstructionComment(instruction,node,getScope(),comment);
+}

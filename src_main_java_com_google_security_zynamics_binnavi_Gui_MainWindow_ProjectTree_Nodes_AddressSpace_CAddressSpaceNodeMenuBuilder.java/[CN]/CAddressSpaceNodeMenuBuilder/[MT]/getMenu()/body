@@ -1,0 +1,5 @@
+{
+  final JMenu menu=new JMenu("Address Space");
+  menu.setMnemonic("HK_MENU_ADDRESS_SPACE".charAt(0));
+  return menu;
+}

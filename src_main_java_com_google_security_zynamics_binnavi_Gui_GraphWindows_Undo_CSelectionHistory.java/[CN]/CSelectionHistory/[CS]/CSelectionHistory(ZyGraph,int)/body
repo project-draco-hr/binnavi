@@ -1,0 +1,5 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE01813: Graph argument can not be null");
+  Preconditions.checkArgument(maxSnapshots > 0,"IE01814: Invalid maximum snapshot number");
+  m_maxSnapshots=maxSnapshots;
+}

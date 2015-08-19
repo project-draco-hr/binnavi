@@ -1,0 +1,9 @@
+{
+  final int index=findRegisterIndex(registerName);
+  if ((index == -1) || (index >= registerInformation.length)) {
+    return;
+  }
+  final BigInteger oldValue=registerInformation[index].getValue();
+  registerInformation[index].setValue(editValue);
+  notifyRegisterEntered(index,oldValue,editValue);
+}

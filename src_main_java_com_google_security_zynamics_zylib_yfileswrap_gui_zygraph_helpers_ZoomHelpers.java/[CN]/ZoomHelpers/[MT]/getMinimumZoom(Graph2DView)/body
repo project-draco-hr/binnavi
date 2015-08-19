@@ -1,0 +1,13 @@
+{
+  double zoomlevel=view.getZoom();
+  if (zoomlevel < 0) {
+    zoomlevel=1;
+  }
+  final Point2D viewPoint=view.getViewPoint2D();
+  final Rectangle2D box=view.getGraph2D().getBoundingBox();
+  view.zoomToArea(box.getX(),box.getY(),box.getWidth(),box.getHeight());
+  final double minZoom=view.getZoom();
+  view.setZoom(zoomlevel);
+  view.setViewPoint2D(viewPoint.getX(),viewPoint.getY());
+  return minZoom - (minZoom / 2);
+}

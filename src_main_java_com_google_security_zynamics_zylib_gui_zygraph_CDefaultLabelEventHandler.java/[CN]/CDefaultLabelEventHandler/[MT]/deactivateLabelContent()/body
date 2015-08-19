@@ -1,0 +1,11 @@
+{
+  unregisterListener();
+  if ((getActiveLabelContent() != null) && getActiveLabelContent().isSelectable()) {
+    getActiveLabelContent().showCaret(false);
+    setActiveLabelContent(null);
+    m_activeRealizer=null;
+  }
+  m_graph.updateViews();
+  m_undoManager.setLabelContent(getActiveLabelContent());
+  registerListener();
+}

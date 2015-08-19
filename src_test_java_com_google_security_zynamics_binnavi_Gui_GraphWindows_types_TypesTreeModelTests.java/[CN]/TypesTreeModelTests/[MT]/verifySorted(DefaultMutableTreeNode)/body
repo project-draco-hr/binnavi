@@ -1,0 +1,16 @@
+{
+  final List<DefaultMutableTreeNode> nodes=new ArrayList<>();
+  for (int i=0; i < root.getChildCount(); i++) {
+    nodes.add((DefaultMutableTreeNode)root.getChildAt(i));
+  }
+  final List<DefaultMutableTreeNode> sortedNodes=new ArrayList<>(nodes);
+  Collections.sort(sortedNodes,new Comparator<DefaultMutableTreeNode>(){
+    @Override public int compare(    final DefaultMutableTreeNode lhs,    final DefaultMutableTreeNode rhs){
+      return lhs.toString().toLowerCase().compareTo(rhs.toString().toLowerCase());
+    }
+  }
+);
+  for (int i=0; i < nodes.size(); i++) {
+    Assert.assertSame(nodes.get(i),sortedNodes.get(i));
+  }
+}

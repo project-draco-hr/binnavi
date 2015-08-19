@@ -1,0 +1,13 @@
+{
+  checkArguments(provider,project);
+  Preconditions.checkNotNull(debugger,"IE00524: Debugger argument can not be null");
+  Preconditions.checkArgument(debugger.inSameDatabase(provider),"IE00525: Debugger is not part of this database");
+  final String query=String.format("delete from " + CTableNames.PROJECT_DEBUGGERS_TABLE + " where project_id = %d and debugger_id = %d",project.getConfiguration().getId(),debugger.getId());
+  try {
+    provider.getConnection().executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+  PostgreSQLHelpers.updateModificationDate(provider.getConnection(),"" + CTableNames.PROJECTS_TABLE + "",project.getConfiguration().getId());
+}

@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"REV16");
+  translateAll(environment,instruction,"REV16",instructions);
+}

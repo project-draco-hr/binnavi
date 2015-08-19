@@ -1,0 +1,6 @@
+{
+  super(String.format("Uninline '%s'",getParentFunction(node)));
+  m_parent=Preconditions.checkNotNull(parent,"IE02365: parent argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE02366: graph argument can not be null");
+  m_node=Preconditions.checkNotNull(node,"IE02367: node argument can not be null");
+}

@@ -1,0 +1,9 @@
+{
+  if (m_project.isLoaded()) {
+    for (    final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+      add(new CAddressSpaceNode(getProjectTree(),this,m_database,m_project,addressSpace,m_container));
+    }
+    add(new CProjectViewsContainerNode(getProjectTree(),m_project,m_container));
+    add(new CTracesNode(getProjectTree(),m_container));
+  }
+}

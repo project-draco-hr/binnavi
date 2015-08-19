@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+ITreeNode<CTag> newParentNode
+ITreeNode<CTag> movedNode
+TagType type

@@ -1,0 +1,9 @@
+{
+  final DatabaseManager manager=PluginInterface.instance().getDatabaseManager();
+  for (  final Database database : manager) {
+    if (database.getNative() == this.database) {
+      return database;
+    }
+  }
+  throw new IllegalStateException("IE01162: Unknown database");
+}

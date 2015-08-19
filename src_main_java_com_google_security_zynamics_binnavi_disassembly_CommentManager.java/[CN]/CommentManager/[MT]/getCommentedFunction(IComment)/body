@@ -1,0 +1,3 @@
+{
+  return functionCommentContainer.getCommented(comment);
+}

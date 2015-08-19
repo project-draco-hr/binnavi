@@ -1,0 +1,4 @@
+{
+  final String undefinedOperand=instruction.getThirdOperand().getValue();
+  return incomingState.update(instruction,new Register(undefinedOperand),new Undefined());
+}

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(endianness,"Error: Argument endianness can't be null");
+  this.cpuPolicy=Preconditions.checkNotNull(cpuPolicy,"Error: Argument cpuPolicy can't be null");
+  this.interpreterPolicy=Preconditions.checkNotNull(interpreterPolicy,"Error: Argument interpreterPolicy can't be null");
+  this.memory=new ReilMemory(endianness);
+}

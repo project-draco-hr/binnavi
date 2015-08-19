@@ -1,0 +1,4 @@
+{
+  provider=new MockSqlProvider();
+  FunctionManager.get(provider).putFunction(this);
+}

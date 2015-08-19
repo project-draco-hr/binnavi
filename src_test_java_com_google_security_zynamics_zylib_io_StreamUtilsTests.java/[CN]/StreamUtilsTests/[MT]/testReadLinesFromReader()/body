@@ -1,0 +1,7 @@
+{
+  final Reader validReader=new StringReader("3.2.2\n2011-08-03");
+  final String[] expected=new String[]{"3.2.2","2011-08-03"};
+  assertArrayEquals(expected,StreamUtils.readLinesFromReader(validReader).toArray());
+  final Reader emptyReader=new StringReader("");
+  assertTrue(StreamUtils.readLinesFromReader(emptyReader).isEmpty());
+}

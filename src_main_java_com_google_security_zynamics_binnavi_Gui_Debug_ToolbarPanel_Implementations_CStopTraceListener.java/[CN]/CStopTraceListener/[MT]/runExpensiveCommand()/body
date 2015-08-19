@@ -1,0 +1,15 @@
+{
+  m_removedAddresses=new HashSet<BreakpointAddress>(m_logger.stop());
+  for (  final EchoBreakpointsRemovedReply reply : m_bufferedReplies) {
+    m_isDone|=checkReply(reply);
+  }
+  while (!m_isDone) {
+    try {
+      Thread.sleep(100);
+    }
+ catch (    final InterruptedException exception) {
+      java.lang.Thread.currentThread().interrupt();
+    }
+  }
+  m_debugger.removeListener(m_debuggerListener);
+}

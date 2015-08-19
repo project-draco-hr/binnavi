@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02781: Base type can not be null.");
+  if (baseType.pointedToBy() != null) {
+    return baseType.pointedToBy();
+  }
+ else {
+    final String newTypeName=BaseType.getPointerTypeName(baseType,baseType.getPointerLevel() + 1);
+    final BaseType newType=instantiateType(newTypeName,getDefaultPointerSize(),false,baseType,BaseTypeCategory.POINTER);
+    notifyTypeAdded(newType);
+    return newType;
+  }
+}

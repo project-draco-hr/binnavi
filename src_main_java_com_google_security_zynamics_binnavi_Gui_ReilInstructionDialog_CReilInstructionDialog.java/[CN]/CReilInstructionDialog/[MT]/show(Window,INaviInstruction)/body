@@ -1,0 +1,9 @@
+{
+  final ReilTranslator<INaviInstruction> translator=new ReilTranslator<INaviInstruction>();
+  final ReilGraph reilGraph=translator.translate(new StandardEnvironment(),instruction);
+  final String text=reilGraphToText(reilGraph);
+  final String title=String.format("REIL code of '%s'",instruction.toString());
+  final CReilInstructionDialog dialog=new CReilInstructionDialog(parent,title,text);
+  GuiHelper.centerChildToParent(parent,dialog,true);
+  dialog.setVisible(true);
+}

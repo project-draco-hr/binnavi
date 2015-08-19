@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(provider,"IE02416: provider argument can not be null");
+  return m_notificationProviders.containsKey(provider) ? m_notificationProviders.get(provider) : null;
+}

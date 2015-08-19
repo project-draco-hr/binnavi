@@ -1,0 +1,5 @@
+{
+  if (node.getRawNode() instanceof INaviTextNode) {
+    node.getRealizer().setUpdater(new CTextNodeUpdater(model.getGraph(),(INaviTextNode)node.getRawNode()));
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return settingSize == -1 || settingSize > maximum ? defaultValue : settingSize;
+}

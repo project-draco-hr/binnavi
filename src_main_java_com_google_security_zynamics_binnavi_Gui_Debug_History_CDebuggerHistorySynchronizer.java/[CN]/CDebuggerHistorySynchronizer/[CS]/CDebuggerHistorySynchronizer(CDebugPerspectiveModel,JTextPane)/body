@@ -1,0 +1,7 @@
+{
+  m_model=model;
+  m_area=area;
+  m_area.setEnabled(false);
+  model.addListener(m_perspectiveListener);
+  m_historyStringBuilder.addListener(m_builderListener);
+}

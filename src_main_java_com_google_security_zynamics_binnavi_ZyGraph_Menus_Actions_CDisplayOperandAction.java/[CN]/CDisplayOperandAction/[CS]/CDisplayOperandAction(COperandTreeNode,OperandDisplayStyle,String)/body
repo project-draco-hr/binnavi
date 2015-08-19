@@ -1,0 +1,5 @@
+{
+  super(displayName);
+  this.treeNode=treeNode;
+  this.displayStyle=displayStyle;
+}

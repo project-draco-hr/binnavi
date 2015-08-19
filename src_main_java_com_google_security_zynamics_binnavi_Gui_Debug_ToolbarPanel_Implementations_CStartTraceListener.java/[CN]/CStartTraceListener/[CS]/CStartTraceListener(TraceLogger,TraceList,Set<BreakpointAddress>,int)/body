@@ -1,0 +1,6 @@
+{
+  m_logger=Preconditions.checkNotNull(logger,"IE01562: Logger argument can not be null");
+  m_addresses=Preconditions.checkNotNull(addresses,"IE01563: Addresses argument can not be null");
+  m_trace=Preconditions.checkNotNull(trace,"IE01107: trace argument can not be null");
+  m_maximumHits=maximumHits;
+}

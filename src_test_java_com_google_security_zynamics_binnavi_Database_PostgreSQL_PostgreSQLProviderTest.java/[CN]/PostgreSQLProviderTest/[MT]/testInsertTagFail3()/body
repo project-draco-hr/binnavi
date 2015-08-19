@@ -1,0 +1,4 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  getProvider().insertTag(tagManager.getRootTag(),"Tag Name",null,TagType.VIEW_TAG);
+}

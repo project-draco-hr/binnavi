@@ -1,0 +1,6 @@
+{
+  super(String.format("Rename back to '%s'",originalName));
+  m_parent=parent;
+  m_view=view;
+  m_originalName=originalName;
+}

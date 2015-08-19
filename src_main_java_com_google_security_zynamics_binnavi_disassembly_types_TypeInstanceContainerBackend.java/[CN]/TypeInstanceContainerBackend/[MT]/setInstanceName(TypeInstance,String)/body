@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(instance,"Error: instance argument can not be null");
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  Preconditions.checkArgument(!name.isEmpty(),"Error: name argument can not be empty");
+  provider.setTypeInstanceName(instance.getModule().getConfiguration().getId(),instance.getId(),name);
+}

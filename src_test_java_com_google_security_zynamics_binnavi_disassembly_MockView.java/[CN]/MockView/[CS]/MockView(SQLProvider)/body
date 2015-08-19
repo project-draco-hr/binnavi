@@ -1,0 +1,4 @@
+{
+  this(new MutableDirectedGraph<INaviViewNode,INaviEdge>(new ArrayList<INaviViewNode>(),Lists.<INaviEdge>newArrayList()),provider,ViewType.NonNative,new BigInteger(31,new SecureRandom()).intValue());
+  m_provider=provider;
+}

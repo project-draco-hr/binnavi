@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(projectTree,"IE02053: Project tree argument can not be null");
+  Preconditions.checkNotNull(project,"IE02054: Project argument can not be null");
+  Preconditions.checkNotNull(container,"IE02055: Container argument can not be null");
+  m_project=project;
+  add(new CUserViewsComponent(projectTree,container));
+  updateBorderText();
+  m_project.addListener(m_viewContainerListener);
+  for (  final INaviView view : project.getContent().getViews()) {
+    view.addListener(m_viewListener);
+  }
+}

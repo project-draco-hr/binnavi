@@ -1,0 +1,13 @@
+{
+  long offset=baseOffset;
+  final String pValue;
+  if (size == OperandSize.DWORD) {
+    pValue=register;
+  }
+ else {
+    pValue=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAnd(offset,OperandSize.DWORD,register,size,"65535",size,pValue));
+    offset++;
+  }
+  generatePush(environment,offset,pValue,size,instructions);
+}

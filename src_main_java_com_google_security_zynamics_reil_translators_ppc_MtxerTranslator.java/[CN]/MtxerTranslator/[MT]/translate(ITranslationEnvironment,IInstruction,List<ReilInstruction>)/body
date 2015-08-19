@@ -1,0 +1,19 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"mtxer");
+  final IOperandTreeNode sourceRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  Long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  final String tmpVar1=environment.getNextVariableString();
+  final String strVal1=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister.getValue(),bt,String.valueOf(-31L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),bt,strVal1));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,strVal1,bt,Helpers.XER_SUMMARY_OVERFLOW));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister.getValue(),bt,String.valueOf(-30L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),bt,strVal1));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,strVal1,bt,Helpers.XER_OVERFLOW));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister.getValue(),bt,String.valueOf(-29L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),bt,strVal1));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,strVal1,bt,Helpers.XER_CARRY_BIT));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,sourceRegister.getValue(),dw,String.valueOf(0x0000007F),dw,Helpers.XER_COUNT_REGISTER));
+}

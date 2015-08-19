@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(strategy,"Error: strategy argument can not be null");
+  if (comments == null) {
+    return;
+  }
+  strategy.removeComments(comments);
+  for (  final IComment comment : comments) {
+    commentIdToComment.remove(comment.getId());
+  }
+}

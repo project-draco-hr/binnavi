@@ -1,0 +1,13 @@
+{
+  super(new CFilterTreeModel(tagManager.getRootTag()));
+  m_tagManager=tagManager;
+  setDigIn(false);
+  final DefaultTreeCellRenderer renderer=new DefaultTreeCellRenderer();
+  renderer.setOpenIcon(ICON_CONTAINER_TAG);
+  renderer.setClosedIcon(ICON_CONTAINER_TAG);
+  renderer.setLeafIcon(ICON_TAG);
+  setCellRenderer(renderer);
+  setRootVisible(false);
+  TreeHelpers.expandAll(this,true);
+  tagManager.addListener(m_tagManagerListener);
+}

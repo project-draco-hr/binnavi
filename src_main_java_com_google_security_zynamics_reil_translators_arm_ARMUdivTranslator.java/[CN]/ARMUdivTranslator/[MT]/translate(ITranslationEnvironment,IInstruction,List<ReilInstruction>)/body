@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"UDIV");
+  translateAll(environment,instruction,"UDIV",instructions);
+}

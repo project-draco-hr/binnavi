@@ -1,0 +1,4 @@
+{
+  model.remove(rowIndex);
+  fireTableRowsDeleted(rowIndex,rowIndex);
+}

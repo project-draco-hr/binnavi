@@ -1,0 +1,7 @@
+INaviOperandTreeNode node
+BaseType baseType
+List<TypeMember> memberPath
+int expressionId
+int position
+int offset
+IAddress address

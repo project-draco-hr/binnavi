@@ -1,0 +1,11 @@
+{
+  final T instance1a=factory.createFirstInstance();
+  final T instance1b=factory.createFirstInstance();
+  assertTrue(instance1a.hashCode() == instance1b.hashCode());
+  final T instance2a=factory.createSecondInstance();
+  final T instance2b=factory.createSecondInstance();
+  assertTrue(instance2a.hashCode() == instance2b.hashCode());
+  final T instance3a=factory.createThirdInstance();
+  final T instance3b=factory.createThirdInstance();
+  assertTrue(instance3a.hashCode() == instance3b.hashCode());
+}

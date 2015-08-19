@@ -1,0 +1,32 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(folderNode,"Error: Folder node argument can not be null");
+  final HierarchyManager hierarchy=graph.getHierarchyManager();
+  final double w=graph.getWidth(folderNode);
+  final double h=graph.getHeight(folderNode);
+  final NodeList folderNodes=new NodeList();
+  folderNodes.add(folderNode);
+  graph.firePreEvent();
+  for (final NodeCursor nc=folderNodes.nodes(); nc.ok(); nc.next()) {
+    final Graph2D innerGraph=(Graph2D)hierarchy.getInnerGraph(nc.node());
+    final YPoint folderP=graph.getLocation(nc.node());
+    final NodeList innerNodes=new NodeList(innerGraph.nodes());
+    hierarchy.openFolder(nc.node());
+    final Rectangle2D.Double gBox=graph.getRealizer(nc.node()).getBoundingBox();
+    LayoutTool.moveSubgraph(graph,innerNodes.nodes(),folderP.x - gBox.x,folderP.y - gBox.y);
+  }
+  graph.firePostEvent();
+  graph.unselectAll();
+  for (final NodeCursor nc=folderNodes.nodes(); nc.ok(); nc.next()) {
+    graph.setSelected(nc.node(),true);
+  }
+  if ((w != graph.getWidth(folderNode)) || (h != graph.getHeight(folderNode))) {
+    for (final EdgeCursor ec=folderNode.outEdges(); ec.ok(); ec.next()) {
+      graph.setSourcePointRel(ec.edge(),YPoint.ORIGIN);
+    }
+    for (final EdgeCursor ec=folderNode.inEdges(); ec.ok(); ec.next()) {
+      graph.setTargetPointRel(ec.edge(),YPoint.ORIGIN);
+    }
+  }
+  graph.updateViews();
+}

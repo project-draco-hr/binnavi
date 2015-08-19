@@ -1,0 +1,13 @@
+{
+  if (isSelected() || m_isHighLighted) {
+    final LineType old=getLineType();
+    setLineType(LineType.LINE_5);
+    paintFilledShape(gfx);
+    paintShapeBorder(gfx);
+    setLineType(old);
+  }
+ else {
+    paintFilledShape(gfx);
+    paintShapeBorder(gfx);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final IUndoable operationToUndo=undoStack.get(undoPosition - 1);
+  operationToUndo.undo();
+  undoPosition--;
+}

@@ -1,0 +1,5 @@
+{
+  m_delimiter=Preconditions.checkNotNull(delimiter,"Error: Text delimiter can't be null.");
+  Preconditions.checkArgument(!("".equals(delimiter)),"Error: Text delimiter can't be empty.");
+  m_text=Preconditions.checkNotNull(text,"Error: Text can't be null.");
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLInstructionFunctions.addReference(this,node,address,type);
+}

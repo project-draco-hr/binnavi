@@ -1,0 +1,16 @@
+{
+  if (visible) {
+    final Node source=m_sourceNode.getNode();
+    final Node target=m_targetNode.getNode();
+    if ((source.getGraph() == null) || (target.getGraph() == null)) {
+      return;
+    }
+    final HierarchyManager hm=m_graph.getHierarchyManager();
+    final Edge yedge=hm.createEdge(source,target);
+    m_graph.setRealizer(yedge,m_realizer);
+    m_edge=yedge;
+  }
+ else   if (m_edge.getGraph() == m_graph) {
+    m_graph.removeEdge(m_edge);
+  }
+}

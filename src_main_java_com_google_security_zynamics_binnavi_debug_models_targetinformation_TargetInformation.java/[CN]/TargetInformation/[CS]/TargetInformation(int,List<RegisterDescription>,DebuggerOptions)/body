@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(addressSize > 0,"IE01039: Address size value must be positive");
+  registerDescriptions=new ArrayList<>(Preconditions.checkNotNull(registers,"IE01303: Registers argument can not be null"));
+  this.debuggerOptions=Preconditions.checkNotNull(debuggerOptions,"IE01306: Debugger options argument can not be null");
+  targetPlatformAddressByteSize=addressSize;
+}

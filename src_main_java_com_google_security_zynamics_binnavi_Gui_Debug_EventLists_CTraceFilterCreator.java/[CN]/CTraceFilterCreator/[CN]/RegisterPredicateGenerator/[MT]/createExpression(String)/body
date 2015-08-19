@@ -1,0 +1,10 @@
+{
+  final Pattern pattern=Pattern.compile(RULE_REGEX);
+  final Matcher matcher=pattern.matcher(text);
+  matcher.matches();
+  final boolean hasHexPrefix=matcher.group(3) != null;
+  final String register=matcher.group(1);
+  final FilterRelation predicate=FilterRelation.parse(matcher.group(2));
+  final String value=matcher.group(4);
+  return new CRegisterFilterExpression(register,predicate,Long.valueOf(value,hasHexPrefix ? 16 : 10));
+}

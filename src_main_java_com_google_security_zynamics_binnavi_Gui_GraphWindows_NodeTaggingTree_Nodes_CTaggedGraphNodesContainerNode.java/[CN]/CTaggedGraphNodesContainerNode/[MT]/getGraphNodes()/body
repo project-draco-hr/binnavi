@@ -1,0 +1,8 @@
+{
+  final List<NaviNode> graphNode=new ArrayList<NaviNode>();
+  final Enumeration<?> enumeration=children();
+  while (enumeration.hasMoreElements()) {
+    graphNode.add(((CTaggedGraphNodeNode)enumeration.nextElement()).getGraphNode());
+  }
+  return graphNode;
+}

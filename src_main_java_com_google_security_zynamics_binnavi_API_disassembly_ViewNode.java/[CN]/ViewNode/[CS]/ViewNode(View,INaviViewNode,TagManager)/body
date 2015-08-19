@@ -1,0 +1,5 @@
+{
+  m_view=Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  m_node=Preconditions.checkNotNull(node,"Error: Node argument can't be null");
+  m_tagManager=Preconditions.checkNotNull(manager,"Error: Manager argument can not be null");
+}

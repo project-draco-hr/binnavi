@@ -1,0 +1,4 @@
+{
+  debuggerSynchronizer.receivedEvent(new SetRegisterReply(0,5,0,0));
+  assertEquals("ERROR_SET_REGISTERS/5;",listener.events);
+}

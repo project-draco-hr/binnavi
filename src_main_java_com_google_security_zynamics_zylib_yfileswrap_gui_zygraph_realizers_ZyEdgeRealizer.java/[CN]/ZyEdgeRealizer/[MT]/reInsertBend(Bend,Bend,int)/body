@@ -1,0 +1,12 @@
+{
+  final int index=((bendPos(refBend) + dir) == Graph.BEFORE) || (refBend == null) ? 0 : 1;
+  super.reInsertBend(bend,refBend,dir);
+  for (  final IZyEdgeRealizerListener<EdgeType> listener : m_listeners) {
+    try {
+      listener.insertedBend(index,bend.getX(),bend.getY());
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

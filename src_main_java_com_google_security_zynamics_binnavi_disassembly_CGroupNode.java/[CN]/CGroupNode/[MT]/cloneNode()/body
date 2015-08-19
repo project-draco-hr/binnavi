@@ -1,0 +1,3 @@
+{
+  return new CGroupNode(-1,getX(),getY(),getWidth(),getHeight(),getColor(),isSelected(),isVisible(),getTags(),getComments(),isCollapsed(),m_provider);
+}

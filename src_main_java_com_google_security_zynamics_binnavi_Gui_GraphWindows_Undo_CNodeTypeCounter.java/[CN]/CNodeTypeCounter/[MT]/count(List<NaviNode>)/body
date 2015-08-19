@@ -1,0 +1,13 @@
+{
+  int selected=0;
+  int invisible=0;
+  for (  final NaviNode graphNode : nodes) {
+    if (graphNode.getRawNode().isSelected()) {
+      selected++;
+    }
+    if (!graphNode.getRawNode().isVisible()) {
+      invisible++;
+    }
+  }
+  return new Pair<Integer,Integer>(selected,invisible);
+}

@@ -1,0 +1,4 @@
+{
+  m_wasCancelled=false;
+  dispose();
+}

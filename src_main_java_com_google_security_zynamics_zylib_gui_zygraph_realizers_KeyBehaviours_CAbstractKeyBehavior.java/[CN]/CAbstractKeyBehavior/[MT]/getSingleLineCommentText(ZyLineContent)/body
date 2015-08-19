@@ -1,0 +1,16 @@
+{
+  final StringBuilder commentText=new StringBuilder();
+  final String lineText=lineContent.getText();
+  boolean hasDelimiter=false;
+  for (  final IZyEditableObject lineObject : lineContent.getLineFragmentObjectList()) {
+    if (lineObject.isCommentDelimiter()) {
+      hasDelimiter=true;
+      continue;
+    }
+    if (hasDelimiter) {
+      final String subString=lineText.substring(lineObject.getStart(),lineObject.getEnd());
+      commentText.append(subString);
+    }
+  }
+  return commentText.toString();
+}

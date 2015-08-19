@@ -1,0 +1,23 @@
+{
+  final IDirectedGraph<INaviViewNode,INaviEdge> graph=naviView.getGraph();
+  final List<ViewNode> blocks=new ArrayList<ViewNode>();
+  final List<ViewEdge> edges=new ArrayList<ViewEdge>();
+  for (  final INaviViewNode block : graph.getNodes()) {
+    final ViewNode newBlock=convert(block);
+    cachedNodes.put(block,newBlock);
+    blocks.add(newBlock);
+  }
+  for (  final INaviViewNode block : graph.getNodes()) {
+    if (block.getParentGroup() != null) {
+      ((GroupNode)cachedNodes.get(block.getParentGroup())).addNode(cachedNodes.get(block));
+    }
+  }
+  for (  final INaviEdge edge : graph.getEdges()) {
+    final ViewNode source=cachedNodes.get(edge.getSource());
+    final ViewNode target=cachedNodes.get(edge.getTarget());
+    final ViewEdge viewEdge=new ViewEdge(edge,source,target);
+    edges.add(viewEdge);
+    cachedEdges.put(edge,viewEdge);
+  }
+  viewGraph=new ViewGraph(blocks,edges);
+}

@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.any(modules,new ICollectionFilter<INaviModule>(){
+    @Override public boolean qualifies(    final INaviModule item){
+      return item.getConfiguration().getRawModule().getId() == rawModule.getId();
+    }
+  }
+);
+}

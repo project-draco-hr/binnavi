@@ -1,0 +1,10 @@
+{
+  if (persistantModel == null) {
+    return;
+  }
+  final CUndoHistory undoHistory=getUndoHistory();
+  if (undoHistory != null) {
+    final CUndoStateData undoData=new CUndoStateData(labelContent,persistantModel,editableObject,changedText,isAboveLineComment,isBehindLineComment,isLabelComment,caretStartX,caretMousePressedX,caretMousePressedY,caretEndX,caretMouseReleasedX,caretMouseReleasedY);
+    undoHistory.addState(undoData);
+  }
+}

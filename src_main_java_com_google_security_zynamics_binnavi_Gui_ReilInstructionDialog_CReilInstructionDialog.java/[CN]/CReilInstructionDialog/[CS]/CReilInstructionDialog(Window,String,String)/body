@@ -1,0 +1,11 @@
+{
+  super(parent,title);
+  m_textArea=new JTextArea(text);
+  m_textArea.setEditable(false);
+  m_textArea.setFont(GuiHelper.MONOSPACED_FONT);
+  m_textArea.addMouseListener(new PopupListener());
+  addMenuBar();
+  setLayout(new BorderLayout());
+  add(new JScrollPane(m_textArea));
+  setSize(500,300);
+}

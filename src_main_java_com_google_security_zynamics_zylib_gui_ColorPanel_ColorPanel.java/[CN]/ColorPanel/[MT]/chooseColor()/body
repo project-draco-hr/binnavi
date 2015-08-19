@@ -1,0 +1,6 @@
+{
+  final Color col=CColorChooser.showDialog(this,Constants.COLOR_CHOOSER,getBackground(),m_defaultColors == null ? null : m_defaultColors.toArray(new Color[0]));
+  if (col != null) {
+    setColor(col);
+  }
+}

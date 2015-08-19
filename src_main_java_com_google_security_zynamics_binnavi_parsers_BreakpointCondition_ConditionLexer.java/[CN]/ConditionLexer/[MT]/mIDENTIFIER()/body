@@ -1,0 +1,43 @@
+{
+  try {
+    final int _type=IDENTIFIER;
+    final int _channel=DEFAULT_TOKEN_CHANNEL;
+{
+      mCHARACTER();
+      int cnt3=0;
+      loop3:       do {
+        int alt3=2;
+        final int LA3_0=input.LA(1);
+        if (((LA3_0 >= '0' && LA3_0 <= '9') || (LA3_0 >= 'A' && LA3_0 <= 'Z') || (LA3_0 >= 'a' && LA3_0 <= 'z'))) {
+          alt3=1;
+        }
+switch (alt3) {
+case 1:
+{
+            if ((input.LA(1) >= '0' && input.LA(1) <= '9') || (input.LA(1) >= 'A' && input.LA(1) <= 'Z') || (input.LA(1) >= 'a' && input.LA(1) <= 'z')) {
+              input.consume();
+            }
+ else {
+              final MismatchedSetException mse=new MismatchedSetException(null,input);
+              recover(mse);
+              throw mse;
+            }
+          }
+        break;
+default :
+      if (cnt3 >= 1) {
+        break loop3;
+      }
+    final EarlyExitException eee=new EarlyExitException(3,input);
+  throw eee;
+}
+cnt3++;
+}
+ while (true);
+}
+state.type=_type;
+state.channel=_channel;
+}
+  finally {
+}
+}

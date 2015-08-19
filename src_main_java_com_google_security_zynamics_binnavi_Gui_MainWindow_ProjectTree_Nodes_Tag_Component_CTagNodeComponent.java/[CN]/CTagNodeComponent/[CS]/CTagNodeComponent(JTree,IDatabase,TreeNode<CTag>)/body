@@ -1,0 +1,18 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(projectTree,"IE02000: Project tree argument can not be null");
+  Preconditions.checkNotNull(tagTreeNode,"IE02001: Tree node argument can not be null");
+  m_database=database;
+  m_tagTreeNode=tagTreeNode;
+  m_nameTextField=new CHelpSaveField(tagTreeNode.getObject().getName(),new CNameHelp());
+  m_descriptionField=new CHelpSavePane(tagTreeNode.getObject().getDescription(),new CDescriptionHelp());
+  m_childrenTagTable=new CChildTagsTable(projectTree,m_tagTreeNode,database);
+  m_tableBorder=new TitledBorder(getBorderText());
+  createGui();
+  m_database.getContent().getViewTagManager().addListener(m_tagManagerListener);
+  m_tagTreeNode.getObject().addListener(m_tagListener);
+  final UpdateListener updateListener=new UpdateListener();
+  m_nameTextField.getDocument().addDocumentListener(updateListener);
+  m_descriptionField.getDocument().addDocumentListener(updateListener);
+  updateGUI();
+}

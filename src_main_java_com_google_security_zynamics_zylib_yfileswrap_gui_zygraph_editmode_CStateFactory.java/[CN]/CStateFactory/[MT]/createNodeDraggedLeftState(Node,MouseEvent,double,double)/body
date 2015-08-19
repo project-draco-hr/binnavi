@@ -1,0 +1,5 @@
+{
+  final CNodeDraggedLeftState<NodeType,EdgeType> state=new CNodeDraggedLeftState<NodeType,EdgeType>(this,m_graph,n,event,xDist,yDist);
+  m_factory.createNodeDraggedLeftAction().execute(state,event);
+  return state;
+}

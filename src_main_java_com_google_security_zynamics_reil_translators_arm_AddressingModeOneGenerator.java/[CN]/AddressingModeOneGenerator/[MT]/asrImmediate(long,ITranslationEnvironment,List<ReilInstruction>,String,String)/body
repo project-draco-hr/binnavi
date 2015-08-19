@@ -1,0 +1,27 @@
+{
+  long baseOffset=offset;
+  final String shifterOperand=environment.getNextVariableString();
+  final String shifterCarryOut=environment.getNextVariableString();
+  if (immediateNodeValue.equals("0")) {
+    final String tmpVar1=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue,wordSize,thirtyOneSet,byteSize,tmpVar1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,byteSize,tmpVar1,byteSize,oneSet,byteSize,shifterCarryOut));
+    instructions.add(ReilHelpers.createSub(baseOffset++,byteSize,shifterCarryOut,byteSize,String.valueOf(1),dWordSize,shifterOperand));
+    return new Pair<String,String>(shifterOperand,shifterCarryOut);
+  }
+ else {
+    final String tmpVar1=environment.getNextVariableString();
+    final String tmpVar2=environment.getNextVariableString();
+    final String tmpVar3=environment.getNextVariableString();
+    final String tmpVar4=environment.getNextVariableString();
+    final String tmpVar5=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAdd(baseOffset++,dWordSize,registerNodeValue,dWordSize,bitMaskHighestBitSet,qWordSize,tmpVar1));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,qWordSize,tmpVar1,wordSize,"-" + immediateNodeValue,dWordSize,tmpVar2));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,bitMaskHighestBitSet,wordSize,"-" + immediateNodeValue,dWordSize,tmpVar3));
+    instructions.add(ReilHelpers.createSub(baseOffset++,dWordSize,tmpVar2,dWordSize,tmpVar3,qWordSize,tmpVar4));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,qWordSize,tmpVar4,dWordSize,bitMaskAllBitsSet,dWordSize,shifterOperand));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue,dWordSize,String.valueOf(-(Integer.decode(immediateNodeValue) - 1)),wordSize,tmpVar5));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,wordSize,tmpVar5,byteSize,oneSet,byteSize,shifterCarryOut));
+    return new Pair<String,String>(shifterOperand,shifterCarryOut);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(node,"IE00921: Node argument can not be null");
+  Preconditions.checkNotNull(content,"IE02732: content argument can not be null");
+  while (content.getLineCount() != 0) {
+    content.removeLine(0);
+  }
+  ZyNodeBuilder.addCommentTagLines(content,node,node.getComments(),null);
+}

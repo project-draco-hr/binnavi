@@ -1,0 +1,4 @@
+{
+  checkArguments(provider,addressSpace);
+  return PostgreSQLHelpers.getModificationDate(provider.getConnection(),CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

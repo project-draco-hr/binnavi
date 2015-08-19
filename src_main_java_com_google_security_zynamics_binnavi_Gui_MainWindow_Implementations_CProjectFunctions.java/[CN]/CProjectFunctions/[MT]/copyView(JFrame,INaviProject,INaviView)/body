@@ -1,0 +1,35 @@
+{
+  Preconditions.checkNotNull(parent,"IE01835: Parent argument can not be null");
+  Preconditions.checkNotNull(project,"IE01836: Project argument can not be null");
+  Preconditions.checkNotNull(view,"IE01837: View argument can not be null");
+  if (!view.isLoaded()) {
+    try {
+      view.load();
+    }
+ catch (    final CouldntLoadDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00138: " + "View could not be copied because it could not be loaded";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be copied.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The new view was not created."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      return;
+    }
+catch (    final CPartialLoadException e) {
+      CUtilityFunctions.logException(e);
+      return;
+    }
+catch (    final LoadCancelledException e) {
+      return;
+    }
+  }
+  project.getContent().createView(view,view.getName(),view.getConfiguration().getDescription());
+  view.close();
+  try {
+    view.save();
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00206: " + "Could not save view";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The function '%s' could not be saved.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The graph remains unsaved."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+  }
+}

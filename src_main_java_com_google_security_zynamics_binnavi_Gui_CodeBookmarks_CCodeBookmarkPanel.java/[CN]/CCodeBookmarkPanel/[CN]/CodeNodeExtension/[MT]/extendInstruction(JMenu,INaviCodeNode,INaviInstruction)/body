@@ -1,0 +1,5 @@
+{
+  if (!m_bookmarkManager.hasBookmark(instruction.getModule(),instruction.getAddress())) {
+    menu.add(CActionProxy.proxy(new CAddBookmarkAction(m_bookmarkManager,instruction.getModule(),instruction.getAddress())));
+  }
+}

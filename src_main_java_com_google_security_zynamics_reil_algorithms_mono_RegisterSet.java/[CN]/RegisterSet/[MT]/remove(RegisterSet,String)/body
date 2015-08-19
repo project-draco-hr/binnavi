@@ -1,0 +1,8 @@
+{
+  final RegisterSet set=new RegisterSet();
+  for (  final String string : state) {
+    set.registers.add(string);
+  }
+  set.registers.remove(value);
+  return set;
+}

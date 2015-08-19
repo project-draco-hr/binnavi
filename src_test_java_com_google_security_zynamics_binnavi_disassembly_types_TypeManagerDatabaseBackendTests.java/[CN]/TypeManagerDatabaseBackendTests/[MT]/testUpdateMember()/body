@@ -1,0 +1,13 @@
+{
+  final BaseType intType=backend.createType("test_int",32,true,null,BaseTypeCategory.ATOMIC);
+  final BaseType uintType=backend.createType("test_uint",32,false,null,BaseTypeCategory.ATOMIC);
+  final BaseType structType=backend.createType("test_struct",500,false,null,BaseTypeCategory.STRUCT);
+  final TypeMember member=backend.createStructureMember(structType,intType,"test_member",0);
+  final String newName="new_name";
+  final Optional<Integer> newOffset=Optional.<Integer>of(10);
+  backend.updateStructureMember(member,uintType,newName,newOffset.get());
+  final RawTypeMember updatedMember=mockProvider.loadTypeMember(mockModule,member.getId());
+  Assert.assertEquals(newName,updatedMember.getName());
+  Assert.assertEquals(uintType.getId(),updatedMember.getBaseTypeId());
+  Assert.assertEquals(newOffset,updatedMember.getOffset());
+}

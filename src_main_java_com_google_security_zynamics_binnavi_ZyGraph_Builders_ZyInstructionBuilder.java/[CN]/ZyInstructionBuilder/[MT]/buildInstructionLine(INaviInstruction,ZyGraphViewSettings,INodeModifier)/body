@@ -1,0 +1,8 @@
+{
+  final List<CStyleRunData> styleRun=new ArrayList<CStyleRunData>();
+  final StringBuffer line=new StringBuffer();
+  buildAddress(instruction,line,styleRun,modifier);
+  buildMnemonic(instruction,line,styleRun);
+  ZyOperandBuilder.buildOperands(instruction,graphSettings,line,styleRun,modifier);
+  return new Pair<String,List<CStyleRunData>>(line.toString(),styleRun);
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument((position >= 0) && (position < m_text.length()),"Error: Position argument is out of bounds (Position: %d, Length: %d/%d)",position,length,m_text.length());
+  Preconditions.checkArgument((length > 0) || ((position + length) <= m_text.length()),"Error: Length argument is out of bounds (Position: %d, Length: %d)",position,length);
+}

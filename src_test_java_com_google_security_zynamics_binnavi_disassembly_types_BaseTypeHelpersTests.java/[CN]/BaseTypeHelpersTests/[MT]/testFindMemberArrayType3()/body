@@ -1,0 +1,7 @@
+{
+  final WalkResult result=BaseTypeHelpers.findMember(typeSystem.uintArrayType,typeSystem.uintArrayType.getBitSize() + 1);
+  assertTrue(result.isValid());
+  assertEquals("unsigned int[10]+1",result.getPathString());
+  assertEquals(Lists.newArrayList(typeSystem.uintArrayTypeMember),result.getPath());
+  assertEquals(typeSystem.uintArrayTypeMember,result.getMember());
+}

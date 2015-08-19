@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  return editComment(new SectionCommentingStrategy(section),oldComment,commentText);
+}

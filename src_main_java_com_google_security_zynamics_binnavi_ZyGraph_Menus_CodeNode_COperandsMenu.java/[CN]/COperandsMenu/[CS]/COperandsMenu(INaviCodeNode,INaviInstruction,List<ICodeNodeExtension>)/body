@@ -1,0 +1,32 @@
+{
+  super("Operands");
+  final ITranslator<INaviInstruction> translator=CTranslatorFactory.getTranslator(instruction.getArchitecture());
+  if (translator == null) {
+    throw new MaybeNullException();
+  }
+  final Pair<Set<String>,Set<String>> operands=COperandsDeterminer.getRegisters(instruction);
+  final Set<String> inSet=operands.first();
+  final Set<String> outSet=operands.second();
+  final JMenu inRegisters=new JMenu("Incoming Registers");
+  final JMenu outRegisters=new JMenu("Outgoing Registers");
+  if (!inSet.isEmpty()) {
+    add(inRegisters);
+  }
+  if (!outSet.isEmpty()) {
+    add(outRegisters);
+  }
+  for (  final String register : inSet) {
+    final JMenu operandMenu=new JMenu(register);
+    for (    final ICodeNodeExtension extension : extensions) {
+      extension.extendIncomingRegistersMenu(operandMenu,node,instruction,register);
+    }
+    inRegisters.add(operandMenu);
+  }
+  for (  final String register : outSet) {
+    final JMenu operandMenu=new JMenu(register);
+    for (    final ICodeNodeExtension extension : extensions) {
+      extension.extendOutgoingRegistersMenu(operandMenu,node,instruction,register);
+    }
+    outRegisters.add(operandMenu);
+  }
+}

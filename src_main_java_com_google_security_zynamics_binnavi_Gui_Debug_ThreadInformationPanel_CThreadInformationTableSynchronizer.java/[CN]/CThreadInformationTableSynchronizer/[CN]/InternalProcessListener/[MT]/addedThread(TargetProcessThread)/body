@@ -1,0 +1,4 @@
+{
+  m_model.addThread(thread);
+  m_renderer.addThread(thread);
+}

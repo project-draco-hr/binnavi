@@ -1,0 +1,30 @@
+{
+  Preconditions.checkNotNull(containingType,"Error: Containing type can not be null.");
+  Preconditions.checkNotNull(memberType,"Error: Member type can not be null.");
+  if (containingType == memberType) {
+    return true;
+  }
+  final Set<BaseType> containedTypes=Sets.newHashSet(determineDependentTypes(containingType));
+  containedTypes.remove(containingType);
+  final Node startNode=containedRelationMap.get(memberType);
+  final Queue<Edge> edgesToVisit=new LinkedList<Edge>();
+  for (final EdgeCursor ec=startNode.inEdges(); ec.ok(); ec.next()) {
+    edgesToVisit.add((Edge)ec.current());
+  }
+  final Set<Node> visitednodes=new HashSet<Node>();
+  while (!edgesToVisit.isEmpty()) {
+    final Edge currentEdge=edgesToVisit.poll();
+    final Node nextNode=currentEdge.source();
+    final BaseType baseType=containedRelationMap.inverse().get(nextNode);
+    if (containedTypes.contains(baseType)) {
+      return true;
+    }
+    if (!visitednodes.contains(nextNode)) {
+      for (final EdgeCursor ec=nextNode.inEdges(); ec.ok(); ec.next()) {
+        edgesToVisit.add((Edge)ec.current());
+      }
+    }
+    visitednodes.add(nextNode);
+  }
+  return false;
+}

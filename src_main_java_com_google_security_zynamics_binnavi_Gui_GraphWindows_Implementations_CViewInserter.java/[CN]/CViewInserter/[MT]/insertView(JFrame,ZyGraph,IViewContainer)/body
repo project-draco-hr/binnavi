@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(parent,"IE00008: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE00009: Graph argument can not be null");
+  Preconditions.checkNotNull(viewContainer,"IE00010: View container argument can not be null");
+  final CViewSelectionDialog dlg=new CViewSelectionDialog(parent,viewContainer);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  final INaviView view=dlg.getView();
+  if (view != null) {
+    if (!view.isLoaded() && !loadView(parent,viewContainer,view)) {
+      return;
+    }
+    com.google.security.zynamics.binnavi.disassembly.algorithms.CViewInserter.insertView(view,graph.getRawView());
+    graph.updateViews();
+    view.close();
+  }
+}

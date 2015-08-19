@@ -1,0 +1,24 @@
+{
+  m_module=module;
+  m_listeners=mListeners;
+  m_provider=provider;
+  m_traces=new CTraceContainer(module,new FilledList<TraceList>(),provider);
+  m_nativeCallgraphView=new MockView(m_provider);
+  final List<INaviView> customViews=new ArrayList<INaviView>();
+  if (views != null) {
+    customViews.addAll(views);
+  }
+  final FilledList<INaviFunction> customfunctions=new FilledList<INaviFunction>();
+  if (functions != null) {
+    customfunctions.addAll(functions);
+  }
+  m_viewContainer=new CViewContainer(module,m_nativeCallgraphView,new ImmutableList.Builder<IFlowgraphView>().build(),customViews,new ImmutableBiMap.Builder<INaviView,INaviFunction>().build(),m_listeners,provider);
+  m_functionContainer=new CFunctionContainer(module,customfunctions);
+  try {
+    sections=new SectionContainer(new SectionContainerBackend(m_provider,module));
+    instances=new TypeInstanceContainer(new TypeInstanceContainerBackend(m_provider,module,module.getTypeManager(),sections),provider);
+  }
+ catch (  final CouldntLoadDataException e) {
+    e.printStackTrace();
+  }
+}

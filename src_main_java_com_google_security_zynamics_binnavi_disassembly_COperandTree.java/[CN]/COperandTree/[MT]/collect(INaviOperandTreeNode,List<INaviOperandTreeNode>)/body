@@ -1,0 +1,6 @@
+{
+  nodes.add(currentNode);
+  for (  final INaviOperandTreeNode child : currentNode.getChildren()) {
+    collect(child,nodes);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(instruction,"IE02697: instruction argument can not be null");
+  Preconditions.checkNotNull(commentString,"IE02698: comment argument can not be null");
+  return m_codeNode.getComments().appendLocalInstructionComment(instruction,commentString);
+}

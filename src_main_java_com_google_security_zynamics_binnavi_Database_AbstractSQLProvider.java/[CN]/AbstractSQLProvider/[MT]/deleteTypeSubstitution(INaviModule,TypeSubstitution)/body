@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.deleteTypeSubstitution(getConnection().getConnection(),module,typeSubstitution);
+}

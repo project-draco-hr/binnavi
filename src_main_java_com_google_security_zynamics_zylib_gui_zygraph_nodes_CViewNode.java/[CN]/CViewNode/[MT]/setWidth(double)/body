@@ -1,0 +1,14 @@
+{
+  if (m_width == width) {
+    return;
+  }
+  m_width=width;
+  for (  final IViewNodeListener listener : m_listeners) {
+    try {
+      listener.widthChanged(this,width);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

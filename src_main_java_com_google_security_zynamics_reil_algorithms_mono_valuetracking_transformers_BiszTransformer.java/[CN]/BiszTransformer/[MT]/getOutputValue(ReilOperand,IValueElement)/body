@@ -1,0 +1,15 @@
+{
+  if (previousState == null) {
+    return new NullCheck(getAtomicType(inputOperand));
+  }
+ else   if (previousState instanceof Undefined) {
+    return new Undefined();
+  }
+ else   if (previousState instanceof Literal) {
+    final BigInteger inputValue=previousState.evaluate();
+    return new NullCheck(new Literal(inputValue)).getSimplified();
+  }
+ else {
+    return new NullCheck(previousState).getSimplified();
+  }
+}

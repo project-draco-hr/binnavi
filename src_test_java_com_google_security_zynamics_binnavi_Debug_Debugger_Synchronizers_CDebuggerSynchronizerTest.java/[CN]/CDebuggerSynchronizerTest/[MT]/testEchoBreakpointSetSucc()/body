@@ -1,0 +1,7 @@
+{
+  mockDebugger.connect();
+  breakpointManager.addBreakpoints(BreakpointType.ECHO,CommonTestObjects.BP_ADDRESS_123_SET);
+  debuggerSynchronizer.receivedEvent(new EchoBreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,0))));
+  assertEquals(1,breakpointManager.getNumberOfBreakpoints(BreakpointType.ECHO));
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_123,BreakpointType.ECHO));
+}

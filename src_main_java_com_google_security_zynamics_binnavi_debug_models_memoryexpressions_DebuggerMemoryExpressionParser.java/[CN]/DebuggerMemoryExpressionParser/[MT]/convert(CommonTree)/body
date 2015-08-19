@@ -1,0 +1,30 @@
+{
+  if (ast.getType() == MemoryExpressionParser.REGISTER) {
+    return new Register(ast.getText());
+  }
+ else   if (ast.getType() == MemoryExpressionParser.NUMBER) {
+    return new NumericalValue(new BigInteger(ast.getText()));
+  }
+ else   if (ast.getType() == MemoryExpressionParser.HEX_NUMBER) {
+    return new NumericalValue(new BigInteger(ast.getText().substring(2),16));
+  }
+ else   if (ast.getType() == MemoryExpressionParser.MEM_EXPRESSION) {
+    return new MemoryExpression(convert((CommonTree)ast.getChild(0)));
+  }
+ else   if (ast.getType() == MemoryExpressionParser.OPERAND_PLUS) {
+    return new PlusExpression(convertChildren(ast));
+  }
+ else   if (ast.getType() == MemoryExpressionParser.OPERAND_MINUS) {
+    return new MinusExpression(convertChildren(ast));
+  }
+ else   if (ast.getType() == MemoryExpressionParser.OPERAND_MULT) {
+    return new MultiplicationExpression(convertChildren(ast));
+  }
+ else   if (ast.getType() == MemoryExpressionParser.SUB_EXPRESSION) {
+    return new SubExpression(convert((CommonTree)ast.getChild(0)));
+  }
+ else   if (ast.getType() == 0) {
+    return convert((CommonTree)ast.getChild(0));
+  }
+  throw new IllegalStateException("IE00360: Not yet implemented (" + ast.getType() + ")");
+}

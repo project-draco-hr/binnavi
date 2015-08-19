@@ -1,0 +1,9 @@
+{
+  final List<INaviViewNode> nodes=new FilledList<INaviViewNode>();
+  final List<INaviEdge> edges=new FilledList<INaviEdge>();
+  final INaviFunction mockFunction=new MockFunction();
+  final CCodeNode node=new CCodeNode(0,0,0,0,0,Color.RED,Color.RED,false,true,null,mockFunction,new HashSet<CTag>(),m_provider);
+  nodes.add(node);
+  final MockView view=new MockView(nodes,edges,m_provider);
+  CUnInliner.unInline(view,node);
+}

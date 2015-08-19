@@ -1,0 +1,6 @@
+{
+  if (!support.isDataFlavorSupported(TypeDataFlavor.TYPE_MEMBER_FLAVOR) || isDropForbidden(support)) {
+    return false;
+  }
+  return true;
+}

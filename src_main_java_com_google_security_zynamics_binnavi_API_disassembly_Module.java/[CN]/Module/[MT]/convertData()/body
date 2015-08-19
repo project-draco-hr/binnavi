@@ -1,0 +1,19 @@
+{
+  m_traces=new ArrayList<Trace>();
+  for (  final TraceList trace : m_module.getContent().getTraceContainer().getTraces()) {
+    m_traces.add(new Trace(trace));
+  }
+  m_module.getContent().getTraceContainer().addListener(m_traceListener);
+  m_functions=new ArrayList<Function>();
+  for (  final INaviFunction function : m_module.getContent().getFunctionContainer().getFunctions()) {
+    m_functions.add(new Function(this,function));
+  }
+  for (  final Function function : m_functions) {
+    m_functionMap.put(function.getNative(),function);
+  }
+  m_views=new ArrayList<View>();
+  for (  final INaviView view : m_module.getContent().getViewContainer().getViews()) {
+    m_views.add(new View(this,view,m_nodeTagManager,m_viewTagManager));
+  }
+  createCallgraph();
+}

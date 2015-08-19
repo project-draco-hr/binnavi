@@ -1,0 +1,8 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final BaseType baseType=typeManager.createAtomicType("new_base_type",32,true);
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.typeAdded(baseType);
+  Assert.assertEquals(expectedEvents,events);
+}

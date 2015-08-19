@@ -1,0 +1,8 @@
+{
+  Preconditions.checkArgument(tagId >= 0,"IE00845: Tag IDs must not be negative");
+  m_name=Preconditions.checkNotNull(name,"IE00846: Name argument can't be null");
+  m_description=Preconditions.checkNotNull(description,"IE00847: Description argument can't be null");
+  m_type=Preconditions.checkNotNull(type,"IE00848: Type argument can't be null");
+  m_sql=Preconditions.checkNotNull(sqlProvider,"IE00849: SQL Provider argument can't be null");
+  m_id=tagId;
+}

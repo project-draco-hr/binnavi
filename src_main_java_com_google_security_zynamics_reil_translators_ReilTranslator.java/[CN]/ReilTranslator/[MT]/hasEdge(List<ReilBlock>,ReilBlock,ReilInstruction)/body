@@ -1,0 +1,8 @@
+{
+  for (  final ReilBlock block : nodes) {
+    if (shareOriginalInstruction(node,block) && hasEdge(block,instruction)) {
+      return true;
+    }
+  }
+  return false;
+}

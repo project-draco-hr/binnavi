@@ -1,0 +1,5 @@
+{
+  super("Edit Comments");
+  m_model=Preconditions.checkNotNull(model,"Error: model argument can not be null");
+  m_node=Preconditions.checkNotNull(node,"Error: node argument can not be null");
+}

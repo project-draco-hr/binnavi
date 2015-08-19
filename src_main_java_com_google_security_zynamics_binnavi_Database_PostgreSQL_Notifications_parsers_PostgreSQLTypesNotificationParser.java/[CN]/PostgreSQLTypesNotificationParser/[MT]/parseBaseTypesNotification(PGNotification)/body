@@ -1,0 +1,10 @@
+{
+  final Matcher matcher=BASE_TYPES_NOTIFICATION_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    throw new IllegalStateException("Error: compiled pattern: " + BASE_TYPE_NOTIFICATION_REGEX + " did not match notification: "+ notification.getParameter());
+  }
+  final String databaseOperation=matcher.group(2);
+  final Integer moduleId=Integer.parseInt(matcher.group(3));
+  final Integer baseTypeId=Integer.parseInt(matcher.group(4));
+  return new TypesNotificationContainer(databaseOperation,moduleId,Optional.of(baseTypeId),Optional.<Integer>absent(),Optional.<BigInteger>absent(),Optional.<Integer>absent(),Optional.<Integer>absent());
+}

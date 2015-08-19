@@ -1,0 +1,6 @@
+{
+  super("Delete member");
+  this.owner=owner;
+  this.typeManager=typeManager;
+  this.typeEditor=typeEditor;
+}

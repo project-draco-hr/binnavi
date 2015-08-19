@@ -1,0 +1,11 @@
+{
+  final TypeInstance typeInstance=new TypeInstance(1,null,baseType,section,50,module);
+  Assert.assertNotNull(typeInstance);
+  Assert.assertEquals(1,typeInstance.getId());
+  Assert.assertNull(typeInstance.getName());
+  Assert.assertEquals(baseType,typeInstance.getBaseType());
+  Assert.assertEquals(section,typeInstance.getSection());
+  Assert.assertEquals(50,typeInstance.getAddress().getOffset());
+  Assert.assertEquals(module,typeInstance.getModule());
+  Assert.assertEquals(section.getStartAddress().toBigInteger().add(BigInteger.valueOf(typeInstance.getAddress().getOffset())),BigInteger.valueOf(typeInstance.getAddress().getVirtualAddress()));
+}

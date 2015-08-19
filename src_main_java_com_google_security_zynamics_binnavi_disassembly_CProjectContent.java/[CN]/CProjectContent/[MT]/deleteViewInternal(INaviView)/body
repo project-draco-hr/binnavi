@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(view,"IE00243: View argument can't be null");
+  Preconditions.checkArgument(m_views.contains(view),"IE00244: View is not part of the module");
+  m_views.remove(view);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.deletedView(m_project,view);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_project.getConfiguration().updateModificationDate();
+  return true;
+}

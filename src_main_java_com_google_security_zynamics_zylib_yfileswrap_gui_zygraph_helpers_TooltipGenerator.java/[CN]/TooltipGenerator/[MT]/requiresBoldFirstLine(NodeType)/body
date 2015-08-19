@@ -1,0 +1,3 @@
+{
+  return (node != null) && ((node.getRawNode() instanceof ICodeNode) || (node.getRawNode() instanceof IFunctionNode));
+}

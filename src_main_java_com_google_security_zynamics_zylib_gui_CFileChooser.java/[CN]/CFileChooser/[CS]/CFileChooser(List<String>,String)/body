@@ -1,0 +1,6 @@
+{
+  super();
+  Preconditions.checkNotNull(fileExtensions,"Error: File extensions can't be null.");
+  Preconditions.checkNotNull(fileDescription,"Error: File descriptions can't be null.");
+  addChoosableFileFilter(new CFileNameExtensionFilter(fileExtensions,fileDescription));
+}

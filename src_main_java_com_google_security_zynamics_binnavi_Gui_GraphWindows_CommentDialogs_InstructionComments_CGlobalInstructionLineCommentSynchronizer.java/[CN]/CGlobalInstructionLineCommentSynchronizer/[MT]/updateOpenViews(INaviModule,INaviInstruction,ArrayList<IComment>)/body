@@ -1,0 +1,9 @@
+{
+  if (module.isLoaded()) {
+    for (    final INaviView view : module.getContent().getViewContainer().getViews()) {
+      if (view.isLoaded()) {
+        updateOpenView(view,instruction,comments);
+      }
+    }
+  }
+}

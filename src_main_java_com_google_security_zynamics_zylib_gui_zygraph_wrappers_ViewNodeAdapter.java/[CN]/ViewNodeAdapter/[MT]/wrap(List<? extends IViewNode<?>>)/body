@@ -1,0 +1,7 @@
+{
+  final List<ViewNodeAdapter> l=new ArrayList<ViewNodeAdapter>();
+  for (  final IViewNode<?> viewNode : sel) {
+    l.add(new ViewNodeAdapter(viewNode));
+  }
+  return l;
+}

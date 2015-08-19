@@ -1,0 +1,12 @@
+{
+  super(new GridLayout(1,2,5,5));
+  globalCommentsTable=new GenericCommentsTable(new CGlobalFunctionCommentAccessor(function),"Global function comment");
+  add(globalCommentsTable);
+  if (functionNode != null) {
+    localCommentsTable=new GenericCommentsTable(new CLocalFunctionNodeCommentAccessor(functionNode),"Local function comment");
+    add(localCommentsTable);
+  }
+ else {
+    localCommentsTable=null;
+  }
+}

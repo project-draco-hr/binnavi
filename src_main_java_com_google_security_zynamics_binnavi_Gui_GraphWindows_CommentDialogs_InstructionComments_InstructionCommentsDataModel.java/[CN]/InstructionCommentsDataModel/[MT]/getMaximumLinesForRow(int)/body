@@ -1,0 +1,7 @@
+{
+  int maximumLines=0;
+  for (  IComment comment : internalData.get(rowIndex).second()) {
+    maximumLines+=(comment.getNumberOfCommentLines() == 0) ? 1 : comment.getNumberOfCommentLines();
+  }
+  return maximumLines;
+}

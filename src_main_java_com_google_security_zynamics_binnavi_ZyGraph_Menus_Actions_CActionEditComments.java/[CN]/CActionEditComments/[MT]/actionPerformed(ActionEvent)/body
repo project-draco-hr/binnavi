@@ -1,0 +1,3 @@
+{
+  CNodeFunctions.editNodeComments(m_model,m_node,InitialTab.GlobalLineComments);
+}

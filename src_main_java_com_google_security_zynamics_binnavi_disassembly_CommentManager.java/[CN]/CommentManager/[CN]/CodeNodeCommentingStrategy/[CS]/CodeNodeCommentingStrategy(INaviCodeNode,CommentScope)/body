@@ -1,0 +1,4 @@
+{
+  codeNode=Preconditions.checkNotNull(node,"IE02603: node argument can not be null");
+  scope=Preconditions.checkNotNull(currentScope,"IE02604: currentScope argument can not be null");
+}

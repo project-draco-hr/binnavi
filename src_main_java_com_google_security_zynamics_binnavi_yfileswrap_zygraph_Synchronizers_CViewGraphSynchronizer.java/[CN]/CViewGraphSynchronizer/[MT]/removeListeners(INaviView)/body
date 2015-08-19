@@ -1,0 +1,8 @@
+{
+  view.removeListener(m_viewListener);
+  for (  final INaviViewNode node : view.getGraph().getNodes()) {
+    if (node instanceof INaviGroupNode) {
+      ((INaviGroupNode)node).removeGroupListener(m_groupNodeListener);
+    }
+  }
+}

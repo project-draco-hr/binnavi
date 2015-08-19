@@ -1,0 +1,11 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(database,"IE01964: Database argument can't be null");
+  m_panel=new CDatabaseSettingsPanel(database);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.add(m_panel,BorderLayout.SOUTH);
+  add(innerPanel,BorderLayout.NORTH);
+  if (database.isConnecting() || database.isLoading()) {
+    showProgressPanel();
+  }
+}

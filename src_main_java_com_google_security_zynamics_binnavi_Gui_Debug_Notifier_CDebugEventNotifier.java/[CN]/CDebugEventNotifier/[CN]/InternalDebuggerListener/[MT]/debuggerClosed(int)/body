@@ -1,0 +1,6 @@
+{
+  if (code != 0) {
+    CMessageBox.showError(activateWindow(),"The connection to the debug client terminated unexpectedly.");
+  }
+  stop();
+}

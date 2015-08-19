@@ -1,0 +1,5 @@
+{
+  final ZyLabelContent labelContent=getLabelContent();
+  final IZyEditableObject labelModel=labelContent.getModel();
+  labelContent.getLineEditor().recreateLabelLines(labelContent,labelModel);
+}

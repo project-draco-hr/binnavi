@@ -1,0 +1,12 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  if (event.getPoint().x > 20) {
+    return;
+  }
+  final int row=JCheckedListbox.this.locationToIndex(event.getPoint());
+  m_selected[row]=!m_selected[row];
+  updateUI();
+  fireSelectionValueChanged(row,row,false);
+}

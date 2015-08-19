@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(provider,"IE02717: provider argument can not be null.");
+  if (!managers.containsKey(provider)) {
+    try {
+      managers.put(provider,new CUserManager(provider,provider.loadUsers()));
+    }
+ catch (    final CouldntLoadDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return managers.get(provider);
+}

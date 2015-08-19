@@ -1,0 +1,8 @@
+{
+  try {
+    return Color.decode(properties.getProperty(keyPrefix + key,String.valueOf(defaultValue.getRGB())));
+  }
+ catch (  final NumberFormatException e) {
+    return defaultValue;
+  }
+}

@@ -1,0 +1,66 @@
+{
+  int alt4=12;
+  alt4=dfa4.predict(input);
+switch (alt4) {
+case 1:
+{
+      mT__18();
+    }
+  break;
+case 2:
+{
+  mT__19();
+}
+break;
+case 3:
+{
+mT__20();
+}
+break;
+case 4:
+{
+mT__21();
+}
+break;
+case 5:
+{
+mWS();
+}
+break;
+case 6:
+{
+mCHARACTER();
+}
+break;
+case 7:
+{
+mNUMBER();
+}
+break;
+case 8:
+{
+mHEX_NUMBER();
+}
+break;
+case 9:
+{
+mREGISTER();
+}
+break;
+case 10:
+{
+mOPERAND_PLUS();
+}
+break;
+case 11:
+{
+mOPERAND_MINUS();
+}
+break;
+case 12:
+{
+mOPERAND_MULT();
+}
+break;
+}
+}

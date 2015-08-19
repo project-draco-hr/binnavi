@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  final ViewContainer container=view.getContainer();
+  if (container instanceof Module) {
+    final Module module=(Module)container;
+    return show(null,view,new CModuleContainer(container.getDatabase().getNative(),module.getNative()));
+  }
+ else {
+    final Project project=(Project)container;
+    return show(null,view,new CProjectContainer(container.getDatabase().getNative(),project.getNative()));
+  }
+}

@@ -1,0 +1,4 @@
+{
+  m_module.load();
+  assertNotNull(m_module.getUserViews());
+}

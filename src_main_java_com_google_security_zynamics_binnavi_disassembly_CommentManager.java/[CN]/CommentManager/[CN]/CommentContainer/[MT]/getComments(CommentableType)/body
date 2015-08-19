@@ -1,0 +1,3 @@
+{
+  return commentableToComment.get(commentable);
+}

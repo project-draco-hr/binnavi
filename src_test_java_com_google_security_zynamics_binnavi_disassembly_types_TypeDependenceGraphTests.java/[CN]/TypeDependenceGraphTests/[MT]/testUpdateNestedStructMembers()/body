@@ -1,0 +1,6 @@
+{
+  for (  final TypeMember member : typeSystem.nestedStruct) {
+    final ImmutableSet<BaseType> affectedTypes=dependenceGraph.updateMember(member.getParentType(),member.getBaseType(),typeSystem.intType).getAffectedTypes();
+    assertEquals(ImmutableSet.<BaseType>of(typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.complexUnion),affectedTypes);
+  }
+}

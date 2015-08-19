@@ -1,0 +1,3 @@
+{
+  m_searchPanel.getSearchField().getGraphSearcher().getSettings().setOnlyVisible(value);
+}

@@ -1,0 +1,16 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final java.util.List<IComment> storedComments=instanceContainer.getComments(typeInstance);
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String firstCommentString=" PASS SECTION COMMENT 1 ";
+  final int firstCommentId=getProvider().appendTypeInstanceComment(typeInstance.getModule().getConfiguration().getId(),typeInstance.getId(),firstCommentString,user.getUserId());
+  final IComment firstComment=new CComment(firstCommentId,user,lastComment,firstCommentString);
+  final String secondCommentString=" PASS SECTION COMMENT 2 ";
+  final int secondCommentId=getProvider().appendTypeInstanceComment(typeInstance.getModule().getConfiguration().getId(),typeInstance.getId(),secondCommentString,user.getUserId());
+  final IComment secondComment=new CComment(secondCommentId,user,firstComment,secondCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(secondCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(storedComments.size() + 2,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(firstComment));
+  assertTrue(commentsFromDatabase.contains(secondComment));
+}

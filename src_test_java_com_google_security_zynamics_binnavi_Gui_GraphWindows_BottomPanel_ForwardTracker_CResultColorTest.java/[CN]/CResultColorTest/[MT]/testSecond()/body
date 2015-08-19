@@ -1,0 +1,62 @@
+{
+  final MockSqlProvider mockProvider=new MockSqlProvider();
+  final MockModule mockModule=new MockModule(mockProvider);
+  final COperandTreeNode rootNode1=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode1=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_IMMEDIATE_INT_ID,"6",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode1,childNode1);
+  final COperandTreeNode rootNode2=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode2=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SYMBOL_ID,",",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode2,childNode2);
+  final COperandTreeNode rootNode3=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode3=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_REGISTER_ID,"t0",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode3,childNode3);
+  final COperandTree operand1=new COperandTree(rootNode1,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTree operand2=new COperandTree(rootNode2,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTree operand3=new COperandTree(rootNode3,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final List<COperandTree> operands1=Lists.newArrayList(operand1,operand2,operand3);
+  final INaviInstruction instruction1=new CInstruction(false,mockModule,new CAddress(1),"str",operands1,new byte[0],"REIL",mockProvider);
+  final COperandTreeNode rootNode4=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode4=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_REGISTER_ID,"t0",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode4,childNode4);
+  final COperandTreeNode rootNode5=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode5=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SYMBOL_ID,",",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode5,childNode5);
+  final COperandTreeNode rootNode6=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode6=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_REGISTER_ID,"t1",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode6,childNode6);
+  final COperandTree operand4=new COperandTree(rootNode4,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTree operand5=new COperandTree(rootNode5,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTree operand6=new COperandTree(rootNode6,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final List<COperandTree> operands2=Lists.newArrayList(operand4,operand5,operand6);
+  final INaviInstruction instruction2=new CInstruction(false,mockModule,new CAddress(2),"str",operands2,new byte[0],"REIL",mockProvider);
+  final COperandTreeNode rootNode7=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode7=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_REGISTER_ID,"t1",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode7,childNode7);
+  final COperandTreeNode rootNode8=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode8=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SYMBOL_ID,",",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode8,childNode8);
+  final COperandTreeNode rootNode9=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_SIZE_PREFIX_ID,"b4",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTreeNode childNode9=new COperandTreeNode(-1,IOperandTree.NODE_TYPE_REGISTER_ID,"t2",null,new ArrayList<IReference>(),mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  COperandTreeNode.link(rootNode9,childNode9);
+  final COperandTree operand7=new COperandTree(rootNode7,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTree operand8=new COperandTree(rootNode8,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final COperandTree operand9=new COperandTree(rootNode9,mockProvider,mockModule.getTypeManager(),mockModule.getContent().getTypeInstanceContainer());
+  final List<COperandTree> operands3=Lists.newArrayList(operand7,operand8,operand9);
+  final INaviInstruction instruction3=new CInstruction(false,mockModule,new CAddress(3),"str",operands3,new byte[0],"REIL",mockProvider);
+  final INaviView view=mockModule.getContent().getViewContainer().createView("","");
+  final List<INaviInstruction> instructions=Lists.newArrayList(instruction1,instruction2,instruction3);
+  view.getContent().createCodeNode(null,instructions);
+  final RegisterTrackingOptions options=new RegisterTrackingOptions(true,new HashSet<String>(),false,AnalysisDirection.UP);
+  final CTrackingResult results=CTracking.track(view,instruction3,"t2",options);
+  for (  final CInstructionResult result : results.getResults()) {
+    if (result.getInstruction() == instruction1) {
+      assertEquals(Color.RED,CResultColor.determineBackgroundColor(instruction3,"t2",result));
+    }
+ else     if (result.getInstruction() == instruction2) {
+      assertEquals(Color.CYAN,CResultColor.determineBackgroundColor(instruction3,"t2",result));
+    }
+ else     if (result.getInstruction() == instruction3) {
+      assertEquals(Color.GREEN,CResultColor.determineBackgroundColor(instruction3,"t2",result));
+    }
+  }
+}

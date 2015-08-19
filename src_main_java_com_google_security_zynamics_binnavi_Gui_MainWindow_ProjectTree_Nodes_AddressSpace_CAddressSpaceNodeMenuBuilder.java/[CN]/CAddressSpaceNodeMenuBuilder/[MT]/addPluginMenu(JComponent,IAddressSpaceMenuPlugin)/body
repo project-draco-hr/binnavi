@@ -1,0 +1,18 @@
+{
+  try {
+    final List<JComponent> menuItems=plugin.extendAddressSpaceMenu(getPluginAddressSpaces());
+    if (menuItems != null) {
+      for (      final JComponent menuItem : menuItems) {
+        if (menuItem != null) {
+          menu.add(menuItem);
+        }
+      }
+    }
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00094: " + "Plugin caused an unexpected exception";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
+    CNaviErrorDialog.show(getParent(),innerMessage,innerDescription,exception);
+  }
+}

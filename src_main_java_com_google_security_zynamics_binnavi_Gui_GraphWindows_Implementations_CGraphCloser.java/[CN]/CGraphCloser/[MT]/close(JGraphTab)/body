@@ -1,0 +1,7 @@
+{
+  final List<CGraphPanel> graphs=new ArrayList<CGraphPanel>();
+  for (int i=0; i < graphTab.getTabCount(); i++) {
+    graphs.add(((CGraphPanel)graphTab.getComponentAt(i)));
+  }
+  close(SwingUtilities.getWindowAncestor(graphTab),graphs);
+}

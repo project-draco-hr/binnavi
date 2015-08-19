@@ -1,0 +1,3 @@
+{
+  m_debugger.setAddressTranslator(m_module,m_fileBase,m_imageBase);
+}

@@ -1,0 +1,17 @@
+{
+  final String shifterOperand=environment.getNextVariableString();
+  final String shifterCarryOut=environment.getNextVariableString();
+  long baseOffset=offset;
+  if (immediateNodeValue.equals("0")) {
+    return new Pair<String,String>(registerNodeValue,"C");
+  }
+ else {
+    final String tmpVar1=environment.getNextVariableString();
+    final String tmpVar2=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue,wordSize,immediateNodeValue,qWordSize,tmpVar1));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,qWordSize,tmpVar1,dWordSize,bitMaskAllBitsSet,dWordSize,shifterOperand));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue,wordSize,String.valueOf(-(32 - Integer.decode(immediateNodeValue))),dWordSize,tmpVar2));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dWordSize,tmpVar2,byteSize,oneSet,byteSize,shifterCarryOut));
+    return new Pair<String,String>(shifterOperand,shifterCarryOut);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  checkArguments(debuggerProvider);
+  for (  final IDebugger debugger : debuggerProvider) {
+    enableAll(debugger.getBreakpointManager());
+  }
+}

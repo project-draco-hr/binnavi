@@ -1,0 +1,8 @@
+{
+  INaviViewNode rawNode=getRawView().getGraph().getNodes().get(index);
+  NaviNode naviNode=getNode(rawNode);
+  if (!rawNode.isVisible() && !getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+    rawNode.setVisible(true);
+  }
+  selectNode(naviNode,!rawNode.isSelected());
+}

@@ -1,0 +1,4 @@
+IAddress address
+int operandPosition
+int expressionId
+INaviOperandTreeNode node

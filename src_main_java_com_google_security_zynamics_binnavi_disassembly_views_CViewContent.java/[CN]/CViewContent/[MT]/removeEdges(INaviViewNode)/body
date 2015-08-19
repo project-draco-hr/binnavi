@@ -1,0 +1,19 @@
+{
+  if (node instanceof INaviGroupNode) {
+    return;
+  }
+  final Set<INaviEdge> toDelete=new HashSet<INaviEdge>();
+  for (  final INaviEdge incomingEdge : node.getIncomingEdges()) {
+    incomingEdge.getSource().removeChild(node);
+    incomingEdge.getSource().removeOutgoingEdge(incomingEdge);
+    toDelete.add(incomingEdge);
+  }
+  for (  final INaviEdge outgoingEdge : node.getOutgoingEdges()) {
+    outgoingEdge.getTarget().removeParent(node);
+    outgoingEdge.getTarget().removeIncomingEdge(outgoingEdge);
+    toDelete.add(outgoingEdge);
+  }
+  for (  final INaviEdge edge : toDelete) {
+    deleteEdge(edge);
+  }
+}

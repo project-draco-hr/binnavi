@@ -1,0 +1,21 @@
+{
+  final JFrame parent=null;
+  if (coverage != null) {
+    MessageBox.showInformation(parent,"Visual Coverage trace is already active");
+    return;
+  }
+  final List<Debugger> debuggers=graphFrame.getDebuggers();
+  if (debuggers.size() == 0) {
+    MessageBox.showInformation(parent,"Visual Coverage trace can not be started because no debugger is configured for this graph.");
+    return;
+  }
+ else   if (debuggers.size() == 1) {
+    final Debugger debugger=debuggers.get(0);
+    coverage=new VisualCoverage(parent,debugger,graphFrame.getView2D());
+    coverage.addListener(traceListener);
+  }
+ else {
+    MessageBox.showInformation(parent,"Visual Coverage trace can not be started because more than one debugger is configured for this graph.");
+    return;
+  }
+}

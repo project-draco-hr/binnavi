@@ -1,0 +1,9 @@
+{
+  final List<Pair<INaviView,CTag>> taggedViews=new ArrayList<Pair<INaviView,CTag>>();
+  for (  final INaviView view : views) {
+    for (    final CTag tag : view.getConfiguration().getViewTags()) {
+      taggedViews.add(new Pair<INaviView,CTag>(view,tag));
+    }
+  }
+  return taggedViews;
+}

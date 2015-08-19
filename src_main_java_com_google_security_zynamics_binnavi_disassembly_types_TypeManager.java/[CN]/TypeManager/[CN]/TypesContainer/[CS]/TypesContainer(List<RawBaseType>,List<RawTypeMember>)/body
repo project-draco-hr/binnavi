@@ -1,0 +1,3 @@
+{
+  dependenceGraph=initializeTypeSystem(rawBaseTypes,rawMembers);
+}

@@ -1,0 +1,33 @@
+{
+  super(text,icon,horizontalAlignment);
+  m_popup=new JPopupMenu();
+  final JMenuItem copyPathMenuItem=new JMenuItem("Copy Path",'C');
+  copyPathMenuItem.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      final StringSelection data=new StringSelection(CPathLabel.super.getText());
+      Toolkit.getDefaultToolkit().getSystemClipboard().setContents(data,data);
+    }
+  }
+);
+  m_popup.add(copyPathMenuItem);
+  addComponentListener(new ComponentAdapter(){
+    @Override public void componentResized(    final ComponentEvent e){
+      updatePathEllipsis();
+    }
+  }
+);
+  addMouseListener(new MouseAdapter(){
+    private void handlePopupEvent(    final MouseEvent e){
+      if (e.isPopupTrigger()) {
+        m_popup.show(e.getComponent(),e.getX(),e.getY());
+      }
+    }
+    @Override public void mousePressed(    final MouseEvent e){
+      handlePopupEvent(e);
+    }
+    @Override public void mouseReleased(    final MouseEvent e){
+      handlePopupEvent(e);
+    }
+  }
+);
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(callback,"Error: Callback argument can't be null");
+  graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      if (node.isVisible()) {
+        return IterationMode.CONTINUE;
+      }
+      return callback.next(node);
+    }
+  }
+);
+}

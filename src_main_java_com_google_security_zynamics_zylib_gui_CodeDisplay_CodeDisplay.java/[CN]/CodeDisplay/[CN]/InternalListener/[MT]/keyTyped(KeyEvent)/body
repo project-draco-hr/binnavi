@@ -1,0 +1,11 @@
+{
+  if (codeModel.isEditable(caretPosition)) {
+    CodeDisplayCoordinate before=new CodeDisplayCoordinate(caretPosition);
+    codeModel.keyPressedOrTyped(caretPosition,event);
+    if (!before.equals(caretPosition)) {
+      notifyCaretListeners();
+    }
+    updateCharacterBufferFromModel();
+    repaint();
+  }
+}

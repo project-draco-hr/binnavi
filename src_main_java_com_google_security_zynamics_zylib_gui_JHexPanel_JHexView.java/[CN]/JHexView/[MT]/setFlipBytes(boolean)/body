@@ -1,0 +1,7 @@
+{
+  if (m_flipBytes == flip) {
+    return;
+  }
+  m_flipBytes=flip;
+  repaint();
+}

@@ -1,0 +1,4 @@
+int caretPosition
+double x
+double y
+double zoomFactor

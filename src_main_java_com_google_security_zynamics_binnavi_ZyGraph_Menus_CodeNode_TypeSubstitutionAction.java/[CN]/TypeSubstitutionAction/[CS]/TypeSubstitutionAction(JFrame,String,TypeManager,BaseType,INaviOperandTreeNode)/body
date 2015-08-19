@@ -1,0 +1,7 @@
+{
+  super(title);
+  this.typeManager=Preconditions.checkNotNull(typeManager,"IE02880: Type manager can not be null.");
+  this.owner=owner;
+  this.selectedNode=selectedNode;
+  this.stackFrame=stackFrame;
+}

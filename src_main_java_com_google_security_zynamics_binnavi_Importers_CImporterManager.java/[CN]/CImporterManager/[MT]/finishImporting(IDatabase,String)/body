@@ -1,0 +1,3 @@
+{
+  m_imports.get(database).remove(idb);
+}

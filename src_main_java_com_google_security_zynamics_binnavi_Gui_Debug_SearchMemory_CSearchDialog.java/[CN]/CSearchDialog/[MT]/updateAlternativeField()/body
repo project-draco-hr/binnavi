@@ -1,0 +1,6 @@
+{
+  final ISearcher searcher=(ISearcher)m_typeBox.getSelectedItem();
+  if (searcher != null) {
+    m_altField.setText(searcher.getAlternativeString(m_inputField.getText()));
+  }
+}

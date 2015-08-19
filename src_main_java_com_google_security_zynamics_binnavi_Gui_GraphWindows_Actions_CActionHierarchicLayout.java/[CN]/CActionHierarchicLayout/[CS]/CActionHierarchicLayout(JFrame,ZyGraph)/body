@@ -1,0 +1,7 @@
+{
+  super("Hierarchical Layout");
+  m_parent=Preconditions.checkNotNull(parent,"IE02821: parent argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE02822: graph argument can not be null");
+  putValue(Action.SMALL_ICON,new ImageIcon(CMain.class.getResource("data/layhier_up.jpg")));
+  putValue(Action.SHORT_DESCRIPTION,"Hierarchical Layout");
+}

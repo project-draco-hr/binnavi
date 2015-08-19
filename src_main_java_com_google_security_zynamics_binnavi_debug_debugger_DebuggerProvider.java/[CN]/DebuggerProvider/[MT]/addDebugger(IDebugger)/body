@@ -1,0 +1,11 @@
+{
+  debuggers.add(Preconditions.checkNotNull(debugger,"IE00195: Debugger argument can not be null"));
+  for (  final DebuggerProviderListener listener : m_listeners) {
+    try {
+      listener.debuggerAdded(this,debugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

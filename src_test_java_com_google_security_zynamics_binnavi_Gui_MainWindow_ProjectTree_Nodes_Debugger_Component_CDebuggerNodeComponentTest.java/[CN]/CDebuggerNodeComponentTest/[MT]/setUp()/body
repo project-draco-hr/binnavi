@@ -1,0 +1,9 @@
+{
+  m_database=new MockDatabase(m_provider);
+  m_component=new CDebuggerNodeComponent(m_template);
+  m_saveButton=(JButton)ReflectionHelpers.getField(m_component,"m_saveButton");
+  m_nameTextField=(JTextField)ReflectionHelpers.getField(m_component,"m_nameTextField");
+  m_hostTextField=(JTextField)ReflectionHelpers.getField(m_component,"m_hostTextField");
+  m_portTextField=(JTextField)ReflectionHelpers.getField(m_component,"m_portTextField");
+  m_templateListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_template,"listeners"),"m_listeners");
+}

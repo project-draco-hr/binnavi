@@ -1,0 +1,5 @@
+{
+  m_settings.getDisplaySettings().removeListener(m_settingsListener);
+  m_settings.getEdgeSettings().removeListener(m_edgeSettingsListener);
+  m_settings.getLayoutSettings().removeListener(m_layoutSettingsListener);
+}

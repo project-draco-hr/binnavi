@@ -1,0 +1,14 @@
+{
+  try {
+    final Integer typeInstanceId=m_resultSet.getInt("type_instance_id");
+    if (m_resultSet.wasNull()) {
+      return null;
+    }
+ else {
+      return typeInstanceId;
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new ParserException(exception);
+  }
+}

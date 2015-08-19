@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    provider.editGlobalCodeNodeComment(codeNode,id,userId,commentText);
+  }
+ else {
+    provider.editLocalCodeNodeComment(codeNode,id,userId,commentText);
+  }
+}

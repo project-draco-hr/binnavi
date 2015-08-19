@@ -1,0 +1,7 @@
+{
+  Preconditions.checkArgument(length != 0,"Error: Invalid style run length");
+  m_start=start;
+  m_length=length;
+  m_color=color;
+  m_lineObject=lineObject;
+}

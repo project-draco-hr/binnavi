@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(bitSize >= 0,"Error: type size must be positive.");
+  Preconditions.checkArgument(category == BaseTypeCategory.ATOMIC || category == BaseTypeCategory.POINTER,"Error: can not set size of non-atomic or non-pointer type.");
+  this.bitSize=bitSize;
+}

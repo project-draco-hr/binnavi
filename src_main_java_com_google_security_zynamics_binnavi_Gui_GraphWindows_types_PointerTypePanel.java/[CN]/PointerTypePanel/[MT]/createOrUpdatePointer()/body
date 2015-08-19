@@ -1,0 +1,9 @@
+{
+  final int pointerLevel=getPointerLevel();
+  BaseType childBaseType=getSelectedType();
+  final int existingLevel=childBaseType.getPointerLevel();
+  for (int i=existingLevel + 1; i <= pointerLevel; ++i) {
+    final BaseType parentType=typeManager.createPointerType(childBaseType);
+    childBaseType=parentType;
+  }
+}

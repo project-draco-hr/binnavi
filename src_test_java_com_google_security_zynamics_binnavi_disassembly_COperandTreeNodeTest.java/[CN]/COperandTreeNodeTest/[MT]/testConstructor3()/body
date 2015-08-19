@@ -1,0 +1,3 @@
+{
+  new COperandTreeNode(1,1,"value",m_replacement,null,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+}

@@ -1,0 +1,3 @@
+{
+  return register.equals("al") || register.equals("bl") || register.equals("cl")|| register.equals("dl");
+}

@@ -1,0 +1,13 @@
+{
+  viewContainer=Preconditions.checkNotNull(container,"Error: Container argument can not be null");
+  naviView=Preconditions.checkNotNull(view,"Error: View argument can't be null");
+  this.nodeTagManager=Preconditions.checkNotNull(nodeTagManager,"Error: Node tag manager argument can't be null");
+  this.viewTagManager=Preconditions.checkNotNull(viewTagManager,"Error: View tag manager argument can't be null");
+  for (  final CTag tag : view.getConfiguration().getViewTags()) {
+    viewTags.add(viewTagManager.getTag(tag));
+  }
+  if (view.isLoaded()) {
+    convertData();
+  }
+  view.addListener(viewListener);
+}

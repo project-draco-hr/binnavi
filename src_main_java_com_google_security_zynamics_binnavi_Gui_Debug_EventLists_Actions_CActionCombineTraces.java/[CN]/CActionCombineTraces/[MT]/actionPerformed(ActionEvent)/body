@@ -1,0 +1,3 @@
+{
+  CTraceCombinationFunctions.unionizeTraces(m_parent,m_traceProvider,m_traces);
+}

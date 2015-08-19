@@ -1,0 +1,29 @@
+{
+  boolean hasCodeNode=false;
+  boolean hasFunctionNode=false;
+  for (  final INaviViewNode node : graph.getNodes()) {
+    if (node instanceof INaviFunctionNode) {
+      hasFunctionNode=true;
+      if (hasCodeNode) {
+        setGraphType(GraphType.MIXED_GRAPH);
+        return;
+      }
+    }
+ else     if (node instanceof INaviCodeNode) {
+      hasCodeNode=true;
+      if (hasFunctionNode) {
+        setGraphType(GraphType.MIXED_GRAPH);
+        return;
+      }
+    }
+  }
+  if (hasCodeNode) {
+    setGraphType(GraphType.FLOWGRAPH);
+  }
+ else   if (hasFunctionNode) {
+    setGraphType(GraphType.CALLGRAPH);
+  }
+ else {
+    setGraphType(GraphType.MIXED_GRAPH);
+  }
+}

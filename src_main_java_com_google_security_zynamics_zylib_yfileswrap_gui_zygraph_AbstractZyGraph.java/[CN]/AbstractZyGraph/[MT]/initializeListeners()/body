@@ -1,0 +1,4 @@
+{
+  m_graph.addGraph2DSelectionListener(m_selectionObserver);
+  m_graph.addGraphListener(m_selectionObserver);
+}

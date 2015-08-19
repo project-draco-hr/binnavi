@@ -1,0 +1,8 @@
+{
+  this.viewId=Preconditions.checkNotNull(viewId,"IE02627: viewId argument can not be null.");
+  this.view=Preconditions.checkNotNull(view,"IE02628: view argument can not be null.");
+  this.notificationObjectId=Preconditions.checkNotNull(notificationObjectId,"Error: notificationObjectId argument can not be null.");
+  this.notificationModule=Preconditions.checkNotNull(notificationModule,"Error: notification Module argument can not be null.");
+  this.notificationProject=Preconditions.checkNotNull(notificationProject,"Error: notification Project argument can not be null.");
+  this.databaseOperation=Preconditions.checkNotNull(databaseOperation,"Error: databaseOperation argument can not be null.");
+}

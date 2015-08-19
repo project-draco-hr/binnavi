@@ -1,0 +1,23 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to delete the tag '%s' and all of its children from the database?",tag.getObject().getName())) == JOptionPane.YES_OPTION) {
+    new Thread(){
+      @Override public void run(){
+        try {
+          final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,false);
+          operation.getProgressPanel().setMaximum(1);
+          operation.getProgressPanel().setText("Deleting tag tree" + ": " + tag.getObject().getName());
+          tagManager.deleteTagSubTree(tag);
+          operation.getProgressPanel().next();
+          operation.stop();
+        }
+ catch (        final CouldntDeleteException e) {
+          CUtilityFunctions.logException(e);
+          final String innerMessage="E00146: " + "Could not delete tag tree";
+          final String innerDescription=CUtilityFunctions.createDescription(String.format("The tag '%s' and its children could not be deleted.",tag.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag and its children were not deleted and can still be used."});
+          CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+        }
+      }
+    }
+.start();
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final Connection connection=DriverManager.getConnection(url + "postgres",databaseProperties);
+  connection.prepareStatement("DROP DATABASE IF EXISTS test_disassembly").execute();
+  connection.prepareStatement("DROP DATABASE IF EXISTS test_import").execute();
+  connection.prepareStatement("DROP DATABASE IF EXISTS test_empty").execute();
+  connection.prepareStatement("CREATE DATABASE test_disassembly").execute();
+  connection.prepareStatement("CREATE DATABASE test_import").execute();
+  connection.prepareStatement("CREATE DATABASE test_empty").execute();
+  connection.close();
+  createDatabase(TEST_IMPORT);
+  createDatabase(TEST_DISASSEMBLY);
+}

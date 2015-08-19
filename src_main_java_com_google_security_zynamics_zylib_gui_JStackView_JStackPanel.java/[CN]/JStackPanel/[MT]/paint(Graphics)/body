@@ -1,0 +1,12 @@
+{
+  super.paint(g);
+  calculateSizes(g);
+  updateOffsetViewWidth();
+  if (m_firstDraw) {
+    m_firstDraw=false;
+    updatePreferredSize();
+  }
+  drawBackground(g);
+  drawOffsets(g);
+  drawElements(g);
+}

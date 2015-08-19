@@ -1,0 +1,3 @@
+{
+  getProvider().deleteLocalCodeNodeComment(codeNode,null,null);
+}

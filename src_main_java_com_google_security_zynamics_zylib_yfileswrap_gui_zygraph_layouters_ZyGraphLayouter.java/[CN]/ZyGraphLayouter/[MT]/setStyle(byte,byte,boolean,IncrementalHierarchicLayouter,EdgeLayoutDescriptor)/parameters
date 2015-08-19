@@ -1,0 +1,5 @@
+byte strategy
+byte routingStyle
+boolean routeOrthogonally
+IncrementalHierarchicLayouter layouter
+EdgeLayoutDescriptor edgeLayout

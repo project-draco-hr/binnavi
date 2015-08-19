@@ -1,0 +1,3 @@
+AbstractSQLProvider provider
+INaviModule module
+byte[] data

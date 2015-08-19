@@ -1,0 +1,5 @@
+String headline
+IFieldDescription<String> name
+IFieldDescription<String> description
+IFieldDescription<Date> creationDate
+IFieldDescription<Date> modificationDate

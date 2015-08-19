@@ -1,0 +1,6 @@
+{
+  this.owner=owner;
+  this.tree=tree;
+  this.typeManager=typeManager;
+  this.typeEditor=typeEditor;
+}

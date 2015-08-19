@@ -1,0 +1,5 @@
+{
+  super(new GridLayout(1,1,5,5));
+  groupNodeCommentsTable=new GenericCommentsTable(new GroupNodeCommentAccessor(node),"Group node comment");
+  add(groupNodeCommentsTable);
+}

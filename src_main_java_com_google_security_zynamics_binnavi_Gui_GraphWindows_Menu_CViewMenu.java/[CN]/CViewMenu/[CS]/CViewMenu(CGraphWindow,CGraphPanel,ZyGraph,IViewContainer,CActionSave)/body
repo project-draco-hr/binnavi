@@ -1,0 +1,18 @@
+{
+  super("View");
+  setMnemonic("HK_MENU_VIEW".charAt(0));
+  add(actionSave);
+  add(CActionProxy.proxy(new CActionSaveAs(parent,graph,container)));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionClone(parent,graph.getRawView(),container)));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionChangeViewDescription(parent,graph.getRawView())));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionGraphPrint(parent,graph)));
+  final JMenu exportMenu=new JMenu("Export");
+  exportMenu.add(CActionProxy.proxy(new CActionGraphExportPNG(parent,graph)));
+  exportMenu.add(CActionProxy.proxy(new CActionGraphExportSVG(parent,graph)));
+  add(exportMenu);
+  addSeparator();
+  add(CActionProxy.proxy(new CActionClose(graphPanel)));
+}

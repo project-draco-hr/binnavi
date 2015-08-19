@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(panel,"IE01599: Panel argument can not be null");
+  Preconditions.checkNotNull(slider,"IE01600: Slider argument can not be null");
+  Preconditions.checkNotNull(description,"IE01601: Description argument can not be null");
+  slider.setValue(value);
+  slider.setPreferredSize(new Dimension(PREFERRED_WIDTH,PREFERRED_HEIGHT));
+  addComponent(panel,slider,description,hint);
+}

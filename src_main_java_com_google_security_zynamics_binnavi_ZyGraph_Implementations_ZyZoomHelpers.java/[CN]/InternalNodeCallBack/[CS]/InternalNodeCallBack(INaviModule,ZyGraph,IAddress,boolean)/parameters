@@ -1,0 +1,4 @@
+INaviModule module
+ZyGraph graph
+IAddress address
+boolean animate

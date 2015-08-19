@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < getItemCount(); i++) {
+    if (getItemAt(i).getObject() == debugger) {
+      removeItemAt(i);
+      return;
+    }
+  }
+}

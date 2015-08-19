@@ -1,0 +1,11 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  final CDebugPerspectiveModel model=new CDebugPerspectiveModel(new MockGraphModel());
+  model.setActiveDebugger(debugger);
+  final CModulesPanel panel=new CModulesPanel(model);
+  panel.dispose();
+  final LinkedHashSet<?> debuggerListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ReflectionHelpers.getField(AbstractDebugger.class,debugger,"synchronizer"),"listeners"),"m_listeners");
+  final LinkedHashSet<?> processListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ReflectionHelpers.getField(AbstractDebugger.class,debugger,"processManager"),"listeners"),"m_listeners");
+  assertEquals(1,debuggerListeners.size());
+  assertEquals(1,processListeners.size());
+}

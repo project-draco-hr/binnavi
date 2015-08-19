@@ -1,0 +1,13 @@
+{
+  this.processManager=processManager;
+  processManager.addListener(listener);
+  memory=new Memory(processManager.getMemory());
+  targetInformation=processManager.getTargetInformation() == null ? null : new TargetInformation(processManager.getTargetInformation());
+  memoryMap=new MemoryMap(processManager.getMemoryMap());
+  for (  final TargetProcessThread thread : processManager.getThreads()) {
+    threads.add(new Thread(thread));
+  }
+  for (  final com.google.security.zynamics.binnavi.debug.models.processmanager.MemoryModule module : processManager.getModules()) {
+    modules.add(new MemoryModule(module));
+  }
+}

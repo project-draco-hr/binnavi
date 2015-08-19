@@ -1,0 +1,11 @@
+{
+switch (columnIndex) {
+case SOURCE_COLUMN:
+    return "Source address";
+case DESTINATION_COLUMN:
+  return "Destination address";
+case SECTION_COLUMN:
+return "Section";
+}
+return "";
+}

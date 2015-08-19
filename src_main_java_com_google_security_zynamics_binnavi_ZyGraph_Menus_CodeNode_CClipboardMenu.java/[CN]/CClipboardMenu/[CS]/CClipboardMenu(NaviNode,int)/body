@@ -1,0 +1,12 @@
+{
+  super("Clipboard");
+  final INaviCodeNode cnode=(INaviCodeNode)node.getRawNode();
+  if (line != -1) {
+    final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(cnode,line);
+    if (instruction != null) {
+      add(CActionProxy.proxy(new CCopyAddressAction(instruction)));
+    }
+    add(CActionProxy.proxy(new CCopyLineAction(node,line)));
+  }
+  add(CActionProxy.proxy(new CCopyNodeAction(node)));
+}

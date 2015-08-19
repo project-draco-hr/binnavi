@@ -1,0 +1,6 @@
+{
+  if (offset < 0) {
+    return false;
+  }
+  return BigInteger.valueOf(offset).compareTo(BigInteger.valueOf(virtualSize)) < 0;
+}

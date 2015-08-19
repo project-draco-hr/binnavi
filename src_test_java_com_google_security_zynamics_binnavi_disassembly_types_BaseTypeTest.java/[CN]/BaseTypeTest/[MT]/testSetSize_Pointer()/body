@@ -1,0 +1,4 @@
+{
+  typeSystem.uintPointerType.setSize(123);
+  assertEquals(123,typeSystem.uintPointerType.getBitSize());
+}

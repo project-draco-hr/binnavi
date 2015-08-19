@@ -1,0 +1,13 @@
+{
+  when(wrapper.acceptDrop()).thenReturn(true);
+  when(wrapper.determineDropNode()).thenReturn(node);
+  when(node.getType()).thenReturn(ExpressionType.EXPRESSION_LIST,ExpressionType.IMMEDIATE_FLOAT,ExpressionType.IMMEDIATE_INTEGER,ExpressionType.MEMDEREF,ExpressionType.OPERATOR,ExpressionType.SIZE_PREFIX,ExpressionType.SYMBOL);
+  final BaseTypeTransferHandler handler=new BaseTypeTransferHandler(manager,wrapper);
+  assertFalse(handler.importData(null));
+  assertFalse(handler.importData(null));
+  assertFalse(handler.importData(null));
+  assertFalse(handler.importData(null));
+  assertFalse(handler.importData(null));
+  assertFalse(handler.importData(null));
+  assertFalse(handler.importData(null));
+}

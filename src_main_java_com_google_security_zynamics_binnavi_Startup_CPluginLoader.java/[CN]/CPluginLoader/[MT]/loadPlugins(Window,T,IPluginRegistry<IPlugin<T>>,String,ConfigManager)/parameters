@@ -1,0 +1,5 @@
+Window parent
+T pluginInterface
+IPluginRegistry<IPlugin<T>> registry
+String startPath
+ConfigManager configFile

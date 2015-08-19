@@ -1,0 +1,22 @@
+{
+synchronized (m_isInitializing) {
+    if (isInitialized()) {
+      return;
+    }
+    m_isInitializing=true;
+    try {
+      m_provider.initializeModule(this,m_reporter);
+    }
+  finally {
+      m_isInitializing=false;
+    }
+  }
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.initializedModule(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

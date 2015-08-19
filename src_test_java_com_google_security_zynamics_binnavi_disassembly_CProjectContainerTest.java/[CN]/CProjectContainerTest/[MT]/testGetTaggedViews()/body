@@ -1,0 +1,4 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  assertEquals(0,container.getTaggedViews().size());
+}

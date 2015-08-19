@@ -1,0 +1,3 @@
+IDirectedGraph<T,?> graph
+T rootNode
+HashMap<T,ITreeNode<T>> mapping

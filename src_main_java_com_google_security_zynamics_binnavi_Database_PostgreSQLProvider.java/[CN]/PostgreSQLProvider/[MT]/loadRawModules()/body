@@ -1,0 +1,4 @@
+{
+  setRawModules(PostgreSQLDatabaseFunctions.loadRawModules(this));
+  return getRawModules();
+}

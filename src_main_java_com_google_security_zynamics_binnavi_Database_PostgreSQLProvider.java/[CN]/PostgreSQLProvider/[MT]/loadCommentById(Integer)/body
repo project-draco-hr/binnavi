@@ -1,0 +1,3 @@
+{
+  return PostgreSQLCommentFunctions.loadCommentByCommentId(this,commentId);
+}

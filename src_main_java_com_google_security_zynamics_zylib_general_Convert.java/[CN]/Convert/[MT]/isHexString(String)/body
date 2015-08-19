@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(string,"Error: String argument can't be null");
+  final CharMatcher cm=CharMatcher.inRange('0','9').or(CharMatcher.inRange('a','z')).or(CharMatcher.inRange('A','F'));
+  for (int i=0; i < string.length(); i++) {
+    if (!cm.apply(string.charAt(i))) {
+      return false;
+    }
+  }
+  return string.length() != 0;
+}

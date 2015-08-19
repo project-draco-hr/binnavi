@@ -1,0 +1,3 @@
+{
+  CProjectFunctions.openProjects(getProjectTree(),getUnloadedProjects(getProjects(getSortSelectedRows())));
+}

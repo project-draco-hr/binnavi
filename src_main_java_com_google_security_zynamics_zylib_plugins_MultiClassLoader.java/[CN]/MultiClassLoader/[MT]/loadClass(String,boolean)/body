@@ -1,0 +1,32 @@
+{
+  Class<?> result;
+  byte[] classBytes;
+  monitor(">> MultiClassLoader.loadClass(" + className + ", "+ resolveIt+ ")");
+  result=classes.get(className);
+  if (result != null) {
+    monitor(">> returning cached result.");
+    return result;
+  }
+  try {
+    result=super.findSystemClass(className);
+    monitor(">> returning system class (in CLASSPATH).");
+    return result;
+  }
+ catch (  final ClassNotFoundException e) {
+    monitor(">> Not a system class.");
+  }
+  classBytes=loadClassBytes(className);
+  if (classBytes == null) {
+    throw new ClassNotFoundException();
+  }
+  result=defineClass(className,classBytes,0,classBytes.length);
+  if (result == null) {
+    throw new ClassFormatError();
+  }
+  if (resolveIt) {
+    resolveClass(result);
+  }
+  classes.put(className,result);
+  monitor(">> Returning newly loaded class.");
+  return result;
+}

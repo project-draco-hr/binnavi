@@ -1,0 +1,2 @@
+Map<Breakpoint,BreakpointStatus> breakpointToStatus
+BreakpointStatus newStatus

@@ -1,0 +1,7 @@
+{
+  m_addressSpace.getContent().addListener(m_internalContentListener);
+  m_modules=new ArrayList<Module>();
+  for (  final INaviModule module : m_addressSpace.getContent().getModules()) {
+    addModule(module);
+  }
+}

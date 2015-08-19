@@ -1,0 +1,32 @@
+{
+  final ImmutableMap<Integer,INaviEdge> edgesMap=Maps.uniqueIndex(edges,new Function<INaviEdge,Integer>(){
+    @Override public Integer apply(    final INaviEdge edge){
+      return edge.getId();
+    }
+  }
+);
+  edgesByIdCache.putAll(edgesMap);
+  for (  final INaviEdge edge : edges) {
+    if (edge.getSource() instanceof IAddressNode && edge.getTarget() instanceof IAddressNode) {
+      final IAddress sourceAddress=((IAddressNode)edge.getSource()).getAddress();
+      final IAddress targetAddress=((IAddressNode)edge.getTarget()).getAddress();
+      Integer sourceModuleId=null;
+      Integer targetModuleId=null;
+      if (edge.getSource() instanceof INaviCodeNode) {
+        sourceModuleId=getModuleId((INaviCodeNode)edge.getSource());
+      }
+ else       if (edge.getSource() instanceof INaviFunctionNode) {
+        sourceModuleId=getModuleId((INaviFunctionNode)edge.getSource());
+      }
+      if (edge.getTarget() instanceof INaviCodeNode) {
+        targetModuleId=getModuleId((INaviCodeNode)edge.getTarget());
+      }
+ else       if (edge.getTarget() instanceof INaviFunctionNode) {
+        targetModuleId=getModuleId((INaviFunctionNode)edge.getTarget());
+      }
+      if (targetModuleId != null && sourceModuleId != null) {
+        UpdateAddressModuleIdCache(sourceAddress,sourceModuleId,targetAddress,targetModuleId,edge);
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  if (existingMember.isOffsetType()) {
+    indexOrOffset=existingMember.getByteOffset().get();
+  }
+ else   if (existingMember.isIndexType()) {
+    indexOrOffset=existingMember.getArgumentIndex().get();
+  }
+ else {
+    throw new IllegalStateException("Error: index or offset can not be determined.");
+  }
+  baseType=existingMember.getBaseType();
+  name=existingMember.getName();
+  this.existingMember=existingMember;
+}

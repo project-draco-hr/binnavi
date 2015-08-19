@@ -1,0 +1,24 @@
+{
+  if (!isEditable(coordinate)) {
+    return;
+  }
+  if (coordinate.getColumn() == COMMENTS_INDEX) {
+  }
+ else   if (coordinate.getColumn() == NAME_INDEX) {
+    if (coordinate.getLine() != 0) {
+switch (event.getKeyCode()) {
+case 0:
+case KeyEvent.VK_HOME:
+        coordinate.setFieldIndex(0);
+      break;
+case KeyEvent.VK_END:
+    coordinate.setFieldIndex(columns[coordinate.getColumn()].getWidth() - 1);
+  break;
+default :
+break;
+}
+}
+ else {
+}
+}
+}

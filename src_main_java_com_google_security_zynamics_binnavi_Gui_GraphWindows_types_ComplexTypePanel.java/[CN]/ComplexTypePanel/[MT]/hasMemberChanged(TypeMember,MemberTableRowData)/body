@@ -1,0 +1,9 @@
+{
+  final boolean condition=!row.getName().equals(typeMember.getName()) || !row.getBaseType().equals(typeMember.getBaseType());
+  if (typeMember.getParentType().getCategory() == BaseTypeCategory.FUNCTION_PROTOTYPE) {
+    return condition || !row.getIndex().equals(typeMember.getArgumentIndex());
+  }
+ else {
+    return condition || !row.getIndex().equals(typeMember.getByteOffset());
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return new RawTypeMember(member.getId(),member.getName(),member.getBaseType().getId(),member.getParentType().getId(),member.getBitOffset().orNull(),null,member.getNumberOfElements().orNull());
+}

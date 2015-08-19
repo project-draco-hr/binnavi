@@ -1,0 +1,2 @@
+BaseType baseType
+Set<BaseType> affectedTypes

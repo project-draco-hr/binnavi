@@ -1,0 +1,47 @@
+{
+  Preconditions.checkNotNull(provider,"IE02525: connection argument can not be null");
+  Preconditions.checkNotNull(nodes,"IE02526: nodes argument can not be null");
+  Preconditions.checkNotNull(groupNodeIndices,"Error: groupNodeIndices argument can not be null");
+  if (!groupNodeIndices.isEmpty()) {
+    final String query="INSERT INTO " + CTableNames.GROUP_NODES_TABLE + "(node_id, collapsed, comment_id) VALUES (?, ?, ?)";
+    final PreparedStatement preparedStatement=provider.getConnection().getConnection().prepareStatement(query);
+    final List<INaviGroupNode> groupNodesWithUnsavedComments=new ArrayList<INaviGroupNode>();
+    try {
+      for (      final Integer index : groupNodeIndices) {
+        final INaviGroupNode node=(INaviGroupNode)nodes.get(index);
+        preparedStatement.setInt(1,firstNode + index);
+        preparedStatement.setBoolean(2,node.isCollapsed());
+        final List<IComment> comment=node.getComments();
+        final Integer commentId=comment == null ? null : comment.size() == 0 ? null : Iterables.getLast(comment).getId();
+        if ((comment != null) && (comment.size() != 0) && (commentId == null)) {
+          groupNodesWithUnsavedComments.add(node);
+        }
+        if (commentId == null) {
+          preparedStatement.setNull(3,Types.INTEGER);
+        }
+ else {
+          preparedStatement.setInt(3,commentId);
+        }
+        preparedStatement.addBatch();
+      }
+      preparedStatement.executeBatch();
+    }
+  finally {
+      preparedStatement.close();
+    }
+    for (    final INaviGroupNode groupNode : groupNodesWithUnsavedComments) {
+      final ArrayList<IComment> groupNodeComments=new ArrayList<IComment>();
+      for (      final IComment comment : groupNode.getComments()) {
+        try {
+          final Integer commentId=provider.appendGroupNodeComment(groupNode,comment.getComment(),comment.getUser().getUserId());
+          final IComment newComment=new CComment(commentId,comment.getUser(),comment.getParent(),comment.getComment());
+          groupNodeComments.add(newComment);
+        }
+ catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+      groupNode.initializeComment(groupNodeComments);
+    }
+  }
+}

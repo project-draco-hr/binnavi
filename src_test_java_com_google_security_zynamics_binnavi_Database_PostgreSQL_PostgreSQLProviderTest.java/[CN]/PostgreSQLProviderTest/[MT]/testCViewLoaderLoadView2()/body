@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewLoader.loadView((AbstractSQLProvider)getProvider(),null,null,null);
+}

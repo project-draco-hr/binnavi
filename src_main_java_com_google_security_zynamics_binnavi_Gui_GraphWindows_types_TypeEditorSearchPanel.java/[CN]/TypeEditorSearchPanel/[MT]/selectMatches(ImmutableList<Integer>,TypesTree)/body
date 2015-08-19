@@ -1,0 +1,12 @@
+{
+  if (matchedRows.isEmpty()) {
+    tree.clearSelection();
+  }
+ else {
+    final int[] selectRows=new int[matchedRows.size()];
+    for (int i=0; i < matchedRows.size(); i++) {
+      selectRows[i]=matchedRows.get(i);
+    }
+    tree.setSelectionRows(selectRows);
+  }
+}

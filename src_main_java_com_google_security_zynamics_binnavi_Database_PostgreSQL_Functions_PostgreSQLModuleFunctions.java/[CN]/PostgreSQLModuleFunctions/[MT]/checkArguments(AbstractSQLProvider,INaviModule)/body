@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00488: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE00489: Module argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00490: Module is not part of this database");
+}

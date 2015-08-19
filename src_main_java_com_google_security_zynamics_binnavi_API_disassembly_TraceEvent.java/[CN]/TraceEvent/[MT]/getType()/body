@@ -1,0 +1,3 @@
+{
+  return TraceEventType.convert(m_event.getType());
+}

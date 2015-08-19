@@ -1,0 +1,4 @@
+{
+  super("Copy selection to clipboard");
+  m_node=Preconditions.checkNotNull(node,"IE00938: Node argument can not be null");
+}

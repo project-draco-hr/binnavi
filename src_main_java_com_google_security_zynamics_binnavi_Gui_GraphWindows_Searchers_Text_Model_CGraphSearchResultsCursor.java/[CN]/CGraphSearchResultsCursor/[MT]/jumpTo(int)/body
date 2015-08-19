@@ -1,0 +1,14 @@
+{
+  m_currentSearchIndex=0;
+  SearchResult previousResult=m_results.get(0);
+  for (int i=1; i <= resultIndex; i++) {
+    final SearchResult currentResult=m_results.get(i);
+    if (previousResult.getObject() != currentResult.getObject()) {
+      m_currentSearchIndex++;
+    }
+    previousResult=currentResult;
+  }
+  if (m_currentSearchIndex >= m_reducedResults.size()) {
+    throw new IllegalStateException();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final CTagFilterNode p=(CTagFilterNode)parent;
+  final CTagFilterNode c=(CTagFilterNode)child;
+  return p.getTag().getChildren().indexOf(c.getTag());
+}

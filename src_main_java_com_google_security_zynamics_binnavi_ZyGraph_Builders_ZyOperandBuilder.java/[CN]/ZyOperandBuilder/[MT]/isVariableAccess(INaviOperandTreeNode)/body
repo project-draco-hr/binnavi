@@ -1,0 +1,25 @@
+{
+  try {
+    final INaviOperandTreeNode memoryAccessNode=getMemoryAccessNode(node);
+    final List<INaviOperandTreeNode> children=memoryAccessNode.getChildren();
+    if (children.size() == 1) {
+      final INaviOperandTreeNode child=children.get(0);
+switch (child.getType()) {
+case SIZE_PREFIX:
+        return isVariable(child.getChildren().get(0));
+case IMMEDIATE_INTEGER:
+      return isVariable(child);
+case OPERATOR:
+    return isOperatorVariableAccess(child);
+default :
+  return false;
+}
+}
+ else {
+throw new IllegalStateException("IE00703: Invalid tree shape");
+}
+}
+ catch (final MaybeNullException e) {
+return false;
+}
+}

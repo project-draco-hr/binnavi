@@ -1,0 +1,15 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final Tag removedTag=viewTagManager.getTag(tag);
+  viewTags.remove(removedTag);
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.untaggedView(View.this,removedTag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

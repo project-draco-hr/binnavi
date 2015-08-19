@@ -1,0 +1,9 @@
+{
+  if (enabled) {
+    synchronizeDebugger(m_model.getCurrentSelectedDebugger());
+  }
+ else {
+    synchronizeDebugger(null);
+  }
+  m_area.setEnabled(enabled);
+}

@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"REVSH");
+  translateAll(environment,instruction,"REVSH",instructions);
+}

@@ -1,0 +1,33 @@
+{
+  Preconditions.checkNotNull(subRegister,"Error: Argument subRegister can't be null");
+  if (subRegister.equals("al") || subRegister.equals("ah") || subRegister.equals("ax")) {
+    return "eax";
+  }
+ else   if (subRegister.equals("bl") || subRegister.equals("bh") || subRegister.equals("bx")) {
+    return "ebx";
+  }
+ else   if (subRegister.equals("cl") || subRegister.equals("ch") || subRegister.equals("cx")) {
+    return "ecx";
+  }
+ else   if (subRegister.equals("dl") || subRegister.equals("dh") || subRegister.equals("dx")) {
+    return "edx";
+  }
+ else   if (subRegister.equals("si")) {
+    return "esi";
+  }
+ else   if (subRegister.equals("di")) {
+    return "edi";
+  }
+ else   if (subRegister.equals("sp")) {
+    return "esp";
+  }
+ else   if (subRegister.equals("bp")) {
+    return "ebp";
+  }
+ else   if (subRegister.equals("ip")) {
+    return "eip";
+  }
+ else {
+    throw new InternalTranslationException(String.format("Error: Invalid subRegister %s",subRegister));
+  }
+}

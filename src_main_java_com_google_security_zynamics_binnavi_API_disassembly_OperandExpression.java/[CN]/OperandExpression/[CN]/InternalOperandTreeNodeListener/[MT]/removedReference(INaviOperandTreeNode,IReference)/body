@@ -1,0 +1,12 @@
+{
+  final Reference removedReference=ObjectFinders.getObject(reference,m_references);
+  m_references.remove(removedReference);
+  for (  final IOperandExpressionListener listener : m_listeners) {
+    try {
+      listener.removedReference(OperandExpression.this,removedReference);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

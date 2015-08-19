@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: The module is not loaded");
+  }
+  return m_callgraph;
+}

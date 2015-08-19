@@ -1,0 +1,16 @@
+int moduleId
+String name
+String comment
+Date creationDate
+Date modificationDate
+String md5
+String sha1
+int functionCount
+int customViewCount
+IAddress fileBase
+IAddress imageBase
+DebuggerTemplate debuggerTemplate
+INaviRawModule rawModule
+int initializationState
+boolean isStared
+SQLProvider provider

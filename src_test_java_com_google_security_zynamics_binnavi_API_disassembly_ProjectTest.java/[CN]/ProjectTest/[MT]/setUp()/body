@@ -1,0 +1,7 @@
+{
+  modificationDate.setYear(creationDate.getYear() + 1);
+  m_internalProject=new CProject(1,"Project Name","Project Description",creationDate,modificationDate,1,new ArrayList<com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate>(),provider);
+  final TagManager nodeTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider));
+  final TagManager viewTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"","",TagType.VIEW_TAG,provider))),TagType.VIEW_TAG,provider));
+  m_project=new Project(database,m_internalProject,nodeTagManager,viewTagManager);
+}

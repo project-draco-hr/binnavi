@@ -1,0 +1,46 @@
+{
+  final HashMap<ReilBlock,Node> firstNodeMapping=new HashMap<ReilBlock,Node>();
+  final HashMap<ReilBlock,Node> lastNodeMapping=new HashMap<ReilBlock,Node>();
+  for (  final ReilBlock block : graph) {
+    Node lastNode=null;
+    final ReilInstruction lastInstruction=Iterables.getLast(block.getInstructions());
+    for (    final ReilInstruction instruction : block) {
+      final Node currentNode=createInstructionNode(instruction);
+      if (instruction == lastInstruction) {
+        lastNodeMapping.put(block,currentNode);
+      }
+      if (!firstNodeMapping.containsKey(block)) {
+        firstNodeMapping.put(block,currentNode);
+      }
+      if (lastNode != null) {
+        createInstructionEdge(lastNode,currentNode,true);
+      }
+      lastNode=currentNode;
+    }
+  }
+  for (  final ReilBlock block : graph) {
+    for (    final ReilEdge edge : block.getOutgoingEdges()) {
+      createInstructionEdge(lastNodeMapping.get(block),firstNodeMapping.get(edge.getTarget()),EdgeType.isTrueEdge(edge.getType()));
+    }
+  }
+  final NodeCursor nodeCursor=m_internalGraph.nodes();
+  final List<Node> entryNodes=new ArrayList<Node>();
+  final List<Node> exitNodes=new ArrayList<Node>();
+  while (nodeCursor.ok()) {
+    if (((Node)nodeCursor.current()).inDegree() == 0) {
+      entryNodes.add((Node)nodeCursor.current());
+    }
+    if (((Node)nodeCursor.current()).outDegree() == 0) {
+      exitNodes.add((Node)nodeCursor.current());
+    }
+    nodeCursor.next();
+  }
+  m_entryNode=createInstructionNode(ReilHelpers.createNop(0));
+  m_exitNode=createInstructionNode(ReilHelpers.createNop(0xFFFFFF00));
+  for (  final Node entryNode : entryNodes) {
+    createInstructionEdge(m_entryNode,entryNode,true);
+  }
+  for (  final Node exitNode : exitNodes) {
+    createInstructionEdge(exitNode,m_exitNode,true);
+  }
+}

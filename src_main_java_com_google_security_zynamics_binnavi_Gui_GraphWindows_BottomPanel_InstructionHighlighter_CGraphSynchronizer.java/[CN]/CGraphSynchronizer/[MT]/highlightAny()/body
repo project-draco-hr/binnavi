@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.any(m_model.getDescriptions(),new ICollectionFilter<ITypeDescription>(){
+    @Override public boolean qualifies(    final ITypeDescription item){
+      return item.isEnabled();
+    }
+  }
+);
+}

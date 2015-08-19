@@ -1,0 +1,12 @@
+{
+  if ("<".equals(operator)) {
+    return node.getRawNode().getIncomingEdges().size() < indegree;
+  }
+  if ("=".equals(operator)) {
+    return node.getRawNode().getIncomingEdges().size() == indegree;
+  }
+  if (">".equals(operator)) {
+    return node.getRawNode().getIncomingEdges().size() > indegree;
+  }
+  throw new IllegalStateException("IE02202: Unknown operator " + operator);
+}

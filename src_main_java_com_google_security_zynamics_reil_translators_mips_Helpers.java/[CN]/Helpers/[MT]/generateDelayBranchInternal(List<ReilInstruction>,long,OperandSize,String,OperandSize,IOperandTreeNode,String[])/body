@@ -1,0 +1,12 @@
+{
+  long offset=baseOffset;
+  if (targetOperand.getType() != ExpressionType.REGISTER) {
+    instructions.add(ReilHelpers.createStr(offset++,conditionSize,conditionOperand,conditionSize,"t254"));
+    instructions.add(ReilHelpers.createJcc(offset,conditionSize,"t254",targetSize,targetOperand.getValue(),meta));
+  }
+ else {
+    instructions.add(ReilHelpers.createStr(offset++,targetSize,targetOperand.getValue(),targetSize,"t255"));
+    instructions.add(ReilHelpers.createStr(offset++,conditionSize,conditionOperand,conditionSize,"t254"));
+    instructions.add(ReilHelpers.createJcc(offset,conditionSize,"t254",targetSize,"t255",meta));
+  }
+}

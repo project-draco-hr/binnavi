@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof RelocatedAddress) && m_address.equals(((RelocatedAddress)rhs).m_address);
+}

@@ -1,0 +1,3 @@
+{
+  return m_addressSpace.getConfiguration().getName() + " (" + (m_addressSpace.isLoaded() ? m_addressSpace.getContent().getModules().size() : "?")+ ")";
+}

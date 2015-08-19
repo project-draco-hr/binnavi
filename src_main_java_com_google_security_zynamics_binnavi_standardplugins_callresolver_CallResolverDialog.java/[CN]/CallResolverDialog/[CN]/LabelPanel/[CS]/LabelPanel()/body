@@ -1,0 +1,12 @@
+{
+  super(new GridLayout(panels.length + 1,1));
+  for (  final IconPanel panel : panels) {
+    add(panel);
+  }
+  final JPanel resultsPanel=new JPanel();
+  resultsPanel.add(listResolvedFunctionsButton);
+  resultsPanel.add(graphResolvedFunctionsButton);
+  resultsPanel.add(portResultsButton);
+  add(resultsPanel);
+  setBorder(new TitledBorder(""));
+}

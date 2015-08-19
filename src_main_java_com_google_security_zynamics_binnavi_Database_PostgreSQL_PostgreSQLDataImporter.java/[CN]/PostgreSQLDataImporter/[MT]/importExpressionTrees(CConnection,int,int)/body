@@ -1,0 +1,4 @@
+{
+  final String query="INSERT INTO " + CTableNames.EXPRESSION_TREE_IDS_TABLE + " SELECT "+ moduleId+ ", id "+ " FROM ex_"+ rawModuleId+ "_expression_trees";
+  connection.executeUpdate(query,true);
+}

@@ -1,0 +1,7 @@
+{
+  final RegisterSetLattice lattice=new RegisterSetLattice();
+  Assert.assertTrue(lattice.isSmallerEqual(lattice.getMinimalElement(),lattice.getMinimalElement()));
+  Assert.assertTrue(lattice.isSmallerEqual(lattice.getMinimalElement(),m_fullRegisterSetLatticeElement));
+  Assert.assertFalse(lattice.isSmallerEqual(m_fullRegisterSetLatticeElement,lattice.getMinimalElement()));
+  Assert.assertTrue(lattice.isSmallerEqual(m_fullRegisterSetLatticeElement,m_fullRegisterSetLatticeElement));
+}

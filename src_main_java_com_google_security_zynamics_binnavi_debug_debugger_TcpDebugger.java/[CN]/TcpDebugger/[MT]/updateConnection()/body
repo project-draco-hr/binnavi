@@ -1,0 +1,5 @@
+{
+  if ((debuggerConnection == null) || !isConnected()) {
+    debuggerConnection=new DebugConnection(template.getHost(),template.getPort());
+  }
+}

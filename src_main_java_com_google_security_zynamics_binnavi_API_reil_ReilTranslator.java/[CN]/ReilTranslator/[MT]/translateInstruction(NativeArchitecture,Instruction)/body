@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(architecture,"Error: Architecture argument can not be null");
+  Preconditions.checkNotNull(instruction,"Error: Instruction argument can't be null");
+  final List<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  final StandardEnvironment environment=new StandardEnvironment();
+  try {
+    for (    final com.google.security.zynamics.reil.ReilInstruction reilInstruction : getTranslator(architecture).translate(environment,instruction.getNative(),new ArrayList<ITranslationExtension<INaviInstruction>>())) {
+      instructions.add(new ReilInstruction(reilInstruction));
+    }
+    return instructions;
+  }
+ catch (  final com.google.security.zynamics.reil.translators.InternalTranslationException e) {
+    throw new InternalTranslationException(e,instruction);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  sourceNode.m_children.remove(targetNode);
+  targetNode.m_parents.remove(sourceNode);
+}

@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(parent,"IE02138: Parent argument can not be null");
+  Preconditions.checkNotNull(view,"IE02139: View argument can not be null");
+  Preconditions.checkNotNull(node,"IE00971: Node argument can't be null");
+  add(new JMenuItem(CActionProxy.proxy(new CEditGroupCommentAction(parent,node))));
+  addSeparator();
+  if (node.isCollapsed()) {
+    add(new JMenuItem(CActionProxy.proxy(new CActionExpandNode(node))));
+  }
+ else {
+    add(new JMenuItem(CActionProxy.proxy(new CActionCollapseNode(node))));
+  }
+  addSeparator();
+  add(new JMenuItem(CActionProxy.proxy(new CRemoveGroupAction(view,node))));
+}

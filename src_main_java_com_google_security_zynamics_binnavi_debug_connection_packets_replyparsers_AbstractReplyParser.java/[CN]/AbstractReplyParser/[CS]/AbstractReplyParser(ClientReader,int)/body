@@ -1,0 +1,4 @@
+{
+  this.workerInputStream=workerInputStream;
+  this.successType=type;
+}

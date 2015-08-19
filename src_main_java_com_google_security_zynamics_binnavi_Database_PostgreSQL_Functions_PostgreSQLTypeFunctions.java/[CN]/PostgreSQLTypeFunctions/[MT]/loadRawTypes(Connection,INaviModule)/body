@@ -1,0 +1,26 @@
+{
+  final String query=" SELECT * FROM load_types(?) ";
+  final List<RawBaseType> rawTypes=new ArrayList<RawBaseType>();
+  try {
+    final PreparedStatement statement=connection.prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    final ResultSet results=statement.executeQuery();
+    try {
+      while (results.next()) {
+        Integer pointer=results.getInt("pointer");
+        if (results.wasNull()) {
+          pointer=null;
+        }
+        rawTypes.add(new RawBaseType(results.getInt("id"),results.getString("name"),results.getInt("size"),pointer,results.getBoolean("signed"),BaseTypeCategory.fromString(results.getString("category"))));
+      }
+    }
+  finally {
+      results.close();
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return rawTypes;
+}

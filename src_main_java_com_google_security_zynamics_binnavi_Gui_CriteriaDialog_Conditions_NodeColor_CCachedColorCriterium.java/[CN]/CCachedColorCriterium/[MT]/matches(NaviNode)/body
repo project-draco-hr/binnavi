@@ -1,0 +1,3 @@
+{
+  return CColorEvaluator.evaluate(node,m_color);
+}

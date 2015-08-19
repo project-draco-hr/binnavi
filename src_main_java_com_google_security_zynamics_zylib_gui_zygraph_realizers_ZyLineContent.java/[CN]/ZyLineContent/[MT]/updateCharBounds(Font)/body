@@ -1,0 +1,4 @@
+{
+  m_charWidth=font.getStringBounds(m_text,m_fontContext).getWidth() / getTextLayout().getCharacterCount();
+  m_charHeight=font.getLineMetrics(m_text,m_fontContext).getHeight();
+}

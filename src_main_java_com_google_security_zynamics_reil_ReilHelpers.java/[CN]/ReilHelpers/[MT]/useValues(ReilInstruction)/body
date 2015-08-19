@@ -1,0 +1,10 @@
+{
+  final List<String> values=new ArrayList<>();
+  if (instruction.getFirstOperand().getType() == OperandType.REGISTER) {
+    values.add(instruction.getFirstOperand().getValue());
+  }
+  if (instruction.getSecondOperand().getType() == OperandType.REGISTER) {
+    values.add(instruction.getSecondOperand().getValue());
+  }
+  return values;
+}

@@ -1,0 +1,5 @@
+{
+  m_debugger=debugger;
+  m_memoryProvider=debugger == null ? null : debugger.getMemoryProvider();
+  notifyChanged();
+}

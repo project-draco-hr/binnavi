@@ -1,0 +1,4 @@
+{
+  final CProximitySettingsDialog dialog=new CProximitySettingsDialog(parent,settings);
+  dialog.setVisible(true);
+}

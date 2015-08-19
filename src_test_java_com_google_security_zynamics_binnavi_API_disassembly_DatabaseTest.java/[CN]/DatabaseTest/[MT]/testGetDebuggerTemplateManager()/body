@@ -1,0 +1,8 @@
+{
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  final DebuggerTemplateManager manager1=database.getDebuggerTemplateManager();
+  final DebuggerTemplateManager manager2=database.getDebuggerTemplateManager();
+  assertNotNull(manager1);
+  assertEquals(manager1,manager2);
+}

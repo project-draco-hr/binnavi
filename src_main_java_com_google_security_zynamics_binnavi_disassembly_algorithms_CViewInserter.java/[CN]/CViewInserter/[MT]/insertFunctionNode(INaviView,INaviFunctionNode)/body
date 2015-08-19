@@ -1,0 +1,7 @@
+{
+  final CFunctionNode node=target.getContent().createFunctionNode(sourceNode.getFunction());
+  if (sourceNode.getLocalFunctionComment() != null) {
+    node.initializeLocalFunctionComment(sourceNode.getLocalFunctionComment());
+  }
+  return node;
+}

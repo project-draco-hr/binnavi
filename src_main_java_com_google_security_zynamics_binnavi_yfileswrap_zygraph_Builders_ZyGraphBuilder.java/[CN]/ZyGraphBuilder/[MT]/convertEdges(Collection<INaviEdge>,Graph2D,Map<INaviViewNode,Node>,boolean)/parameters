@@ -1,0 +1,4 @@
+Collection<INaviEdge> edges
+Graph2D graph2D
+Map<INaviViewNode,Node> rawNodeToNodeMap
+boolean adjustColors

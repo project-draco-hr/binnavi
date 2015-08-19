@@ -1,0 +1,70 @@
+{
+switch (type) {
+case IOperandTree.NODE_TYPE_SYMBOL_ID:
+    expressionType=ExpressionType.SYMBOL;
+  expressionValue=value;
+break;
+case IOperandTree.NODE_TYPE_IMMEDIATE_INT_ID:
+expressionType=ExpressionType.IMMEDIATE_INTEGER;
+expressionValue=value;
+break;
+case IOperandTree.NODE_TYPE_IMMEDIATE_FLOAT_ID:
+expressionType=ExpressionType.IMMEDIATE_FLOAT;
+expressionValue=value;
+break;
+case IOperandTree.NODE_TYPE_OPERATOR_ID:
+if (value.equals("{")) {
+expressionType=ExpressionType.EXPRESSION_LIST;
+expressionValue=value;
+}
+ else {
+expressionType=ExpressionType.OPERATOR;
+expressionValue=value;
+}
+break;
+case IOperandTree.NODE_TYPE_REGISTER_ID:
+expressionType=ExpressionType.REGISTER;
+expressionValue=value;
+break;
+case IOperandTree.NODE_TYPE_SIZE_PREFIX_ID:
+if (value.equals("b1")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="byte";
+}
+ else if (value.equals("b2")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="word";
+}
+ else if (value.equals("b4") || value.equals("dword")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="dword";
+}
+ else if (value.equals("b6")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="fword";
+}
+ else if (value.equals("b8")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="qword";
+}
+ else if (value.equals("b10")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="double";
+}
+ else if (value.equals("b16")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="oword";
+}
+ else if (value.equals("b_var")) {
+expressionType=ExpressionType.SIZE_PREFIX;
+expressionValue="b_var";
+}
+break;
+case IOperandTree.NODE_TYPE_DEREFERENCE_ID:
+expressionType=ExpressionType.MEMDEREF;
+expressionValue=value;
+break;
+default :
+throw new IllegalStateException(String.format("IE00219: Unknown node type (%d : %s)",type,value));
+}
+}

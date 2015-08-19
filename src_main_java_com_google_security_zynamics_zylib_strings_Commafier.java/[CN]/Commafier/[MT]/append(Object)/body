@@ -1,0 +1,7 @@
+{
+  if (needsComma) {
+    sb.append(m_separator);
+  }
+  needsComma=true;
+  sb.append(value);
+}

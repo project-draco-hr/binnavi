@@ -1,0 +1,4 @@
+int row
+int line
+int column
+int indexIntoField

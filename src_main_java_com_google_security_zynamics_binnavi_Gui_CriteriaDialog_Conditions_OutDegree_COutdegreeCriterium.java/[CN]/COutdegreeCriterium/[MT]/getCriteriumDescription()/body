@@ -1,0 +1,3 @@
+{
+  return String.format("Nodes with Outdegree %s %d",m_panel.getOperator(),m_panel.getOutdegree());
+}

@@ -1,0 +1,16 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  if (m_activeView == Views.HEX_VIEW) {
+    if (m_dataProvider.isEditable() && Convert.isHexCharacter(event.getKeyChar())) {
+      keyPressedInHexView(event);
+    }
+  }
+ else {
+    if (m_dataProvider.isEditable() && Convert.isPrintableCharacter(event.getKeyChar())) {
+      keyPressedInAsciiView(event);
+    }
+  }
+  repaint();
+}

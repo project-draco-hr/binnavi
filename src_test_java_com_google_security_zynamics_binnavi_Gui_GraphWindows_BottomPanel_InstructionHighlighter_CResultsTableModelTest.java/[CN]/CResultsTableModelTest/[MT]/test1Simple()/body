@@ -1,0 +1,19 @@
+{
+  final CSpecialInstructionsModel foo=new CSpecialInstructionsModel();
+  final List<CSpecialInstruction> instructions=new ArrayList<CSpecialInstruction>();
+  final CCallsDescription callsDescription=new CCallsDescription();
+  final CSpecialInstruction instruction=new CSpecialInstruction(callsDescription,new com.google.security.zynamics.binnavi.disassembly.MockInstruction());
+  instructions.add(instruction);
+  foo.setInstructions(instructions);
+  final CResultsTableModel model=new CResultsTableModel(foo);
+  assertEquals("Type",model.getColumnName(0));
+  assertEquals("Address",model.getColumnName(1));
+  assertEquals("Instruction",model.getColumnName(2));
+  assertEquals(3,model.getColumnCount());
+  assertEquals(1,model.getRowCount());
+  final MockInstruction instruction2=new MockInstruction();
+  assertEquals(callsDescription,model.getValueAt(0,0));
+  assertEquals(instruction2.getAddress().toHexString(),model.getValueAt(0,1));
+  assertEquals(null,model.getValueAt(0,2));
+  model.dispose();
+}

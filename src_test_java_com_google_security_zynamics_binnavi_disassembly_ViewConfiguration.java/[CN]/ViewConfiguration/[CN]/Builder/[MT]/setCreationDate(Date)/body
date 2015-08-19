@@ -1,0 +1,4 @@
+{
+  creationDate=Preconditions.checkNotNull(date,"Error: date argument can not be null");
+  return this;
+}

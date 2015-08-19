@@ -1,0 +1,11 @@
+{
+  interpreter.getMemory().store(0x12345678,0x33334444,4);
+  interpreter.setRegister("ebp",BigInteger.valueOf(0x12345678),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockInstruction instruction=new MockInstruction("leave",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(3,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x33334444),interpreter.getVariableValue("ebp"));
+  assertEquals(BigInteger.valueOf(0x1234567C),interpreter.getVariableValue("esp"));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+}

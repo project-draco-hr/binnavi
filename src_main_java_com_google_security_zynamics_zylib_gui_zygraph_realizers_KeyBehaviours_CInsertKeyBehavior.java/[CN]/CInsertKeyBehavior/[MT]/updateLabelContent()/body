@@ -1,0 +1,12 @@
+{
+  if (isPaste()) {
+    if (m_wasUneditableSelection) {
+      m_caretX=getCaretEndPosX();
+      m_caretY=getCaretMouseReleasedY();
+      return;
+    }
+    final Point caretPos=pasteClipboardText();
+    m_caretX=caretPos.x;
+    m_caretY=caretPos.y;
+  }
+}

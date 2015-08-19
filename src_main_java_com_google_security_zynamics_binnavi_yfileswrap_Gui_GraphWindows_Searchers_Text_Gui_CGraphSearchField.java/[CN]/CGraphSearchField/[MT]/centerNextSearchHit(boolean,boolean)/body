@@ -1,0 +1,10 @@
+{
+  final String text=getText();
+  if ("".equals(text)) {
+    m_searcher.clearResults();
+    m_graph.updateGraphViews();
+    notifyListeners();
+    return;
+  }
+  searchFor(text,cycleBackwards,zoomToResult);
+}

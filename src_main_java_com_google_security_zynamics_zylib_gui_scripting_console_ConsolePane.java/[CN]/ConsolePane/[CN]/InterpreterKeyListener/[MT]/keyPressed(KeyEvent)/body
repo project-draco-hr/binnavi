@@ -1,0 +1,28 @@
+{
+  final int lastLineOffset=getLastInputLine();
+  final int currLineOffset=getCurrentInputLine();
+  if (lastLineOffset != currLineOffset) {
+    goToLastLine();
+  }
+  if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+    handleEnter(e);
+  }
+ else   if (e.getModifiers() == 0) {
+    if (e.getKeyCode() == KeyEvent.VK_UP) {
+      handleUpKey(e);
+    }
+ else     if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+      handleDownKey(e);
+    }
+ else     if (e.getKeyCode() == KeyEvent.VK_TAB) {
+      handleTabKey(e);
+    }
+ else     if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+      handleBackspace(e);
+    }
+    if (e.getKeyCode() != KeyEvent.VK_TAB) {
+      m_tabCompletion.reset();
+      m_LastAutoCompleteChunkLength=0;
+    }
+  }
+}

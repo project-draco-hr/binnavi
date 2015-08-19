@@ -1,0 +1,3 @@
+{
+  notifyMembersDeleted(typesContainer.clearMembers(deletedType,affectedTypes));
+}

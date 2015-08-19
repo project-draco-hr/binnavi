@@ -1,0 +1,23 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.connect();
+  final CSearchWaiter waiter=new CSearchWaiter(debugger,new CAddress(0x300),0x100,new byte[]{10});
+  waiter.start();
+  new Thread(){
+    @Override public void run(){
+      try {
+        waiter.runExpensiveCommand();
+      }
+ catch (      final Exception e) {
+      }
+    }
+  }
+.start();
+  Thread.sleep(250);
+  debugger.connection.m_synchronizer.receivedEvent(new SearchReply(0,0,new CAddress(0x300)));
+  Thread.sleep(250);
+  assertFalse(waiter.isAlive());
+  assertNotNull(waiter.getReply());
+  assertTrue(waiter.getReply().success());
+  debugger.close();
+}

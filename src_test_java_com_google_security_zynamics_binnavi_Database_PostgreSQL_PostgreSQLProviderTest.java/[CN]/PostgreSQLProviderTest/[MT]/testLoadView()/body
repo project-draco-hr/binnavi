@@ -1,0 +1,10 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  for (  final INaviView view : module.getContent().getViewContainer().getViews()) {
+    if (view.getNodeCount() == 1) {
+      view.load();
+      view.close();
+    }
+  }
+}

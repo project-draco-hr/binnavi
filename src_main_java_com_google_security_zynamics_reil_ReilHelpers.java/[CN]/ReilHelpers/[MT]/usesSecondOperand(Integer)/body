@@ -1,0 +1,3 @@
+{
+  return !mnemonic.equals(ReilHelpers._OPCODE_NOP) && !mnemonic.equals(ReilHelpers._OPCODE_BISZ) && !mnemonic.equals(ReilHelpers._OPCODE_STR)&& !mnemonic.equals(ReilHelpers._OPCODE_STM)&& !mnemonic.equals(ReilHelpers._OPCODE_LDM)&& !mnemonic.equals(ReilHelpers._OPCODE_JCC);
+}

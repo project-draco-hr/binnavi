@@ -1,0 +1,3 @@
+{
+  CThreadFunctions.resume(m_thread);
+}

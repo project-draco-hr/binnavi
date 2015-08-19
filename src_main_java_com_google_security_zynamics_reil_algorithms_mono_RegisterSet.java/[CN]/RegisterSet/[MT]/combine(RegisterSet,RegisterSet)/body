@@ -1,0 +1,10 @@
+{
+  final RegisterSet set=new RegisterSet();
+  for (  final String string : lhs) {
+    set.registers.add(string);
+  }
+  for (  final String string : rhs) {
+    set.registers.add(string);
+  }
+  return set;
+}

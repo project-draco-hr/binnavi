@@ -1,0 +1,5 @@
+{
+  this.waitingForAuthentication=true;
+  this.shutDown=true;
+  this.peacefulShutdown=true;
+}

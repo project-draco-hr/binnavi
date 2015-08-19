@@ -1,0 +1,3 @@
+{
+  return new BigInteger(nodeModifier.getAddress(operandTreeNode.getOperand().getInstruction().getModule(),new UnrelocatedAddress(new CAddress(treeNodeValue)),false),16);
+}

@@ -1,0 +1,4 @@
+{
+  typeManager=new TypeManager(new TypeManagerMockBackend());
+  typeSystem=new TestTypeSystem(typeManager);
+}

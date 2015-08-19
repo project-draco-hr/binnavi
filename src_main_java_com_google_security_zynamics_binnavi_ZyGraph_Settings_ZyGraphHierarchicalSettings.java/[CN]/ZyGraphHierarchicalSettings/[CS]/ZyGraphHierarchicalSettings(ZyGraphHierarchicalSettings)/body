@@ -1,0 +1,9 @@
+{
+  m_type=null;
+  m_style=settings.getStyle();
+  m_minimumEdgeDistance=settings.getMinimumEdgeDistance();
+  m_minimumLayerDistance=settings.getMinimumLayerDistance();
+  m_minimumNodeDistance=settings.getMinimumNodeDistance();
+  m_minimumNodeEdgeDistance=settings.getMinimumNodeEdgeDistance();
+  m_orientation=settings.getOrientation();
+}

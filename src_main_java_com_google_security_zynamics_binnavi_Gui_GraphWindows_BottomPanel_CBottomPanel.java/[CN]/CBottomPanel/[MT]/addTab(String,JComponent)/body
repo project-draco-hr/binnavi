@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(title,"IE01228: Title argument can not be null");
+  Preconditions.checkNotNull(component,"IE01229: Component argument can not be null");
+  m_tabbedPane.addTab(title,component);
+}

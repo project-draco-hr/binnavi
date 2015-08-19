@@ -1,0 +1,7 @@
+{
+  final List<COperandTree> convertedOperands=new ArrayList<COperandTree>();
+  for (  final Operand operand : operands) {
+    convertedOperands.add(module.createOperand(convert(module,operand.getRootNode(),null)));
+  }
+  return convertedOperands;
+}

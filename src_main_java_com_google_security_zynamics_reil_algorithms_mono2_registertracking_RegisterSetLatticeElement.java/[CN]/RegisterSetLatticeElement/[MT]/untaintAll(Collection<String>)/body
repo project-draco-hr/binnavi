@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(registers,"Error: Registers argument can not be null");
+  for (  final String register : registers) {
+    untaint(register);
+  }
+}

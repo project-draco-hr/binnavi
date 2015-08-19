@@ -1,0 +1,28 @@
+{
+  super(owner,"Resolve imported functions",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(database,"IE02062: Database argument can't be null");
+  Preconditions.checkState(database.isLoaded(),"IE02063: Database must be loaded before functions can be redirected");
+  m_module=Preconditions.checkNotNull(module,"IE02064: Module argument can't be null");
+  Preconditions.checkState(module.isLoaded(),"IE02065: Module must be loaded before functions can be redirected");
+  Preconditions.checkState(module.inSameDatabase(database),"IE02066: Module is not in the given database");
+  setLayout(new BorderLayout());
+  new CDialogEscaper(this);
+  final JPanel outerPanel=new JPanel(new BorderLayout());
+  outerPanel.setBorder(new EmptyBorder(5,5,5,5));
+  final JPanel innerPanel=new JPanel(new GridLayout(2,3));
+  innerPanel.setBorder(new LineBorder(Color.BLUE));
+  innerPanel.add(createLabel("Source Module"));
+  innerPanel.add(createLabel("Parent String"));
+  innerPanel.add(createLabel("Target Module"));
+  innerPanel.add(createLabel(module.getConfiguration().getName()));
+  m_parentBox=new JComboBox<String>(generateParentBoxVector(module));
+  m_parentBox.setBorder(new EmptyBorder(0,5,5,5));
+  innerPanel.add(m_parentBox);
+  m_targetModuleBox=new JComboBox<CModuleWrapper>(generateTargetBoxVector(database,module));
+  m_targetModuleBox.setBorder(new EmptyBorder(0,5,5,5));
+  innerPanel.add(m_targetModuleBox);
+  outerPanel.add(innerPanel);
+  add(outerPanel);
+  add(new CPanelTwoButtons(new InternalListener(),"Apply","Close"),BorderLayout.SOUTH);
+  pack();
+}

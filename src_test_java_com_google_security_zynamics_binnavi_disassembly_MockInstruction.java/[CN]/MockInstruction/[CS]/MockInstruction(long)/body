@@ -1,0 +1,4 @@
+{
+  this("nop",new ArrayList<COperandTree>(),null);
+  m_address=new CAddress(address);
+}

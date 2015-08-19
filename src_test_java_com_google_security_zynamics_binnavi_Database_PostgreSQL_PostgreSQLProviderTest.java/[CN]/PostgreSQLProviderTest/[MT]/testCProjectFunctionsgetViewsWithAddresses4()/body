@@ -1,0 +1,4 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  PostgreSQLProjectFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),project,null,true);
+}

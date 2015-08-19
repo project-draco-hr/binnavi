@@ -1,0 +1,3 @@
+{
+  return String.format("%s, bitSize=%d bits, %d members, id=%d",name,bitSize,members.size(),id);
+}

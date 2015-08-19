@@ -1,0 +1,3 @@
+{
+  getProvider().deleteProject(getProvider().loadProjects().get(0));
+}

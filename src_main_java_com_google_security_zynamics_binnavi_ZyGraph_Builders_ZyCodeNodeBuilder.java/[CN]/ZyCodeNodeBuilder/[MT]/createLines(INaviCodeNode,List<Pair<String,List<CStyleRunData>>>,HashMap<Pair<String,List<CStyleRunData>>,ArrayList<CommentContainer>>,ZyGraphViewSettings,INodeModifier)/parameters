@@ -1,0 +1,5 @@
+INaviCodeNode node
+List<Pair<String,List<CStyleRunData>>> lines
+HashMap<Pair<String,List<CStyleRunData>>,ArrayList<CommentContainer>> commentsToLineAssociation
+ZyGraphViewSettings graphSettings
+INodeModifier modifier

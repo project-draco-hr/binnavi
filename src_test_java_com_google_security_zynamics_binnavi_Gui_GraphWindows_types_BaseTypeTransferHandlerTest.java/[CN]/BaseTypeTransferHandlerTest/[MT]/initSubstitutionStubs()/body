@@ -1,0 +1,9 @@
+{
+  when(wrapper.acceptDrop()).thenReturn(true);
+  when(wrapper.determineDropNode()).thenReturn(node);
+  when(node.getType()).thenReturn(ExpressionType.REGISTER);
+  when(node.getOperandPosition()).thenReturn(POSITION);
+  when(node.getInstructionAddress()).thenReturn(ADDRESS);
+  when(node.hasAddendSibling()).thenReturn(true);
+  when(node.determineAddendValue()).thenReturn((long)0);
+}

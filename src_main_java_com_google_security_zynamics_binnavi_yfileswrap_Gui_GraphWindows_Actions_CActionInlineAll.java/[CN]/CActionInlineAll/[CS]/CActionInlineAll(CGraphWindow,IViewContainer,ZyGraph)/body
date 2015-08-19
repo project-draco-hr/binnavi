@@ -1,0 +1,9 @@
+{
+  super("Inline all function calls");
+  Preconditions.checkNotNull(parent,"IE01644: Parent argument can not be null");
+  Preconditions.checkNotNull(container,"IE02276: Container argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01645: Graph argument can not be null");
+  m_parent=parent;
+  m_container=container;
+  m_graph=graph;
+}

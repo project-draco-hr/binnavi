@@ -1,0 +1,8 @@
+{
+  for (  final TypeMember member : members) {
+    if (member.getId() == typeMemberId) {
+      return convertToRawMember(member);
+    }
+  }
+  throw new CouldntLoadDataException("Member not found in type manager mock backend.");
+}

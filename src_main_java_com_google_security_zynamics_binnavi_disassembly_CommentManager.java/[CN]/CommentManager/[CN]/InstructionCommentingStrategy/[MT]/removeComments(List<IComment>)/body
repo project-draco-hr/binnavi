@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    globalInstructionsCommentContainer.unsetComments(instruction,comments);
+  }
+ else {
+    localInstructionCommentContainer.unsetComments(new Pair<INaviCodeNode,INaviInstruction>(codeNode,instruction),comments);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument(offset >= 0,"Error: Argument offset can't be less than 0");
+  final String connected=environment.getNextVariableString();
+  final String negated=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset,OperandSize.BYTE,Helpers.SIGN_FLAG,OperandSize.BYTE,Helpers.OVERFLOW_FLAG,OperandSize.BYTE,connected));
+  instructions.add(ReilHelpers.createXor(offset + 1,OperandSize.BYTE,connected,OperandSize.BYTE,"1",OperandSize.BYTE,negated));
+  return new Pair<OperandSize,String>(OperandSize.BYTE,negated);
+}

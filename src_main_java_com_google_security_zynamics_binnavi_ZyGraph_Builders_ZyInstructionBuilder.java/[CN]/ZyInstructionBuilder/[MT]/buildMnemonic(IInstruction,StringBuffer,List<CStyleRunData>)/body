@@ -1,0 +1,5 @@
+{
+  final String mnemonic=instruction.getMnemonic();
+  styleRun.add(new CStyleRunData(line.length(),mnemonic.length(),ConfigManager.instance().getColorSettings().getMnemonicColor()));
+  line.append(Strings.padEnd(mnemonic,MINIMUM_MNEMONIC_SIZE,' '));
+}

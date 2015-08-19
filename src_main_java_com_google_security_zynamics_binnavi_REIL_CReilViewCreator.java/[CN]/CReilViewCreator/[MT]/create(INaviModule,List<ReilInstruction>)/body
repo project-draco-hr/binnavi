@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(container,"IE01775: Container argument can not be null");
+  Preconditions.checkNotNull(instructions,"IE01779: Instructions argument can not be null");
+  final Collection<List<ReilInstruction>> instructionList=new ArrayList<List<ReilInstruction>>();
+  instructionList.add(instructions);
+  return create(container,ReilGraphGenerator.createGraph(instructionList,new ArrayList<IAddress>()));
+}

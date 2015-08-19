@@ -1,0 +1,15 @@
+{
+  m_graph=graph;
+  m_model=model;
+  m_tableModel=new CResultsTableModel(model);
+  setModel(m_tableModel);
+  final TableRowSorter<CResultsTableModel> sorter=new TableRowSorter<CResultsTableModel>(m_tableModel);
+  sorter.setComparator(CResultsTableModel.TYPE_COLUMN,new CTypeComparator());
+  sorter.setComparator(CResultsTableModel.ADDRESS_COLUMN,new HexStringComparator());
+  setRowSorter(sorter);
+  getColumnModel().getColumn(CResultsTableModel.TYPE_COLUMN).setCellRenderer(new CTypeColumnRenderer());
+  getColumnModel().getColumn(CResultsTableModel.INSTRUCTION_COLUMN).setCellRenderer(new CMonospaceRenderer());
+  final InternalSelectionListener listener=new InternalSelectionListener();
+  getSelectionModel().addListSelectionListener(listener);
+  addMouseListener(listener);
+}

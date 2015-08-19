@@ -1,0 +1,6 @@
+{
+  m_loaded=true;
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    listener.loaded(this);
+  }
+}

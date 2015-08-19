@@ -1,0 +1,11 @@
+{
+  final MockAddressSpaceListener listener=new MockAddressSpaceListener();
+  addressSpace.addListener(listener);
+  addressSpace.load();
+  addressSpace.addModule(module);
+  assertEquals("loaded;addedModule;changedImageBase;changedModificationDate;",listener.events);
+  assertEquals(1,addressSpace.getModules().size());
+  assertNotNull(addressSpace.toString());
+  addressSpace.close();
+  assertEquals("loaded;addedModule;changedImageBase;changedModificationDate;closing;closed;",listener.events);
+}

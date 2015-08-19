@@ -1,0 +1,3 @@
+{
+  return referenceLookup.get(new InstanceReferenceLookup(address,position,expressionId));
+}

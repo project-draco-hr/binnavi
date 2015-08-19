@@ -1,0 +1,5 @@
+{
+  super(formatter);
+  m_criterium=criterium;
+  addKeyListener(m_textFieldListener);
+}

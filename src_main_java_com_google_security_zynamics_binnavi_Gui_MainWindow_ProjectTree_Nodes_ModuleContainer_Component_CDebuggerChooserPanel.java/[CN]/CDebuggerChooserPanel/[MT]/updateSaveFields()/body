@@ -1,0 +1,7 @@
+{
+  m_imageBaseAddr.setModified(isImageBaseModified());
+  m_fileBaseAddr.setModified(isFileBaseModified());
+  if (m_debuggerCombo != null) {
+    m_debuggerCombo.setModified(getSelectedDebugger() != m_module.getConfiguration().getDebuggerTemplate());
+  }
+}

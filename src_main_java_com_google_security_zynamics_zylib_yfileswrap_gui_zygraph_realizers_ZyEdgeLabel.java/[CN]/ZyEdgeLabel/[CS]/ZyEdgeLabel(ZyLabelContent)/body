@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(content,"Internal Error: Content can't be null");
+  m_content=content;
+  setVisible(true);
+  setText("A");
+  setModel(EdgeLabel.CENTERED);
+  setPreferredPlacement(LabelLayoutConstants.PLACE_ON_EDGE);
+  setPosition(EdgeLabel.CENTER);
+  m_height=getHeight();
+  m_width=getWidth();
+  m_roundedHeight=(int)m_height;
+  m_roundedWidth=(int)m_width;
+}

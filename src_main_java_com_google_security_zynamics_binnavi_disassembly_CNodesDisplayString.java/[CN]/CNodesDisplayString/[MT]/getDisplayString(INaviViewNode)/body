@@ -1,0 +1,11 @@
+{
+  if (node instanceof INaviCodeNode) {
+    return ((INaviCodeNode)node).getAddress().toHexString();
+  }
+ else   if (node instanceof IFunctionNode) {
+    return ((IFunctionNode<?,?>)node).getFunction().getName();
+  }
+ else {
+    return node.toString();
+  }
+}

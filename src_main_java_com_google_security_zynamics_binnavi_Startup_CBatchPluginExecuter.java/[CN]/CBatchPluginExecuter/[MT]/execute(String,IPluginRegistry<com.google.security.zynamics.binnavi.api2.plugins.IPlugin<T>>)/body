@@ -1,0 +1,13 @@
+{
+  for (  final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin : pluginRegistry) {
+    if ((plugin instanceof IBatchPlugin) && plugin.getName().equals(pluginName)) {
+      try {
+        ((IBatchPlugin)plugin).run();
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+        return;
+      }
+    }
+  }
+}

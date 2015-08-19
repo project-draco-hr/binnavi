@@ -1,0 +1,14 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"jmp");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a jmp instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree operand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,offset,operand,true);
+  instructions.addAll(result.getInstructions());
+  final String jumpTarget=result.getRegister();
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createJcc(offset,OperandSize.BYTE,"1",environment.getArchitectureSize(),jumpTarget));
+}

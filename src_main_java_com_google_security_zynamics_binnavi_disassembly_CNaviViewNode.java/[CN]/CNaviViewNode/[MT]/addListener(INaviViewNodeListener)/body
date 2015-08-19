@@ -1,0 +1,4 @@
+{
+  super.addListener(listener);
+  m_naviViewNodeListeners.addListener(listener);
+}

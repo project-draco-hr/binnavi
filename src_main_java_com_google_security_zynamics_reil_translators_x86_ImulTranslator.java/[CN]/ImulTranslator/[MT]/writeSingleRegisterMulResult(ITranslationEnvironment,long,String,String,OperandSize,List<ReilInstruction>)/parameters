@@ -1,0 +1,6 @@
+ITranslationEnvironment environment
+long offset
+String resultRegister
+String register1
+OperandSize size1
+List<ReilInstruction> instructions

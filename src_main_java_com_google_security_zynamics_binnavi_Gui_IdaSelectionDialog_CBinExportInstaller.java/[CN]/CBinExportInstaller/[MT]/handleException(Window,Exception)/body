@@ -1,0 +1,5 @@
+{
+  final String innerMessage="E00041: " + "Could not install BinExport";
+  final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not install the BinExport because one of more files could not " + "be copied.",new String[]{"Insufficient rights to write to the IDA Pro directory","Some kind of IO problem occurred"},new String[]{"BinExport was not installed and can not be used to export IDB " + "files to the database. You can try to install BinExport manually by " + "copying the exporters/BinExport directory from your BinNavi installation "+ "to the IDA Pro directory."});
+  CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+}

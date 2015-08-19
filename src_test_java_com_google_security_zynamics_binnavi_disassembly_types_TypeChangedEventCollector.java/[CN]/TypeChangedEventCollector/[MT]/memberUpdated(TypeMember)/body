@@ -1,0 +1,3 @@
+{
+  events.add(getEventString(MEMBER_UPDATED_STRING,member.getId(),member.getName()));
+}

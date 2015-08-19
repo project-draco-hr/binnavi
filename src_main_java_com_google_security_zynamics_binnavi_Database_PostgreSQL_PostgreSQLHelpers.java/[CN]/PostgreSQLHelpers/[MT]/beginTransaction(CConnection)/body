@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(connection,"IE00443: Connection argument can not be null");
+  connection.getConnection().setAutoCommit(false);
+}

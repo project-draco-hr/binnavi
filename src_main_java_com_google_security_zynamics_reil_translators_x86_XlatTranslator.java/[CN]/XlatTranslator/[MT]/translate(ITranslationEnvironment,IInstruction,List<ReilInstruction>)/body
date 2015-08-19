@@ -1,0 +1,19 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"xlat");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a xlat instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final long offset=baseOffset;
+  final String isolatedAl=environment.getNextVariableString();
+  final String address=environment.getNextVariableString();
+  final String truncatedAddress=environment.getNextVariableString();
+  final String value=environment.getNextVariableString();
+  final String maskedEax=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset,OperandSize.DWORD,"eax",OperandSize.DWORD,"255",OperandSize.DWORD,isolatedAl));
+  instructions.add(ReilHelpers.createAdd(offset + 1,OperandSize.DWORD,isolatedAl,OperandSize.DWORD,"ebx",OperandSize.QWORD,address));
+  instructions.add(ReilHelpers.createAnd(offset + 2,OperandSize.QWORD,address,OperandSize.DWORD,"4294967295",OperandSize.DWORD,truncatedAddress));
+  instructions.add(ReilHelpers.createLdm(offset + 3,OperandSize.DWORD,address,OperandSize.BYTE,value));
+  instructions.add(ReilHelpers.createAnd(offset + 4,OperandSize.DWORD,"eax",OperandSize.DWORD,"4294967040",OperandSize.DWORD,maskedEax));
+  instructions.add(ReilHelpers.createOr(offset + 5,OperandSize.BYTE,value,OperandSize.DWORD,maskedEax,OperandSize.DWORD,"eax"));
+}

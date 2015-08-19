@@ -1,0 +1,9 @@
+{
+  mockDebugger.connect();
+  final TargetProcessThread thread=new TargetProcessThread(123,ThreadState.RUNNING);
+  mockDebugger.getProcessManager().addThread(thread);
+  debuggerSynchronizer.receivedEvent(new SuspendThreadReply(0,0,123));
+  assertEquals(ThreadState.SUSPENDED,thread.getState());
+  debuggerSynchronizer.receivedEvent(new ResumeThreadReply(0,0,123));
+  assertEquals(ThreadState.RUNNING,thread.getState());
+}

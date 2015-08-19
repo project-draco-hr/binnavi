@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00237: Debugger argument can't be null");
+  Preconditions.checkArgument(debugger.inSameDatabase(m_provider),"IE00238: Debugger template and project are not in the same database");
+  m_provider.addDebugger(m_project,debugger);
+  m_assignedDebuggers.add(debugger);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedDebugger(m_project,debugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

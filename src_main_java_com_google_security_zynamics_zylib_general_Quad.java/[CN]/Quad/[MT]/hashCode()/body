@@ -1,0 +1,3 @@
+{
+  return (m_first == null ? 1 : m_first.hashCode()) * (m_second == null ? 1 : m_second.hashCode()) * (m_third == null ? 1 : m_third.hashCode())* (m_fourth == null ? 1 : m_fourth.hashCode());
+}

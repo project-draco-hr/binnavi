@@ -1,0 +1,12 @@
+{
+  try {
+    final INaviView dataflowView=CDataflowViewCreator.create(container,view);
+    CViewOpener.showView(parent,container,dataflowView,parent);
+  }
+ catch (  final InternalTranslationException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00110: " + "Could not create dataflow graph";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not create the data flow graph of view '%s'.",view.getName()),new String[]{"An error occurred in the REIL translator code."},new String[]{"This is an internal error which you can not fix yourself. " + "Please report the bug to the zynamics support team."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription);
+  }
+}

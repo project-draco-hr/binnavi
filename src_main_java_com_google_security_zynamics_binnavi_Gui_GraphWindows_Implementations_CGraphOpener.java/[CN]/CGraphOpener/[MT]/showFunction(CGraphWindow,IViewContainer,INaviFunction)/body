@@ -1,0 +1,5 @@
+{
+  final INaviModule module=function.getModule();
+  final INaviView view=module.getContent().getViewContainer().getView(function);
+  CViewOpener.showView(parent,container,view,parent);
+}

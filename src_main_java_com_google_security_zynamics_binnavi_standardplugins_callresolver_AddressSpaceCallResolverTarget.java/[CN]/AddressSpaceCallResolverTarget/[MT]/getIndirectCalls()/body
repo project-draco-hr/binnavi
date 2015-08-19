@@ -1,0 +1,7 @@
+{
+  final List<IndirectCall> indirectCalls=new ArrayList<IndirectCall>();
+  for (  final Module module : addressSpace.getModules()) {
+    indirectCalls.addAll(IndirectCallFinder.find(module));
+  }
+  return indirectCalls;
+}

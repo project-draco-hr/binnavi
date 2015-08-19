@@ -1,0 +1,9 @@
+{
+  if (file != null) {
+    putValue(AbstractAction.NAME,String.format(Constants.MENU_EXECUTE_AGAIN_SCRIPT,file.getAbsolutePath()));
+  }
+ else {
+    putValue(AbstractAction.NAME,String.format(Constants.MENU_EXECUTE_AGAIN_SCRIPT,"-"));
+  }
+  setEnabled(file != null);
+}

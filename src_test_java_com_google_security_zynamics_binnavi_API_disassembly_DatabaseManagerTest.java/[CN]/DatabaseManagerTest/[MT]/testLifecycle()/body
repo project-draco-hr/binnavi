@@ -1,0 +1,21 @@
+{
+  final MockDatabaseManagerListener listener=new MockDatabaseManagerListener();
+  final DatabaseManager manager=new DatabaseManager(CDatabaseManager.instance());
+  manager.addListener(listener);
+  manager.addDatabase("Description","Driver","Host","Name","User","Password","identity",true,false);
+  final IDatabase internalDatabase=CDatabaseManager.instance().iterator().next();
+  assertEquals("Description",internalDatabase.getConfiguration().getDescription());
+  assertEquals("Driver",internalDatabase.getConfiguration().getDriver());
+  assertEquals("User",internalDatabase.getConfiguration().getUser());
+  assertEquals("Password",internalDatabase.getConfiguration().getPassword());
+  assertTrue(internalDatabase.getConfiguration().isSavePassword());
+  assertFalse(internalDatabase.getConfiguration().isAutoConnect());
+  assertEquals(1,manager.getDatabases().size());
+  assertEquals("addedDatabase;",listener.events);
+  assertEquals("Database Manager ['Description']",manager.toString());
+  final Database database=manager.getDatabases().get(0);
+  manager.removeDatabase(database);
+  assertEquals(0,manager.getDatabases().size());
+  assertEquals("addedDatabase;removedDatabase;",listener.events);
+  manager.removeListener(listener);
+}

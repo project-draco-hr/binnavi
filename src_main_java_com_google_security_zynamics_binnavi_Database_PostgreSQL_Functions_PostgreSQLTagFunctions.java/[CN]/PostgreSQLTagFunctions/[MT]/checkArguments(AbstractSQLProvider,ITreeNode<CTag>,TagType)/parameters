@@ -1,0 +1,3 @@
+AbstractSQLProvider provider
+ITreeNode<CTag> tag
+TagType type

@@ -1,0 +1,12 @@
+{
+  final byte[] oldData=chunk.getBytes();
+  final byte[] newData1=new byte[(int)(address - chunk.getAddress())];
+  final byte[] newData2=new byte[(chunk.getLength() - newData1.length)];
+  System.arraycopy(oldData,0,newData1,0,newData1.length);
+  System.arraycopy(oldData,oldData.length - newData2.length,newData2,0,newData2.length);
+  final MemoryChunk newChunk1=new MemoryChunk(chunk.getAddress(),newData1);
+  final MemoryChunk newChunk2=new MemoryChunk((chunk.getAddress() + chunk.getLength()) - newData2.length,newData2);
+  removeChunk(chunk);
+  insertChunk(newChunk1);
+  insertChunk(newChunk2);
+}

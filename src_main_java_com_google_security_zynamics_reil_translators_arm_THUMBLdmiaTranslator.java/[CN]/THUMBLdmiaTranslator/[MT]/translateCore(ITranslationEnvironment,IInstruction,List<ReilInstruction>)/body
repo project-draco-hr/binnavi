@@ -1,0 +1,19 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().size() == 1 ? instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(0) : instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final Boolean wback=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().size() == 1 ? true : false;
+  final int registerListLength=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getChildren().size();
+  final String sourceRegister1=(registerOperand1.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String tmpAddress=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,sourceRegister1,dw,tmpAddress));
+  for (int i=0; i < registerListLength; i++) {
+    final String currentRegisterValue=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getChildren().get(i).getValue();
+    instructions.add(ReilHelpers.createLdm(baseOffset++,dw,tmpAddress,dw,currentRegisterValue));
+    instructions.add(ReilHelpers.createAdd(baseOffset++,dw,tmpAddress,bt,String.valueOf(4L),dw,tmpAddress));
+  }
+  if (wback) {
+    instructions.add(ReilHelpers.createAdd(baseOffset++,dw,sourceRegister1,dw,String.valueOf(registerListLength * 4),dw,sourceRegister1));
+  }
+}

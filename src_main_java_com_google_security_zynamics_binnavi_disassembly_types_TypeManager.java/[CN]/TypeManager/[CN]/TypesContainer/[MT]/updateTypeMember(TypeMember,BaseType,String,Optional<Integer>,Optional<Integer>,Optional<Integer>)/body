@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(typeMember,"Error: typeMember argument can not be null.");
+  Preconditions.checkNotNull(newMemberName,"Error: memberName argument can not be null.");
+  Preconditions.checkNotNull(newMemberBaseType,"Error: baseType argument can not be null.");
+  Preconditions.checkNotNull(newMemberNumberOfElements,"Error: number of elements argument can not be null.");
+  Preconditions.checkNotNull(newMemberOffset,"Error: offset argument can not be null.");
+  Preconditions.checkNotNull(newMemberArgumentIndex,"Error: argument index argument can not be null.");
+  Preconditions.checkNotNull(newMemberBaseType,"Error: basetype argument can not be null.");
+  typeMember.setBaseType(newMemberBaseType);
+  typeMember.setName(newMemberName);
+  typeMember.setNumberOfElements(newMemberNumberOfElements);
+  typeMember.setOffset(newMemberOffset);
+  typeMember.setArgumentIndex(newMemberArgumentIndex);
+  return dependenceGraph.updateMember(typeMember.getParentType(),typeMember.getBaseType(),newMemberBaseType).getAffectedTypes();
+}

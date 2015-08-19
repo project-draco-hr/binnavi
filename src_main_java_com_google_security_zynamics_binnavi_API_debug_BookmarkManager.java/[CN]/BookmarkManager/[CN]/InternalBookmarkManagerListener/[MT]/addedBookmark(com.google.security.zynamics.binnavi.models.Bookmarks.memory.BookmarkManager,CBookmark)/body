@@ -1,0 +1,12 @@
+{
+  final Bookmark newBookmark=new Bookmark(bookmark);
+  m_bookmarks.add(newBookmark);
+  for (  final IBookmarkManagerListener listener : m_listeners) {
+    try {
+      listener.addedBookmark(BookmarkManager.this,newBookmark);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  final ReilInstruction instr0=createReilInstruction();
+  final ReilInstruction instr1=createReilInstruction();
+  assertTrue(instr0.equals(instr1));
+  assertTrue(instr1.equals(instr0));
+}

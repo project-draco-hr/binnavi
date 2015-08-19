@@ -1,0 +1,15 @@
+{
+  if (amount > 0) {
+    final double minzoom=ZoomHelpers.getMinimumZoom(m_zyGraph.getView());
+    setMinimumZoom(minzoom);
+    final double zoomfactor=1 - (m_zyGraph.getSettings().getMouseSettings().getZoomSensitivity() * ZOOM_SUB_FACTOR);
+    if (minzoom > 0.5) {
+      super.setMinimumZoom(0.75);
+      return m_zyGraph.getView().getZoom() * zoomfactor;
+    }
+    return Math.max(m_zyGraph.getView().getZoom() * zoomfactor,minzoom);
+  }
+  final double zoomfactor=1 + (m_zyGraph.getSettings().getMouseSettings().getZoomSensitivity() * ZOOM_SUB_FACTOR);
+  setMaximumZoom(ZoomHelpers.MAX_ZOOM);
+  return m_zyGraph.getView().getZoom() * zoomfactor;
+}

@@ -1,0 +1,3 @@
+{
+  CTagFunctions.deleteTag(m_parent,m_tagManager,m_tag);
+}

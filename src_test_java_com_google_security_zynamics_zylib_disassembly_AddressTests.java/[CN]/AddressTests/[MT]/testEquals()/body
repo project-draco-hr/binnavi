@@ -1,0 +1,9 @@
+{
+  final CAddress address=new CAddress(0x87654321L);
+  assertFalse(address.equals(null));
+  assertFalse(address.equals("SOMESTRING"));
+  assertTrue(address.equals(0x87654321L));
+  assertTrue(address.equals(new CAddress(0x87654321L)));
+  final CAddress addressEqualsMock=new CAddress(0x100L);
+  assertTrue(addressEqualsMock.equals(new MockAddress()));
+}

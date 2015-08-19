@@ -1,0 +1,6 @@
+{
+  for (  final HotKey currentHotKey : list) {
+    final String modifiers=currentHotKey.getKeyStroke().getModifiers() != 0 ? KeyEvent.getModifiersExText(currentHotKey.getKeyStroke().getModifiers()) + "-" : "";
+    hotKeys.add(new Object[]{modifiers + KeyEvent.getKeyText(currentHotKey.getKeyStroke().getKeyCode()),currentHotKey.getDescription()});
+  }
+}

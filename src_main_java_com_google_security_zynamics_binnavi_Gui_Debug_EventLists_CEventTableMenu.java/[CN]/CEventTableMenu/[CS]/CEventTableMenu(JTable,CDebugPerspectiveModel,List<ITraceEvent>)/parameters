@@ -1,0 +1,3 @@
+JTable table
+CDebugPerspectiveModel model
+List<ITraceEvent> traces

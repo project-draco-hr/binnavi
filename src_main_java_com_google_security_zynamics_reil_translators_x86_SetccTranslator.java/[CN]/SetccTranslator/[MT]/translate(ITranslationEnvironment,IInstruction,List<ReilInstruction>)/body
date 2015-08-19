@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not a conditional setcc instruction (invalid number of operands)");
+  }
+  final long reilOffsetBase=instruction.getAddress().toLong() * 0x100;
+  long reilOffset=reilOffsetBase;
+  final IOperandTree operand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,reilOffset,operand,false);
+  final OperandSize size=result.getSize();
+  final TranslationResultType type=result.getType();
+  final String address=result.getAddress();
+  reilOffset=reilOffsetBase + instructions.size();
+  final Pair<OperandSize,String> condition=conditionGenerator.generate(environment,reilOffset,instructions);
+  reilOffset=reilOffsetBase + instructions.size();
+  final String conditionRegister=condition.second();
+  Helpers.writeBack(environment,reilOffset,operand,conditionRegister,size,address,type,instructions);
+}

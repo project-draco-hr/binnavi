@@ -1,0 +1,2 @@
+List<INaviModule> modules
+List<INaviRawModule> rawModules

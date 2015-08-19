@@ -1,0 +1,8 @@
+{
+  final Function startFunction=findFunction(m_notepad,0x01002B87);
+  final BasicBlock startBlock=findBlock(startFunction,0x1002B87);
+  final BasicBlock endBlock=findBlock(startFunction,0x100336A);
+  final View view=PathFinder.createPath(m_notepad,startBlock,endBlock,null,null);
+  assertEquals(96,view.getGraph().nodeCount());
+  assertEquals(150,view.getGraph().edgeCount());
+}

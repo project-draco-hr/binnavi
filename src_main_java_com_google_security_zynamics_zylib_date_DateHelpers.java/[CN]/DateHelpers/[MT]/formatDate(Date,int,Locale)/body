@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(date,"Error: Date argument can't be null.");
+  Preconditions.checkNotNull(locale,"Error: Locale argument can't be null.");
+  final String s=String.format("%s %s",DateFormat.getDateInstance(type,locale).format(date),DateFormat.getTimeInstance(type,locale).format(date));
+  return s;
+}

@@ -1,0 +1,13 @@
+{
+  Preconditions.checkArgument(id >= 0,"Error: id argument must be larger or equal to zero");
+  this.id=id;
+  this.name=Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  this.commentManager=Preconditions.checkNotNull(commentManager,"Error: commentManager argument can not be null");
+  this.module=Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  Preconditions.checkArgument(startAddress.compareTo(endAddress) <= 0,"Error: end address must be larger or equal to start address");
+  this.startAddress=Preconditions.checkNotNull(startAddress,"Error: startAddress argument can not be null");
+  this.endAddress=Preconditions.checkNotNull(endAddress,"Error: endAddress argument can not be null");
+  this.permission=Preconditions.checkNotNull(permission,"Error: permission argument can not be null");
+  this.data=data;
+  virtualSize=(endAddress.toBigInteger().subtract(startAddress.toBigInteger())).longValue();
+}

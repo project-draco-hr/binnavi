@@ -1,0 +1,5 @@
+{
+  final JMenu menu=new JMenu("Projects");
+  menu.setMnemonic("HK_MENU_PROJECTS".charAt(0));
+  return menu;
+}

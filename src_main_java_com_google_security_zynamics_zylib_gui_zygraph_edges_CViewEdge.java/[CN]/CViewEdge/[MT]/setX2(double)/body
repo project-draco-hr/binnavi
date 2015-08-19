@@ -1,0 +1,9 @@
+{
+  if (Double.compare(m_x2,x2) == 0) {
+    return;
+  }
+  m_x2=x2;
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.changedTargetX(this,x2);
+  }
+}

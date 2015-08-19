@@ -1,0 +1,3 @@
+{
+  ZyGraph.this.removeNode(node);
+}

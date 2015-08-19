@@ -1,0 +1,17 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(projectTree,"IE02007: Project tree argument can not be null");
+  m_container=Preconditions.checkNotNull(container,"IE02008: Container argument can not be null");
+  setBorder(new TitledBorder("Debug Traces"));
+  m_tracesPanel=new CDebugEventListPanel(m_container.getTraceProvider());
+  final CArbitraryViewsTable table=new CArbitraryViewsTable(projectTree,m_model,container,new CTracesViewsTableHelp());
+  final JPanel lowerPanel=new CTablePanel<INaviView>(table,new CViewFilterCreator(container),new CViewFilterHelp());
+  lowerPanel.setBorder(new TitledBorder("Views"));
+  lowerPanel.add(new JScrollPane(table));
+  final JSplitPane splitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true,m_tracesPanel,lowerPanel);
+  add(splitPane,BorderLayout.CENTER);
+  splitPane.setResizeWeight(0.5);
+  m_tracesPanel.getTracesTable().getSelectionModel().addListSelectionListener(m_listener);
+  m_tracesPanel.getTracesTable().addMouseListener(new InternalTraceTableListener());
+  m_tracesPanel.getEventsTable().addMouseListener(new InternalEventsTableListener());
+}

@@ -1,0 +1,3 @@
+def actionPerformed(self, e):
+    console.log('Hello from the python sample script')
+    MessageBox.showInformation(self.pi.mainWindow.frame, 'Hello from the python sample script')

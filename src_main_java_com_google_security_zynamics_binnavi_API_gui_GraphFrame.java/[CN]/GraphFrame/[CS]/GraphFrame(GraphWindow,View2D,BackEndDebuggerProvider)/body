@@ -1,0 +1,5 @@
+{
+  m_window=window;
+  m_view2d=view2d;
+  m_debuggerProvider=debuggerProvider;
+}

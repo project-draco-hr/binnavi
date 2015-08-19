@@ -1,0 +1,7 @@
+{
+  if (!(rhs instanceof IReference)) {
+    return false;
+  }
+  final IReference rhsReference=(IReference)rhs;
+  return m_target.equals(rhsReference.getTarget()) && m_type.equals(rhsReference.getType());
+}

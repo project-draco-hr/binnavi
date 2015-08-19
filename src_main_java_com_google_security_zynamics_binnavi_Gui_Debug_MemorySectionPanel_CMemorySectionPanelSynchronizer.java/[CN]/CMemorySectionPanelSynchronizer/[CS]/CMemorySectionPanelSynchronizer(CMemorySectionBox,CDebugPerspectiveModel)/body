@@ -1,0 +1,7 @@
+{
+  memorySectionBox=Preconditions.checkNotNull(sectionBox,"IE01454: Section box argument can not be null");
+  this.debugPerspectiveModel=Preconditions.checkNotNull(debugPerspectiveModel,"IE01455: Debug perspective model argument can not be null");
+  synchronizeDebugger(null,debugPerspectiveModel.getCurrentSelectedDebugger());
+  debugPerspectiveModel.addListener(debugListener);
+  memorySectionBox.addItemListener(memoryBoxListener);
+}

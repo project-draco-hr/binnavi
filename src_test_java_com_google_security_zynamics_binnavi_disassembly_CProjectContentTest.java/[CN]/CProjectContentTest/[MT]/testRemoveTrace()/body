@@ -1,0 +1,30 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  @SuppressWarnings("unused") final INaviView view=new MockView(m_provider);
+  @SuppressWarnings("unused") final INaviView view2=projectContent.createView("Name","description");
+  assertNotNull(CViewFilter.getTaggedViews(projectContent.getViews(),new CTag(4,"foo","bar",TagType.VIEW_TAG,m_provider)));
+  final CAddressSpace spaceOne=projectContent.createAddressSpace("Address Space 1");
+  spaceOne.load();
+  final CAddressSpace spaceTwo=projectContent.createAddressSpace("Address Space 2");
+  spaceTwo.load();
+  final CAddressSpace spaceThree=projectContent.createAddressSpace("Address Space 3");
+  spaceThree.load();
+  final CAddressSpace spaceFour=projectContent.createAddressSpace("Address Space 4");
+  spaceFour.load();
+  m_project.load();
+  final TraceList trace=new TraceList(3,"name","desc",m_provider);
+  projectContent.removeTrace(trace);
+  try {
+    projectContent.removeTrace(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  final TraceList trace2=new TraceList(3,"name","desc",new MockSqlProvider());
+  try {
+    projectContent.removeTrace(trace2);
+    fail();
+  }
+ catch (  final Exception e) {
+  }
+}

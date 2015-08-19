@@ -1,0 +1,14 @@
+{
+  final MemberDialog dlg=MemberDialog.createBuildNewMemberDialog(owner,typeManager);
+  dlg.setVisible(true);
+  if (!dlg.wasCanceled()) {
+    final BaseType memberType=dlg.getBaseType();
+    final String memberName=dlg.getMemberName();
+    try {
+      typeManager.insertMemberAfter(existingMember,memberType,memberName);
+    }
+ catch (    final CouldntSaveDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

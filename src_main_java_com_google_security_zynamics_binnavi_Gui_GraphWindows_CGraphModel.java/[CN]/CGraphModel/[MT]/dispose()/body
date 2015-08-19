@@ -1,0 +1,4 @@
+{
+  m_graph.dispose();
+  m_proximityUpdater.dispose();
+}

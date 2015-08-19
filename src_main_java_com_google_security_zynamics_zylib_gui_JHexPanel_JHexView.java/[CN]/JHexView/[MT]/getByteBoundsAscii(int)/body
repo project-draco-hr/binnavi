@@ -1,0 +1,14 @@
+{
+  if (position < (2 * getFirstVisibleByte())) {
+    return new Rectangle(-1,-1,-1,-1);
+  }
+  if (position > ((2 * getFirstVisibleByte()) + (2 * getMaximumVisibleBytes()))) {
+    return new Rectangle(-1,-1,-1,-1);
+  }
+  final int relativePosition=(position - (2 * getFirstVisibleByte())) / 2;
+  final int row=relativePosition / m_bytesPerRow;
+  final int character=relativePosition % m_bytesPerRow;
+  final int x=getAsciiViewLeft() + m_paddingAsciiLeft + (character * m_charWidth);
+  final int y=(m_paddingTop - m_charHeight) + (row * m_rowHeight);
+  return new Rectangle(x,y,m_charWidth,m_charHeight);
+}

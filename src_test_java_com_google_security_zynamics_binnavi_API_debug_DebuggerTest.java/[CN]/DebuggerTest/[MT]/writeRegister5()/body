@@ -1,0 +1,5 @@
+{
+  debugger.connect();
+  debugger.getNative().getProcessManager().setTargetInformation(new TargetInformation(5,Lists.newArrayList(new RegisterDescription("eax",4,true),new RegisterDescription("ebx",4,false)),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  debugger.writeRegister(0,"ecx",0);
+}

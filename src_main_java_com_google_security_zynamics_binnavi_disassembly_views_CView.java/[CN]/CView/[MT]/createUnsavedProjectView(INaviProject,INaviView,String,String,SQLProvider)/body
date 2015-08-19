@@ -1,0 +1,5 @@
+{
+  final CView newView=new CView(-1,name,description,ViewType.NonNative,Calendar.getInstance().getTime(),Calendar.getInstance().getTime(),view.getGraph(),new HashSet<CTag>(),false,provider);
+  newView.getConfiguration().setProject(project);
+  return newView;
+}

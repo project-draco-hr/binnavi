@@ -1,0 +1,3 @@
+{
+  return project == null ? module.getNative().getContent().getTraceContainer().createTrace(name,description) : project.getNative().getContent().createTrace(name,description);
+}

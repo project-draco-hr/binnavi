@@ -1,0 +1,39 @@
+{
+  super.paintComponent(gx);
+  resetBufferedGraphic();
+  calculateSizes();
+  updateOffsetViewWidth();
+  if (m_firstDraw) {
+    m_firstDraw=false;
+    updateHexViewWidth();
+    updatePreferredSize();
+  }
+  drawBackground(bufferGraphics);
+  drawOffsets(bufferGraphics);
+  if (isEnabled()) {
+    drawMouseOverHighlighting(bufferGraphics);
+  }
+  if ((m_status == DefinitionStatus.DEFINED) && (m_dataProvider != null)) {
+    final int bytesToDraw=getBytesToDraw();
+    if ((bytesToDraw != 0) && !m_dataProvider.hasData(getFirstVisibleOffset(),bytesToDraw)) {
+      setDefinitionStatus(DefinitionStatus.UNDEFINED);
+      setEnabled(false);
+      if (m_updateTimer != null) {
+        m_updateTimer.setRepeats(false);
+        m_updateTimer.stop();
+      }
+      m_updateTimer=new Timer(1000,new WaitingForDataAction(getFirstVisibleOffset(),bytesToDraw));
+      m_updateTimer.setRepeats(true);
+      m_updateTimer.start();
+      return;
+    }
+  }
+  if (isDataAvailable() || (m_status == DefinitionStatus.UNDEFINED)) {
+    drawHexView(bufferGraphics);
+    drawAsciiPanel(bufferGraphics);
+    if (m_caret.isVisible() && hasFocus()) {
+      drawCaret(bufferGraphics);
+    }
+  }
+  gx.drawImage(img,0,0,this);
+}

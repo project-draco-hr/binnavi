@@ -1,0 +1,11 @@
+{
+  final String newName=" NEW SECTION NAME ";
+  final INaviModule module=getKernel32Module();
+  final Map<Section,Integer> sections=getProvider().loadSections(module);
+  final Section section=sections.keySet().iterator().next();
+  getProvider().setSectionName(module.getConfiguration().getId(),section.getId(),newName);
+  module.close();
+  module.load();
+  final Section section2=module.getContent().getSections().getSection(section.getId());
+  Assert.assertEquals(newName,section2.getName());
+}

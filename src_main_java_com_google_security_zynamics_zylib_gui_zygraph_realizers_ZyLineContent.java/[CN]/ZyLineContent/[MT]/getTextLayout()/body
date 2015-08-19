@@ -1,0 +1,9 @@
+{
+  if (isEmpty()) {
+    final AttributedString dummyString=new AttributedString("+");
+    return new TextLayout(dummyString.getIterator(),m_fontContext);
+  }
+ else {
+    return new TextLayout(m_atext.getIterator(),m_fontContext);
+  }
+}

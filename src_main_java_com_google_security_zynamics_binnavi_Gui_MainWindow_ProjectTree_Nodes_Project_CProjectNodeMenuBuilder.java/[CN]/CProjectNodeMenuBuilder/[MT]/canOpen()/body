@@ -1,0 +1,8 @@
+{
+  for (  final INaviProject project : m_projects) {
+    if (project.isLoaded()) {
+      return false;
+    }
+  }
+  return true;
+}

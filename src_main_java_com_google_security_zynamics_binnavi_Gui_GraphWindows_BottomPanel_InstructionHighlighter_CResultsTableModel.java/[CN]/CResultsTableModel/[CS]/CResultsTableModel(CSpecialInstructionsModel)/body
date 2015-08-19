@@ -1,0 +1,5 @@
+{
+  m_model=model;
+  model.addListener(m_listener);
+  m_instructions=model.getInstructions();
+}

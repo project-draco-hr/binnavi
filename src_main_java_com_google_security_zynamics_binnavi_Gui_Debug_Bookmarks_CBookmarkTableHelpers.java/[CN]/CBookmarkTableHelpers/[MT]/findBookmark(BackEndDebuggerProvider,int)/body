@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01322: Debugger provider argument can't be null");
+  Preconditions.checkArgument(row >= 0,"IE01323: Row arguments can not be negative");
+  int bookmarks=0;
+  for (  final IDebugger debugger : debuggerProvider.getDebuggers()) {
+    if ((row >= bookmarks) && (row < bookmarks + debugger.getBookmarkManager().getNumberOfBookmarks())) {
+      return Triple.make(debugger,debugger.getBookmarkManager(),row - bookmarks);
+    }
+ else {
+      bookmarks+=debugger.getBookmarkManager().getNumberOfBookmarks();
+    }
+  }
+  throw new IllegalArgumentException("IE01324: Invalid row number");
+}

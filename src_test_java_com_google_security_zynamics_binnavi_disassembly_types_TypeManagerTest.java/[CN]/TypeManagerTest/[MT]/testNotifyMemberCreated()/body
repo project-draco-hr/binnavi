@@ -1,0 +1,12 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final BaseType containingType=typeSystem.simpleStruct;
+  final BaseType baseType=typeSystem.intType;
+  final TypeMember newMember=typeManager.appendMember(containingType,baseType,"new_member");
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.memberAdded(newMember);
+  expectedEvents.memberUpdated(typeSystem.dnsIntMember);
+  expectedEvents.memberUpdated(typeSystem.dnsPointerMember);
+  assertEquals(expectedEvents,events);
+}

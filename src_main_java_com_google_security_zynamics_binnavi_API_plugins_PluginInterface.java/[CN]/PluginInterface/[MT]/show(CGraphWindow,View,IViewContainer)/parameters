@@ -1,0 +1,3 @@
+CGraphWindow graphWindow
+View view
+IViewContainer container

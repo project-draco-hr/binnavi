@@ -1,0 +1,10 @@
+{
+  m_msgcounter++;
+  m_bytecounter=0;
+  try {
+    Thread.sleep(350);
+  }
+ catch (  final InterruptedException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

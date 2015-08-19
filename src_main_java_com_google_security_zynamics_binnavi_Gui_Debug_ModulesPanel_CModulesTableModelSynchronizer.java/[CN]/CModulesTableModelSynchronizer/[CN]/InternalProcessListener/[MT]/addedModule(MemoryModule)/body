@@ -1,0 +1,4 @@
+{
+  m_renderer.addModule(module);
+  m_model.addModule(module);
+}

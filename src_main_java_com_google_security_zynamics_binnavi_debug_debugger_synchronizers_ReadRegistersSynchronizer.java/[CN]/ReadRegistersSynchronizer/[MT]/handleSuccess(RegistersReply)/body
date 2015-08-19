@@ -1,0 +1,3 @@
+{
+  setRegisterValues(reply.getRegisterValues());
+}

@@ -1,0 +1,7 @@
+{
+  super(nodeId,x,y,width,height,color,Color.BLACK,selected,visible,tags,provider);
+  m_function=Preconditions.checkNotNull(function,"IE00086: Function argument can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE02390: provider argument can not be null");
+  CommentManager.get(m_provider).addListener(m_internalCommentListener);
+  CommentManager.get(m_provider).initializeFunctionNodeComment(this,localComments);
+}

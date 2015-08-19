@@ -1,0 +1,3 @@
+{
+  return CommentManager.get(provider).getGlobalFunctionComment(this);
+}

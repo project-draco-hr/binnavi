@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02643: comment argument can not be null");
+  return m_codeNode.isOwner(comment);
+}

@@ -1,0 +1,14 @@
+{
+  final ReilBlock block1=new ReilBlock(Lists.newArrayList(ReilHelpers.createNop(0)));
+  final ReilBlock block2=new ReilBlock(Lists.newArrayList(ReilHelpers.createUndef(1,OperandSize.DWORD,"eax")));
+  final ReilEdge edge1=new ReilEdge(block1,block2,EdgeType.JUMP_CONDITIONAL_FALSE);
+  ReilBlock.link(block1,block2,edge1);
+  final List<ReilBlock> blocks=Lists.newArrayList(block1,block2);
+  final List<ReilEdge> edges=Lists.newArrayList(edge1);
+  final ReilGraph rg=new ReilGraph(blocks,edges);
+  final InstructionGraph g=InstructionGraph.create(rg);
+  assertEquals(2,g.nodeCount());
+  assertEquals(1,g.edgeCount());
+  assertEquals(0,g.getNodes().get(0).getInstruction().getAddress().toLong());
+  assertEquals(1,g.getNodes().get(1).getInstruction().getAddress().toLong());
+}

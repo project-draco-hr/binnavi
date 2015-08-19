@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(spacing > 0,"Error: Spacing must be positive");
+  m_columnSpacing=spacing;
+  repaint();
+}

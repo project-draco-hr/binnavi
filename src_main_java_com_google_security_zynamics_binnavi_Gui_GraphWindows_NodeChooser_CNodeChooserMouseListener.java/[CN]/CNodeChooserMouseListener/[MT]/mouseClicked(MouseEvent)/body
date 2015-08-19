@@ -1,0 +1,21 @@
+{
+  if (event.getButton() == MouseEvent.BUTTON1) {
+    if (event.getClickCount() == 1) {
+      final int nodeIndex=m_table.modelIndex(m_table.getSelectedRow());
+      m_graph.makeRawNodeVisibleAndSelect(nodeIndex);
+    }
+  }
+ else   if (event.getButton() == MouseEvent.BUTTON3) {
+    final int row=m_table.modelIndex(m_table.rowAtPoint(event.getPoint()));
+    final NaviNode node=m_graph.getRawNodeFromIndex(row);
+    if (!node.isVisible()) {
+      return;
+    }
+    if (event.getClickCount() == 1) {
+      CGraphZoomer.centerNode(m_graph,node);
+    }
+ else {
+      CGraphZoomer.centerNodeZoomed(m_graph,node);
+    }
+  }
+}

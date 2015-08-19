@@ -1,0 +1,6 @@
+ReilInstruction instruction
+ReilOperand firstOperand
+ReilOperand secondOperand
+BitwiseAnd previousAnd
+ValueTrackerElement state
+IElementGenerator generator

@@ -1,0 +1,3 @@
+{
+  CMessageBox.showError(m_parent,"Debug client did not correctly authenticate itself and can not be used.");
+}

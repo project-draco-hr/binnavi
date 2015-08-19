@@ -1,0 +1,5 @@
+{
+  final CSettingsDialog dlg=new CSettingsDialog(parent);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+}

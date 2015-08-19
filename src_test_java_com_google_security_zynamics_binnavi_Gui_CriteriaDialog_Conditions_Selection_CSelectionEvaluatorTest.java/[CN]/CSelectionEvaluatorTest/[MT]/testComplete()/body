@@ -1,0 +1,7 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  final SelectionState unselected=SelectionState.UNSELECTED;
+  final SelectionState selected=SelectionState.SELECTED;
+  assertTrue(CSelectionEvaluator.evaluate(node,unselected));
+  assertFalse(CSelectionEvaluator.evaluate(node,selected));
+}

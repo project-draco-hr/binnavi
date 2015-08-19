@@ -1,0 +1,3 @@
+{
+  substitutions.put(module,new RawTypeSubstitution(address,position,treeNodeId,baseTypeId,memberPath.toArray(new Integer[0]),offset));
+}

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(view,"IE02228: view argument can not be null");
+  Preconditions.checkArgument(view.inSameDatabase(m_provider),"IE02229: View and project Content are not in the same database");
+  Preconditions.checkNotNull(name,"IE02230: name argument can not be null");
+  Preconditions.checkNotNull(description,"IE02231: description argument can not be null");
+  final CView newView=CView.createUnsavedProjectView(m_project,view,name,description,m_provider);
+  addView(newView);
+  return newView;
+}

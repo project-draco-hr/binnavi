@@ -1,0 +1,25 @@
+{
+  final ImageElement element=(ImageElement)value;
+  if (isSelected) {
+    setBackground(list.getSelectionBackground());
+    setForeground(list.getSelectionForeground());
+  }
+ else {
+    setBackground(list.getBackground());
+    setForeground(list.getForeground());
+  }
+  if (element == null) {
+    return this;
+  }
+  final ImageIcon icon=element.getIcon();
+  final String text=element.getObject().toString();
+  setIcon(icon);
+  if (icon != null) {
+    setText(text);
+    setFont(list.getFont());
+  }
+ else {
+    setUhOhText(text + " (no image available)",list.getFont());
+  }
+  return this;
+}

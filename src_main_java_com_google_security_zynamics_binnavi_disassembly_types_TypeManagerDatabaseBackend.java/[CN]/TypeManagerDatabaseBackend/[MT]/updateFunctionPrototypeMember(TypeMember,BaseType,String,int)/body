@@ -1,0 +1,3 @@
+{
+  provider.updateMember(member,newMemberName,newMemberBaseType,Optional.<Integer>absent(),Optional.<Integer>absent(),Optional.of(newMemberArgumentIndex),module);
+}

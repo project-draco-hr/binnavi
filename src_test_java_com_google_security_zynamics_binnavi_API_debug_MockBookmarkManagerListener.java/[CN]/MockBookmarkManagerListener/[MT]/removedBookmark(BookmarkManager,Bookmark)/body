@@ -1,0 +1,3 @@
+{
+  events+="removedBookmark/" + bookmark.getAddress() + ";";
+}

@@ -1,0 +1,4 @@
+{
+  super("Report a Bug");
+  m_parent=Preconditions.checkNotNull(parent,"IE01847: Parent argument can not be null");
+}

@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,project);
+  NaviLogger.info("Deleting project %s",project.getConfiguration().getName());
+  PostgreSQLHelpers.deleteById(provider.getConnection(),CTableNames.PROJECTS_TABLE,project.getConfiguration().getId());
+}

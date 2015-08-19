@@ -1,0 +1,11 @@
+{
+  final NodeType a=ancestor.get(node);
+  if (ancestor.get(a) != null) {
+    final NodeType b=getAncestorWithLowestSemi(a,dfnum,semi,ancestor,best);
+    ancestor.put(node,ancestor.get(a));
+    if (dfnum.get(semi.get(b)) < dfnum.get(semi.get(best.get(node)))) {
+      best.put(node,b);
+    }
+  }
+  return best.get(node);
+}

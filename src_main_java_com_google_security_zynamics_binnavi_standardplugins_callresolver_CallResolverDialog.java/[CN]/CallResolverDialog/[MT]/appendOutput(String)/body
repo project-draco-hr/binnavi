@@ -1,0 +1,4 @@
+{
+  outputArea.setText(outputArea.getText() + string + "\n");
+  outputArea.setCaretPosition(outputArea.getDocument().getLength());
+}

@@ -1,0 +1,16 @@
+{
+  String name="";
+  if (register.startsWith("%")) {
+    name=register;
+  }
+ else {
+    name="%" + register;
+  }
+  if ((register.equals("rtoc")) || (register.equals("%rtoc"))) {
+    name="%r2";
+  }
+ else   if ((register.equals("sp")) || (register.equals("%sp"))) {
+    name="%r1";
+  }
+  return name;
+}

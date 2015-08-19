@@ -1,0 +1,11 @@
+{
+  memoryMap=new MemoryMap(processManager.getMemoryMap());
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.changedMemoryMap(Process.this,memoryMap);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+switch (targetSize) {
+case BYTE:
+    return 0xFFL;
+case DWORD:
+  return 0xFFFFFFFFL;
+case QWORD:
+return 0xFFFFFFFFFFFFFFFFL;
+case WORD:
+return 0xFFFFL;
+default :
+throw new IllegalStateException("Error: Unknown target size for truncate mask");
+}
+}

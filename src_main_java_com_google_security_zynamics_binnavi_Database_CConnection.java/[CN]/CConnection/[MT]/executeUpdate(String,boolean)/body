@@ -1,0 +1,33 @@
+{
+  m_debugQueryCount++;
+  long militime=0;
+  if (m_performanceOutput) {
+    militime=new GregorianCalendar().getTimeInMillis();
+  }
+  int result=0;
+  final PreparedStatement prep=m_connection.prepareStatement(query);
+  try {
+    result=prep.executeUpdate();
+  }
+ catch (  final SQLException error) {
+    if (m_performanceOutput) {
+      NaviLogger.severe("<%d>    <%d ms>    %s",m_debugQueryCount,Math.abs(militime),query);
+      NaviLogger.severe("Error: Query failed on %s try: %s",retry ? "first" : "second",query);
+    }
+    if ((error.getSQLState() == PostgreSQLErrorCodes.CONNECTION_DOES_NOT_EXIST) && retry) {
+      connect(getDatabaseUrl(m_databaseConfiguration.getUrl(),m_databaseConfiguration.getName()),m_properties);
+      executeUpdate(query,false);
+    }
+ else {
+      throw error;
+    }
+  }
+ finally {
+    prep.close();
+  }
+  if (m_performanceOutput) {
+    militime-=new GregorianCalendar().getTimeInMillis();
+    NaviLogger.info("<%d>    <%d ms>    %s",m_debugQueryCount,Math.abs(militime),query.substring(0,Math.min(MAXIMUM_OUTPUT_SIZE,query.length())));
+  }
+  return result;
+}

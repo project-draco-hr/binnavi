@@ -1,0 +1,3 @@
+{
+  UpdateCheckHelper.checkForUpdatesWithUi(parent,Constants.PROJECT_NAME,Constants.PROJECT_VERSION);
+}

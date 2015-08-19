@@ -1,0 +1,3 @@
+CConnection connection
+INaviView view
+List<INaviViewNode> nodes

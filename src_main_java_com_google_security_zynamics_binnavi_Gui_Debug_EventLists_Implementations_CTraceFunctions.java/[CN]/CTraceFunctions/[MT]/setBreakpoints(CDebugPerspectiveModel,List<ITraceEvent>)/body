@@ -1,0 +1,15 @@
+{
+  final IDebugger debugger=model.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    return;
+  }
+  final List<INaviModule> modules=debugger.getModules();
+  final Set<BreakpointAddress> addresses=new HashSet<BreakpointAddress>();
+  for (  final ITraceEvent event : events) {
+    final BreakpointAddress address=event.getOffset();
+    if ((address.getModule() == null) || (modules.contains(address.getModule()) && !debugger.getBreakpointManager().hasBreakpoint(BreakpointType.REGULAR,address))) {
+      addresses.add(address);
+    }
+  }
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,addresses);
+}

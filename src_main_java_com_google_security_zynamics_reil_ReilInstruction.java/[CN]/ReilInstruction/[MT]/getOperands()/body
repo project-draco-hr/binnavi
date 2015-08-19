@@ -1,0 +1,7 @@
+{
+  final List<IOperandTree> operands=new ArrayList<IOperandTree>();
+  operands.add(firstOperand);
+  operands.add(secondOperand);
+  operands.add(thirdOperand);
+  return operands;
+}

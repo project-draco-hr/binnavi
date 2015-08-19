@@ -1,0 +1,4 @@
+{
+  final IReplacement replacement=m_node.getReplacement();
+  return replacement == null ? null : replacement.toString();
+}

@@ -1,0 +1,21 @@
+{
+  for (  final Module module : target.getModules()) {
+    if (!resolvedFunctions.containsKey(module)) {
+      resolveFunctions(module);
+      if (!resolvedFunctions.containsKey(module)) {
+        continue;
+      }
+    }
+    final Map<Address,Function> functionMap=resolvedFunctions.get(module);
+    final Function function=functionMap.get(address);
+    if (function != null) {
+      return new ResolvedFunction(function);
+    }
+  }
+  for (  final MemoryModule memoryModule : target.getDebugger().getProcess().getModules()) {
+    if ((address.toLong() >= memoryModule.getBaseAddress().toLong()) && (address.toLong() < (memoryModule.getBaseAddress().toLong() + memoryModule.getSize()))) {
+      return new ResolvedFunction(memoryModule,address);
+    }
+  }
+  return new ResolvedFunction(address);
+}

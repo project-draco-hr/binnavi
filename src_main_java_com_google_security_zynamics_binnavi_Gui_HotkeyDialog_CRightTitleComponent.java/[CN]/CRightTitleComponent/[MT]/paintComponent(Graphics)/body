@@ -1,0 +1,7 @@
+{
+  super.paintComponents(graphics);
+  graphics.setColor(DEFAULT_BACKGROUND_COLOR);
+  graphics.fillRect(0,0,getWidth(),getHeight());
+  graphics.setColor(Color.BLACK);
+  graphics.drawString(m_string,0,12);
+}

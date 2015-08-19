@@ -1,0 +1,6 @@
+{
+  final BreakpointManager bm1=debugger.getBreakpointManager();
+  final BreakpointManager bm2=debugger.getBreakpointManager();
+  assertNotNull(bm1);
+  assertEquals(bm1,bm2);
+}

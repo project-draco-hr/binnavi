@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can not be null");
+  Preconditions.checkNotNull(target,"Error: target argument can not be null");
+  Preconditions.checkNotNull(source,"Error: Source argument can not be null");
+  return com.google.security.zynamics.zylib.types.trees.TreeAlgorithms.dominates(node,target,source);
+}

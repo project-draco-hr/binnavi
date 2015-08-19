@@ -1,0 +1,16 @@
+{
+  if (m_isAboveLineComment) {
+    m_editableObject.updateComment(m_text,ECommentPlacement.ABOVE_LINE);
+  }
+ else   if (m_isBehindLineComment) {
+    m_editableObject.updateComment(m_text,ECommentPlacement.BEHIND_LINE);
+  }
+ else   if (m_isLabelComment) {
+    m_editableObject.update(m_text);
+  }
+ else {
+    throw new RuntimeException("Not implemented yet.");
+  }
+  m_labelContent.getLineEditor().recreateLabelLines(m_labelContent,m_persistentModel);
+  m_labelContent.getCaret().setCaret(m_caretStartX,m_caretMousePressedX,m_caretMousePressedY,m_caretEndX,m_caretMouseReleasedX,m_caretMouseReleasedY);
+}

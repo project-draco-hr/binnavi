@@ -1,0 +1,6 @@
+{
+  for (  final IndirectCall indirectCall : indirectCallAddresses) {
+    debugger.getBreakpointManager().setBreakpoint(indirectCall.getModule(),indirectCall.getAddress());
+  }
+  step++;
+}

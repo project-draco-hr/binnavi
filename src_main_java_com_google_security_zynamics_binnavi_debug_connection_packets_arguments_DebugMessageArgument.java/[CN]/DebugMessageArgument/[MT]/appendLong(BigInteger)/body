@@ -1,0 +1,5 @@
+{
+  for (int i=7; i >= 0; --i) {
+    byteData.add(Byte.valueOf((byte)(number.shiftRight(8 * i).and(BigInteger.valueOf(0xFF)).longValue())));
+  }
+}

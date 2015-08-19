@@ -1,0 +1,55 @@
+{
+  try {
+    final Connection connection=DriverManager.getConnection(url + databaseName,databaseProperties);
+    try {
+      NaviLogger.info("[i] Generating database tables for %s.",databaseName);
+      connection.prepareStatement(AbstractSQLProvider.parseResourceAsSQLFile(this.getClass().getResourceAsStream(TEST_DATA_DIRECTORY + "database_schema.sql"))).execute();
+    }
+ catch (    final IOException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+    final File testDataDir=new File("./third_party/zynamics/javatests/com/google/security/zynamics/binnavi/testdata/" + databaseName + "/");
+    final CopyManager manager=new CopyManager((BaseConnection)connection);
+    for (    final File currentFile : testDataDir.listFiles()) {
+      FileReader reader=null;
+      try {
+        final String tableName=currentFile.getName().split(".sql")[0];
+        reader=new FileReader(currentFile);
+        NaviLogger.info("[i] Importing: %s.%s from %s",databaseName,tableName,currentFile.getAbsolutePath());
+        manager.copyIn("COPY " + tableName + " FROM STDIN",reader);
+      }
+ catch (      final IOException exception) {
+        CUtilityFunctions.logException(exception);
+      }
+ finally {
+        reader.close();
+      }
+    }
+    try {
+      NaviLogger.warning("[i] Generating constraints  for %s.",databaseName);
+      connection.prepareStatement(AbstractSQLProvider.parseResourceAsSQLFile(this.getClass().getResourceAsStream(TEST_DATA_DIRECTORY + "database_constraints.sql"))).execute();
+    }
+ catch (    final IOException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+    final String findSequencesQuery="SELECT 'SELECT SETVAL(' ||quote_literal(S.relname)|| " + "', MAX(' ||quote_ident(C.attname)|| ') ) FROM ' ||quote_ident(T.relname)|| ';' " + " FROM pg_class AS S, pg_depend AS D, pg_class AS T, pg_attribute AS C "+ " WHERE S.relkind = 'S' AND S.oid = D.objid AND D.refobjid = T.oid "+ " AND D.refobjid = C.attrelid AND D.refobjsubid = C.attnum ORDER BY S.relname; ";
+    final PreparedStatement statement=connection.prepareStatement(findSequencesQuery);
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        final PreparedStatement fixSequence=connection.prepareStatement(resultSet.getString(1));
+        fixSequence.execute();
+      }
+    }
+ catch (    final SQLException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+ finally {
+      statement.close();
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

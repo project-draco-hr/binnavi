@@ -1,0 +1,7 @@
+{
+  final ReilOperand firstOperand=createOperand(firstSize,firstValue);
+  final ReilOperand secondOperand=createOperand(secondSize,secondValue);
+  final ReilOperand thirdOperand=createOperand(thirdSize,thirdValue);
+  checkTrinaryOperandSizeTypes(firstSize,secondSize,thirdSize);
+  return new ReilInstruction(offset,opcode,firstOperand,secondOperand,thirdOperand);
+}

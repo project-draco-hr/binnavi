@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  try {
+    m_addressSpace.getContent().removeModule(module.getNative());
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntDeleteException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

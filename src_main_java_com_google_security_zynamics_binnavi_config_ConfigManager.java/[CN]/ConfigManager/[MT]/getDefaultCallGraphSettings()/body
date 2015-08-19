@@ -1,0 +1,3 @@
+{
+  return new ZyGraphViewSettings(new ZyGraphViewSettings(callGraphSettings));
+}

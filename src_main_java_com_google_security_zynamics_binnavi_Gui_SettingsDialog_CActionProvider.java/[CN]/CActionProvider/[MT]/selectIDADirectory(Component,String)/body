@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(parent,"IE02067: Parent argument can not be null");
+  Preconditions.checkNotNull(initialDirectory,"IE02259: Initial directory can not be null");
+  final CIdaSelectionDialog dialog=CIdaSelectionDialog.show(SwingUtilities.getWindowAncestor(parent),initialDirectory);
+  final File selectedFile=dialog.getSelectedFile();
+  if (selectedFile == null) {
+    return null;
+  }
+ else   if (!selectedFile.exists()) {
+    CMessageBox.showError(parent,"File does not exist.");
+    return null;
+  }
+ else   if (selectedFile.canExecute()) {
+    return selectedFile.getAbsolutePath();
+  }
+ else {
+    CMessageBox.showError(parent,"File is not an executable file.");
+    return null;
+  }
+}

@@ -1,0 +1,7 @@
+{
+  settings.getLayoutSettings().setAnimateLayout(layoutAnimationBox.getSelectedIndex() == 0);
+  settings.getDisplaySettings().setAnimationSpeed(25 - 5 * Integer.valueOf(m_tfAnimationSpeed.getValue()));
+  settings.getDisplaySettings().setGradientBackground(gradientBackgroundBox.getSelectedIndex() == 0);
+  settings.getDisplaySettings().setFunctionNodeInformation(functionInformationBox.getSelectedIndex() == 0);
+  return false;
+}

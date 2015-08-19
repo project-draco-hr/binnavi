@@ -1,0 +1,3 @@
+{
+  getProvider().deleteView(getNotepadModule().getContent().getViewContainer().getNativeFlowgraphViews().get(0));
+}

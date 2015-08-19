@@ -1,0 +1,4 @@
+{
+  m_bookmarkManager=Preconditions.checkNotNull(bookmarkManager,"IE01311: Bookmarks manager can't be null");
+  initializeListeners();
+}

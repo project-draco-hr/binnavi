@@ -1,0 +1,9 @@
+{
+  final Section currentSection=Iterables.find(sections.get(section.getModule().getConfiguration().getId()),new Predicate<Section>(){
+    @Override public boolean apply(    final Section currentSection){
+      return section.getId() == currentSection.getId();
+    }
+  }
+);
+  sections.remove(section.getModule().getConfiguration().getId(),currentSection);
+}

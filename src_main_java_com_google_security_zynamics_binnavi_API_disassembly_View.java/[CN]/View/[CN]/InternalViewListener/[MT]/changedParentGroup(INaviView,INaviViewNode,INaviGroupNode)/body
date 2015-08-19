@@ -1,0 +1,19 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final ViewNode viewNode=cachedNodes.get(node);
+  for (  final IViewNodeListener listener : viewNode.getListeners()) {
+    try {
+      if (groupNode == null) {
+        listener.changedParentGroup(viewNode,null);
+      }
+ else {
+        listener.changedParentGroup(viewNode,(GroupNode)ObjectFinders.getObject(groupNode,viewGraph.getNodes()));
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

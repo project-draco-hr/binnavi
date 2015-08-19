@@ -1,0 +1,12 @@
+{
+  if (thread == null) {
+    CDebuggerPainter.clearDebuggerHighlighting(m_graph);
+  }
+ else {
+    final RelocatedAddress address=thread.getCurrentAddress();
+    if (address == null) {
+      return;
+    }
+    CDebuggerPainter.updateDebuggerHighlighting(m_graph,m_debugger.memoryToFile(address),m_debugger.getModule(address));
+  }
+}

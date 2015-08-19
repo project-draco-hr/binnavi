@@ -1,0 +1,6 @@
+{
+  m_readLock.lock();
+  final int size=m_chunks.size();
+  m_readLock.unlock();
+  return size;
+}

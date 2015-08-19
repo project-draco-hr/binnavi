@@ -1,0 +1,20 @@
+{
+  super(new BorderLayout());
+  m_database=database;
+  m_module=module;
+  m_addressSpace=addressSpace;
+  final CDefaultFieldDescription<String> nameInfo=new CDefaultFieldDescription<String>(module.getConfiguration().getName(),new CNameHelp());
+  final CDefaultFieldDescription<String> descriptionInfo=new CDefaultFieldDescription<String>(module.getConfiguration().getDescription(),new CDescriptionHelp());
+  final CDefaultFieldDescription<Date> creationInfo=new CDefaultFieldDescription<Date>(module.getConfiguration().getCreationDate(),new CCreationDateHelp());
+  final CDefaultFieldDescription<Date> modificationInfo=new CDefaultFieldDescription<Date>(module.getConfiguration().getModificationDate(),new CModificationDateHelp());
+  m_stdEditPanel=new CStandardEditPanel("Module",nameInfo,descriptionInfo,creationInfo,modificationInfo);
+  m_middlePanel=new CNativeCallgraphViewsNodeComponent(projectTree,m_module,container);
+  m_bottomPanel=new CNativeFunctionViewsNodeComponent(projectTree,m_database,m_module,container);
+  m_debuggerContainer=new CDatabaseDebuggerContainer(database);
+  m_debuggerPanel=new CDebuggerChooserPanel(addressSpace,module,m_debuggerContainer);
+  m_debuggerPanel.addListener(m_internalDebuggerPanelListener);
+  module.addListener(m_moduleListener);
+  createGui();
+  m_stdEditPanel.addInputListener(m_updateListener);
+  updateSaveButton();
+}

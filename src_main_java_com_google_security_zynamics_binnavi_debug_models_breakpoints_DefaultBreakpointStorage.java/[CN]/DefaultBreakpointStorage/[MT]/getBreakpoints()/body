@@ -1,0 +1,3 @@
+{
+  return moduleToBreakpoint.isEmpty() ? Collections.<Breakpoint>emptySet() : Collections.unmodifiableCollection(moduleToBreakpoint.values());
+}

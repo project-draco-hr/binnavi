@@ -1,0 +1,8 @@
+{
+  final JButton button=toolBar.add(CActionProxy.proxy(action));
+  button.setBorder(new EmptyBorder(0,0,0,0));
+  button.setIcon(new ImageIcon(CMain.class.getResource(defaultIconPath)));
+  button.setRolloverIcon(new ImageIcon(CMain.class.getResource(rolloverIconPath)));
+  button.setPressedIcon(new ImageIcon(CMain.class.getResource(pressedIconPath)));
+  return button;
+}

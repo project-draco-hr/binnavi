@@ -1,0 +1,4 @@
+BigInteger address
+int position
+int expressionId
+INaviModule module

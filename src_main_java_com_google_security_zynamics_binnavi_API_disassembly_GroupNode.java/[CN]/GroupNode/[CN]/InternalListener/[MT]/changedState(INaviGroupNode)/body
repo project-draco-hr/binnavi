@@ -1,0 +1,10 @@
+{
+  for (  final IGroupNodeListener listener : m_listeners) {
+    try {
+      listener.changedState(GroupNode.this,isCollapsed());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

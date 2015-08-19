@@ -1,0 +1,3 @@
+{
+  return new CFunctionNode(1,getFunction(),getX(),getY(),getWidth(),getHeight(),getColor(),isSelected(),isVisible(),getLocalFunctionComment(),getTags(),m_provider);
+}

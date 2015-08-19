@@ -1,0 +1,9 @@
+{
+  IViewNode<?> previousNode=node;
+  IGroupNode<?,?> parentGroup=node.getParentGroup();
+  while ((parentGroup != null) && parentGroup.isCollapsed()) {
+    previousNode=parentGroup;
+    parentGroup=parentGroup.getParentGroup();
+  }
+  return previousNode;
+}

@@ -1,0 +1,7 @@
+{
+  final List<CInstructionResult> results=new ArrayList<CInstructionResult>();
+  for (  final int row : normalizedRows) {
+    results.add(result.getResults().get(row));
+  }
+  return results;
+}

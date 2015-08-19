@@ -1,0 +1,3 @@
+Graph2D graph
+Map<Node,NodeType> nodeMap
+Map<Edge,EdgeType> edgeMap

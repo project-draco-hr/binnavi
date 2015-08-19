@@ -1,0 +1,8 @@
+{
+  for (  TargetInformationDebuggerOptions option : values()) {
+    if (option.toString().equalsIgnoreCase(name)) {
+      return option;
+    }
+  }
+  throw new IllegalArgumentException();
+}

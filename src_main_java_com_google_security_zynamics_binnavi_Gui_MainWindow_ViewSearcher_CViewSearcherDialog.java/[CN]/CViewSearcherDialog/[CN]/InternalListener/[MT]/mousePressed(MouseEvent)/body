@@ -1,0 +1,8 @@
+{
+  if ((event.getButton() == 1) && (event.getClickCount() == 2)) {
+    setSelectedElement();
+  }
+  if (m_selectionResult != null) {
+    closeDialog();
+  }
+}

@@ -1,0 +1,3 @@
+{
+  provider.loadTypeInstanceReference(module,1,new BigInteger("123"),null,null);
+}

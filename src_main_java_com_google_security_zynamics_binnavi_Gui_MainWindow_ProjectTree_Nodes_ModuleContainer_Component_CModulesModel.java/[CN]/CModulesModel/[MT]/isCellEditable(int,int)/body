@@ -1,0 +1,3 @@
+{
+  return (col == NAME_COLUMN) || (col == DESCRIPTION_COLUMN);
+}

@@ -1,0 +1,3 @@
+{
+  return parseSQLFile(new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(file))));
+}

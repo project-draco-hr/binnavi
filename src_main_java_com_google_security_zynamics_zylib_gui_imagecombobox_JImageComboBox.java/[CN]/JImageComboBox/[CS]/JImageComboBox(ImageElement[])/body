@@ -1,0 +1,4 @@
+{
+  super(items);
+  setRenderer(new ComboBoxRenderer(JLabel.CENTER));
+}

@@ -1,0 +1,14 @@
+{
+  if (autoConnect == isAutoConnect()) {
+    return;
+  }
+  m_autoConnect=autoConnect;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedAutoConnect(m_database,autoConnect);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

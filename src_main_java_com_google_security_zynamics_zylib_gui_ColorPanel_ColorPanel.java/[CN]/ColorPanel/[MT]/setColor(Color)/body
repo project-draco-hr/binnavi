@@ -1,0 +1,11 @@
+{
+  setBackground(color);
+  if (m_showColorText) {
+    setTextColor(color);
+    m_textLabel.setText(String.format("#%s (%d, %d, %d)",Convert.colorToHexString(color).toUpperCase(),color.getRed(),color.getGreen(),color.getBlue()));
+    m_textLabel.updateUI();
+  }
+  for (  final IColorPanelListener listener : m_listeners) {
+    listener.changedColor(this);
+  }
+}

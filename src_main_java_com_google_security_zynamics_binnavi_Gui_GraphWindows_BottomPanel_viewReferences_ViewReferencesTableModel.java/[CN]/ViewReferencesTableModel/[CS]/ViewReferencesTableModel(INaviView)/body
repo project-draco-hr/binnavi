@@ -1,0 +1,9 @@
+{
+  super(new DefaultMutableTreeNode());
+  this.view=Preconditions.checkNotNull(view,"Error: view argument can not be null.");
+  multiIndex=new ViewReferenceMultiIndex();
+  baseTypeToTreeNode=Maps.newHashMap();
+  typeMemberToTreeNode=HashMultimap.<TypeMember,TypeMemberTreeNode>create();
+  collectViewReferences();
+  initializeListeners();
+}

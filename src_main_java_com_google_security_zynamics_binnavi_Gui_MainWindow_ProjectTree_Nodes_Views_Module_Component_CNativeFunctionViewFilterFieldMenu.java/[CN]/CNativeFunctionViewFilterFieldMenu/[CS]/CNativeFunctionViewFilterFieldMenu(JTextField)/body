@@ -1,0 +1,5 @@
+{
+  add(new CFilterByInstructionAction(filterField));
+  add(new CFilterByNodesAction(filterField));
+  add(new CFilterByEdgesAction(filterField));
+}

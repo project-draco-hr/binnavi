@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(arrayType,"IE02791: Base type can not be null.");
+  Preconditions.checkArgument(arrayType.getCategory() == BaseTypeCategory.ARRAY,"Base type must be an array.");
+  Preconditions.checkNotNull(elementType,"IE02792: Element type can not be null.");
+  Preconditions.checkArgument(numberOfElements > 0,"Number of elements must be above zero.");
+  final TypeMember arrayMember=arrayType.iterator().next();
+  typesContainer.updateTypeMember(arrayMember,elementType,arrayMember.getName(),arrayMember.getBitOffset(),Optional.of(numberOfElements),arrayMember.getArgumentIndex());
+  final int newArraySize=arrayMember.getNumberOfElements().get() * arrayMember.getBitSize();
+  final String newArrayName=buildArrayName(elementType,numberOfElements);
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.updateBaseType(arrayType,newArrayName,arrayType.isSigned(),newArraySize);
+  backend.updateArrayMember(arrayMember,elementType,numberOfElements);
+  backend.updateType(arrayType,newArrayName,arrayType.getBitSize(),arrayType.isSigned());
+  notifyTypesUpdated(affectedTypes);
+}

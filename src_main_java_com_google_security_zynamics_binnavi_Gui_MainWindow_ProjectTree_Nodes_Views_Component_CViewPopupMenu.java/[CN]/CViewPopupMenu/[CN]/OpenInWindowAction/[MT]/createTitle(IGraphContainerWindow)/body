@@ -1,0 +1,20 @@
+{
+  int counter=0;
+  final StringBuffer ret=new StringBuffer();
+  boolean addSlash=false;
+  for (  final IGraphPanel window : graphWindow) {
+    if (addSlash) {
+      ret.append('/');
+    }
+    addSlash=true;
+    final INaviView view=window.getModel().getGraph().getRawView();
+    final String viewName=view.getName();
+    ret.append(viewName);
+    counter++;
+    if ((counter == 3) && (graphWindow.getOpenGraphCount() != 3)) {
+      ret.append("/...");
+      break;
+    }
+  }
+  return ret.toString();
+}

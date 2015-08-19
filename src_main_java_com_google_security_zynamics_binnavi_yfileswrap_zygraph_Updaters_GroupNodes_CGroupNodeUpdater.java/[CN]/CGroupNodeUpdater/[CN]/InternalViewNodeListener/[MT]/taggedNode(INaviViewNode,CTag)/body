@@ -1,0 +1,4 @@
+{
+  tag.addListener(m_listener);
+  rebuildNode();
+}

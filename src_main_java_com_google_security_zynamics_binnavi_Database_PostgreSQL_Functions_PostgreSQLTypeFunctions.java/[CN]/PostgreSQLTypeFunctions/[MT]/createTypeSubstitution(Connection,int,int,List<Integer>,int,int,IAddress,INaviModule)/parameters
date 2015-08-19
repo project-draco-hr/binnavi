@@ -1,0 +1,8 @@
+Connection connection
+int treeNodeId
+int baseTypeId
+List<Integer> memberPath
+int position
+int offset
+IAddress address
+INaviModule module

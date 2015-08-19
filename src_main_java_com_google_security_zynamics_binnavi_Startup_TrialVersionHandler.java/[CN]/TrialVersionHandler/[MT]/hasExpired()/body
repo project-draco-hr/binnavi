@@ -1,0 +1,6 @@
+{
+  if (EXPIRATION_DATE == null) {
+    return false;
+  }
+  return DateHelpers.getCurrentDate().after(EXPIRATION_DATE.getTime());
+}

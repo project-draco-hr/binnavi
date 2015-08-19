@@ -1,0 +1,5 @@
+{
+  final CNodePressedRightState state=new CNodePressedRightState(this,m_graph,n,event);
+  m_factory.createNodePressedRightAction().execute(state,event);
+  return state;
+}

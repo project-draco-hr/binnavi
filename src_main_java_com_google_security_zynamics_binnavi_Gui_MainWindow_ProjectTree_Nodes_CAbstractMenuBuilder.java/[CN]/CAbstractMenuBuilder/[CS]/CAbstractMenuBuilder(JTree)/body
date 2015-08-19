@@ -1,0 +1,3 @@
+{
+  m_projectTree=Preconditions.checkNotNull(projectTree,"IE01938: Project tree argument can not be null");
+}

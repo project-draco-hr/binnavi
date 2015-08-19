@@ -1,0 +1,3 @@
+{
+  return "This table shows information about the native call graph\n\nName: Name of the native call graph\nDescription: Description of the native call graph\nFunctions: Number of functions in the call graph\n Edges: Number of function calls in the call graph\n";
+}

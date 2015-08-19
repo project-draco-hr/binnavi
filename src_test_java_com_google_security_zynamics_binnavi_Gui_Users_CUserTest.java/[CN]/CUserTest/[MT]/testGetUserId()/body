@@ -1,0 +1,3 @@
+{
+  assertEquals(2,TESTUSER_2.getUserId());
+}

@@ -1,0 +1,4 @@
+{
+  final DebuggerTemplate debugger=getObject();
+  return debugger == null ? "No Debugger" : String.format("%s - %s:%d",debugger.getName(),debugger.getHost(),debugger.getPort());
+}

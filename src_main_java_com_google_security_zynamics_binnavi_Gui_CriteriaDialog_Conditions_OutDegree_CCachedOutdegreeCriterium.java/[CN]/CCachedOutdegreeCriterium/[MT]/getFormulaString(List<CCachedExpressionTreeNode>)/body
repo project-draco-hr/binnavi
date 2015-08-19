@@ -1,0 +1,3 @@
+{
+  return "OUTDEGREE" + m_operator + " "+ m_outdegree;
+}

@@ -1,0 +1,18 @@
+{
+  final boolean additionalInformation=m_regularExpression || m_caseSensitive;
+  final StringBuilder formula=new StringBuilder("CONTAINS" + "=" + m_text);
+  if (additionalInformation) {
+    formula.append('(');
+    if (m_regularExpression) {
+      formula.append("REGEX");
+    }
+    if (m_caseSensitive) {
+      if (m_regularExpression) {
+        formula.append(", ");
+      }
+      formula.append("CASE SENSITIVE");
+    }
+    formula.append('(');
+  }
+  return formula.toString();
+}

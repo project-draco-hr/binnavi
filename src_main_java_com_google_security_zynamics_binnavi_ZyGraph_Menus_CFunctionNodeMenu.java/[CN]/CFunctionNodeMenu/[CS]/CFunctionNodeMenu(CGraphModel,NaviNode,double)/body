@@ -1,0 +1,31 @@
+{
+  final INaviFunctionNode functionNode=(INaviFunctionNode)node.getRawNode();
+  final int line=node.positionToRow(y);
+  add(new CChangeFunctionNameAction(model.getParent(),functionNode.getFunction().getModule().getContent().getViewContainer().getView(functionNode.getFunction())));
+  CMenuBuilder.addCommentMenu(this,model,node.getRawNode());
+  CMenuBuilder.addSelectionMenus(this,model.getGraph(),node);
+  if (functionNode.getFunction().getBasicBlockCount() != 0) {
+    add(new JMenuItem(CActionProxy.proxy(new COpenFunctionAction(model.getParent(),model.getViewContainer(),functionNode.getFunction()))));
+    add(new JMenuItem(CActionProxy.proxy(new CFunctionNodeInlineAction(model.getParent(),model.getGraph(),functionNode))));
+    addSeparator();
+  }
+  CMenuBuilder.addTaggingMenu(this,model,node);
+  final JMenu clipMenu=new JMenu("Clipboard");
+  clipMenu.add(CActionProxy.proxy(new CCopyLineAction(node,line)));
+  clipMenu.add(CActionProxy.proxy(new CCopyNodeAction(node)));
+  add(clipMenu);
+  final IDebugger debugger=CGraphDebugger.getDebugger(model.getDebuggerProvider(),functionNode);
+  if (debugger == null) {
+    return;
+  }
+  addSeparator();
+  final JMenu functionMenu=new JMenu("Function" + " " + functionNode.getFunction().getName());
+  final UnrelocatedAddress address=new UnrelocatedAddress(functionNode.getFunction().getAddress());
+  final INaviModule module=functionNode.getFunction().getModule();
+  functionMenu.add(CActionProxy.proxy(new CActionToggleBreakpoint(debugger.getBreakpointManager(),module,address)));
+  final BreakpointAddress relocatedAddress=new BreakpointAddress(module,address);
+  if (debugger.getBreakpointManager().hasBreakpoint(BreakpointType.REGULAR,relocatedAddress)) {
+    functionMenu.add(CActionProxy.proxy(new CActionToggleBreakpointStatus(debugger.getBreakpointManager(),module,address)));
+  }
+  add(functionMenu);
+}

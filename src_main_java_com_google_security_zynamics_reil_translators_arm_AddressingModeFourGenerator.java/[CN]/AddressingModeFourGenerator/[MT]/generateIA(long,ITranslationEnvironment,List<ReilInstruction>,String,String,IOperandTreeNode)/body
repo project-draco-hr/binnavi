@@ -1,0 +1,12 @@
+{
+  final String startAddress=environment.getNextVariableString();
+  final String tmpRegisterVal=environment.getNextVariableString();
+  final Integer numberOfSetBits=rootNodeOfRegisterList.getChildren().size();
+  long baseOffset=offset;
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,registerNodeValue,dw,startAddress));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,registerNodeValue,wd,String.valueOf(numberOfSetBits * 4),dw,tmpRegisterVal));
+  if (wBit.equals("2")) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,dw,tmpRegisterVal,dw,registerNodeValue));
+  }
+  return startAddress;
+}

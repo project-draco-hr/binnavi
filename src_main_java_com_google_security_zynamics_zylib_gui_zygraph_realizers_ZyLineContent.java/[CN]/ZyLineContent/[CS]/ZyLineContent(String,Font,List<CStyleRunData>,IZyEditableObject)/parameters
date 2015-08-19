@@ -1,0 +1,4 @@
+String text
+Font font
+List<CStyleRunData> textColorStyleRun
+IZyEditableObject model

@@ -1,0 +1,3 @@
+{
+  return new HashMap<IAloc,IValueElement>(m_values);
+}

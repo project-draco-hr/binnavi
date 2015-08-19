@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(function,"IE00091: Function argument can not be null");
+  return functionCommentContainer.getComments(function);
+}

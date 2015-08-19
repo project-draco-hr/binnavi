@@ -1,0 +1,11 @@
+{
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.setBorder(new TitledBorder("Edit Visibility Condition"));
+  final JPanel comboPanel=new JPanel(new BorderLayout());
+  comboPanel.setBorder(new EmptyBorder(5,5,5,5));
+  visibilityStateBox.addItem(VisibilityState.VISIBLE);
+  visibilityStateBox.addItem(VisibilityState.UNVISIBLE);
+  comboPanel.add(visibilityStateBox,BorderLayout.CENTER);
+  mainPanel.add(comboPanel,BorderLayout.NORTH);
+  add(mainPanel,BorderLayout.CENTER);
+}

@@ -1,0 +1,5 @@
+{
+  super("Remove Selected Groups");
+  m_graph=Preconditions.checkNotNull(graph,"IE02842: graph argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_UNGROUP_SELECTED_GROUPS_HK.getKeyStroke());
+}

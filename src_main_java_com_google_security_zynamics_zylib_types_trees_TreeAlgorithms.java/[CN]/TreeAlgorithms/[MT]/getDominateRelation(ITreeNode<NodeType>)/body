@@ -1,0 +1,16 @@
+{
+  final HashMap<ITreeNode<NodeType>,Set<ITreeNode<NodeType>>> dominationRelation=new HashMap<ITreeNode<NodeType>,Set<ITreeNode<NodeType>>>();
+  final HashSet<ITreeNode<NodeType>> hashSet=new HashSet<ITreeNode<NodeType>>();
+  hashSet.add(treeNode);
+  dominationRelation.put(treeNode,hashSet);
+  final DepthFirstIterator<NodeType> iter=new DepthFirstIterator<NodeType>(treeNode);
+  while (iter.hasNext()) {
+    final ITreeNode<NodeType> currentTreeElement=iter.next();
+    final ITreeNode<NodeType> currentTreeElementParent=currentTreeElement.getParent();
+    final Set<ITreeNode<NodeType>> currentTreeElementParents=Sets.newHashSet(dominationRelation.get(currentTreeElementParent));
+    currentTreeElementParents.add(currentTreeElementParent);
+    currentTreeElementParents.add(currentTreeElement);
+    dominationRelation.put(currentTreeElement,currentTreeElementParents);
+  }
+  return dominationRelation;
+}

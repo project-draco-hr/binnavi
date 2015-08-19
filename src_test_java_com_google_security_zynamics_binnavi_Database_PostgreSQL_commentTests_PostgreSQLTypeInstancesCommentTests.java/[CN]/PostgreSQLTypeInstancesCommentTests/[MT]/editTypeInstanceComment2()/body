@@ -1,0 +1,3 @@
+{
+  getProvider().editTypeInstanceComment(1,null,null,null);
+}

@@ -1,0 +1,2 @@
+CDebugPerspectiveModel model
+List<ITraceEvent> events

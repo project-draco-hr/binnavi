@@ -1,0 +1,3 @@
+{
+  return m_initializationState == Integer.MAX_VALUE;
+}

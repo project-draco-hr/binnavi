@@ -1,0 +1,5 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE01316: Graph argument can not be null");
+  m_view2D=view2D;
+  m_tagManager=tagManager;
+}

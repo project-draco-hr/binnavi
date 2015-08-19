@@ -1,0 +1,5 @@
+{
+  super("Unstar module");
+  m_parent=parent;
+  m_modules=modules.clone();
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(decString,"Error: Decimal string can't be null");
+  return Long.toHexString(Long.valueOf(decString,16));
+}

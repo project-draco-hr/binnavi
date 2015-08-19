@@ -1,0 +1,26 @@
+{
+  int offset=position;
+  final Element element=document.getParagraphElement(offset);
+  String elementText;
+  try {
+    elementText=document.getText(element.getStartOffset(),element.getEndOffset() - element.getStartOffset());
+  }
+ catch (  final Exception excp) {
+    return "";
+  }
+  final int elementTextLength=elementText.length();
+  if (elementTextLength == 0) {
+    return "";
+  }
+  int i=0;
+  if (element.getStartOffset() > 0) {
+    offset=offset - element.getStartOffset();
+  }
+  for (i=offset - 1; i >= 0; i--) {
+    final char c=elementText.charAt(i);
+    if (document.isDelimiter("" + c) || (i == 0)) {
+      return elementText.substring(i + 1,offset).trim();
+    }
+  }
+  return "";
+}

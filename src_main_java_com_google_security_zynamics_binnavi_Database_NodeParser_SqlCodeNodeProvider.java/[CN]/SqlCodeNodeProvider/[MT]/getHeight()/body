@@ -1,0 +1,8 @@
+{
+  try {
+    return m_resultSet.getDouble("height");
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

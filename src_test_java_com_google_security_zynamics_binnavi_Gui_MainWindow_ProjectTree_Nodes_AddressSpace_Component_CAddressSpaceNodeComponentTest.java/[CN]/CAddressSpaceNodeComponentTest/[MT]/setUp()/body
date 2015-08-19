@@ -1,0 +1,12 @@
+{
+  final JTree tree=new JTree();
+  m_database=new MockDatabase(m_provider);
+  m_project=new CProject(1,"Mock Project","Mock Project Description",new Date(),new Date(),0,new ArrayList<DebuggerTemplate>(),m_provider);
+  m_project.load();
+  m_addressSpace=m_project.getContent().createAddressSpace("Address Space");
+  m_component=new CAddressSpaceNodeComponent(tree,m_database,m_project,m_addressSpace);
+  m_saveButton=(JButton)ReflectionHelpers.getField(m_component,"m_saveButton");
+  m_editPanel=(CStandardEditPanel)ReflectionHelpers.getField(m_component,"m_stdEditPanel");
+  m_titledBorder=(TitledBorder)ReflectionHelpers.getField(m_component,"m_titledBorder");
+  m_debuggerCombo=(CDebuggerComboBox)ReflectionHelpers.getField(m_component,"m_debuggerCombo");
+}

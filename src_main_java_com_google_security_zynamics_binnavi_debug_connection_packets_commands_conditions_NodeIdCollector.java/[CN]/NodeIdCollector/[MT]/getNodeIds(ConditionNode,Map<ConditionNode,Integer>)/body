@@ -1,0 +1,6 @@
+{
+  map.put(root,map.size());
+  for (  final ConditionNode child : root.getChildren()) {
+    getNodeIds(child,map);
+  }
+}

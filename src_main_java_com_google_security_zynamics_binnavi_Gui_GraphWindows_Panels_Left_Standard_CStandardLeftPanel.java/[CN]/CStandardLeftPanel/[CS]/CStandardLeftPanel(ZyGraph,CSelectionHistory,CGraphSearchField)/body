@@ -1,0 +1,17 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(searchField,"IE01810: Search field argument can not be null");
+  m_undoHistory=new CSelectionHistoryChooser(graph,selectionHistory);
+  final JSplitPane bottomSplitter=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true,m_nodeChooser=new CNodeChooser(graph,searchField),m_undoHistory);
+  final JSplitPane topSplitter=new JSplitPane(JSplitPane.VERTICAL_SPLIT,true,new CGraphOverview(graph),bottomSplitter);
+  topSplitter.setDividerLocation(200);
+  bottomSplitter.setDoubleBuffered(true);
+  bottomSplitter.setResizeWeight(0.75);
+  bottomSplitter.setOneTouchExpandable(true);
+  bottomSplitter.setMinimumSize(new Dimension(0,0));
+  topSplitter.setDoubleBuffered(true);
+  topSplitter.setOneTouchExpandable(true);
+  topSplitter.setMinimumSize(new Dimension(0,0));
+  topSplitter.setDividerLocation(200);
+  add(topSplitter);
+}

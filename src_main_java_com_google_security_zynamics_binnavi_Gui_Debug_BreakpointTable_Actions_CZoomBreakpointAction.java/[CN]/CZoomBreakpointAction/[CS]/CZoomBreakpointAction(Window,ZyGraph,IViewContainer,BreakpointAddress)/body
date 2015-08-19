@@ -1,0 +1,7 @@
+{
+  super(String.format("Zoom to address %s",address.getAddress().getAddress().toHexString()));
+  m_parent=parent;
+  m_graph=graph;
+  m_container=container;
+  m_address=address;
+}

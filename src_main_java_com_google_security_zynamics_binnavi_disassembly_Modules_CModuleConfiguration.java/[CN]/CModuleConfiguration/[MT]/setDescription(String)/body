@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(description,"IE00199: Description string can not be null");
+  if (description.equals(m_description)) {
+    return;
+  }
+  m_provider.setDescription(m_module,description);
+  m_description=description;
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedDescription(m_module,description);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

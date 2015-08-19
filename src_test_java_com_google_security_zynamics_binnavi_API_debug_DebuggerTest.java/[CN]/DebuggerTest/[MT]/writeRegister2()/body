@@ -1,0 +1,3 @@
+{
+  debugger.writeRegister(0,null,0);
+}

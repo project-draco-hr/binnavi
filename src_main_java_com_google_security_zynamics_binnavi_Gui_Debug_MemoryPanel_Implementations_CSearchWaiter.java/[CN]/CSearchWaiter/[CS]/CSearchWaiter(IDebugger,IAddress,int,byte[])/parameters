@@ -1,0 +1,4 @@
+IDebugger debugger
+IAddress offset
+int size
+byte[] data

@@ -1,0 +1,5 @@
+{
+  final CTraceMemoryDialog dialog=new CTraceMemoryDialog(parent,data);
+  GuiHelper.centerChildToParent(parent,dialog,true);
+  dialog.setVisible(true);
+}

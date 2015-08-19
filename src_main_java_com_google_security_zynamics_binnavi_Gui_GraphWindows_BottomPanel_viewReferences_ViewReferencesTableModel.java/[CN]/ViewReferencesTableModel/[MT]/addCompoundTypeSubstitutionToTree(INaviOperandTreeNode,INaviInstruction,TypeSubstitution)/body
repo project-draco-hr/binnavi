@@ -1,0 +1,19 @@
+{
+  final long completeOffset=operandNode.hasAddendSibling() ? (operandNode.determineAddendValue() * 8 + typeSubstitution.getOffset()) : typeSubstitution.getOffset();
+  final WalkResult walkResult=BaseTypeHelpers.findMember(typeSubstitution.getBaseType(),completeOffset);
+  if (!walkResult.isValid()) {
+    return;
+  }
+  addBaseType(typeSubstitution.getBaseType());
+  DefaultMutableTreeNode currentNode=baseTypeToTreeNode.get(typeSubstitution.getBaseType());
+  for (  TypeMember typeMember : walkResult.getPath()) {
+    TypeMemberTreeNode nextNode=checkTypeMemberNodeExists(typeMember,currentNode);
+    if (nextNode == null) {
+      nextNode=new TypeMemberTreeNode(typeMember);
+      typeMemberToTreeNode.put(typeMember,nextNode);
+      insertNodeInto(nextNode,currentNode,currentNode.getChildCount());
+    }
+    currentNode=nextNode;
+  }
+  insertNodeInto(multiIndex.putTypeSubstitution(typeSubstitution,instruction),currentNode,currentNode.getChildCount());
+}

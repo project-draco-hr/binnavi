@@ -1,0 +1,16 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: Project is not loaded");
+  }
+  final List<Function> list=new ArrayList<Function>();
+  for (  final AddressSpace addressSpace : m_addressSpaces) {
+    if (addressSpace.isLoaded()) {
+      for (      final Module module : addressSpace.getModules()) {
+        if (module.isLoaded()) {
+          list.addAll(module.getFunctions());
+        }
+      }
+    }
+  }
+  return new ArrayList<Function>(list);
+}

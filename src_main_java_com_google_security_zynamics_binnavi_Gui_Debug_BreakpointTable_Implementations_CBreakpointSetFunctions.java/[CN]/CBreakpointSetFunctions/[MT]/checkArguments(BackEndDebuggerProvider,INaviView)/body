@@ -1,0 +1,4 @@
+{
+  checkArguments(debuggerProvider);
+  checkArguments(view);
+}

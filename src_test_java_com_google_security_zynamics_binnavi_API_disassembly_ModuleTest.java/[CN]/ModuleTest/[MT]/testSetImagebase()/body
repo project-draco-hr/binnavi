@@ -1,0 +1,8 @@
+{
+  final MockModuleListener listener=new MockModuleListener();
+  m_module.addListener(listener);
+  m_module.setImagebase(new Address(0x100));
+  assertEquals(0x100,m_module.getImagebase().toLong());
+  assertEquals("changedImagebase;changedModificationDate;",listener.events);
+  m_module.removeListener(listener);
+}

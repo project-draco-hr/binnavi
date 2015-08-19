@@ -1,0 +1,5 @@
+{
+  m_internalMemory.store(0,new byte[]{0,1,2,3});
+  assertTrue(m_apiMemory.hasData(0,4));
+  assertFalse(m_apiMemory.hasData(0,5));
+}

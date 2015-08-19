@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(graph,"IE01050: Graph argument can not be null");
+  final List<com.google.security.zynamics.reil.ReilBlock> nodes=new ArrayList<com.google.security.zynamics.reil.ReilBlock>();
+  final Map<ReilBlock,com.google.security.zynamics.reil.ReilBlock> blockMap=new HashMap<ReilBlock,com.google.security.zynamics.reil.ReilBlock>();
+  for (  final ReilBlock reilBlock : graph) {
+    final com.google.security.zynamics.reil.ReilBlock convertedBlock=new com.google.security.zynamics.reil.ReilBlock(convert(reilBlock.getInstructions()));
+    blockMap.put(reilBlock,convertedBlock);
+    nodes.add(convertedBlock);
+  }
+  final List<com.google.security.zynamics.reil.ReilEdge> edges=new ArrayList<com.google.security.zynamics.reil.ReilEdge>();
+  for (  final ReilEdge edge : graph.getEdges()) {
+    final com.google.security.zynamics.reil.ReilEdge convertedEdge=new com.google.security.zynamics.reil.ReilEdge(blockMap.get(edge.getSource()),blockMap.get(edge.getTarget()),edge.getType().getNative());
+    edges.add(convertedEdge);
+    com.google.security.zynamics.reil.ReilBlock.link(blockMap.get(edge.getSource()),blockMap.get(edge.getTarget()),convertedEdge);
+  }
+  return new com.google.security.zynamics.reil.ReilGraph(nodes,edges);
+}

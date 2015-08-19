@@ -1,0 +1,7 @@
+{
+  super(String.format("Inline function %s",Preconditions.checkNotNull(function,"IE02879: function argument can not be null").getName()));
+  m_model=Preconditions.checkNotNull(model,"IE02160: Model argument can not be null");
+  m_node=Preconditions.checkNotNull(node,"IE02161: Node argument can not be null");
+  m_instruction=Preconditions.checkNotNull(instruction,"IE02162: Instruction argument can not be null");
+  m_function=function;
+}

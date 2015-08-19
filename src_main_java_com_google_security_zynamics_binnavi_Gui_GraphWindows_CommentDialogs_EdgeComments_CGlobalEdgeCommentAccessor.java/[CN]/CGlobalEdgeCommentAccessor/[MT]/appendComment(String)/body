@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(commentText,"IE02657: commentText argument can not be null");
+  return m_edge.appendGlobalComment(commentText);
+}

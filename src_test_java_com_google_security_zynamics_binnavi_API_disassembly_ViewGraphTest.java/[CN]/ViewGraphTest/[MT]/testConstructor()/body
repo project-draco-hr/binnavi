@@ -1,0 +1,20 @@
+{
+  final MockSqlProvider provider=new MockSqlProvider();
+  final TagManager tagManager=new TagManager(new MockTagManager(TagType.NODE_TAG));
+  final TagManager viewTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"","",TagType.VIEW_TAG,provider))),TagType.VIEW_TAG,provider));
+  final Database database=new Database(new MockDatabase());
+  final CModule internalModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,provider);
+  internalModule.load();
+  final Module module=new Module(database,internalModule,tagManager,viewTagManager);
+  final CModuleViewGenerator generator=new CModuleViewGenerator(provider,internalModule);
+  final INaviView internalView=generator.generate(1,"My View","My View Description",com.google.security.zynamics.zylib.disassembly.ViewType.NonNative,GraphType.MIXED_GRAPH,new Date(),new Date(),1,2,new HashSet<CTag>(),new HashSet<CTag>(),false);
+  final View view=new View(module,internalView,tagManager,viewTagManager);
+  final List<ViewNode> nodes=Lists.newArrayList((ViewNode)new TextNode(view,new MockTextNode(),tagManager));
+  final List<ViewEdge> edges=Lists.newArrayList(new ViewEdge(new MockEdge(1,provider),nodes.get(0),nodes.get(0)));
+  final ViewGraph graph=new ViewGraph(nodes,edges);
+  assertEquals(1,graph.getNodes().size());
+  assertEquals(nodes.get(0),graph.getNodes().get(0));
+  assertEquals(1,graph.getEdges().size());
+  assertEquals(edges.get(0),graph.getEdges().get(0));
+  assertEquals("View Graph [1 nodes, 1 edges]",graph.toString());
+}

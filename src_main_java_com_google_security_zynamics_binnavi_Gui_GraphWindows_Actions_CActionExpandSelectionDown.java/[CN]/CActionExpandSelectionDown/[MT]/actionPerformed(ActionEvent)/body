@@ -1,0 +1,3 @@
+{
+  CGraphSelectionExpander.expandSelectionDown(m_graph);
+}

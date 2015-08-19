@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(view,"IE01660: View argument can not be null");
+  Preconditions.checkNotNull(startInstruction,"IE01661: Start instruction argument can not be null");
+  Preconditions.checkNotNull(trackedRegister,"IE01662: Register argument can not be null");
+  final MonoReilSolverResult<RegisterSetLatticeElement> result=RegisterTracker.track(view.getContent().getReilCode(),startInstruction,trackedRegister,options);
+  final Map<IAddress,INaviInstruction> instructionMap=CRegisterTrackingHelper.getInstructionMap(view);
+  final List<CInstructionResult> instructionResultList=new ArrayList<CInstructionResult>();
+  final Map<IAddress,RegisterSetLatticeElement> perInstructionElement=result.generateAddressToStateMapping(startInstruction,options.trackIncoming());
+  for (  final Map.Entry<IAddress,RegisterSetLatticeElement> addressToStateMapEntry : perInstructionElement.entrySet()) {
+    final RegisterSetLatticeElement element=addressToStateMapEntry.getValue();
+    if (!element.getReadRegisters().isEmpty() || !element.getNewlyTaintedRegisters().isEmpty() || !element.getUntaintedRegisters().isEmpty()|| !element.getUpdatedRegisters().isEmpty()) {
+      final CAddress concreteAddress=new CAddress(addressToStateMapEntry.getKey().toLong() >> 8);
+      instructionResultList.add(new CInstructionResult(instructionMap.get(concreteAddress),addressToStateMapEntry.getValue()));
+    }
+  }
+  return new CTrackingResult(startInstruction,trackedRegister,instructionResultList);
+}

@@ -1,0 +1,4 @@
+ZyLabelContent content
+INaviEdge edge
+List<IComment> localComment
+List<IComment> globalComment

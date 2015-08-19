@@ -1,0 +1,10 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmp");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String rx=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final String ry=operands.get(1).getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  final long offset=baseOffset;
+  instructions.add(ReilHelpers.createXor(offset,dw,rx,dw,ry,dw,Helpers.getTRegister()));
+}

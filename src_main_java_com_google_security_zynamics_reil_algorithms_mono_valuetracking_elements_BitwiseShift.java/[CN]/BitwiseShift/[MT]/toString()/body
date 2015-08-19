@@ -1,0 +1,14 @@
+{
+  if (m_rhs instanceof Literal) {
+    final BigInteger value=((Literal)m_rhs).getValue();
+    if (value.compareTo(BigInteger.ZERO) < 0) {
+      return "(" + m_lhs + " >> "+ value.abs()+ ")";
+    }
+ else {
+      return "(" + m_lhs + " << "+ m_rhs+ ")";
+    }
+  }
+ else {
+    return "(" + m_lhs + " SHIFT "+ m_rhs+ ")";
+  }
+}

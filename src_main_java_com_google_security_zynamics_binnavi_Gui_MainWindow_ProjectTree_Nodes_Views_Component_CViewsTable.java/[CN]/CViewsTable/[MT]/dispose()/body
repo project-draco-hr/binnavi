@@ -1,0 +1,5 @@
+{
+  super.dispose();
+  ((CViewsTableRenderer)getDefaultRenderer(Object.class)).dispose();
+  ZyGraphBuilderManager.instance().removeListener(builderManagerListener);
+}

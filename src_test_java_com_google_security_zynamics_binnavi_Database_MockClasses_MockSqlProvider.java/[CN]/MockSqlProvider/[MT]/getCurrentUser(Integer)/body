@@ -1,0 +1,12 @@
+{
+  IUser currentUser=null;
+  for (  final IUser storedUser : users) {
+    if (storedUser.getUserId() == userId) {
+      currentUser=storedUser;
+    }
+  }
+  if (currentUser == null) {
+    throw new IllegalStateException("Error: The user id is not known to the storage system");
+  }
+  return currentUser;
+}

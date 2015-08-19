@@ -1,0 +1,8 @@
+AbstractSQLProvider provider
+int containerId
+INaviView view
+String name
+String description
+String containerTable
+String viewContainerTable
+ViewGenerator generator

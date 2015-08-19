@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(tagIds,"IE00866: List argument can't be null");
+  final HashSet<CTag> tags=new HashSet<CTag>();
+  for (  final ITreeNode<CTag> c : BreadthFirstSorter.getSortedList(rootTag)) {
+    if (tagIds.contains(c.getObject().getId())) {
+      tags.add(c.getObject());
+    }
+  }
+  return tags;
+}

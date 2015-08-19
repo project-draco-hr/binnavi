@@ -1,0 +1,10 @@
+{
+  final DefaultTreeModel model=new DefaultTreeModel(null);
+  setModel(model);
+  setRootVisible(false);
+  model.setRoot(new CRootNode(dialog,container,model));
+  Preconditions.checkNotNull(container,"IE01826: Container argument can not be null");
+  setRootVisible(false);
+  setCellRenderer(new IconNodeRenderer());
+  addMouseListener(new InternalMouseListener());
+}

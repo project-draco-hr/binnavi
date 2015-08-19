@@ -1,0 +1,22 @@
+{
+  final StringBuffer sb=new StringBuffer();
+  if (ze.isDirectory()) {
+    sb.append("d ");
+  }
+ else {
+    sb.append("f ");
+  }
+  if (ze.getMethod() == ZipEntry.STORED) {
+    sb.append("stored   ");
+  }
+ else {
+    sb.append("defalted ");
+  }
+  sb.append(ze.getName());
+  sb.append("\t");
+  sb.append("" + ze.getSize());
+  if (ze.getMethod() == ZipEntry.DEFLATED) {
+    sb.append("/" + ze.getCompressedSize());
+  }
+  return sb.toString();
+}

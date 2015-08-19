@@ -1,0 +1,8 @@
+{
+  if (extendedSize == OperandSize.QWORD) {
+    return "18446744069414584320";
+  }
+ else {
+    return String.valueOf(TranslationHelpers.getAllButMask(extendedSize,combinedSize));
+  }
+}

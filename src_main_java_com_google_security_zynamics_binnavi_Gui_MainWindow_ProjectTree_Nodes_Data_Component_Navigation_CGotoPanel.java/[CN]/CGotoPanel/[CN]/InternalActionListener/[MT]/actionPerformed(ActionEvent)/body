@@ -1,0 +1,16 @@
+{
+  try {
+    final int offset=Integer.valueOf(m_addressField.getText(),16);
+    if (offset > m_hexView.getData().getDataLength() + m_hexView.getBaseAddress() || offset < m_hexView.getBaseAddress()) {
+      m_addressField.setBackground(Color.RED);
+    }
+ else {
+      m_hexView.gotoOffset(offset);
+      m_hexView.requestFocusInWindow();
+      m_addressField.setBackground(Color.WHITE);
+    }
+  }
+ catch (  final NumberFormatException exception) {
+    m_addressField.setBackground(Color.RED);
+  }
+}

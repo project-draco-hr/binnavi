@@ -1,0 +1,5 @@
+{
+  debuggerSynchronizer.receivedEvent(new DetachReply(0,5));
+  assertFalse(mockDebugger.isConnected());
+  assertEquals("ERROR_DETACH/5;",listener.events);
+}

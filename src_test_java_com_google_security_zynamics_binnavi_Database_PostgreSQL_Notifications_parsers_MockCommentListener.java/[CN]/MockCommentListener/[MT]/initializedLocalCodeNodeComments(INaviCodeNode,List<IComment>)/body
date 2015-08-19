@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(INIT_LOCAL_CODE_NODE_COMMENT);
+}

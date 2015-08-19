@@ -1,0 +1,4 @@
+{
+  this.baseType=baseType;
+  setIcon(determineIcon(baseType));
+}

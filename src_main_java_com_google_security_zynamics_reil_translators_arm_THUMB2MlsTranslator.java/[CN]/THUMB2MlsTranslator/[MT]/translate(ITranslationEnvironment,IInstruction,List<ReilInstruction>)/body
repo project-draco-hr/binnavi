@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"MLS");
+  translateAll(environment,instruction,"MLS",instructions);
+}

@@ -1,0 +1,28 @@
+{
+  Preconditions.checkNotNull(parent,"IE01371: Parent argument can not be null");
+  Preconditions.checkNotNull(table,"IE01372: Table argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01373: Graph argument can not be null");
+  Preconditions.checkNotNull(traceProvider,"IE01374: Trace provider argument can not be null");
+  final int[] selectedRows=table.getConvertedSelectedRows();
+  if (selectedRows.length == 1) {
+    final TraceList entry=traceProvider.getList(selectedRows[0]);
+    add(CActionProxy.proxy(new CActionSelect(graph,entry)));
+  }
+  add(CActionProxy.proxy(new CActionDelete(parent,traceProvider,selectedRows)));
+  addSeparator();
+  add(CActionProxy.proxy(new CSearchTableAction(parent,table)));
+  new CTableSearcher(parent,"Search",table,0);
+  if (selectedRows.length == 1) {
+    try {
+      final CTag selectedTag=CTaggingFunctions.getSelectedTag(tree);
+      addSeparator();
+      final TraceList entry=traceProvider.getList(selectedRows[0]);
+      add(CActionProxy.proxy(new CTagEventNodes(parent,graph,entry,selectedTag)));
+    }
+ catch (    final MaybeNullException exception) {
+    }
+  }
+ else {
+    addCombineMenu(parent,traceProvider,selectedRows);
+  }
+}

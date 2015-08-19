@@ -1,0 +1,8 @@
+{
+  final Set<String> clearedRegisters=new HashSet<String>();
+  final String[] parts=m_clearRegisterField.getText().split(" ");
+  for (  final String part : parts) {
+    clearedRegisters.add(part);
+  }
+  return clearedRegisters;
+}

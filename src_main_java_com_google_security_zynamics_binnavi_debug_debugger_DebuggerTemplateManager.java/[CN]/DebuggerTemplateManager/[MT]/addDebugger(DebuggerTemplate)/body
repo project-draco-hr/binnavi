@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00806: Debugger can not be null");
+  Preconditions.checkArgument(!debuggers.contains(debugger),"IE00807: Can not add debugger description more than once");
+  Preconditions.checkArgument(debugger.inSameDatabase(sqlProvider),"IE00808: Debugger template and debugger template manager are in different databases");
+  debuggers.add(debugger);
+  for (  final IDebuggerTemplateManagerListener listener : listeners) {
+    try {
+      listener.addedDebugger(this,debugger);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (!UserInputTypeValidation.validateComboBox(baseTypes)) {
+    return;
+  }
+  preview.setText(String.format("%s my_new_type[%d];",getSelectedType().getName(),getNumberElements()));
+}

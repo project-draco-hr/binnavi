@@ -1,0 +1,6 @@
+{
+  list.add(0,(byte)(number & 0xFF));
+  list.add(0,(byte)(number >> 8 & 0xFF));
+  list.add(0,(byte)(number >> 16 & 0xFF));
+  list.add(0,(byte)(number >> 24 & 0xFF));
+}

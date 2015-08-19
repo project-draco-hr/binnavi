@@ -1,0 +1,22 @@
+{
+  final String destination=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String dividend=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final String divisor=instruction.getOperands().get(2).getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Pair<String,String> sourceRegister1Abs=Helpers.generateAbs(environment,baseOffset,dividend,dw,instructions);
+  final String sourceRegister1Absolute=sourceRegister1Abs.second();
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Pair<String,String> sourceRegister2Abs=Helpers.generateAbs(environment,baseOffset,divisor,dw,instructions);
+  final String sourceRegister2Absolute=sourceRegister2Abs.second();
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final String divResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createDiv(baseOffset++,dw,sourceRegister1Absolute,dw,sourceRegister2Absolute,dw,divResult));
+  final String xoredSigns=environment.getNextVariableString();
+  final String divToggleMask=environment.getNextVariableString();
+  final String xoredDivResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(baseOffset++,dw,sourceRegister1Abs.first(),dw,sourceRegister2Abs.first(),dw,xoredSigns));
+  instructions.add(ReilHelpers.createSub(baseOffset++,dw,String.valueOf(0L),dw,xoredSigns,dw,divToggleMask));
+  instructions.add(ReilHelpers.createXor(baseOffset++,dw,divToggleMask,dw,divResult,dw,xoredDivResult));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,xoredDivResult,dw,xoredSigns,dw,destination));
+}

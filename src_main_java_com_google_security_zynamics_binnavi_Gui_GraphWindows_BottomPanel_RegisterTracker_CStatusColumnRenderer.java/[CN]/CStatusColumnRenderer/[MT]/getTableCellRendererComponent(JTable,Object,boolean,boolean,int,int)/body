@@ -1,0 +1,21 @@
+{
+  final CResultColumnWrapper wrapper=(CResultColumnWrapper)value;
+  final CInstructionResult result=wrapper.getResult();
+  setBackground(CResultColor.determineBackgroundColor(wrapper.getStartInstruction(),wrapper.getTrackedRegister(),result));
+  setForeground(CResultColor.determineForegroundColor(wrapper.getStartInstruction(),wrapper.getTrackedRegister(),result));
+  setText(CResultText.determineDescription(wrapper.getStartInstruction(),wrapper.getTrackedRegister(),result));
+  setHorizontalAlignment(SwingConstants.CENTER);
+  if (isSelected) {
+    if (selectedBorder == null) {
+      selectedBorder=BorderFactory.createMatteBorder(2,5,2,5,table.getSelectionBackground());
+    }
+    setBorder(selectedBorder);
+  }
+ else {
+    if (unselectedBorder == null) {
+      unselectedBorder=BorderFactory.createMatteBorder(2,5,2,5,table.getBackground());
+    }
+    setBorder(unselectedBorder);
+  }
+  return this;
+}

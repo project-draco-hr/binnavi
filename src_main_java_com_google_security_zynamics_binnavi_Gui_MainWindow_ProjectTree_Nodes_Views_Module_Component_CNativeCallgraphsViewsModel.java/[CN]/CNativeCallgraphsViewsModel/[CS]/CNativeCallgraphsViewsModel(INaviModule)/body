@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(module,"IE02049: Module argument can't be null");
+  m_module=module;
+  module.addListener(m_moduleListener);
+  initListeners();
+}

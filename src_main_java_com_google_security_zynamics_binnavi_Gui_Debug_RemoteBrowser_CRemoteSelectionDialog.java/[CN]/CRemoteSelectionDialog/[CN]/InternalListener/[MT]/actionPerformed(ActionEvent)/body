@@ -1,0 +1,11 @@
+{
+  if ("OK".equals(event.getActionCommand())) {
+    if (m_tabbedPane.getSelectedIndex() == 0) {
+      m_selectedFile=m_browser.getSelectedFile();
+    }
+ else {
+      m_selectedProcess=m_processPanel.getSelectedProcess();
+    }
+  }
+  dispose();
+}

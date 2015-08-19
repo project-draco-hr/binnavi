@@ -1,0 +1,6 @@
+{
+  if (m_processRequest == reply.getId()) {
+    m_processList=reply.getProcessList();
+    m_waitingFor--;
+  }
+}

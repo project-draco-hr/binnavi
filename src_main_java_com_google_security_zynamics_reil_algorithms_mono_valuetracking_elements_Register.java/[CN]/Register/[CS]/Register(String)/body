@@ -1,0 +1,6 @@
+{
+  if (Convert.isDecString(register)) {
+    throw new IllegalStateException();
+  }
+  m_register=register;
+}

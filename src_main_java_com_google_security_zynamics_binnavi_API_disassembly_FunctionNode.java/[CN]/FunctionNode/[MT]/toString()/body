@@ -1,0 +1,3 @@
+{
+  return String.format("Function Node ['%s']",m_node.getFunction().getName());
+}

@@ -1,0 +1,13 @@
+{
+  m_snapshotList.add(snapshot);
+  if (m_snapshotList.size() > m_maxSnapshots) {
+    m_snapshotList.remove(0);
+    for (    final ISelectionHistoryListener listener : m_listeners) {
+      listener.snapshotRemoved();
+    }
+  }
+  m_undoIndex=size() - 1;
+  for (  final ISelectionHistoryListener listener : m_listeners) {
+    listener.snapshotAdded(snapshot);
+  }
+}

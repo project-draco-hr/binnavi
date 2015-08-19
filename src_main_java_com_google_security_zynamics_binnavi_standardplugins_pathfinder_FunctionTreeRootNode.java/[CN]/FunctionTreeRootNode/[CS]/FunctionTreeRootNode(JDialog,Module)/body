@@ -1,0 +1,12 @@
+{
+  final List<Function> functions=module.getFunctions();
+  Collections.sort(functions,new Comparator<Function>(){
+    @Override public int compare(    final Function o1,    final Function o2){
+      return o1.getName().compareToIgnoreCase(o2.getName());
+    }
+  }
+);
+  for (  final Function function : functions) {
+    add(new FunctionTreeFunctionNode(parent,function));
+  }
+}

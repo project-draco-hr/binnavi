@@ -1,0 +1,5 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE01498: Parent argument can not be null");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01499: Debugger argument can not be null");
+  m_debugger.addListener(m_listener);
+}

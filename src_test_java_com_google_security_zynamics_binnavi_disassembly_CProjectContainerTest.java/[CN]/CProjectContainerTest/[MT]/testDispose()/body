@@ -1,0 +1,4 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project,m_space);
+  container.dispose();
+}

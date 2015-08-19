@@ -1,0 +1,18 @@
+{
+  Preconditions.checkArgument(address >= 0,"Error: Address can't be less than 0");
+  Preconditions.checkNotNull(data,"Error: Data can't be null");
+  try {
+    m_writeLock.lock();
+    remove(address,data.length);
+    final MemoryChunk chunk=new MemoryChunk(address,data);
+    insertChunk(chunk);
+    final MemoryChunk nextChunk=findChunk(address + chunk.getLength());
+    if (nextChunk != null) {
+      connectChunks(chunk,nextChunk);
+    }
+  }
+  finally {
+    m_writeLock.unlock();
+  }
+  notifyListeners(address,data.length);
+}

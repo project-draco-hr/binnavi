@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTypeFunctions.createType(getConnection().getConnection(),moduleId,name,size,childPointerTypeId,signed,category);
+}

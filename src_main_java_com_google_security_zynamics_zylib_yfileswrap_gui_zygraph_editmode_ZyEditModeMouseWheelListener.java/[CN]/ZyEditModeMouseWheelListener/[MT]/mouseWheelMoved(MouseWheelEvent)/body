@@ -1,0 +1,13 @@
+{
+  final int ticks=Math.abs(event.getUnitsToScroll());
+  final boolean changeMode=event.isControlDown();
+  for (int i=0; i < ticks; ++i) {
+    if (((m_zyGraph.getSettings().getMouseSettings().getMouseWheelAction() == MouseWheelAction.ZOOM) && !changeMode) || ((m_zyGraph.getSettings().getMouseSettings().getMouseWheelAction() == MouseWheelAction.SCROLL) && changeMode)) {
+      handleInZoomMode(event);
+    }
+ else {
+      handleInMoveMode(event);
+    }
+  }
+  m_zyGraph.updateViews();
+}

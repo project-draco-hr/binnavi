@@ -1,0 +1,3 @@
+{
+  return new CView(configuration.getViewId(),m_project,configuration.getName(),configuration.getDescription(),configuration.getViewType(),GraphType.FLOWGRAPH,configuration.getCreationDate(),configuration.getModificationDate(),configuration.getNodeCount(),configuration.getEdgeCount(),new HashSet<CTag>(),new HashSet<CTag>(),configuration.getStarState(),m_provider);
+}

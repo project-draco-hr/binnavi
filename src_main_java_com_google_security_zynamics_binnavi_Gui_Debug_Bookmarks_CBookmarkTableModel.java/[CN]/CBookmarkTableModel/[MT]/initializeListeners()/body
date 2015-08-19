@@ -1,0 +1,6 @@
+{
+  for (  final IDebugger debugger : m_debuggerProvider) {
+    debugger.getBookmarkManager().addListener(m_listener);
+  }
+  m_debuggerProvider.addListener(m_debuggerListener);
+}

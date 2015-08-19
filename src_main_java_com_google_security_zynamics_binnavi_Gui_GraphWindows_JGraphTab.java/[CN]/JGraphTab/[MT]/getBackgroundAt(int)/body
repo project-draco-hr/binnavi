@@ -1,0 +1,9 @@
+{
+  final IGraphPanel panel=((IGraphPanel)this.getComponentAt(index));
+  if (moduleIdCount.size() > 1) {
+    return selectTabBackGroundColor(panel.getModel().getViewContainer().getModules().get(0).getConfiguration().getId());
+  }
+ else {
+    return super.getBackgroundAt(index);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super.removeListener(listener);
+  m_listeners.removeListener(listener);
+  m_synchronizer.removeListener(listener);
+}

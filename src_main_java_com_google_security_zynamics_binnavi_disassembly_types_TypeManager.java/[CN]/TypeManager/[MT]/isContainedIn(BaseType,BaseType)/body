@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(superType,"Error: Super type can not be null.");
+  Preconditions.checkNotNull(baseType,"Error: Base type can not be null.");
+  return typesContainer.isTypeContainedIn(superType,baseType);
+}

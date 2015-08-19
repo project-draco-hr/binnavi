@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  if (view.getType() == ViewType.Native) {
+    throw new IllegalArgumentException("Error: Native views can not be deleted");
+  }
+  if (!isLoaded()) {
+    throw new IllegalArgumentException("Error: Module must be opened before views can be deleted");
+  }
+  if (!m_views.contains(view)) {
+    throw new IllegalArgumentException("Error: View does not belong to this module");
+  }
+  try {
+    m_module.getContent().getViewContainer().deleteView(view.getNative());
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntDeleteException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

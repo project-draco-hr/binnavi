@@ -1,0 +1,6 @@
+INaviProject project
+ListenerProvider<IProjectListener> listeners
+SQLProvider provider
+List<CAddressSpace> addressSpaces
+List<INaviView> views
+IFilledList<TraceList> traces

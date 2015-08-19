@@ -1,0 +1,4 @@
+OperandGraphNode search
+ReilBlock block
+Map<ReilBlock,Pair<List<OperandGraphNode>,List<OperandGraphEdge>>> graphMap
+boolean found

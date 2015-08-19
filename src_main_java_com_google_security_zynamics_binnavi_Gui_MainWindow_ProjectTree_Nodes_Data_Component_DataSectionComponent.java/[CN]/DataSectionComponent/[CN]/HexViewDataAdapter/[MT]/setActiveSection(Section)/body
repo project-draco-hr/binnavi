@@ -1,0 +1,6 @@
+{
+  activeSection=section;
+  for (  final IDataChangedListener listener : listeners) {
+    listener.dataChanged();
+  }
+}

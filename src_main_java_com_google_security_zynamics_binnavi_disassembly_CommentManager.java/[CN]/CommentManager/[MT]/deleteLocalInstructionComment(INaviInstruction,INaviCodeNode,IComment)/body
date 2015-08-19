@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"IE02576: instruction argument can not be null");
+  deleteComment(new InstructionCommentingStrategy(instruction,node,CommentScope.LOCAL),comment);
+}

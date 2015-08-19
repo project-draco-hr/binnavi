@@ -1,0 +1,3 @@
+{
+  LoadGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"lhz",OperandSize.WORD,false,false,false,false,false);
+}

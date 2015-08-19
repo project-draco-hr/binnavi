@@ -1,0 +1,3 @@
+{
+  CModuleStaringFunctions.star(m_parent,m_modules);
+}

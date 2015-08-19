@@ -1,0 +1,7 @@
+{
+  final TypeInstanceReference reference=backend.lookupReference(new CAddress(address),position,expressionId);
+  referencesByInstance.remove(reference.getTypeInstance(),reference);
+  backend.deleteInstanceReferenceInternal(reference);
+  reference.setTreeNode(null);
+  notifyReferenceRemoved(reference);
+}

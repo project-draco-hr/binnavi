@@ -1,0 +1,3 @@
+{
+  return ThreadState.convert(((ThreadCreatedReply)reply).getThreadState());
+}

@@ -1,0 +1,3 @@
+{
+  debugger.getBookmarkManager().removeListener(m_listener);
+}

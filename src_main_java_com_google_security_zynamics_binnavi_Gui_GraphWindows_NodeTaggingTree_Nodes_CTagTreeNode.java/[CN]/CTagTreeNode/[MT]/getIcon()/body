@@ -1,0 +1,3 @@
+{
+  return isRootTag() ? ICON_GREEN_ROOTTAG : ICON_GREEN_TAG;
+}

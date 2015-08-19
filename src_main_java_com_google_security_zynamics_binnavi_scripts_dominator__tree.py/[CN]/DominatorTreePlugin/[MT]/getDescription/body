@@ -1,0 +1,2 @@
+def getDescription(self):
+    return 'Creates the dominator tree of a view'

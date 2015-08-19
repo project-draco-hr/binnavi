@@ -1,0 +1,4 @@
+{
+  super(operation,commentId,scope);
+  this.node=Preconditions.checkNotNull(node,"Error: Node argument can not be null.");
+}

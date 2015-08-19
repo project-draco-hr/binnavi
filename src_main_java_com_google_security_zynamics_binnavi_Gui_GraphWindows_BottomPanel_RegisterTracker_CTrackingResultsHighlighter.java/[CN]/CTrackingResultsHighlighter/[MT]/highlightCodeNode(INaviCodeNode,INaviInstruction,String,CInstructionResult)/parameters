@@ -1,0 +1,4 @@
+INaviCodeNode cnode
+INaviInstruction startInstruction
+String trackedRegister
+CInstructionResult instructionResult

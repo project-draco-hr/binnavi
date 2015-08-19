@@ -1,0 +1,3 @@
+JTextComponent component
+int position
+String string

@@ -1,0 +1,3 @@
+{
+  return String.format("Debug Traces (%d)",m_viewContainer.getTraceProvider().getNumberOfTraceLists());
+}

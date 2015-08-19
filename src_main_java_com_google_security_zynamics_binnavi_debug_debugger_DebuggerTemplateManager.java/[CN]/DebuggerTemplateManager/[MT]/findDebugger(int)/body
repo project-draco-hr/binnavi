@@ -1,0 +1,8 @@
+{
+  for (  final DebuggerTemplate description : debuggers) {
+    if (description.getId() == debuggerId) {
+      return description;
+    }
+  }
+  return null;
+}

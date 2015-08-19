@@ -1,0 +1,3 @@
+{
+  CLayoutFunctions.updateBackground(m_graph);
+}

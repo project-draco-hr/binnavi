@@ -1,0 +1,19 @@
+{
+  super((Window)null,"View filter");
+  new CDialogEscaper(this);
+  CIconInitializer.initializeWindowIcons(this);
+  setLayout(new BorderLayout());
+  final JPanel innerPanel=new JPanel(new GridLayout(1,3));
+  innerPanel.add(m_typePanel=new CViewTypePanel(m_listeners));
+  add(innerPanel);
+  pack();
+  addWindowFocusListener(new WindowAdapter(){
+    @Override public void windowLostFocus(    final WindowEvent event){
+      for (      final IFilterDialogListener listener : m_listeners) {
+        m_listeners.removeListener(listener);
+      }
+      dispose();
+    }
+  }
+);
+}

@@ -1,0 +1,8 @@
+{
+  if (xrefs.getSelectedRow() != -1) {
+    return ((XRefsTableModel)xrefs.getModel()).getXRef(xrefs.getSelectedRow());
+  }
+ else {
+    return null;
+  }
+}

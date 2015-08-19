@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(activeView,"IE01806: Active view argument can not be null");
+  for (  final IPerspectiveModelListener listener : m_listeners) {
+    try {
+      listener.changedActivePerspective(activeView);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

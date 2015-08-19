@@ -1,0 +1,3 @@
+{
+  return new COperandTreeNode(-1,COperandTypeConverter.convert(type),value,null,new ArrayList<IReference>(),m_provider,getTypeManager(),m_content.getTypeInstanceContainer());
+}

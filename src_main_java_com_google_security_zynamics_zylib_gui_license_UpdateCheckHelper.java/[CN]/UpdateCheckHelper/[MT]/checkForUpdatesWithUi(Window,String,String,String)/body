@@ -1,0 +1,45 @@
+{
+  final URL checkUrl;
+  try {
+    checkUrl=new URL(String.format("%s/%s/%s",UPDATE_CHECK_BASE_URL,productName.toLowerCase(),currentChannel.toLowerCase()));
+  }
+ catch (  final MalformedURLException e) {
+    throw new RuntimeException("Malformed URL template",e);
+  }
+  final List<String> lines=new ArrayList<String>();
+  final CEndlessHelperThread helper=new CEndlessHelperThread(){
+    @Override protected void runExpensiveCommand() throws Exception {
+      final long startTime=new Date().getTime();
+      lines.addAll(StreamUtils.readLinesFromReader(new InputStreamReader(checkUrl.openStream())));
+      final long duration=new Date().getTime() - startTime;
+      if (duration < 400) {
+        Thread.sleep(400 - duration);
+      }
+    }
+  }
+;
+  CEndlessProgressDialog.show(parent,System.getProperty(CMessageBox.DEFAULT_WINDOW_TITLE_PROPERTY),"Checking for updates...",helper);
+  final Exception e=helper.getException();
+  if (e instanceof FileNotFoundException) {
+    CMessageBox.showWarning(parent,"Could not check for updates. " + "The update site is unavailable.");
+    return;
+  }
+  if (lines.isEmpty()) {
+    CMessageBox.showWarning(parent,"Could not check for updates. " + "The update site returned no data.");
+    return;
+  }
+  if ((lines.size() < 2) || !lines.get(1).matches("\\d{4}-\\d\\d-\\d\\d")) {
+    CMessageBox.showWarning(parent,"Could not check for updates. " + "Could not parse the response.");
+    return;
+  }
+  final String remoteVersion=lines.get(0);
+  final int result=versionCompare(currentVersion,remoteVersion);
+  if (result < 0) {
+    CMessageBox.showInformation(parent,String.format("A newer version (%s) is available.",remoteVersion));
+    return;
+  }
+  if (result >= 0) {
+    CMessageBox.showInformation(parent,String.format("Your version of zynamics %s is up to date.",productName));
+    return;
+  }
+}

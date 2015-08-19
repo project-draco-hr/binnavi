@@ -1,0 +1,4 @@
+{
+  m_realizer.setWidth(value);
+  updateViews();
+}

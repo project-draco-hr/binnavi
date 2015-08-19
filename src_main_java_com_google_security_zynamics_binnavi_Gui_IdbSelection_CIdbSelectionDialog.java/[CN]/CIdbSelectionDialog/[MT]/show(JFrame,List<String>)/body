@@ -1,0 +1,11 @@
+{
+  if (!checkExporterInstall(parent)) {
+    return null;
+  }
+  final CIdbSelectionDialog dialog=new CIdbSelectionDialog(parent,previousDirectories);
+  if (parent != null) {
+    GuiHelper.centerChildToParent(parent,dialog,true);
+  }
+  dialog.setVisible(true);
+  return dialog;
+}

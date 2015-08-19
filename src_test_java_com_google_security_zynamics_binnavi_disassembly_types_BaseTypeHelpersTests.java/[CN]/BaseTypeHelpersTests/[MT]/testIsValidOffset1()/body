@@ -1,0 +1,3 @@
+{
+  BaseTypeHelpers.isValidOffset(null,0);
+}

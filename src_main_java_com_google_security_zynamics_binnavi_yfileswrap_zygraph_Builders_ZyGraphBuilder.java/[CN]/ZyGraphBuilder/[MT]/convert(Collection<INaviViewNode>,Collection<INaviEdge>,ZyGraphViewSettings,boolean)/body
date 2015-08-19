@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(nodes,"IE00905: View can not be null");
+  Preconditions.checkNotNull(edges,"IE00906: Edges argument can not be null");
+  if (!m_loadReporter.report(GraphBuilderEvents.Started)) {
+    throw new LoadCancelledException();
+  }
+  m_loadReporter.start();
+  final Graph2D graph2D=new Graph2D();
+  final HierarchyManager hierarchyManager=new HierarchyManager(graph2D);
+  graph2D.setHierarchyManager(hierarchyManager);
+  hierarchyManager.addHierarchyListener(new GroupNodeRealizer.StateChangeListener());
+  checkCancellation(GraphBuilderEvents.InitializedGraph);
+  final HashMap<INaviViewNode,Node> rawNodeToNodeMap=new HashMap<INaviViewNode,Node>();
+  convertNodes(nodes,graph2D,rawNodeToNodeMap,graphSettings);
+  checkCancellation(GraphBuilderEvents.ConvertedNodes);
+  convertEdges(edges,graph2D,rawNodeToNodeMap,adjustColors);
+  checkCancellation(GraphBuilderEvents.ConvertedEdges);
+  setupGroupNodes(nodes,graph2D,rawNodeToNodeMap);
+  checkCancellation(GraphBuilderEvents.CreatedGroupNodes);
+  checkCancellation(GraphBuilderEvents.Finished);
+  return graph2D;
+}

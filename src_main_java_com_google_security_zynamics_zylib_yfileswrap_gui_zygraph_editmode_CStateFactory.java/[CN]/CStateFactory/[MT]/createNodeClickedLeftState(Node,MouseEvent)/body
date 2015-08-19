@@ -1,0 +1,5 @@
+{
+  final CNodeClickedLeftState<NodeType,EdgeType> state=new CNodeClickedLeftState<NodeType,EdgeType>(this,m_graph,n);
+  m_factory.createNodeClickedLeftAction().execute(state,event);
+  return state;
+}

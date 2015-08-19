@@ -1,0 +1,7 @@
+{
+  if (m_addressSpace.isLoaded()) {
+    for (    final INaviModule module : m_addressSpace.getContent().getModules()) {
+      add(new ViewSelectionModuleNode(m_parent,module,m_model));
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  final String fileBaseText=m_debuggerPanel.getFileBase();
+  final boolean fileBaseChanged="".equals(fileBaseText) || !new CAddress(Convert.hexStringToLong(fileBaseText)).equals(m_module.getConfiguration().getFileBase());
+  final boolean imageBaseChanged=isImageBaseModified();
+  m_saveButton.setEnabled(!m_stdEditPanel.getNameString().equals(m_module.getConfiguration().getName()) || !m_stdEditPanel.getDescription().equals(m_module.getConfiguration().getDescription()) || fileBaseChanged|| imageBaseChanged|| (m_debuggerPanel.getSelectedDebugger() != m_module.getConfiguration().getDebuggerTemplate()));
+}

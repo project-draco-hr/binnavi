@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(reference,"Error: reference argument can not be null");
+  reference.setTreeNode(null);
+  notifyReferenceChanged(reference);
+}

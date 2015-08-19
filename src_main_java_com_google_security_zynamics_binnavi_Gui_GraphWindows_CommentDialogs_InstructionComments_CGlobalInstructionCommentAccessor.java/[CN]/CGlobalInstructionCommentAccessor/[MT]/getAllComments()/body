@@ -1,0 +1,16 @@
+{
+  final ArrayList<Pair<INaviInstruction,IComment>> values=new ArrayList<Pair<INaviInstruction,IComment>>();
+  for (  final INaviInstruction instruction : m_codeNode.getInstructions()) {
+    final List<IComment> comments=instruction.getGlobalComment();
+    if ((comments == null) || comments.isEmpty()) {
+      values.add(new Pair<INaviInstruction,IComment>(instruction,new EmptyComment()));
+    }
+ else {
+      for (      final IComment comment : comments) {
+        values.add(new Pair<INaviInstruction,IComment>(instruction,comment));
+      }
+      values.add(new Pair<INaviInstruction,IComment>(instruction,new EmptyComment()));
+    }
+  }
+  return values;
+}

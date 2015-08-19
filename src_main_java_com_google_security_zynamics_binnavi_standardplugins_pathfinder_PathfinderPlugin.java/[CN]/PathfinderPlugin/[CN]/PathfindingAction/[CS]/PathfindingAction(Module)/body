@@ -1,0 +1,6 @@
+{
+  super("Pathfinder");
+  m_module=module;
+  setEnabled(module.isLoaded());
+  m_module.addListener(m_updater);
+}

@@ -1,0 +1,25 @@
+{
+  ConfigManager.instance().read();
+  final MockDatabase database=new MockDatabase();
+  final CModule module=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,new MockSqlProvider());
+  database.getContent().addModule(module);
+  manager.addDatabase(database);
+  module.load();
+  m_view=module.getContent().getViewContainer().createView("name","description");
+  final ZyGraphViewSettings settings=new ZyGraphViewSettings(new CallGraphSettingsConfigItem());
+  settings.getLayoutSettings().setDefaultGraphLayout(LayoutStyle.CIRCULAR);
+  final ZyGraph2DView g2dView=new ZyGraph2DView();
+  final LinkedHashMap<Node,NaviNode> nodeMap=new LinkedHashMap<Node,NaviNode>();
+  final LinkedHashMap<Edge,NaviEdge> edgeMap=new LinkedHashMap<Edge,NaviEdge>();
+  final Node node1=g2dView.getGraph2D().createNode();
+  final CTextNode rawNode1=m_view.getContent().createTextNode(Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null," TEXT NODE ")));
+  nodeMap.put(node1,new NaviNode(node1,new ZyNormalNodeRealizer<NaviNode>(new ZyLabelContent(null)),rawNode1));
+  final Node node2=g2dView.getGraph2D().createNode();
+  final CTextNode rawNode2=m_view.getContent().createTextNode(Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null," TEXT COMMENT ")));
+  nodeMap.put(node2,new NaviNode(node2,new ZyNormalNodeRealizer<NaviNode>(new ZyLabelContent(null)),rawNode2));
+  final Edge edge=g2dView.getGraph2D().createEdge(node1,node2);
+  final INaviEdge rawEdge=m_view.getContent().createEdge(rawNode1,rawNode2,com.google.security.zynamics.zylib.gui.zygraph.edges.EdgeType.JUMP_CONDITIONAL_FALSE);
+  edgeMap.put(edge,new NaviEdge(nodeMap.get(node1),nodeMap.get(node2),edge,new ZyEdgeRealizer<NaviEdge>(new ZyLabelContent(null),null),rawEdge));
+  final ZyGraph graph=new ZyGraph(m_view,nodeMap,edgeMap,settings,g2dView);
+  m_view2d=new View2D(database,new CModuleContainer(database,module),graph,pluginInterface);
+}

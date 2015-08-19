@@ -1,0 +1,5 @@
+{
+  final String message="E00001: " + "Could not create the settings directory";
+  final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not create the settings directory '%s'.",directory),new String[]{"Your user account does not have sufficient rights to create this directory"},new String[]{"Changes to the global settings will not be saved","The error log file can not be stored"});
+  CNaviErrorDialog.show(null,message,description);
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02574: codeNode argument can not be null");
+  deleteComment(new CodeNodeCommentingStrategy(node,CommentScope.LOCAL),comment);
+}

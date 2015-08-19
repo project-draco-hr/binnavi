@@ -1,0 +1,8 @@
+{
+  for (  final ITreeNode<CTag> c : BreadthFirstSorter.getSortedList(rootTag)) {
+    if (tagId == c.getObject().getId()) {
+      return c.getObject();
+    }
+  }
+  return null;
+}

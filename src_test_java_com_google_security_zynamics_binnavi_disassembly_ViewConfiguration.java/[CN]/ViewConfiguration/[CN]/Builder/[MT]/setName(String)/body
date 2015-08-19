@@ -1,0 +1,4 @@
+{
+  this.name=Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  return this;
+}

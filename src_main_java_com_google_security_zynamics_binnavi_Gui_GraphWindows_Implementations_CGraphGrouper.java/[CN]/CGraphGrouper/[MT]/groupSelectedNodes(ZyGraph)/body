@@ -1,0 +1,6 @@
+{
+  final List<NaviNode> nodes=filterSelectedNodes(graph.getSelectedNodes());
+  if (!nodes.isEmpty()) {
+    groupNodes(graph,nodes);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return lhs.getObject().getName().compareTo(rhs.getObject().getName());
+}

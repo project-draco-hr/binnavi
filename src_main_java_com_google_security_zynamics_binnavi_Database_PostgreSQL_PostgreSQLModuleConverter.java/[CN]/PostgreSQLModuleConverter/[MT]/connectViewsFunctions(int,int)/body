@@ -1,0 +1,3 @@
+{
+  PostgreSQLModuleCreator.connectViewsFunctions(m_provider.getConnection(),moduleId,firstViewId);
+}

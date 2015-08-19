@@ -1,0 +1,30 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final String startValue=environment.getNextVariableString();
+  final String afterCf=environment.getNextVariableString();
+  final String shiftedPf=environment.getNextVariableString();
+  final String afterPf=environment.getNextVariableString();
+  final String shiftedAf=environment.getNextVariableString();
+  final String afterAf=environment.getNextVariableString();
+  final String shiftedZf=environment.getNextVariableString();
+  final String afterZf=environment.getNextVariableString();
+  final String shiftedSf=environment.getNextVariableString();
+  final String afterSf=environment.getNextVariableString();
+  final String shiftedOf=environment.getNextVariableString();
+  final String afterOf=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(offset,size,"2",size,startValue));
+  instructions.add(ReilHelpers.createOr(offset + 1,size,startValue,OperandSize.BYTE,Helpers.CARRY_FLAG,size,afterCf));
+  instructions.add(ReilHelpers.createBsh(offset + 2,OperandSize.BYTE,Helpers.PARITY_FLAG,OperandSize.BYTE,"2",size,shiftedPf));
+  instructions.add(ReilHelpers.createOr(offset + 3,size,afterCf,size,shiftedPf,size,afterPf));
+  instructions.add(ReilHelpers.createBsh(offset + 4,OperandSize.BYTE,Helpers.AUXILIARY_FLAG,OperandSize.BYTE,"4",size,shiftedAf));
+  instructions.add(ReilHelpers.createOr(offset + 5,size,afterPf,size,shiftedAf,size,afterAf));
+  instructions.add(ReilHelpers.createBsh(offset + 6,OperandSize.BYTE,Helpers.ZERO_FLAG,OperandSize.BYTE,"6",size,shiftedZf));
+  instructions.add(ReilHelpers.createOr(offset + 7,size,afterAf,size,shiftedZf,size,afterZf));
+  instructions.add(ReilHelpers.createBsh(offset + 8,OperandSize.BYTE,Helpers.SIGN_FLAG,OperandSize.BYTE,"7",size,shiftedSf));
+  instructions.add(ReilHelpers.createOr(offset + 9,size,afterZf,size,shiftedSf,size,afterSf));
+  instructions.add(ReilHelpers.createBsh(offset + 10,OperandSize.BYTE,Helpers.OVERFLOW_FLAG,OperandSize.BYTE,"11",size,shiftedOf));
+  instructions.add(ReilHelpers.createOr(offset + 11,size,afterSf,size,shiftedOf,size,afterOf));
+  return afterOf;
+}

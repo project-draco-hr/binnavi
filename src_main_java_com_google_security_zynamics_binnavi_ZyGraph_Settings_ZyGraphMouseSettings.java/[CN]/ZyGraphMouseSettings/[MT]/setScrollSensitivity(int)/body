@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00892: Sensitivity argument must not be negative");
+  if (value == getScrollSensitivity()) {
+    return;
+  }
+  if (m_type == null) {
+    m_scrollSensitivity=value;
+  }
+ else {
+    m_type.setScrollSensitivity(value);
+  }
+}

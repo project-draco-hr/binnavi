@@ -1,0 +1,6 @@
+{
+  if (filter.includeType(deletedType)) {
+    final ChildNodeDescriptor descriptor=deleteBaseType(deletedType);
+    nodesWereRemoved(root,new int[]{descriptor.getIndex()},new BaseTypeTreeNode[]{descriptor.getNode()});
+  }
+}

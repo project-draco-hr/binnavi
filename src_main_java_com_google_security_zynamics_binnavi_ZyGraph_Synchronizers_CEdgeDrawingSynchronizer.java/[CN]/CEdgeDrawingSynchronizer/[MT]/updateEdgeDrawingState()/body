@@ -1,0 +1,9 @@
+{
+  if (m_graph.getSettings().getEdgeSettings().getEdgeHidingMode() == EdgeHidingMode.HIDE_ON_THRESHOLD) {
+    final boolean drawEdges=CEdgeDrawingFunctions.calcDrawSloppyEdges(m_graph);
+    if (m_areEdgesVisible != drawEdges) {
+      setEdgeDrawing(drawEdges);
+      m_areEdgesVisible=drawEdges;
+    }
+  }
+}

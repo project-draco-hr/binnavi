@@ -1,0 +1,4 @@
+{
+  final DependenceResult result=dependenceGraph.addMember(typeSystem.simpleStruct,typeSystem.doubleNestedStruct);
+  assertFalse(result.isValid());
+}

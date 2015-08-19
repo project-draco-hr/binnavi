@@ -1,0 +1,4 @@
+{
+  child.setParent(null);
+  parent.removeChild(child);
+}

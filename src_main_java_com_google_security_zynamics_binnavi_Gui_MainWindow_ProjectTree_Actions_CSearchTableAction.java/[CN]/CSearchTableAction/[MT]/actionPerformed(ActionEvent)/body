@@ -1,0 +1,3 @@
+{
+  CTableSearcherHelper.search(m_parent,m_table);
+}

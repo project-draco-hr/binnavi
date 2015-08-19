@@ -1,0 +1,4 @@
+BaseType structTypeToFix
+Set<BaseType> inconsistentTypes
+Map<BaseType,Integer> oldSizes
+Set<BaseType> affectedTypes

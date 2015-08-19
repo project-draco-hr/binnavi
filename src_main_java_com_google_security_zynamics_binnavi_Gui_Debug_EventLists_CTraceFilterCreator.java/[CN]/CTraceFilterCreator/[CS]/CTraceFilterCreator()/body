@@ -1,0 +1,3 @@
+{
+  super(Lists.newArrayList(new MemoryPredicateGenerator(),new RegisterPredicateGenerator(),new PlainTextPredicateGenerator()));
+}

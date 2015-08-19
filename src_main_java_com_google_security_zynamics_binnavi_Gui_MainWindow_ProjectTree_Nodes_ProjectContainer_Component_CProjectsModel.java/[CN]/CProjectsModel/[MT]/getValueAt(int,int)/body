@@ -1,0 +1,15 @@
+{
+  final INaviProject project=getProjects().get(row);
+switch (col) {
+case NAME_COLUMN:
+    return project.getConfiguration().getName();
+case DESCRIPTION_COLUMN:
+  return project.getConfiguration().getDescription();
+case CREATION_DATE_COLUMN:
+return project.getConfiguration().getCreationDate();
+case MODIFICATION_DATE_COLUMN:
+return project.getConfiguration().getModificationDate();
+default :
+throw new IllegalStateException("IE01171: Invalid column");
+}
+}

@@ -1,0 +1,3 @@
+{
+  return resolvedFunction != null ? resolvedFunction.getModule().getConfiguration().getId() : 0;
+}

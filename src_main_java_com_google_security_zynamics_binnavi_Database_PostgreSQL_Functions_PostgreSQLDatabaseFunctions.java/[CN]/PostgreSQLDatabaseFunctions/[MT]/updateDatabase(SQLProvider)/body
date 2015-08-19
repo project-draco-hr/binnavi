@@ -1,0 +1,14 @@
+{
+  try {
+    if (provider.getDatabaseVersion().compareTo(new DatabaseVersion("4.0.0")) == 0) {
+      databaseUpdater(provider.getConnection(),"com/google/security/zynamics/binnavi/data/" + "postgresql_convert_4_0_7_to_5_0_0.sql");
+      databaseUpdater(provider.getConnection(),"com/google/security/zynamics/binnavi/data/" + "postgresql_convert_5_0_0_to_5_0_1.sql");
+    }
+ else     if (provider.getDatabaseVersion().compareTo(new DatabaseVersion("5.0.0")) == 0) {
+      databaseUpdater(provider.getConnection(),"com/google/security/zynamics/binnavi/data/" + "postgresql_convert_5_0_0_to_5_0_1.sql");
+    }
+  }
+ catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

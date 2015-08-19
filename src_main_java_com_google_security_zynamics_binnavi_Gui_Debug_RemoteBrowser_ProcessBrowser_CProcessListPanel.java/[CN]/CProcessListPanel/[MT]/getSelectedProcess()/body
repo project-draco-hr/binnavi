@@ -1,0 +1,4 @@
+{
+  final int selectedRow=m_table.getSelectedRow();
+  return selectedRow == -1 ? null : m_processList.get(m_table.convertRowIndexToModel(selectedRow));
+}

@@ -1,0 +1,3 @@
+{
+  return String.format("Function Edge [%s -> %s]",super.getSource().getFunction().getName(),super.getTarget().getFunction().getName());
+}

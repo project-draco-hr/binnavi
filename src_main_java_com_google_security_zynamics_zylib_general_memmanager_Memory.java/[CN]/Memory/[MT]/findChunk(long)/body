@@ -1,0 +1,9 @@
+{
+  Preconditions.checkArgument(address >= 0,"Error: Address can't be less than 0");
+  for (  final MemoryChunk chunk : m_chunks) {
+    if ((address >= chunk.getAddress()) && (address < (chunk.getAddress() + chunk.getLength()))) {
+      return chunk;
+    }
+  }
+  return null;
+}

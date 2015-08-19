@@ -1,0 +1,15 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final Tag newTag=viewTagManager.getTag(tag);
+  viewTags.add(newTag);
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.taggedView(View.this,newTag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkArgument(blinkPeriod >= 0,"Error: Blink period can't be negative");
+  Preconditions.checkNotNull(caretColor,"Error: Caret color can't be null");
+  m_caretTimer=new Timer(blinkPeriod,m_listener);
+  m_caretTimer.setRepeats(true);
+  m_caretTimer.start();
+}

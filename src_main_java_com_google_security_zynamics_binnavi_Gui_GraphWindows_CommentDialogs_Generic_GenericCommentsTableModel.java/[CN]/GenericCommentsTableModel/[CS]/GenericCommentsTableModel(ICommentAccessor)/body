@@ -1,0 +1,4 @@
+{
+  this.commentAccessor=Preconditions.checkNotNull(commentAccessor);
+  resetCachedComments();
+}

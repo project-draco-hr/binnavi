@@ -1,0 +1,3 @@
+{
+  databaseManager=new DatabaseManager(manager);
+}

@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(member,"Error: typeMember argument can not be null");
+  final DependenceResult result=dependenceGraph.addMember(member.getParentType(),member.getBaseType());
+  if (!result.isValid()) {
+    throw new IllegalStateException("Error: member would create cyclic reference.");
+  }
+  memberById.put(member.getId(),member);
+  member.getParentType().addMember(member);
+  return result.getAffectedTypes();
+}

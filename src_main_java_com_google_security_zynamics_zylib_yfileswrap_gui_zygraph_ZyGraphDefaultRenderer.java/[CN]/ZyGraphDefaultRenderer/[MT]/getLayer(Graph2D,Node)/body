@@ -1,0 +1,13 @@
+{
+  if (graph.getRealizer(n) instanceof ZyGroupNodeRealizer<?>) {
+    return super.getLayer(graph,n);
+  }
+  int counter=1;
+  for (  final Node node : m_nodesInDrawingOrder) {
+    if (node == n) {
+      return counter;
+    }
+    ++counter;
+  }
+  return super.getLayer(graph,n);
+}

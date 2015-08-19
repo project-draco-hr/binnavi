@@ -1,0 +1,3 @@
+{
+  return flavor.equals(TypeDataFlavor.TYPE_MEMBER_FLAVOR);
+}

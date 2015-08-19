@@ -1,0 +1,3 @@
+{
+  return new java.awt.Dimension(fontCharWidth * codeModel.getTotalWidthInCharacters(),fontLineHeight * 40);
+}

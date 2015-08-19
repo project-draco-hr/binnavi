@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(description,"IE00327: Description argument can not be null");
+  if (description.equals(m_description)) {
+    return;
+  }
+  m_description=description;
+  for (  final ICodeBookmarkListener listener : m_listeners) {
+    try {
+      listener.changedDescription(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

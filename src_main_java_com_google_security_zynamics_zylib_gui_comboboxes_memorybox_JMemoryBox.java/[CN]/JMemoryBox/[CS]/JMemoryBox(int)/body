@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(maximum > 0,"Error: Maximum argument must be positive");
+  m_model=new JMemoryBoxModel(maximum);
+  setModel(m_model);
+  setEditable(true);
+}

@@ -1,0 +1,6 @@
+{
+  assertEquals(1,m_node.getOutgoingEdges().size());
+  assertEquals(1,m_node.getOutgoingEdges().get(0).getTarget().getIncomingEdges().size());
+  assertEquals(1,m_node.getChildren().size());
+  assertEquals(1,m_node.getChildren().get(0).getParents().size());
+}

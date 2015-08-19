@@ -1,0 +1,8 @@
+{
+  this.rootPath=Preconditions.checkNotNull(rootPath,"IE02094: Root path argument can not be null");
+  this.pluginPaths=Preconditions.checkNotNull(pluginPaths,"IE02095: Plugin paths argument can not be null");
+  this.pluginInterface=Preconditions.checkNotNull(pluginInterface,"IE02096: Plugin interface argument can not be null");
+  this.registry=Preconditions.checkNotNull(registry,"IE02097: Registry argument can not be null");
+  this.configFile=Preconditions.checkNotNull(configFile,"IE02098: Config file argument can not be null");
+  this.parent=parent;
+}

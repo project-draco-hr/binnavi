@@ -1,0 +1,6 @@
+{
+  m_tid=values.getTid();
+  for (  final RegisterValue value : values.getRegisters()) {
+    m_values.add(new Register(value));
+  }
+}

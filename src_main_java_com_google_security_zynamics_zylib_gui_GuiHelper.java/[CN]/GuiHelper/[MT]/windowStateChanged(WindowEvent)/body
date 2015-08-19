@@ -1,0 +1,7 @@
+{
+  try {
+    awtWindowManager.set(null,metacityWindowManager.get(null));
+  }
+ catch (  IllegalArgumentException|IllegalAccessException e1) {
+  }
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  return instancesByAddress.tailMap(new TypeInstanceAddress(section.getStartAddress(),0),true).headMap(new TypeInstanceAddress(section.getStartAddress(),section.getVirtualSize()),false).values();
+}

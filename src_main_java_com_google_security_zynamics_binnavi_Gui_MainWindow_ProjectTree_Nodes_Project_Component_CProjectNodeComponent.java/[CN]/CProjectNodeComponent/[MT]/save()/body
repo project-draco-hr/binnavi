@@ -1,0 +1,19 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final CProjectSaveProgressOperation progressOperation=new CProjectSaveProgressOperation();
+      progressOperation.getProgressPanel().setText("Saving project configuration" + ": " + "Saving Name");
+      saveName();
+      progressOperation.getProgressPanel().next();
+      progressOperation.getProgressPanel().setText("Saving project configuration" + ": " + "Saving Description");
+      saveDescription();
+      progressOperation.getProgressPanel().next();
+      progressOperation.getProgressPanel().setText("Saving project configuration" + ": " + "Saving Debuggers");
+      saveDebuggers();
+      progressOperation.getProgressPanel().next();
+      progressOperation.stop();
+      updateSaveButton();
+    }
+  }
+.start();
+}

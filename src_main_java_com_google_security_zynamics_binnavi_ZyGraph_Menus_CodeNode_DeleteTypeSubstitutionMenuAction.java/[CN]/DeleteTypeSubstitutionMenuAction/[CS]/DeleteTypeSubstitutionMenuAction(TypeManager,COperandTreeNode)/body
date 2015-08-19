@@ -1,0 +1,5 @@
+{
+  super("Delete type substitution");
+  this.typeManager=typeManager;
+  this.selectedNode=selectedNode;
+}

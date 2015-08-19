@@ -1,0 +1,17 @@
+{
+  if (incoming) {
+    m_edgecursor=node.inEdges();
+  }
+ else {
+    m_edgecursor=node.outEdges();
+  }
+  if (m_edgecursor.ok()) {
+    m_hasNext=true;
+    m_edgecursor.toLast();
+    m_last=(Edge)m_edgecursor.current();
+    m_edgecursor.toFirst();
+  }
+ else {
+    m_hasNext=false;
+  }
+}

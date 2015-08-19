@@ -1,0 +1,19 @@
+{
+  checkArguments(provider,tag);
+  Preconditions.checkNotNull(name,"IE00565: Name argument can not be null");
+  final CConnection connection=provider.getConnection();
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement("update " + CTableNames.TAGS_TABLE + " set name = ? where id = ?");
+    try {
+      statement.setString(1,name);
+      statement.setInt(2,tag.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

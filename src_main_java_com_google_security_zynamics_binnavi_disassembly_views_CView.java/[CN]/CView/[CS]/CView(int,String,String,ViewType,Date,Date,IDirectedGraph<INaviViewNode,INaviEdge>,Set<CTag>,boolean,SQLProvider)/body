@@ -1,0 +1,23 @@
+{
+  Preconditions.checkArgument((viewId > 0) || (viewId == -1),"IE01099: View IDs must be positive");
+  Preconditions.checkNotNull(name,"IE00271: Name can not be null");
+  Preconditions.checkNotNull(description,"IE01100: Description can not be null");
+  Preconditions.checkNotNull(type,"IE01101: View type can not be null");
+  Preconditions.checkNotNull(creationDate,"IE00471: Creation date can not be null");
+  Preconditions.checkNotNull(modificationDate,"IE00472: Modification date can not be null");
+  Preconditions.checkNotNull(iDirectedGraph,"IE02234: Graph argument can not be null");
+  Preconditions.checkNotNull(tags,"IE00279: Tags argument can not be null");
+  for (  final CTag tag : tags) {
+    Preconditions.checkNotNull(tag,"IE00280: Tag list contains a null-tag");
+    Preconditions.checkArgument(tag.getType() == TagType.VIEW_TAG,"IE00767: Tag list contains a tag with an invalid type");
+    Preconditions.checkArgument(tag.inSameDatabase(provider),"IE00282: Tag list contains a tag that is stored in a different database than the view");
+  }
+  m_provider=Preconditions.checkNotNull(provider,"IE00283: SQL provider date can not be null");
+  m_configuration=new CViewConfiguration(this,m_listeners,provider,viewId,description,name,type,creationDate,modificationDate,tags,isStared);
+  m_bbcount=iDirectedGraph.nodeCount();
+  m_edgecount=iDirectedGraph.edgeCount();
+  m_content=new CViewContent(this,m_listeners,m_provider,(MutableDirectedGraph<INaviViewNode,INaviEdge>)iDirectedGraph);
+  m_nodeTags=new HashSet<CTag>();
+  m_lastGraphType=m_content.getGraphType();
+  ViewManager.get(m_provider).putView(this);
+}

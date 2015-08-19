@@ -1,0 +1,5 @@
+{
+  m_tagManager.removeListener(m_tagManagerListener);
+  m_tag.getObject().removeListener(m_tagListener);
+  deleteChildren();
+}

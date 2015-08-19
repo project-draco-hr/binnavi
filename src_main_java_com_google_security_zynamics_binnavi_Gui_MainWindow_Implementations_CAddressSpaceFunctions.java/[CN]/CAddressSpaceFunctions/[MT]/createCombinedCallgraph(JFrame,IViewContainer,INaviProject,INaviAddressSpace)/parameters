@@ -1,0 +1,4 @@
+JFrame parent
+IViewContainer container
+INaviProject project
+INaviAddressSpace addressSpace

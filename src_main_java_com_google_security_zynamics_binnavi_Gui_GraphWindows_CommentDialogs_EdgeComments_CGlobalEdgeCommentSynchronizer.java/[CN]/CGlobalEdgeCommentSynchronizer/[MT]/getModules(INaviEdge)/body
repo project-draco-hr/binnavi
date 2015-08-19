@@ -1,0 +1,17 @@
+{
+  INaviModule srcModule=null;
+  INaviModule tarModule=null;
+  if (edge.getSource() instanceof INaviCodeNode) {
+    srcModule=((INaviCodeNode)edge.getSource()).getParentFunction().getModule();
+  }
+ else   if (edge.getSource() instanceof INaviFunctionNode) {
+    srcModule=((INaviFunctionNode)edge.getSource()).getFunction().getModule();
+  }
+  if (edge.getTarget() instanceof INaviCodeNode) {
+    tarModule=((INaviCodeNode)edge.getTarget()).getParentFunction().getModule();
+  }
+ else   if (edge.getTarget() instanceof INaviFunctionNode) {
+    tarModule=((INaviFunctionNode)edge.getTarget()).getFunction().getModule();
+  }
+  return new Pair<INaviModule,INaviModule>(srcModule,tarModule);
+}

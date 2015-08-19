@@ -1,0 +1,3 @@
+{
+  return Objects.hash(this.sourceAddress,this.sourceModuleId,this.targetAddress,this.targetModuleId);
+}

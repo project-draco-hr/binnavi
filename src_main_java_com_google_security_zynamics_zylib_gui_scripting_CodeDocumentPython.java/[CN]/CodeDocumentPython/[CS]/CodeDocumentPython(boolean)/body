@@ -1,0 +1,32 @@
+{
+  super(addBraces);
+  keywords.add("import");
+  keywords.add("for");
+  keywords.add("from");
+  keywords.add("print");
+  keywords.add("in");
+  keywords.add("while");
+  keywords.add("if");
+  keywords.add("is");
+  keywords.add("and");
+  keywords.add("not");
+  keywords.add("or");
+  keywords.add("else");
+  keywords.add("elif");
+  keywords.add("lambda");
+  keywords.add("continue");
+  keywords.add("break");
+  keywords.add("return");
+  keywords.add("assert");
+  keywords.add("class");
+  keywords.add("def");
+  keywords.add("del");
+  keywords.add("except");
+  keywords.add("exec");
+  keywords.add("finally");
+  keywords.add("global");
+  keywords.add("pass");
+  keywords.add("raise");
+  keywords.add("try");
+  keywords.add("yield");
+}

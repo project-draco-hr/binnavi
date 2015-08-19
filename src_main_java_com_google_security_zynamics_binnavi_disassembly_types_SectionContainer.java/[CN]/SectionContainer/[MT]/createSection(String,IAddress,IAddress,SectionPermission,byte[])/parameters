@@ -1,0 +1,5 @@
+String name
+IAddress startAddress
+IAddress endAddress
+SectionPermission sectionPermission
+byte[] data

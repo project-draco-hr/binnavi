@@ -1,0 +1,37 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(model,"IE01617: Model argument can't be null");
+  m_model=model;
+  m_model.setPanel(this);
+  m_viewModel=new CPerspectiveModel(model);
+  final CGraphWindow parent=m_model.getParent();
+  final ZyGraph graph=m_model.getGraph();
+  final InternalViewSwitcher viewSwitcher=new InternalViewSwitcher();
+  m_toolBar=new CGraphToolBar(parent,model.getGraphPanel(),graph,m_model.getViewContainer().getModules());
+  m_menuBar=new CGraphWindowMenuBar(m_model,viewSwitcher);
+  m_graphSynchronizer=new CGraphPanelSynchronizer(m_model,m_menuBar);
+  final CDebugPerspectiveModel debugPerspective=((CDebugPerspectiveModel)m_viewModel.getModel(PerspectiveType.DebugPerspective));
+  m_bottomPanel=new CCombinedBottomPanel(model,m_graphSynchronizer,m_viewModel);
+  m_centerPanel=new CCombinedCenterPanel(model.getGraph(),debugPerspective);
+  m_rightPanel=new CCombinedRightPanel(parent,model,m_viewModel);
+  m_leftPanel=new CCombinedLeftPanel(model,m_viewModel,m_toolBar.getSearchPanel().getSearchField());
+  createGui();
+  m_dialogs=new CGraphPanelDialogs(model,m_menuBar);
+  CGraphHotkeys.registerHotKeys(parent,this,(IFrontEndDebuggerProvider)m_viewModel.getModel(PerspectiveType.DebugPerspective),m_toolBar.getSearchPanel().getSearchField(),m_toolBar.getGotoAddressField());
+  for (  final IDebugger debugger : model.getDebuggerProvider().getDebuggers()) {
+    if (debugger.isConnected()) {
+      debugPerspective.setActiveDebugger(debugger);
+      viewSwitcher.activateDebugView();
+      break;
+    }
+  }
+  final IDebugger debugger=debugPerspective.getCurrentSelectedDebugger();
+  if ((debugger != null) && debugger.isConnected()) {
+    for (    final TargetProcessThread thread : debugger.getProcessManager().getThreads()) {
+      final RelocatedAddress address=thread.getCurrentAddress();
+      if (address != null) {
+        CDebuggerPainter.updateDebuggerHighlighting(graph,debugger.memoryToFile(address),debugger.getModule(address));
+      }
+    }
+  }
+}

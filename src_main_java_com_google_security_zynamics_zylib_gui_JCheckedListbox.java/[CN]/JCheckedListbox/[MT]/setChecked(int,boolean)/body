@@ -1,0 +1,5 @@
+{
+  m_selected[index]=isSelected;
+  updateUI();
+  fireSelectionValueChanged(index,index,false);
+}

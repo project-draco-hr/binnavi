@@ -1,0 +1,19 @@
+{
+  generalSettings.store(properties);
+  properties.setInteger(DATABASES_COUNT,databases.size());
+  for (int i=0; i < databases.size(); i++) {
+    databases.get(i).storeWithKeyPrefix(properties,DATABASES_PREFIX + i + ".");
+  }
+  callGraphSettings.storeWithKeyPrefix(properties,"CallGraphSettings.");
+  flowGraphSettings.storeWithKeyPrefix(properties,"FlowGraphSettings.");
+  colors.storeWithKeyPrefix(properties,"Colors.");
+  debuggerColors.storeWithKeyPrefix(properties,"Debugger.Colors.");
+  try {
+    final File configDir=new File(filename).getParentFile();
+    if (configDir != null)     configDir.mkdirs();
+    properties.getProperties().storeToXML(new FileOutputStream(filename),Constants.PROJECT_NAME_VERSION);
+  }
+ catch (  final IOException e) {
+    throw new FileWriteException(e);
+  }
+}

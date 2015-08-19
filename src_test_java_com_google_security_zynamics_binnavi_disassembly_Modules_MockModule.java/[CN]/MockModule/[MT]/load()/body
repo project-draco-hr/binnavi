@@ -1,0 +1,6 @@
+{
+  m_loaded=true;
+  for (  final IModuleListener listener : m_listeners) {
+    listener.loadedModule(this);
+  }
+}

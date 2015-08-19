@@ -1,0 +1,23 @@
+{
+  final int moduleId=module.getConfiguration().getId();
+  final INaviRawModule rawModule=module.getConfiguration().getRawModule();
+  if (!rawModule.isComplete()) {
+    throw new CouldntSaveDataException("E00008: Raw module is incomplete");
+  }
+  try {
+    reporter.report(ModuleInitializeEvents.Starting);
+    final String query=" { call import(?,?,?) } ";
+    final CallableStatement call=getProvider().getConnection().getConnection().prepareCall(query);
+    call.setInt(1,rawModule.getId());
+    call.setInt(2,moduleId);
+    call.setInt(3,CUserManager.get(getProvider()).getCurrentActiveUser().getUserId());
+    call.execute();
+    module.setInitialized();
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+ finally {
+    reporter.report(ModuleInitializeEvents.Finished);
+  }
+}

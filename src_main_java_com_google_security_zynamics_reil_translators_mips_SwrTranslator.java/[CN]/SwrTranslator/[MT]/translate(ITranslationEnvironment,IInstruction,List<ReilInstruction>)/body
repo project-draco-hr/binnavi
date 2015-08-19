@@ -1,0 +1,39 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"swr");
+  final OperandSize dw=OperandSize.DWORD;
+  final String lastTwoAddressBits=environment.getNextVariableString();
+  final String shiftValue=environment.getNextVariableString();
+  final String memoryMaskShiftValue=environment.getNextVariableString();
+  final String registerShiftAmount=environment.getNextVariableString();
+  final String memoryContent=environment.getNextVariableString();
+  final String memoryMask=environment.getNextVariableString();
+  final String memoryMaskedContent=environment.getNextVariableString();
+  final String combinedContent=environment.getNextVariableString();
+  final String registerShiftedContent=environment.getNextVariableString();
+  final String address=environment.getNextVariableString();
+  final String resultValue=environment.getNextVariableString();
+  final IOperandTreeNode sourceRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String extendedValue=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  instructions.add(ReilHelpers.createAnd(offset++,dw,extendedValue,dw,String.valueOf(0xFFFFFFFCL),dw,address));
+  instructions.add(ReilHelpers.createLdm(offset,dw,address,dw,memoryContent));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,extendedValue,dw,String.valueOf(3L),dw,lastTwoAddressBits));
+  instructions.add(ReilHelpers.createBsh(offset++,dw,lastTwoAddressBits,dw,String.valueOf(3L),dw,shiftValue));
+  final String endianess="little";
+  if (endianess.equalsIgnoreCase("little")) {
+    instructions.add(ReilHelpers.createAdd(offset++,dw,String.valueOf(0L),dw,shiftValue,dw,registerShiftAmount));
+    instructions.add(ReilHelpers.createAdd(offset++,dw,String.valueOf(-32L),dw,shiftValue,dw,memoryMaskShiftValue));
+  }
+ else   if (endianess.equalsIgnoreCase("big")) {
+    instructions.add(ReilHelpers.createSub(offset++,dw,String.valueOf(24L),dw,shiftValue,dw,registerShiftAmount));
+    instructions.add(ReilHelpers.createSub(offset++,dw,String.valueOf(-8L),dw,shiftValue,dw,memoryMaskShiftValue));
+  }
+  instructions.add(ReilHelpers.createBsh(offset++,dw,String.valueOf(0xFFFFFFFFL),dw,memoryMaskShiftValue,dw,memoryMask));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,memoryContent,dw,memoryMask,dw,memoryMaskedContent));
+  instructions.add(ReilHelpers.createBsh(offset++,dw,sourceRegister.getValue(),dw,registerShiftAmount,dw,registerShiftedContent));
+  instructions.add(ReilHelpers.createOr(offset++,dw,registerShiftedContent,dw,memoryMaskedContent,dw,combinedContent));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,combinedContent,dw,String.valueOf(0xFFFFFFFFL),dw,resultValue));
+  instructions.add(ReilHelpers.createStm(offset++,dw,resultValue,dw,address));
+}

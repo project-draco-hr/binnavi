@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(APPENDED_LOCAL_EDGE_COMMENT);
+}

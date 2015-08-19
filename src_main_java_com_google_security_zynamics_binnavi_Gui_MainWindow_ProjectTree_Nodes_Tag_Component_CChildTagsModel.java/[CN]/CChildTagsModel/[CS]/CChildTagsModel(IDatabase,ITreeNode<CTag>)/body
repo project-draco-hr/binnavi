@@ -1,0 +1,6 @@
+{
+  m_tagTreeNode=Preconditions.checkNotNull(tagTreeNode,"IE01996: Tag argument can't be null");
+  m_database=Preconditions.checkNotNull(database,"IE01997: Database argument can't be null");
+  m_database.getContent().getViewTagManager().addListener(m_tagManagerListener);
+  m_tagTreeNode.getObject().addListener(m_tagListener);
+}

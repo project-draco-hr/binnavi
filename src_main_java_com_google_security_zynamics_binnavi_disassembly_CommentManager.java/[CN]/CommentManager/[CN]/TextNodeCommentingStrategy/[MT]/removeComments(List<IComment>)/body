@@ -1,0 +1,3 @@
+{
+  textNodeCommentContainer.unsetComments(textNode,comments);
+}

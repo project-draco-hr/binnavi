@@ -1,0 +1,9 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      updateDebuggersComboBox();
+      updateSaveFields();
+    }
+  }
+.invokeLater();
+}

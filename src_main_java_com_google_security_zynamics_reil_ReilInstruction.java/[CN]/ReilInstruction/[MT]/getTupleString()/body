@@ -1,0 +1,3 @@
+{
+  return String.format("%010X: (%s, (%s, %s, %s), (%s, %s, %s), [%s])",address,mnemonic,firstOperand.getValue(),secondOperand.getValue(),thirdOperand.getValue(),firstOperand.getSize(),secondOperand.getSize(),thirdOperand.getSize(),getMetaDataString());
+}

@@ -1,0 +1,23 @@
+{
+  String name="";
+  String description="";
+  final List<CTutorialStep> steps=new ArrayList<CTutorialStep>();
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  final DocumentBuilder builder=factory.newDocumentBuilder();
+  final Document document=builder.parse(file);
+  final NodeList nodes=document.getFirstChild().getChildNodes();
+  for (int i=0; i < nodes.getLength(); ++i) {
+    final Node node=nodes.item(i);
+    final String nodeName=node.getNodeName();
+    if ("name".equals(nodeName)) {
+      name=node.getTextContent();
+    }
+ else     if ("description".equals(nodeName)) {
+      description=node.getTextContent();
+    }
+ else     if ("steps".equals(nodeName)) {
+      steps.addAll(readSteps(node));
+    }
+  }
+  return new CTutorial(name,description,steps);
+}

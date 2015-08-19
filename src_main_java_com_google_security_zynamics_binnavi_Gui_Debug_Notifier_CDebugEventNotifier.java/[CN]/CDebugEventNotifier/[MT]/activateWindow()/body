@@ -1,0 +1,15 @@
+{
+  for (  final IGraphContainerWindow window : CWindowManager.instance().getOpenWindows()) {
+    for (    final IGraphPanel graphPanel : window) {
+      final BackEndDebuggerProvider debuggerProvider=graphPanel.getModel().getDebuggerProvider();
+      for (      final IDebugger d : debuggerProvider) {
+        if (d == m_debugger) {
+          window.activate(graphPanel);
+          window.show();
+          return window.getFrame();
+        }
+      }
+    }
+  }
+  return null;
+}

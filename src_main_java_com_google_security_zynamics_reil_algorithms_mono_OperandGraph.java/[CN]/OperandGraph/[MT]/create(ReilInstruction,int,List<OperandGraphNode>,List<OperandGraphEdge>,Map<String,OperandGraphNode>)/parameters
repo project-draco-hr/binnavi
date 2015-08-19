@@ -1,0 +1,5 @@
+ReilInstruction instruction
+int index
+List<OperandGraphNode> nodes
+List<OperandGraphEdge> edges
+Map<String,OperandGraphNode> defines

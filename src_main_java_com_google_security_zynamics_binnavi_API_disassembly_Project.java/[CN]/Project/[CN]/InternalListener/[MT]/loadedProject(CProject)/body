@@ -1,0 +1,11 @@
+{
+  convertData();
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.loadedProject(Project.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    configFile.getGeneralSettings().getPlugins().clear();
+    final DefaultListModel model=(DefaultListModel)pluginList.getModel();
+    for (int i=0; i < model.getSize(); i++) {
+      @SuppressWarnings("unchecked") final PluginItem<T> pluginItem=(PluginItem<T>)model.get(i);
+      final PluginConfigItem pluginType=new PluginConfigItem();
+      pluginType.setName(pluginItem.getObject().getName());
+      pluginType.setGUID(pluginItem.getObject().getGuid());
+      pluginType.setLoad(pluginList.isChecked(i));
+      configFile.getGeneralSettings().getPlugins().add(pluginType);
+    }
+    setVisible(false);
+    dispose();
+  }
+ else   if (event.getActionCommand().equals("Cancel")) {
+    setVisible(false);
+    dispose();
+  }
+}

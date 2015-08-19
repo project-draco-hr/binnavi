@@ -1,0 +1,29 @@
+{
+  final MemoryExpressionParser.prog_return retval=new MemoryExpressionParser.prog_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token EOF2=null;
+  MemoryExpressionParser.expression_return expression1=null;
+  Object EOF2_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_expression_in_prog187);
+      expression1=expression();
+      state._fsp--;
+      adaptor.addChild(root_0,expression1.getTree());
+      EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_prog189);
+      EOF2_tree=(Object)adaptor.create(EOF2);
+      adaptor.addChild(root_0,EOF2_tree);
+    }
+    retval.stop=input.LT(-1);
+    retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+    adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+  }
+ catch (  final RecognitionException e) {
+    throw e;
+  }
+ finally {
+  }
+  return retval;
+}

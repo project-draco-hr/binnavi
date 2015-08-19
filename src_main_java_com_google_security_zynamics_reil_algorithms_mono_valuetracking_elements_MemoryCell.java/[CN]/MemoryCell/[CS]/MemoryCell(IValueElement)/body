@@ -1,0 +1,4 @@
+{
+  m_element=Preconditions.checkNotNull(element,"Error: element argument can not be null");
+  Preconditions.checkArgument(!(element instanceof Undefined),"Error: name argument can not be Undefined");
+}

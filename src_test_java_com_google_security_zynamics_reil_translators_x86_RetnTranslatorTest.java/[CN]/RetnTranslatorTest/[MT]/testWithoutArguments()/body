@@ -1,0 +1,12 @@
+{
+  interpreter.setRegister("esp",BigInteger.valueOf(0x1000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setMemory(0x1000,0x2000,4);
+  final List<MockOperandTree> operands=Lists.newArrayList();
+  final IInstruction instruction=new MockInstruction("retn",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(2,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x1004),interpreter.getVariableValue("esp"));
+  assertEquals(BigInteger.valueOf(0x2000),interpreter.getVariableValue("eip"));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+}

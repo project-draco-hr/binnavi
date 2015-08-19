@@ -1,0 +1,3 @@
+{
+  getProvider().editLocalInstructionComment(codeNode,instruction,1,1,null);
+}

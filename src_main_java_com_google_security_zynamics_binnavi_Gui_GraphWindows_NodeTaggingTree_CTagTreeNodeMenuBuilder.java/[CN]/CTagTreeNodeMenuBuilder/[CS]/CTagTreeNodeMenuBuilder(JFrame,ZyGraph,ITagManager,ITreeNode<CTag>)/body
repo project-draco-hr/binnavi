@@ -1,0 +1,15 @@
+{
+  m_popupMenu=new JPopupMenu();
+  m_popupMenu.add(CActionProxy.proxy(new CAddTagToSelectedNodesAction(parent,graph,tag)));
+  m_popupMenu.add(new JSeparator());
+  m_popupMenu.add(CActionProxy.proxy(new CRemoveTagFromSelectedNodesAction(parent,graph,tag)));
+  m_popupMenu.add(CActionProxy.proxy(new CRemoveTagFromAllNodesAction(parent,graph,tag.getObject())));
+  m_popupMenu.add(new JSeparator());
+  m_popupMenu.add(CActionProxy.proxy(new CAppendTagAction(parent,tagManager,tag)));
+  m_popupMenu.add(CActionProxy.proxy(new CInsertTagAction(parent,tagManager,tag)));
+  m_popupMenu.add(new JSeparator());
+  m_popupMenu.add(CActionProxy.proxy(new CEditTagAction(parent,tag.getObject())));
+  m_popupMenu.add(new JSeparator());
+  m_popupMenu.add(CActionProxy.proxy(new CDeleteTagAction(parent,tagManager,tag)));
+  m_popupMenu.add(CActionProxy.proxy(new CDeleteTagSubtreeAction(parent,tagManager,tag)));
+}

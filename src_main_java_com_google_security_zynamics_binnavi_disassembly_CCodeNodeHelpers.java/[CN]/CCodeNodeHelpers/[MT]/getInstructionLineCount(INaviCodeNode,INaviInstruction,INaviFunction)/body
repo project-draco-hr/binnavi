@@ -1,0 +1,19 @@
+{
+  int count=0;
+  if (codeNode.getComments().getLocalInstructionComment(instruction) != null) {
+    for (    final IComment comment : codeNode.getComments().getLocalInstructionComment(instruction)) {
+      count+=comment.getNumberOfCommentLines();
+    }
+  }
+  if (instruction.getGlobalComment() != null) {
+    for (    final IComment comment : instruction.getGlobalComment()) {
+      count+=comment.getNumberOfCommentLines();
+    }
+  }
+  if (function != null && function.getGlobalComment() != null) {
+    for (    final IComment comment : function.getGlobalComment()) {
+      count+=comment.getNumberOfCommentLines();
+    }
+  }
+  return count == 0 ? 1 : count;
+}

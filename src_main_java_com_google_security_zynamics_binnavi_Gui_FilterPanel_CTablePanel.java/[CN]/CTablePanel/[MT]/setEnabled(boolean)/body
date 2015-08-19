@@ -1,0 +1,7 @@
+{
+  super.setEnabled(enabled);
+  m_table.setEnabled(enabled);
+  if (m_filterPanel != null) {
+    m_filterPanel.setEnabled(enabled);
+  }
+}

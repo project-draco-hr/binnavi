@@ -1,0 +1,6 @@
+{
+  final Collection<U> neighbors=getNeighborhood(graph,node);
+  final List<U> notNeighbors=GraphHelpers.getNodes(graph);
+  notNeighbors.removeAll(neighbors);
+  graph.selectNodes(neighbors,notNeighbors);
+}

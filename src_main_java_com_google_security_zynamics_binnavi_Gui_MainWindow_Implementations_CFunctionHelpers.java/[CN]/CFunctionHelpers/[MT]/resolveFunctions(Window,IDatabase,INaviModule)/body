@@ -1,0 +1,5 @@
+{
+  final CResolveFunctionDialog dlg=new CResolveFunctionDialog(parent,database,module);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+}

@@ -1,0 +1,8 @@
+{
+  m_debugger.addListener(m_debuglistener);
+  final ProcessManager processManager=m_debugger.getProcessManager();
+  processManager.addListener(m_processListener);
+  for (  final TargetProcessThread thread : processManager.getThreads()) {
+    thread.addListener(m_threadEventListener);
+  }
+}

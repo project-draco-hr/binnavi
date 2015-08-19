@@ -1,0 +1,23 @@
+{
+  final BigInteger lastIndirectCallAddress=lastHits.get(threadId);
+  if (lastIndirectCallAddress == null) {
+    return;
+  }
+synchronized (resolvedAddresses) {
+    if (!resolvedAddresses.containsKey(lastIndirectCallAddress)) {
+      resolvedAddresses.put(lastIndirectCallAddress,new HashSet<ResolvedFunction>());
+    }
+    final ResolvedFunction resolvedFunction=resolveFunction(new Address(resolvedAddress));
+    if (resolvedAddresses.get(lastIndirectCallAddress).add(resolvedFunction)) {
+      hitCounter.put(lastIndirectCallAddress,0);
+    }
+    if (hitCounter.get(lastIndirectCallAddress) >= HIT_THRESHOLD) {
+      final IndirectCall indirectCall=IndirectCallResolver.findIndirectCall(debugger,indirectCallAddresses,lastIndirectCallAddress);
+      if (indirectCall != null) {
+        removeBreakpoint(indirectCall);
+        removedBreakpoints.add(indirectCall);
+        resolvedCall(lastIndirectCallAddress,resolvedFunction);
+      }
+    }
+  }
+}

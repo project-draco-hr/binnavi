@@ -1,0 +1,4 @@
+{
+  final CPluginDialog<IPluginInterface> dlg=new CPluginDialog<IPluginInterface>(parent,PluginInterface.instance().getPluginRegistry().getNative(),ConfigManager.instance());
+  dlg.setVisible(true);
+}

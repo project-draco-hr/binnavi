@@ -1,0 +1,3 @@
+{
+  return ((data[offset + 1] & 0xFFL) * 0x100) + (data[offset + 0] & 0xFFL);
+}

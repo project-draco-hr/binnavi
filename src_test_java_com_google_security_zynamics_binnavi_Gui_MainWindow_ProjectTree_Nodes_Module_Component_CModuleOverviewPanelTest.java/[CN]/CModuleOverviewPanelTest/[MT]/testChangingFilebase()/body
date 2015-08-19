@@ -1,0 +1,14 @@
+{
+  assertFalse(m_saveButton.isEnabled());
+  m_fileBaseAddr.setText("1");
+  Thread.sleep(100);
+  assertTrue(m_saveButton.isEnabled());
+  m_module.getConfiguration().setFileBase(new CAddress(1));
+  Thread.sleep(100);
+  assertFalse(m_saveButton.isEnabled());
+  m_module.getConfiguration().setFileBase(new CAddress(2));
+  Thread.sleep(100);
+  assertEquals("00000002",m_fileBaseAddr.getText());
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

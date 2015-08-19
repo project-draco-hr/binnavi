@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkArgument(operandPosition >= 0,"Error: operand position must be equal or greater then zero");
+  Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  Preconditions.checkNotNull(instance,"Error: instance argument can not be null");
+  final TypeInstanceReference reference=backend.createTypeInstanceReference(address,operandPosition,node,instance,view);
+  referencesByInstance.put(instance,reference);
+  notifyReferenceAdded(reference);
+  return reference;
+}

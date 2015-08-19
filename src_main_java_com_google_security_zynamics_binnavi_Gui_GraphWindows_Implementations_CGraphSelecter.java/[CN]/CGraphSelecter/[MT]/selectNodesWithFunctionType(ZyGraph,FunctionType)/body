@@ -1,0 +1,9 @@
+{
+  final List<NaviNode> nodes=GraphHelpers.filter(graph,new ICollectionFilter<NaviNode>(){
+    @Override public boolean qualifies(    final NaviNode item){
+      return item.getRawNode() instanceof INaviFunctionNode && ((INaviFunctionNode)item.getRawNode()).getFunction().getType().equals(type);
+    }
+  }
+);
+  graph.selectNodes(nodes,true);
+}

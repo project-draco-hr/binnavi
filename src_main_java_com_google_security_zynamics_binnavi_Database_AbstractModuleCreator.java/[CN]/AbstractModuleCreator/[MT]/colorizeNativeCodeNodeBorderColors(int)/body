@@ -1,0 +1,3 @@
+{
+  PostgreSQLBorderColorizer.setInitialBorderColors(getProvider().getConnection(),moduleId);
+}

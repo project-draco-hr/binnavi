@@ -1,0 +1,7 @@
+{
+  final RawTypeMember typeMember=backend.loadRawTypeMember(rawMemberId);
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.addMember(typeMember);
+  notifyMemberAdded(typesContainer.getTypeMemberById(rawMemberId));
+  notifyTypesUpdated(affectedTypes);
+  notifySubstitutionsChanged(affectedTypes);
+}

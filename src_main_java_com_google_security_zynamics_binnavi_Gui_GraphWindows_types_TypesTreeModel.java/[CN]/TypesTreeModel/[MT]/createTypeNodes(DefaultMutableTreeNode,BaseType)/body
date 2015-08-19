@@ -1,0 +1,31 @@
+{
+  if (baseType.getCategory() == BaseTypeCategory.ARRAY) {
+    return;
+  }
+ else {
+    for (    final TypeMember member : baseType) {
+switch (member.getBaseType().getCategory()) {
+case ARRAY:
+case ATOMIC:
+case POINTER:
+        final TypeMemberTreeNode memberNode=new TypeMemberTreeNode(member);
+      currentNode.add(memberNode);
+    memberNodes.put(member,memberNode);
+  break;
+case FUNCTION_PROTOTYPE:
+break;
+case STRUCT:
+case UNION:
+final TypeMemberTreeNode nestedNode=new TypeMemberTreeNode(member);
+memberNodes.put(member,nestedNode);
+nestedStructNodes.put(member.getBaseType(),nestedNode);
+currentNode.add(nestedNode);
+createTypeNodes(nestedNode,member.getBaseType());
+break;
+default :
+NaviLogger.warning("Unknown type category: %d",member.getBaseType().getCategory());
+break;
+}
+}
+}
+}

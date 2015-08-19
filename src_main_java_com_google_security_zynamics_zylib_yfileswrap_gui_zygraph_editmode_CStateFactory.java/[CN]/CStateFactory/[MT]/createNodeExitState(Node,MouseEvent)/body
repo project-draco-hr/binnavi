@@ -1,0 +1,5 @@
+{
+  final CNodeExitState<NodeType,EdgeType> state=new CNodeExitState<NodeType,EdgeType>(this,m_graph,n);
+  m_factory.createNodeExitAction().execute(state,event);
+  return state;
+}

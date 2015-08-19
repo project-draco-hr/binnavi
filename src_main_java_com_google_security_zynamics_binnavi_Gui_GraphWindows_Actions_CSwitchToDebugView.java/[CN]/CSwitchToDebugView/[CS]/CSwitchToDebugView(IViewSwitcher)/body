@@ -1,0 +1,5 @@
+{
+  super("Debug Perspective");
+  m_viewSwitcher=Preconditions.checkNotNull(viewSwitcher,"IE02839: viewSwitcher argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_SWITCH_TO_DEBUG_PERSPECTIVE_HK.getKeyStroke());
+}

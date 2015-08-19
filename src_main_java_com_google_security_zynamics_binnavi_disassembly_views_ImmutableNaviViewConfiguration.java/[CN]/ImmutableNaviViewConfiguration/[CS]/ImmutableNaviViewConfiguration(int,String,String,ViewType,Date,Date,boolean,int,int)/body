@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(viewId > 0,"Error: view id must be a positive integer");
+  this.viewId=viewId;
+  this.name=Preconditions.checkNotNull(name,"IE02805: name argument can not be null");
+  this.description=description;
+  this.viewType=viewType;
+  this.creationDate=Preconditions.checkNotNull(creationDate,"IE02806: creationDate argument can not be null");
+  this.modificationDate=Preconditions.checkNotNull(modificationDate,"Error: modificationDate argument can not be null");
+  this.starState=starState;
+  this.nodeCount=nodeCount;
+  this.edgeCount=edgeCount;
+}

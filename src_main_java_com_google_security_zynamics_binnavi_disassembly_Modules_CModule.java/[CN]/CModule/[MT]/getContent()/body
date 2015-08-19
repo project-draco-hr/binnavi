@@ -1,0 +1,3 @@
+{
+  return Preconditions.checkNotNull(m_content,"IE00462: Module is not loaded");
+}

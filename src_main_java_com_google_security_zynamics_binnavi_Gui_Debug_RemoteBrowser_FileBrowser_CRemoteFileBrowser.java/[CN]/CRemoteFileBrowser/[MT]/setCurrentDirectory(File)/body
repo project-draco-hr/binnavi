@@ -1,0 +1,9 @@
+{
+  if (debugger != null && getFileSystemView() != null && directory != null && !getCurrentDirectory().equals(directory)) {
+    final String normalizedDirectory=directory.getAbsolutePath();
+    final CLoaderThread thread=new CLoaderThread(this,debugger,normalizedDirectory);
+    CProgressDialog.showEndless(parent,String.format("Loading content of directory '%s'",normalizedDirectory),thread);
+    ConfigManager.instance().getGeneralSettings().setLastDirectory(normalizedDirectory);
+  }
+  super.setCurrentDirectory(directory);
+}

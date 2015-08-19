@@ -1,0 +1,11 @@
+{
+  return new IHelpInformation(){
+    @Override public String getText(){
+      return "Used to select the active debugger. This debugger is the one who receives input when you click buttons like Resume or set breakpoints.";
+    }
+    @Override public URL getUrl(){
+      return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+    }
+  }
+;
+}

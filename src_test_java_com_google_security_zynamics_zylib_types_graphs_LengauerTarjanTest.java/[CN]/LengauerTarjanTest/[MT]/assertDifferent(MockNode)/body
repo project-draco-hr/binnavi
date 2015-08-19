@@ -1,0 +1,3 @@
+{
+  assertEquals(candidates.length,new HashSet<MockNode>(Lists.newArrayList(candidates)).size());
+}

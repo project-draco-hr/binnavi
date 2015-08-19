@@ -1,0 +1,7 @@
+{
+  this.trace=trace;
+  for (  final ITraceEvent event : this.trace) {
+    events.add(new TraceEvent(event));
+  }
+  this.trace.addListener(listener);
+}

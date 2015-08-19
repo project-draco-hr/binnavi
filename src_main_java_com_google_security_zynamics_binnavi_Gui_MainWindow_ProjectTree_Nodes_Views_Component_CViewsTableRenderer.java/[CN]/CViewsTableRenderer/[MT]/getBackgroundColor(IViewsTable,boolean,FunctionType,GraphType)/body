@@ -1,0 +1,7 @@
+{
+  if (isSelected) {
+    return table.self().getSelectionBackground();
+  }
+  if (graphType == GraphType.FLOWGRAPH && functionType == FunctionType.NORMAL)   return Color.WHITE;
+  return CFunctionNodeColorizer.getFunctionColor(functionType);
+}

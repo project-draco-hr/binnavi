@@ -1,0 +1,11 @@
+{
+  final BreakpointStatus status=manager.getBreakpointStatus(breakpoint.getAddress(),BreakpointType.REGULAR);
+  if ((status.equals(BreakpointStatus.BREAKPOINT_ENABLED) || status.equals(BreakpointStatus.BREAKPOINT_ACTIVE)) && breakpoint.getCondition() != null) {
+    try {
+      debugger.setBreakPointCondition(breakpoint.getAddress(),breakpoint.getCondition());
+    }
+ catch (    final DebugExceptionWrapper exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  if (oldDebugger != null) {
+    oldDebugger.getProcessManager().removeListener(m_processListener);
+  }
+  m_model.reset();
+  if (newDebugger != null) {
+    for (    final MemoryModule module : newDebugger.getProcessManager().getModules()) {
+      m_model.addModule(module);
+    }
+    newDebugger.getProcessManager().addListener(m_processListener);
+  }
+}

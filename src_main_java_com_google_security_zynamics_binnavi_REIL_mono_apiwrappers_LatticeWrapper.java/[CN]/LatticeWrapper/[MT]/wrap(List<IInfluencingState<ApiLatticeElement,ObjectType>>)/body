@@ -1,0 +1,7 @@
+{
+  final List<com.google.security.zynamics.binnavi.API.reil.mono.IInfluencingState<ApiLatticeElement,ObjectType>> wrapped=new ArrayList<com.google.security.zynamics.binnavi.API.reil.mono.IInfluencingState<ApiLatticeElement,ObjectType>>();
+  for (  final IInfluencingState<ApiLatticeElement,ObjectType> influencingState : states) {
+    wrapped.add(new StateWrapper<ApiLatticeElement,ObjectType>(influencingState));
+  }
+  return wrapped;
+}

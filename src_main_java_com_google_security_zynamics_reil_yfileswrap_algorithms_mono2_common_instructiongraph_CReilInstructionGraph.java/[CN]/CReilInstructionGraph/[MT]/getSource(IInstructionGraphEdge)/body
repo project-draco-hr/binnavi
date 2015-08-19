@@ -1,0 +1,3 @@
+{
+  return m_nodesMap.get(m_internalGraph.getSource(m_edgesMap.inverse().get(instructionGraphEdge)));
+}

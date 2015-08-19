@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(fileSystem,"IE01497: File system argument can not be null");
+  m_fileSystem=fileSystem;
+}

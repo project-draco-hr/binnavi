@@ -1,0 +1,16 @@
+{
+  final List<BreakpointAddress> addresses=new ArrayList<BreakpointAddress>();
+  final Set<BreakpointAddress> addressesForManager=new HashSet<BreakpointAddress>();
+  for (  final Breakpoint breakpoint : breakPoints) {
+    if (debugger.isConnected()) {
+      if (isBreakpointInsideModules(breakpoint,debugger.getProcessManager().getModules())) {
+        addresses.add(breakpoint.getAddress());
+      }
+ else {
+        addressesForManager.add(breakpoint.getAddress());
+      }
+    }
+  }
+  manager.setBreakpointStatus(addressesForManager,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_INACTIVE);
+  return addresses;
+}

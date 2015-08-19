@@ -1,0 +1,24 @@
+{
+  super(new BorderLayout());
+  setBorder(new LineBorder(Color.GRAY));
+  inputField=new JTextField(defaultText);
+  inputField.setEditable(false);
+  if ((width > 0) || (height > 0)) {
+    setPreferredSize(new Dimension(width,height));
+  }
+  final JPanel p1extBt=new JPanel(new BorderLayout());
+  browseButton=new JButton(buttonText);
+  browseButton.setBorder(new MatteBorder(0,1,0,0,Color.GRAY));
+  final Dimension prefSide=browseButton.getPreferredSize();
+  browseButton.setPreferredSize(new Dimension(prefSide.width + 15,prefSide.height));
+  if (buttonWidth > 0) {
+    browseButton.setPreferredSize(new Dimension(buttonWidth,height));
+  }
+  p1extBt.add(browseButton,BorderLayout.CENTER);
+  browseButton.setFocusable(false);
+  add(inputField,BorderLayout.CENTER);
+  add(p1extBt,BorderLayout.EAST);
+  browseButton.addActionListener(listener);
+  ToolTipManager.sharedInstance().registerComponent(inputField);
+  inputField.setToolTipText(getText());
+}

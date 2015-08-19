@@ -1,0 +1,28 @@
+{
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      if (node.getRawNode() instanceof INaviCodeNode) {
+        final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+        for (        final INaviInstruction instruction : codeNode.getInstructions()) {
+          if (instruction.getAddress().equals(address)) {
+            uncollapseParents(codeNode);
+            graph.showNode(node,true);
+            ZoomFunctions.zoomToNode(graph,node);
+            return IterationMode.STOP;
+          }
+        }
+      }
+ else       if (node.getRawNode() instanceof INaviFunctionNode) {
+        final INaviFunctionNode functionNode=(INaviFunctionNode)node.getRawNode();
+        if (functionNode.getFunction().getAddress().equals(address)) {
+          uncollapseParents(functionNode);
+          graph.showNode(node,true);
+          ZoomFunctions.zoomToNode(graph,node);
+          return IterationMode.STOP;
+        }
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

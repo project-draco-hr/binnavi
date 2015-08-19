@@ -1,0 +1,14 @@
+{
+  final CModuleNode node=new CModuleNode(m_tree,new DefaultMutableTreeNode(),m_database,m_module,new CModuleContainer(m_database,m_module));
+  assertEquals("Name (55/66)",node.toString());
+  m_module.load();
+  assertEquals("Name (1/0)",node.toString());
+  final CView view=m_module.getContent().getViewContainer().createView("Foo","Bar");
+  assertEquals("Name (1/1)",node.toString());
+  m_module.getContent().getViewContainer().deleteView(view);
+  assertEquals("Name (1/0)",node.toString());
+  m_module.close();
+  node.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_module,"m_listeners"),"m_listeners")).isEmpty());
+}

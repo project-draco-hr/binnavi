@@ -1,0 +1,9 @@
+{
+  for (  final INaviViewNode blockNode : sourceNodes) {
+    if (blockNode instanceof INaviGroupNode) {
+      final INaviGroupNode gnode=(INaviGroupNode)blockNode;
+      final CGroupNode newGroupNode=target.getContent().createGroupNode(getNodes(gnode.getElements(),nodeMap));
+      newGroupNode.initializeComment(gnode.getComments());
+    }
+  }
+}

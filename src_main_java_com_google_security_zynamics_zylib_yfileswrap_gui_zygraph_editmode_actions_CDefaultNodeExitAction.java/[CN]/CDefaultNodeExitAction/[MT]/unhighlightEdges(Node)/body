@@ -1,0 +1,3 @@
+{
+  CEdgeHighlighter.highlightEdgesOfNode(node,false);
+}

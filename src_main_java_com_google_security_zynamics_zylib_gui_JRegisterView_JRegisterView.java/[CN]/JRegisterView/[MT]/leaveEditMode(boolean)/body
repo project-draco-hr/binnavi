@@ -1,0 +1,14 @@
+{
+  if (update) {
+    final RegisterInformationInternal editedRegister=m_registerModel.getRegisterInformation(this.m_editedRegister);
+    if (!Objects.equals(m_editValue,editedRegister.getValue())) {
+      beginRegisterUpdate();
+      m_registerModel.setValue(editedRegister.getRegisterName(),m_editValue);
+      endRegisterUpdate();
+    }
+  }
+  m_caret.setVisible(false);
+  m_editedRegister=-1;
+  m_caretPosition=0;
+  repaint();
+}

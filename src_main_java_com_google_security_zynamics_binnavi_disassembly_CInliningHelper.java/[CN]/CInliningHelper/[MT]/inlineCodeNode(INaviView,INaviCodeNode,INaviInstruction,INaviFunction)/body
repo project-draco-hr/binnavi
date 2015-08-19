@@ -1,0 +1,105 @@
+{
+  Preconditions.checkNotNull(view,"IE00108: View argument can not be null");
+  Preconditions.checkNotNull(originalNode,"IE00109: Node argument can not be null");
+  Preconditions.checkNotNull(inlineInstruction,"IE00110: Instruction argument can not be null");
+  Preconditions.checkArgument(originalNode.hasInstruction(inlineInstruction),"IE00111: Instruction is not part of the code node");
+  Preconditions.checkNotNull(functionToInline,"IE00112: Function argument can not be null");
+  Preconditions.checkArgument(view.isLoaded(),"IE00113: View must be loaded before it can be inlined");
+  Preconditions.checkArgument(view.getGraph().getNodes().contains(originalNode),"IE00114: Code node does not belong to the view");
+  Preconditions.checkArgument(functionToInline.isLoaded(),"IE00115: Function must be loaded before it can be inlined");
+  Preconditions.checkArgument(functionToInline.getBasicBlockCount() != 0,"IE00116: Functions with 0 blocks can not be inlined");
+  final INaviGroupNode parentGroup=originalNode.getParentGroup();
+  GroupHelpers.expandParents(originalNode);
+  final List<INaviEdge> oldIncomingEdges=originalNode.getIncomingEdges();
+  final List<INaviEdge> oldOutgoingEdges=originalNode.getOutgoingEdges();
+  final List<INaviInstruction> upperInstructions=new ArrayList<INaviInstruction>();
+  final List<INaviInstruction> lowerInstructions=new ArrayList<INaviInstruction>();
+  List<INaviInstruction> currentBlock=upperInstructions;
+  for (  final INaviInstruction currentInstruction : originalNode.getInstructions()) {
+    currentBlock.add(currentInstruction);
+    if (currentInstruction == inlineInstruction) {
+      currentBlock=lowerInstructions;
+    }
+  }
+  INaviCodeNode firstNode;
+  final List<INaviViewNode> continueNodes=new ArrayList<INaviViewNode>();
+  final boolean keepOriginalBlock=lowerInstructions.isEmpty();
+  CCodeNode returnNode=null;
+  if (keepOriginalBlock) {
+    firstNode=originalNode;
+    for (    final INaviEdge edge : originalNode.getOutgoingEdges()) {
+      continueNodes.add(edge.getTarget());
+      view.getContent().deleteEdge(edge);
+    }
+  }
+ else {
+    final boolean recolor=(originalNode.getIncomingEdges().size() == 1) && (originalNode.getIncomingEdges().get(0).getType() == EdgeType.ENTER_INLINED_FUNCTION) && (originalNode.getOutgoingEdges().size() == 1)&& (originalNode.getOutgoingEdges().get(0).getType() == EdgeType.LEAVE_INLINED_FUNCTION);
+    view.getContent().deleteNode(originalNode);
+    try {
+      firstNode=view.getContent().createCodeNode(originalNode.getParentFunction(),upperInstructions);
+    }
+ catch (    final MaybeNullException exception) {
+      firstNode=view.getContent().createCodeNode(null,upperInstructions);
+    }
+    firstNode.setColor(originalNode.getColor());
+    firstNode.setBorderColor(originalNode.getBorderColor());
+    try {
+      returnNode=view.getContent().createCodeNode(originalNode.getParentFunction(),lowerInstructions);
+    }
+ catch (    final MaybeNullException e1) {
+      returnNode=view.getContent().createCodeNode(null,lowerInstructions);
+    }
+    returnNode.setColor(originalNode.getColor());
+    if (recolor) {
+      firstNode.setBorderColor(new Color(-16736256));
+      returnNode.setBorderColor(new Color(-6291456));
+    }
+    if (parentGroup != null) {
+      parentGroup.addElement(firstNode);
+      parentGroup.addElement(returnNode);
+    }
+    final Iterator<CTag> it=originalNode.getTagsIterator();
+    while (it.hasNext()) {
+      final CTag tag=it.next();
+      try {
+        firstNode.tagNode(tag);
+        returnNode.tagNode(tag);
+      }
+ catch (      final CouldntSaveDataException e) {
+        CUtilityFunctions.logException(e);
+      }
+    }
+    continueNodes.add(returnNode);
+  }
+  final Triple<CCodeNode,List<CCodeNode>,ArrayList<CCodeNode>> nodes=insertNodes(view,functionToInline,parentGroup);
+  final INaviCodeNode entryNode=nodes.first();
+  final List<CCodeNode> exitNodes=nodes.second();
+  if (!keepOriginalBlock) {
+    for (    final INaviEdge incomingEdge : oldIncomingEdges) {
+      if (incomingEdge.getSource() == originalNode) {
+        final EdgeType edgeType=incomingEdge.getType();
+        view.getContent().createEdge(returnNode,firstNode,edgeType);
+      }
+ else {
+        final EdgeType edgeType=incomingEdge.getType();
+        view.getContent().createEdge(incomingEdge.getSource(),firstNode,edgeType);
+      }
+    }
+  }
+  view.getContent().createEdge(firstNode,entryNode,EdgeType.ENTER_INLINED_FUNCTION);
+  for (  final INaviCodeNode exitNode : exitNodes) {
+    for (    final INaviViewNode continueNode : continueNodes) {
+      view.getContent().createEdge(exitNode,continueNode,EdgeType.LEAVE_INLINED_FUNCTION);
+    }
+  }
+  if (!keepOriginalBlock) {
+    for (    final INaviEdge oldChild : oldOutgoingEdges) {
+      for (      final INaviViewNode continueNode : continueNodes) {
+        if (oldChild.getTarget() != originalNode) {
+          view.getContent().createEdge(continueNode,oldChild.getTarget(),oldChild.getType());
+        }
+      }
+    }
+  }
+  return new CInliningResult(firstNode,returnNode);
+}

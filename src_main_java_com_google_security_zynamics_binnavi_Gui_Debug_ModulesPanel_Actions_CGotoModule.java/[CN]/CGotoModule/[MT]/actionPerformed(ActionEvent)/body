@@ -1,0 +1,3 @@
+{
+  CModulesPanelFunctions.gotoModule(m_parent,m_debugPerspectiveModel,m_module);
+}

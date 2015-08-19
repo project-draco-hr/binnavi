@@ -1,0 +1,3 @@
+{
+  return (replacement == null) || (expressionType == ExpressionType.SIZE_PREFIX) ? (expressionValue.equals("dword") ? "" : expressionValue) : replacement.toString();
+}

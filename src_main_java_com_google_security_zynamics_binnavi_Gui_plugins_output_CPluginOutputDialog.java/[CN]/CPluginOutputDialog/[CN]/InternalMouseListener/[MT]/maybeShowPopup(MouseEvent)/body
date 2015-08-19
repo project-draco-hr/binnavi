@@ -1,0 +1,7 @@
+{
+  if (event.isPopupTrigger()) {
+    final JPopupMenu menu=new JPopupMenu();
+    menu.add(new CopyLogAction(m_textArea));
+    menu.show(event.getComponent(),event.getX(),event.getY());
+  }
+}

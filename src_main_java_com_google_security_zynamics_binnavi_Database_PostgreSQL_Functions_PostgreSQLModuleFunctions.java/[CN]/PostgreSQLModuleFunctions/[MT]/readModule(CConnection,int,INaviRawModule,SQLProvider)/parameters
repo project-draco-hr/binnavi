@@ -1,0 +1,4 @@
+CConnection connection
+int moduleId
+INaviRawModule rawModule
+SQLProvider provider

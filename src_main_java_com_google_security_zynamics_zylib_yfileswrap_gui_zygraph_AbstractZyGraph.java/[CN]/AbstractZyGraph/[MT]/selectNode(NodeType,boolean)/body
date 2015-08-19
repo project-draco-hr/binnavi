@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(node,"Node argument can't be null");
+  m_graph.firePreEvent();
+  ((IViewNode<?>)node.getRawNode()).setSelected(selected);
+  m_graph.firePostEvent();
+}

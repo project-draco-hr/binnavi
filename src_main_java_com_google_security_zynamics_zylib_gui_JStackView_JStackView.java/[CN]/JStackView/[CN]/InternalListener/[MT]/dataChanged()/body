@@ -1,0 +1,5 @@
+{
+  setScrollBarMaximum();
+  setHorizontalScrollBarMaximum();
+  m_panel.repaint();
+}

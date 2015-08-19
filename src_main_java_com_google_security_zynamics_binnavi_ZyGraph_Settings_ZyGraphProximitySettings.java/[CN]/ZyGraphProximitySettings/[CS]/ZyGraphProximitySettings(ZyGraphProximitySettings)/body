@@ -1,0 +1,8 @@
+{
+  m_proximityBrowsing=settings.getProximityBrowsing();
+  m_proximityBrowsingActivisionThreshold=settings.getProximityBrowsingActivationThreshold();
+  m_proximityBrowsingChildren=settings.getProximityBrowsingChildren();
+  m_proximityBrowsingFrozen=settings.getProximityBrowsingFrozen();
+  m_proximityBrowsingParents=settings.getProximityBrowsingParents();
+  m_ProximityPreview=settings.getProximityBrowsingPreview();
+}

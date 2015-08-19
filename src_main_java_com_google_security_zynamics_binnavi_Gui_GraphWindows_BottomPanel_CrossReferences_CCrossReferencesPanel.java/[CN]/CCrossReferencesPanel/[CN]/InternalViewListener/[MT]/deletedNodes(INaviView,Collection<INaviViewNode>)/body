@@ -1,0 +1,9 @@
+{
+  boolean update=false;
+  for (  final INaviViewNode node : nodes) {
+    update|=processRemovedNode(node);
+  }
+  if (update) {
+    m_tableModel.setCrossReferences(m_crossReferences);
+  }
+}

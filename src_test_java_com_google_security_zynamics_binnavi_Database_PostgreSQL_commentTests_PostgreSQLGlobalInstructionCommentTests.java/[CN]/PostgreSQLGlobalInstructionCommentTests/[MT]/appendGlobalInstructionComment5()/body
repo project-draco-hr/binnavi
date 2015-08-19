@@ -1,0 +1,16 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final List<IComment> storedComments=instruction.getGlobalComment() == null ? new ArrayList<IComment>() : instruction.getGlobalComment();
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String firstCommentString=" PASS GLOBAL INSTRUCTION COMMENT 1 ";
+  final int firstCommentId=getProvider().appendGlobalInstructionComment(instruction,firstCommentString,user.getUserId());
+  final IComment firstComment=new CComment(firstCommentId,user,lastComment,firstCommentString);
+  final String secondCommentString=" PASS GLOBAL INSTRUCTION COMMENT 2 ";
+  final int secondCommentId=getProvider().appendGlobalInstructionComment(instruction,secondCommentString,user.getUserId());
+  final IComment secondComment=new CComment(secondCommentId,user,firstComment,secondCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(secondCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(storedComments.size() + 2,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(firstComment));
+  assertTrue(commentsFromDatabase.contains(secondComment));
+}

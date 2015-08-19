@@ -1,0 +1,10 @@
+{
+  final Class<?> c=object.getClass();
+  final Class<?>[] parameterTypes=new Class<?>[arguments.length];
+  int counter=0;
+  for (  final Class<?> argument : arguments) {
+    parameterTypes[counter++]=argument;
+  }
+  final Method method=c.getDeclaredMethod(methodName,parameterTypes);
+  return method;
+}

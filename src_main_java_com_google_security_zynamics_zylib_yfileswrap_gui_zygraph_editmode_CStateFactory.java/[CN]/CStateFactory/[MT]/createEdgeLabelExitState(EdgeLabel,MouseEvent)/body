@@ -1,0 +1,5 @@
+{
+  final CEdgeLabelExitState<NodeType,EdgeType> state=new CEdgeLabelExitState<NodeType,EdgeType>(this,m_graph,l);
+  m_factory.createEdgeLabelExitAction().execute(state,event);
+  return state;
+}

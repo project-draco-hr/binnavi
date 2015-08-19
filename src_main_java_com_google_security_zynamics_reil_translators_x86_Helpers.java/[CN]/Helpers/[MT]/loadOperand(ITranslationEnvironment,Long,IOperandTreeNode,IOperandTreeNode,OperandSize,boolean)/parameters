@@ -1,0 +1,6 @@
+ITranslationEnvironment environment
+Long baseOffset
+IOperandTreeNode expression
+IOperandTreeNode segmentOverride
+OperandSize size
+boolean loadOperand

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(view,"Error: View argument can't be null");
+  try {
+    return new ReilFunction(m_translator.translate(new StandardEnvironment(),view.getNative()));
+  }
+ catch (  final com.google.security.zynamics.reil.translators.InternalTranslationException e) {
+    throw new InternalTranslationException(e,InstructionFinders.findInstruction(view,e.getInstruction()));
+  }
+}

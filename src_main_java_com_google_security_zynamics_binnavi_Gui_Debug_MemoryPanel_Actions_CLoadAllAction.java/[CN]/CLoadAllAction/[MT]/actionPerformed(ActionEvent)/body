@@ -1,0 +1,3 @@
+{
+  CMemoryFunctions.loadAll(m_parent,m_debugger,m_offset,m_size);
+}

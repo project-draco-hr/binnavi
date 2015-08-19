@@ -1,0 +1,4 @@
+{
+  m_model.dispose();
+  removeMouseListener(m_mouseListener);
+}

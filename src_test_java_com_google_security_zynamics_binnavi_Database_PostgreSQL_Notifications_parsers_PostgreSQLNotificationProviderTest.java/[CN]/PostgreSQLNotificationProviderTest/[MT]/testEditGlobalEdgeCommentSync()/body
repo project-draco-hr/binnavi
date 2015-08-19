@@ -1,0 +1,31 @@
+{
+  final INaviEdge databaseOneEdge=databaseOneView.getContent().getGraph().getEdges().get(3);
+  final INaviEdge databaseTwoEdge=databaseTwoView.getContent().getGraph().getEdges().get(3);
+  final List<IComment> oneBefore=databaseOneEdge.getGlobalComment() == null ? new ArrayList<IComment>() : databaseOneEdge.getGlobalComment();
+  final List<IComment> twoBefore=databaseTwoEdge.getGlobalComment() == null ? new ArrayList<IComment>() : databaseTwoEdge.getGlobalComment();
+  assertEquals(oneBefore,twoBefore);
+  databaseOneEdge.appendGlobalComment(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL EDGE COMMENT) BEFORE ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneEdge.getGlobalComment();
+  final List<IComment> twoAfter=databaseTwoEdge.getGlobalComment();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+  final int oneTwoSize=oneAfter.size();
+  final int twoTwoSize=twoAfter.size();
+  databaseOneEdge.editGlobalComment(Iterables.getLast(databaseOneEdge.getGlobalComment())," TEST NOTIFICATION PROVIDER TESTS (GLOBAL EDGE COMMENT) AFTER ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneThree=databaseOneEdge.getGlobalComment();
+  final List<IComment> twoThree=databaseTwoEdge.getGlobalComment();
+  assertEquals(oneTwoSize,oneThree.size());
+  assertEquals(twoTwoSize,twoThree.size());
+  assertEquals(oneThree,twoThree);
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL EDGE COMMENT) AFTER ",Iterables.getLast(oneThree).getComment());
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL EDGE COMMENT) AFTER ",Iterables.getLast(twoThree).getComment());
+}

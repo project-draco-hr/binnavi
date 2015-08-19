@@ -1,0 +1,5 @@
+{
+  for (  final IProjectListener listener : m_wrappers) {
+    m_project.removeListener(listener);
+  }
+}

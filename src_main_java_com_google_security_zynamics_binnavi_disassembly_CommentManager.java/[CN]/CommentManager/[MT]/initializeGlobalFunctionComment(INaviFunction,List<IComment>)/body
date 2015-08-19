@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(function,"IE00096: Function argument can not be null");
+  initializeComment(new FunctionCommentingStrategy(function),comments);
+}

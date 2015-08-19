@@ -1,0 +1,5 @@
+{
+  final DialogEditCodeNodeComment dlg=new DialogEditCodeNodeComment(parent,model,node,instruction);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+}

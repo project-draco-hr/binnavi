@@ -1,0 +1,5 @@
+{
+  m_register=register;
+  m_predicate=predicate;
+  m_value=value;
+}

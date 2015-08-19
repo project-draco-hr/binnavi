@@ -1,0 +1,5 @@
+{
+  for (  final GraphNode node : newState) {
+    state.setState(node,newState.getState(node));
+  }
+}

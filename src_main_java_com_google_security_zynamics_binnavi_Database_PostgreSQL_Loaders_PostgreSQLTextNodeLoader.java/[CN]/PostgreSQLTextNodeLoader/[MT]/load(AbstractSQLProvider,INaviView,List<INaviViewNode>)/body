@@ -1,0 +1,44 @@
+{
+  Preconditions.checkNotNull(provider,"IE02516: provider argument can not be null");
+  Preconditions.checkNotNull(view,"IE02517: view argument can not be null");
+  Preconditions.checkNotNull(nodes,"IE02518: nodes argument can not be null");
+  final Map<Integer,INaviTextNode> commentIdToTextNode=new HashMap<Integer,INaviTextNode>();
+  final String query="SELECT id, comment_id, x, y, width, height, color, selected, visible " + " FROM " + CTableNames.NODES_TABLE + " JOIN "+ CTableNames.TEXT_NODES_TABLE+ " ON id = node_id "+ " WHERE view_id = "+ view.getConfiguration().getId();
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        final int nodeId=resultSet.getInt("id");
+        Integer commentId=resultSet.getInt("comment_id");
+        if (resultSet.wasNull()) {
+          commentId=null;
+        }
+        final double xPos=resultSet.getDouble("x");
+        final double yPos=resultSet.getDouble("y");
+        final double width=resultSet.getDouble("width");
+        final double height=resultSet.getDouble("height");
+        final Color color=new Color(resultSet.getInt("color"));
+        final boolean selected=resultSet.getBoolean("selected");
+        final boolean visible=resultSet.getBoolean("visible");
+        final INaviTextNode textNode=new CTextNode(nodeId,xPos,yPos,width,height,color,selected,visible,new HashSet<CTag>(),null,provider);
+        if (commentId != null) {
+          commentIdToTextNode.put(commentId,textNode);
+        }
+        nodes.add(textNode);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+    if (!commentIdToTextNode.isEmpty()) {
+      final HashMap<Integer,ArrayList<IComment>> commentIdToComments=PostgreSQLCommentFunctions.loadMultipleCommentsById(provider,commentIdToTextNode.keySet());
+      for (      final Entry<Integer,ArrayList<IComment>> commentIdToComment : commentIdToComments.entrySet()) {
+        commentIdToTextNode.get(commentIdToComment.getKey()).initializeComment(commentIdToComment.getValue());
+      }
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

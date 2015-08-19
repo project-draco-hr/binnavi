@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(graph,"IE01686: Graph argument can not be null");
+  Preconditions.checkNotNull(instructionResults,"IE01689: Instruction results argument can not be null");
+  clearHighlighting(graph);
+  highlightInstructions(graph,instructionResults);
+}

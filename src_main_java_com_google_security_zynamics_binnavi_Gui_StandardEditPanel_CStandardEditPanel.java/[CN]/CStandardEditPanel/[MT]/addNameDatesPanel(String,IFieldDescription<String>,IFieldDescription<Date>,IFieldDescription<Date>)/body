@@ -1,0 +1,8 @@
+{
+  final JPanel nameDatesPanel=new JPanel(new GridLayout(3,1,5,5));
+  nameDatesPanel.setBorder(new TitledBorder(headline));
+  nameDatesPanel.add(new CLabeledComponent("Name" + ":",name.getHelp(),m_nameTextField));
+  nameDatesPanel.add(new CLabeledComponent("Creation Date" + ":",creationDate.getHelp(),m_creationDateValueLabel));
+  nameDatesPanel.add(new CLabeledComponent("Modification Date" + ":",modificationDate.getHelp(),m_modificationDateValueLabel));
+  add(nameDatesPanel,BorderLayout.NORTH);
+}

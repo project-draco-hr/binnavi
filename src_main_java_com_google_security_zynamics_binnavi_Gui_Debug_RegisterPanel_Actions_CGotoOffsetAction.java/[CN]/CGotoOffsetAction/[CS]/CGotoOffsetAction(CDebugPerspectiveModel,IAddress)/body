@@ -1,0 +1,6 @@
+{
+  super(String.format("Goto offset %s",offset.toHexString()));
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01106: Debug perspective model argument can not be null");
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  m_offset=offset;
+}

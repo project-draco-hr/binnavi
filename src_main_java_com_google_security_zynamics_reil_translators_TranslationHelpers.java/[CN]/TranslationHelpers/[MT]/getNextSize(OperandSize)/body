@@ -1,0 +1,15 @@
+{
+switch (size) {
+case BYTE:
+    return OperandSize.WORD;
+case WORD:
+  return OperandSize.DWORD;
+case DWORD:
+return OperandSize.QWORD;
+case QWORD:
+return OperandSize.OWORD;
+default :
+break;
+}
+throw new IllegalArgumentException("Error: Invalid argument size");
+}

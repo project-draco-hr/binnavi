@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SXTAB16");
+  translateAll(environment,instruction,"SXTAB16",instructions);
+}

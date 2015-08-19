@@ -1,0 +1,5 @@
+{
+  final CModule newModule=getModuleConverter().createModule(this,rawModule);
+  getModules().add(newModule);
+  return newModule;
+}

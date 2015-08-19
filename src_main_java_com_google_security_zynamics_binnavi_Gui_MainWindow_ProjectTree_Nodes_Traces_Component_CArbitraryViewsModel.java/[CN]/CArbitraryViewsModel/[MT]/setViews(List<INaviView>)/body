@@ -1,0 +1,5 @@
+{
+  m_views.clear();
+  m_views.addAll(views);
+  fireTableDataChanged();
+}

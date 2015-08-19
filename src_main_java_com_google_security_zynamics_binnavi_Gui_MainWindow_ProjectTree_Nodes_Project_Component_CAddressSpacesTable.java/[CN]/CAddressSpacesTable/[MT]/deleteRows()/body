@@ -1,0 +1,3 @@
+{
+  CProjectFunctions.removeAddressSpace(getParentWindow(),m_project,getAddressSpaces(getSortSelectedRows()),new CEmptyUpdater());
+}

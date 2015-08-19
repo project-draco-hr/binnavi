@@ -1,0 +1,13 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"daddiu");
+  final String targetRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String sourceRegister=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final String sourceImmediate=instruction.getOperands().get(2).getRootNode().getChildren().get(0).getValue();
+  final OperandSize qw=OperandSize.QWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String temporaryResult=environment.getNextVariableString();
+  final String sourceImmediateSignExtended=SignExtendGenerator.extend16BitTo64(offset,environment,sourceImmediate,instructions);
+  instructions.add(ReilHelpers.createAdd(offset++,qw,sourceRegister,qw,sourceImmediateSignExtended,qw,temporaryResult));
+  instructions.add(ReilHelpers.createAnd(offset,qw,temporaryResult,qw,String.valueOf(0xFFFFFFFFFFFFFFFFL),qw,targetRegister));
+}

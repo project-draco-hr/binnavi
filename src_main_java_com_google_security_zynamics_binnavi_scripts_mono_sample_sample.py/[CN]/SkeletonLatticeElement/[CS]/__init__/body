@@ -1,0 +1,2 @@
+def __init__(self):
+    self.written_registers = Set()

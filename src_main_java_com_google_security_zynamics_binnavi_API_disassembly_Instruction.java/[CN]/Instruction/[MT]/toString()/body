@@ -1,0 +1,12 @@
+{
+  final StringBuffer instructionString=new StringBuffer(String.format("%s  %s ",getAddress().toHexString(),getMnemonic()));
+  boolean addComma=false;
+  for (  final Operand operand : getOperands()) {
+    if (addComma) {
+      instructionString.append(", ");
+    }
+    addComma=true;
+    instructionString.append(operand.toString());
+  }
+  return instructionString.toString();
+}

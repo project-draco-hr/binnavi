@@ -1,0 +1,4 @@
+long tid
+BreakpointAddress address
+TraceEventType type
+List<TraceRegister> values

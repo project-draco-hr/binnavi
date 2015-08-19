@@ -1,0 +1,10 @@
+{
+  if (updating) {
+    return;
+  }
+  final CMemorySectionWrapper section=memorySectionBox.getSelectedItem();
+  if (section == null) {
+    return;
+  }
+  debugPerspectiveModel.setActiveMemoryAddress(section.getObject().getStart(),false);
+}

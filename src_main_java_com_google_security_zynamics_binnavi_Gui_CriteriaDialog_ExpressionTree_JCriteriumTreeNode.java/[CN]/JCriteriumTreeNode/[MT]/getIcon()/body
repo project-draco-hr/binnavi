@@ -1,0 +1,7 @@
+{
+  final Icon icon=getCriterium().getIcon();
+  if (icon == null) {
+    return DEFAULT_ICON;
+  }
+  return icon;
+}

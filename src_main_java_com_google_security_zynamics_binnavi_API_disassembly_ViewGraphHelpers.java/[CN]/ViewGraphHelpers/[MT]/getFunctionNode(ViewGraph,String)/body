@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(functionName,"Error: Function name argument can not be null");
+  for (  final ViewNode viewNode : graph) {
+    if (viewNode instanceof FunctionNode) {
+      final FunctionNode fnode=(FunctionNode)viewNode;
+      if (fnode.getFunction().getName().equals(functionName)) {
+        return fnode;
+      }
+    }
+  }
+  return null;
+}

@@ -1,0 +1,5 @@
+{
+  super("Select predecessors");
+  m_graph=Preconditions.checkNotNull(graph,"IE00932: Graph argument can't be null");
+  m_node=Preconditions.checkNotNull(node,"IE00933: Node argument can't be null");
+}

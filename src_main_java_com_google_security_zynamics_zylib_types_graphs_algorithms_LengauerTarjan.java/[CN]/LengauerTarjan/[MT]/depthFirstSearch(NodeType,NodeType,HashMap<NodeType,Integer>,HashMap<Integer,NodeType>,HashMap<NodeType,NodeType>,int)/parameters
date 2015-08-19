@@ -1,0 +1,6 @@
+NodeType parent
+NodeType rootNode
+HashMap<NodeType,Integer> dfnums
+HashMap<Integer,NodeType> vertex
+HashMap<NodeType,NodeType> parents
+int dfnum

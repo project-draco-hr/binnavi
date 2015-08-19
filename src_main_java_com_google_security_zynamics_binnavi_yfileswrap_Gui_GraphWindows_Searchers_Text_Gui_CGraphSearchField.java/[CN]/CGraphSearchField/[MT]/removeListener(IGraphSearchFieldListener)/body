@@ -1,0 +1,3 @@
+{
+  m_listenerProvider.removeListener(listener);
+}

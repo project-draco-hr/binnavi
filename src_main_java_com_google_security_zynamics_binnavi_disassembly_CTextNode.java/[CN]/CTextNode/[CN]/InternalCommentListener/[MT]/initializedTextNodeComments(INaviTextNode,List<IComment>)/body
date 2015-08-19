@@ -1,0 +1,12 @@
+{
+  if (CTextNode.this.equals(node)) {
+    for (    final INaviTextNodeListener listener : m_listeners) {
+      try {
+        listener.initializedTextNodeComment(node,comments);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

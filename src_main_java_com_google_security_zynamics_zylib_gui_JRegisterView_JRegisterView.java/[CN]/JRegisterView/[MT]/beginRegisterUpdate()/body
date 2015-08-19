@@ -1,0 +1,5 @@
+{
+  for (  final RegisterInformationInternal register : m_registerModel.getRegisterInformation()) {
+    register.setModified(false);
+  }
+}

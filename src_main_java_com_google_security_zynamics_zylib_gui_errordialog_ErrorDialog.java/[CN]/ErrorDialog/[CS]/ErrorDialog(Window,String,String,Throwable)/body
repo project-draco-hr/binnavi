@@ -1,0 +1,11 @@
+{
+  super(owner,ModalityType.APPLICATION_MODAL);
+  m_message=message;
+  m_description=description;
+  m_exception=exception;
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  createGui();
+  setMinimumSize(new Dimension(600,400));
+  setSize(600,400);
+}

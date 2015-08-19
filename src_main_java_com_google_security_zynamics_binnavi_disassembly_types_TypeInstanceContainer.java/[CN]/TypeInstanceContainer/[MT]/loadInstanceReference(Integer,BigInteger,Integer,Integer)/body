@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(typeInstanceId,"Error: typeInstanceId argument can not be null");
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkNotNull(position,"Error: position argument can not be null");
+  Preconditions.checkNotNull(expressionId,"Error: expressionId argument can not be null");
+  final TypeInstanceReference reference=backend.loadTypeInstanceReference(typeInstanceId,address,position,expressionId);
+  referencesByInstance.put(reference.getTypeInstance(),reference);
+  return reference;
+}

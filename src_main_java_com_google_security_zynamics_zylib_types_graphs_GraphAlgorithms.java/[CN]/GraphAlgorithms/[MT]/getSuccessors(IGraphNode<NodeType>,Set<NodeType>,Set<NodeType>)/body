@@ -1,0 +1,10 @@
+{
+  for (  final NodeType child : node.getChildren()) {
+    if (visited.contains(child)) {
+      continue;
+    }
+    visited.add(child);
+    successors.add(child);
+    getSuccessors(child,successors,visited);
+  }
+}

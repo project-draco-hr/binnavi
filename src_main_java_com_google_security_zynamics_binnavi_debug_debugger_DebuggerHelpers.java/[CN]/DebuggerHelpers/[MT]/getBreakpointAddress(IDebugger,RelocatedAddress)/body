@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00161: Debugger argument can not be null");
+  Preconditions.checkNotNull(memoryAddress,"IE00163: Memory address argument can not be null");
+  final INaviModule module=debugger.getModule(memoryAddress);
+  return new BreakpointAddress(module,module == null ? new UnrelocatedAddress(memoryAddress.getAddress()) : debugger.memoryToFile(module,memoryAddress));
+}

@@ -1,0 +1,8 @@
+{
+  final JMenu menu=new JMenu("REIL Code");
+  final JMenuItem copyItem=new JMenuItem(CActionProxy.proxy(new CActionCopyAllReilCode(m_textArea)));
+  menu.add(copyItem);
+  final JMenuBar menuBar=new JMenuBar();
+  menuBar.add(menu);
+  setJMenuBar(menuBar);
+}

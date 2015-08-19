@@ -1,0 +1,18 @@
+{
+  if (m_chooser.getCurrentDirectory() == null) {
+    return;
+  }
+  final ConfigManager configFile=ConfigManager.instance();
+  if (InstallationState.Installed.equals(CBinExportInstallationChecker.getState(m_chooser.getCurrentDirectory())) && configFile.getGeneralSettings().getIdaDirectory().equals(m_chooser.getCurrentDirectory())) {
+    CMessageBox.showInformation(this,"Settings unchanged.");
+    dispose();
+    return;
+  }
+  final InstallationState cppState=CBinExportInstallationChecker.getState(m_chooser.getSelectedFile());
+  if (cppState != InstallationState.Installed) {
+    CMessageBox.showError(this,"Please install the BinExport IDA plugin.");
+    return;
+  }
+  m_selectedFile=m_chooser.getSelectedFile();
+  dispose();
+}

@@ -1,0 +1,7 @@
+{
+  final String defaultLanguage=ConfigManager.instance().getGeneralSettings().getDefaultScriptingLanguage();
+  final CScriptingDialog dlg=new CScriptingDialog(parent,defaultLanguage,PluginInterface.instance());
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  GuiHelper.applyWindowFix(dlg);
+}

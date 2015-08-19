@@ -1,0 +1,32 @@
+{
+  setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+  searchField=new JTextField();
+  add(searchField);
+  searchField.setColumns(10);
+  final JButton previousResult=new JButton("<");
+  add(previousResult);
+  previousResult.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      if (!currentMatches.isEmpty()) {
+        currentMatchIndex=((currentMatchIndex - 1 % currentMatches.size()) + currentMatches.size()) % currentMatches.size();
+        selectMatches(currentMatches,typesTree);
+        scrollToMatch(currentMatchIndex,currentMatches,typesTree);
+      }
+    }
+  }
+);
+  final JButton nextResult=new JButton(">");
+  add(nextResult);
+  nextResult.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      if (!currentMatches.isEmpty()) {
+        currentMatchIndex=(currentMatchIndex + 1) % currentMatches.size();
+        selectMatches(currentMatches,typesTree);
+        scrollToMatch(currentMatchIndex,currentMatches,typesTree);
+      }
+    }
+  }
+);
+  searchField.getDocument().addDocumentListener(new TypeSearchDocumentListener());
+  this.typesTree=typesTree;
+}

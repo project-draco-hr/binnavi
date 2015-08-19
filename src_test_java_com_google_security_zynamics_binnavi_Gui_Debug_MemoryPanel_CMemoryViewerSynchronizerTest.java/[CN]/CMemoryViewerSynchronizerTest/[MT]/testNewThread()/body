@@ -1,0 +1,12 @@
+{
+  final IGraphModel graphModel=new MockGraphModel();
+  final CDebugPerspectiveModel model=new CDebugPerspectiveModel(graphModel);
+  final JHexView hexView=new JHexView();
+  final CMemoryProvider provider=new CMemoryProvider();
+  model.setActiveDebugger(m_debugger);
+  final TargetProcessThread thread=new TargetProcessThread(0,ThreadState.RUNNING);
+  m_debugger.getProcessManager().addThread(thread);
+  m_debugger.getProcessManager().setActiveThread(thread);
+  final CMemoryViewerSynchronizer synchronizer=new CMemoryViewerSynchronizer(hexView,provider,model);
+  synchronizer.dispose();
+}

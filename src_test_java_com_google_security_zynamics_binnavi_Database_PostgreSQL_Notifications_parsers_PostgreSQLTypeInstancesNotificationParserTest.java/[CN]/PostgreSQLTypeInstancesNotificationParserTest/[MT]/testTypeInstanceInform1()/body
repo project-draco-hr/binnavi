@@ -1,0 +1,5 @@
+{
+  final TypeInstancesNotificationContainer container=new TypeInstancesNotificationContainer("INSERT",module.getConfiguration().getId(),instance.getId(),Optional.<BigInteger>absent(),Optional.<Integer>absent(),Optional.<Integer>absent());
+  final PostgreSQLTypeInstancesNotificationParser parser=new PostgreSQLTypeInstancesNotificationParser();
+  parser.inform(Lists.newArrayList(container),provider);
+}

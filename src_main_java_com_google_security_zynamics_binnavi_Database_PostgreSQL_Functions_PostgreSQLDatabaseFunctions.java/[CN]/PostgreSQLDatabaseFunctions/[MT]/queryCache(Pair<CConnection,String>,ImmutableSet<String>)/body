@@ -1,0 +1,3 @@
+{
+  return PostgreSQLDatabaseFunctions.m_cache.get(cacheKey).containsAll(rawTableNames);
+}

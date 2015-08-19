@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(provider,"IE02050: Provider argument can not be null");
+  Preconditions.checkNotNull(project,"IE00543: Project argument can not be null");
+  Preconditions.checkNotNull(key,"IE00544: Key argument can not be null");
+  Preconditions.checkNotNull(value,"IE02082: Value argument can not be null");
+  Preconditions.checkArgument(project.inSameDatabase(provider),"IE00545: Project is not part of this database");
+  writeSetting(provider.getConnection(),project.getConfiguration().getId(),key,value,CTableNames.PROJECT_SETTINGS_TABLE);
+}

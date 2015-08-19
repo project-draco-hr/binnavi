@@ -1,0 +1,10 @@
+{
+  super(model);
+  m_model=model;
+  m_helpInfo=helpInfo;
+  m_tableSorter=new TableRowSorter<CFilteredTableModel<T>>(model);
+  for (  final Pair<Integer,Comparator<?>> sorter : model.getSorters()) {
+    m_tableSorter.setComparator(sorter.first(),sorter.second());
+  }
+  setRowSorter(m_tableSorter);
+}

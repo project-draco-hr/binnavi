@@ -1,0 +1,22 @@
+{
+  final BreakpointType breakpointType=breakpoints.get(0).getType();
+  for (  final Breakpoint currentBreakPoint : breakpoints) {
+    Preconditions.checkArgument(currentBreakPoint.getType() == breakpointType,"Error: breakpoint types are not equal for all breakpoints");
+  }
+  final Set<BreakpointAddress> addresses=new HashSet<BreakpointAddress>();
+switch (breakpointType) {
+case ECHO:
+    addresses.addAll(echoBreakPointsAddedHandler(breakpoints));
+  break;
+case REGULAR:
+addresses.addAll(regularBreakPointsAddedHandler(breakpoints));
+break;
+case STEP:
+addresses.addAll(stepBreakPointsAddedHandler(breakpoints));
+break;
+}
+if (addresses.size() > 0) {
+setBreakPoints(addresses,breakpointType);
+manager.setBreakpointStatus(addresses,breakpointType,BreakpointStatus.BREAKPOINT_ACTIVE);
+}
+}

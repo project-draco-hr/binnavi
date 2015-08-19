@@ -1,0 +1,17 @@
+{
+  final MockCodeNodeListener listener=new MockCodeNodeListener();
+  m_node.addListener(listener);
+  final Instruction instruction=new Instruction(new MockInstruction());
+  final Instruction clonedInstruction=m_node.addInstruction(instruction);
+  m_node.setInstructionColor(instruction,10000,Color.RED);
+  assertEquals("addedInstruction;",listener.events);
+  m_node.removeInstruction(clonedInstruction);
+  try {
+    m_node.setInstructionColor(clonedInstruction,10000,Color.RED);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  assertEquals("addedInstruction;removedInstruction;",listener.events);
+  m_node.removeListener(listener);
+}

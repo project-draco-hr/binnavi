@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(graph,"IE01729: Graph argument can not be null");
+  graph.deleteNodes(NodeFunctions.getInvisibleNodes(graph));
+}

@@ -1,0 +1,12 @@
+{
+  if (getBaseType() == null) {
+    CMessageBox.showWarning(MemberDialog.this,"Please select a base type.");
+    return;
+  }
+  if (getMemberName().isEmpty()) {
+    CMessageBox.showWarning(MemberDialog.this,"Please enter a name for the member.");
+    return;
+  }
+  wasCanceled=false;
+  dispose();
+}

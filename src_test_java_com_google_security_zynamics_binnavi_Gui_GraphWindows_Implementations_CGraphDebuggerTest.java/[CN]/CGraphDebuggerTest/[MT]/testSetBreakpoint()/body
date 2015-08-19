@@ -1,0 +1,9 @@
+{
+  CGraphDebugger.setBreakpoint(m_debugger.getBreakpointManager(),m_module,new UnrelocatedAddress(new CAddress(0x123)));
+  CGraphDebugger.setBreakpoint(m_debugger.getBreakpointManager(),m_module,new UnrelocatedAddress(new CAddress(0x124)));
+  assertEquals(2,m_debugger.getBreakpointManager().getNumberOfBreakpoints(BreakpointType.REGULAR));
+  assertEquals(0x123,m_debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,0).getAddress().getAddress().getAddress().toLong());
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_debugger.getBreakpointManager().getBreakpointStatus(BreakpointType.REGULAR,0));
+  assertEquals(0x124,m_debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,1).getAddress().getAddress().getAddress().toLong());
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_debugger.getBreakpointManager().getBreakpointStatus(BreakpointType.REGULAR,1));
+}

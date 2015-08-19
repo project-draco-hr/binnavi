@@ -1,0 +1,4 @@
+def __init__(self, pi, frame):
+    AbstractAction.__init__(self, 'Highlight loops in view')
+    self.pi = pi
+    self.frame = frame

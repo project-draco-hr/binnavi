@@ -1,0 +1,5 @@
+{
+  m_tagTree.removeTreeSelectionListener(m_selectionListener);
+  m_anyTagBox.removeChangeListener(m_checkboxListener);
+  m_tagManager.removeListener(m_listener);
+}

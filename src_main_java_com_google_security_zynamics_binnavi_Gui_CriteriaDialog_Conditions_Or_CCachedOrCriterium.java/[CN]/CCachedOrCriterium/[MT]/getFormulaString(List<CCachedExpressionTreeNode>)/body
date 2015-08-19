@@ -1,0 +1,12 @@
+{
+  if (children.size() < 2) {
+    throw new IllegalStateException("IE01113: AND operator has less than two child criteria.");
+  }
+  final List<String> childStrings=CollectionHelpers.map(children,new ICollectionMapper<CCachedExpressionTreeNode,String>(){
+    @Override public String map(    final CCachedExpressionTreeNode item){
+      return item.getCriterium().getFormulaString(item.getChildren());
+    }
+  }
+);
+  return "(" + Commafier.commafy(childStrings," || ") + ")";
+}

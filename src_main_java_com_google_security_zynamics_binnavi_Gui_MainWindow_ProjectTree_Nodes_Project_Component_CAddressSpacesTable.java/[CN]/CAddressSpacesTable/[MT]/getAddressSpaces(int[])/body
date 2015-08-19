@@ -1,0 +1,7 @@
+{
+  final INaviAddressSpace[] addressSpaces=new INaviAddressSpace[sortSelectedRows.length];
+  for (int i=0; i < addressSpaces.length; i++) {
+    addressSpaces[i]=getTreeTableModel().getAddressSpaces().get(sortSelectedRows[i]);
+  }
+  return addressSpaces;
+}

@@ -1,0 +1,35 @@
+{
+  if (node instanceof INaviCodeNode) {
+    final INaviCodeNode cnode=(INaviCodeNode)node;
+    try {
+      final INaviFunction targetFunction=cnode.getParentFunction();
+      if (m_nodeCounter.containsKey(targetFunction)) {
+        m_nodeCounter.put(targetFunction,m_nodeCounter.get(targetFunction) + 1);
+      }
+ else {
+        m_nodeCounter.put(targetFunction,1);
+        for (        final INaviModule sourceModule : m_viewContainer.getModules()) {
+          if (sourceModule == targetFunction.getModule()) {
+            for (            final INaviFunction sourceFunction : sourceModule.getContent().getNativeCallgraph().getCallers(targetFunction)) {
+              m_crossReferences.add(new CCrossReference(sourceFunction,targetFunction));
+            }
+          }
+ else {
+            try {
+              final INaviFunction forwardedFunction=findForwardedFunction(sourceModule,targetFunction);
+              for (              final INaviFunction sourceFunction : sourceModule.getContent().getNativeCallgraph().getCallers(forwardedFunction)) {
+                m_crossReferences.add(new CCrossReference(sourceFunction,targetFunction));
+              }
+            }
+ catch (            final MaybeNullException exception) {
+            }
+          }
+        }
+        return true;
+      }
+    }
+ catch (    final MaybeNullException exception) {
+    }
+  }
+  return false;
+}

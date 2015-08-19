@@ -1,0 +1,9 @@
+{
+  try {
+    final INaviFunction function=codeNode.getParentFunction();
+    final INaviView view=function.getModule().getContent().getViewContainer().getView(function);
+    add(new CChangeFunctionNameAction(model.getParent(),view));
+  }
+ catch (  final MaybeNullException e) {
+  }
+}

@@ -1,0 +1,7 @@
+{
+  super("Delete Subtree");
+  m_parent=Preconditions.checkNotNull(parent,"IE01893: Parent argument can not be null");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE01894: Tag manager argument can not be null");
+  m_tag=Preconditions.checkNotNull(tag,"IE01895: Tag argument can not be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_TAG_SUBTREE".charAt(0));
+}

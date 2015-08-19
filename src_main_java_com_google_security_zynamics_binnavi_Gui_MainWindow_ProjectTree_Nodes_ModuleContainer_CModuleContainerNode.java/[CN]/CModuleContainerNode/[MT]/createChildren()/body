@@ -1,0 +1,7 @@
+{
+  if (m_database.isLoaded()) {
+    for (    final INaviModule module : m_database.getContent().getModules()) {
+      add(new CModuleNode(getProjectTree(),CModuleContainerNode.this,m_database,module,new CModuleContainer(m_database,module)));
+    }
+  }
+}

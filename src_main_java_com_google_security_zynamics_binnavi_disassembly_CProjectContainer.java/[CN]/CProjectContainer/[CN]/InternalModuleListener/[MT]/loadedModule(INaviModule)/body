@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(module,"IE02221: Module argument can not be null");
+  notifyModuleViews(module);
+}

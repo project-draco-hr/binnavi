@@ -1,0 +1,12 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"popfw");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a popfw instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final String result=environment.getNextVariableString();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.WORD,result,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.shiftValueIntoFlags(environment,offset,result,OperandSize.WORD,instructions);
+}

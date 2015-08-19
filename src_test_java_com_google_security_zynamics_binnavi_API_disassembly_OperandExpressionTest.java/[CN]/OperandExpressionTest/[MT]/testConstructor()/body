@@ -1,0 +1,7 @@
+{
+  final MockOperandTreeNode node=new MockOperandTreeNode();
+  final OperandExpression expression=new OperandExpression(node);
+  assertEquals(ExpressionType.Register,expression.getType());
+  assertEquals("Mock Replacement",expression.getReplacement());
+  assertEquals("Mock Value",expression.toString());
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00883: Distance argument must not be negative");
+  if (value == getMinimumLayerDistance()) {
+    return;
+  }
+  if (m_type == null) {
+    m_minimumLayerDistance=value;
+  }
+ else {
+    m_type.setHierarchicMinimumLayerDistance(value);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  final ReilOperand inputOperand=instruction.getFirstOperand();
+  final ReilOperand outputOperand=instruction.getThirdOperand();
+  final Register outputRegister=new Register(outputOperand.getValue());
+  final IValueElement previousState=getOperandValue(inputOperand,incomingState);
+  if (previousState == null) {
+    final IValueElement inputValue=getAtomicType(inputOperand);
+    return incomingState.update(instruction,outputRegister,inputValue);
+  }
+ else {
+    return incomingState.update(instruction,outputRegister,previousState.clone());
+  }
+}

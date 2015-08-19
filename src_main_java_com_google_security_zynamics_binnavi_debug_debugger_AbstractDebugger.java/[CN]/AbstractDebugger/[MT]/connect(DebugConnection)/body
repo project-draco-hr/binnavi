@@ -1,0 +1,15 @@
+{
+  if (isConnected()) {
+    throw new IllegalStateException("IE01270: Debugger is already connected");
+  }
+  this.connection=connection;
+  try {
+    this.connection.addEventListener(synchronizer);
+    this.connection.startConnection();
+  }
+ catch (  final ConnectException e) {
+    this.connection.removeEventListener(synchronizer);
+    this.connection=null;
+    throw new DebugExceptionWrapper(e);
+  }
+}

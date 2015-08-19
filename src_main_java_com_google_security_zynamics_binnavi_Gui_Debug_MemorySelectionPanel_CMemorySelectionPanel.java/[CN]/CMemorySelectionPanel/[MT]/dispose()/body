@@ -1,0 +1,5 @@
+{
+  m_memoryPanel.dispose();
+  m_memorySectionPanel.dispose();
+  m_refreshPanel.dispose();
+}

@@ -1,0 +1,4 @@
+CGraphModel model
+NaviNode node
+INaviCodeNode codeNode
+double y

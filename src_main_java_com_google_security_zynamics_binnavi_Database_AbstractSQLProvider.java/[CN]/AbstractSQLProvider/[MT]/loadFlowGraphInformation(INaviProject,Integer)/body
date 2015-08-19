@@ -1,0 +1,3 @@
+{
+  return PostgreSQLProjectFlowgraphsLoader.loadFlowGraphInformation(this,project,viewId);
+}

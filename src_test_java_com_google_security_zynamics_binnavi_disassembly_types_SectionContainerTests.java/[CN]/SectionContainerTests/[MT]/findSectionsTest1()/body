@@ -1,0 +1,5 @@
+{
+  final SectionContainer sectionContainer=new SectionContainer(backend);
+  Assert.assertNotNull(sectionContainer);
+  sectionContainer.findSections(null);
+}

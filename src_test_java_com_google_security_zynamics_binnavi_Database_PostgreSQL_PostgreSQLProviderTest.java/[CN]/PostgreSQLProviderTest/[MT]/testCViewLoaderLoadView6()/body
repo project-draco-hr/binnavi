@@ -1,0 +1,8 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final CView view=(CView)module.getContent().getViewContainer().getViews().get(224);
+  view.load();
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.NODE_TAG);
+  PostgreSQLViewLoader.loadView((AbstractSQLProvider)getProvider(),view,Lists.newArrayList(module),tagManager);
+}

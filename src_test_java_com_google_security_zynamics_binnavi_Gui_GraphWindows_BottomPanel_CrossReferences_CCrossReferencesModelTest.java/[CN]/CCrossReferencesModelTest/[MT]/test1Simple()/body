@@ -1,0 +1,7 @@
+{
+  final CCrossReferencesModel model=new CCrossReferencesModel();
+  final CCrossReference reference=new CCrossReference(new MockFunction(),new MockFunction());
+  final List<CCrossReference> crossReferences=new ArrayList<CCrossReference>();
+  crossReferences.add(reference);
+  model.setCrossReferences(crossReferences);
+}

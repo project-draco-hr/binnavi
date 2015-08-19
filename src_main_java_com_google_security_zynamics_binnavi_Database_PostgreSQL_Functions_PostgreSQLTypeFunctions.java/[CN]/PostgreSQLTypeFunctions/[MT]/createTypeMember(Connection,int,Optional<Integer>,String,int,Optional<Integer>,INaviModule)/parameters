@@ -1,0 +1,7 @@
+Connection connection
+int containingTypeId
+Optional<Integer> offset
+String name
+int baseTypeId
+Optional<Integer> numberOfElements
+INaviModule module

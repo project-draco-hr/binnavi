@@ -1,0 +1,7 @@
+{
+  m_node=Preconditions.checkNotNull(node,"Error: Node argument can't be null");
+  for (  final IReference reference : m_node.getReferences()) {
+    m_references.add(new Reference(reference));
+  }
+  m_node.addListener(m_internalListener);
+}

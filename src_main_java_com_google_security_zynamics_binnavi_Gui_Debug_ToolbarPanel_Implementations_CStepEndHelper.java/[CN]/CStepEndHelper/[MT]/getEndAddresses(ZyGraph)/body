@@ -1,0 +1,15 @@
+{
+  final Set<BreakpointAddress> instructions=new HashSet<BreakpointAddress>();
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      if ((node.getRawNode() instanceof INaviCodeNode) && node.getChildren().isEmpty()) {
+        final INaviCodeNode cnode=(INaviCodeNode)node.getRawNode();
+        final INaviInstruction lastInstruction=Iterables.getLast(cnode.getInstructions());
+        instructions.add(new BreakpointAddress(lastInstruction.getModule(),new UnrelocatedAddress(lastInstruction.getAddress())));
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return instructions;
+}

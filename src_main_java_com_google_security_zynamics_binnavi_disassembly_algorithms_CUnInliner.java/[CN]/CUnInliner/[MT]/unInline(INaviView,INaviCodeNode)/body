@@ -1,0 +1,38 @@
+{
+  try {
+    final CInlinedNodes inlinedNodes=getInlinedNodes(node);
+    if (inlinedNodes == null) {
+      return false;
+    }
+    final List<INaviInstruction> instructions=Lists.newArrayList(inlinedNodes.getStartNode().getInstructions());
+    final boolean mergeBlocks=inlinedNodes.getEndNode().getIncomingEdges().size() == 1;
+    if (mergeBlocks) {
+      instructions.addAll(Lists.newArrayList(inlinedNodes.getEndNode().getInstructions()));
+    }
+    final CCodeNode combinedNode=view.getContent().createCodeNode(getParentFunction(inlinedNodes.getStartNode()),instructions);
+    combinedNode.setColor(inlinedNodes.getStartNode().getColor());
+    combinedNode.setBorderColor(inlinedNodes.getStartNode().getBorderColor());
+    removeTextNodes(view,inlinedNodes.getInlinedNodes());
+    view.getContent().deleteNodes(inlinedNodes.getInlinedNodes());
+    for (    final INaviEdge incomingEdge : inlinedNodes.getStartNode().getIncomingEdges()) {
+      view.getContent().createEdge(incomingEdge.getSource(),combinedNode,incomingEdge.getType());
+    }
+    if (mergeBlocks) {
+      for (      final INaviEdge outgoingEdge : inlinedNodes.getEndNode().getOutgoingEdges()) {
+        view.getContent().createEdge(combinedNode,outgoingEdge.getTarget(),outgoingEdge.getType());
+      }
+    }
+ else {
+      view.getContent().createEdge(combinedNode,inlinedNodes.getEndNode(),EdgeType.JUMP_UNCONDITIONAL);
+    }
+    view.getContent().deleteNode(inlinedNodes.getStartNode());
+    if (mergeBlocks) {
+      view.getContent().deleteNode(inlinedNodes.getEndNode());
+    }
+    return true;
+  }
+ catch (  final IllegalStateException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+}

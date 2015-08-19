@@ -1,0 +1,11 @@
+{
+  final Module newModule=addModule(module);
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      listener.addedModule(AddressSpace.this,newModule);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

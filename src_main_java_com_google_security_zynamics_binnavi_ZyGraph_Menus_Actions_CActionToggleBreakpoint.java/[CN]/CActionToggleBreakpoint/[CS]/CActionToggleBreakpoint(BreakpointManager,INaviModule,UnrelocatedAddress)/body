@@ -1,0 +1,6 @@
+{
+  super("Toggle Breakpoint");
+  m_manager=Preconditions.checkNotNull(manager,"IE01386: manager argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"IE01389: module argument can not be null");
+  m_address=Preconditions.checkNotNull(address,"IE01564: address argument can not be null");
+}

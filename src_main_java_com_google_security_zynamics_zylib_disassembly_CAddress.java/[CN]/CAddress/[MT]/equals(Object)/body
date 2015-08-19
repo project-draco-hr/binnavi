@@ -1,0 +1,3 @@
+{
+  return (address instanceof IAddress) && (m_address == ((IAddress)address).toLong());
+}

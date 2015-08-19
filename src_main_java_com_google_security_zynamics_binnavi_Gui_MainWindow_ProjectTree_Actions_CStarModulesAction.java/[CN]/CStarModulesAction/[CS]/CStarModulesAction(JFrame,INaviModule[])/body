@@ -1,0 +1,5 @@
+{
+  super("Star module");
+  m_parent=parent;
+  m_modules=modules.clone();
+}

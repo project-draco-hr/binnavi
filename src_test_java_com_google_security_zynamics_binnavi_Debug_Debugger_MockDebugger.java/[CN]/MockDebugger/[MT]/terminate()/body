@@ -1,0 +1,5 @@
+{
+  super.terminate();
+  requests+="TERMINATE;";
+  processCounter();
+}

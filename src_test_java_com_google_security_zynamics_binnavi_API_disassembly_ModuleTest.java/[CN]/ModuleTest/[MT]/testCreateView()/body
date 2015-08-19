@@ -1,0 +1,20 @@
+{
+  final List<Instruction> instructions=Lists.newArrayList(createInstruction(m_module,0x2000,"mov","edi","edi"),createInstruction(m_module,0x2001,"push","ebp"),createInstruction(m_module,0x2002,"mov","ebp","esp"),createInstruction(m_module,0x2003,"mov","eax","123"),createInstruction(m_module,0x2004,"add","eax","ecx"));
+  for (  final Instruction instruction : instructions) {
+    instruction.getReilCode();
+  }
+  m_module.load();
+  assertNotNull(m_module.getFunction(m_module.getViews().get(1)));
+  final View view=m_module.createView("Empty View","");
+  final Function function=m_module.getFunctions().get(0);
+  view.createCodeNode(function,instructions);
+  view.save();
+  final MockModuleListener listener=new MockModuleListener();
+  m_module.addListener(listener);
+  assertEquals(3,m_module.getViews().size());
+  m_module.deleteView(view);
+  assertEquals("deletedView;",listener.events);
+  assertEquals(2,m_module.getViews().size());
+  assertFalse(m_module.getViews().contains(view));
+  m_module.close();
+}

@@ -1,0 +1,26 @@
+{
+  if (m_view.getType() == ViewType.Native) {
+switch (m_view.getGraphType()) {
+case CALLGRAPH:
+      return ICON_NATIVE_CALLGRAPHS;
+case FLOWGRAPH:
+    return ICON_NATIVE_FUNCTION;
+case MIXED_GRAPH:
+  return ICON_MIXED_VIEW;
+default :
+throw new IllegalStateException("IE01156: Unknown graph type");
+}
+}
+ else {
+switch (m_view.getGraphType()) {
+case CALLGRAPH:
+return ICON_CALLGRAPHS;
+case FLOWGRAPH:
+return ICON_FLOWGRAPH_VIEW;
+case MIXED_GRAPH:
+return ICON_MIXED_VIEW;
+default :
+throw new IllegalStateException("IE01157: Unknown graph type");
+}
+}
+}

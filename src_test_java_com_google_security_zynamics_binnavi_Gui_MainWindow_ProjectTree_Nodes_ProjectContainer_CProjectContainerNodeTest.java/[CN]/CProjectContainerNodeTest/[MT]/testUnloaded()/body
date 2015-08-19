@@ -1,0 +1,20 @@
+{
+  final CProject project1=new CProject(123,"Project 1","Comment",new Date(),new Date(),55,new ArrayList<DebuggerTemplate>(),m_provider);
+  final CProject project2=new CProject(123,"Project 2","Comment",new Date(),new Date(),55,new ArrayList<DebuggerTemplate>(),m_provider);
+  final CProjectContainerNode node=new CProjectContainerNode(m_tree,m_database);
+  assertEquals("Projects (0)",node.toString());
+  assertEquals(0,node.getChildCount());
+  m_database.addProject(project1);
+  m_database.addProject(project2);
+  assertEquals("Projects (2)",node.toString());
+  assertEquals(2,node.getChildCount());
+  assertEquals("Project 1 (55)",node.getChildAt(0).toString());
+  assertEquals("Project 2 (55)",node.getChildAt(1).toString());
+  m_database.getContent().delete(project1);
+  assertEquals("Projects (1)",node.toString());
+  assertEquals(1,node.getChildCount());
+  assertEquals("Project 2 (55)",node.getChildAt(0).toString());
+  node.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")).isEmpty());
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database.getContent().getDebuggerTemplateManager(),"listeners"),"m_listeners")) == null);
+}

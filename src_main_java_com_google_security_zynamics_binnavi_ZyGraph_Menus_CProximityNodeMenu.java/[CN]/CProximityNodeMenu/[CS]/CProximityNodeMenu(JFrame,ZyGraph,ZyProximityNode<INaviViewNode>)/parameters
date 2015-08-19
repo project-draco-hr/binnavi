@@ -1,0 +1,3 @@
+JFrame parent
+ZyGraph graph
+ZyProximityNode<INaviViewNode> node

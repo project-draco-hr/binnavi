@@ -1,0 +1,5 @@
+ReilOperand firstOperand
+IValueElement previousState1
+ReilOperand secondOperand
+IValueElement previousState2
+IElementGenerator generator

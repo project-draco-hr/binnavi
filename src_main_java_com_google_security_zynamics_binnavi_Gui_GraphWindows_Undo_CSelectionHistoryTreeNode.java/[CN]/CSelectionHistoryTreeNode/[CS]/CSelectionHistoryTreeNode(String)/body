@@ -1,0 +1,5 @@
+{
+  super(name);
+  m_snapshot=new CSelectionSnapshot(new ArrayList<NaviNode>());
+  m_root=true;
+}

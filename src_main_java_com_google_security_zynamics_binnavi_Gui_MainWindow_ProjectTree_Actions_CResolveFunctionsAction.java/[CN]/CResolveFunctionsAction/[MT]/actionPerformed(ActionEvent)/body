@@ -1,0 +1,3 @@
+{
+  CFunctionHelpers.resolveFunctions(SwingUtilities.getWindowAncestor(m_parent),m_database,m_module);
+}

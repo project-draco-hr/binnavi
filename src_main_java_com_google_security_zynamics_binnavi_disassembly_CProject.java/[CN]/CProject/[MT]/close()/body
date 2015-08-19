@@ -1,0 +1,26 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE00239: Project is not loaded");
+  }
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      if (!listener.closingProject(this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  m_content.close();
+  m_content=null;
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.closedProject(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

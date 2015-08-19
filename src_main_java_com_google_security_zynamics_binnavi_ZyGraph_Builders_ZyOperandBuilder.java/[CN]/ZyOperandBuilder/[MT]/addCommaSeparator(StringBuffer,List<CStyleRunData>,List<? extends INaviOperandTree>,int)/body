@@ -1,0 +1,6 @@
+{
+  if (operandIndex < operands.size() - 1) {
+    styleRuns.add(new CStyleRunData(line.length(),2,ConfigManager.instance().getColorSettings().getOperandSeparatorColor()));
+    line.append(", ");
+  }
+}

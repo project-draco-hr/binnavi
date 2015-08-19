@@ -1,0 +1,9 @@
+{
+  final List<Pair<INaviInstruction,INaviFunction>> functions=new ArrayList<Pair<INaviInstruction,INaviFunction>>();
+  for (  final INaviInstruction instruction : node.getInstructions()) {
+    for (    final IOperandTree operand : instruction.getOperands()) {
+      fetchReferenceList(operand.getRootNode(),instruction,functions);
+    }
+  }
+  return functions;
+}

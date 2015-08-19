@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(views,"IE01450: List of flow graphs can't be null");
+  m_views=new ArrayList<INaviView>(views);
+  fireTableDataChanged();
+}

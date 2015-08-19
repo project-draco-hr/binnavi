@@ -1,0 +1,4 @@
+{
+  this.canValidateMemory=value;
+  return this;
+}

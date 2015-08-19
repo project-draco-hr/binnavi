@@ -1,0 +1,3 @@
+def run(self):
+    new_view2d = self.pi.showInWindow(self.window, self.view)
+    new_view2d.doHierarchicalLayout()

@@ -1,0 +1,8 @@
+{
+  final JFrame frame=new JFrame();
+  final DoubleLabeledSlider slider=new DoubleLabeledSlider("Low","High",0,5);
+  frame.add(slider);
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.setSize(400,400);
+  frame.setVisible(true);
+}

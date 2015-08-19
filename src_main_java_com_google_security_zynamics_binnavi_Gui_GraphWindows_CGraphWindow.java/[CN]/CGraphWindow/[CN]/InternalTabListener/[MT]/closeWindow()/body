@@ -1,0 +1,5 @@
+{
+  setJMenuBar(null);
+  setVisible(false);
+  dispose();
+}

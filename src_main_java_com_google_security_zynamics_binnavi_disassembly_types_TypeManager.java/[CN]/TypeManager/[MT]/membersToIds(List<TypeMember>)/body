@@ -1,0 +1,7 @@
+{
+  final List<Integer> result=Lists.newArrayList();
+  for (  final TypeMember member : members) {
+    result.add(member.getId());
+  }
+  return result;
+}

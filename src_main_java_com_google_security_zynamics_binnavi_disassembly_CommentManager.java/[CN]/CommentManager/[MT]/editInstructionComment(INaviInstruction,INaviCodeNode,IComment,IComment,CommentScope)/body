@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"IE02590: instruction argument can not be null");
+  editCommentInternal(new InstructionCommentingStrategy(instruction,node,scope),comment,newComment);
+}

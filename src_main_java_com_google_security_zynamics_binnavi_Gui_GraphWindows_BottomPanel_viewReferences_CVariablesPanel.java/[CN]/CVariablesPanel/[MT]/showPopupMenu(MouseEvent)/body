@@ -1,0 +1,9 @@
+{
+  final IconNode selectedNode=(IconNode)TreeHelpers.getNodeAt(referencesTable,event.getX(),event.getY());
+  if (selectedNode != null) {
+    final JPopupMenu menu=createPopupMenu(selectedNode);
+    if (menu != null) {
+      menu.show(referencesTable,event.getX(),event.getY());
+    }
+  }
+}

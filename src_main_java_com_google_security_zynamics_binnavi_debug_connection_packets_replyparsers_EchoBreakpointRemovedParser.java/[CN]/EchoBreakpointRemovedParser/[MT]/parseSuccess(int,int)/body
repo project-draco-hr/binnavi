@@ -1,0 +1,10 @@
+{
+  final int counter=parseInteger();
+  final List<Pair<RelocatedAddress,Integer>> addresses=new ArrayList<>();
+  for (int i=0; i < counter; i++) {
+    final RelocatedAddress address=new RelocatedAddress(parseAddress());
+    final int error=parseInteger();
+    addresses.add(new Pair<RelocatedAddress,Integer>(address,error));
+  }
+  return new EchoBreakpointsRemovedReply(packetId,0,addresses);
+}

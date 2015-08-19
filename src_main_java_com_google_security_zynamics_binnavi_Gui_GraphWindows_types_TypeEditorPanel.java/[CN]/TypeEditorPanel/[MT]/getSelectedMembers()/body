@@ -1,0 +1,13 @@
+{
+  final Builder<TypeMember> builder=ImmutableList.<TypeMember>builder();
+  final TreePath[] paths=typesTree.getSelectionPaths();
+  if (paths != null) {
+    for (    final TreePath path : typesTree.getSelectionPaths()) {
+      final Object node=path.getLastPathComponent();
+      if (node instanceof TypeMemberTreeNode) {
+        builder.add(((TypeMemberTreeNode)node).getTypeMember());
+      }
+    }
+  }
+  return builder.build();
+}

@@ -1,0 +1,5 @@
+{
+  final String pathname="C:";
+  final File file=new File(pathname);
+  assertTrue(CRemoteBrowserHelpers.isDrive(file));
+}

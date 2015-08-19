@@ -1,0 +1,15 @@
+{
+  if (hasChild(tag)) {
+    final Set<CTagNode> toDelete=new HashSet<CTagNode>();
+    for (int i=0; i < getChildCount(); i++) {
+      final CTagNode node=(CTagNode)getChildAt(i);
+      toDelete.add(node);
+    }
+    for (    final CTagNode node : toDelete) {
+      node.dispose();
+      remove(node);
+    }
+    createChildren();
+    getTreeModel().nodeStructureChanged(CTagNode.this);
+  }
+}

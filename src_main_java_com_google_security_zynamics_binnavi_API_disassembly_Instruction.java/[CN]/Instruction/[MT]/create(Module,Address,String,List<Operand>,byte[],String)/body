@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  Preconditions.checkNotNull(mnemonic,"Error: Mnemonic argument can not be null");
+  for (  final Operand operand : operands) {
+    Preconditions.checkNotNull(operand,"Error: Operands list contains a null-argument");
+  }
+  Preconditions.checkNotNull(data,"Error: Data argument can not be null");
+  return new Instruction(module.getNative().createInstruction(new CAddress(address.toLong()),mnemonic,convert(module.getNative(),operands),data,architecture));
+}

@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SWI");
+  translateAll(environment,instruction,"SWI",instructions);
+}

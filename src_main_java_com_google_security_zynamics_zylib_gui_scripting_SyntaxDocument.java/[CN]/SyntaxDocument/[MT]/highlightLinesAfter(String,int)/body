@@ -1,0 +1,24 @@
+{
+  final int offset=rootElement.getElement(line).getEndOffset();
+  int startDelimiter=indexOf(content,getStartDelimiter(),offset);
+  int endDelimiter=indexOf(content,getEndDelimiter(),offset);
+  if (startDelimiter < 0) {
+    startDelimiter=content.length();
+  }
+  if (endDelimiter < 0) {
+    endDelimiter=content.length();
+  }
+  final int delimiter=Math.min(startDelimiter,endDelimiter);
+  if (delimiter < offset) {
+    return;
+  }
+  final int endLine=rootElement.getElementIndex(delimiter);
+  for (int i=line + 1; i < endLine; i++) {
+    final Element branch=rootElement.getElement(i);
+    final Element leaf=doc.getCharacterElement(branch.getStartOffset());
+    final AttributeSet as=leaf.getAttributes();
+    if (as.isEqual(comment)) {
+      applyHighlighting(content,i);
+    }
+  }
+}

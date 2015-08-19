@@ -1,0 +1,14 @@
+{
+  final int position=getInputPane().getCaretPosition();
+  int currentPosition;
+  if (position == 0) {
+    currentPosition=0;
+  }
+ else {
+    getDocument().insertChar(position,"\n");
+    currentPosition=position + 1;
+  }
+  m_CurrentPrompt=additionalInput ? "... " : ">>> ";
+  getDocument().insertPrompt(currentPosition,m_CurrentPrompt);
+  getInputPane().setCaretPosition(currentPosition + m_CurrentPrompt.length());
+}

@@ -1,0 +1,4 @@
+BigInteger cacheOffset
+int cacheSize
+BigInteger offset
+int size

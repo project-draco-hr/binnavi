@@ -1,0 +1,7 @@
+{
+  final Node attributeNode=node.getAttributes().getNamedItem(attribute);
+  if (attributeNode == null) {
+    throw new MessageParserException(String.format("IE01041: Thread node of register values message does not have a '%s' attribute",attribute));
+  }
+  return attributeNode.getNodeValue();
+}

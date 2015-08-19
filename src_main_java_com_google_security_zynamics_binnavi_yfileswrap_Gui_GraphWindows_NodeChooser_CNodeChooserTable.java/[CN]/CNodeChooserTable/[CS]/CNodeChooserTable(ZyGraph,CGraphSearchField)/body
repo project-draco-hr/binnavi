@@ -1,0 +1,34 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"IE01773: Graph argument can't be null.");
+  m_searchField=Preconditions.checkNotNull(searchField,"IE01774: Search field argument can not be null");
+  m_model=new CNodeChooserModel(graph);
+  setModel(m_model);
+  final TableRowSorter<CNodeChooserModel> tableSorter=new TableRowSorter<CNodeChooserModel>(m_model);
+  setRowSorter(tableSorter);
+  tableSorter.setComparator(CNodeChooserModel.COLUMN_IN,new IntComparator());
+  tableSorter.setComparator(CNodeChooserModel.COLUMN_OUT,new IntComparator());
+  tableSorter.setComparator(CNodeChooserModel.COLUMN_ADDRESS,new LexicalComparator());
+  tableSorter.setComparator(CNodeChooserModel.COLUMN_COLOR,new IntComparator());
+  final CNodeChooserRenderer renderer=new CNodeChooserRenderer(this,m_graph,m_searchField.getGraphSearcher());
+  setRowSelectionAllowed(true);
+  setColumnSelectionAllowed(false);
+  setCellSelectionEnabled(false);
+  setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  getTableHeader().setReorderingAllowed(false);
+  getColumnModel().getColumn(0).setCellRenderer(renderer);
+  getColumnModel().getColumn(1).setCellRenderer(renderer);
+  getColumnModel().getColumn(2).setCellRenderer(renderer);
+  getColumnModel().getColumn(3).setCellRenderer(renderer);
+  getColumnModel().getColumn(0).setPreferredWidth(35);
+  getColumnModel().getColumn(1).setPreferredWidth(35);
+  getColumnModel().getColumn(3).setPreferredWidth(50);
+  getColumnModel().getColumn(0).setMaxWidth(50);
+  getColumnModel().getColumn(1).setMaxWidth(50);
+  getColumnModel().getColumn(3).setMaxWidth(50);
+  m_searchField.addListener(m_searchFieldListener);
+  m_mouselistener=new CNodeChooserMouseListener(this,graph);
+  addMouseListener(m_mouselistener);
+  m_graph.addListener((INaviGraphListener)m_viewListener);
+  m_graph.addListener((IZyGraphSelectionListener)m_viewListener);
+  initializeViewListeners(m_graph.getRawView());
+}

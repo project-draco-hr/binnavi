@@ -1,0 +1,7 @@
+{
+  if (reply.success()) {
+    events+="EXCEPTION_OCCURRED/" + reply.getExceptionCode() + ";";
+  }
+ else {
+  }
+}

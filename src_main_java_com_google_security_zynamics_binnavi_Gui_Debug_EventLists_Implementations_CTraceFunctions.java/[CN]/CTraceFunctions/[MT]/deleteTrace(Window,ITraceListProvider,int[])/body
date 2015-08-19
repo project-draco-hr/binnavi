@@ -1,0 +1,34 @@
+{
+  Preconditions.checkNotNull(parent,"IE01381: Parent argument can not be null");
+  Preconditions.checkNotNull(listProvider,"IE01382: List provider argument can't be null");
+  Preconditions.checkNotNull(traces,"IE01383: Traces argument can't be null");
+  final List<TraceList> traceObjects=new ArrayList<TraceList>();
+  for (  final int trace : traces) {
+    traceObjects.add(listProvider.getList(trace));
+  }
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to delete the following traces from the database?\n\n%s",CNameListGenerators.getNameList(traceObjects))) == JOptionPane.YES_OPTION) {
+    for (    final TraceList trace : traceObjects) {
+      new Thread(){
+        @Override public void run(){
+          final CDefaultProgressOperation operation=new CDefaultProgressOperation("",true,false);
+          operation.getProgressPanel().setMaximum(1);
+          operation.getProgressPanel().setText("Deleting trace" + ": " + trace.getName());
+          try {
+            listProvider.removeList(trace);
+            operation.getProgressPanel().next();
+          }
+ catch (          final CouldntDeleteException e) {
+            CUtilityFunctions.logException(e);
+            final String innerMessage="E00075: " + "Could not delete trace list";
+            final String innerDescription=CUtilityFunctions.createDescription(String.format("The trace list '%s' could not be deleted.",trace.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The trace list was not deleted. You could try to delete the list again once the connection problem was resolved."});
+            CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+          }
+ finally {
+            operation.stop();
+          }
+        }
+      }
+.start();
+    }
+  }
+}

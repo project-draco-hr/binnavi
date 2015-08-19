@@ -1,0 +1,5 @@
+{
+  super(Constants.MENU_EDIT_COPY);
+  putValue(ACCELERATOR_KEY,KeyStroke.getKeyStroke(KeyEvent.VK_C,CTRL_MASK));
+  putValue(SMALL_ICON,new ImageIcon(Constants.class.getResource("page_white_copy.png")));
+}

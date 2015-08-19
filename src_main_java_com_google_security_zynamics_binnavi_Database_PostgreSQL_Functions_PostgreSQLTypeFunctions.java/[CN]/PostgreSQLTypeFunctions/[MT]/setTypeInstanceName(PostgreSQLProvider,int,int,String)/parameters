@@ -1,0 +1,4 @@
+PostgreSQLProvider provider
+int moduleId
+int id
+String name

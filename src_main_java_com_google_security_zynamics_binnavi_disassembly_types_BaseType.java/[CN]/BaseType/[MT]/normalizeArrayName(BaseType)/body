@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(arrayType,"Error: array type argument can not be null.");
+  Preconditions.checkArgument(arrayType.getCategory() == BaseTypeCategory.ARRAY,"Error: array type argument must be of category array.");
+  return arrayType.getName().split("\\[")[0];
+}

@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(rawModule,"IE00006: Raw module can not be null");
+  Preconditions.checkArgument(m_database.isConnected(),"IE00031: Database must be connected before you can delete raw modules");
+  Preconditions.checkArgument(m_database.isLoaded(),"IE00036: Database must be loaded before you can delete raw modules");
+  Preconditions.checkArgument(m_rawModules.contains(rawModule),"IE00038: Raw module does not belong to this database");
+  m_provider.deleteRawModule(rawModule);
+  m_rawModules.remove(rawModule);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.deletedRawModule(m_database,rawModule);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

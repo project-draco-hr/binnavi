@@ -1,0 +1,3 @@
+{
+  return m_container.getResult() == null ? 0 : m_container.getResult().getResults().size();
+}

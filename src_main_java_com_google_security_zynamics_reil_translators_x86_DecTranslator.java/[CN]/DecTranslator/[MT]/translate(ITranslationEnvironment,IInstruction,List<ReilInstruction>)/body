@@ -1,0 +1,34 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"dec");
+  if (instruction.getOperands().size() != 1) {
+    throw new InternalTranslationException("Error: Argument instruction is not an dec instruction (invalid number of operand)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree operand=instruction.getOperands().get(0);
+  final TranslationResult result=Helpers.translateOperand(environment,offset,operand,true);
+  instructions.addAll(result.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String loadedRegister=result.getRegister();
+  final OperandSize registerSize=result.getSize();
+  final OperandSize nextSize=TranslationHelpers.getNextSize(registerSize);
+  final String msbMask=String.valueOf(TranslationHelpers.getMsbMask(registerSize));
+  final String shiftMsbLsbMask=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(registerSize));
+  final String truncMask=String.valueOf(TranslationHelpers.getAllBitsMask(registerSize));
+  final String maskedMsb=environment.getNextVariableString();
+  final String decResult=environment.getNextVariableString();
+  final String maskedMsbResult=environment.getNextVariableString();
+  final String maskedMsbNeg=environment.getNextVariableString();
+  final String tempOF=environment.getNextVariableString();
+  final String truncatedResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset,registerSize,loadedRegister,registerSize,msbMask,registerSize,maskedMsb));
+  instructions.add(ReilHelpers.createSub(offset + 1,registerSize,loadedRegister,registerSize,"1",nextSize,decResult));
+  instructions.add(ReilHelpers.createAnd(offset + 2,nextSize,decResult,registerSize,msbMask,registerSize,maskedMsbResult));
+  instructions.add(ReilHelpers.createBsh(offset + 3,registerSize,maskedMsbResult,registerSize,shiftMsbLsbMask,OperandSize.BYTE,Helpers.SIGN_FLAG));
+  instructions.add(ReilHelpers.createXor(offset + 4,registerSize,maskedMsbResult,registerSize,msbMask,registerSize,maskedMsbNeg));
+  instructions.add(ReilHelpers.createAnd(offset + 5,registerSize,maskedMsb,registerSize,maskedMsbNeg,registerSize,tempOF));
+  instructions.add(ReilHelpers.createBsh(offset + 6,registerSize,tempOF,registerSize,shiftMsbLsbMask,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createAnd(offset + 7,nextSize,decResult,registerSize,truncMask,registerSize,truncatedResult));
+  instructions.add(ReilHelpers.createBisz(offset + 8,registerSize,truncatedResult,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  Helpers.writeBack(environment,offset + 9,operand,truncatedResult,registerSize,result.getAddress(),result.getType(),instructions);
+}

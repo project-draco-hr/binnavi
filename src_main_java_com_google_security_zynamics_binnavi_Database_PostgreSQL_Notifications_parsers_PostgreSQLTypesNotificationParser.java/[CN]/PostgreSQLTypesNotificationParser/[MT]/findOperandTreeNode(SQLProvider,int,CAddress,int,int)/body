@@ -1,0 +1,15 @@
+{
+  final INaviInstruction instruction=InstructionCache.get(provider).getInstructionByAddress(address,moduleId);
+  if (instruction != null) {
+    final INaviOperandTree operandTree=instruction.getOperands().get(position);
+    final INaviOperandTreeNode root=operandTree.getRootNode();
+    final OperandOrderIterator iterator=new OperandOrderIterator(root);
+    while (iterator.next()) {
+      final INaviOperandTreeNode currentNode=(INaviOperandTreeNode)iterator.current();
+      if (currentNode.getId() == operandNodeId) {
+        return currentNode;
+      }
+    }
+  }
+  return null;
+}

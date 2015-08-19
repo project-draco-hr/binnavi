@@ -1,0 +1,7 @@
+{
+  final List<TraceList> traces=new ArrayList<TraceList>();
+  for (  final int index : indices) {
+    traces.add(traceProvider.getList(index));
+  }
+  return traces;
+}

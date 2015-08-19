@@ -1,0 +1,15 @@
+{
+  m_module.removeListener(m_moduleListener);
+  if (m_activeDebugger != null) {
+    final BreakpointManager manager=m_activeDebugger.getBreakpointManager();
+    manager.removeListener(m_breakpointManagerListener);
+  }
+  if (m_module.isLoaded()) {
+    for (    final IFlowgraphView view : m_module.getContent().getViewContainer().getNativeFlowgraphViews()) {
+      view.removeListener(m_viewListener);
+    }
+    for (    final INaviFunction function : m_module.getContent().getFunctionContainer().getFunctions()) {
+      function.removeListener(m_viewListener);
+    }
+  }
+}

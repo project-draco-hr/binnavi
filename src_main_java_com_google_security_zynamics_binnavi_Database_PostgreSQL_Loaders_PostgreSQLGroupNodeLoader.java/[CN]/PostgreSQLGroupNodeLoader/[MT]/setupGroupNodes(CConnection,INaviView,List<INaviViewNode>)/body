@@ -1,0 +1,23 @@
+{
+  final String query="SELECT id, parent_id FROM " + CTableNames.NODES_TABLE + " WHERE view_id = "+ view.getConfiguration().getId()+ " ORDER BY id";
+  final ResultSet resultSet=connection.executeQuery(query,true);
+  int counter=0;
+  int firstId=-1;
+  try {
+    while (resultSet.next()) {
+      if (firstId == -1) {
+        firstId=resultSet.getInt("id");
+      }
+      final int parentId=resultSet.getInt("parent_id");
+      if (!resultSet.wasNull()) {
+        final INaviViewNode node=nodes.get(counter);
+        final INaviViewNode parent=nodes.get(parentId - firstId);
+        ((CGroupNode)parent).addElement(node);
+      }
+      counter++;
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+}

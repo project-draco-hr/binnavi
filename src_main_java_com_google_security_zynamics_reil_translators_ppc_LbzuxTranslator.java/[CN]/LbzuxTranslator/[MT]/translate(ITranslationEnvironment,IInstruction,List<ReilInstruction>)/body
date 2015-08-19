@@ -1,0 +1,3 @@
+{
+  LoadGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"lbzux",OperandSize.BYTE,true,true,false,false,false);
+}

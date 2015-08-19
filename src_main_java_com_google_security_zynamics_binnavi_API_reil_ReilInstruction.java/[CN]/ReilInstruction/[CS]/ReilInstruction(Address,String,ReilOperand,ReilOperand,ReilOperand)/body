@@ -1,0 +1,3 @@
+{
+  this(new com.google.security.zynamics.reil.ReilInstruction(new CAddress(check(address).toLong()),checkMnemonic(mnemonic),check1(firstOperand).getNative(),check2(secondOperand).getNative(),check3(thirdOperand).getNative()));
+}

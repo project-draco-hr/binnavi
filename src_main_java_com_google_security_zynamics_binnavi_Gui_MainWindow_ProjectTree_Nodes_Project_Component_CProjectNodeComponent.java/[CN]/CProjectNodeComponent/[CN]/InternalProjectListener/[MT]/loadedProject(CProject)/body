@@ -1,0 +1,5 @@
+{
+  m_titledBorder.setTitle(getBorderText());
+  updateCheckedListPanel();
+  updateUI();
+}

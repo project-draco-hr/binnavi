@@ -1,0 +1,35 @@
+{
+  if (manager.getCommentedFunction(getCurrentComment()) != null) {
+    manager.deleteFunctionCommentInternal(manager.getCommentedFunction(getCurrentComment()),getCurrentComment());
+  }
+  if (manager.getCommentedFunctionNode(getCurrentComment()) != null) {
+    manager.deleteFunctionNodeCommentInternal(manager.getCommentedFunctionNode(getCurrentComment()),getCurrentComment());
+  }
+  if (manager.getCommentedGlobalCodeNode(getCurrentComment()) != null) {
+    manager.deleteCodeNodeComment(manager.getCommentedGlobalCodeNode(getCurrentComment()),getCurrentComment(),CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedLocalCodeNode(getCurrentComment()) != null) {
+    manager.deleteCodeNodeComment(manager.getCommentedLocalCodeNode(getCurrentComment()),getCurrentComment(),CommentScope.LOCAL);
+  }
+  if (manager.getCommentedLocalEdge(getCurrentComment()) != null) {
+    manager.deleteEdgeComment(manager.getCommentedLocalEdge(getCurrentComment()),getCurrentComment(),CommentScope.LOCAL);
+  }
+  if (manager.getCommentedGlobalEdge(getCurrentComment()) != null) {
+    manager.deleteEdgeComment(manager.getCommentedGlobalEdge(getCurrentComment()),getCurrentComment(),CommentScope.GLOBAL);
+  }
+  if (manager.getCommentedGlobalInstruction(getCurrentComment()) != null) {
+    manager.deleteInstructionComment(manager.getCommentedGlobalInstruction(getCurrentComment()),null,CommentScope.GLOBAL,getCurrentComment());
+  }
+  if (manager.getCommentedLocalInstruction(getCurrentComment()) != null) {
+    manager.deleteInstructionComment(manager.getCommentedLocalInstruction(getCurrentComment()).second(),manager.getCommentedLocalInstruction(getCurrentComment()).first(),CommentScope.LOCAL,getCurrentComment());
+  }
+  if (manager.getCommentedGroupNode(getCurrentComment()) != null) {
+    manager.deleteGroupNodeCommentInternal(manager.getCommentedGroupNode(getCurrentComment()),getCurrentComment());
+  }
+  if (manager.getCommentedTextNode(getCurrentComment()) != null) {
+    manager.deleteTextNodeCommentInternal(manager.getCommentedTextNode(getCurrentComment()),getCurrentComment());
+  }
+  if (manager.getCommentedTypeInstance(getCurrentComment()) != null) {
+    manager.deleteTypeInstanceCommentInternal(manager.getCommentedTypeInstance(getCurrentComment()),getCurrentComment());
+  }
+}

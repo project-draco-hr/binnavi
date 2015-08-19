@@ -1,0 +1,7 @@
+{
+  int writeIndex=(lineIndex * numberOfColumnsInBuffer) + columnIndex;
+  charBuffer[writeIndex]=value;
+  perCharFonts[writeIndex]=font;
+  perCharForegroundColor[writeIndex]=foreground;
+  perCharBackgroundColor[writeIndex]=background;
+}

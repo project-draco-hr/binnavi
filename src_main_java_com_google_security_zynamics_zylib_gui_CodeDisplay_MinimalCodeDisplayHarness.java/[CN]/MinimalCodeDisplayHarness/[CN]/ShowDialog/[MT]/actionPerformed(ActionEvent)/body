@@ -1,0 +1,3 @@
+{
+  JOptionPane.showMessageDialog(innerFrame,"This is a dialog");
+}

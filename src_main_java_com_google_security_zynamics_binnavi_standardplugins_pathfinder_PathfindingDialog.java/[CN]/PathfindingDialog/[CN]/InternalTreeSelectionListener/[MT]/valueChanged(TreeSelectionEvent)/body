@@ -1,0 +1,20 @@
+{
+  final TreePath path=event.getPath();
+  if (path == null) {
+    return;
+  }
+  final Object selectedNode=path.getLastPathComponent();
+  if (selectedNode instanceof FunctionTreeBlockNode) {
+    final FunctionTreeBlockNode blockNode=(FunctionTreeBlockNode)selectedNode;
+    final BasicBlock basicBlock=blockNode.getBasicBlock();
+    final StringBuilder text=new StringBuilder("");
+    for (    final Instruction instruction : basicBlock.getInstructions()) {
+      text.append(instruction.toString() + "\n");
+    }
+    m_field.setText(text.toString());
+    m_field.setCaretPosition(0);
+  }
+ else {
+    m_field.setText("");
+  }
+}

@@ -1,0 +1,3 @@
+ITranslationEnvironment environment
+long offset
+List<ReilInstruction> instructions

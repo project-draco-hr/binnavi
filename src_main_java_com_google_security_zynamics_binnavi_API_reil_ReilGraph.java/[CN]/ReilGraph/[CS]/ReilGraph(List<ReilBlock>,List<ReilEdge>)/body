@@ -1,0 +1,13 @@
+{
+  super(nodes,edges);
+  for (  final Object block : nodes) {
+    if (!(block instanceof ReilBlock)) {
+      throw new IllegalArgumentException("Error: Block list contains objects that are not ReilBlock objects");
+    }
+  }
+  for (  final Object block : edges) {
+    if (!(block instanceof ReilEdge)) {
+      throw new IllegalArgumentException("Error: Edge list contains objects that are not ReilEdge objects");
+    }
+  }
+}

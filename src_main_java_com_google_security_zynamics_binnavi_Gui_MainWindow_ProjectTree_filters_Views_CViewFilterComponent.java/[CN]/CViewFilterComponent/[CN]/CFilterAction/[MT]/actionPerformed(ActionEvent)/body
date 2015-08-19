@@ -1,0 +1,8 @@
+{
+  int y=(getLocationOnScreen().y - m_dialog.getHeight()) + getHeight();
+  if (y < 0) {
+    y=0;
+  }
+  m_dialog.setLocation(getLocationOnScreen().x + getWidth(),y);
+  m_dialog.setVisible(true);
+}

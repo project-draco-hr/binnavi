@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(typeManager,"Error: typeManager argument can not be null");
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  return new TypeEditorPanel(parent,TypesTree.createPrototypeDndTypesTree(function,typeManager),typeManager,"Prototype");
+}

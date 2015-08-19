@@ -1,0 +1,5 @@
+{
+  for (  final INaviEdge edge : getGraph().getEdges()) {
+    EdgeInitializer.adjustColor(edge);
+  }
+}

@@ -1,0 +1,20 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,true);
+      operation.getProgressPanel().setMaximum(3);
+      operation.getProgressPanel().setText("Saving address space configuration" + ": " + "Saving Name");
+      CAddressSpaceFunctions.saveName(SwingUtilities.getWindowAncestor(CAddressSpaceNodeComponent.this),m_addressSpace,m_stdEditPanel.getNameString());
+      operation.getProgressPanel().next();
+      operation.getProgressPanel().setText("Saving address space configuration" + ": " + "Saving Description");
+      CAddressSpaceFunctions.saveDescription(SwingUtilities.getWindowAncestor(CAddressSpaceNodeComponent.this),m_addressSpace,m_stdEditPanel.getDescription());
+      operation.getProgressPanel().next();
+      operation.getProgressPanel().setText("Saving address space configuration" + ": " + "Saving Debugger");
+      saveDebugger();
+      operation.getProgressPanel().next();
+      operation.stop();
+      updateSaveButton();
+    }
+  }
+.start();
+}

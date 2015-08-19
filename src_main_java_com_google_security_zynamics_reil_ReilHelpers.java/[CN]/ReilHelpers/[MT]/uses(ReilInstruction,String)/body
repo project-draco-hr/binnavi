@@ -1,0 +1,3 @@
+{
+  return instruction.getFirstOperand().getValue().equals(register) || instruction.getSecondOperand().getValue().equals(register) || (instruction.getMnemonic().equals(ReilHelpers.OPCODE_STM) && instruction.getThirdOperand().getValue().equals(register))|| (instruction.getMnemonic().equals(ReilHelpers.OPCODE_JCC) && instruction.getThirdOperand().getValue().equals(register));
+}

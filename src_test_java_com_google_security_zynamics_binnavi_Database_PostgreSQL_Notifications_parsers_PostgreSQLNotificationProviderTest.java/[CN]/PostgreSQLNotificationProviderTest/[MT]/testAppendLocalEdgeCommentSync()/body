@@ -1,0 +1,18 @@
+{
+  final INaviEdge databaseOneEdge=databaseOneView.getContent().getGraph().getEdges().get(3);
+  final INaviEdge databaseTwoEdge=databaseTwoView.getContent().getGraph().getEdges().get(3);
+  final List<IComment> oneBefore=databaseOneEdge.getLocalComment() == null ? new ArrayList<IComment>() : databaseOneEdge.getLocalComment();
+  final List<IComment> twoBefore=databaseTwoEdge.getLocalComment() == null ? new ArrayList<IComment>() : databaseTwoEdge.getLocalComment();
+  assertEquals(oneBefore,twoBefore);
+  databaseOneEdge.appendLocalComment(" TEST NOTIFICATION PROVIDER TESTS (LOCAL CODE NODE COMMENT) ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneEdge.getLocalComment();
+  final List<IComment> twoAfter=databaseTwoEdge.getLocalComment();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+}

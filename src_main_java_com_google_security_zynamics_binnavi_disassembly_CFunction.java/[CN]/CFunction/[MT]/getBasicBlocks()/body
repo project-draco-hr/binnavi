@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE00076: Function must be loaded first");
+  }
+  return functionGraph.getNodes();
+}

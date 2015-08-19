@@ -1,0 +1,3 @@
+{
+  PostgreSQLRawModuleFunctions.deleteRawModule(this,module);
+}

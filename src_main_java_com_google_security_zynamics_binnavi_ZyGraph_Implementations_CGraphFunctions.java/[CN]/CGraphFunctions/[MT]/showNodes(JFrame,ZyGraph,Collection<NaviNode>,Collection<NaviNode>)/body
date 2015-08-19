@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"IE02120: Graph argument can not be null");
+  Preconditions.checkNotNull(toShow,"IE02121: toShow argument can not be null");
+  Preconditions.checkNotNull(toHide,"IE02122: toHide argument can not be null");
+  final ZyGraphViewSettings settings=graph.getSettings();
+  final Set<NaviNode> neighbours=ProximityRangeCalculator.getNeighbors(graph,toShow,settings.getProximitySettings().getProximityBrowsingChildren(),settings.getProximitySettings().getProximityBrowsingParents());
+  neighbours.addAll(toShow);
+  final int invisibleNodes=countInvisibleNodes(neighbours);
+  if (userCancelsMakingVisible(parent,graph,invisibleNodes)) {
+    return;
+  }
+  graph.showNodes(toShow,toHide);
+}

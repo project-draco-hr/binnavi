@@ -1,0 +1,20 @@
+{
+  final IDebugger activeDebugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  final ArrayList<CMemorySectionWrapper> sections=new ArrayList<>();
+  if ((activeDebugger != null) && activeDebugger.isConnected()) {
+    for (    final MemorySection section : activeDebugger.getProcessManager().getMemoryMap()) {
+      sections.add(new CMemorySectionWrapper(section));
+    }
+  }
+  new SwingInvoker(){
+    @Override protected void operation(){
+      memorySectionBox.removeAllItems();
+      if ((activeDebugger != null) && activeDebugger.isConnected()) {
+        for (        final CMemorySectionWrapper sectionWrapper : sections) {
+          memorySectionBox.addItem(sectionWrapper);
+        }
+      }
+    }
+  }
+.invokeAndWait();
+}

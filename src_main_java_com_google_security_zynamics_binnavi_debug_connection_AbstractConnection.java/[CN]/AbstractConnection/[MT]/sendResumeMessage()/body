@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Resume\" message to the debug client");
+  return sendPacket(new ResumeCommand(getMessageId()));
+}

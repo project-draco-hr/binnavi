@@ -1,0 +1,4 @@
+{
+  checkArguments(graph);
+  ZoomFunctions.zoomToNode(graph,node);
+}

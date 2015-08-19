@@ -1,0 +1,3 @@
+{
+  new RawTypeInstance(MODULE_ID,ID,NAME,COMMENT_ID,TYPE_ID,SECTION_ID,-100);
+}

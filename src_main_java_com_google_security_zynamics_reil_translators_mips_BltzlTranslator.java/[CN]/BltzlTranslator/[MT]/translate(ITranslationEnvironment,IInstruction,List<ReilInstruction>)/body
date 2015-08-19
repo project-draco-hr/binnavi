@@ -1,0 +1,12 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bltzl");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String rs=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final IOperandTreeNode target=operands.get(1).getRootNode().getChildren().get(0);
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final OperandSize dw=OperandSize.DWORD;
+  final String isolatedSign=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rs,dw,String.valueOf(0x80000000L),dw,isolatedSign));
+  Helpers.generateDelayBranchLikely(instructions,offset,dw,isolatedSign,dw,target);
+}

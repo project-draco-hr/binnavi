@@ -1,0 +1,24 @@
+{
+  final Set<String> inSet=new HashSet<String>();
+  final Set<String> outSet=new HashSet<String>();
+  final ReilTranslator<INaviInstruction> translator=new ReilTranslator<INaviInstruction>();
+  final DirectedGraph<ReilBlock,ReilEdge> reilCode=translator.translate(new StandardEnvironment(),instruction);
+  final boolean translatingReil=instruction.getArchitecture().equals("REIL");
+  for (  final ReilBlock reilBlock : reilCode) {
+    for (    final ReilInstruction reilInstruction : reilBlock) {
+      if (writesThirdOperand(reilInstruction,translatingReil)) {
+        outSet.add(reilInstruction.getThirdOperand().getValue());
+      }
+      if (!writesThirdOperand(reilInstruction,translatingReil) && isRegister(reilInstruction.getThirdOperand(),translatingReil)) {
+        inSet.add(reilInstruction.getThirdOperand().getValue());
+      }
+      if (isRegister(reilInstruction.getFirstOperand(),translatingReil)) {
+        inSet.add(reilInstruction.getFirstOperand().getValue());
+      }
+      if (isRegister(reilInstruction.getSecondOperand(),translatingReil)) {
+        inSet.add(reilInstruction.getSecondOperand().getValue());
+      }
+    }
+  }
+  return new Pair<Set<String>,Set<String>>(inSet,outSet);
+}

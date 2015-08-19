@@ -1,0 +1,8 @@
+{
+  if (m_any) {
+    return "TAGGED";
+  }
+ else {
+    return "TAGGED" + "=" + m_tag.getName();
+  }
+}

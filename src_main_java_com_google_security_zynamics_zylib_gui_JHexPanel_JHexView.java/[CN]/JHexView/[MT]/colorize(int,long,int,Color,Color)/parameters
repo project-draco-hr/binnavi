@@ -1,0 +1,5 @@
+int level
+long offset
+int size
+Color color
+Color bgcolor

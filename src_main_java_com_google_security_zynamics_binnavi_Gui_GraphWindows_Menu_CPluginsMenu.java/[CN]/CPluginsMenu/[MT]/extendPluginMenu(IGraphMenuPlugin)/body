@@ -1,0 +1,16 @@
+{
+  try {
+    final List<JComponent> menuItems=plugin.extendPluginMenu(m_model.getGraphFrame());
+    if (menuItems != null) {
+      for (      final JComponent menuItem : menuItems) {
+        add(menuItem);
+      }
+    }
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00085: " + "Plugin caused an unexpected exception";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
+    CNaviErrorDialog.show(m_model.getParent(),innerMessage,innerDescription,exception);
+  }
+}

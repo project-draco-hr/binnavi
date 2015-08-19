@@ -1,0 +1,3 @@
+{
+  PostgreSQLSettingsFunctions.readSetting((AbstractSQLProvider)getProvider(),(CModule)null,null);
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(string,"IE01817: String argument can not be null");
+  m_string=string;
+}

@@ -1,0 +1,3 @@
+CConnection connection
+int viewId
+int moduleId

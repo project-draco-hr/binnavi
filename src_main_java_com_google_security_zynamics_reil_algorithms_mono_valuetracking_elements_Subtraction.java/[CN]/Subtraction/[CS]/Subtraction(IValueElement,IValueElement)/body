@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(!(lhs instanceof Undefined),"Error: LHS side of an Addition can not be undefined");
+  Preconditions.checkArgument(!(rhs instanceof Undefined),"Error: RHS side of an Addition can not be undefined");
+  m_lhs=lhs;
+  m_rhs=rhs;
+}

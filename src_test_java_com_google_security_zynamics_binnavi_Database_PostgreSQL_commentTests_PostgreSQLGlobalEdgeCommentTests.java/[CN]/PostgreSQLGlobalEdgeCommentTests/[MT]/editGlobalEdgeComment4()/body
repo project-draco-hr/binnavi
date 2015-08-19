@@ -1,0 +1,3 @@
+{
+  getProvider().editGlobalEdgeComment(edge,1,1,null);
+}

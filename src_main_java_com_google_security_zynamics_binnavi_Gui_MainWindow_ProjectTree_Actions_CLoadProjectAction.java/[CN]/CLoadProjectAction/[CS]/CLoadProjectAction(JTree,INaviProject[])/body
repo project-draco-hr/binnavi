@@ -1,0 +1,10 @@
+{
+  super("Load Project");
+  m_projectTree=Preconditions.checkNotNull(projectTree,"IE01904: Project tree argument can not be null");
+  m_projects=Preconditions.checkNotNull(projects,"IE01905: Projects argument can't be null").clone();
+  for (  final INaviProject project : projects) {
+    Preconditions.checkNotNull(project,"IE01906: Projects list contains a null-element");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.LOAD_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_LOAD_PROJECT".charAt(0));
+}

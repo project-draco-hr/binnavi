@@ -1,0 +1,9 @@
+{
+  final String tmpVar1=environment.getNextVariableString();
+  final String tmpVar2=environment.getNextVariableString();
+  long baseOffset=offset;
+  final String secondOperand=shiftRightSigned(baseOffset,environment,instructions,size,firstOperand,-31);
+  instructions.add(ReilHelpers.createAdd(baseOffset++,size,firstOperand,size,secondOperand,size,tmpVar1));
+  instructions.add(ReilHelpers.createXor(baseOffset++,size,tmpVar1,size,secondOperand,size,tmpVar2));
+  return new Pair<OperandSize,String>(size,tmpVar2);
+}

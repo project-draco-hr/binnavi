@@ -1,0 +1,10 @@
+{
+  if (oldThread != null) {
+    oldThread.removeListener(m_threadListener);
+  }
+  if (newThread != null) {
+    m_dataProvider.setRegisterInformation(newThread.getRegisterValues());
+    newThread.addListener(m_threadListener);
+  }
+  updateGui();
+}

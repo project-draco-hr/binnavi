@@ -1,0 +1,11 @@
+{
+  final ByteArrayOutputStream baos=new ByteArrayOutputStream();
+  final byte[] data=new byte[length];
+  int read=0;
+  while (read < length) {
+    final int retval=inputStream.read(data,0,length - read);
+    baos.write(data,0,retval);
+    read+=retval;
+  }
+  return baos.toByteArray();
+}

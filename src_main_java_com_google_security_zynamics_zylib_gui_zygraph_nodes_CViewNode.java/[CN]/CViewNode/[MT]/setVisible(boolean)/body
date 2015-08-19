@@ -1,0 +1,14 @@
+{
+  if (visible == m_visible) {
+    return;
+  }
+  m_visible=visible;
+  for (  final IViewNodeListener listener : m_listeners) {
+    try {
+      listener.changedVisibility(this,isVisible());
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

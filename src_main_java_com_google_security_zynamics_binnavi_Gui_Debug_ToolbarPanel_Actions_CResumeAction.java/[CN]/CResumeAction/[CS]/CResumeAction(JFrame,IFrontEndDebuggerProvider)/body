@@ -1,0 +1,5 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE00301: Parent argument can not be null");
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01536: Debugger provider argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Resume");
+}

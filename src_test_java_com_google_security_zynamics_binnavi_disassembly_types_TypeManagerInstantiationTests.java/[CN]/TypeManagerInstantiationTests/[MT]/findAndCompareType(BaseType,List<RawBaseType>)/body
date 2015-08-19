@@ -1,0 +1,10 @@
+{
+  for (  final RawBaseType rawType : rawTypes) {
+    if (rawType.getId() == baseType.getId()) {
+      if (baseType.getCategory() == BaseTypeCategory.ARRAY) {
+        assertTrue(baseType.getName().equals(rawType.getName()));
+      }
+      return;
+    }
+  }
+}

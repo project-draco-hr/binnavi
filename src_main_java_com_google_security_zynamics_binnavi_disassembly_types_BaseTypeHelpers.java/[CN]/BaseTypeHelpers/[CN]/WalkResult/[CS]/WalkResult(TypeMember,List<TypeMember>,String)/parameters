@@ -1,0 +1,3 @@
+TypeMember member
+List<TypeMember> path
+String pathString

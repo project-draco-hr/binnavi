@@ -1,0 +1,15 @@
+{
+  if (!m_graph.getSettings().getProximitySettings().getProximityBrowsing() || m_internallyDisabled) {
+    return;
+  }
+  if (m_lastShown.equals(toShow)) {
+    return;
+  }
+  m_lastShown=new HashSet<NodeType>(toShow);
+  m_internallyDisabled=true;
+  deleteProximityBrowsingNodes();
+  final List<NodeType> allNodes=GraphHelpers.getNodes(m_graph);
+  createProximityBrowsingNodes(allNodes);
+  updateViews();
+  m_internallyDisabled=false;
+}

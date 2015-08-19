@@ -1,0 +1,11 @@
+{
+  new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  notifications.add(new MockPGNotification("comment_changes","bn_function_nodes 1 1 1 1 1"));
+  notifications.add(new MockPGNotification("comment_changes","bn_function_nodes UPDATE"));
+  notifications.add(new MockPGNotification("comment_changes","bn_function_nodes UPDATE 1 "));
+  notifications.add(new MockPGNotification("comment_changes","bn_function_nodes"));
+  notifications.add(new MockPGNotification("comment_changes","bn_function_nodes 1 FOO FOO FOOO ooqwkepqwpoekpqowkep" + "oqw\\n\\\n\\\n\\\\\\n\\n\n\\n\\\n\\n\\\n\\c\\c\\c\\c" + "ckepokqwpekpqwokepoaksjeofijsoiefjosejfosjoefjsoisje"+ "foisjefoisjeofijsoeifjsoeifj"));
+  for (  PGNotification notification : notifications) {
+    assertNull(PostgreSQLCommentNotificationParser.processFunctionCommentNotification(notification,provider));
+  }
+}

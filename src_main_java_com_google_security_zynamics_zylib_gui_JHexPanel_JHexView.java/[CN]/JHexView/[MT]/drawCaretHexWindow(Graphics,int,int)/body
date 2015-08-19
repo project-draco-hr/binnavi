@@ -1,0 +1,9 @@
+{
+  final int currentRow=getCurrentRow() - m_firstRow;
+  final int currentColumn=getCurrentColumn();
+  final int startLeft=9 + m_offsetViewWidth;
+  final int paddingColumns=(currentColumn / (2 * m_bytesPerColumn)) * m_columnSpacing;
+  final int x=(-m_firstColumn * m_charWidth) + startLeft + (currentColumn * characterWidth)+ paddingColumns;
+  final int y=((3 + m_paddingTop) - characterHeight) + (characterHeight * currentRow);
+  m_caret.draw(g,x,y,characterHeight);
+}

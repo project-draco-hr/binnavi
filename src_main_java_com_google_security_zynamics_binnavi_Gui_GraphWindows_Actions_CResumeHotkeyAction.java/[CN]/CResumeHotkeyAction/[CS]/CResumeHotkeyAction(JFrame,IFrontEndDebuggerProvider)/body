@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01653: Debug perspective model argument can not be null");
+  m_parent=parent;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+}

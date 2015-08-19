@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(settings,"IE00895: Settings argument can not be null");
+  final HierarchicStyle style=settings.getHierarchicalSettings().getStyle();
+  final long minLayerDist=settings.getHierarchicalSettings().getMinimumLayerDistance();
+  final long minNodeDist=settings.getHierarchicalSettings().getMinimumNodeDistance();
+  final long minEdgeDist=settings.getHierarchicalSettings().getMinimumEdgeDistance();
+  final long minNodeEdgeDist=settings.getHierarchicalSettings().getMinimumNodeEdgeDistance();
+  final HierarchicOrientation orientation=settings.getHierarchicalSettings().getOrientation();
+  return ZyGraphLayouter.createHierarchicalLayouter(style,minLayerDist,minNodeDist,minEdgeDist,minNodeEdgeDist,orientation);
+}

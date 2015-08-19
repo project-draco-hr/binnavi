@@ -1,0 +1,4 @@
+{
+  CGraphCloser.close(m_tabbedPane);
+  return m_tabbedPane.getTabCount() == 0;
+}

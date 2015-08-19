@@ -1,0 +1,20 @@
+{
+switch (breakpointStatus) {
+case BREAKPOINT_ACTIVE:
+    return ConfigManager.instance().getDebuggerColorSettings().getBreakpointActive();
+case BREAKPOINT_INACTIVE:
+  return ConfigManager.instance().getDebuggerColorSettings().getBreakpointInactive();
+case BREAKPOINT_ENABLED:
+return ConfigManager.instance().getDebuggerColorSettings().getBreakpointEnabled();
+case BREAKPOINT_DISABLED:
+return ConfigManager.instance().getDebuggerColorSettings().getBreakpointDisabled();
+case BREAKPOINT_HIT:
+return ConfigManager.instance().getDebuggerColorSettings().getBreakpointHit();
+case BREAKPOINT_INVALID:
+return ConfigManager.instance().getDebuggerColorSettings().getBreakpointInvalid();
+case BREAKPOINT_DELETING:
+return ConfigManager.instance().getDebuggerColorSettings().getBreakpointDeleting();
+default :
+throw new IllegalStateException("IE01182: Unknown breakpoint status");
+}
+}

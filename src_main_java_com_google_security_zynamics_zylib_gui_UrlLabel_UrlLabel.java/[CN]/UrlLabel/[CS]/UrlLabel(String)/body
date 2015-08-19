@@ -1,0 +1,5 @@
+{
+  super(label);
+  setForeground(Color.BLUE);
+  addMouseListener(linker);
+}

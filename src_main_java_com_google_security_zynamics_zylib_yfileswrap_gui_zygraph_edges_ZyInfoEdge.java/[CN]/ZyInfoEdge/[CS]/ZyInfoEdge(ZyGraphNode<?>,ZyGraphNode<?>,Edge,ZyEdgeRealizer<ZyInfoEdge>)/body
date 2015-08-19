@@ -1,0 +1,3 @@
+{
+  super(source,target,edge,r,new CInfoEdge());
+}

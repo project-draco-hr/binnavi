@@ -1,0 +1,5 @@
+{
+  final int caretPosition=component.getCaretPosition();
+  final Element root=component.getDocument().getDefaultRootElement();
+  return root.getElementIndex(caretPosition) + 1;
+}

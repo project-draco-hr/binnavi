@@ -1,0 +1,13 @@
+def create_dominator_view(view):
+    'Takes a view, calculates its dominator tree, and creates a new view\n\t   that shows that dominator tree.'
+    if (len(view.graph.nodes) == 0):
+        MessageBox.showError('Can not create dominator tree of empty views')
+        return
+    dominator_tree = GraphAlgorithms.getDominatorTree(view.graph, findRoot(view.graph.nodes), None)
+    try:
+        tree_view = view.container.createView(("Dominator Tree: '%s'" % view.name), '')
+        createView(tree_view, dominator_tree.rootNode)
+        return tree_view
+    except CouldntSaveDataException:
+        MessageBox.showError('Could not create the dominator tree view')
+        return None

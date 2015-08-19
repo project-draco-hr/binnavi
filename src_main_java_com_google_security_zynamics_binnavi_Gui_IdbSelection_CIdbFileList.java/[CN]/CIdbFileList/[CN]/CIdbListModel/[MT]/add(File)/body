@@ -1,0 +1,7 @@
+{
+  if (m_files.contains(file)) {
+    return;
+  }
+  m_files.add(file);
+  fireIntervalAdded(file,m_files.size() - 1,m_files.size() - 1);
+}

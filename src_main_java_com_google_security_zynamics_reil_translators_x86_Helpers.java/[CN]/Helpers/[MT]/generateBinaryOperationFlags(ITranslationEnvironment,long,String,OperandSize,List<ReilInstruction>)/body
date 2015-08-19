@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(result,"Error: Argument result can't be null");
+  Preconditions.checkNotNull(resultSize,"Error: Argument resultSize can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final long baseOffset=nextOffset - instructions.size();
+  long offset=nextOffset;
+  generateSignFlagCode(environment,offset,result,resultSize,instructions);
+  offset=(baseOffset + instructions.size()) - 1;
+  instructions.add(ReilHelpers.createBisz(offset + 1,resultSize,result,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createStr(offset + 2,OperandSize.BYTE,"0",OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createStr(offset + 3,OperandSize.BYTE,"0",OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+}

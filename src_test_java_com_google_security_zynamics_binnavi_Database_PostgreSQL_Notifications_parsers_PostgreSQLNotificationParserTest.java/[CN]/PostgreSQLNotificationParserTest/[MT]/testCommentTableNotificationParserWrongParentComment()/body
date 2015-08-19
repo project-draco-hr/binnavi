@@ -1,0 +1,6 @@
+{
+  CommentManager.get(provider).initializeGlobalInstructionComment(instruction,Lists.newArrayList(comment1,comment2,comment3));
+  final String COMMENTS_TABLE_NOTIFICATION_2="bn_comments UPDATE 3333 null " + CommonTestObjects.TEST_USER_1.getUserId() + " AAA";
+  notifications.add(new MockPGNotification("comment_changes",COMMENTS_TABLE_NOTIFICATION_2));
+  parser.parse(notifications,provider);
+}

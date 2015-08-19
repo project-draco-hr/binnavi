@@ -1,0 +1,3 @@
+CConnection connection
+List<INaviViewNode> nodes
+CTagManager nodeTagManager

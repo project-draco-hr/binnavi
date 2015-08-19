@@ -1,0 +1,4 @@
+JFrame parent
+IFrontEndDebuggerProvider debugPerspectiveModel
+IRefreshRangeProvider rangeProvider
+IRefreshRangeProvider stackRangeProvider

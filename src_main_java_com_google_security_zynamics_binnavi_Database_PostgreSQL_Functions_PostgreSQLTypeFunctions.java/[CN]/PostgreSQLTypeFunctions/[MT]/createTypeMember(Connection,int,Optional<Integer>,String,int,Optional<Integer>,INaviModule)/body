@@ -1,0 +1,37 @@
+{
+  try {
+    final String query=String.format("INSERT INTO %s (module_id, id, name, base_type, parent_id, \"offset\", argument," + " number_of_elements) VALUES (?, nextval('bn_types_id_seq'), " + "?, ?, ?, ?, NULL, ?) returning id",CTableNames.TYPE_MEMBERS_TABLE);
+    final PreparedStatement statement=connection.prepareStatement(query);
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setString(2,name);
+      statement.setInt(3,baseTypeId);
+      statement.setInt(4,containingTypeId);
+      if (offset.isPresent()) {
+        statement.setInt(5,offset.get());
+      }
+ else {
+        statement.setNull(5,Types.INTEGER);
+      }
+      if (numberOfElements.isPresent()) {
+        statement.setInt(6,numberOfElements.get());
+      }
+ else {
+        statement.setNull(6,Types.INTEGER);
+      }
+      final ResultSet resultSet=statement.executeQuery();
+      if (resultSet.next()) {
+        return resultSet.getInt(1);
+      }
+ else {
+        throw new CouldntSaveDataException("Empty result set while inserting type member.");
+      }
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

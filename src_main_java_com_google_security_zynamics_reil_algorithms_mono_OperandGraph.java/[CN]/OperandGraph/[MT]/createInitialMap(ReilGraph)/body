@@ -1,0 +1,36 @@
+{
+  final Map<ReilBlock,Pair<List<OperandGraphNode>,List<OperandGraphEdge>>> graphMap=new HashMap<ReilBlock,Pair<List<OperandGraphNode>,List<OperandGraphEdge>>>();
+  for (  final ReilBlock block : graph) {
+    final List<OperandGraphNode> nodes=new ArrayList<OperandGraphNode>();
+    final List<OperandGraphEdge> edges=new ArrayList<OperandGraphEdge>();
+    graphMap.put(block,new Pair<List<OperandGraphNode>,List<OperandGraphEdge>>(nodes,edges));
+    final Map<String,OperandGraphNode> defines=new HashMap<String,OperandGraphNode>();
+    for (    final ReilInstruction instruction : block) {
+      final Integer mnemonic=instruction.getMnemonicCode();
+      OperandGraphNode firstNode=null;
+      OperandGraphNode secondNode=null;
+      if (ReilHelpers.usesFirstOperand(mnemonic)) {
+        firstNode=create(instruction,0,nodes,edges,defines);
+      }
+      if (ReilHelpers.usesSecondOperand(mnemonic)) {
+        secondNode=create(instruction,1,nodes,edges,defines);
+      }
+      if (ReilHelpers.writesThirdOperand(mnemonic)) {
+        final OperandGraphNode node=new OperandGraphNode(instruction,2);
+        nodes.add(node);
+        defines.put(instruction.getThirdOperand().getValue(),node);
+        if (firstNode != null) {
+          final OperandGraphEdge edge=new OperandGraphEdge(firstNode,node);
+          edges.add(edge);
+          OperandGraphNode.link(firstNode,node);
+        }
+        if (secondNode != null) {
+          final OperandGraphEdge edge=new OperandGraphEdge(secondNode,node);
+          edges.add(edge);
+          OperandGraphNode.link(secondNode,node);
+        }
+      }
+    }
+  }
+  return graphMap;
+}

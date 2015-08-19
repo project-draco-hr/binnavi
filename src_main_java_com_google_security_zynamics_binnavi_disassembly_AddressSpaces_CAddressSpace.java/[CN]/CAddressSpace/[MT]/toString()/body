@@ -1,0 +1,3 @@
+{
+  return String.format("Address Space %s (%d)",m_configuration.getName(),m_configuration.getId());
+}

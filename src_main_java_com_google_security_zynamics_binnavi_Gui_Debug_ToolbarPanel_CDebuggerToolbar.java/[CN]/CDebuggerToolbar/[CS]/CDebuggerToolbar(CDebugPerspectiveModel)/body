@@ -1,0 +1,33 @@
+{
+  m_debugger=debugger;
+  setFloatable(false);
+  final IGraphModel model=debugger.getGraphModel();
+  final CGraphWindow parent=model.getParent();
+  final ZyGraph graph=model.getGraph();
+  m_startAction=new CAttachAction(parent,debugger);
+  m_detachAction=new CDetachAction(parent,debugger);
+  m_terminateAction=new CTerminateAction(parent,debugger);
+  m_stepIntoAction=new CStepIntoAction(parent,debugger);
+  m_stepOverAction=new CStepOverAction(parent,debugger,graph);
+  m_stepBlockAction=new CStepBlockAction(parent,debugger,graph);
+  m_stepEndAction=new CStepEndAction(parent,debugger,graph);
+  m_resumeAction=new CResumeAction(parent,debugger);
+  m_haltAction=new CHaltAction(parent,debugger);
+  m_startTraceAction=new CStartTraceAction(parent,debugger,graph);
+  m_stopTraceAction=new CStopTraceAction(parent,debugger);
+  createAndAddIconToToolbar(m_startAction,"data/startdebugger_up.jpg","data/startdebugger_hover.jpg","data/startdebugger_down.jpg");
+  m_detachButton=createAndAddIconToToolbar(m_detachAction,"data/detachdebugger_up.jpg","data/detachdebugger_hover.jpg","data/detachdebugger_down.jpg");
+  m_terminateButton=createAndAddIconToToolbar(m_terminateAction,"data/terminatedebugger_up.jpg","data/terminatedebugger_hover.jpg","data/terminatedebugger_down.jpg");
+  final JButton stepButton=createAndAddIconToToolbar(m_stepIntoAction,"data/stepnext_up.jpg","data/stepnext_hover.jpg","data/stepnext_down.jpg");
+  addHotkey(stepButton,HotKeys.DEBUGGER_SINGLE_STEP_KEY.getKeyStroke(),m_stepIntoAction,HotKeys.DEBUGGER_SINGLE_STEP_KEY.getDescription());
+  final JButton stepOverButton=createAndAddIconToToolbar(m_stepOverAction,"data/stepover_up.jpg","data/stepover_hover.jpg","data/stepover_down.jpg");
+  addHotkey(stepOverButton,HotKeys.DEBUGGER_STEP_OVER_KEY.getKeyStroke(),m_stepOverAction,HotKeys.DEBUGGER_STEP_OVER_KEY.getDescription());
+  final JButton stepBlockButton=createAndAddIconToToolbar(m_stepBlockAction,"data/stepnextnode_up.jpg","data/stepnextnode_hover.jpg","data/stepnextnode_down.jpg");
+  addHotkey(stepBlockButton,HotKeys.DEBUGGER_STEP_BLOCK_KEY.getKeyStroke(),m_stepBlockAction,HotKeys.DEBUGGER_STEP_BLOCK_KEY.getDescription());
+  createAndAddIconToToolbar(m_stepEndAction,"data/step_to_end_up.png","data/step_to_end_hover.png","data/step_to_end_down.png");
+  final JButton resumeButton=createAndAddIconToToolbar(m_resumeAction,"data/resumedebugger_up.jpg","data/resumedebugger_hover.jpg","data/resumedebugger_down.jpg");
+  addHotkey(resumeButton,HotKeys.DEBUGGER_RESUME_KEY.getKeyStroke(),m_resumeAction,HotKeys.DEBUGGER_RESUME_KEY.getDescription());
+  m_haltButton=createAndAddIconToToolbar(m_haltAction,"data/suspenddebugger_up.jpg","data/suspenddebugger_hover.jpg","data/suspenddebugger_down.jpg");
+  createAndAddIconToToolbar(m_startTraceAction,"data/record_up.jpg","data/record_hover.jpg","data/record_down.jpg");
+  createAndAddIconToToolbar(m_stopTraceAction,"data/recordstop_up.jpg","data/recordstop_hover.jpg","data/recordstop_down.jpg");
+}

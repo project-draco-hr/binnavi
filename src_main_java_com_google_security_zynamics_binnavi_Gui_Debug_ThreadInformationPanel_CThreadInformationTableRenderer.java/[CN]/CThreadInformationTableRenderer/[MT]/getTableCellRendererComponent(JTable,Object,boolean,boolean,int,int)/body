@@ -1,0 +1,7 @@
+{
+  super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  final TargetProcessThread module=((CThreadInformationTable)table).getModel().getThreads().get(row);
+  final Color color=m_colorGenerator.getColor(module);
+  setBackground(color == null ? Color.WHITE : color);
+  return this;
+}

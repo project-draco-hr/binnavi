@@ -1,0 +1,5 @@
+int tagId
+String name
+String description
+TagType type
+SQLProvider sqlProvider

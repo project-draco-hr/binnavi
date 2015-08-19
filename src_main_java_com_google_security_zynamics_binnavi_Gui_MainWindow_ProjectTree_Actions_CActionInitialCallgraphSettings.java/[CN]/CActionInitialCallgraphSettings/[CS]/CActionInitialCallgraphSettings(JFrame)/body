@@ -1,0 +1,5 @@
+{
+  super("Initial Call graph Settings");
+  m_parent=Preconditions.checkNotNull(parent,"IE01844: Parent argument can not be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_INITIAL_CALLGRAPH_SETTINGS".charAt(0));
+}

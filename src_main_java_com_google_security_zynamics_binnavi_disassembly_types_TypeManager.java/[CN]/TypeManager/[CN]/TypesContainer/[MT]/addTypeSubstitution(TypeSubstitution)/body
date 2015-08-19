@@ -1,0 +1,3 @@
+{
+  substitutionsByType.put(substitution.getBaseType(),substitution);
+}

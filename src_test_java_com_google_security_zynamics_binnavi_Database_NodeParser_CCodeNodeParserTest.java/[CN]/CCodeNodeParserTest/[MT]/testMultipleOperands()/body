@@ -1,0 +1,32 @@
+{
+  final MockCodeNodeProvider cnProvider=new MockCodeNodeProvider();
+  final MockCodeNodeData instruction1a=new MockCodeNodeData();
+  instruction1a.mnemonic="mov";
+  instruction1a.nodeId=0;
+  instruction1a.expressionId=0;
+  instruction1a.expressionType=5;
+  instruction1a.operandPosition=0;
+  instruction1a.symbol="eax";
+  final MockCodeNodeData instruction1b=new MockCodeNodeData();
+  instruction1b.mnemonic="mov";
+  instruction1b.nodeId=0;
+  instruction1b.expressionId=1;
+  instruction1b.expressionType=5;
+  instruction1b.operandPosition=1;
+  instruction1b.symbol="ebx";
+  cnProvider.data.add(instruction1a);
+  cnProvider.data.add(instruction1b);
+  final MockSqlProvider provider=new MockSqlProvider();
+  final MockModule module=new MockModule();
+  CFunctionContainerHelper.addFunction(module.getContent().getFunctionContainer(),new MockFunction(0));
+  final CCodeNodeParser p=new CCodeNodeParser(cnProvider,Lists.newArrayList(module),provider);
+  final List<CCodeNode> result=p.parse();
+  assertEquals(1,result.size());
+  assertEquals(1,Iterables.size(result.get(0).getInstructions()));
+  final INaviInstruction instruction=Iterables.getFirst(result.get(0).getInstructions(),null);
+  assertEquals("mov",instruction.getMnemonic());
+  assertEquals("dword",instruction.getOperands().get(0).getRootNode().getValue());
+  assertEquals("eax",instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue());
+  assertEquals("dword",instruction.getOperands().get(1).getRootNode().getValue());
+  assertEquals("ebx",instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue());
+}

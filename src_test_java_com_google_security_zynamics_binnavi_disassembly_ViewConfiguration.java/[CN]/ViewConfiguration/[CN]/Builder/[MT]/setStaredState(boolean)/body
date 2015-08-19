@@ -1,0 +1,4 @@
+{
+  this.staredState=staredState;
+  return this;
+}

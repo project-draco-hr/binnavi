@@ -1,0 +1,5 @@
+{
+  m_crossReferences.clear();
+  m_crossReferences.addAll(crossReferences);
+  fireTableDataChanged();
+}

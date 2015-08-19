@@ -1,0 +1,45 @@
+{
+  int x=getCaretEndPosX();
+  int y=getCaretMouseReleasedY();
+  final ZyLineContent lineContent=getLineContent(y);
+  if (isComment(x,y)) {
+    IZyEditableObject lineObject=lineContent.getLineFragmentObjectAt(x);
+    String text="";
+    if (lineObject.isCommentDelimiter()) {
+      x=lineObject.getEnd();
+      lineObject=lineContent.getLineFragmentObjectAt(x);
+    }
+    text=getMultiLineComment(y);
+    udpateUndolist(getLabelContent(),lineContent.getLineObject().getPersistentModel(),lineObject,text,isAboveLineComment(y),isBehindLineComment(x,y),isLabelComment(y),getCaretStartPosX(),getCaretMousePressedX(),getCaretMousePressedY(),getCaretEndPosX(),getCaretMouseReleasedX(),getCaretMouseReleasedY());
+  }
+ else {
+    final ZyLineContent nextModelLineContent=getNextModelLineContent(y);
+    y=getNextModelLineIndex(y);
+    String text="";
+    boolean isAboveLineComment=false;
+    boolean isBehindLineComment=false;
+    boolean isLabelComment=false;
+    IZyEditableObject editableObject=nextModelLineContent == null ? getLabelContent().getModel() : nextModelLineContent.getLineObject();
+    if ((x == lineContent.getText().length()) && (getCaretMouseReleasedY() != 0)) {
+      editableObject=lineContent.getLineObject();
+      isBehindLineComment=true;
+    }
+ else     if ((nextModelLineContent != null) && !isLabelComment(y)) {
+      if (isComment(0,y)) {
+        text=getMultiLineComment(y);
+      }
+      isAboveLineComment=true;
+    }
+ else     if ((nextModelLineContent != null) && isLabelComment(y)) {
+      text+=getMultiLineComment(y);
+      isLabelComment=true;
+    }
+ else {
+      isLabelComment=true;
+    }
+    if (editableObject == null) {
+      return;
+    }
+    udpateUndolist(getLabelContent(),editableObject.getPersistentModel(),editableObject,text,isAboveLineComment,isBehindLineComment,isLabelComment,getCaretStartPosX(),getCaretMousePressedX(),getCaretMousePressedY(),getCaretEndPosX(),getCaretMouseReleasedX(),getCaretMouseReleasedY());
+  }
+}

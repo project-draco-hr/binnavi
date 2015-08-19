@@ -1,0 +1,3 @@
+INaviModule module
+List<TraceList> traces
+SQLProvider provider

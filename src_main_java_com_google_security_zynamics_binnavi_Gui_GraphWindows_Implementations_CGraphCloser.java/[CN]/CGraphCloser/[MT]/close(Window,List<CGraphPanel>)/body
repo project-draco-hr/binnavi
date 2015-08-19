@@ -1,0 +1,23 @@
+{
+  final List<IGraphPanel> modifiedGraphs=collectModifiedGraphPanels(graphs);
+  if (modifiedGraphs.isEmpty()) {
+    closeAll(graphs);
+  }
+ else {
+    final int result=CMessageBox.showYesNoCancelQuestion(parent,generateMessage(modifiedGraphs));
+    if (result == JOptionPane.YES_OPTION) {
+      for (      final IGraphPanel panel : modifiedGraphs) {
+        saveGraph(parent,panel.getModel());
+      }
+      for (      final CGraphPanel panel : graphs) {
+        panel.close(false);
+      }
+    }
+ else     if (result == JOptionPane.NO_OPTION) {
+      closeAll(graphs);
+    }
+ else {
+      return;
+    }
+  }
+}

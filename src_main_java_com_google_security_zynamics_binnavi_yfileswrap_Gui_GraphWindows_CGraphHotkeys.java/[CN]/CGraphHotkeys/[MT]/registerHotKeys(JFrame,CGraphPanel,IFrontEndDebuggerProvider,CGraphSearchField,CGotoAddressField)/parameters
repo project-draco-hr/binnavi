@@ -1,0 +1,5 @@
+JFrame parent
+CGraphPanel panel
+IFrontEndDebuggerProvider debuggerProvider
+CGraphSearchField searchField
+CGotoAddressField addressField

@@ -1,0 +1,11 @@
+{
+  super(parent,"Edit Node Comments",true);
+  Preconditions.checkNotNull(parent,"IE01702: Parent argument can't be null");
+  m_codeNode=Preconditions.checkNotNull(node,"IE01703: Node argument can't be null");
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  m_commentsPanel=new CodeNodeCommentsPanel(node);
+  m_globalLineCommentsPanel=new CGlobalInstructionCommentsPanel(m_codeNode,graphModel);
+  m_localLineCommentsPanel=new LocalInstructionCommentsPanel(m_codeNode,graphModel);
+  createGui(InitialTab.LocalLineComments);
+}

@@ -1,0 +1,8 @@
+{
+  super(String.format("Open function %s",function.getName()));
+  Preconditions.checkNotNull(parent,"IE02163: Parent argument can not be null");
+  Preconditions.checkNotNull(container,"IE02164: Container argument can not be null");
+  m_parent=parent;
+  m_container=container;
+  m_function=function;
+}

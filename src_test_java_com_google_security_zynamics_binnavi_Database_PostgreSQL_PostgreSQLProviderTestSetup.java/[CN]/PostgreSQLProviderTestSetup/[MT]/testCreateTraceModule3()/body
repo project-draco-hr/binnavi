@@ -1,0 +1,3 @@
+{
+  getProvider().createTrace(new MockModule(),"Trace Name",null);
+}

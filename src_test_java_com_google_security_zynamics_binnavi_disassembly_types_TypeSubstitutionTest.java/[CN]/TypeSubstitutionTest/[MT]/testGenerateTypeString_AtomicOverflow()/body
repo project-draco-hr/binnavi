@@ -1,0 +1,4 @@
+{
+  final String typeString=TypeSubstitution.generateTypeString(createSubstitution(typeSystem.intType,0),1);
+  Assert.assertEquals(typeSystem.intType.getName() + "+1",typeString);
+}

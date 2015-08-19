@@ -1,0 +1,4 @@
+int packetId
+int errorCode
+MemoryModule module
+TargetProcessThread thread

@@ -1,0 +1,3 @@
+AbstractSQLProvider provider
+INaviView view
+boolean isStared

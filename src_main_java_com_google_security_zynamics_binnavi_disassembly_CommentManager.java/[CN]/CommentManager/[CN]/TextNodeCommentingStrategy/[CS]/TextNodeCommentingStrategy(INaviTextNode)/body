@@ -1,0 +1,3 @@
+{
+  textNode=Preconditions.checkNotNull(node,"IE02611: node argument can not be null");
+}

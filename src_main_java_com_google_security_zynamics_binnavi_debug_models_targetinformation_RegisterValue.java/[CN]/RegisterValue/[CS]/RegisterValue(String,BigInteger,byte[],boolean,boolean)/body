@@ -1,0 +1,8 @@
+{
+  this.name=Preconditions.checkNotNull(name,"IE01047: Name argument can not be null");
+  this.value=Preconditions.checkNotNull(value,"IE01033: Value argument can not be null");
+  Preconditions.checkArgument(!(isPc && isSp),"IE01034: A register can not be both program counter register and stack register");
+  memoryPointedTo=memory.clone();
+  isProgramCounter=isPc;
+  isStackPointer=isSp;
+}

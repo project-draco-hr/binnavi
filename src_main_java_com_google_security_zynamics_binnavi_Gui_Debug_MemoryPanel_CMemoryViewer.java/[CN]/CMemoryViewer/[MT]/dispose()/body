@@ -1,0 +1,4 @@
+{
+  m_synchronizer.dispose();
+  m_hexView.dispose();
+}

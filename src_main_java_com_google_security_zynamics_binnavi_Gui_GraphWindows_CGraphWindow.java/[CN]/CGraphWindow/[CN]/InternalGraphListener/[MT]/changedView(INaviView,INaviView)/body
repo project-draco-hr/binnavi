@@ -1,0 +1,8 @@
+{
+  if (viewOpenCount(oldView) == 0) {
+    oldView.removeListener(m_viewListener);
+  }
+  newView.addListener(m_viewListener);
+  m_tabbedPane.updateRegisterHeaders();
+  updateCurrentWindowTitle(newView);
+}

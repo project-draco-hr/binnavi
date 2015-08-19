@@ -1,0 +1,8 @@
+{
+  if (commandLine.isVeryVerboseMode()) {
+    NaviLogger.setLevel(Level.ALL);
+  }
+ else   if (commandLine.isVerboseMode()) {
+    NaviLogger.setLevel(Level.INFO);
+  }
+}

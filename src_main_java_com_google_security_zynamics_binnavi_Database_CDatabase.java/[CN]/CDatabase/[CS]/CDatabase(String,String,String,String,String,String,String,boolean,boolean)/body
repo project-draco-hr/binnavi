@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(description,"IE00656: Database description can not be null");
+  Preconditions.checkNotNull(driver,"IE00657: Database driver can not be null");
+  Preconditions.checkNotNull(host,"IE01148: Database host can not be null");
+  Preconditions.checkNotNull(name,"IE00658: Database name can not be null");
+  Preconditions.checkNotNull(user,"IE00659: Database user can not be null");
+  Preconditions.checkNotNull(password,"IE00660: Database password can not be null");
+  Preconditions.checkNotNull(identity,"IE00064: identity argument can not be null");
+  this.description=new CDatabaseConfiguration(this,listeners,description,driver,host,name,user,password,identity,autoConnect,savePassword);
+}

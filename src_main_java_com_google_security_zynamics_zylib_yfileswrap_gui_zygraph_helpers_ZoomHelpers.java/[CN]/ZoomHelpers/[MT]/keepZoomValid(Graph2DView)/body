@@ -1,0 +1,4 @@
+{
+  decreaseToMaxZoom(view);
+  increaseToMinZoom(view);
+}

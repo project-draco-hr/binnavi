@@ -1,0 +1,8 @@
+{
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED);
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(123,ThreadState.SUSPENDED));
+  debuggerSynchronizer.receivedEvent(new BreakpointsRemovedReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_456_RELOC,0))));
+  assertEquals(0,listener.exception);
+  assertEquals(1,breakpointManager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+}

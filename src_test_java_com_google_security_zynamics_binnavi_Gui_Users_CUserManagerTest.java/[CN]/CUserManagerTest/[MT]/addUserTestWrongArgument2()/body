@@ -1,0 +1,5 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  manager.addUser("ONE");
+  manager.addUser("ONE");
+}

@@ -1,0 +1,5 @@
+{
+  final INaviView view=module.getContent().getViewContainer().getView(module.getContent().getFunctionContainer().getFunction(name));
+  view.load();
+  return view;
+}

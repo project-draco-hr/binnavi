@@ -1,0 +1,12 @@
+{
+  m_provider.setDebugger(m_debugger);
+  m_debugger.connect();
+  final TargetProcessThread thread=new TargetProcessThread(0,ThreadState.SUSPENDED);
+  thread.setRegisterValues(Lists.newArrayList(new RegisterValue("esp",BigInteger.valueOf(0x123),new byte[0],false,true)));
+  m_provider.setActiveThread(thread);
+  m_debugger.getProcessManager().setMemoryMap(new MemoryMap(Lists.newArrayList(new MemorySection(new CAddress(0x100),new CAddress(0x180)))));
+  m_debugger.getProcessManager().getMemory().store(0x100,new byte[]{0x12,0x34,0x56,0x78,(byte)0x9A,(byte)0xBC,(byte)0xDE,(byte)0xF0});
+  assertEquals("12345678",m_provider.getElement(0x100));
+  m_provider.setDataLayout(StackDataLayout.Dwords);
+  assertEquals("78563412",m_provider.getElement(0x100));
+}

@@ -1,0 +1,5 @@
+{
+  m_editMode=editMode;
+  m_settings=settings;
+  m_settings.getDisplaySettings().addListener(m_settingsListener);
+}

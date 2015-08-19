@@ -1,0 +1,3 @@
+{
+  return new CProject(1,name,"",new Date(),new Date(),0,new ArrayList<DebuggerTemplate>(),this);
+}

@@ -1,0 +1,6 @@
+{
+  final ReilGraph rg=new ReilGraph(new ArrayList<ReilBlock>(),new ArrayList<ReilEdge>());
+  final InstructionGraph g=InstructionGraph.create(rg);
+  assertEquals(0,g.nodeCount());
+  assertEquals(0,g.edgeCount());
+}

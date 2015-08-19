@@ -1,0 +1,5 @@
+{
+  final Node node=m_internalGraph.createNode();
+  m_nodesMap.put(node,new ReilInstructionGraphNode(reilInstruction));
+  return node;
+}

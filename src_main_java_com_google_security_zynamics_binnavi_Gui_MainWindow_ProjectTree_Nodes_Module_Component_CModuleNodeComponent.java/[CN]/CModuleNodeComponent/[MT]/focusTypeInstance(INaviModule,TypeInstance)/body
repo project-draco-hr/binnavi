@@ -1,0 +1,14 @@
+{
+  final CModuleNodeComponent component=Preconditions.checkNotNull(lookup.get(module),"Attempting to give focus to the type window, but the CModuleNodeComponent is null.");
+  final JTabbedPane tabbedPane=Preconditions.checkNotNull(component.tabbedPane,"Attempting to give focus to the type window, but the corresponding tabbed pane is null.");
+  final Window window=Preconditions.checkNotNull(SwingUtilities.getWindowAncestor(tabbedPane),"Attempting to give focus to the type window, but the tabbedPane has no Window ancestor.");
+  EventQueue.invokeLater(new Runnable(){
+    @Override public void run(){
+      window.toFront();
+      window.repaint();
+      tabbedPane.setSelectedIndex(4);
+      component.dataPanel.getDataSectionComponent().scrollToInstance(instance);
+    }
+  }
+);
+}

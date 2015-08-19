@@ -1,0 +1,9 @@
+{
+  final int argumentCount=parseSimpleInteger();
+  if (type == successType) {
+    return parseSuccess(messageId,argumentCount);
+  }
+ else {
+    return parseError(messageId);
+  }
+}

@@ -1,0 +1,4 @@
+int moduleId
+int instanceId
+String commentText
+Integer userId

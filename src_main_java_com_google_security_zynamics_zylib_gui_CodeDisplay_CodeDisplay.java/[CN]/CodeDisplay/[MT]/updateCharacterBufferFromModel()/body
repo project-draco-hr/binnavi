@@ -1,0 +1,40 @@
+{
+  charBuffer.clear();
+  charBuffer.setBackgroundColor(java.awt.Color.LIGHT_GRAY.brighter());
+  currentFirstRow=verticalScrollbar.getValue();
+  currentFirstCharColumn=horizontalScrollbar.getValue();
+  int totalCopiedLines=0;
+  if (codeModel.hasHeaderRow()) {
+    totalCopiedLines=1;
+    int currentColumnIndex=0;
+    for (int fieldIndex=0; fieldIndex < codeModel.getNumberOfColumns(); currentColumnIndex+=codeModel.getColumnWidthInCharacters(fieldIndex), fieldIndex++) {
+      charBuffer.copyInto(0,currentColumnIndex,codeModel.getHeader(fieldIndex));
+    }
+  }
+  for (int rowIndex=currentFirstRow; rowIndex < Math.min(currentFirstRow + currentlyVisibleLines,codeModel.getNumberOfRows()); rowIndex++) {
+    for (int lineIndex=(rowIndex == currentFirstRow) ? currentFirstLine : 0; lineIndex < codeModel.getMaximumLinesForRow(rowIndex); lineIndex++) {
+      int currentColumnIndex=0;
+      for (int fieldIndex=0; fieldIndex < codeModel.getNumberOfColumns(); currentColumnIndex+=codeModel.getColumnWidthInCharacters(fieldIndex), fieldIndex++) {
+        if ((caretPosition.getRow() == rowIndex) && (caretPosition.getLine() == lineIndex) && (caretPosition.getColumn() == fieldIndex)) {
+          caretX=currentColumnIndex + caretPosition.getFieldIndex();
+          caretY=totalCopiedLines;
+        }
+        FormattedCharacterBuffer line=codeModel.getLineFormatted(rowIndex,fieldIndex,lineIndex);
+        if (line != null) {
+          charBuffer.copyInto(totalCopiedLines,currentColumnIndex,line);
+        }
+        int linestart=totalCopiedLines * fontLineHeight + (fontLineHeight / 2);
+        if (!yCoordinateToRowAndLine.containsKey(linestart)) {
+          yCoordinateToRowAndLine.put(linestart,new CodeDisplayCoordinate(rowIndex,lineIndex,0,0));
+        }
+ else {
+          CodeDisplayCoordinate coordinate=yCoordinateToRowAndLine.get(linestart);
+          coordinate.setRow(rowIndex);
+          coordinate.setLine(lineIndex);
+        }
+      }
+      totalCopiedLines++;
+    }
+  }
+  setScrollBarMaximum();
+}

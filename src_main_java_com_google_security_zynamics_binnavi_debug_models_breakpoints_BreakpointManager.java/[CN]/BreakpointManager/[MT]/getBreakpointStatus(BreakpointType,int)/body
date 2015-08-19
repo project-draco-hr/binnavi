@@ -1,0 +1,8 @@
+{
+switch (type) {
+case REGULAR:
+    return getBreakpointStatus(indexedBreakpointStorage.get(index).getAddress(),type);
+default :
+  throw new IllegalStateException("IE00724: Invalid breakpoint type " + type.toString() + " for indexed breakpoint access");
+}
+}

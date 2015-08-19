@@ -1,0 +1,4 @@
+{
+  provider=sqlProvider;
+  random=new SecureRandom();
+}

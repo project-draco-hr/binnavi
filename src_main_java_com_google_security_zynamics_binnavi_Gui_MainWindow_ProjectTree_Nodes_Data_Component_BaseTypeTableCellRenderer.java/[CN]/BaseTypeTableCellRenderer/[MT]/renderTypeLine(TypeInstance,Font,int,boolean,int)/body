@@ -1,0 +1,5 @@
+{
+  DefaultStyledDocument document=new DefaultStyledDocument();
+  generateDocument(instance,renderData,document);
+  return convertDocumentToFormattedCharacterBuffer(document,font,desiredWidth);
+}

@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(parent,"IE00005: Parent argument can not be null");
+  Preconditions.checkNotNull(project,"IE01284: Project argument can not be null");
+  if (project.isLoading()) {
+    return;
+  }
+  new Thread(){
+    @Override public void run(){
+      loadProjectInternal(parent,project,projectTree);
+    }
+  }
+.start();
+}

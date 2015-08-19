@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(options,"IE01521: Options argument can not be null");
+  m_detachButton.setEnabled(options.canDetach());
+  m_terminateButton.setEnabled(options.canTerminate());
+  m_haltButton.setEnabled(options.canHalt());
+  updateGui();
+}

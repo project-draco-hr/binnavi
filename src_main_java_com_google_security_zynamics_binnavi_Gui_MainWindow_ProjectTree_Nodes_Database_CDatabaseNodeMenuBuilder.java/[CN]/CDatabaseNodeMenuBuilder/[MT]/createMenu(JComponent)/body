@@ -1,0 +1,9 @@
+{
+  menu.add(new JMenuItem(openAction));
+  menu.add(new JMenuItem(closeAction));
+  menu.add(new JSeparator());
+  menu.add(new JMenuItem(CActionProxy.proxy(new CImportModuleAction(getParent(),database))));
+  menu.add(new JSeparator());
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteDatabaseAction(getParent(),database,new CParentSelectionUpdater(getProjectTree(),parentNode)))));
+  addPluginMenus(menu);
+}

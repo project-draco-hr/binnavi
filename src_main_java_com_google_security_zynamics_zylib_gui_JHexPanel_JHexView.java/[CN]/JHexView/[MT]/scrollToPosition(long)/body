@@ -1,0 +1,3 @@
+{
+  m_scrollbar.setValue((int)position / (2 * m_bytesPerRow));
+}

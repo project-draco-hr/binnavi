@@ -1,0 +1,3 @@
+INaviProject project
+List<UnrelocatedAddress> addresses
+boolean all

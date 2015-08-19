@@ -1,0 +1,5 @@
+{
+  final INaviView view=module.getContent().getViewContainer().getNativeCallgraphView();
+  view.load();
+  return view;
+}

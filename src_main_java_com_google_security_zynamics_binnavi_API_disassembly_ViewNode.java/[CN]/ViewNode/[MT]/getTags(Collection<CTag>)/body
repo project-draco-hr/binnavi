@@ -1,0 +1,7 @@
+{
+  final List<Tag> apiTags=new ArrayList<Tag>();
+  for (  final CTag tag : tags) {
+    apiTags.add(m_tagManager.getTag(tag));
+  }
+  return apiTags;
+}

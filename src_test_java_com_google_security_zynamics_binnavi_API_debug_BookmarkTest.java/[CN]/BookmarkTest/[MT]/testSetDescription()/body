@@ -1,0 +1,14 @@
+{
+  m_apiBookmark.addListener(m_mockListener);
+  try {
+    m_apiBookmark.setDescription(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("",m_mockListener.events);
+  m_apiBookmark.setDescription("FooBert");
+  assertEquals("FooBert",m_nativeBookmark.getDescription());
+  assertEquals("FooBert",m_apiBookmark.getDescription());
+  assertEquals("changedDescription/123/FooBert;",m_mockListener.events);
+}

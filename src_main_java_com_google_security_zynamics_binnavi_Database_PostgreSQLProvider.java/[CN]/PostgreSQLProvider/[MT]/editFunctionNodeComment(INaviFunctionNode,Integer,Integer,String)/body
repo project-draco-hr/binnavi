@@ -1,0 +1,3 @@
+{
+  PostgreSQLNodeFunctions.editLocalFunctionNodeComment(this,functionNode,commentId,userId,newCommentText);
+}

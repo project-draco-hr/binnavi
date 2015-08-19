@@ -1,0 +1,4 @@
+{
+  listener.receivedReply(reply);
+  listener.debuggerClosed(reply.getErrorCode());
+}

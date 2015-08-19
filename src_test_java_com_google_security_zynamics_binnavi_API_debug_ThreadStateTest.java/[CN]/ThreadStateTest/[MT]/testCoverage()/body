@@ -1,0 +1,8 @@
+{
+  for (  final ThreadState threadState : ThreadState.values()) {
+    assertEquals(threadState,ThreadState.convert(threadState.getNative()));
+  }
+  for (  final com.google.security.zynamics.binnavi.debug.models.processmanager.ThreadState threadState : com.google.security.zynamics.binnavi.debug.models.processmanager.ThreadState.values()) {
+    assertEquals(threadState,ThreadState.convert(threadState).getNative());
+  }
+}

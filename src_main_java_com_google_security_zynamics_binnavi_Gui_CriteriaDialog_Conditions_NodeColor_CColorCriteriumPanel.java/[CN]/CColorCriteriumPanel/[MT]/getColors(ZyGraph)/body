@@ -1,0 +1,22 @@
+{
+  final HashMap<Color,Integer> colors=new HashMap<Color,Integer>();
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode item){
+      final Color color=item.getRawNode().getColor();
+      if (!colors.containsKey(color)) {
+        colors.put(color,0);
+      }
+      colors.put(color,colors.get(color) + 1);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  final ArrayList<Entry<Color,Integer>> colorList=new ArrayList<Map.Entry<Color,Integer>>(colors.entrySet());
+  Collections.sort(colorList,new Comparator<Map.Entry<Color,Integer>>(){
+    @Override public int compare(    final Entry<Color,Integer> lhs,    final Entry<Color,Integer> rhs){
+      return lhs.getValue() - rhs.getValue();
+    }
+  }
+);
+  return project(colorList);
+}

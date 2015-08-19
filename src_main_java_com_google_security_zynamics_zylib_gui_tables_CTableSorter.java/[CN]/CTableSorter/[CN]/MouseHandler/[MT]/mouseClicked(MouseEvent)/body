@@ -1,0 +1,15 @@
+{
+  final JTableHeader h=(JTableHeader)e.getSource();
+  final TableColumnModel columnModel=h.getColumnModel();
+  final int viewColumn=columnModel.getColumnIndexAtX(e.getX());
+  final int column=columnModel.getColumn(viewColumn).getModelIndex();
+  if (column != -1) {
+    int status=getSortingStatus(column);
+    if (!e.isControlDown()) {
+      cancelSorting();
+    }
+    status=status + (e.isShiftDown() ? -1 : 1);
+    status=((status + 4) % 3) - 1;
+    setSortingStatus(column,status);
+  }
+}

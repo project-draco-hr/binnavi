@@ -1,0 +1,5 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE00269: Parent argument can not be null");
+  m_frontEndDebuggerProvider=Preconditions.checkNotNull(frontEndDebuggerProvider,"IE01528: Debugger argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Start Debugger");
+}

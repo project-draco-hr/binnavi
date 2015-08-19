@@ -1,0 +1,17 @@
+{
+  if (rhs instanceof Integer) {
+    final Integer irhs=(Integer)rhs;
+    return BigInteger.valueOf(irhs.intValue());
+  }
+ else   if (rhs instanceof BigInteger) {
+    final BigInteger irhs=(BigInteger)rhs;
+    return irhs;
+  }
+ else   if (rhs instanceof Address) {
+    final Address irhs=(Address)rhs;
+    return irhs.m_value;
+  }
+ else {
+    throw new IllegalArgumentException("Error: Can not convert '" + rhs + "' to a numeric value");
+  }
+}

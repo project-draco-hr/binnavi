@@ -1,0 +1,6 @@
+JFrame owner
+String dialogTitle
+TypeListModel model
+TypeInstance instance
+Section section
+Long offset

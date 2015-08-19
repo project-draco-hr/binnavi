@@ -1,0 +1,4 @@
+{
+  m_button=Preconditions.checkNotNull(button,"IE01253: Button argument can not be null");
+  updateButton();
+}

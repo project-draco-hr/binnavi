@@ -1,0 +1,3 @@
+{
+  return ImmutableList.<BaseType>of(simpleStruct,nestedStruct,doubleNestedStruct,simpleUnion,complexUnion,intType,uintType,uintPointerType,uintArrayType);
+}

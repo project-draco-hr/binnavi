@@ -1,0 +1,3 @@
+{
+  listeners.remove(TreeModelListener.class,removeListener);
+}

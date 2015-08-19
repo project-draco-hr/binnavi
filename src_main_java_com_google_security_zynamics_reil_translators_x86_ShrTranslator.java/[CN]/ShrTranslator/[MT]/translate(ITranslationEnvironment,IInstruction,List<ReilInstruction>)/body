@@ -1,0 +1,54 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"shr");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a shr instruction (invalid number of operands)");
+  }
+  final long reilOffsetBase=instruction.getAddress().toLong() * 0x100;
+  long offset=reilOffsetBase;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final TranslationResult firstResult=Helpers.translateOperand(environment,offset,operands.get(0),true);
+  instructions.addAll(firstResult.getInstructions());
+  offset=reilOffsetBase + instructions.size();
+  final TranslationResult secondResult=Helpers.translateOperand(environment,offset,operands.get(1),true);
+  instructions.addAll(secondResult.getInstructions());
+  offset=reilOffsetBase + instructions.size();
+  final OperandSize size1=firstResult.getSize();
+  final OperandSize size2=secondResult.getSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(size1);
+  final String operand1=firstResult.getRegister();
+  final String operand2=secondResult.getRegister();
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(size1));
+  final String modValue=String.valueOf(size1.getBitSize());
+  final String shiftMask=environment.getNextVariableString();
+  final String shiftMaskZero=environment.getNextVariableString();
+  final String shiftMaskLessOne=environment.getNextVariableString();
+  final String shiftMaskOne=environment.getNextVariableString();
+  final String shiftMaskNeg=environment.getNextVariableString();
+  final String result=environment.getNextVariableString();
+  final String truncatedResult=environment.getNextVariableString();
+  final String incShiftMaskNeg=environment.getNextVariableString();
+  final String decResult=environment.getNextVariableString();
+  final int before=instructions.size();
+  final List<ReilInstruction> writebackInstructions=new ArrayList<ReilInstruction>();
+  Helpers.writeBack(environment,offset + 17,operands.get(0),truncatedResult,size1,firstResult.getAddress(),firstResult.getType(),writebackInstructions);
+  instructions.add(ReilHelpers.createMod(offset,size2,operand2,size2,modValue,size2,shiftMask));
+  instructions.add(ReilHelpers.createBisz(offset + 1,size2,shiftMask,OperandSize.BYTE,shiftMaskZero));
+  instructions.add(ReilHelpers.createSub(offset + 2,size2,"1",size2,shiftMask,size2,shiftMaskLessOne));
+  instructions.add(ReilHelpers.createBisz(offset + 3,size2,shiftMaskLessOne,OperandSize.BYTE,shiftMaskOne));
+  instructions.add(ReilHelpers.createSub(offset + 4,size2,"0",size2,shiftMask,size2,shiftMaskNeg));
+  instructions.add(ReilHelpers.createBsh(offset + 5,size1,operand1,size2,shiftMaskNeg,resultSize,result));
+  instructions.add(ReilHelpers.createAnd(offset + 6,resultSize,result,size1,truncateMask,size1,truncatedResult));
+  final String jmpGoalWriteBack=String.format("%d.%d",instruction.getAddress().toLong(),before + 17);
+  instructions.add(ReilHelpers.createJcc(offset + 7,OperandSize.BYTE,shiftMaskZero,OperandSize.ADDRESS,jmpGoalWriteBack));
+  instructions.add(ReilHelpers.createStr(offset + 8,OperandSize.BYTE,"0",OperandSize.BYTE,Helpers.SIGN_FLAG));
+  instructions.add(ReilHelpers.createAdd(offset + 9,size2,shiftMaskNeg,size2,"1",size2,incShiftMaskNeg));
+  instructions.add(ReilHelpers.createBsh(offset + 10,size1,operand1,size2,incShiftMaskNeg,size1,decResult));
+  instructions.add(ReilHelpers.createAnd(offset + 11,size1,decResult,OperandSize.BYTE,"1",OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createBisz(offset + 12,size1,truncatedResult,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  final String jmpGoal2=String.format("%d.%d",instruction.getAddress().toLong(),before + 16);
+  instructions.add(ReilHelpers.createJcc(offset + 13,OperandSize.BYTE,shiftMaskOne,OperandSize.ADDRESS,jmpGoal2));
+  instructions.add(ReilHelpers.createUndef(offset + 14,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createJcc(offset + 15,OperandSize.BYTE,"1",OperandSize.ADDRESS,jmpGoalWriteBack));
+  instructions.add(ReilHelpers.createXor(offset + 16,OperandSize.BYTE,Helpers.SIGN_FLAG,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.addAll(writebackInstructions);
+}

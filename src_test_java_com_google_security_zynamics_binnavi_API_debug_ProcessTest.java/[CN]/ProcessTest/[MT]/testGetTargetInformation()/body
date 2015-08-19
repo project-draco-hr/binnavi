@@ -1,0 +1,16 @@
+{
+  final MockProcessListener listener=new MockProcessListener();
+  final ProcessManager manager=new ProcessManager();
+  final Process process=new Process(manager);
+  process.addListener(listener);
+  assertNull(process.getTargetInformation());
+  manager.setTargetInformation(new com.google.security.zynamics.binnavi.debug.models.targetinformation.TargetInformation(5,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  final TargetInformation t1=process.getTargetInformation();
+  final TargetInformation t2=process.getTargetInformation();
+  assertNotNull(t1);
+  assertEquals(t1,t2);
+  assertEquals("changedTargetInformation;",listener.events);
+  assertEquals(5,process.getTargetInformation().getAddressSize());
+  assertEquals(false,process.getTargetInformation().canTerminate());
+  process.removeListener(listener);
+}

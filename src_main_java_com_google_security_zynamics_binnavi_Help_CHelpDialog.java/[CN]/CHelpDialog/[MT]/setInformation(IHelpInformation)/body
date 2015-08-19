@@ -1,0 +1,4 @@
+{
+  m_helpArea.setText(help.getText());
+  m_url.setUrl(help.getUrl());
+}

@@ -1,0 +1,12 @@
+{
+  super.paintComponent(g);
+  g.setFont(m_font);
+  m_charWidth=(int)g.getFontMetrics().getStringBounds("0",g).getWidth();
+  if (m_registerModel != null) {
+    drawHighlightedRegister(g);
+    drawRegisters(g);
+    if (m_caret.isVisible()) {
+      drawCaret(g);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  CEditNodeHelper.setCaretStart(state.getGraph(),state.getNode(),event);
+  CEditNodeHelper.setCaretEnd(state.getGraph(),state.getNode(),event);
+}

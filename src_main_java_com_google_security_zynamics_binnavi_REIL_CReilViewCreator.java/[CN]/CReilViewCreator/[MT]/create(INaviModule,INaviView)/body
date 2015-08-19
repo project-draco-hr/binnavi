@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(container,"IE01768: Container argument can not be null");
+  Preconditions.checkNotNull(view,"IE01769: View argument can not be null");
+  final Map<IAddress,String> textMap=new HashMap<IAddress,String>();
+  for (  final CCodeNode node : view.getBasicBlocks()) {
+    for (    final INaviInstruction instruction : node.getInstructions()) {
+      textMap.put(instruction.getAddress(),instruction.toString());
+    }
+  }
+  final INaviView reilView=CReilViewCreator.create(container,view.getContent().getReilCode().getGraph());
+  for (  final CCodeNode node : reilView.getBasicBlocks()) {
+    for (    final INaviInstruction reilInstruction : node.getInstructions()) {
+      if ((reilInstruction.getAddress().toLong() & 0xFF) == 0) {
+        try {
+          node.getComments().appendLocalInstructionComment(reilInstruction,textMap.get(ReilHelpers.toNativeAddress(reilInstruction.getAddress())));
+        }
+ catch (        final CouldntSaveDataException e) {
+          CUtilityFunctions.logException(e);
+        }
+      }
+    }
+  }
+  return reilView;
+}

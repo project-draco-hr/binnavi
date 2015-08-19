@@ -1,0 +1,4 @@
+{
+  m_extender.selectTab(m_outerPanel);
+  m_tabbedPane.setSelectedIndex(0);
+}

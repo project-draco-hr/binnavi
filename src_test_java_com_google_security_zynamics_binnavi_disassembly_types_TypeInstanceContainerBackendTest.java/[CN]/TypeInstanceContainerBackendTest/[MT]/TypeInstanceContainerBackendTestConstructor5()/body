@@ -1,0 +1,4 @@
+{
+  final TypeInstanceContainerBackend typeInstancContainerBackend=new TypeInstanceContainerBackend(provider,module,typeManager,sectionContainer);
+  Assert.assertNotNull(typeInstancContainerBackend);
+}

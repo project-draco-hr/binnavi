@@ -1,0 +1,20 @@
+{
+  super(parent,title,ModalityType.DOCUMENT_MODAL);
+  m_progressModel=progressModel;
+  setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+  addWindowListener(new InternalWindowListener());
+  progressModel.addProgressListener(m_internalListener);
+  m_progressPanel=new CProgressPanel(description,true,false);
+  m_progressPanel.start();
+  m_progressPanel.setBorder(new EmptyBorder(15,15,15,15));
+  setSubDescription("Please wait...");
+  getContentPane().add(m_progressPanel);
+  pack();
+  setSubDescription("Please wait...");
+  if (parent != null) {
+    GuiHelper.centerChildToParent(parent,this,true);
+  }
+ else {
+    GuiHelper.centerOnScreen(this);
+  }
+}

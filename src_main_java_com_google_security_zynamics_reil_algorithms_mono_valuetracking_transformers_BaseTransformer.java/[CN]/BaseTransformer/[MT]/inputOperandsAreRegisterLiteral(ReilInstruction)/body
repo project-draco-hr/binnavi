@@ -1,0 +1,5 @@
+{
+  final OperandType firstOperandType=instruction.getFirstOperand().getType();
+  final OperandType secondOperandType=instruction.getSecondOperand().getType();
+  return (firstOperandType == OperandType.REGISTER) && (secondOperandType == OperandType.INTEGER_LITERAL);
+}

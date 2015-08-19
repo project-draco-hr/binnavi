@@ -1,0 +1,12 @@
+{
+  if (m_dataProvider != null) {
+    m_dataProvider.removeListener(m_listener);
+  }
+  m_dataProvider=data;
+  if (data != null) {
+    m_dataProvider.addListener(m_listener);
+  }
+  setCurrentPosition(0);
+  setScrollBarMaximum();
+  repaint();
+}

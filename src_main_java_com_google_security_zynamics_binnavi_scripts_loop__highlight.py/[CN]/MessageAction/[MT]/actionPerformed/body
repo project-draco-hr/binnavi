@@ -1,0 +1,2 @@
+def actionPerformed(self, e):
+    highlight_loops(self.frame.view2D.view)

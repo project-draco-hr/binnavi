@@ -1,0 +1,7 @@
+{
+  boolean cont=true;
+  for (  final IGraphBuilderListener listener : m_listeners) {
+    cont&=listener.building(event,counter);
+  }
+  return cont;
+}

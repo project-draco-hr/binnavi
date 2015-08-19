@@ -1,0 +1,7 @@
+{
+  this.debugger=debugger;
+  for (  final TargetProcessThread thread : this.debugger.getProcessManager().getThreads()) {
+    thread.addListener(m_threadListener);
+  }
+  this.debugger.getProcessManager().addListener(m_processListener);
+}

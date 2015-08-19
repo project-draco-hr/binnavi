@@ -1,0 +1,15 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final Tag newTag=nodeTagManager.getTag(tag);
+  final ViewNode viewNode=cachedNodes.get(node);
+  for (  final IViewNodeListener listener : viewNode.getListeners()) {
+    try {
+      listener.addedTag(viewNode,newTag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

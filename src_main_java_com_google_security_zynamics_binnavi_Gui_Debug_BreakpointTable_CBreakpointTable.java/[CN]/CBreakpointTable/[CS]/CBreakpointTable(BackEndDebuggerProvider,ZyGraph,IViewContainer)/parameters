@@ -1,0 +1,3 @@
+BackEndDebuggerProvider debuggerProvider
+ZyGraph graph
+IViewContainer viewContainer

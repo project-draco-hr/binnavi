@@ -1,0 +1,8 @@
+{
+  final INaviModule module=new MockModule(false);
+  module.getContent().getTraceContainer().createTrace("foo","bar");
+  final ITraceListProvider traceListProvider=new ModuleTraceProvider(module);
+  final CEventListTableModel model=new CEventListTableModel(traceListProvider);
+  module.load();
+  model.delete();
+}

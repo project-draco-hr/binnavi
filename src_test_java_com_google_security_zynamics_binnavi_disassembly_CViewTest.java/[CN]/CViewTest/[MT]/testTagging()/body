@@ -1,0 +1,15 @@
+{
+  final CTag newTag=MockCreator.createViewTag(m_sql);
+  m_view.getConfiguration().tagView(newTag);
+  assertEquals("taggedView/",m_listener.eventList);
+  assertTrue(m_view.getConfiguration().isTagged());
+  assertTrue(m_view.getConfiguration().isTagged(newTag));
+  m_view.getConfiguration().tagView(newTag);
+  assertEquals("taggedView/",m_listener.eventList);
+  assertTrue(m_view.getConfiguration().isTagged());
+  assertTrue(m_view.getConfiguration().isTagged(newTag));
+  m_view.getConfiguration().untagView(newTag);
+  assertEquals("taggedView/untaggedView/",m_listener.eventList);
+  assertFalse(m_view.getConfiguration().isTagged());
+  assertFalse(m_view.getConfiguration().isTagged(newTag));
+}

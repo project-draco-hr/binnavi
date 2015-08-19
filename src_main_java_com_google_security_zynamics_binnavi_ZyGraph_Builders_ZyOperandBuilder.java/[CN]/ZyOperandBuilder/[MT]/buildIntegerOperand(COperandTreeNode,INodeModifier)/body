@@ -1,0 +1,7 @@
+{
+  BigInteger treeNodeValue=new BigInteger(operandTreeNode.getValue());
+  if ((nodeModifier != null) && RelocationChecker.needsRelocation(operandTreeNode,operandTreeNode.getOperand().getInstruction().getModule())) {
+    treeNodeValue=relocateIntegerOperand(operandTreeNode,nodeModifier,treeNodeValue);
+  }
+  return buildIntegerOperandString(operandTreeNode,treeNodeValue);
+}

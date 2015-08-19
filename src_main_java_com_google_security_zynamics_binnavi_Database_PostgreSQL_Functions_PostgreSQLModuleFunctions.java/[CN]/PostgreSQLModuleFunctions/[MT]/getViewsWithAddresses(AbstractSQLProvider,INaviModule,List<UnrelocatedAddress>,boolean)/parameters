@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviModule module
+List<UnrelocatedAddress> addresses
+boolean all

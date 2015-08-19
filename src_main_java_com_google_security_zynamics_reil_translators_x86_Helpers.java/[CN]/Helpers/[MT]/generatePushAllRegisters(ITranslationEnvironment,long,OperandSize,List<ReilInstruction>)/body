@@ -1,0 +1,26 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument((size == OperandSize.WORD) || (size == OperandSize.DWORD),"Error: Invalid size argument");
+  long offset=baseOffset;
+  final OperandSize archSize=environment.getArchitectureSize();
+  final String tempEsp=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(offset,archSize,"esp",archSize,tempEsp));
+  generateRegisterPush(environment,offset + 1,"eax",size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,"ebx",size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,"ecx",size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,"edx",size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,tempEsp,size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,"ebp",size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,"esi",size,instructions);
+  offset=baseOffset + instructions.size();
+  generateRegisterPush(environment,offset,"edi",size,instructions);
+  offset=baseOffset + instructions.size();
+}

@@ -1,0 +1,3 @@
+{
+  getProvider().createTrace(new MockProject(),"Trace Name",null);
+}

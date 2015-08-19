@@ -1,0 +1,4 @@
+{
+  final String name=view.getName();
+  return name.length() <= MAXIMUM_SIZE ? name : name.substring(0,MAXIMUM_SIZE) + "...";
+}

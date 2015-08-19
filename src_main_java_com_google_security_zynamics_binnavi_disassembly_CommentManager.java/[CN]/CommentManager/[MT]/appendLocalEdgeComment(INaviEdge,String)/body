@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(edge,"IE02559: edge argument can not be null");
+  return appendComment(new EdgeCommentingStrategy(edge,CommentScope.LOCAL),comment);
+}

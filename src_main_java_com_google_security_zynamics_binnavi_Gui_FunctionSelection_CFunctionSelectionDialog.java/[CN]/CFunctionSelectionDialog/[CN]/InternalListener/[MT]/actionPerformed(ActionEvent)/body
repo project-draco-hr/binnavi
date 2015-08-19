@@ -1,0 +1,6 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    m_function=m_panel.getSelectedFunction();
+  }
+  dispose();
+}

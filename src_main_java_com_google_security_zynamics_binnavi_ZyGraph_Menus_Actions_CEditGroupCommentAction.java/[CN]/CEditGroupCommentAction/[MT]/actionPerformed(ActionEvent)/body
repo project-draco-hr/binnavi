@@ -1,0 +1,3 @@
+{
+  CGraphDialogs.showGroupNodeCommentDialog(m_parent,m_node);
+}

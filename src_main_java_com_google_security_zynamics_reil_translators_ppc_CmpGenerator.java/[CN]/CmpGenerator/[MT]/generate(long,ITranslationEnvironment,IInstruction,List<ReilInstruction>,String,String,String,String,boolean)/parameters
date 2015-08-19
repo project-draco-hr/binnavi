@@ -1,0 +1,9 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String mnemonic
+String firstOperand
+String secondOperand
+String thirdOperand
+boolean isLogical

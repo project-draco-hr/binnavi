@@ -1,0 +1,3 @@
+String startPath
+IDatabaseManager manager
+com.google.security.zynamics.binnavi.Plugins.PluginRegistry registry

@@ -1,0 +1,18 @@
+{
+  try {
+    m_view.save();
+    fail();
+  }
+ catch (  final IllegalStateException exception) {
+  }
+  m_view.load();
+  m_view.save();
+  assertEquals("loadedView/savedView/changedModificationDate/",m_listener.eventList);
+  final CView view=MockCreator.createNativeView(m_sql,m_module);
+  try {
+    view.save();
+    fail();
+  }
+ catch (  final IllegalArgumentException exception) {
+  }
+}

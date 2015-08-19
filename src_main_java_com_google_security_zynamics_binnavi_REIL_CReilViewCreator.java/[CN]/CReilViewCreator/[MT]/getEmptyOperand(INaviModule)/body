@@ -1,0 +1,6 @@
+{
+  final COperandTreeNode rootNode=module.createOperandExpression("b4",ExpressionType.SIZE_PREFIX);
+  final COperandTreeNode childNode=module.createOperandExpression(" ",ExpressionType.SYMBOL);
+  COperandTreeNode.link(rootNode,childNode);
+  return module.createOperand(rootNode);
+}

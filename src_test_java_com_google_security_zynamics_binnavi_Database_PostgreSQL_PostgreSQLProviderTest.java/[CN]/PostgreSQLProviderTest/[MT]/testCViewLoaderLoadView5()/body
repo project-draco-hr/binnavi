@@ -1,0 +1,8 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  final List<INaviModule> modules=new ArrayList<INaviModule>();
+  module.load();
+  final CView view=(CView)module.getContent().getViewContainer().getViews().get(224);
+  modules.add(module);
+  PostgreSQLViewLoader.loadView((AbstractSQLProvider)getProvider(),view,modules,null);
+}

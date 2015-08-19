@@ -1,0 +1,7 @@
+{
+  if (!(rhs instanceof ReilOperand)) {
+    return false;
+  }
+  final ReilOperand rhsOperand=(ReilOperand)rhs;
+  return getType().equals(rhsOperand.getType()) && getValue().equals(rhsOperand.getValue()) && getSize().equals(rhsOperand.getSize());
+}

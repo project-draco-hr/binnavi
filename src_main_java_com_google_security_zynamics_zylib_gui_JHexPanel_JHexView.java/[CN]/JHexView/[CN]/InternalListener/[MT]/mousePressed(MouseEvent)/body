@@ -1,0 +1,44 @@
+{
+  if (!isEnabled()) {
+    return;
+  }
+  if ((event.getButton() == MouseEvent.BUTTON1) || (event.getButton() == MouseEvent.BUTTON3)) {
+    m_selectionLength=0;
+    requestFocusInWindow();
+    final int x=event.getX();
+    final int y=event.getY();
+    final int position=getNibbleAtCoordinate(x,y);
+    if (position != -1) {
+      m_caret.setVisible(true);
+      setCurrentPosition(position);
+      if (isInsideHexView(x,y)) {
+        m_activeView=Views.HEX_VIEW;
+      }
+ else       if (isInsideAsciiView(x,y)) {
+        m_activeView=Views.ASCII_VIEW;
+      }
+      repaint();
+    }
+ else {
+      for (      final IHexPanelListener listener : m_listeners) {
+        listener.selectionChanged(m_selectionStart,m_selectionLength);
+      }
+      repaint();
+    }
+  }
+  if (event.getButton() == MouseEvent.BUTTON3) {
+    final int x=event.getX();
+    final int y=event.getY();
+    final int position=getNibbleAtCoordinate(x,y);
+    if (position != -1) {
+      m_caret.setVisible(true);
+      if (m_menuCreator != null) {
+        final JPopupMenu menu=m_menuCreator.createMenu(getCurrentOffset());
+        if (menu != null) {
+          menu.show(JHexView.this,x,y);
+        }
+      }
+      repaint();
+    }
+  }
+}

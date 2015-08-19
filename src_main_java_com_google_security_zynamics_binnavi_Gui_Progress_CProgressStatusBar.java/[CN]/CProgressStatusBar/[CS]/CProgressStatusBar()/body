@@ -1,0 +1,15 @@
+{
+  setLayout(new BorderLayout());
+  add(m_progressPanel);
+  process();
+  setPreferredSize(new Dimension(200,30));
+  CGlobalProgressManager.instance().addListener(m_listener);
+  addMouseListener(new MouseAdapter(){
+    @Override public void mouseClicked(    final MouseEvent event){
+      if ((event.getClickCount() == 2) && SwingUtilities.isLeftMouseButton(event)) {
+        getDialog().setVisible(true);
+      }
+    }
+  }
+);
+}

@@ -1,0 +1,23 @@
+{
+  setLayout(new BorderLayout());
+  final JPanel panel=new JPanel(new BorderLayout());
+  final JLabel lbl=new JLabel("Address" + ":");
+  lbl.setBorder(new EmptyBorder(5,5,5,5));
+  panel.add(lbl,BorderLayout.WEST);
+  m_offsetField.setSize(400,20);
+  final ActionListener listener=new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      search();
+    }
+  }
+;
+  m_offsetField.addActionListener(listener);
+  panel.add(m_offsetField,BorderLayout.CENTER);
+  panel.add(new JButton(CActionProxy.proxy(new SearchAction(this))),BorderLayout.EAST);
+  add(panel,BorderLayout.NORTH);
+  m_table=new JTable(tableModel);
+  m_table.addMouseListener(m_listener);
+  add(new JScrollPane(m_table),BorderLayout.CENTER);
+  add(new CPanelTwoButtons(CActionProxy.proxy(new InternalActionListener()),"OK","Cancel"),BorderLayout.SOUTH);
+  setSize(500,300);
+}

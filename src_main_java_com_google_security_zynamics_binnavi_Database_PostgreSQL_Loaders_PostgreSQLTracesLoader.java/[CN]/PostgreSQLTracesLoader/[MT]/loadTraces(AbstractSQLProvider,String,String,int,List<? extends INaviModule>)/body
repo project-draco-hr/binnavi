@@ -1,0 +1,28 @@
+{
+  Preconditions.checkNotNull(provider,"IE00590: Provider argument can not be null");
+  Preconditions.checkNotNull(tableName,"IE00591: Table name argument can not be null");
+  Preconditions.checkNotNull(columnName,"IE00592: Column name argument can not be null");
+  final String query="select id, name, description from " + CTableNames.TRACES_TABLE + " join "+ tableName+ " on "+ tableName+ ".trace_id = "+ CTableNames.TRACES_TABLE+ ".id where "+ tableName+ "."+ columnName+ " = "+ containerId;
+  final CConnection connection=provider.getConnection();
+  final IFilledList<TraceList> traces=new FilledList<TraceList>();
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final int traceId=resultSet.getInt("id");
+        final String name=PostgreSQLHelpers.readString(resultSet,"name");
+        final String description=PostgreSQLHelpers.readString(resultSet,"description");
+        final TraceList traceList=new TraceList(traceId,name,description,provider);
+        loadTraceEvents(connection,traceList,modules);
+        traces.add(traceList);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return traces;
+}

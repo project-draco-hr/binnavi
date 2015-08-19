@@ -1,0 +1,10 @@
+{
+  m_database=Preconditions.checkNotNull(database,"Error: Database argument can't be null");
+  m_project=Preconditions.checkNotNull(project,"Error: Project argument can't be null");
+  m_nodeTagManager=Preconditions.checkNotNull(nodeTagManager,"Error: Node tag manager argument can't be null");
+  m_viewTagManager=Preconditions.checkNotNull(viewTagManager,"Error: View  tag manager argument can't be null");
+  if (project.isLoaded()) {
+    convertData();
+  }
+  project.addListener(m_internalListener);
+}

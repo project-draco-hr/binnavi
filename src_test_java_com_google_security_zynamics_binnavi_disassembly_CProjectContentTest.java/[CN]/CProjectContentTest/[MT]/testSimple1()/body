@@ -1,0 +1,39 @@
+{
+  @SuppressWarnings("unused") final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  try {
+    new CProjectContent(null,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CProjectContent(m_project,null,m_provider,m_addressSpaces,m_views,m_traces);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CProjectContent(m_project,m_listeners,null,m_addressSpaces,m_views,m_traces);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CProjectContent(m_project,m_listeners,m_provider,null,m_views,m_traces);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,null,m_traces);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

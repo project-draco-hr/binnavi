@@ -1,0 +1,24 @@
+{
+  final MemberDialog dialog=MemberDialog.createEditMemberDialog(owner,typeManager,selectedMember);
+  GuiHelper.centerChildToParent(owner,dialog,true);
+  dialog.setVisible(true);
+  if (!dialog.wasCanceled()) {
+    try {
+switch (selectedMember.getParentType().getCategory()) {
+case STRUCT:
+        typeManager.updateStructureMember(selectedMember,dialog.getBaseType(),dialog.getMemberName(),selectedMember.getBitOffset().get());
+      break;
+case UNION:
+    typeManager.updateUnionMember(selectedMember,dialog.getBaseType(),dialog.getMemberName());
+  break;
+case FUNCTION_PROTOTYPE:
+typeManager.updateFunctionPrototypeMember(selectedMember,dialog.getBaseType(),dialog.getMemberName(),selectedMember.getArgumentIndex().get());
+default :
+throw new IllegalStateException("Error: can not edit a member of a non compound type.");
+}
+}
+ catch (final CouldntSaveDataException exception) {
+CUtilityFunctions.logException(exception);
+}
+}
+}

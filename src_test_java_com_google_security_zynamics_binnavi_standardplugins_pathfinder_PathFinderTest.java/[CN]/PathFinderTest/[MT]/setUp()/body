@@ -1,0 +1,14 @@
+{
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  final CDatabase database=new CDatabase("None",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  final Database db=new Database(database);
+  database.connect();
+  database.load();
+  final MockSqlProvider provider=new MockSqlProvider();
+  final TagManager nodeTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider));
+  final TagManager viewTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.VIEW_TAG,provider))),TagType.VIEW_TAG,provider));
+  m_notepad=new Module(db,database.getContent().getModule(1),nodeTagManager,viewTagManager);
+  m_notepad.load();
+  m_kernel32=new Module(db,database.getContent().getModule(2),nodeTagManager,viewTagManager);
+  m_kernel32.load();
+}

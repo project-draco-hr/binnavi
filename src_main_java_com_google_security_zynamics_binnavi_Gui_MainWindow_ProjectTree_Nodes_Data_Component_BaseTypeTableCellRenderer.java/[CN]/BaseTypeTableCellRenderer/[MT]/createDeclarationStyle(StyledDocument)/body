@@ -1,0 +1,8 @@
+{
+  final Style declStyle=document.addStyle("DECL_STYLE",null);
+  StyleConstants.setBackground(declStyle,Color.WHITE);
+  StyleConstants.setForeground(declStyle,Color.BLACK);
+  StyleConstants.setFontFamily(declStyle,GuiHelper.getMonospaceFont());
+  StyleConstants.setFontSize(declStyle,11);
+  return declStyle;
+}

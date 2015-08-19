@@ -1,0 +1,21 @@
+{
+  new Thread(){
+    @Override public void run(){
+      final CProgressPanel panel=new CProgressPanel(String.format("Creating database '%s'",configuration.getUrl()),true,false,false);
+      final IProgressOperation operation=new IProgressOperation(){
+        @Override public String getDescription(){
+          return "Creating database";
+        }
+        @Override public CProgressPanel getProgressPanel(){
+          return panel;
+        }
+      }
+;
+      CGlobalProgressManager.instance().add(operation);
+      panel.start();
+      createDatabaseInternal(parent,configuration);
+      CGlobalProgressManager.instance().remove(operation);
+    }
+  }
+.start();
+}

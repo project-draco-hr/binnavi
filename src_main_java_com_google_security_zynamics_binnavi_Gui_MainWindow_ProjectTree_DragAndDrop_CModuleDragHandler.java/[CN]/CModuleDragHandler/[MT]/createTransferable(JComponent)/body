@@ -1,0 +1,9 @@
+{
+  final int[] rows=m_table.getSelectedRows();
+  final List<INaviModule> modules=new ArrayList<INaviModule>();
+  for (  final int i : rows) {
+    final int index=m_table.convertRowIndexToModel(i);
+    modules.add(m_table.getTreeTableModel().getModules().get(index));
+  }
+  return new CModuleTransferable(modules);
+}

@@ -1,0 +1,6 @@
+int moduleId
+int viewId
+IAddress address
+int operandPosition
+int expressionId
+int typeInstanceId

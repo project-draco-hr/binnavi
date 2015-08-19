@@ -1,0 +1,3 @@
+{
+  CMemoryFunctions.dumpMemoryRange(m_parent,m_debugger,m_dataProvider,m_start,m_size);
+}

@@ -1,0 +1,7 @@
+{
+  final CBend path=m_paths.get(index);
+  m_paths.remove(index);
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listener.removedBend(this,index,path);
+  }
+}

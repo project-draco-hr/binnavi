@@ -1,0 +1,3 @@
+{
+  manager.setBreakpointStatus(breakpoints,m_bpType,BreakpointStatus.BREAKPOINT_INACTIVE);
+}

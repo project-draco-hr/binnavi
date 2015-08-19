@@ -1,0 +1,55 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can't be null");
+  Preconditions.checkArgument(module.isLoaded(),"Error: Module is not loaded");
+  if ((startBlock == null) && (startFunction == null)) {
+    throw new IllegalArgumentException("Error: No valid start given");
+  }
+  if ((targetBlock == null) && (targetFunction == null)) {
+    throw new IllegalArgumentException("Error: No valid target given");
+  }
+  if ((startFunction != null) && !startFunction.isLoaded()) {
+    throw new IllegalArgumentException("Error: Start function is not loaded");
+  }
+  if ((targetFunction != null) && !targetFunction.isLoaded()) {
+    throw new IllegalArgumentException("Error: Target function is not loaded");
+  }
+  final Function realStartFunction=startFunction != null ? startFunction : startBlock.getParentFunction();
+  final Function realTargetFunction=targetFunction != null ? targetFunction : targetBlock.getParentFunction();
+  if (realStartFunction.getGraph().nodeCount() == 0) {
+    throw new IllegalArgumentException("Error: Functions with zero nodes can not be used for pathfinding");
+  }
+  final BasicBlock realStartBlock=startBlock != null ? startBlock : findEntryNode(realStartFunction);
+  final BasicBlock realTargetBlock=targetBlock != null ? targetBlock : findEntryNode(realTargetFunction);
+  final LinkedHashSet<FunctionBlock> passedFunctions=findPassedFunctions(module.getCallgraph(),realStartFunction,realTargetFunction);
+  final String endAddress=realTargetBlock != null ? realTargetBlock.getAddress().toHexString() : realTargetFunction.getAddress().toHexString();
+  final View view=module.createView("New Pathfinder View",String.format("%s -> %s",realStartBlock.getAddress().toHexString(),endAddress));
+  view.load();
+  final Map<BasicBlock,ViewNode> nodeMap=new HashMap<BasicBlock,ViewNode>();
+  final Map<Function,ViewNode> entryNodes=new HashMap<Function,ViewNode>();
+  final ArrayListMultimap<Function,ViewNode> exitNodes=ArrayListMultimap.create();
+  final Map<ViewNode,Function> functionMap=new HashMap<ViewNode,Function>();
+  createInitialBlocks(view,passedFunctions,nodeMap,functionMap);
+  createInitialEdges(view,passedFunctions,nodeMap);
+  findEntryExitNodes(passedFunctions,nodeMap,functionMap,entryNodes,exitNodes);
+  ViewNode startNode=nodeMap.get(realStartBlock);
+  ViewNode targetNode=realTargetBlock == null ? entryNodes.get(realTargetFunction) : nodeMap.get(realTargetBlock);
+  startNode.setColor(Color.GREEN);
+  targetNode.setColor(Color.YELLOW);
+  final NodePair splitResult=connectFunctions(view,startNode,targetNode,passedFunctions,entryNodes,exitNodes,functionMap);
+  startNode=splitResult.getFirst();
+  targetNode=splitResult.getSecond();
+  for (  final ViewEdge edge : targetNode.getOutgoingEdges()) {
+    view.deleteEdge(edge);
+  }
+  deleteNodesNotOnPath(view,startNode,targetNode);
+  if (startNode.getOutgoingEdges().isEmpty()) {
+    return null;
+  }
+  try {
+    view.save();
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  return view;
+}

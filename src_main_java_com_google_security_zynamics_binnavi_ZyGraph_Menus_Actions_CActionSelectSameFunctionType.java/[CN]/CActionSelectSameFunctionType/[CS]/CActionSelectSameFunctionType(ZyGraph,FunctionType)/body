@@ -1,0 +1,5 @@
+{
+  super(String.format("Select functions of type %s",functionType));
+  m_graph=Preconditions.checkNotNull(graph,"IE01285: Graph argument can't be null");
+  m_functionType=Preconditions.checkNotNull(functionType,"IE01286: Function type can't be null");
+}

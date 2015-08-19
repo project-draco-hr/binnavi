@@ -1,0 +1,3 @@
+{
+  toolTip.append("<html><table border=\"" + borderWidth + "\" cellpadding=\"1\" cellspacing=\"0f\">");
+}

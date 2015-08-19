@@ -1,0 +1,11 @@
+{
+  final ArrayList<NodeType> nodes=new ArrayList<NodeType>();
+  IteratorFunctions.iterateInvisible(graph,new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      nodes.add(node);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return nodes;
+}

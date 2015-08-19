@@ -1,0 +1,5 @@
+{
+  final CNodeHoverState<NodeType,EdgeType> state=new CNodeHoverState<NodeType,EdgeType>(this,m_graph,n);
+  m_factory.createNodeHoverAction().execute(state,event);
+  return state;
+}

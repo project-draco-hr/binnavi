@@ -1,0 +1,9 @@
+{
+  if (validateTypeName(typeManager,name)) {
+    return true;
+  }
+ else {
+    CMessageBox.showWarning(parent,String.format("Unable to create empty or existing type."));
+    return false;
+  }
+}

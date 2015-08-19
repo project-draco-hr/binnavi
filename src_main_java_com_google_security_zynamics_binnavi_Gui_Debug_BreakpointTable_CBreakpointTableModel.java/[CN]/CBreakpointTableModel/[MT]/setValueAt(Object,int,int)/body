@@ -1,0 +1,14 @@
+{
+  final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(m_debuggerProvider,row);
+  final BreakpointManager manager=breakpoint.first().getBreakpointManager();
+  final int breakpointIndex=breakpoint.second();
+switch (col) {
+case COLUMN_CONDITION:
+    updateCondition(manager,breakpointIndex,value.toString());
+  break;
+case COLUMN_DESCRIPTION:
+manager.getBreakpoint(BreakpointType.REGULAR,breakpointIndex).setDescription(value.toString());
+break;
+}
+fireTableCellUpdated(row,col);
+}

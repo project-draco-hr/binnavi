@@ -1,0 +1,5 @@
+{
+  super("Export as SVG");
+  m_parent=parent;
+  m_graph=graph;
+}

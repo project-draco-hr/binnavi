@@ -1,0 +1,4 @@
+{
+  goToLastLine();
+  getDocument().setCurrentLine(getInputPane().getCaretPosition(),m_CurrentPrompt.length(),line);
+}

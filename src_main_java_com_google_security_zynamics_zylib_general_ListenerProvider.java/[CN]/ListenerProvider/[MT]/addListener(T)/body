@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(listener,"Internal Error: Listener cannot be null");
+  if (m_listeners == null) {
+synchronized (this) {
+      if (m_listeners == null) {
+        m_listeners=new LinkedHashSet<WeakReference<T>>();
+      }
+    }
+  }
+synchronized (m_listeners) {
+    if (!m_listeners.add(new ComparableReference(listener))) {
+    }
+  }
+}

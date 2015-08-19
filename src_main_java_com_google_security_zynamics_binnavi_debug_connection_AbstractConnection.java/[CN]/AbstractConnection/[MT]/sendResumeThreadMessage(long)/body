@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Resume Thread\" message to the debug client");
+  return sendPacket(new ResumeThreadCommand(getMessageId(),tid));
+}

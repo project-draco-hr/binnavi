@@ -1,0 +1,12 @@
+{
+  CodeDisplayCoordinate coordinate=new CodeDisplayCoordinate(0,0,0,0);
+  if (!fillCoordinateFromXY(event.getX(),event.getY(),coordinate)) {
+    return;
+  }
+  if (codeModel.canHaveCaret(coordinate)) {
+    setCaretPosition(coordinate);
+    updateCharacterBufferFromModel();
+    notifyCaretListeners();
+    repaint();
+  }
+}

@@ -1,0 +1,19 @@
+{
+  for (  final Module module : modules) {
+    module.removeListener(moduleKeeperListener);
+  }
+  modules.clear();
+  if ((debugger != null) && debugger.isConnected()) {
+    try {
+      debugger.terminate();
+    }
+ catch (    final DebugException e) {
+      e.printStackTrace();
+    }
+  }
+  if ((step == 3) || (step == 4) || (step == 5)) {
+    debugger.removeListener(debuggerListener);
+    removeBreakpoints();
+  }
+  step++;
+}

@@ -1,0 +1,8 @@
+{
+  assertEquals(1,m_manager.getNumberOfBreakpoints(BreakpointType.STEP));
+  final MockBreakpointManagerListener listener=new MockBreakpointManagerListener();
+  m_manager.addListener(listener);
+  m_manager.clearBreakpointsPassive(BreakpointType.STEP);
+  assertEquals(0,m_manager.getNumberOfBreakpoints(BreakpointType.STEP));
+  assertEquals(0,listener.size());
+}

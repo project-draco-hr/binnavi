@@ -1,0 +1,5 @@
+JFrame parent
+INaviCodeNode node
+INaviInstruction instruction
+INaviFunction function
+IViewContainer viewContainer

@@ -1,0 +1,4 @@
+{
+  final ImmutableList<TypeMember> members=typeSystem.simpleStruct.getSubsequentMembersInclusive(typeSystem.simpleStruct.getBitSize());
+  assertEquals(ImmutableList.<TypeMember>of(),members);
+}

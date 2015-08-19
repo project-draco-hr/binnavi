@@ -1,0 +1,28 @@
+{
+  final List<INaviView> views=m_cachedValues == null ? getViews() : m_cachedValues;
+  final INaviView view=views.get(row);
+  final INaviFunction function=m_module.getContent().getViewContainer().getFunction(view);
+  Preconditions.checkNotNull(function,"IE01189: View without known function");
+switch (col) {
+case ADDRESS_COLUM:
+    return function.getAddress().toHexString();
+case FUNCTIONNAME_COLUM:
+  return new CFunctionNameTypePair(view.getName(),function.getType());
+case DESCRIPTION_COLUMN:
+return view.getConfiguration().getDescription();
+case MODULE_COLUMN:
+return function.getOriginalModulename();
+case FORWARDER_COLUMN:
+return getForwarderColumnText(function);
+case BASICBLOCK_COUNT_COLUMN:
+return getNodeCount(view,function);
+case EDGE_COUNT_COLUMN:
+return getEdgeCount(view,function);
+case INCOMING_CALLS_COUNT_COLUMN:
+return function.getIndegree();
+case OUTGOING_CALLS_COUNT_COLUMN:
+return function.getOutdegree();
+default :
+throw new IllegalStateException("IE02245: Unknown column");
+}
+}

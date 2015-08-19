@@ -1,0 +1,14 @@
+{
+  super(node,realizer,new CProximityNode<T>(getRawNode(attachedNode)));
+  m_isIncoming=isIncoming;
+  final IZyNodeRealizer attachedRealizer=attachedNode.getRealizer();
+  final double x=attachedRealizer.getCenterX();
+  final double y;
+  if (isIncoming) {
+    y=attachedRealizer.getCenterY() + (attachedRealizer.getHeight() / 2) + DEFAULT_DISTANCE;
+  }
+ else {
+    y=attachedRealizer.getCenterY() - (attachedRealizer.getHeight() / 2) - DEFAULT_DISTANCE;
+  }
+  realizer.moveBy(x - (realizer.getWidth() / 2),y - (realizer.getHeight() / 2));
+}

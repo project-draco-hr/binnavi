@@ -1,0 +1,4 @@
+{
+  final Integer commentId=provider.appendTypeInstanceComment(typeInstance.getModule().getConfiguration().getId(),typeInstance.getId(),commentText,userId);
+  return provider.loadCommentById(commentId);
+}

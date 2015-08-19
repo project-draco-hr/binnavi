@@ -1,0 +1,3 @@
+{
+  return commentManager.getSectionComments(this);
+}

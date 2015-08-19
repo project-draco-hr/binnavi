@@ -1,0 +1,3 @@
+{
+  getProvider().deleteFunctionNodeComment(functionNode,1,null);
+}

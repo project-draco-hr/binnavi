@@ -1,0 +1,8 @@
+{
+  readDWord(inputStream,8);
+  readDWord(inputStream,DebugArgumentType.ADDRESS.getValue());
+  final long addressHigh32=readDWord(inputStream);
+  final long addressLow32=readDWord(inputStream);
+  final long address=(addressLow32 & 0x00000000FFFFFFFFL) + (addressHigh32 << 32L & 0xFFFFFFFF00000000L);
+  return address;
+}

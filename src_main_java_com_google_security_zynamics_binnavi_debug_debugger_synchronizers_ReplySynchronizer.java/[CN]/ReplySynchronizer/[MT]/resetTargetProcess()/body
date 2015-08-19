@@ -1,0 +1,19 @@
+{
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  final ProcessManager processManager=debugger.getProcessManager();
+  debugger.setTerminated();
+  manager.clearBreakpointsPassive(BreakpointType.ECHO);
+  manager.clearBreakpointsPassive(BreakpointType.STEP);
+  deactivateBreakpoints();
+  processManager.getMemory().clear();
+  processManager.setMemoryMap(new MemoryMap(new ArrayList<MemorySection>()));
+  final Collection<TargetProcessThread> threads=processManager.getThreads();
+  for (  final TargetProcessThread thread : threads) {
+    processManager.removeThread(thread);
+  }
+  for (  final MemoryModule module : processManager.getModules()) {
+    processManager.removeModule(module);
+  }
+  processManager.setAttached(false);
+  processManager.setActiveThread(null);
+}

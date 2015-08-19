@@ -1,0 +1,11 @@
+ITranslationEnvironment environment
+List<ReilInstruction> instructions
+long baseOffset
+OperandSize trueResultSize
+String trueResult
+OperandSize resultSize
+String resultOperand
+OperandSize addOperand1Size
+String addOperand1
+OperandSize addOperand2Size
+String addOperand2

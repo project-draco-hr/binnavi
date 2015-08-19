@@ -1,0 +1,12 @@
+{
+  final RegisterSetLatticeElement newstate=state.copy();
+  if (ReilHelpers.isFunctionCall(ins)) {
+    if (m_trackingOptions.clearsAllRegisters()) {
+      newstate.untaintAll(state.getTaintedRegisters());
+    }
+ else {
+      newstate.untaintAll(m_trackingOptions.getClearedRegisters());
+    }
+  }
+  return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newstate,newstate);
+}

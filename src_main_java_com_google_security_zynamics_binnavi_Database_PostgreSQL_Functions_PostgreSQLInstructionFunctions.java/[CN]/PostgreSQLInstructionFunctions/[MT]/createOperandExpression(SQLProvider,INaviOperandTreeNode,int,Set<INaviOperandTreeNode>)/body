@@ -1,0 +1,7 @@
+{
+  createOperandExpression(provider,rootNode,parent);
+  nodes.add(rootNode);
+  for (  final INaviOperandTreeNode child : rootNode.getChildren()) {
+    createOperandExpression(provider,child,rootNode.getId(),nodes);
+  }
+}

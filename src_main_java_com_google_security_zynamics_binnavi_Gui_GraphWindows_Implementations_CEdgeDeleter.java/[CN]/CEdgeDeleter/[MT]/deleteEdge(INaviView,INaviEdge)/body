@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(view,"IE01727: View argument can not be null");
+  Preconditions.checkNotNull(edge,"IE01728: Edge argument can not be null");
+  view.getContent().deleteEdge(edge);
+}

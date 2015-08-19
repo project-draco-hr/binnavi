@@ -1,0 +1,14 @@
+{
+  if (savePassword == isSavePassword()) {
+    return;
+  }
+  m_savePassword=savePassword;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedSavePassword(m_database,savePassword);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(graph,"IE02101: Graph argument can not be null");
+  Preconditions.checkNotNull(edge,"IE02102: Edge argument can not be null");
+  final double oldZoom=graph.getView().getZoom();
+  if (!edge.isVisible()) {
+    final NaviNode sourceNode=edge.getSource();
+    final NaviNode targetNode=edge.getTarget();
+    final boolean autoLayout=graph.getSettings().getLayoutSettings().getAutomaticLayouting();
+    graph.getSettings().getLayoutSettings().setAutomaticLayouting(false);
+    graph.showNode(sourceNode,true);
+    graph.showNode(targetNode,true);
+    graph.getSettings().getLayoutSettings().setAutomaticLayouting(autoLayout);
+  }
+  if (zoom) {
+    ZoomFunctions.zoomToEdgeLabel(graph,edge);
+  }
+ else {
+    MoveFunctions.centerEdgeLable(graph,edge);
+    focusView(graph,oldZoom,graph.getView().getCenter());
+  }
+}

@@ -1,0 +1,25 @@
+{
+  if (edge.isInstructionExit()) {
+    state.onInstructionExit();
+  }
+  if (m_stateMap.containsKey(edge)) {
+    if (m_lattice.isSmallerEqual(state,m_stateMap.get(edge))) {
+      return;
+    }
+    final List<LatticeElementType> combines=new ArrayList<LatticeElementType>();
+    combines.add(state);
+    combines.add(m_stateMap.get(edge));
+    m_stateMap.put(edge,m_lattice.combine(combines));
+  }
+ else {
+    m_stateMap.put(edge,state);
+  }
+  if (!m_lattice.isSmallerEqual(state,m_lattice.getMinimalElement())) {
+    if (m_direction == AnalysisDirection.DOWN) {
+      m_workList.add(new CComparableInstructionGraphNode(m_graph.getDestination(edge)));
+    }
+ else     if (m_direction == AnalysisDirection.UP) {
+      m_workList.add(new CComparableInstructionGraphNode(m_graph.getSource(edge)));
+    }
+  }
+}

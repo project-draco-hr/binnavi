@@ -1,0 +1,8 @@
+{
+  final YPoint sourcePoint=realizer.getSourcePoint();
+  m_rawEdge.setX1(sourcePoint.x);
+  m_rawEdge.setY1(sourcePoint.y);
+  final YPoint targetPoint=realizer.getTargetPoint();
+  m_rawEdge.setX2(targetPoint.x);
+  m_rawEdge.setY2(targetPoint.y);
+}

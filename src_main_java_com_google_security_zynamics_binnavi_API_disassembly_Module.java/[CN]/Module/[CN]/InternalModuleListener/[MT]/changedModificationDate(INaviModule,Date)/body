@@ -1,0 +1,10 @@
+{
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedModificationDate(Module.this,date);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

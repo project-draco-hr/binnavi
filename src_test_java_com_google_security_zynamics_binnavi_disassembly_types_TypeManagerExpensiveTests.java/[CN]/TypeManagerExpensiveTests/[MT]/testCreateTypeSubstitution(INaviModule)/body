@@ -1,0 +1,19 @@
+{
+  final TypeManager manager=module.getTypeManager();
+  final BaseType baseType=manager.createAtomicType(TypeName,32,true);
+  final INaviOperandTreeNode treeNode=new MockOperandTreeNode();
+  final int offset=0;
+  final CAddress address=new CAddress(0x1000);
+  final TypeSubstitution substitution=manager.createTypeSubstitution(treeNode,baseType,0,offset,address);
+  Assert.assertEquals(substitution.getAddress(),address);
+  Assert.assertTrue(substitution.getBaseType() == baseType);
+  Assert.assertTrue(substitution.getOffset() == offset);
+  Assert.assertTrue(substitution.getOperandTreeNode() == treeNode);
+  Assert.assertTrue(substitution.getExpressionId() == treeNode.getId());
+  final List<RawTypeSubstitution> substitutions=getProvider().loadTypeSubstitutions(module);
+  final List<RawTypeSubstitution> foundSubstitutions=findRawTypeSubstitutions(substitutions,treeNode.getId());
+  Assert.assertTrue(foundSubstitutions.size() == 1);
+  final RawTypeSubstitution foundSubstitution=foundSubstitutions.get(0);
+  matchTypeSubstitution(substitution,foundSubstitution);
+  manager.deleteType(baseType);
+}

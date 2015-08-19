@@ -1,0 +1,19 @@
+{
+  final Tag deletedTag=m_allTags.get(tag);
+  final Tag parentTag=deletedTag.getParent();
+  final List<Tag> children=deletedTag.getChildren();
+  Tag.unlink(parentTag,deletedTag);
+  for (  final Tag child : children) {
+    Tag.unlink(deletedTag,child);
+    Tag.link(parentTag,child);
+  }
+  m_allTags.remove(tag);
+  for (  final ITagManagerListener listener : m_listeners) {
+    try {
+      listener.deletedTag(TagManager.this,deletedTag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

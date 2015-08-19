@@ -1,0 +1,8 @@
+{
+  try {
+    m_debugger.resume();
+  }
+ catch (  final DebugExceptionWrapper e) {
+    throw new DebugException(e);
+  }
+}

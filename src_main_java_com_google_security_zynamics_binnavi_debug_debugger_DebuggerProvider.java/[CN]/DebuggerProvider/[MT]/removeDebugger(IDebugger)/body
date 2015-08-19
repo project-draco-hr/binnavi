@@ -1,0 +1,11 @@
+{
+  debuggers.remove(debugger);
+  for (  final DebuggerProviderListener listener : m_listeners) {
+    try {
+      listener.debuggerRemoved(this,debugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

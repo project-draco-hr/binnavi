@@ -1,0 +1,14 @@
+{
+  final INaviOperandTreeNode node=wrapper.determineDropNode();
+  if (!isLegalDropNode(node)) {
+    return false;
+  }
+  final BaseType baseType=wrapper.getDroppedBaseType();
+  if (node.getTypeSubstitution() != null) {
+    typeManager.updateTypeSubstitution(node,node.getTypeSubstitution(),baseType,new ArrayList<TypeMember>(),0);
+  }
+ else {
+    typeManager.createTypeSubstitution(node,baseType,node.getOperandPosition(),0,node.getInstructionAddress());
+  }
+  return true;
+}

@@ -1,0 +1,14 @@
+{
+  m_addressSpaces=null;
+  m_views=null;
+  m_traces=null;
+  m_debuggerTemplates=null;
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.closedProject(Project.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

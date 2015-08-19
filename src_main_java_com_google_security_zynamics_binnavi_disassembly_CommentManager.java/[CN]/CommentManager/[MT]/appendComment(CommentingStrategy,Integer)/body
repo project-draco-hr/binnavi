@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(strategy,"IE02539: strategy argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE02540: commentId argument can not be null");
+  final ArrayList<IComment> currentDataBaseComments=provider.loadCommentById(commentId);
+  strategy.saveComments(currentDataBaseComments);
+  for (  final IComment comment : currentDataBaseComments) {
+    commentIdToComment.put(comment.getId(),comment);
+  }
+  IComment notificationComment=null;
+  for (  final IComment comment : currentDataBaseComments) {
+    if (comment.getId().equals(commentId)) {
+      notificationComment=comment;
+    }
+  }
+  if (notificationComment != null) {
+    for (    final CommentListener listener : listeners) {
+      try {
+        strategy.sendAppendedCommentNotifcation(listener,notificationComment);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

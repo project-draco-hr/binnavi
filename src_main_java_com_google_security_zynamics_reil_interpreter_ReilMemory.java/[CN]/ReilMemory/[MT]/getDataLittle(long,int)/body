@@ -1,0 +1,14 @@
+{
+  if (length == 1) {
+    return new byte[]{(byte)(value & 0xFF)};
+  }
+ else   if (length == 2) {
+    return new byte[]{(byte)(value & 0xFF),(byte)((value & 0xFF00) >> 8)};
+  }
+ else   if (length == 4) {
+    return new byte[]{(byte)(value & 0xFF),(byte)((value & 0xFF00) >> 8),(byte)((value & 0xFF0000) >> 16),(byte)((value & 0xFF000000) >> 24)};
+  }
+ else {
+    throw new IllegalArgumentException("Error: Invalid data length");
+  }
+}

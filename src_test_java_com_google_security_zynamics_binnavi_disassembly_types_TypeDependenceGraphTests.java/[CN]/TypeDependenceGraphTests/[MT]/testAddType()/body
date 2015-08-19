@@ -1,0 +1,8 @@
+{
+  final BaseType newCompoundType=new BaseType(100,"new_compound_type",0,false,BaseTypeCategory.STRUCT);
+  dependenceGraph.addType(newCompoundType);
+  final ImmutableSet<BaseType> affectedTypes=dependenceGraph.addMember(newCompoundType,typeSystem.simpleStruct).getAffectedTypes();
+  assertEquals(ImmutableSet.<BaseType>of(newCompoundType),affectedTypes);
+  final ImmutableSet<BaseType> newAffectedTypes=dependenceGraph.addMember(typeSystem.simpleStruct,typeSystem.intType).getAffectedTypes();
+  assertEquals(ImmutableSet.<BaseType>of(newCompoundType,typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.complexUnion),newAffectedTypes);
+}

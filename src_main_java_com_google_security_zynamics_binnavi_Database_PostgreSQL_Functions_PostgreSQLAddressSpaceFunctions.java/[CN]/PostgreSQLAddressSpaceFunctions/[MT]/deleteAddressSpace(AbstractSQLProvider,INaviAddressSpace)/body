@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,addressSpace);
+  NaviLogger.info("Deleting address space %s",addressSpace.getConfiguration().getName());
+  PostgreSQLHelpers.deleteById(provider.getConnection(),CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(graph,"IE02103: Graph argument can not be null");
+  Preconditions.checkNotNull(node,"IE02104: Node argument can not be null");
+  final double oldZoom=graph.getView().getZoom();
+  graph.showNode(node,true);
+  if (zoom) {
+    ZoomFunctions.zoomToNode(graph,node);
+  }
+ else {
+    MoveFunctions.centerNode(graph,node);
+    if (Double.compare(oldZoom,graph.getView().getZoom()) != 0) {
+      focusView(graph,oldZoom,graph.getView().getCenter());
+    }
+  }
+}

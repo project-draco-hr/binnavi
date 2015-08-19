@@ -1,0 +1,5 @@
+{
+  final int length=(int)readDWord(inputStream);
+  readDWord(inputStream,DebugArgumentType.DATA.getValue());
+  return readBytes(inputStream,length);
+}

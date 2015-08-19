@@ -1,0 +1,5 @@
+{
+  final CCachedExpressionTree newTree=new CCachedExpressionTree();
+  createCachedTree(m_rootNode,newTree.getRoot());
+  return newTree;
+}

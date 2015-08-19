@@ -1,0 +1,10 @@
+{
+  Preconditions.checkArgument(gridSize > 0,"Internal Error: Grid size can not be 0 or lower.");
+  Preconditions.checkNotNull(style,"Internal Error: Layout style can't be null");
+  final OrthogonalLayouter layouter=new OrthogonalLayouter();
+  layouter.setLayoutStyle(style == OrthogonalStyle.NORMAL ? OrthogonalLayouter.NORMAL_STYLE : OrthogonalLayouter.NORMAL_TREE_STYLE);
+  final OrientationLayouter ol=(OrientationLayouter)layouter.getOrientationLayouter();
+  ol.setOrientation(isVerticalOrientation ? OrientationLayouter.TOP_TO_BOTTOM : OrientationLayouter.LEFT_TO_RIGHT);
+  layouter.setGrid((int)gridSize);
+  return layouter;
+}

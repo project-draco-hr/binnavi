@@ -1,0 +1,25 @@
+{
+  super(new BorderLayout());
+  m_gotoField=new CGotoAddressField(graph,modules,parent);
+  m_searchPanel=new CToolbarSearchPanel(graph);
+  final JPanel pBorderPanel=new JPanel(new BorderLayout());
+  pBorderPanel.setBorder(new EmptyBorder(new Insets(1,1,1,1)));
+  final JPanel pFields=new JPanel(new BorderLayout());
+  pFields.setBorder(new TitledBorder(""));
+  final JPanel pSearchField=new JPanel(new BorderLayout());
+  pSearchField.add(new CHelpLabel("   " + "Search" + " ",new CSearchFieldHelp()),BorderLayout.WEST);
+  pSearchField.add(m_searchPanel,BorderLayout.CENTER);
+  pSearchField.setPreferredSize(new Dimension(200,20));
+  pSearchField.setMinimumSize(new Dimension(200,20));
+  pFields.add(pSearchField,BorderLayout.CENTER);
+  final JPanel pGotoField=new JPanel(new BorderLayout());
+  pGotoField.add(new CHelpLabel("  " + "Address" + " ",new CGotoAddressHelp()),BorderLayout.WEST);
+  pGotoField.add(m_gotoField,BorderLayout.CENTER);
+  pGotoField.setPreferredSize(new Dimension(200,20));
+  pGotoField.setMinimumSize(new Dimension(200,20));
+  pFields.add(pGotoField,BorderLayout.WEST);
+  pBorderPanel.add(pFields,BorderLayout.CENTER);
+  pBorderPanel.setPreferredSize(new Dimension(400,20));
+  pBorderPanel.setMinimumSize(new Dimension(400,20));
+  add(pBorderPanel);
+}

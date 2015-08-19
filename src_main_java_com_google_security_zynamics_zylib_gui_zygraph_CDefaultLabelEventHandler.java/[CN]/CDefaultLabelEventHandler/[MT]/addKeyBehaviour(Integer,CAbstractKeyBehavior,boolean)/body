@@ -1,0 +1,8 @@
+{
+  if (ctrl) {
+    m_ctrlKeyBehaviourMap.put(keyCode,behaviour);
+  }
+ else {
+    m_keyBehaviourMap.put(keyCode,behaviour);
+  }
+}

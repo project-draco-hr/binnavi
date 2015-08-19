@@ -1,0 +1,4 @@
+{
+  final Trace trace=new Trace(new TraceList(1,"Name","Description",new MockSqlProvider()));
+  trace.save();
+}

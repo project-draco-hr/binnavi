@@ -1,0 +1,17 @@
+{
+  m_breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.REGULAR));
+  m_breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED);
+  m_breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DELETING);
+  assertEquals(0,m_breakpointManager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  m_debugger.connect();
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(mockMemoryModule));
+  m_breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildBreakpointSuccess(CommonTestObjects.BP_ADDRESS_456_RELOC));
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,m_breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.REGULAR));
+  m_breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED);
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildRegularBreakpointRemoveSucc(CommonTestObjects.BP_ADDRESS_456_RELOC));
+  m_breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DELETING);
+  assertEquals(0,m_breakpointManager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  assertEquals("CONNECT;READREGS;RESUME;SET_BREAKPOINTS/00000456/REGULAR;REMOVE_BREAKPOINTS/00000456/REGULAR;",m_debugger.requests);
+}

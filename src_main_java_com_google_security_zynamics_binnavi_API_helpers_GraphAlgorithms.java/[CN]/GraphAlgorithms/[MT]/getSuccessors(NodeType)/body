@@ -1,0 +1,3 @@
+{
+  return new HashSet<NodeType>(com.google.security.zynamics.zylib.types.graphs.GraphAlgorithms.getSuccessors(node));
+}

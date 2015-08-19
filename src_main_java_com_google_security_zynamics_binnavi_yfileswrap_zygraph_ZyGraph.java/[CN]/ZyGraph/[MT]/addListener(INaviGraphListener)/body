@@ -1,0 +1,5 @@
+{
+  super.addListener(listener);
+  m_listeners.addListener(listener);
+  m_synchronizer.addListener(listener);
+}

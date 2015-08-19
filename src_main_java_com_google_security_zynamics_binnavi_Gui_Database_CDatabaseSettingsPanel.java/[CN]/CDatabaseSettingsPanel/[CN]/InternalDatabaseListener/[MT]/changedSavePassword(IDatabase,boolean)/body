@@ -1,0 +1,4 @@
+{
+  savePasswordBox.setSelected(savePassword);
+  updateSaveButton();
+}

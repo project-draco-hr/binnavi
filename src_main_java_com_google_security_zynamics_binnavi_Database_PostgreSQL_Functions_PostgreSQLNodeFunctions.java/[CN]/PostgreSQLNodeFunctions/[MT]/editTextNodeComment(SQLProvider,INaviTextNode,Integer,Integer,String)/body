@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(provider,"IE02505: provider argument can not be null");
+  Preconditions.checkNotNull(textNode,"IE02506: groupNode argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE02507: commentId argument can not be null");
+  Preconditions.checkNotNull(userId,"IE02508: userId argument can not be null");
+  Preconditions.checkNotNull(newComment,"IE02509: newComment argument can not be null");
+  PostgreSQLCommentFunctions.editComment(provider,commentId,userId,newComment);
+}

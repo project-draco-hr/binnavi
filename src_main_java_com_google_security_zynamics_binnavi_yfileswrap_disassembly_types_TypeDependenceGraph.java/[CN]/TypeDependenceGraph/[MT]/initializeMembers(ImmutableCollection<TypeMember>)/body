@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(members,"Error: members argument can not be null.");
+  for (  TypeMember typeMember : members) {
+    final Node memberTypeNode=containedRelationMap.get(typeMember.getBaseType());
+    final Node parentNode=containedRelationMap.get(typeMember.getParentType());
+    containedRelation.createEdge(memberTypeNode,parentNode);
+  }
+  if (!Cycles.findCycle(containedRelation,true).isEmpty()) {
+    throw new IllegalStateException("Error: Dependence graph has cycles after initialization.");
+  }
+}

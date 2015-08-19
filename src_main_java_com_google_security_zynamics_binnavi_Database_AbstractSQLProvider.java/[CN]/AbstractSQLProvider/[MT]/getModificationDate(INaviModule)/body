@@ -1,0 +1,3 @@
+{
+  return PostgreSQLModuleFunctions.getModificationDate(this,module);
+}

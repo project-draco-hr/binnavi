@@ -1,0 +1,3 @@
+{
+  return String.format("View Graph [%d nodes, %d edges]",nodeCount(),edgeCount());
+}

@@ -1,0 +1,13 @@
+{
+  if (step != 5) {
+    return;
+  }
+  final BigInteger breakpointAddress=getProgramCounter(reply.getThreadId(),reply.getRegisterValues());
+  countHit(reply.getThreadId(),breakpointAddress);
+  try {
+    target.getDebugger().singleStep();
+  }
+ catch (  final DebugException e) {
+    e.printStackTrace();
+  }
+}

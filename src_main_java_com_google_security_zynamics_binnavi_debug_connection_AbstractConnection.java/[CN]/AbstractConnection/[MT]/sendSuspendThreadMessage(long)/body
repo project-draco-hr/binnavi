@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Suspend Thread\" message to the debug client");
+  return sendPacket(new SuspendThreadCommand(getMessageId(),tid));
+}

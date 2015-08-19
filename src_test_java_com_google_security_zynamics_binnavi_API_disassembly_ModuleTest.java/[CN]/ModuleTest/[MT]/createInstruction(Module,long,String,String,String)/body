@@ -1,0 +1,10 @@
+{
+  final Address address=new Address(lAddress);
+  final byte[] data={1,2,3,4};
+  final List<Operand> operands=new ArrayList<Operand>();
+  final OperandExpression ex2=OperandExpression.create(module,firstOperand,getType(firstOperand));
+  final OperandExpression ex4=OperandExpression.create(module,secondOperand,getType(secondOperand));
+  operands.add(Operand.create(module,ex2));
+  operands.add(Operand.create(module,ex4));
+  return Instruction.create(module,address,mnemonic,operands,data,"x86-32");
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: base type argument can not be null.");
+  final BaseType valueType=getValueType(baseType);
+  return valueType == null ? baseType.getName() : valueType.getName();
+}

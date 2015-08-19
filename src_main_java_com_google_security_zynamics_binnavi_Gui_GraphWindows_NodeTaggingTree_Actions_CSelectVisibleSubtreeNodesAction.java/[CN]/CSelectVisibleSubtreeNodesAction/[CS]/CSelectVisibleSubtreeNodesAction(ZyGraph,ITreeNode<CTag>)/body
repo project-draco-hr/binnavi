@@ -1,0 +1,5 @@
+{
+  super("Select Visible Subtree Nodes");
+  m_graph=Preconditions.checkNotNull(graph,"IE02319: Graph argument can not be null");
+  m_tag=Preconditions.checkNotNull(tag,"IE02320: Tag can't be null");
+}

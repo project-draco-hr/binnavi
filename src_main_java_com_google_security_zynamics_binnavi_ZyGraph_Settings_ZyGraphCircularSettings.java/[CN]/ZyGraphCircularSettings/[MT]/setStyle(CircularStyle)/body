@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(value,"IE00902: Style argument can't be null");
+  if (value == getStyle()) {
+    return;
+  }
+  if (m_type == null) {
+    m_layout=value;
+  }
+ else {
+    m_type.setCircularLayoutStyle(value.ordinal());
+  }
+}

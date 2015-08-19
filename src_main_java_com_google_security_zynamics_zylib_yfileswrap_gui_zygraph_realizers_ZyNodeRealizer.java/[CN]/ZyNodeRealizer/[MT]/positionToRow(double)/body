@@ -1,0 +1,7 @@
+{
+  final ZyLabelContent content=getNodeContent();
+  final Rectangle2D contentBounds=getNodeContent().getBounds();
+  final double yratio=getHeight() / contentBounds.getHeight();
+  final int row=(int)((y / yratio - content.getPaddingTop()) / content.getLineHeight());
+  return row >= content.getLineCount() ? -1 : row;
+}

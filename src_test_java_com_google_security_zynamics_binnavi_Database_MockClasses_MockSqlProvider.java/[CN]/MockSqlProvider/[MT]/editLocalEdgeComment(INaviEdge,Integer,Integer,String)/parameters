@@ -1,0 +1,4 @@
+INaviEdge edge
+Integer commentId
+Integer userId
+String newCommentText

@@ -1,0 +1,3 @@
+{
+  return register.equals("ax") || register.equals("bx") || register.equals("cx")|| register.equals("dx")|| register.equals("si")|| register.equals("di")|| register.equals("sp")|| register.equals("bp")|| register.equals("ip");
+}

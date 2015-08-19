@@ -1,0 +1,10 @@
+{
+  for (  final IFilterDialogListener listener : m_listeners) {
+    try {
+      listener.updated();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

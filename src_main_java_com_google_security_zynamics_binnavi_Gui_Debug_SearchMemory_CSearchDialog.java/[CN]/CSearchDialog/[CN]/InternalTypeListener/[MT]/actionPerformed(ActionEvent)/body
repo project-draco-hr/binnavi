@@ -1,0 +1,8 @@
+{
+  final ISearcher searcher=(ISearcher)m_typeBox.getSelectedItem();
+  if (searcher != null) {
+    m_inputField.setFormatterFactory(searcher.getFormatterFactory());
+    m_otherLabel.setText(searcher.getAlternativeName());
+    updateAlternativeField();
+  }
+}

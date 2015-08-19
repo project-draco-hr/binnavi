@@ -1,0 +1,3 @@
+{
+  RlwnmGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"rotlw.",true,true);
+}

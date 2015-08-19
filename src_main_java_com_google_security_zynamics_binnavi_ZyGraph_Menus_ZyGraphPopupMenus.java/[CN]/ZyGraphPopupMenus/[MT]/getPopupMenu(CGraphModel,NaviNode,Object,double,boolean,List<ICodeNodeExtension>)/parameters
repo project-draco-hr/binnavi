@@ -1,0 +1,6 @@
+CGraphModel model
+NaviNode node
+Object clickedObject
+double y
+boolean contentSelectionActive
+List<ICodeNodeExtension> extensions

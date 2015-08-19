@@ -1,0 +1,8 @@
+{
+  super(owner,"Select a graph",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(views,"IE01304: Function list can't be null");
+  m_views=new ArrayList<INaviView>(views);
+  createGui(views);
+  new CDialogEscaper(this);
+  setLocationRelativeTo(null);
+}

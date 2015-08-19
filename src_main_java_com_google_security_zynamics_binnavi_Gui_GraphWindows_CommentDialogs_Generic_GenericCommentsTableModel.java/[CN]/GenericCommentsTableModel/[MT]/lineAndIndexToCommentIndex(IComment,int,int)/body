@@ -1,0 +1,12 @@
+{
+  final String[] lines=comment.getCommentLines();
+  if (index > lines[lineNumber].length()) {
+    return -1;
+  }
+  int temporaryIndex=0;
+  for (int line=0; line < lineNumber; line++) {
+    temporaryIndex+=lines[line].length() + 1;
+  }
+  temporaryIndex+=index;
+  return temporaryIndex;
+}

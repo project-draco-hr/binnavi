@@ -1,0 +1,6 @@
+{
+  m_level=level;
+  m_start=start;
+  m_end=end;
+  m_color=color;
+}

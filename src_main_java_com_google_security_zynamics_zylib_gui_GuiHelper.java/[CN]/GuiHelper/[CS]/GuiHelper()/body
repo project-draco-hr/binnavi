@@ -1,0 +1,20 @@
+{
+  final List<String> linuxDesktops=Arrays.asList("gnome","gnome-shell","mate","cinnamon");
+  final String desktop=System.getenv("DESKTOP_SESSION");
+  if (desktop != null && linuxDesktops.contains(desktop.toLowerCase())) {
+    try {
+      final Class<?> xwm=Class.forName("sun.awt.X11.XWM");
+      awtWindowManager=xwm.getDeclaredField("awt_wmgr");
+      awtWindowManager.setAccessible(true);
+      final Field otherWindowManager=xwm.getDeclaredField("OTHER_WM");
+      otherWindowManager.setAccessible(true);
+      if (awtWindowManager.get(null).equals(otherWindowManager.get(null))) {
+        metacityWindowManager=xwm.getDeclaredField("METACITY_WM");
+        metacityWindowManager.setAccessible(true);
+        needsWindowFix=true;
+      }
+    }
+ catch (    final ClassNotFoundException|NoSuchFieldException|SecurityException|IllegalArgumentException|IllegalAccessException e) {
+    }
+  }
+}

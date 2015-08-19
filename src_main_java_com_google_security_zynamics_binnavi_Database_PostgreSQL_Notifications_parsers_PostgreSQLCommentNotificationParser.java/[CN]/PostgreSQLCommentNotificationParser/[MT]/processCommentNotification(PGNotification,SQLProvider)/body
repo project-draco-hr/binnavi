@@ -1,0 +1,50 @@
+{
+  final Matcher matcher=COMMENTS_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return null;
+  }
+  Integer commentId=null;
+  try {
+    commentId=Integer.parseInt(matcher.group(3));
+  }
+ catch (  final NumberFormatException exception) {
+    throw new IllegalStateException(exception);
+  }
+  final IComment comment=CommentManager.get(provider).getCommentById(commentId);
+  if (comment == null) {
+    return null;
+  }
+  final String databaseOperation=matcher.group(2);
+  Integer parentId=null;
+  try {
+    parentId=matcher.group(4).equalsIgnoreCase("null") ? null : Integer.parseInt(matcher.group(4));
+  }
+ catch (  final NumberFormatException exception) {
+    throw new IllegalStateException(exception);
+  }
+  if (databaseOperation.equals("DELETE")) {
+    if (((parentId == null) && (comment.getParent() != null)) || ((parentId != null) && (comment.getParent() != null) && (!parentId.equals(comment.getParent().getId())))) {
+      final Integer localCommentParentId=parentId;
+      final Integer notificationCommentParentId=comment.getParent() != null ? comment.getParent().getId() : null;
+      throw new IllegalStateException("IE02521: The parent comment of the localy stored comment: " + localCommentParentId + " is not equal to the "+ "notification comments parent comment: "+ notificationCommentParentId);
+    }
+  }
+  final String commentContent=matcher.group(9);
+  if (!commentContent.equals(comment.getComment()) && databaseOperation.equals("DELETE")) {
+    throw new IllegalStateException("IE02522: The local comments comment: " + comment.getComment() + "is not equal to the notification comments content: "+ commentContent);
+  }
+  Integer commentUserId=null;
+  try {
+    commentUserId=Integer.parseInt(matcher.group(7));
+  }
+ catch (  final NumberFormatException exception) {
+    throw new IllegalStateException(exception);
+  }
+  if (!commentUserId.equals(comment.getUser().getUserId())) {
+    throw new IllegalStateException("IE02523: The user of the localy stored comment: " + commentUserId + " is not equal to the "+ "notifications comments user: "+ comment.getUser().getUserId());
+  }
+  final IComment parentComment=CommentManager.get(provider).getCommentById(parentId);
+  final IComment newComment=new CComment(comment.getId(),comment.getUser(),parentComment,commentContent);
+  final CommentOperation operation=databaseOperation.equalsIgnoreCase("UPDATE") ? CommentOperation.EDIT : CommentOperation.DELETE;
+  return new CommentNotificationContainer(comment,newComment,operation);
+}

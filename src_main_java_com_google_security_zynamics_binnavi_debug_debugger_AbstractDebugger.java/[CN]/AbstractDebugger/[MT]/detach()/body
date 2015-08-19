@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    connection.sendDetachMessage();
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

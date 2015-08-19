@@ -1,0 +1,8 @@
+{
+  for (  final CTag t : viewTags) {
+    if (t.getId() == tag.getId()) {
+      return true;
+    }
+  }
+  return false;
+}

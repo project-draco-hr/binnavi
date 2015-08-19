@@ -1,0 +1,9 @@
+{
+  final TreePath[] paths=referencesTable.getSelectionPaths();
+  if (paths != null && paths.length == 1) {
+    handleSingleNodeSelection(paths);
+  }
+ else {
+    handleMultipleNodeSelection(paths);
+  }
+}

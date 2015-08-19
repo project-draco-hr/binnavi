@@ -1,0 +1,11 @@
+{
+  super(new BorderLayout());
+  if (GraphicsEnvironment.isHeadless()) {
+    m_dialog=null;
+  }
+ else {
+    m_dialog=new CViewFilterDialog(module.getDatabase().getContent().getViewTagManager(),module.getDatabase().getContent().getNodeTagManager());
+    m_dialog.addListener(m_filterDialogListener);
+  }
+  add(new JButton(new CFilterAction()));
+}

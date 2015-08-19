@@ -1,0 +1,18 @@
+{
+  try {
+    final PreparedStatement statement=connection.prepareStatement("DELETE FROM " + CTableNames.EXPRESSION_TYPES_TABLE + " WHERE module_id = ? AND address = ? AND \"position\" = ? AND expression_id = ?");
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setLong(2,typeSubstitution.getAddress().toLong());
+      statement.setInt(3,typeSubstitution.getPosition());
+      statement.setInt(4,typeSubstitution.getExpressionId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

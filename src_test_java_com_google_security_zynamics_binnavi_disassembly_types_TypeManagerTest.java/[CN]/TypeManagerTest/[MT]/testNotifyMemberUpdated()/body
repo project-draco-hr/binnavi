@@ -1,0 +1,9 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final TypeMember member=typeSystem.simpleStruct.iterator().next();
+  typeManager.updateStructureMember(member,typeSystem.intType,"new_member_name",member.getBitOffset().get());
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.memberUpdated(member);
+  Assert.assertEquals(expectedEvents,events);
+}

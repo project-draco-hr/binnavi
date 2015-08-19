@@ -1,0 +1,6 @@
+def findRoot(nodes):
+    'Finds the root node of a view. Note that this function is a bit imprecise\n\t   but it should do the trick for most views.'
+    for node in nodes:
+        if (len(node.parents) == 0):
+            return node
+    return nodes[0]

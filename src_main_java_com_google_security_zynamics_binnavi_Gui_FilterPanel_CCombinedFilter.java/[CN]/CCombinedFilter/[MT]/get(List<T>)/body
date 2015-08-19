@@ -1,0 +1,8 @@
+{
+  return new FilledList<T>(CollectionHelpers.filter(elements,new ICollectionFilter<T>(){
+    @Override public boolean qualifies(    final T element){
+      return checkCondition(element);
+    }
+  }
+));
+}

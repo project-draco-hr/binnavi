@@ -1,0 +1,6 @@
+{
+  final List<NaviNode> nodes=GraphHelpers.filter(getGraph(),new CGraphNodeTaggedFilter(Sets.newHashSet(m_tag.getObject())));
+  for (  final NaviNode node : nodes) {
+    add(new CTaggedGraphNodeNode(getGraph(),node));
+  }
+}

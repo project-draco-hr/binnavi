@@ -1,0 +1,29 @@
+{
+  ZyCodeNodeBuilder.buildContent(content,codeNode,graph.getSettings(),nodeModifier);
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    final INaviModule module=instruction.getModule();
+    if ((provider != null) && (provider.getDebugger(module) != null) && graph.getSettings().getDisplaySettings().getShowMemoryAddresses(provider.getDebugger(module))) {
+      final int line=CCodeNodeHelpers.instructionToLine(codeNode,instruction);
+      if (line != -1) {
+        final ZyLineContent lineContent=this.realizer.getNodeContent().getLineContent(line);
+        lineContent.setTextColor(0,8,Color.RED);
+      }
+    }
+  }
+  final INaviInstruction instruction=codeNode.getInstructions().iterator().next();
+  if (instruction != null) {
+    final INaviModule module=instruction.getModule();
+    final IDebugger debugger=provider.getDebugger(module);
+    if (debugger == null) {
+      return;
+    }
+    final BreakpointManager manager=debugger.getBreakpointManager();
+    CBreakpointPainter.paintBreakpoints(manager,node,codeNode);
+    if (debugger.getProcessManager().getActiveThread() != null) {
+      final RelocatedAddress instructionPointer=debugger.getProcessManager().getActiveThread().getCurrentAddress();
+      final MemoryModule memoryModule=debugger.getProcessManager().getModule(instructionPointer);
+      final UnrelocatedAddress unrelocatedIP=new DefaultAddressConverter(memoryModule.getBaseAddress().getAddress(),module.getConfiguration().getFileBase()).memoryToFile(instructionPointer);
+      CDebuggerPainter.updateSingleNodeDebuggerHighlighting(graph,unrelocatedIP,node);
+    }
+  }
+}

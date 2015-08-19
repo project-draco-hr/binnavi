@@ -1,0 +1,5 @@
+{
+  CommentManager.get(m_provider).unloadGlobalEdgeComment(this,getGlobalComment());
+  CommentManager.get(m_provider).unloadLocalEdgeComment(this,getLocalComment());
+  CommentManager.get(m_provider).removeListener(m_internalCommentListener);
+}

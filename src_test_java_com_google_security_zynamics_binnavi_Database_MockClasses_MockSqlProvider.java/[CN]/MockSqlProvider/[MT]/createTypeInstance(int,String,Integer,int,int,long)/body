@@ -1,0 +1,5 @@
+{
+  final RawTypeInstance rawTypeInstance=new RawTypeInstance(moduleId,typeInstanceCounter++,name,commentId,typeId,sectionId,sectionOffset);
+  typeInstances.put(moduleId,rawTypeInstance);
+  return rawTypeInstance.getId();
+}

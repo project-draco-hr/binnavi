@@ -1,0 +1,5 @@
+{
+  readDWord(inputStream,4);
+  readDWord(inputStream,DebugArgumentType.INTEGER.getValue());
+  return readDWord(inputStream);
+}

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkArgument(id > 0,"Error: id must be greater than zero.");
+  this.name=Preconditions.checkNotNull(name,"IE02757: Name of base type can not be null.");
+  Preconditions.checkArgument(bitSize >= 0,"Error: Size of base must be above or equal to zero.");
+  this.signed=signed;
+  this.bitSize=bitSize;
+  this.id=id;
+  this.category=category;
+}

@@ -1,0 +1,6 @@
+{
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.isSmallerEqual(m_fullRegisterSetLatticeElement));
+  Assert.assertFalse(m_fullRegisterSetLatticeElement.isSmallerEqual(m_emptyRegisterSetLatticeElement));
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.isSmallerEqual(m_emptyRegisterSetLatticeElement));
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.isSmallerEqual(m_fullRegisterSetLatticeElement));
+}

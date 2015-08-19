@@ -1,0 +1,8 @@
+{
+  final JButton button=add(CActionProxy.proxy(action));
+  button.setFocusable(false);
+  button.setBorder(new EmptyBorder(new Insets(1,0,1,0)));
+  button.setRolloverIcon(new ImageIcon(CMain.class.getResource(rolloverIcon)));
+  button.setPressedIcon(new ImageIcon(CMain.class.getResource(pressedIcon)));
+  return button;
+}

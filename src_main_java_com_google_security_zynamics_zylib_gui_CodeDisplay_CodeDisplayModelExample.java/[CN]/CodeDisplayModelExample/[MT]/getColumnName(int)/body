@@ -1,0 +1,11 @@
+{
+switch (columnIndex) {
+case 0:
+    return "Line:";
+case 1:
+  return "Code:";
+case 2:
+return "Comment:";
+}
+throw new ArrayIndexOutOfBoundsException();
+}

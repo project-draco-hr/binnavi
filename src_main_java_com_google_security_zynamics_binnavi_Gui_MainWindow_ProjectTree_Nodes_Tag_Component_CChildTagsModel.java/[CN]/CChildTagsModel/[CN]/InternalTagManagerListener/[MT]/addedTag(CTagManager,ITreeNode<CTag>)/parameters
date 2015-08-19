@@ -1,0 +1,2 @@
+CTagManager manager
+ITreeNode<CTag> tag

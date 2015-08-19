@@ -1,0 +1,8 @@
+{
+  final LayoutGraphWriter layoutGraphWriter=new LayoutGraphWriter(m_graph);
+  String path=file.getPath();
+  if (path.toLowerCase().endsWith(".gml")) {
+    path+=".gml";
+  }
+  layoutGraphWriter.write(path);
+}

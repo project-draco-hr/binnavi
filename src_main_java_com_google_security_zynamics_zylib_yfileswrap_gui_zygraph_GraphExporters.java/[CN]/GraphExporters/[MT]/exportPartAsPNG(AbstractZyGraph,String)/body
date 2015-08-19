@@ -1,0 +1,6 @@
+{
+  Graph2DView view=zygraph.getView();
+  final ImageOutputHandler png=createPNGOutputHandler();
+  png.setAntialiasingEnabled(true);
+  exportGraphPartToImageFileFormat(view.getGraph2D(),png,filename);
+}

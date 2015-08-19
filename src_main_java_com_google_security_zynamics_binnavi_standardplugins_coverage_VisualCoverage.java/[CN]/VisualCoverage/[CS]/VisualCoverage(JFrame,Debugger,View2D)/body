@@ -1,0 +1,10 @@
+{
+  this.parent=parent;
+  this.debugger=debugger;
+  this.view2d=view2d;
+  ProgressDialog.show(parent,"Initializing graph and breakpoints ...",new StartupThread());
+  debugger.getProcess().addListener(processListener);
+  if (debugger.isConnected()) {
+    setupListeners();
+  }
+}

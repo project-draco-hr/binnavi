@@ -1,0 +1,4 @@
+{
+  updateGui();
+  synchronizeDebugger(oldDebugger,newDebugger);
+}

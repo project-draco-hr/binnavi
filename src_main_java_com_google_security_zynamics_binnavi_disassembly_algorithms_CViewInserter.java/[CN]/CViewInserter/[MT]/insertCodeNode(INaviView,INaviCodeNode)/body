@@ -1,0 +1,23 @@
+{
+  final INaviCodeNode sourceNode=(INaviCodeNode)node.cloneNode();
+  final Iterable<INaviInstruction> instructions=sourceNode.getInstructions();
+  final ArrayList<INaviInstruction> instructionList=Lists.newArrayList(instructions);
+  CCodeNode codeNode;
+  try {
+    codeNode=target.getContent().createCodeNode(sourceNode.getParentFunction(),instructionList);
+  }
+ catch (  final MaybeNullException e) {
+    codeNode=target.getContent().createCodeNode(null,instructionList);
+  }
+  if (sourceNode.getComments().getGlobalCodeNodeComment() != null) {
+    codeNode.getComments().initializeGlobalCodeNodeComment(sourceNode.getComments().getGlobalCodeNodeComment());
+  }
+  if (sourceNode.getComments().getLocalCodeNodeComment() != null) {
+    codeNode.getComments().initializeLocalCodeNodeComment(sourceNode.getComments().getLocalCodeNodeComment());
+  }
+  final Iterable<INaviInstruction> newInstructions=codeNode.getInstructions();
+  for (int i=0; i < Iterables.size(instructions); i++) {
+    codeNode.getComments().initializeLocalInstructionComment(Iterables.get(newInstructions,i),sourceNode.getComments().getLocalInstructionComment(Iterables.get(instructions,i)));
+  }
+  return codeNode;
+}

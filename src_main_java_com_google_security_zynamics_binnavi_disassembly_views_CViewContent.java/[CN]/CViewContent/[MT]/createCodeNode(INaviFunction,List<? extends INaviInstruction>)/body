@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(instructions,"IE00286: Instructions argument can not be null");
+  if ((parentFunction != null) && !parentFunction.inSameDatabase(provider)) {
+    throw new IllegalArgumentException("IE00287: Parent function and view are not in the same database");
+  }
+  for (  final INaviInstruction instruction : instructions) {
+    Preconditions.checkNotNull(instruction,"IE00288: Instruction list contains a null-instruction");
+    Preconditions.checkArgument(instruction.inSameDatabase(provider),"IE00289: Instruction and view are not in the same database");
+  }
+  final CCodeNode codeNode=new CCodeNode(-1,0,0,0,0,Color.WHITE,Color.BLACK,false,true,null,parentFunction,new HashSet<CTag>(),provider);
+  for (  final INaviInstruction instruction : instructions) {
+    codeNode.addInstruction(instruction,null);
+  }
+  addNode(codeNode);
+  updateGraphType(codeNode);
+  codeNode.addListener(m_internalNodeListener);
+  m_reilFunction=null;
+  return codeNode;
+}

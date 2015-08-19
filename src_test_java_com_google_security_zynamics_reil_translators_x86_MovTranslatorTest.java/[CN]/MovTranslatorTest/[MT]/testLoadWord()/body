@@ -1,0 +1,22 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ebx",BigInteger.valueOf(5),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ebp",BigInteger.valueOf(995),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setMemory(1000,0x12345678,4);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"word");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ax"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"word");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.MEMDEREF,"["));
+  operandTree2.root.m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.OPERATOR,"+"));
+  operandTree2.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"ebp"));
+  operandTree2.root.m_children.get(0).m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"5"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2);
+  final IInstruction instruction=new MockInstruction("mov",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(4,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x5678),interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+}

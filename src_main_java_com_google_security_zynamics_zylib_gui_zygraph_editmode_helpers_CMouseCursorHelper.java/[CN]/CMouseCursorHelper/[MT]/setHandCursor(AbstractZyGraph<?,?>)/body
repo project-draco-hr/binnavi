@@ -1,0 +1,5 @@
+{
+  if (graph.getViewCursor() != HAND_CURSOR) {
+    graph.setViewCursor(HAND_CURSOR);
+  }
+}

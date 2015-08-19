@@ -1,0 +1,5 @@
+{
+  super(action);
+  m_action=action;
+  m_graph=graph;
+}

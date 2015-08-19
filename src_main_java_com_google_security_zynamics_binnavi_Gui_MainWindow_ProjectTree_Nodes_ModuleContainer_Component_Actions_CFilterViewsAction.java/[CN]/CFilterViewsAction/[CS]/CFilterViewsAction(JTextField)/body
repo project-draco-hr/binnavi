@@ -1,0 +1,4 @@
+{
+  super("Filter by view count");
+  m_filterField=filterField;
+}

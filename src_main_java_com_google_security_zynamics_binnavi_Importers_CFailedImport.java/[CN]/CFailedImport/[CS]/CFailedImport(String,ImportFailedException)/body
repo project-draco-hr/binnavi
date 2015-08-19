@@ -1,0 +1,4 @@
+{
+  m_fileName=fileName;
+  m_importException=importException;
+}

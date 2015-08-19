@@ -1,0 +1,16 @@
+{
+  final List<IComment> comments=section.getComments() == null ? new ArrayList<IComment>() : section.getComments();
+  final IComment lastComment=comments.size() == 0 ? null : Iterables.getLast(comments);
+  final String commentString=" TEST DELETE Section COMMENT ";
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final int commentId=getProvider().appendSectionComment(section.getModule().getConfiguration().getId(),section.getId(),commentString,user.getUserId());
+  final IComment newComment=new CComment(commentId,user,lastComment,commentString);
+  final ArrayList<IComment> storedComments=getProvider().loadCommentById(commentId);
+  assertNotNull(storedComments);
+  assertEquals(comments.size() + 1,storedComments.size());
+  assertEquals(newComment,storedComments.get(storedComments.size() - 1));
+  getProvider().deleteSectionComment(section.getModule().getConfiguration().getId(),section.getId(),commentId,newComment.getUser().getUserId());
+  final ArrayList<IComment> commentsAfterDelete=getProvider().loadCommentById(commentId);
+  assertNotNull(commentsAfterDelete);
+  assertTrue(commentsAfterDelete.isEmpty());
+}

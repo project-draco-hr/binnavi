@@ -1,0 +1,8 @@
+{
+  m_selectedColorPanel.removeListener(m_colorPanelListener);
+  m_selectedColorPanel.removeMouseListener(m_colorPanelListener);
+  for (  final ColorPanel cp : m_colorPanels) {
+    cp.removeListener(m_colorPanelListener);
+    cp.removeMouseListener(m_colorPanelListener);
+  }
+}

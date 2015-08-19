@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(row >= 0,"Row should be >= 0: %s",row);
+  rowIndex=row;
+}

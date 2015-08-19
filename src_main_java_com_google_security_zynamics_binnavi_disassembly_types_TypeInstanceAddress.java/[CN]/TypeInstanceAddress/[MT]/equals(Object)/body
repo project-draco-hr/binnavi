@@ -1,0 +1,7 @@
+{
+  if (!(o instanceof TypeInstanceAddress)) {
+    return false;
+  }
+  final TypeInstanceAddress instanceAddress=(TypeInstanceAddress)o;
+  return Objects.equals(offset,instanceAddress.offset) && Objects.equals(baseAddress,instanceAddress.baseAddress);
+}

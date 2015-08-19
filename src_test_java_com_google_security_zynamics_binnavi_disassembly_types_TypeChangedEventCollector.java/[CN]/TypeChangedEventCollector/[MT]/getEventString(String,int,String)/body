@@ -1,0 +1,9 @@
+{
+  final StringBuilder builder=new StringBuilder(event);
+  builder.append(": ");
+  builder.append(name);
+  builder.append('(');
+  builder.append(id);
+  builder.append(')');
+  return builder.toString();
+}

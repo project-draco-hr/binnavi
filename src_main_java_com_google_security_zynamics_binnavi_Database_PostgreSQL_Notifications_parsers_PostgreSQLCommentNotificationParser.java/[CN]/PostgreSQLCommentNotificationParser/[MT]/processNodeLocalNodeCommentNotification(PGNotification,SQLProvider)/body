@@ -1,0 +1,19 @@
+{
+  final Matcher matcher=NODE_LOCAL_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return null;
+  }
+  final Integer moduleId=Integer.parseInt(matcher.group(3));
+  final Integer nodeId=Integer.parseInt(matcher.group(4));
+  final Integer commentId=matcher.group(6).equals("null") ? null : Integer.parseInt(matcher.group(6));
+  final INaviModule module=provider.findModule(moduleId);
+  if (!module.isLoaded()) {
+    return null;
+  }
+  final INaviCodeNode codeNode=(INaviCodeNode)NodeCache.get(provider).getNodeById(nodeId);
+  if (codeNode == null) {
+    return null;
+  }
+  final CommentOperation operation=commentId == null ? CommentOperation.DELETE : CommentOperation.APPEND;
+  return new CodeNodeCommentNotificationContainer(codeNode,operation,CommentScope.LOCAL,commentId);
+}

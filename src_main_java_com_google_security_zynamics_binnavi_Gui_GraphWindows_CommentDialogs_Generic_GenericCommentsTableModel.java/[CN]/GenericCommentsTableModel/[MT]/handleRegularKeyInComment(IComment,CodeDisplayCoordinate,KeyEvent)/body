@@ -1,0 +1,14 @@
+{
+  int line=coordinate.getLine();
+  int field=coordinate.getFieldIndex();
+  int commentIndex=lineAndIndexToCommentIndex(comment,line,field);
+  if (commentIndex >= 0) {
+    comment=insertStringIntoComment(comment,line,field,"" + event.getKeyChar());
+  }
+ else {
+    String lineString=comment.getCommentLine(coordinate.getLine());
+    String paddingAndKey=CodeDisplay.padRight("",coordinate.getFieldIndex() - lineString.length()) + event.getKeyChar();
+    comment=insertStringIntoComment(comment,coordinate.getLine(),lineString.length(),paddingAndKey);
+  }
+  return comment;
+}

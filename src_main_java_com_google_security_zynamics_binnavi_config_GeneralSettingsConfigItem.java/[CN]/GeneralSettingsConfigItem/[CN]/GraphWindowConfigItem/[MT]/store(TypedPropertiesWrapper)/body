@@ -1,0 +1,5 @@
+{
+  properties.setInteger(SIZE_LEFT_PANEL,sizeLeftPanel);
+  properties.setInteger(SIZE_RIGHT_PANEL,sizeRightPanel);
+  properties.setInteger(SIZE_BOTTOM_PANEL,sizeBottomPanel);
+}

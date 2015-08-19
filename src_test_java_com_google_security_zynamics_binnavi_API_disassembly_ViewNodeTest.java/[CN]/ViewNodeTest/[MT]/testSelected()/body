@@ -1,0 +1,9 @@
+{
+  final MockViewNodeListener listener=new MockViewNodeListener();
+  m_node.addListener(listener);
+  assertFalse(m_node.isSelected());
+  m_node.setSelected(true);
+  assertTrue(m_node.isSelected());
+  assertEquals("changedSelection;",listener.events);
+  m_node.removeListener(listener);
+}

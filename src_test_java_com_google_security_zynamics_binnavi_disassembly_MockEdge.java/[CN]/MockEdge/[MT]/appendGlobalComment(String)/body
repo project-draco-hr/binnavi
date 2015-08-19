@@ -1,0 +1,3 @@
+{
+  return CommentManager.get(m_provider).appendGlobalEdgeComment(this,commentText);
+}

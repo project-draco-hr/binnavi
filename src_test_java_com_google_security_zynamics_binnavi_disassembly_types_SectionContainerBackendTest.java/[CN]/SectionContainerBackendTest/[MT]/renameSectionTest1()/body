@@ -1,0 +1,15 @@
+{
+  final SectionContainerBackend sectionContainerBackend=new SectionContainerBackend(provider,module);
+  Assert.assertNotNull(sectionContainerBackend);
+  final int numberOfSections=sectionContainerBackend.loadSections().size();
+  final Section section=sectionContainerBackend.createSection(".data2",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0xFF,(byte)0x00});
+  final int numberOfSections2=sectionContainerBackend.loadSections().size();
+  Assert.assertEquals(numberOfSections + 1,numberOfSections2);
+  sectionContainerBackend.renameSection(section,"NEWNAME");
+  final List<Section> sections=sectionContainerBackend.loadSections();
+  for (  final Section section2 : sections) {
+    if (section2.getId() == section.getId()) {
+      Assert.assertEquals("NEWNAME",section2.getName());
+    }
+  }
+}

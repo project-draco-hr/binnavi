@@ -1,0 +1,16 @@
+{
+  PostgreSQLViewsLoader.checkArguments(provider,module,viewTagManager);
+  final String query="SELECT * FROM load_module_call_graphs(?, ?)";
+  try {
+    final CConnection connection=provider.getConnection();
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    statement.setObject(2,viewType == ViewType.Native ? "native" : "non-native",Types.OTHER);
+    final ResultSet resultSet=statement.executeQuery();
+    final Map<Integer,Set<CTag>> tags=PostgreSQLModuleViewsLoader.loadTags(connection,module,viewTagManager);
+    return new FilledList<ICallgraphView>(processQueryResults(resultSet,module,tags,nodeTagManager,provider,new ArrayList<CView>(),viewType,GraphType.CALLGRAPH));
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+}

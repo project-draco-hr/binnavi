@@ -1,0 +1,8 @@
+{
+  if (endianness == Endianness.LITTLE_ENDIAN) {
+    return getDataLittle(value,length);
+  }
+ else {
+    return getDataBig(value,length);
+  }
+}

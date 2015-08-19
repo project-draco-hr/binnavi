@@ -1,0 +1,4 @@
+{
+  m_component.dispose();
+  m_menuBuilder.dispose();
+}

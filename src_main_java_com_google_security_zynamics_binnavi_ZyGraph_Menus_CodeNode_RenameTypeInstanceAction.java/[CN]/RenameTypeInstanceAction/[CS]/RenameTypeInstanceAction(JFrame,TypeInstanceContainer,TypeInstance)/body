@@ -1,0 +1,6 @@
+{
+  super("Rename variable");
+  this.parent=parent;
+  this.instanceContainer=instanceContainer;
+  this.typeInstance=typeInstance;
+}

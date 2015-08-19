@@ -1,0 +1,8 @@
+{
+  try {
+    return m_edge.editLocalComment(comment,newComment);
+  }
+ catch (  final CouldntSaveDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntSaveDataException(exception);
+  }
+}

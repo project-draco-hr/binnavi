@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE00090: Code node argument can not be null");
+  return globalCodeNodeCommentContainer.getComments(node);
+}

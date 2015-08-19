@@ -1,0 +1,9 @@
+{
+  final CAddressSpaceNode node=new CAddressSpaceNode(m_tree,new DefaultMutableTreeNode(),m_database,m_project,m_addressSpace,m_container);
+  node.dispose();
+  m_container.dispose();
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_project,"m_listeners"),"m_listeners")).isEmpty());
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_addressSpace,"m_listeners"),"m_listeners")).isEmpty());
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ZyGraphBuilderManager.instance(),"m_listeners"),"m_listeners")) == null);
+}

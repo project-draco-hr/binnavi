@@ -1,0 +1,8 @@
+String opcode
+IAddress offset
+OperandSize firstSize
+String firstValue
+OperandSize secondSize
+String secondValue
+OperandSize thirdSize
+String thirdValue

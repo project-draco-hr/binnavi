@@ -1,0 +1,7 @@
+{
+  if (m_dataProvider == null) {
+    return;
+  }
+  Preconditions.checkArgument((offset >= getBaseAddress()) || (offset <= (getBaseAddress() + m_dataProvider.getDataLength())),"Error: Invalid offset");
+  setCurrentPosition(CHARACTERS_PER_BYTE * (offset - m_baseAddress));
+}

@@ -1,0 +1,6 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: View is not loaded");
+  }
+  return viewGraph;
+}

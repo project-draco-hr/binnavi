@@ -1,0 +1,6 @@
+{
+  rowIndex=row;
+  lineIndex=line;
+  columnIndex=column;
+  fieldIndex=indexIntoField;
+}

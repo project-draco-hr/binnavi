@@ -1,0 +1,5 @@
+{
+  final ITraceListProvider provider=new ProjectTraceProvider(new MockProject());
+  final CDebugEventListPanel panel=new CDebugEventListPanel(provider);
+  panel.dispose();
+}

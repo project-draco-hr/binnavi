@@ -1,0 +1,3 @@
+{
+  return project == null ? module.getTraces() : project.getTraces();
+}

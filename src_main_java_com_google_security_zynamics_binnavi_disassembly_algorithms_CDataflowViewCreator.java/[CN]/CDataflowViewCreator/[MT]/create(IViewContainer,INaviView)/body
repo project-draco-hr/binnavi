@@ -1,0 +1,36 @@
+{
+  Preconditions.checkNotNull(container,"IE00411: Module argument can not be null");
+  Preconditions.checkNotNull(view,"IE00414: View argument can not be null");
+  final Map<IAddress,INaviInstruction> instructions=new HashMap<IAddress,INaviInstruction>();
+  for (  final CCodeNode codeNode : view.getBasicBlocks()) {
+    for (    final INaviInstruction instruction : codeNode.getInstructions()) {
+      instructions.put(instruction.getAddress(),instruction);
+    }
+  }
+  final ReilFunction function=view.getContent().getReilCode();
+  final OperandGraph operandGraph=OperandGraph.create(function.getGraph());
+  final INaviView dfView=container.createView(String.format("Data flow view of '%s'",view.getName()),"");
+  final Map<OperandGraphNode,INaviCodeNode> nodeMap=new HashMap<OperandGraphNode,INaviCodeNode>();
+  final Map<INaviInstruction,CCodeNode> instructionMap=new HashMap<INaviInstruction,CCodeNode>();
+  for (  final OperandGraphNode operandGraphNode : operandGraph) {
+    final ReilInstruction reilInstruction=operandGraphNode.getInstruction();
+    final INaviInstruction instruction=instructions.get(ReilHelpers.toNativeAddress(reilInstruction.getAddress()));
+    if (instructionMap.containsKey(instruction)) {
+      nodeMap.put(operandGraphNode,instructionMap.get(instruction));
+      continue;
+    }
+    final CCodeNode codeNode=dfView.getContent().createCodeNode(null,Lists.newArrayList(instruction));
+    codeNode.setColor(ConfigManager.instance().getColorSettings().getBasicBlocksColor());
+    nodeMap.put(operandGraphNode,codeNode);
+    instructionMap.put(instruction,codeNode);
+  }
+  for (  final OperandGraphEdge edge : operandGraph.getEdges()) {
+    final INaviCodeNode source=nodeMap.get(edge.getSource());
+    final INaviCodeNode target=nodeMap.get(edge.getTarget());
+    if (source.equals(target)) {
+      continue;
+    }
+    dfView.getContent().createEdge(source,target,EdgeType.JUMP_UNCONDITIONAL);
+  }
+  return dfView;
+}

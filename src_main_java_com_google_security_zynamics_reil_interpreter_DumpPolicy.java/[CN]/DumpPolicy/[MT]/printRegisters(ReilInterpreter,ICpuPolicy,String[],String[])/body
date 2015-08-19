@@ -1,0 +1,17 @@
+{
+  for (  final String register : registers) {
+    final BigInteger value=interpreter.isDefined(register) ? interpreter.getVariableValue(register) : BigInteger.ZERO;
+    final OperandSize registerSize=cpuPolicy.getRegisterSize(register);
+    final String mask="%0" + (2 * registerSize.getByteSize()) + "X";
+    writer.write(String.format("%s: " + mask + " ",register.toUpperCase(),value));
+  }
+  long value=0;
+  int i=0;
+  for (  final String flag : flags) {
+    final int flagValue=interpreter.isDefined(flag) ? interpreter.getVariableValue(flag).intValue() : 0;
+    value=value + (flagValue << (31 - i));
+    i++;
+  }
+  writer.write(String.format("%s: %08X ","FOO",value));
+  writer.write("\n");
+}

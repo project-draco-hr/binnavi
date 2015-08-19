@@ -1,0 +1,5 @@
+int id
+String name
+int bitSize
+boolean signed
+BaseTypeCategory category

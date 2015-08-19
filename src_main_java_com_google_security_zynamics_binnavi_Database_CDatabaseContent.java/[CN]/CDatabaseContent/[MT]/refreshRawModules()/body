@@ -1,0 +1,27 @@
+{
+  Preconditions.checkArgument(m_database.isConnected(),"IE00687: Not connected to the database");
+  Preconditions.checkArgument(m_database.isLoaded(),"IE00688: Raw modules were not loaded previously");
+  final List<INaviRawModule> oldModules=m_rawModules;
+  final List<INaviRawModule> refreshedModules=m_provider.loadRawModules();
+  m_rawModules.clear();
+  m_rawModules.addAll(refreshedModules);
+  final List<INaviModule> newModules=initializeRawModules(m_modules,refreshedModules);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedRawModules(m_database,oldModules,refreshedModules);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  for (  final INaviModule naviModule : newModules) {
+    for (    final IDatabaseListener listener : m_listeners) {
+      try {
+        listener.addedModule(m_database,naviModule);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

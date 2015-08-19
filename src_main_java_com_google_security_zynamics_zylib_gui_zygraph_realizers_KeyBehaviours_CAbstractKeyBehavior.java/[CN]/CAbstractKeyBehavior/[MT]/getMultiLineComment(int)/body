@@ -1,0 +1,18 @@
+{
+  final StringBuilder commentText=new StringBuilder();
+  final int nonCommentLine=m_labelContent.getNonPureCommentLineIndexOfModelAt(lineYPos);
+  final int firstModelLine=m_labelContent.getFirstLineIndexOfModelAt(lineYPos);
+  final int lastModelLine=m_labelContent.getLastLineIndexOfModelAt(lineYPos);
+  int startIndex=isAboveLineComment(lineYPos) ? firstModelLine : nonCommentLine;
+  int endIndex=isAboveLineComment(lineYPos) ? nonCommentLine - 1 : lastModelLine;
+  if (nonCommentLine < 0) {
+    startIndex=firstModelLine;
+    endIndex=lastModelLine;
+  }
+  for (int index=startIndex; index <= endIndex; ++index) {
+    final ZyLineContent curLineContent=m_labelContent.getLineContent(index);
+    final String lineText=getSingleLineCommentText(curLineContent);
+    commentText.append(lineText);
+  }
+  return commentText.toString();
+}

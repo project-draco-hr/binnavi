@@ -1,0 +1,8 @@
+{
+  ConfigManager.instance().read();
+  m_database=new MockDatabase(m_provider);
+  m_project=new CProject(123,"Name","Comment",new Date(),new Date(),0,new ArrayList<DebuggerTemplate>(),m_provider);
+  final CProjectTreeModel model=new CProjectTreeModel(m_tree);
+  model.setRoot(new DefaultMutableTreeNode());
+  m_tree.setModel(model);
+}

@@ -1,0 +1,2 @@
+IPlugin<IPluginInterface> plugin
+DisabledPluginReason reason

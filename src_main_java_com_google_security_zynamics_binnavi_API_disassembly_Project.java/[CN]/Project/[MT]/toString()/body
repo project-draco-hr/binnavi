@@ -1,0 +1,17 @@
+{
+  final StringBuilder spacesString=new StringBuilder();
+  if (isLoaded()) {
+    boolean addComma=false;
+    for (    final AddressSpace addressSpace : getAddressSpaces()) {
+      if (addComma) {
+        spacesString.append(", ");
+      }
+      addComma=true;
+      spacesString.append("'" + addressSpace.getName() + "'");
+    }
+  }
+ else {
+    spacesString.append(String.format("unloaded, %d address spaces",m_project.getAddressSpaceCount()));
+  }
+  return String.format("Project '%s' [%s]",getName(),spacesString);
+}

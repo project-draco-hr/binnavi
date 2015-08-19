@@ -1,0 +1,14 @@
+{
+  if (lhs.getFunctionType().ordinal() < rhs.getFunctionType().ordinal()) {
+    return -1;
+  }
+ else   if (lhs.getFunctionType().ordinal() > rhs.getFunctionType().ordinal()) {
+    return 1;
+  }
+ else   if (lhs.getFunctionType() == rhs.getFunctionType()) {
+    return lhs.getName().compareToIgnoreCase(rhs.getName());
+  }
+ else {
+    return 0;
+  }
+}

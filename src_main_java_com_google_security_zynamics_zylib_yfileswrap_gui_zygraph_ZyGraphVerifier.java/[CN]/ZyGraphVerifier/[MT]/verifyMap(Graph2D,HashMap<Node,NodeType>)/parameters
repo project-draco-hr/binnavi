@@ -1,0 +1,2 @@
+Graph2D graph
+HashMap<Node,NodeType> nodeMap

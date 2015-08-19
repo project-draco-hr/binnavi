@@ -1,0 +1,5 @@
+{
+  final int newFirstLine=(int)((newPosition - m_model.getStartAddress()) / 4);
+  m_scrollbar.setValue(newFirstLine);
+  m_panel.repaint();
+}

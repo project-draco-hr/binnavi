@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.deleteTypeInstanceReference(this,moduleId,address,position,expressionId);
+}

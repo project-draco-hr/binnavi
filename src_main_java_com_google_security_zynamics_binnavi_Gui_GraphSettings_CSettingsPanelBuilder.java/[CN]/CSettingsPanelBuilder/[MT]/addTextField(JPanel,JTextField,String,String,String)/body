@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(panel,"IE01602: Panel argument can not be null");
+  Preconditions.checkNotNull(textField,"IE01603: Text field argument can not be null");
+  Preconditions.checkNotNull(description,"IE01604: Description argument can not be null");
+  Preconditions.checkNotNull(value,"IE01605: Value argument can not be null");
+  textField.setText(value);
+  textField.setPreferredSize(new Dimension(PREFERRED_WIDTH,PREFERRED_HEIGHT));
+  addComponent(panel,textField,description,hint);
+}

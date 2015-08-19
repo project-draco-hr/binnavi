@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(chunk,"Error: Memory chunk can't be null");
+  m_chunks.remove(chunk);
+}

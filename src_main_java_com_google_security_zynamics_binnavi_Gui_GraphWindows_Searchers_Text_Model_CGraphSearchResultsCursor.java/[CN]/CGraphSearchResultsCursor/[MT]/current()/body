@@ -1,0 +1,3 @@
+{
+  return m_reducedResults.isEmpty() ? null : m_reducedResults.get(m_currentSearchIndex);
+}

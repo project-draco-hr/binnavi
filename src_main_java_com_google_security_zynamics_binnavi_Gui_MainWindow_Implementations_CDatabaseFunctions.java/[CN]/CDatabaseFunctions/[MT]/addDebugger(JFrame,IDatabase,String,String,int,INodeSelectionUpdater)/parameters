@@ -1,0 +1,6 @@
+JFrame parent
+IDatabase database
+String name
+String host
+int port
+INodeSelectionUpdater updater

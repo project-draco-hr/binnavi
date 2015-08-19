@@ -1,0 +1,6 @@
+{
+  m_database.load();
+  final CDebuggerNode node=new CDebuggerNode(m_tree,new DefaultMutableTreeNode(),m_database,m_template);
+  node.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+}

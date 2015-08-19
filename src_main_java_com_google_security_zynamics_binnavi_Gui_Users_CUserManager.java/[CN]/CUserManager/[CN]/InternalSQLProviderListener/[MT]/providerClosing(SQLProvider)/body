@@ -1,0 +1,5 @@
+{
+  if (CUserManager.this.provider.equals(provider)) {
+    CUserManager.this.close();
+  }
+}

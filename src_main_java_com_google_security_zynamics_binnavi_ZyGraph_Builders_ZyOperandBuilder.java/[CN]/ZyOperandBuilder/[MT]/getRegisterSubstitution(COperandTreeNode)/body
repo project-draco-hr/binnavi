@@ -1,0 +1,6 @@
+{
+  if (node.getTypeSubstitution() != null && node.getParent() != null && node.getParent().getChildren().size() == 1) {
+    return String.format("%s %s",TypeSubstitution.generateTypeString(node.getTypeSubstitution(),0),node.getValue());
+  }
+  return "";
+}

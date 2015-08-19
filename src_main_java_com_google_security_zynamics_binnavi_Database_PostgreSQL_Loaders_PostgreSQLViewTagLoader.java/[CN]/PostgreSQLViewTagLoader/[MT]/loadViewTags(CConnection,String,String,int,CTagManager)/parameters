@@ -1,0 +1,5 @@
+CConnection connection
+String tableName
+String containerColumn
+int containerId
+CTagManager viewTagManager

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  final BreakpointStatus currentStatus=com.google.security.zynamics.binnavi.debug.models.breakpoints.enums.BreakpointStatus.BREAKPOINT_DELETING;
+  final BreakpointAddress breakpointAddress=new BreakpointAddress(module == null ? null : module.getNative(),new UnrelocatedAddress(new CAddress(address.toLong())));
+  breakpointManager.setBreakpointStatus(Sets.newHashSet(breakpointAddress),BreakpointType.REGULAR,currentStatus);
+}

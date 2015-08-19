@@ -1,0 +1,12 @@
+{
+  final JFileChooser chooser=new JFileChooser();
+  chooser.setCurrentDirectory(new File(ConfigHelper.getConfigurationDirectory(Constants.COMPANY_NAME,Constants.PROJECT_NAME)));
+  if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+    try {
+      CLogFileDialog.show(SwingUtilities.getWindowAncestor(this),FileUtils.readTextfile(chooser.getSelectedFile().getAbsolutePath()));
+    }
+ catch (    final IOException e) {
+      CMessageBox.showInformation(SwingUtilities.getWindowAncestor(this),"The log file could not be read.");
+    }
+  }
+}

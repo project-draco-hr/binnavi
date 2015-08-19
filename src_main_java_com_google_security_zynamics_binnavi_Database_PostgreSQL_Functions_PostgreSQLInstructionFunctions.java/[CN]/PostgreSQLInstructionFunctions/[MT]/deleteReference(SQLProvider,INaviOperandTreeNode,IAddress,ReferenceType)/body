@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(provider,"IE00476: Provider argument can not be null");
+  Preconditions.checkNotNull(node,"IE00477: Node argument can not be null");
+  Preconditions.checkNotNull(address,"IE01619: Address argument can not be null");
+  Preconditions.checkNotNull(type,"IE00478: Type argument can not be null");
+  final CConnection connection=provider.getConnection();
+  final BigInteger instructionAddress=node.getInstructionAddress().toBigInteger();
+  final int position=node.getOperandPosition();
+  final int expressionId=node.getId();
+  final BigInteger targetAddress=address.toBigInteger();
+  final String deleteQuery="DELETE FROM " + CTableNames.ADDRESS_REFERENCES_TABLE + " WHERE address = ? AND position = ? AND expression_id = ? AND type = '"+ type.toString().toLowerCase()+ "' AND target = ?";
+  try {
+    final PreparedStatement deleteStatement=connection.getConnection().prepareStatement(deleteQuery);
+    try {
+      deleteStatement.setObject(1,instructionAddress,java.sql.Types.BIGINT);
+      deleteStatement.setInt(2,position);
+      deleteStatement.setInt(3,expressionId);
+      deleteStatement.setObject(4,targetAddress,java.sql.Types.BIGINT);
+      deleteStatement.execute();
+    }
+ catch (    final SQLException exception) {
+      throw new CouldntDeleteException(exception);
+    }
+ finally {
+      deleteStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

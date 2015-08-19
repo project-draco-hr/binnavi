@@ -1,0 +1,3 @@
+int counter
+Set<GraphNode> nodes
+StateVector<GraphNode,LatticeElement> state

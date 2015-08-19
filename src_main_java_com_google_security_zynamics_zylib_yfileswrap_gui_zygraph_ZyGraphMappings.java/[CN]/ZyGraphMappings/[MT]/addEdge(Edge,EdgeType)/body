@@ -1,0 +1,4 @@
+{
+  m_edgeMap.put(n,n2);
+  m_rawEdgeMap.put(n2.getRawEdge(),n2);
+}

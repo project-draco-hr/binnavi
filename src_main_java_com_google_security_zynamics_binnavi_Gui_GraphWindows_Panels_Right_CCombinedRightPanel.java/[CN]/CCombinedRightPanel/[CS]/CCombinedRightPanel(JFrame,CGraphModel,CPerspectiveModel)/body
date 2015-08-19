@@ -1,0 +1,14 @@
+{
+  super(new BorderLayout());
+  this.model=model;
+  this.perspectiveModel=perspectiveModel;
+  final TypeManager typeManager=model.getViewContainer().getModules().get(0).getTypeManager();
+  taggingPanel=new CTaggingPanel(parent,model.getGraph(),model.getDatabase().getContent().getNodeTagManager());
+  final JSplitPane taggingSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,taggingPanel,createTypePanels(parent,model,typeManager));
+  taggingSplitPane.setOneTouchExpandable(true);
+  add(taggingSplitPane);
+  debugPerspectivePanel=new JPanel(new BorderLayout());
+  add(debugPerspectivePanel,BorderLayout.SOUTH);
+  perspectiveModel.addListener(m_listener);
+  debugPerspectivePanel.setVisible(false);
+}

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(name,"Name can not be null.");
+  final BaseType structType=instantiateType(name,0,false,null,BaseTypeCategory.STRUCT);
+  notifyTypeAdded(structType);
+  return structType;
+}

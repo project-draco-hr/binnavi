@@ -1,0 +1,11 @@
+{
+  super(tree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CTracesNodeComponent(tree,container);
+    }
+  }
+,new CRootNodeMenuBuilder(tree));
+  Preconditions.checkNotNull(container,"IE02006: Container argument can not be null");
+  m_viewContainer=container;
+  container.getTraceProvider().addListener(m_listener);
+}

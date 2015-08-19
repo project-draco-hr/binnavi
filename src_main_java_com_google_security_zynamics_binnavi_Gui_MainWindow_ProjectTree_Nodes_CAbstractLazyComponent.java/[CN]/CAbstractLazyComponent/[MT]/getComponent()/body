@@ -1,0 +1,6 @@
+{
+  if (m_component == null) {
+    m_component=createComponent();
+  }
+  return m_component;
+}

@@ -1,0 +1,5 @@
+{
+  super(String.format("%s: %s",bookmark.getAddress().toHexString(),bookmark.getDescription()));
+  m_model=model;
+  m_bookmark=bookmark;
+}

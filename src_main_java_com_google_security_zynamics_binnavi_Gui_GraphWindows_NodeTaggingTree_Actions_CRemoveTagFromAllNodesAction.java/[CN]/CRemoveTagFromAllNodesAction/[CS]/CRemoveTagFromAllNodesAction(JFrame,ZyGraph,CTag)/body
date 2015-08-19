@@ -1,0 +1,9 @@
+{
+  super("Remove Tag from all Nodes");
+  Preconditions.checkNotNull(parent,"IE01254: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01255: Graph argument can not be null");
+  Preconditions.checkNotNull(tag,"IE01787: Tag can't be null");
+  m_parent=parent;
+  m_graph=graph;
+  m_tag=tag;
+}

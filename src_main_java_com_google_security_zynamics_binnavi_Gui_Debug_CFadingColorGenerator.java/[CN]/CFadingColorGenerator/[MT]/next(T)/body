@@ -1,0 +1,17 @@
+{
+  if (!m_objects.containsKey(object)) {
+    m_objects.put(object,Color.GREEN);
+    return Color.GREEN;
+  }
+  final Color oldColor=m_objects.get(object);
+  final int newLowest=Math.min((oldColor.getRGB() & 0xFF) + 0x40,0xFF) & 0xFF;
+  final int newMiddle=Math.min((oldColor.getRGB() & 0xFF0000) + 0x400000,0xFF0000) & 0xFF0000;
+  final Color newColor=new Color((oldColor.getRGB() & 0x00FF00) + newMiddle + newLowest);
+  if (newColor == Color.WHITE) {
+    m_objects.remove(object);
+  }
+ else {
+    m_objects.put(object,newColor);
+  }
+  return newColor;
+}

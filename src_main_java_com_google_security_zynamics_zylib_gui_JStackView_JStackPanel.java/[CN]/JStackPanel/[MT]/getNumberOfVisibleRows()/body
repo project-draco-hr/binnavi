@@ -1,0 +1,7 @@
+{
+  if (m_rowHeight == 0) {
+    return 0;
+  }
+  final int rawHeight=getHeight() - m_paddingTop;
+  return (rawHeight / m_rowHeight) + ((rawHeight % m_rowHeight) == 0 ? 0 : 1);
+}

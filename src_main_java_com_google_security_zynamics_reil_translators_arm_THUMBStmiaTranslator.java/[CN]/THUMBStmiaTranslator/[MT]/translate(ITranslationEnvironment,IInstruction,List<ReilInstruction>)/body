@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"STMIA");
+  translateAll(environment,instruction,"STMIA",instructions);
+}

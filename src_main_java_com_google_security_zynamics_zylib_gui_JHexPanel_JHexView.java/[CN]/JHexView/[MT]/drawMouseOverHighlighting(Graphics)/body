@@ -1,0 +1,21 @@
+{
+  g.setColor(m_colorHighlight);
+  m_lastHighlightedNibble=getNibbleAtCoordinate(m_lastMouseX,m_lastMouseY);
+  if (m_lastHighlightedNibble == -1) {
+    return;
+  }
+  final Views lastHighlightedView=m_lastMouseX >= getAsciiViewLeft() ? Views.ASCII_VIEW : Views.HEX_VIEW;
+  if (lastHighlightedView == Views.HEX_VIEW) {
+    final Rectangle r=getNibbleBoundsHex(m_lastHighlightedNibble);
+    g.fillRect((int)r.getX(),(int)r.getY(),(int)r.getWidth(),(int)r.getHeight());
+  }
+ else   if (lastHighlightedView == Views.ASCII_VIEW) {
+    final int first=(2 * m_lastHighlightedNibble) / 2;
+    Rectangle r=getNibbleBoundsHex(first);
+    g.fillRect((int)r.getX(),(int)r.getY(),(int)r.getWidth(),(int)r.getHeight());
+    r=getNibbleBoundsHex(first + 1);
+    g.fillRect((int)r.getX(),(int)r.getY(),(int)r.getWidth(),(int)r.getHeight());
+  }
+  final Rectangle r=getByteBoundsAscii(m_lastHighlightedNibble);
+  g.fillRect((int)r.getX(),(int)r.getY(),(int)r.getWidth(),(int)r.getHeight());
+}

@@ -1,0 +1,3 @@
+{
+  BaseTypeHelpers.findMember(null,0);
+}

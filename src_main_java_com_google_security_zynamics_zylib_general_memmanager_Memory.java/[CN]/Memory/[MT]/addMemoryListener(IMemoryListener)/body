@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(listener,"Error: Listener can't be null");
+  m_listeners.add(listener);
+}

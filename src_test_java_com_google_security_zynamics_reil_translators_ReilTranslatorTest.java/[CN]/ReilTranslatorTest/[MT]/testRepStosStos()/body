@@ -1,0 +1,9 @@
+{
+  final MockCodeContainer container=new MockCodeContainer();
+  container.m_instructions.add(new MockInstruction(0x100,"rep stosb",Lists.newArrayList(new MockOperandTree(),new MockOperandTree())));
+  container.m_instructions.add(new MockInstruction(0x200,"stosb",new ArrayList<MockOperandTree>()));
+  final ReilGraph g=m_translator.translate(new StandardEnvironment(),container);
+  System.out.println(g);
+  assertEquals(9,g.nodeCount());
+  assertEquals(11,g.edgeCount());
+}

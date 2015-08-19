@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(connection,"IE00454: connection argument can not be null");
+  final String query=" { call connect_instructions_to_code_nodes(?,?) } ";
+  final CallableStatement call=connection.getConnection().prepareCall(query);
+  call.setInt(1,rawModuleId);
+  call.setInt(2,moduleId);
+  call.execute();
+}

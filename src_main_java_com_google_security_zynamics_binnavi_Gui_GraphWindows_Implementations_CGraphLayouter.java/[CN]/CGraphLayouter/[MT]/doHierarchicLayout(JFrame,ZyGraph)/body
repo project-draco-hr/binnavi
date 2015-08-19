@@ -1,0 +1,8 @@
+{
+  checkArguments(parent,graph);
+  if (!askLayout(parent,graph)) {
+    return;
+  }
+  graph.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.HIERARCHIC);
+  refreshLayout(parent,graph);
+}

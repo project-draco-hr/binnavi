@@ -1,0 +1,23 @@
+{
+  final MockSqlProvider provider=new MockSqlProvider();
+  final Date creationDate=new Date();
+  final Date modificationDate=new Date();
+  final CModule internalModule=new CModule(123,"Name","Comment",creationDate,modificationDate,"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate(1,"Mock Debugger","localhaus",88,provider),null,Integer.MAX_VALUE,false,provider);
+  final TagManager nodeTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider));
+  final TagManager viewTagManager=new TagManager(new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(0,"","",TagType.VIEW_TAG,provider))),TagType.VIEW_TAG,provider));
+  final Database db=new Database(new MockDatabase());
+  final Module module=new Module(db,internalModule,nodeTagManager,viewTagManager);
+  assertEquals("Name",module.getName());
+  assertEquals("Comment",module.getDescription());
+  assertNotSame(creationDate,module.getCreationDate());
+  assertNotSame(modificationDate,module.getModificationDate());
+  assertTrue(creationDate.equals(module.getCreationDate()));
+  assertTrue(modificationDate.equals(module.getModificationDate()));
+  assertEquals(db,module.getDatabase());
+  assertNotNull(module.getDebugger());
+  assertEquals(0x555,module.getFilebase().toLong());
+  assertEquals(0x666,module.getImagebase().toLong());
+  assertEquals("12345678123456781234567812345678",module.getMD5());
+  assertEquals("1234567812345678123456781234567812345678",module.getSHA1());
+  assertEquals("Module 'Name'",module.toString());
+}

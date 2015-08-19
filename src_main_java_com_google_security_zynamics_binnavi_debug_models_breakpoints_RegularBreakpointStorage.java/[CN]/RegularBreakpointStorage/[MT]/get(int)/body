@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument((index >= 0) && (index < breakpoints.size()),"IE01302: Index out of bounds");
+  return breakpoints.get(index);
+}

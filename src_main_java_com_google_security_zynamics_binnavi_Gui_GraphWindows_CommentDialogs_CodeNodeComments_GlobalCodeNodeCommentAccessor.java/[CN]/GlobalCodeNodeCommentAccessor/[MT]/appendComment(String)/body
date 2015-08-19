@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(commentText,"IE02639: commentText argument can not be null");
+  return m_codeNode.getComments().appendGlobalCodeNodeComment(commentText);
+}

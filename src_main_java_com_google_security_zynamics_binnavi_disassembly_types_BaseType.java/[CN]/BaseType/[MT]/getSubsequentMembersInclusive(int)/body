@@ -1,0 +1,9 @@
+{
+  Preconditions.checkArgument(BaseTypeCategory.isOffsetCategory(category),"Error: Base type category does not have subsequent members.");
+  Preconditions.checkArgument(offset >= 0,"Error: offset can not be negative.");
+  if (members.isEmpty()) {
+    return ImmutableList.of();
+  }
+  final int searchOffset=(offset > members.last().getBitOffset().get() && offset < getBitSize()) ? members.last().getBitOffset().get() : offset;
+  return ImmutableList.<TypeMember>copyOf(members.tailSet(TypeMember.createSearchProxy(searchOffset),true));
+}

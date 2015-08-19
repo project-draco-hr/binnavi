@@ -1,0 +1,32 @@
+{
+  interpreter.setRegister("%r2",BigInteger.valueOf(0x11111111L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r3",BigInteger.valueOf(0x22222222L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r4",BigInteger.valueOf(0x33333333L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r5",BigInteger.valueOf(0x44444444L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r6",BigInteger.valueOf(0x55555555L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r7",BigInteger.valueOf(0x66666666L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r8",BigInteger.valueOf(0x77777777L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r9",BigInteger.valueOf(0x88888888L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r10",BigInteger.valueOf(0x99999999L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r11",BigInteger.valueOf(0x10101010L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r12",BigInteger.valueOf(0x11111111L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r13",BigInteger.valueOf(0x12121212L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r14",BigInteger.valueOf(0x13131313L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r15",BigInteger.valueOf(0x14141414L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r16",BigInteger.valueOf(0x15151515L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r17",BigInteger.valueOf(0x16161616L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r18",BigInteger.valueOf(0x17171717L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r19",BigInteger.valueOf(0x18181818L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r20",BigInteger.valueOf(0x19191919L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r21",BigInteger.valueOf(0x20202020L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r22",BigInteger.valueOf(0x21212121L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r23",BigInteger.valueOf(0x22222222L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r24",BigInteger.valueOf(0x23232323L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r25",BigInteger.valueOf(0x24242424L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r26",BigInteger.valueOf(0x25252525L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r27",BigInteger.valueOf(0x26262626L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r28",BigInteger.valueOf(0x27272727L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r29",BigInteger.valueOf(0x28282828L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r30",BigInteger.valueOf(0x29292929L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r31",BigInteger.valueOf(0xFFFFFFFFL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+}

@@ -1,0 +1,13 @@
+{
+  CMessageBox.showError(parent,"Could not locate IDA Pro. Please select the IDA Pro installation directory");
+  final CIdaSelectionDialog fileChooser=CIdaSelectionDialog.show(parent,ConfigManager.instance().getGeneralSettings().getIdaDirectory());
+  if (fileChooser.getSelectedFile() != null) {
+    final File idaDirectory=fileChooser.getSelectedFile();
+    if (!idaDirectory.exists()) {
+      return null;
+    }
+    ConfigManager.instance().getGeneralSettings().setIdaDirectory(idaDirectory.getAbsolutePath());
+    return idaDirectory.getAbsolutePath();
+  }
+  throw new FileNotFoundException("E00211: The IDA directory is invalid or not set, please configure the location of your IDA.");
+}

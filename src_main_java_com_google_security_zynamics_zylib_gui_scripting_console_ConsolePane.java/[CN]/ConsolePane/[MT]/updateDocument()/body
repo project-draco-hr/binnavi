@@ -1,0 +1,4 @@
+{
+  getInputPane().setDocument(new ConsoleCodeDocument());
+  interpreterNewLine(false);
+}

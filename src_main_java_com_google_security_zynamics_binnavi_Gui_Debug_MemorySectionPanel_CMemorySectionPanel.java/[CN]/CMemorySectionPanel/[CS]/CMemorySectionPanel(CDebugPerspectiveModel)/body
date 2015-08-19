@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01453: Debug perspective model argument can not be null");
+  setBorder(new TitledBorder(""));
+  add(m_memoryLayoutBox);
+  m_synchronizer=new CMemorySectionPanelSynchronizer(m_memoryLayoutBox,debugPerspectiveModel);
+}

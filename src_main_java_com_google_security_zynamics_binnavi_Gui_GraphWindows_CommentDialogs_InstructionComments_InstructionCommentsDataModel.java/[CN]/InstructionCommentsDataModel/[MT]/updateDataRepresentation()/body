@@ -1,0 +1,13 @@
+{
+  internalData.clear();
+  for (  INaviInstruction instruction : node.getInstructions()) {
+    internalData.add(new Pair<INaviInstruction,ArrayList<IComment>>(instruction,new ArrayList<IComment>()));
+  }
+  int currentIndex=0;
+  for (  Pair<INaviInstruction,IComment> dataPair : commentAccessor.getAllComments()) {
+    while (dataPair.first() != internalData.get(currentIndex).first()) {
+      currentIndex++;
+    }
+    internalData.get(currentIndex).second().add(dataPair.second());
+  }
+}

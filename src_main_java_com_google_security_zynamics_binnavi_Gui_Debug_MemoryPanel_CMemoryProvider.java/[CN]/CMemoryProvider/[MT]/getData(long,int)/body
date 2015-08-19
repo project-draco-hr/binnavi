@@ -1,0 +1,9 @@
+{
+  Preconditions.checkArgument(length >= 0,"IE01401: Length can not be negative");
+  if (length == 0) {
+    return new byte[0];
+  }
+ else {
+    return m_debugger.getProcessManager().getMemory().getData(offset,length);
+  }
+}

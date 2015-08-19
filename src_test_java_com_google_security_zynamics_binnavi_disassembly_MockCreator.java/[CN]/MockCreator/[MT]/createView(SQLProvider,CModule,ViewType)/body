@@ -1,0 +1,4 @@
+{
+  final CModuleViewGenerator generator=new CModuleViewGenerator(sql,module);
+  return generator.generate(new BigInteger(31,random).intValue(),"Mock View","Mock View Description",type,GraphType.MIXED_GRAPH,new Date(),new Date(),1,1,new HashSet<CTag>(),new HashSet<CTag>(),false);
+}

@@ -1,0 +1,7 @@
+{
+  for (  final com.google.security.zynamics.zylib.types.trees.ITreeNode<ObjectType> child : nativeNode.getChildren()) {
+    final TreeNode<ObjectType> newChild=new TreeNode<ObjectType>(child.getObject());
+    TreeNode.link(apiParent,newChild);
+    generate(newChild,child);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  if (filterString.isEmpty()) {
+    return ImmutableList.<Integer>of();
+  }
+  final Builder<Integer> builder=ImmutableList.builder();
+  final String lowercaseFilter=filterString.toLowerCase();
+  for (int i=0; i < rootNode.getChildCount(); ++i) {
+    if (rootNode.getChildAt(i).toString().toLowerCase().contains(lowercaseFilter)) {
+      builder.add(i);
+    }
+  }
+  return builder.build();
+}

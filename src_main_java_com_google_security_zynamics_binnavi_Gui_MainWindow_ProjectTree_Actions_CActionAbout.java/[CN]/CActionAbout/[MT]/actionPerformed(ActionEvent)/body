@@ -1,0 +1,3 @@
+{
+  CWindowFunctions.showAboutDialog(m_parent);
+}

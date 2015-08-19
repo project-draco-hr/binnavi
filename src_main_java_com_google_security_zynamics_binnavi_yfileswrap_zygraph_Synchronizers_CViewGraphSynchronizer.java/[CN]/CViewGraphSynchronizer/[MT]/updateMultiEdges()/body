@@ -1,0 +1,10 @@
+{
+  if (m_multiEdgeUpdatingEnabled) {
+    if (m_graph.getSettings().getEdgeSettings().getDisplayMultipleEdgesAsOne()) {
+      MultiEdgeHider.hideMultipleEdgesInternal(m_graph);
+    }
+ else {
+      MultiEdgeHider.unhideMultipleEdgesInternal(m_graph);
+    }
+  }
+}

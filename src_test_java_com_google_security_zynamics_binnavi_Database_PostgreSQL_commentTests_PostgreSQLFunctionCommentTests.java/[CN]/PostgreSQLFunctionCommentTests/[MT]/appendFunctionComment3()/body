@@ -1,0 +1,5 @@
+{
+  getProvider().appendFunctionComment(function," FAIL ",null);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().appendFunctionComment(function," PASS FUNCTION NODE COMMENT ",user.getUserId());
+}

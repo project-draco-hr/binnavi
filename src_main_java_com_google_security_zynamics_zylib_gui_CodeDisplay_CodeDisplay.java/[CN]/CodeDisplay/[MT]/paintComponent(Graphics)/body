@@ -1,0 +1,11 @@
+{
+  super.paintComponent(gx);
+  bufferedGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+  updateVisibleLinesAndColumns();
+  updateCharacterBufferFromModel();
+  currentFirstRow=verticalScrollbar.getValue();
+  currentFirstCharColumn=horizontalScrollbar.getValue();
+  charBuffer.paintBuffer(bufferedGraphics,0,0,currentFirstCharColumn);
+  gx.drawImage(bufferedImage,2,2,this);
+  caret.draw(gx,2 + (caretX * fontCharWidth),6 + (caretY * fontLineHeight),fontLineHeight - 1);
+}

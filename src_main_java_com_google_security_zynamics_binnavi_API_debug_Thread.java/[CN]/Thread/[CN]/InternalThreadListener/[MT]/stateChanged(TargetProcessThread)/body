@@ -1,0 +1,10 @@
+{
+  for (  final IThreadListener listener : m_listeners) {
+    try {
+      listener.changedState(Thread.this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

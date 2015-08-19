@@ -1,0 +1,32 @@
+{
+  Preconditions.checkNotNull(rawModule,"IE01797: Raw module argument can not be null");
+  Preconditions.checkNotNull(provider,"IE01798: Provider argument can not be null");
+  final String query="SELECT id, " + CTableNames.MODULES_TABLE + ".name, md5, sha1, "+ " description, import_time, modification_date, image_base, file_base, stared, "+ " initialization_state "+ " FROM "+ CTableNames.MODULES_TABLE+ " WHERE id = "+ moduleId+ " ORDER by id";
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final String name=PostgreSQLHelpers.readString(resultSet,"name");
+        final String md5=PostgreSQLHelpers.readString(resultSet,"md5");
+        final String sha1=PostgreSQLHelpers.readString(resultSet,"sha1");
+        final String comment=PostgreSQLHelpers.readString(resultSet,"description");
+        final Timestamp importTime=resultSet.getTimestamp("import_time");
+        final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+        final int functionCount=rawModule.getFunctionCount();
+        final int viewCount=0;
+        final IAddress imageBase=PostgreSQLHelpers.loadAddress(resultSet,"image_base");
+        final IAddress fileBase=PostgreSQLHelpers.loadAddress(resultSet,"file_base");
+        final boolean isStared=resultSet.getBoolean("stared");
+        final int initializationState=resultSet.getInt("initialization_state");
+        return new CModule(moduleId,name,comment,importTime,modificationDate,md5,sha1,functionCount,viewCount,fileBase,imageBase,null,rawModule,initializationState,isStared,provider);
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+  throw new CouldntLoadDataException("Error: No module with the given ID exists");
+}

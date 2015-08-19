@@ -1,0 +1,2 @@
+def equals(self, rhs):
+    return (self.written_registers == rhs.written_registers)

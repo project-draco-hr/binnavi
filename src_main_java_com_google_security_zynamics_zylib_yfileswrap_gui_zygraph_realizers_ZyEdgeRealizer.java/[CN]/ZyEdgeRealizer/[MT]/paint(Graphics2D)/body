@@ -1,0 +1,5 @@
+{
+  m_content.setSloppy(false);
+  m_isSloppyPainting=false;
+  super.paint(gfx);
+}

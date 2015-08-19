@@ -1,0 +1,4 @@
+CConnection connection
+int id
+String description
+String table

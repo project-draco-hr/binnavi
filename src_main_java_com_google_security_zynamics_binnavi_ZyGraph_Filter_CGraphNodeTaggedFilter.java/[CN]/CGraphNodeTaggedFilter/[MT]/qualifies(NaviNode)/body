@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(node,"IE00922: Node argument can't be null");
+  for (  final CTag tag : m_tags) {
+    if (node.getRawNode().isTagged(tag)) {
+      return true;
+    }
+  }
+  return false;
+}

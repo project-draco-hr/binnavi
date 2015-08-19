@@ -1,0 +1,5 @@
+{
+  final CBendPressedLeftState state=new CBendPressedLeftState(this,m_graph,b);
+  m_factory.createBendPressedLeftAction().execute(state,event);
+  return state;
+}

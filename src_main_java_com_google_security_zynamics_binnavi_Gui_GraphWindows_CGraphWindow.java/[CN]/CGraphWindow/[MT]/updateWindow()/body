@@ -1,0 +1,8 @@
+{
+  final IGraphPanel window=getActiveGraphWindow();
+  if (window == null) {
+    return;
+  }
+  setTitle(CWindowTitle.generate(window));
+  setJMenuBar(window.getMenu());
+}

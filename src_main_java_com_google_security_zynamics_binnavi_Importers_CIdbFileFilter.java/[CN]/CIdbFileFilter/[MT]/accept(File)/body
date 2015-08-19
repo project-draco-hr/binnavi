@@ -1,0 +1,9 @@
+{
+  if (file.isDirectory()) {
+    return true;
+  }
+  if (file.getName().toLowerCase().endsWith(".idb")) {
+    return true;
+  }
+  return false;
+}

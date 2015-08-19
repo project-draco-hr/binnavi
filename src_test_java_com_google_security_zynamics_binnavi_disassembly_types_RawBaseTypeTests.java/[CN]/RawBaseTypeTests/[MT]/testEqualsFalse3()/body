@@ -1,0 +1,5 @@
+{
+  final RawBaseType rawType0=new RawBaseType(ID,NAME,SIZE,POINTER_ID + 1,true,BaseTypeCategory.ATOMIC);
+  final RawBaseType rawType1=new RawBaseType(ID,NAME,SIZE,POINTER_ID,true,BaseTypeCategory.ATOMIC);
+  assertFalse(rawType0.equals(rawType1));
+}

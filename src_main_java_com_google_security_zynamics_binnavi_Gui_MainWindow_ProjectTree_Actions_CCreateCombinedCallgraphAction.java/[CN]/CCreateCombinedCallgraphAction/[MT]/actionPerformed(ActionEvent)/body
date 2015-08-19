@@ -1,0 +1,3 @@
+{
+  CAddressSpaceFunctions.createCombinedCallgraph(m_frame,m_container,m_project,m_addressSpace);
+}

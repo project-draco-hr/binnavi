@@ -1,0 +1,19 @@
+{
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  database=new CDatabase("None",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  database.connect();
+  database.load();
+  try {
+    final Field privateProviderField=CDatabase.class.getDeclaredField("provider");
+    privateProviderField.setAccessible(true);
+    provider=(SQLProvider)privateProviderField.get(database);
+  }
+ catch (  final Exception exception) {
+    throw new RuntimeException(exception);
+  }
+  provider.createDebuggerTemplate("Test Debugger","localhost",2222);
+  final CProject project=provider.createProject("Test Project");
+  provider.createAddressSpace(project,"Test Address Space");
+  ConfigManager.instance().read();
+  module=database.getContent().getModules().get(0);
+}

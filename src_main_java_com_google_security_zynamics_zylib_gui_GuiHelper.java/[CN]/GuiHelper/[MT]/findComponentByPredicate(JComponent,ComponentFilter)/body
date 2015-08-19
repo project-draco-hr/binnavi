@@ -1,0 +1,15 @@
+{
+  for (  final Component c : container.getComponents()) {
+    if (!(c instanceof JComponent)) {
+      continue;
+    }
+    if (pred.accept((JComponent)c)) {
+      return (JComponent)c;
+    }
+    final JComponent result=findComponentByPredicate((JComponent)c,pred);
+    if (result != null) {
+      return result;
+    }
+  }
+  return null;
+}

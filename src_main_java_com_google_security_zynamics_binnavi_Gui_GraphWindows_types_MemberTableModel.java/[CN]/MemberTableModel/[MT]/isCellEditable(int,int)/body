@@ -1,0 +1,3 @@
+{
+  return isOffsetEditable ? true : columnIndex != INDEX_COLUMN;
+}

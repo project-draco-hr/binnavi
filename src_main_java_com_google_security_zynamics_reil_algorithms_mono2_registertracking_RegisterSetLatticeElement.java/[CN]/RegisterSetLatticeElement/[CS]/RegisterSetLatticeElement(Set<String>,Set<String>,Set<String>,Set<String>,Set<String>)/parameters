@@ -1,0 +1,5 @@
+Set<String> taintedRegs
+Set<String> newlyTaintedRegs
+Set<String> untaintedRegs
+Set<String> readRegs
+Set<String> updatedRegs

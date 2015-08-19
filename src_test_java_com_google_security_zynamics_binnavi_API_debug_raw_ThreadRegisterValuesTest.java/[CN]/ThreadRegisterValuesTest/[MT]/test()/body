@@ -1,0 +1,8 @@
+{
+  final ThreadRegisterValues values=new ThreadRegisterValues(new ThreadRegisters(55,Lists.newArrayList(new RegisterValue("eax",BigInteger.valueOf(0x123),new byte[10],false,true))));
+  assertEquals(55,values.getThreadId());
+  final List<Register> registers=values.getValues();
+  assertEquals(1,registers.size());
+  assertEquals("eax",registers.get(0).getName());
+  assertEquals(0x123,registers.get(0).getValue().longValue());
+}

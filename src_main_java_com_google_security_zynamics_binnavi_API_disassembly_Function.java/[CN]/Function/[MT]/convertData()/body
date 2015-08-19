@@ -1,0 +1,17 @@
+{
+  final DirectedGraph<IBlockNode,IBlockEdge> graph=m_function.getGraph();
+  final List<BasicBlock> blocks=new ArrayList<BasicBlock>();
+  final List<BlockEdge> edges=new ArrayList<BlockEdge>();
+  final HashMap<IBlockNode,BasicBlock> blockMap=new HashMap<IBlockNode,BasicBlock>();
+  for (  final IBlockNode block : graph.getNodes()) {
+    final BasicBlock newBlock=new BasicBlock(block,this);
+    blockMap.put(block,newBlock);
+    blocks.add(newBlock);
+  }
+  for (  final IBlockEdge edge : graph.getEdges()) {
+    final BasicBlock source=blockMap.get(edge.getSource());
+    final BasicBlock target=blockMap.get(edge.getTarget());
+    edges.add(new BlockEdge(edge,source,target));
+  }
+  m_graph=new FlowGraph(blocks,edges);
+}

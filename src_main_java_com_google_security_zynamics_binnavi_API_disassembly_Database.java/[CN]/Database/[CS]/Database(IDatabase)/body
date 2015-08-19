@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(database,"Error: Database argument can't be null");
+  m_database=database;
+  if (database.isLoaded()) {
+    convertData();
+  }
+  database.addListener(m_internalListener);
+}

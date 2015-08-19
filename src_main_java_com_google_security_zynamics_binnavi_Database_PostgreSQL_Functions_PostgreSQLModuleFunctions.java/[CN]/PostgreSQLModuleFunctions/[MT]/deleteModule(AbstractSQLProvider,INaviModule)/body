@@ -1,0 +1,21 @@
+{
+  PostgreSQLModuleFunctions.checkArguments(provider,module);
+  NaviLogger.info("Deleting module %s",module.getConfiguration().getName());
+  final CConnection connection=provider.getConnection();
+  try {
+    final String moduleViewQuery="DELETE FROM " + CTableNames.VIEWS_TABLE + " "+ " WHERE id IN (SELECT view_id FROM "+ CTableNames.MODULE_VIEWS_TABLE+ " WHERE module_id = "+ module.getConfiguration().getId()+ ")";
+    connection.executeUpdate(moduleViewQuery,true);
+    final String nodeQuery="DELETE FROM " + CTableNames.NODES_TABLE + " "+ " WHERE id IN "+ " (SELECT view_id FROM "+ CTableNames.MODULE_VIEWS_TABLE+ " WHERE module_id = "+ module.getConfiguration().getId()+ ")";
+    connection.executeUpdate(nodeQuery,true);
+    final String instructionsQuery=String.format("DELETE FROM " + CTableNames.INSTRUCTIONS_TABLE + " WHERE module_id = %d",module.getConfiguration().getId());
+    connection.executeUpdate(instructionsQuery,true);
+    connection.executeUpdate(String.format("delete FROM " + CTableNames.EXPRESSION_TREE_TABLE + "_mapping where module_id = %d",module.getConfiguration().getId()),true);
+    connection.executeUpdate(String.format("delete FROM " + CTableNames.EXPRESSION_TREE_TABLE + " where module_id = %d",module.getConfiguration().getId()),true);
+    connection.executeUpdate(String.format("delete FROM " + CTableNames.EXPRESSION_TREE_TABLE + "_ids where module_id = %d",module.getConfiguration().getId()),true);
+    connection.executeUpdate(String.format("delete FROM " + CTableNames.CODE_NODES_TABLE + " where module_id = %d",module.getConfiguration().getId()),true);
+    connection.executeUpdate(String.format("delete from " + CTableNames.MODULES_TABLE + " where id = %d",module.getConfiguration().getId()),true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntDeleteException(e);
+  }
+}

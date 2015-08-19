@@ -1,0 +1,5 @@
+JPanel panel
+JTextField textField
+String description
+String hint
+String value

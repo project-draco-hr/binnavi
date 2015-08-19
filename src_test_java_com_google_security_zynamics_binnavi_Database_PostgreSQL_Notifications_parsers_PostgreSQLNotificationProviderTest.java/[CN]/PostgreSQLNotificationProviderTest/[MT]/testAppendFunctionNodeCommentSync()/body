@@ -1,0 +1,22 @@
+{
+  databaseOneCallGraph=databaseOneModuleTwo.getContent().getViewContainer().getNativeCallgraphView();
+  databaseOneCallGraph.load();
+  final INaviFunctionNode databaseOneFunctionNode=(INaviFunctionNode)databaseOneCallGraph.getGraph().getNodes().get(1);
+  databaseTwoCallGraph=databaseTwoModuleTwo.getContent().getViewContainer().getNativeCallgraphView();
+  databaseTwoCallGraph.load();
+  final INaviFunctionNode databaseTwoFunctionNode=(INaviFunctionNode)databaseTwoCallGraph.getGraph().getNodes().get(1);
+  final List<IComment> oneBefore=databaseOneFunctionNode.getLocalFunctionComment() == null ? new ArrayList<IComment>() : databaseOneFunctionNode.getLocalFunctionComment();
+  final List<IComment> twoBefore=databaseTwoFunctionNode.getLocalFunctionComment() == null ? new ArrayList<IComment>() : databaseTwoFunctionNode.getLocalFunctionComment();
+  assertEquals(oneBefore,twoBefore);
+  databaseOneFunctionNode.appendLocalFunctionComment(" TEST NOTIFICATION PROVIDER TESTS (LOCAL FUNCTION NODE COMMENT) ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneFunctionNode.getLocalFunctionComment();
+  final List<IComment> twoAfter=databaseTwoFunctionNode.getLocalFunctionComment();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+}

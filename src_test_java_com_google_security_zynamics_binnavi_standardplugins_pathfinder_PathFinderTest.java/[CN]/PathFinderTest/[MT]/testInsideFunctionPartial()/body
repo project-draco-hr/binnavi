@@ -1,0 +1,15 @@
+{
+  final Function startFunction=findFunction(m_notepad,0x01002452);
+  final BasicBlock startBlock=findBlock(startFunction,0x10024C2);
+  final BasicBlock endBlock=findBlock(startFunction,0x10026FB);
+  final View view=PathFinder.createPath(m_notepad,startBlock,endBlock,null,null);
+  assertEquals(9,view.getGraph().nodeCount());
+  assertEquals(11,view.getGraph().edgeCount());
+  final List<ViewEdge> edges=view.getGraph().getEdges();
+  final List<ViewNode> nodes=view.getGraph().getNodes();
+  assertEquals(EdgeType.JumpConditionalFalse,findEdge(edges,0x10024C2,0x1002523).getType());
+  assertEquals(EdgeType.JumpConditionalTrue,findEdge(edges,0x10024C2,0x1002539).getType());
+  assertEquals(EdgeType.JumpUnconditional,findEdge(edges,0x100253F,0x10026F9).getType());
+  assertEquals(Color.GREEN,findNode(nodes,0x10024C2).getColor());
+  assertEquals(Color.YELLOW,findNode(nodes,0x10026FB).getColor());
+}

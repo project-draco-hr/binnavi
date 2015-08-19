@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(containingType,"Error: Containing type can not be null.");
+  Preconditions.checkNotNull(containingType,"Error: Base type can not be null.");
+  return determineDependentTypes(baseType).contains(containingType);
+}

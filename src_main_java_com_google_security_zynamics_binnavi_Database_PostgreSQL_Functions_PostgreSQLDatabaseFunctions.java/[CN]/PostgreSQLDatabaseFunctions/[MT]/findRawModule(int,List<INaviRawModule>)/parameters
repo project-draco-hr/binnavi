@@ -1,0 +1,2 @@
+int rawModuleId
+List<INaviRawModule> rawModules

@@ -1,0 +1,19 @@
+{
+  int line=coordinate.getLine();
+  int field=coordinate.getFieldIndex();
+  int commentIndex=lineAndIndexToCommentIndex(comment,coordinate.getLine(),coordinate.getFieldIndex());
+  if (commentIndex >= 0) {
+    return deleteCharacterFromComment(comment,line,field);
+  }
+  StringBuilder newString=new StringBuilder();
+  for (int lineCounter=0; lineCounter < line; lineCounter++) {
+    newString.append(comment.getCommentLine(lineCounter));
+    newString.append("\n");
+  }
+  newString.append(CodeDisplay.padRight(comment.getCommentLine(line),field));
+  for (int lineIndex=line + 1; lineIndex < comment.getNumberOfCommentLines(); lineIndex++) {
+    newString.append(comment.getCommentLine(lineIndex));
+    newString.append((lineIndex == comment.getNumberOfCommentLines() - 1 ? "" : "\n"));
+  }
+  return editComment(comment,newString.toString());
+}

@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  idaDirectoryPanel=new FileChooserPanel(ConfigManager.instance().getGeneralSettings().getIdaDirectory(),new InternalIDAListener(),"...",TEXTFIELD_WIDTH,TEXTFIELD_HEIGHT,0);
+  logLevelBox=new JComboBox<String>(new String[]{"Off","On","Verbose"});
+  logLevelBox.setPreferredSize(new Dimension(TEXTFIELD_WIDTH,TEXTFIELD_HEIGHT));
+  final ScriptEngineManager manager=new ScriptEngineManager();
+  scriptingBox=new LanguageBox(manager);
+  scriptingBox.setPreferredSize(new Dimension(TEXTFIELD_WIDTH,TEXTFIELD_HEIGHT));
+  final JPanel pMain=new JPanel(new BorderLayout());
+  pMain.add(createEditElementsPanel(),BorderLayout.NORTH);
+  emailBox.setPreferredSize(new Dimension(TEXTFIELD_WIDTH,TEXTFIELD_HEIGHT));
+  add(pMain);
+}

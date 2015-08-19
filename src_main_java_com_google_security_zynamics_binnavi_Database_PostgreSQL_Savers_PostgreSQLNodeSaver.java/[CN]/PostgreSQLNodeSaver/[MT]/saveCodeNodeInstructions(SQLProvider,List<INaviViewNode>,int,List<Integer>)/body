@@ -1,0 +1,50 @@
+{
+  if (!nodes.isEmpty()) {
+    final Set<INaviInstruction> unsavedInstructions=new HashSet<INaviInstruction>();
+    for (    final int index : codeNodeIndices) {
+      final CCodeNode node=(CCodeNode)nodes.get(index);
+      final Iterable<INaviInstruction> instructions=node.getInstructions();
+      for (      final INaviInstruction instruction : instructions) {
+        if (!(instruction.isStored())) {
+          unsavedInstructions.add(instruction);
+        }
+      }
+    }
+    PostgreSQLInstructionFunctions.createInstructions(provider,unsavedInstructions);
+    final String query="INSERT INTO " + CTableNames.CODENODE_INSTRUCTIONS_TABLE + " (module_id, node_id, position, address, comment_id) VALUES (?, ?, ?, ?, ?)";
+    final PreparedStatement preparedStatement=provider.getConnection().getConnection().prepareStatement(query);
+    final ArrayList<Pair<INaviCodeNode,INaviInstruction>> instructionsWithUnsavedLocalComments=new ArrayList<Pair<INaviCodeNode,INaviInstruction>>();
+    try {
+      for (      final Integer index : codeNodeIndices) {
+        final INaviCodeNode codeNode=(INaviCodeNode)nodes.get(index);
+        int position=0;
+        for (        final INaviInstruction instruction : codeNode.getInstructions()) {
+          final List<IComment> comments=codeNode.getComments().getLocalInstructionComment(instruction);
+          final Integer commentId=comments == null ? null : comments.size() == 0 ? null : Iterables.getLast(comments).getId();
+          if ((comments != null) && (comments.size() != 0) && (commentId == null)) {
+            instructionsWithUnsavedLocalComments.add(new Pair<INaviCodeNode,INaviInstruction>(codeNode,instruction));
+          }
+          final int moduleId=instruction.getModule().getConfiguration().getId();
+          preparedStatement.setInt(1,moduleId);
+          preparedStatement.setInt(2,firstNode + index);
+          preparedStatement.setInt(3,position);
+          preparedStatement.setObject(4,instruction.getAddress().toBigInteger(),Types.BIGINT);
+          if (commentId == null) {
+            preparedStatement.setNull(5,Types.INTEGER);
+          }
+ else {
+            preparedStatement.setInt(5,commentId);
+          }
+          position++;
+          preparedStatement.addBatch();
+        }
+      }
+      preparedStatement.executeBatch();
+    }
+  finally {
+      preparedStatement.close();
+    }
+    return instructionsWithUnsavedLocalComments;
+  }
+  return null;
+}

@@ -1,0 +1,6 @@
+{
+  super(model);
+  if (model != null && model.getSize() != 0) {
+    setSelectedIndex(0);
+  }
+}

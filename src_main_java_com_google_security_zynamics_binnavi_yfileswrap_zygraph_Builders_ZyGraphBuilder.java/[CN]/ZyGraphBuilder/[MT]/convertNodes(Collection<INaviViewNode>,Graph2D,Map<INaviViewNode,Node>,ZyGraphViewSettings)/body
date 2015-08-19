@@ -1,0 +1,7 @@
+{
+  for (  final INaviViewNode node : nodes) {
+    final Pair<Node,NaviNode> result=ZyGraphNodeBuilder.convertNode(node,graph2D,graphSettings);
+    rawNodeToNodeMap.put(node,result.first());
+    m_ynodeToNodeMap.put(result.first(),result.second());
+  }
+}

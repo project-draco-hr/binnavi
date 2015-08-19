@@ -1,0 +1,3 @@
+{
+  return createBinaryInstruction(ReilHelpers.OPCODE_BISZ,new CAddress(offset),firstSize,firstValue,thirdSize,thirdValue);
+}

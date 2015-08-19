@@ -1,0 +1,60 @@
+{
+  final ConditionParser.addExpression_return retval=new ConditionParser.addExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token set25=null;
+  ConditionParser.multExpression_return multExpression24=null;
+  ConditionParser.multExpression_return multExpression26=null;
+  final Object set25_tree=null;
+  try {
+{
+      root_0=(Object)adaptor.nil();
+      pushFollow(FOLLOW_multExpression_in_addExpression504);
+      multExpression24=multExpression();
+      state._fsp--;
+      adaptor.addChild(root_0,multExpression24.getTree());
+      loop7:       do {
+        int alt7=2;
+        final int LA7_0=input.LA(1);
+        if (((LA7_0 >= ADD && LA7_0 <= SUB))) {
+          alt7=1;
+        }
+switch (alt7) {
+case 1:
+{
+            set25=(Token)input.LT(1);
+            set25=(Token)input.LT(1);
+            if ((input.LA(1) >= ADD && input.LA(1) <= SUB)) {
+              input.consume();
+              root_0=(Object)adaptor.becomeRoot((Object)adaptor.create(set25),root_0);
+              state.errorRecovery=false;
+            }
+ else {
+              final MismatchedSetException mse=new MismatchedSetException(null,input);
+              throw mse;
+            }
+            pushFollow(FOLLOW_multExpression_in_addExpression514);
+            multExpression26=multExpression();
+            state._fsp--;
+            adaptor.addChild(root_0,multExpression26.getTree());
+          }
+        break;
+default :
+      break loop7;
+  }
+}
+ while (true);
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException re) {
+reportError(re);
+recover(input,re);
+retval.tree=(Object)adaptor.errorNode(input,retval.start,input.LT(-1),re);
+}
+ finally {
+}
+return retval;
+}

@@ -1,0 +1,3 @@
+{
+  super(new JTextFieldLimit(30000),text,0);
+}

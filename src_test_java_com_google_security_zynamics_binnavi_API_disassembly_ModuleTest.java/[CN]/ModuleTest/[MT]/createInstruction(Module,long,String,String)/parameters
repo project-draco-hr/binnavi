@@ -1,0 +1,4 @@
+Module module
+long lAddress
+String mnemonic
+String firstOperand

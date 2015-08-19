@@ -1,0 +1,15 @@
+{
+switch (size) {
+case BYTE:
+    return 255L;
+case WORD:
+  return 65535L;
+case DWORD:
+return 4294967295L;
+case QWORD:
+return 0xFFFFFFFFFFFFFFFFL;
+default :
+break;
+}
+throw new IllegalArgumentException("Error: Invalid argument size");
+}

@@ -1,0 +1,3 @@
+{
+  CTaggingFunctions.tagSelectedNodes(m_parent,m_graph,m_tag.getObject());
+}

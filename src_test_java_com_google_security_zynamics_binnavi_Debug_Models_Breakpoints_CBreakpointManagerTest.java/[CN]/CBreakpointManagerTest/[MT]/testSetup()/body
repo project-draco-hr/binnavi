@@ -1,0 +1,5 @@
+{
+  assertEquals(3,m_manager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  assertEquals(2,m_manager.getNumberOfBreakpoints(BreakpointType.ECHO));
+  assertEquals(1,m_manager.getNumberOfBreakpoints(BreakpointType.STEP));
+}

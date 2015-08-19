@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(project,"Error: Project argument can not be null");
+  try {
+    m_database.getContent().delete(project.getNative());
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntDeleteException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

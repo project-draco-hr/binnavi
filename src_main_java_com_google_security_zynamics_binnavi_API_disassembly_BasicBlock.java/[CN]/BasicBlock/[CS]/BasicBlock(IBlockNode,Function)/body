@@ -1,0 +1,10 @@
+{
+  m_block=Preconditions.checkNotNull(block,"Error: Block argument can't be null");
+  m_parentFunction=Preconditions.checkNotNull(parentFunction,"Error: Parent function argument can't be null");
+  for (  final INaviInstruction instruction : m_block.getBlock().getInstructions()) {
+    m_instructions.add(new Instruction(instruction));
+  }
+  if (m_instructions.isEmpty()) {
+    throw new IllegalArgumentException("Error: Block without instructions can not exist.");
+  }
+}

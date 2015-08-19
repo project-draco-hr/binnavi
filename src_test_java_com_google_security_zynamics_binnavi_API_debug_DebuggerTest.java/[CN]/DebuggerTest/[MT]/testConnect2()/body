@@ -1,0 +1,6 @@
+{
+  debugger.connect();
+  assertEquals("CONNECT;",mockDebugger.requests);
+  debugger.connect();
+  assertEquals("CONNECT;",mockDebugger.requests);
+}

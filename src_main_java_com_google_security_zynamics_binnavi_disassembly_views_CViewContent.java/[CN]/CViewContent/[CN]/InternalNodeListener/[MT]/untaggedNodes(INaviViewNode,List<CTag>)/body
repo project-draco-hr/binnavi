@@ -1,0 +1,10 @@
+{
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.untaggedNodes(view,node,tags);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

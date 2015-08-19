@@ -1,0 +1,12 @@
+{
+  final JSplitPane mainSplitPane=new JSplitPane();
+  mainSplitPane.setOneTouchExpandable(true);
+  mainSplitPane.setDividerLocation(250);
+  mainSplitPane.setResizeWeight(0.33);
+  mainSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+  m_componentPanel.setBackground(Color.WHITE);
+  mainSplitPane.setLeftComponent(createProjectTreePanel());
+  mainSplitPane.setRightComponent(m_componentPanel);
+  mainSplitPane.setBorder(new LineBorder(Color.GRAY));
+  return mainSplitPane;
+}

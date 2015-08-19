@@ -1,0 +1,13 @@
+{
+  checkArguments(provider,view);
+  Preconditions.checkNotNull(tag,"IE00615: Tag argument can not be null");
+  Preconditions.checkArgument(tag.inSameDatabase(provider),"IE00616: Tag is not part of this database");
+  final String query=String.format("insert into %s(view_id, tag_id) values(%d, %d)",CTableNames.TAGGED_VIEWS_TABLE,view.getConfiguration().getId(),tag.getId());
+  final CConnection connection=provider.getConnection();
+  try {
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

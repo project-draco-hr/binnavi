@@ -1,0 +1,12 @@
+{
+  final ArrayList<CModuleNode> sortedChildren=new ArrayList<CModuleNode>(children);
+  if (sortByName) {
+    Collections.sort(sortedChildren,new Comparator<CModuleNode>(){
+      @Override public int compare(      final CModuleNode lhs,      final CModuleNode rhs){
+        return lhs.getObject().getConfiguration().getName().compareTo(rhs.getObject().getConfiguration().getName());
+      }
+    }
+);
+  }
+  return sortedChildren.get(index);
+}

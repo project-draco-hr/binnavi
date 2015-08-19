@@ -1,0 +1,15 @@
+{
+  final JTabbedPane tab=new JTabbedPane();
+  addTab(tab,"Automatism",new CAutomatismPanel(m_settings,isDefaultSettingsDialog));
+  addTab(tab,"Edges",new CEdgePanel(m_settings));
+  addTab(tab,"Hierarchic",new CHierarchicPanel(m_settings));
+  addTab(tab,"Orthogonal",new COrthogonalPanel(m_settings));
+  addTab(tab,"Circular",new CCircularPanel(m_settings));
+  if (!isCallgraph) {
+    addTab(tab,"Disassembly",new CDisassemblyPanel(m_settings));
+  }
+  addTab(tab,"Controls",new CControlsPanel(m_settings));
+  addTab(tab,"Miscellaneous",new CMiscPanel(m_settings,!isDefaultSettingsDialog || isCallgraph));
+  tab.setPreferredSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
+  return tab;
+}

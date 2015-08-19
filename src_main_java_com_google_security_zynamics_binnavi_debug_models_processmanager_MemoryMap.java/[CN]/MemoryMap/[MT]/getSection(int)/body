@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument((index >= 0) && (index < memorySections.size()),"IE00750: Invalid section index");
+  return memorySections.get(index);
+}

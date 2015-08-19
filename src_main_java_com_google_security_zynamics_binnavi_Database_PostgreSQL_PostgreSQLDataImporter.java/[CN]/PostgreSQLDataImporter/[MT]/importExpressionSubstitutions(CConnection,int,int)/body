@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(connection,"IE00433: connection argument can not be null");
+  final String query="INSERT INTO " + CTableNames.EXPRESSION_SUBSTITUTIONS_TABLE + " (module_id, address, position, expression_id, replacement) "+ " SELECT "+ moduleId+ " , address, position, expression_node_id, replacement "+ " FROM ex_"+ rawModuleId+ "_expression_substitutions";
+  connection.executeUpdate(query,true);
+}

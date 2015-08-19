@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(value > 0,"Error: Value must be positive");
+  m_bytesPerRow=value;
+  repaint();
+}

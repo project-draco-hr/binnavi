@@ -1,0 +1,3 @@
+{
+  addressSpace.getContent().addListener(m_contentListener);
+}

@@ -1,0 +1,4 @@
+{
+  final INaviTextNode textNode=setupTextNode();
+  getProvider().deleteTextNodeComment(textNode,null,1);
+}

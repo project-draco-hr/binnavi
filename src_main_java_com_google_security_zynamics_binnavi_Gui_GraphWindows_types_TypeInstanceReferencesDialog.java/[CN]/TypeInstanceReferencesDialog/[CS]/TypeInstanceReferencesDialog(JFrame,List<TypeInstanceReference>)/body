@@ -1,0 +1,7 @@
+{
+  super(owner,"Cross references",false);
+  createControls(references);
+  new CDialogEscaper(this);
+  pack();
+  GuiHelper.centerChildToParent(owner,this,true);
+}

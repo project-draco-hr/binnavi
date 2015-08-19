@@ -1,0 +1,4 @@
+{
+  super("Suspend");
+  m_thread=thread;
+}

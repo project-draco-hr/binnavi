@@ -1,0 +1,13 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    boolean requireRestart=false;
+    for (    final Component component : m_pane.getComponents()) {
+      final CAbstractSettingsPanel panel=(CAbstractSettingsPanel)component;
+      requireRestart|=panel.save();
+    }
+    if (requireRestart) {
+      CMessageBox.showInformation(CSettingsDialog.this,"Please note that the selected language only becomes active after " + "BinNavi is started the next time.");
+    }
+  }
+  dispose();
+}

@@ -1,0 +1,7 @@
+{
+  assertEquals("Tag 'Tag Name'",tag.toString());
+  assertEquals("Tag Description",tag.getDescription());
+  assertNull(tag.getParent());
+  assertEquals(0,tag.getChildren().size());
+  assertEquals(TagType.NodeTag,tag.getType());
+}

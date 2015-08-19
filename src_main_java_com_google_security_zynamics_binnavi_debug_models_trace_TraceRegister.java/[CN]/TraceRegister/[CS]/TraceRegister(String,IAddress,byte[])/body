@@ -1,0 +1,5 @@
+{
+  registerName=Preconditions.checkNotNull(name,"IE00730: name argument can not be null");
+  registerValue=Preconditions.checkNotNull(value,"IE00731: value argument can not be null");
+  memoryPointedToByRegister=Preconditions.checkNotNull(memory.clone(),"Error: memory.clone() argument can not be null");
+}

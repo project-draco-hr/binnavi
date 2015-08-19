@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(connection,"IE00706: connection argument can not be null");
+  final String query="{ ? = call create_native_call_graph_view(?) }";
+  final CallableStatement call=connection.getConnection().prepareCall(query);
+  call.registerOutParameter(1,Types.INTEGER);
+  call.setInt(2,moduleId);
+  call.execute();
+  return call.getInt(1);
+}

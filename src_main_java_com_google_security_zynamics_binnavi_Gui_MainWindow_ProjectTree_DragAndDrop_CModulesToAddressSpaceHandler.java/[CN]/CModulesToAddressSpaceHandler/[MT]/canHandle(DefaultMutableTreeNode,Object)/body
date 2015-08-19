@@ -1,0 +1,10 @@
+{
+  if (parentNode instanceof CAddressSpaceNode) {
+    final List<CModule> modules=(List<CModule>)data;
+    if (modules.isEmpty()) {
+      return false;
+    }
+    return modules.get(0).inSameDatabase(((CAddressSpaceNode)parentNode).getObject());
+  }
+  return false;
+}

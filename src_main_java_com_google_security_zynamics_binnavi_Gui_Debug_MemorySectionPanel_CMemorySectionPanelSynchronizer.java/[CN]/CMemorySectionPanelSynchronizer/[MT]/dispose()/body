@@ -1,0 +1,9 @@
+{
+  memorySectionBox.removeItemListener(memoryBoxListener);
+  debugPerspectiveModel.removeListener(debugListener);
+  final IDebugger activeDebugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (activeDebugger != null) {
+    synchronizeThreads(activeDebugger.getProcessManager().getActiveThread(),null);
+  }
+  synchronizeDebugger(debugPerspectiveModel.getCurrentSelectedDebugger(),null);
+}

@@ -1,0 +1,6 @@
+{
+  checkArguments(graph);
+  if (!graph.getSelectedNodes().isEmpty()) {
+    ZoomFunctions.zoomToNodes(graph,SelectedVisibleFilter.filter(graph.getSelectedNodes()));
+  }
+}

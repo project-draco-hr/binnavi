@@ -1,0 +1,14 @@
+{
+  graph.getGraph().getRealizer(node.getNode()).moveBy(xdist,ydist);
+  for (final EdgeCursor cursor=node.getNode().edges(); cursor.ok(); cursor.next()) {
+    final Edge edge=cursor.edge();
+    for (final BendCursor bendCursor=graph.getGraph().getRealizer(edge).bends(); bendCursor.ok(); bendCursor.next()) {
+      final Bend bend=bendCursor.bend();
+      if (movedBends.contains(bend)) {
+        continue;
+      }
+      bend.moveBy(xdist,ydist);
+      movedBends.add(bend);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final Set<BaseType> affectedTypes=dependenceGraph.updateType(typeSystem.intType);
+  assertEquals(Sets.newHashSet(typeSystem.intType,typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.simpleUnion,typeSystem.complexUnion),affectedTypes);
+}

@@ -1,0 +1,7 @@
+{
+  final double scaleX=currentMatrix.getScaleX();
+  final double scaleY=currentMatrix.getScaleY();
+  final double translateX=currentMatrix.getTranslateX() + (xOffset * scaleX);
+  final double translateY=currentMatrix.getTranslateY() + ((yOffset + (linenr * getLineHeight())) * scaleY);
+  return new AffineTransform(scaleX,0,0,scaleY,translateX,translateY);
+}

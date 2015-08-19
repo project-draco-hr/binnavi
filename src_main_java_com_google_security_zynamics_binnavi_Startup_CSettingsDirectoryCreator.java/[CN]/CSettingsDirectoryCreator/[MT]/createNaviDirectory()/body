@@ -1,0 +1,4 @@
+{
+  final File dir=new File(ConfigHelper.getConfigurationDirectory(Constants.COMPANY_NAME,Constants.PROJECT_NAME));
+  return dir.exists() || dir.mkdir();
+}

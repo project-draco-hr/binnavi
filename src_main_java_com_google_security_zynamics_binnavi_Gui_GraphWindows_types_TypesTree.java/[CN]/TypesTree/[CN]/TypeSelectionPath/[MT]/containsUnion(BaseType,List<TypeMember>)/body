@@ -1,0 +1,11 @@
+{
+  if (rootType.getCategory() == BaseTypeCategory.UNION) {
+    return true;
+  }
+  for (  final TypeMember member : members) {
+    if (member.getBaseType().getCategory() == BaseTypeCategory.UNION) {
+      return true;
+    }
+  }
+  return false;
+}

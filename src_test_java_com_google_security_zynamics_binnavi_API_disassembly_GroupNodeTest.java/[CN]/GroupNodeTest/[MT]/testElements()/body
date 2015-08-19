@@ -1,0 +1,33 @@
+{
+  final Database database=new Database(new MockDatabase());
+  final SQLProvider mockProvider=new MockSqlProvider();
+  final CModule mockModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,mockProvider);
+  final TagManager nodeTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.NODE_TAG));
+  final TagManager viewTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.VIEW_TAG));
+  final Module module=new Module(database,mockModule,nodeTagManager,viewTagManager);
+  final CModuleViewGenerator generator=new CModuleViewGenerator(mockProvider,mockModule);
+  final INaviView mockView=generator.generate(1,"","",ViewType.NonNative,GraphType.FLOWGRAPH,new Date(),new Date(),0,0,new HashSet<CTag>(),new HashSet<CTag>(),false);
+  final View view=new View(module,mockView,nodeTagManager,viewTagManager);
+  view.load();
+  final CModule internalModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,mockProvider);
+  final CFunction parentFunction=new CFunction(internalModule,new MockView(),new CAddress(0x123),"Mock Function","Mock Function","Mock Description",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,mockProvider);
+  final CodeNode codeNode=view.createCodeNode(new Function(module,parentFunction),Lists.newArrayList(new Instruction(new MockInstruction())));
+  final CodeNode codeNode2=view.createCodeNode(new Function(module,parentFunction),Lists.newArrayList(new Instruction(new MockInstruction())));
+  final GroupNode node=view.createGroupNode("",Lists.newArrayList((ViewNode)codeNode2));
+  final MockGroupNodeListener listener=new MockGroupNodeListener();
+  final MockViewNodeListener listener2=new MockViewNodeListener();
+  node.addListener(listener);
+  codeNode.addListener(listener2);
+  node.addNode(codeNode);
+  assertEquals(2,node.getElements().size());
+  assertEquals(codeNode,node.getElements().get(1));
+  assertEquals(node,codeNode.getParentGroup());
+  assertEquals("addedElement;",listener.events);
+  assertEquals("changedParentGroup;",listener2.events);
+  node.removeNode(codeNode);
+  assertEquals(1,node.getElements().size());
+  assertEquals(null,codeNode.getParentGroup());
+  assertEquals("addedElement;removedElement;",listener.events);
+  assertEquals("changedParentGroup;changedParentGroup;",listener2.events);
+  node.removeListener(listener);
+}

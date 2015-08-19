@@ -1,0 +1,31 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceImmediate=(registerOperand2.getValue());
+  final String sourceRegister=(registerOperand3.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize wd=OperandSize.WORD;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final String doesUnsignedSat1=environment.getNextVariableString();
+  final String doesUnsignedSat2=environment.getNextVariableString();
+  final String highResult=environment.getNextVariableString();
+  final String lowResult=environment.getNextVariableString();
+  final String tmpHighResult=environment.getNextVariableString();
+  final String tmpLowResult=environment.getNextVariableString();
+  final String tmpRm15to0=environment.getNextVariableString();
+  final String tmpRm32to16=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,sourceRegister,dw,String.valueOf(0xFFFFL),wd,tmpRm15to0));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,wd,String.valueOf(-16L),wd,tmpRm32to16));
+  Helpers.unsignedSat(baseOffset,environment,instruction,instructions,tmpRm15to0,tmpRm15to0,tmpRm15to0,"",tmpLowResult,Integer.decode(sourceImmediate),doesUnsignedSat1);
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  Helpers.unsignedSat(baseOffset,environment,instruction,instructions,tmpRm32to16,tmpRm32to16,tmpRm32to16,"",tmpHighResult,Integer.decode(sourceImmediate),doesUnsignedSat2);
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpLowResult,dw,String.valueOf(0xFFFFL),dw,lowResult));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpHighResult,dw,String.valueOf(0xFFFFL),dw,tmpHighResult));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,wd,tmpHighResult,wd,String.valueOf(16),dw,highResult));
+  instructions.add(ReilHelpers.createOr(baseOffset++,dw,highResult,dw,lowResult,dw,targetRegister));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,doesUnsignedSat1,bt,doesUnsignedSat2,bt,"Q"));
+}

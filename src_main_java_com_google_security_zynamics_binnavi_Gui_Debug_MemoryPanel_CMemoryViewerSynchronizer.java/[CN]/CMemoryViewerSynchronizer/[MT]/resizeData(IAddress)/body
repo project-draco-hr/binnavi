@@ -1,0 +1,21 @@
+{
+  if (address == null) {
+    return true;
+  }
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    final MemorySection section=ProcessHelpers.getSectionWith(debugger.getProcessManager().getMemoryMap(),address);
+    if (section == null) {
+      m_debugPerspectiveModel.setActiveMemoryAddress(null,false);
+      return false;
+    }
+ else {
+      m_hexView.setBaseAddress(section.getStart().toLong());
+      m_provider.setMemorySize(section.getSize());
+      m_hexView.gotoOffset(address.toLong());
+      updateGui();
+      return true;
+    }
+  }
+  return true;
+}

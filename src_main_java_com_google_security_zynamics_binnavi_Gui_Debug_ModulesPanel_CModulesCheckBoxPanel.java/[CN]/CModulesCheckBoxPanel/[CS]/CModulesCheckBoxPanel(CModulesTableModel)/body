@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  final JCheckBox checkBox=new JCheckBox("Show full module paths");
+  checkBox.addItemListener(new InternalCheckboxListener());
+  add(checkBox);
+  m_modulesTableModel=modulesTableModel;
+}

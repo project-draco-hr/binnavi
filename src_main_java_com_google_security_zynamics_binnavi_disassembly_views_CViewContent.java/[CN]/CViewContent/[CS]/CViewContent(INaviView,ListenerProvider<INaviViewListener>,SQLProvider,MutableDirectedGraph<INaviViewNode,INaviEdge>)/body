@@ -1,0 +1,13 @@
+{
+  this.view=Preconditions.checkNotNull(view,"IE02613: view argument can not be null");
+  this.listeners=Preconditions.checkNotNull(listeners,"IE02614: listeners argument can not be null");
+  this.provider=Preconditions.checkNotNull(provider,"IE02615: provider argument can not be null");
+  this.graph=Preconditions.checkNotNull(graph,"IE02616: graph argument can not be null");
+  for (  final INaviViewNode node : this.graph.getNodes()) {
+    node.addListener(m_internalNodeListener);
+  }
+  for (  final INaviEdge edge : this.graph.getEdges()) {
+    edge.addListener(m_internalEdgeListener);
+  }
+  updateGraphType();
+}

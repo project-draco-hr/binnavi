@@ -1,0 +1,7 @@
+{
+  int total=0;
+  for (int index=0; index < columns.length; ++index) {
+    total+=columns[index].getWidth();
+  }
+  return total;
+}

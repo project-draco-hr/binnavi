@@ -1,0 +1,5 @@
+{
+  super("Remove node from group");
+  Preconditions.checkNotNull(node,"IE00941: Node argument can't be null");
+  m_node=node;
+}

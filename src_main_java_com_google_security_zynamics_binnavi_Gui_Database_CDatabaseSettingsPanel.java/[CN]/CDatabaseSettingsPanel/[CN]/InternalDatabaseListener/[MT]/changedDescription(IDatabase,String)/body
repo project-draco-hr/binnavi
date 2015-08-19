@@ -1,0 +1,4 @@
+{
+  databaseDescriptionField.setText(description);
+  updateSaveButton();
+}

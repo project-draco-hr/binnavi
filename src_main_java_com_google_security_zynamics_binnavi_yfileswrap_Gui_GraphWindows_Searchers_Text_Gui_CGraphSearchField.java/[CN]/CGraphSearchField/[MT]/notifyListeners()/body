@@ -1,0 +1,5 @@
+{
+  for (  final IGraphSearchFieldListener listener : m_listenerProvider) {
+    listener.searched();
+  }
+}

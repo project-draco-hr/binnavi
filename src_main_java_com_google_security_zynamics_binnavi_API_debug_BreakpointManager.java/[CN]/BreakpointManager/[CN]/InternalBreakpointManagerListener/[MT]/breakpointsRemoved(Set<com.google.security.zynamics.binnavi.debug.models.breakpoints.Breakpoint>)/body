@@ -1,0 +1,32 @@
+{
+  Preconditions.checkNotNull(breakpoints,"Error: breakpoints argument can not be null");
+  if (breakpoints.size() == 0) {
+    return;
+  }
+  for (  final com.google.security.zynamics.binnavi.debug.models.breakpoints.Breakpoint breakpoint : breakpoints) {
+    if (breakpoint.getType() == BreakpointType.REGULAR) {
+      final Breakpoint removedBreakpoint=breakpointMap.get(breakpoint);
+      breakpointMap.remove(breakpoint);
+      for (      final IBreakpointManagerListener listener : listeners) {
+        try {
+          listener.removedBreakpoint(BreakpointManager.this,removedBreakpoint);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+ else     if (breakpoint.getType() == BreakpointType.ECHO) {
+      final Breakpoint removedBreakpoint=echoBreakpointMap.get(breakpoint);
+      echoBreakpointMap.remove(breakpoint);
+      for (      final IBreakpointManagerListener listener : listeners) {
+        try {
+          listener.removedEchoBreakpoint(BreakpointManager.this,removedBreakpoint);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

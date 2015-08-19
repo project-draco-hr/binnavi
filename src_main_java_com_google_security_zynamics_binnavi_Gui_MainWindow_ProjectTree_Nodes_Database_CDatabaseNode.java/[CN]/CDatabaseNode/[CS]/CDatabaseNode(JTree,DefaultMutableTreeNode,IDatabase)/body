@@ -1,0 +1,13 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CDatabaseNodeComponent(database);
+    }
+  }
+,new CDatabaseNodeMenuBuilder(projectTree,parentNode,database),database);
+  m_database=Preconditions.checkNotNull(database,"IE01962: Database can't be null");
+  createChildren();
+  m_listener=new InternalDatabaseListener();
+  m_database.addListener(m_listener);
+  ((CDatabaseNodeComponent)getComponent()).getPanel().addListener(m_panelListener);
+}

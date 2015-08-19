@@ -1,0 +1,5 @@
+{
+  super("Toggle view stars");
+  m_parent=parent;
+  m_views=views.clone();
+}

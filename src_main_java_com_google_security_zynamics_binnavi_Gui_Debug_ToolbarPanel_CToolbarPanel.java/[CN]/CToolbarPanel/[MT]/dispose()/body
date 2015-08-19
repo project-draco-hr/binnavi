@@ -1,0 +1,5 @@
+{
+  m_threadPanel.dispose();
+  m_synchronizer.removeListener(m_internalSynchronizerListener);
+  m_synchronizer.dispose();
+}

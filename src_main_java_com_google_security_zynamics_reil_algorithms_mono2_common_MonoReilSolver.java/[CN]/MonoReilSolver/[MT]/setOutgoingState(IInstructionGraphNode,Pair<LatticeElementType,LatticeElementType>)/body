@@ -1,0 +1,12 @@
+{
+  if (m_direction == AnalysisDirection.UP) {
+    for (    final IInstructionGraphEdge instructionGraphEdge : m_graph.getIncomingEdges(n)) {
+      setStateInternal(instructionGraphEdge,states.first().copy());
+    }
+  }
+ else {
+    for (    final IInstructionGraphEdge instructionGraphEdge : m_graph.getOutgoingEdges(n)) {
+      setStateInternal(instructionGraphEdge,instructionGraphEdge.isTrue() ? states.first().copy() : states.second().copy());
+    }
+  }
+}

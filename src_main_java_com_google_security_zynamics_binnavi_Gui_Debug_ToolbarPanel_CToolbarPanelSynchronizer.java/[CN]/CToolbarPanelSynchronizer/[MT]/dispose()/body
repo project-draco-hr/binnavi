@@ -1,0 +1,5 @@
+{
+  m_debugPerspectiveModel.removeListener(m_debugListener);
+  final IDebugger activeDebugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  synchronizeDebugger(activeDebugger,null);
+}

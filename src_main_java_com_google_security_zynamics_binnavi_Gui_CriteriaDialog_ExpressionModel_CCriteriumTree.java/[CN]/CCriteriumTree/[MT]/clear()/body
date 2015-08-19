@@ -1,0 +1,13 @@
+{
+  if (m_rootNode.getChildren().size() == 1) {
+    remove(m_rootNode.getChildren().get(0));
+  }
+  for (  final ICriteriumTreeListener listener : m_listeners) {
+    try {
+      listener.removedAll(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

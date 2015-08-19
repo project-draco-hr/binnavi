@@ -1,0 +1,4 @@
+{
+  this.provider=provider;
+  FunctionManager.get(provider).putFunction(this);
+}

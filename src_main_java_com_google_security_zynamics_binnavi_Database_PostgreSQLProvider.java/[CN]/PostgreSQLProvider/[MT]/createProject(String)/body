@@ -1,0 +1,5 @@
+{
+  final CProject project=PostgreSQLProjectCreator.createProject(this,name);
+  projects.add(project);
+  return project;
+}

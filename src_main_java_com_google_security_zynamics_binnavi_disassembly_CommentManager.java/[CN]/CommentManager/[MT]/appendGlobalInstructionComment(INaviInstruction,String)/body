@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"IE01246: Instruction argument can not be null");
+  return appendComment(new InstructionCommentingStrategy(instruction,null,CommentScope.GLOBAL),commentText);
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals("Bookmark 123/'Hannes'",m_apiBookmark.toString());
+}

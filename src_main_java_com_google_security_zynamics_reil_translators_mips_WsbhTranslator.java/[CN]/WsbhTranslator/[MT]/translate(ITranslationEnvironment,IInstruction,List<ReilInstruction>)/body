@@ -1,0 +1,29 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"wsbh");
+  final String rd=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String rt=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final OperandSize dw=OperandSize.DWORD;
+  final String rtByte1=environment.getNextVariableString();
+  final String rtByte2=environment.getNextVariableString();
+  final String rtByte3=environment.getNextVariableString();
+  final String rtByte4=environment.getNextVariableString();
+  final String newRtByte1=environment.getNextVariableString();
+  final String newRtByte2=environment.getNextVariableString();
+  final String newRtByte3=environment.getNextVariableString();
+  final String newRtByte4=environment.getNextVariableString();
+  final String tempResultLower=environment.getNextVariableString();
+  final String tempResultUpper=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rt,dw,String.valueOf(0xFF000000L),dw,rtByte4));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rt,dw,String.valueOf(0x00FF0000L),dw,rtByte3));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rt,dw,String.valueOf(0x0000FF00L),dw,rtByte2));
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rt,dw,String.valueOf(0x000000FFL),dw,rtByte1));
+  instructions.add(ReilHelpers.createBsh(offset++,dw,rtByte4,dw,String.valueOf(-8L),dw,newRtByte3));
+  instructions.add(ReilHelpers.createBsh(offset++,dw,rtByte3,dw,String.valueOf(8L),dw,newRtByte4));
+  instructions.add(ReilHelpers.createBsh(offset++,dw,rtByte2,dw,String.valueOf(-8L),dw,newRtByte1));
+  instructions.add(ReilHelpers.createBsh(offset++,dw,rtByte1,dw,String.valueOf(8L),dw,newRtByte2));
+  instructions.add(ReilHelpers.createOr(offset++,dw,newRtByte3,dw,newRtByte4,dw,tempResultUpper));
+  instructions.add(ReilHelpers.createOr(offset++,dw,newRtByte1,dw,newRtByte2,dw,tempResultLower));
+  instructions.add(ReilHelpers.createOr(offset,dw,tempResultUpper,dw,tempResultLower,dw,rd));
+}

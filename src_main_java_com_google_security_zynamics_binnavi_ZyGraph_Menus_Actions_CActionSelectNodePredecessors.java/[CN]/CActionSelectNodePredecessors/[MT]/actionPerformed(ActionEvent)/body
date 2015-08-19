@@ -1,0 +1,3 @@
+{
+  CGraphSelecter.selectPredecessors(m_graph,m_node);
+}

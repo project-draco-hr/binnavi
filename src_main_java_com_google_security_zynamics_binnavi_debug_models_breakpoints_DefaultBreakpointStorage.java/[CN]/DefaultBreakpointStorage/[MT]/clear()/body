@@ -1,0 +1,5 @@
+{
+  moduleToBreakpoint.clear();
+  breakpointAddressToBreakpoint.clear();
+  breakpointAddressToStatus.clear();
+}

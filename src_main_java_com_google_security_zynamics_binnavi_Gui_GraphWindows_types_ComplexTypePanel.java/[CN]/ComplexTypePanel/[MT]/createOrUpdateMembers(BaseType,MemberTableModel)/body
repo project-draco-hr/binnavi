@@ -1,0 +1,36 @@
+{
+  for (int i=0; i < model.getRowCount(); i++) {
+    final MemberTableRowData row=model.getRow(i);
+    final int index=row.getIndex();
+    final int bitSize=index * 8;
+    final boolean isNew=row.getExistingMember() == null;
+switch (containingType.getCategory()) {
+case STRUCT:
+      if (isNew) {
+        typeManager.createStructureMember(containingType,row.getBaseType(),row.getName(),bitSize);
+      }
+ else       if (hasMemberChanged(row.getExistingMember(),row)) {
+        typeManager.updateStructureMember(row.getExistingMember(),row.getBaseType(),row.getName(),bitSize);
+      }
+    break;
+case UNION:
+  if (isNew) {
+    typeManager.createUnionMember(containingType,row.getBaseType(),row.getName());
+  }
+ else   if (hasMemberChanged(row.getExistingMember(),row)) {
+    typeManager.updateUnionMember(row.getExistingMember(),row.getBaseType(),row.getName());
+  }
+break;
+case FUNCTION_PROTOTYPE:
+if (isNew) {
+typeManager.createFunctionPrototypeMember(containingType,row.getBaseType(),row.getName(),index);
+}
+ else if (hasMemberChanged(row.getExistingMember(),row)) {
+typeManager.updateFunctionPrototypeMember(row.getExistingMember(),row.getBaseType(),row.getName(),index);
+}
+break;
+default :
+throw new IllegalStateException("Error: can not update member in non compound type.");
+}
+}
+}

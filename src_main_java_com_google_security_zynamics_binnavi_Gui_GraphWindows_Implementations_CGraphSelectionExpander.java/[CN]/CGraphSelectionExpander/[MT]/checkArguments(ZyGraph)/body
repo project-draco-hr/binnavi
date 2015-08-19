@@ -1,0 +1,3 @@
+{
+  Preconditions.checkNotNull(graph,"IE01760: Graph argument can not be null");
+}

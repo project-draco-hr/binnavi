@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(provider,"IE01239: Provider argument can not be null");
+  if (!managers.containsKey(provider)) {
+    managers.put(provider,new CommentManager(provider));
+  }
+  return managers.get(provider);
+}

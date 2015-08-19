@@ -1,0 +1,26 @@
+{
+  try {
+    m_view.getContent().createCodeNode(m_function,new ArrayList<INaviInstruction>());
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_view.load();
+  try {
+    m_view.getContent().createCodeNode(m_function,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    m_view.getContent().createCodeNode(m_function,Lists.newArrayList((INaviInstruction)null));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals(0,m_view.getNodeCount());
+  assertEquals("loadedView/",m_listener.eventList);
+  m_view.getContent().createCodeNode(m_function,Lists.newArrayList(m_instruction));
+  assertEquals(1,m_view.getNodeCount());
+  assertEquals("loadedView/addedNode/changedGraphType/",m_listener.eventList);
+}

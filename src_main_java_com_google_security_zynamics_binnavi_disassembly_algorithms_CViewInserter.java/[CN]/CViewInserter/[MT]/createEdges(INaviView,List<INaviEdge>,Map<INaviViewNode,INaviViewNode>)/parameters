@@ -1,0 +1,3 @@
+INaviView target
+List<INaviEdge> edges
+Map<INaviViewNode,INaviViewNode> nodeMap

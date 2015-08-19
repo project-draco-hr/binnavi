@@ -1,0 +1,9 @@
+{
+  super(String.format("Inline function %s",node.getFunction().getName()));
+  Preconditions.checkNotNull(parent,"IE02158: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE02159: Graph argument can not be null");
+  Preconditions.checkNotNull(node,"IE02288: Node argument can not be null");
+  m_parent=parent;
+  m_graph=graph;
+  m_node=node;
+}

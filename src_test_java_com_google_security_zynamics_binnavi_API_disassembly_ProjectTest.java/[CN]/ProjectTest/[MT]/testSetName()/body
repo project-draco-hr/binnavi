@@ -1,0 +1,8 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.addListener(listener);
+  m_project.setName("New Name");
+  assertEquals("New Name",m_project.getName());
+  assertEquals("changedName;changedModificationDate;",listener.events);
+  m_project.removeListener(listener);
+}

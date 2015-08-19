@@ -1,0 +1,6 @@
+{
+  if (m_parentFunction != null) {
+    return CommentManager.get(m_provider).editGlobalCodeNodeComment(m_codeNode,oldComment,commentText);
+  }
+  return null;
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  m_graph=graph;
+  m_lastSelectedNodes=m_graph.getSelectedNodes();
+}

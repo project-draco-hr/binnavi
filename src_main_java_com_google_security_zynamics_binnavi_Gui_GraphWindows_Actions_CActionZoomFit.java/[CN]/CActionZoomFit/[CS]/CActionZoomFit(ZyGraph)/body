@@ -1,0 +1,6 @@
+{
+  super("Fit Graph to Screen");
+  m_graph=Preconditions.checkNotNull(graph,"IE02833: graph argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Zooms the graph so far that the whole graph is visible");
+  putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/centerview_up.jpg")));
+}

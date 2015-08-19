@@ -1,0 +1,3 @@
+{
+  m_expressions=new ArrayList<IPredicateGenerator<WrapperType>>(expressions);
+}

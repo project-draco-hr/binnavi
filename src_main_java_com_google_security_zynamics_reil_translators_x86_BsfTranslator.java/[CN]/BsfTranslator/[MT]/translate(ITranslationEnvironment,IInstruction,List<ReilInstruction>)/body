@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bsf");
+  BsfBsrTranslatorCommon.translateBsfOrBsr(environment,instruction,instructions,true);
+}

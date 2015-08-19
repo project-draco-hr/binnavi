@@ -1,0 +1,5 @@
+{
+  @SuppressWarnings("unchecked") final ZyEdgeRealizer<EdgeTypeT> realizer=(ZyEdgeRealizer<EdgeTypeT>)getGraph(edge).getRealizer(edge);
+  Preconditions.checkState(realizer != null,"Node does not have a realizer");
+  return realizer;
+}

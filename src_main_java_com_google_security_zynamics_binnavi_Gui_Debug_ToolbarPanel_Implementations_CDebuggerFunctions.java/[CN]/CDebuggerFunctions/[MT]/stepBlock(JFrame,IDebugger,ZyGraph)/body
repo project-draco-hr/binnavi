@@ -1,0 +1,37 @@
+{
+  checkArguments(parent,debugger,graph);
+  if (!debugger.isConnected()) {
+    return;
+  }
+  final TargetProcessThread activeThread=debugger.getProcessManager().getActiveThread();
+  if (activeThread == null) {
+    return;
+  }
+  final RelocatedAddress currentAddress=activeThread.getCurrentAddress();
+  if (currentAddress == null) {
+    CMessageBox.showError(parent,"Could not step because the selected thread is not suspended");
+    return;
+  }
+  final UnrelocatedAddress oldAddress=debugger.memoryToFile(currentAddress);
+  final Set<BreakpointAddress> relocatedBlockAddresses=CStepBlockHelper.getNextBlocks(graph,oldAddress);
+  if (relocatedBlockAddresses.isEmpty()) {
+    CMessageBox.showError(parent,"Couldn't step to the next block");
+    return;
+  }
+ else {
+    debugger.getProcessManager().setActiveThread(null);
+    final Set<BreakpointAddress> setBreakpoints=new HashSet<BreakpointAddress>();
+    debugger.getBreakpointManager().addBreakpoints(BreakpointType.STEP,relocatedBlockAddresses);
+    setBreakpoints.addAll(relocatedBlockAddresses);
+    try {
+      debugger.resume();
+    }
+ catch (    final DebugExceptionWrapper e) {
+      debugger.getProcessManager().setActiveThread(activeThread);
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00045: " + "Could not send step block command to the debug client";
+      final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the step block command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The state of the debugged process remains unchanged."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

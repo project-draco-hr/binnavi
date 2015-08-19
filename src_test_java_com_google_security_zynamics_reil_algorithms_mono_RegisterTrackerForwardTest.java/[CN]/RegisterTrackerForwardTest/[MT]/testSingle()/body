@@ -1,0 +1,5 @@
+{
+  final List<InstructionGraphNode> nodes=Lists.newArrayList(new InstructionGraphNode(ReilHelpers.createNop(0)));
+  final StateVector<InstructionGraphNode,RegisterSet> init=new StateVector<InstructionGraphNode,RegisterSet>();
+  init.setState(nodes.get(0),new RegisterSet("eax"));
+}

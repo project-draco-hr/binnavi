@@ -1,0 +1,10 @@
+{
+  for (  final IInstructionListener listener : m_listeners) {
+    try {
+      listener.editedComment(Instruction.this,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

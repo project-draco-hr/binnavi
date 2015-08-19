@@ -1,0 +1,6 @@
+{
+  super("Go to address");
+  this.section=section;
+  this.address=address;
+  this.module=module;
+}

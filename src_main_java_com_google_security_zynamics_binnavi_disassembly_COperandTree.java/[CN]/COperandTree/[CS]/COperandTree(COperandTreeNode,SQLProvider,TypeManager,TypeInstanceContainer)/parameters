@@ -1,0 +1,4 @@
+COperandTreeNode rootNode
+SQLProvider provider
+TypeManager typeManager
+TypeInstanceContainer instanceContainer

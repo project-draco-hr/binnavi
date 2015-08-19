@@ -1,0 +1,13 @@
+{
+  final TypeManager manager=module.getTypeManager();
+  final BaseType createdType=manager.createAtomicType(TypeName,32,true);
+  Assert.assertNotNull(createdType);
+  Assert.assertEquals(createdType.getName(),TypeName);
+  Assert.assertFalse(createdType.hasMembers());
+  Assert.assertFalse(createdType.hasMembers());
+  Assert.assertNull(createdType.pointedToBy());
+  Assert.assertTrue(createdType.getPointerLevel() == 0);
+  Assert.assertNull(createdType.pointsTo());
+  matchType(createdType,findSingleRawType(createdType.getName(),getProvider().loadTypes(module)));
+  manager.deleteType(createdType);
+}

@@ -1,0 +1,3 @@
+{
+  provider.editSectionComment(section.getModule().getConfiguration().getId(),section.getId(),commentId,userId,commentText);
+}

@@ -1,0 +1,3 @@
+{
+  return PostgreSQLViewCreator.createView(this,module,view,name,description);
+}

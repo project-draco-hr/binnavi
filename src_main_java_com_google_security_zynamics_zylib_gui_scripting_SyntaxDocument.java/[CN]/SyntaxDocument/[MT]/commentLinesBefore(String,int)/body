@@ -1,0 +1,13 @@
+{
+  final int offset=rootElement.getElement(line).getStartOffset();
+  final int startDelimiter=lastIndexOf(content,getStartDelimiter(),offset - 2);
+  if (startDelimiter < 0) {
+    return false;
+  }
+  final int endDelimiter=indexOf(content,getEndDelimiter(),startDelimiter);
+  if ((endDelimiter < offset) & (endDelimiter != -1)) {
+    return false;
+  }
+  doc.setCharacterAttributes(startDelimiter,(offset - startDelimiter) + 1,comment,false);
+  return true;
+}

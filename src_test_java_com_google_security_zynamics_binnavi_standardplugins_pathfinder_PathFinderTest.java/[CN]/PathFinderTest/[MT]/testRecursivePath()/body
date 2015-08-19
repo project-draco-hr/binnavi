@@ -1,0 +1,9 @@
+{
+  final Function startFunction=findFunction(m_kernel32,0x7C82E8B2);
+  final BasicBlock startBlock=findBlock(startFunction,0x7C82E8B2);
+  final Function endFunction=findFunction(m_kernel32,0x7C8092B0);
+  final BasicBlock endBlock=findBlock(endFunction,0x7C8092B0);
+  final View view=PathFinder.createPath(m_kernel32,startBlock,endBlock,null,null);
+  assertEquals(1247,view.getGraph().nodeCount());
+  assertEquals(1988,view.getGraph().edgeCount());
+}

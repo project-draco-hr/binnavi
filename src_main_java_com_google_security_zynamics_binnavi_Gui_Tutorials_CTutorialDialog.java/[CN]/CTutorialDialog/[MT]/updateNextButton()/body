@@ -1,0 +1,3 @@
+{
+  m_nextButton.setEnabled((m_currentTutorial != null) && (m_currentTutorial.getStepCounter() != m_currentTutorial.getStepCount()) && m_currentTutorial.getCurrentStep().canNext());
+}

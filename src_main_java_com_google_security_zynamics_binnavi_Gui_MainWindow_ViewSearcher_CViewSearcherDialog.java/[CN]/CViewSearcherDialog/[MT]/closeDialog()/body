@@ -1,0 +1,4 @@
+{
+  m_table.removeMouseListener(m_listener);
+  dispose();
+}

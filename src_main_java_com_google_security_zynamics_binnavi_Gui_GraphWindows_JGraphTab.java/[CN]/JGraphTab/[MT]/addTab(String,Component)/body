@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(title,"IE01639: Title argument can not be null");
+  Preconditions.checkNotNull(component,"IE01640: Component argument can not be null");
+  super.addTab(title,component);
+  setSelectedComponent(component);
+  final int moduleId=((IGraphPanel)component).getModel().getViewContainer().getModules().get(0).getConfiguration().getId();
+  if (!moduleIdCount.containsKey(moduleId)) {
+    moduleIdCount.put(moduleId,1);
+  }
+ else {
+    moduleIdCount.put(moduleId,moduleIdCount.get(moduleId) + 1);
+  }
+  final ButtonTabComponent buttonTab=new ButtonTabComponent(this);
+  buttonTab.addListener(m_listener);
+  setTabComponentAt(getSelectedIndex(),buttonTab);
+}

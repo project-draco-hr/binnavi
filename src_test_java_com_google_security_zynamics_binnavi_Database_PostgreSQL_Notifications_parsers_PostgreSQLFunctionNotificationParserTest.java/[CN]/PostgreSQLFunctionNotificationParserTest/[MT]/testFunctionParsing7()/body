@@ -1,0 +1,3 @@
+{
+  testParser(CTableNames.FUNCTION_NODES_TABLE,"INSERT",String.valueOf(function.getAddress().toLong()),"XXXXXX");
+}

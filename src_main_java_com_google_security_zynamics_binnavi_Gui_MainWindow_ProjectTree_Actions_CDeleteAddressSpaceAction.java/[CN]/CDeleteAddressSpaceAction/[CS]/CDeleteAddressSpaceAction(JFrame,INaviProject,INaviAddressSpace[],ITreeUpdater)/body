@@ -1,0 +1,9 @@
+{
+  super("Delete Address Space");
+  m_parent=Preconditions.checkNotNull(parent,"IE01867: Parent argument can't be null");
+  m_project=Preconditions.checkNotNull(project,"IE01868: Project argument can't be null");
+  m_addressSpace=Preconditions.checkNotNull(spaces,"IE01869: Addres spaces argument can't be null").clone();
+  m_updater=Preconditions.checkNotNull(updater,"IE02338: Updater argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_ADDRESS_SPACE".charAt(0));
+}

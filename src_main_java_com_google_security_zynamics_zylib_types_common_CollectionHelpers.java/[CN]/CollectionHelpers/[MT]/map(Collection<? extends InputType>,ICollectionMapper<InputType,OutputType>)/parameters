@@ -1,0 +1,2 @@
+Collection<? extends InputType> elements
+ICollectionMapper<InputType,OutputType> mapper

@@ -1,0 +1,16 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  viewGraph=null;
+  cachedEdges.clear();
+  cachedNodes.clear();
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.closedView(View.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

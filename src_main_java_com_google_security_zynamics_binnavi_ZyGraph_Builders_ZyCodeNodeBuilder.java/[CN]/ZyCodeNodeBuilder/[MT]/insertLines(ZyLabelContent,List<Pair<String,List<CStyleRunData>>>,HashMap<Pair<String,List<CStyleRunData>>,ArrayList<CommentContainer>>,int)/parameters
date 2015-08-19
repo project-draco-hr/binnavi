@@ -1,0 +1,4 @@
+ZyLabelContent content
+List<Pair<String,List<CStyleRunData>>> lines
+HashMap<Pair<String,List<CStyleRunData>>,ArrayList<CommentContainer>> comments
+int maxLineWidth

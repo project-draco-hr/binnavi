@@ -1,0 +1,3 @@
+{
+  PostgreSQLDataImporter.connectExpressionTrees(getProvider().getConnection(),moduleId,rawModuleId);
+}

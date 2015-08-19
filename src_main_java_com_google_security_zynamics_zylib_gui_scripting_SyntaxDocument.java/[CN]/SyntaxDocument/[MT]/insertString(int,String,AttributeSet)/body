@@ -1,0 +1,7 @@
+{
+  if (m_addBraces && str.equals("{")) {
+    str=addMatchingBrace(offset);
+  }
+  super.insertString(offset,str,a);
+  processChangedLines(offset,str.length());
+}

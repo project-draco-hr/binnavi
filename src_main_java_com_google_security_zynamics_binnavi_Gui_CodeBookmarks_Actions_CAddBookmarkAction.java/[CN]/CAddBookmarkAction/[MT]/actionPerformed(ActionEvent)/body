@@ -1,0 +1,3 @@
+{
+  CBookmarkFunctions.addBookmark(m_manager,m_module,m_address);
+}

@@ -1,0 +1,4 @@
+{
+  m_tagNode=tagNode;
+  createChildren();
+}

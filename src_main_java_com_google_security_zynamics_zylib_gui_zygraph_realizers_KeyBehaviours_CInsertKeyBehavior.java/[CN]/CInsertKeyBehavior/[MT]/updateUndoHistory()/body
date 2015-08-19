@@ -1,0 +1,17 @@
+{
+  if (isPaste()) {
+    if (m_editableObject != null) {
+      final int x=getCaretEndPosX();
+      final int y=getCaretMouseReleasedY();
+      final ZyLineContent lineContent=getLineContent(y);
+      final IZyEditableObject lineFragmentObject=lineContent.getLineFragmentObjectAt(x);
+      if (lineFragmentObject != null) {
+        String text=lineContent.getText().substring(lineFragmentObject.getStart(),lineFragmentObject.getEnd());
+        if (isComment(x,y)) {
+          text=getMultiLineComment(y);
+        }
+        udpateUndolist(getLabelContent(),lineContent.getLineObject().getPersistentModel(),lineFragmentObject,text,m_isAboveComment,m_isBehindComment,m_isLabelComment,getCaretStartPosX(),getCaretMousePressedX(),getCaretMousePressedY(),getCaretEndPosX(),getCaretMouseReleasedX(),getCaretMouseReleasedY());
+      }
+    }
+  }
+}

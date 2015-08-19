@@ -1,0 +1,3 @@
+{
+  return getCriterium().getCriteriumDescription();
+}

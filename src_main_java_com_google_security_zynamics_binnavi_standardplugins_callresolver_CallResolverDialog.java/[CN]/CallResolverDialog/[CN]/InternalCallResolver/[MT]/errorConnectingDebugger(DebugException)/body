@@ -1,0 +1,3 @@
+{
+  appendOutput("Error: Could not start the debugger.");
+}

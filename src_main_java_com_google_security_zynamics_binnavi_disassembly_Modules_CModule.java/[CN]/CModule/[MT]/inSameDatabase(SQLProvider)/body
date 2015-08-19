@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(provider,"IE00194: Provider argument can not be null");
+  return provider.equals(m_provider);
+}

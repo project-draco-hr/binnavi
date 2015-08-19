@@ -1,0 +1,17 @@
+{
+  if (m_listeners == null) {
+    return Collections.emptyIterator();
+  }
+  final ArrayList<WeakReference<T>> listenersCopy;
+synchronized (m_listeners) {
+    listenersCopy=new ArrayList<WeakReference<T>>(m_listeners);
+  }
+  final ArrayList<T> listeners=new ArrayList<T>();
+  for (  final WeakReference<T> weakT : listenersCopy) {
+    final T element=weakT.get();
+    if (element != null) {
+      listeners.add(element);
+    }
+  }
+  return listeners.iterator();
+}

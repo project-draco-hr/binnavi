@@ -1,0 +1,4 @@
+{
+  final int notches=e.getWheelRotation();
+  verticalScrollbar.setValue(verticalScrollbar.getValue() + notches);
+}

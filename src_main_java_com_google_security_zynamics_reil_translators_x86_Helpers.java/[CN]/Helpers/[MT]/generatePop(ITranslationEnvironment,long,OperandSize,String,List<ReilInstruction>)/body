@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(size,"Error: Argument size can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final OperandSize archSize=environment.getArchitectureSize();
+  final OperandSize resultSize=TranslationHelpers.getNextSize(archSize);
+  final String loadedValue=target == null ? environment.getNextVariableString() : target;
+  instructions.add(ReilHelpers.createLdm(offset,archSize,"esp",size,loadedValue));
+  final String tempEsp=environment.getNextVariableString();
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  final String stackValue=String.valueOf(size.getByteSize());
+  instructions.add(ReilHelpers.createAdd(offset + 1,archSize,"esp",archSize,stackValue,resultSize,tempEsp));
+  instructions.add(ReilHelpers.createAnd(offset + 2,resultSize,tempEsp,archSize,truncateMask,archSize,"esp"));
+  return loadedValue;
+}

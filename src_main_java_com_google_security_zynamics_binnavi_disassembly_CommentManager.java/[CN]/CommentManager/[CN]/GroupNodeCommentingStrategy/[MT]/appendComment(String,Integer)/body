@@ -1,0 +1,4 @@
+{
+  final Integer commentId=groupNode.isStored() ? provider.appendGroupNodeComment(groupNode,commentText,userId) : null;
+  return provider.loadCommentById(commentId);
+}

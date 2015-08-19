@@ -1,0 +1,8 @@
+{
+  if (displaysToUpdate.size() > 0) {
+    if (rowIndex == displaysToUpdate.get(0).getCaretPosition().getRow()) {
+      return columns[columnIndex].getDefaultBackgroundColor().darker();
+    }
+  }
+  return columns[columnIndex].getDefaultBackgroundColor();
+}

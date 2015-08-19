@@ -1,0 +1,4 @@
+{
+  debugger.connect();
+  debugger.writeMemory(new Address(0),new byte[10]);
+}

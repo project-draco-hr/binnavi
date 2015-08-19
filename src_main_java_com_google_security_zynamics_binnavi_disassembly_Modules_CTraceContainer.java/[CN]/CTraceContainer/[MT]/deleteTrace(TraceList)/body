@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(trace,"IE00167: Trace argument can not be null");
+  Preconditions.checkArgument(m_traces.contains(trace),"IE00168: Trace is not part of this module");
+  m_provider.deleteTrace(trace);
+  m_traces.remove(trace);
+  for (  final ITraceContainerListener listener : m_listeners) {
+    try {
+      listener.deletedTrace(this,trace);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

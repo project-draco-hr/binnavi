@@ -1,0 +1,31 @@
+{
+  for (  final CGraphWindow window : CWindowManager.instance()) {
+    for (    final IGraphPanel panel : window) {
+      if (panel.getModel().getGraph().getRawView() == view.getNative()) {
+        return panel.getModel().getView2D();
+      }
+    }
+  }
+  final WindowWaiter waiter=new WindowWaiter(view.getNative());
+  CWindowManager.instance().addListener(waiter);
+  final List<CGraphWindow> openBefore=CWindowManager.instance().getOpenWindows();
+  for (  final CGraphWindow window : openBefore) {
+    window.addListener(waiter);
+  }
+  CViewOpener.showView(mainWindow.getFrame(),container,view.getNative(),graphWindow);
+  while (waiter.getModel() == null) {
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    final InterruptedException exception) {
+      CUtilityFunctions.logException(exception);
+      java.lang.Thread.currentThread().interrupt();
+    }
+  }
+  final CGraphModel model=waiter.getModel();
+  CWindowManager.instance().removeListener(waiter);
+  for (  final CGraphWindow window : openBefore) {
+    window.removeListener(waiter);
+  }
+  return model.getView2D();
+}

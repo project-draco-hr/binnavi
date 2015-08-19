@@ -1,0 +1,39 @@
+{
+  final List<DefaultMutableTreeNode> lastNodes=TreeHelpers.getLastExpandedNodes(m_tagsTree);
+  final List<Integer> lastNodeIds=new ArrayList<Integer>();
+  if ((tag != null) && (tag.getParent() != null)) {
+    lastNodeIds.add(tag.getParent().getObject().getId());
+  }
+  for (  final DefaultMutableTreeNode lastNode : lastNodes) {
+    if (lastNode.getUserObject() instanceof Integer) {
+      final int tagId=(Integer)lastNode.getUserObject();
+      lastNodeIds.add(tagId);
+    }
+  }
+  deleteChildren();
+  createChildren();
+  final Enumeration<?> bfn=breadthFirstEnumeration();
+  while (bfn.hasMoreElements()) {
+    final Object node=bfn.nextElement();
+    int tagId=-1;
+    TreePath path=null;
+    if (node instanceof CRootTagTreeNode) {
+      final CRootTagTreeNode rootNode=(CRootTagTreeNode)node;
+      tagId=m_rootTag.getObject().getId();
+      path=new TreePath(rootNode.getPath());
+    }
+ else     if (node instanceof CTagTreeNode) {
+      final CTagTreeNode treeNode=(CTagTreeNode)node;
+      tagId=treeNode.getTag().getObject().getId();
+      path=new TreePath(treeNode.getPath());
+    }
+ else     if (node instanceof CTaggedGraphNodesContainerNode) {
+      final CTaggedGraphNodesContainerNode containerNode=(CTaggedGraphNodesContainerNode)node;
+      tagId=-containerNode.getTag().getObject().getId();
+      path=new TreePath(containerNode.getPath());
+    }
+    if (lastNodeIds.contains(tagId)) {
+      m_tagsTree.expandPath(path);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  try {
+    final int globalCodeNodeCommentId=m_resultSet.getInt("global_code_node_comment");
+    if (m_resultSet.wasNull()) {
+      return null;
+    }
+    return globalCodeNodeCommentId;
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

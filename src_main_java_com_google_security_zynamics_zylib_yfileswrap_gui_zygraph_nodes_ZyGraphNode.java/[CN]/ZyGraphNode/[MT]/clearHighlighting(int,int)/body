@@ -1,0 +1,6 @@
+{
+  final ZyLineContent lineContent=m_realizer.getNodeContent().getLineContent(line);
+  if (lineContent.clearHighlighting(level)) {
+    updateViews();
+  }
+}

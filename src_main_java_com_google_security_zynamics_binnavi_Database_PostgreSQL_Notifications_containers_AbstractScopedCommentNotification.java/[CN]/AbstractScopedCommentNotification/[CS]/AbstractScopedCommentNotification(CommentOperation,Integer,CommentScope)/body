@@ -1,0 +1,4 @@
+{
+  super(operation,commentId);
+  this.scope=Preconditions.checkNotNull(scope,"Error: Scope argument can not be null.");
+}

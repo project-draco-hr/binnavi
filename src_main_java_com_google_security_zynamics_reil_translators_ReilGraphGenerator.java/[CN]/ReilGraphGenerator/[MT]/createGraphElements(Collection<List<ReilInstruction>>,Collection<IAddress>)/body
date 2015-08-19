@@ -1,0 +1,31 @@
+{
+  final BasicBlockGenerator generator=new BasicBlockGenerator(instructionList,nativeJumpTargets);
+  final List<ReilBlock> blocks=generator.getBlocks();
+  final ArrayList<Triple<ReilBlock,IAddress,EdgeType>> edgepairs=generator.getEdges();
+  final List<ReilEdge> edges=new ArrayList<ReilEdge>();
+  for (  final Triple<ReilBlock,IAddress,EdgeType> p : edgepairs) {
+    final ReilBlock source=p.first();
+    final IAddress target=p.second();
+    final EdgeType edgeType=p.third();
+    if (target != null) {
+      for (      final ReilBlock block : blocks) {
+        for (        final ReilInstruction instruction : block.getInstructions()) {
+          if (target.equals(instruction.getAddress())) {
+            final ReilEdge edge=new ReilEdge(source,block,edgeType);
+            edges.add(edge);
+            ReilBlock.link(source,block,edge);
+          }
+        }
+      }
+    }
+ else {
+      final int index=blocks.indexOf(source);
+      if (blocks.size() > (index + 1)) {
+        final ReilEdge edge=new ReilEdge(source,blocks.get(index + 1),edgeType);
+        edges.add(edge);
+        ReilBlock.link(source,blocks.get(index + 1),edge);
+      }
+    }
+  }
+  return new Pair<List<ReilBlock>,List<ReilEdge>>(blocks,edges);
+}

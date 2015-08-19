@@ -1,0 +1,20 @@
+{
+  for (  final INaviProject project : m_projects) {
+    if (!project.isLoaded()) {
+      continue;
+    }
+    for (    final INaviAddressSpace addressSpace : project.getContent().getAddressSpaces()) {
+      if (addressSpace.isLoaded() && addressSpace.getContent().getModules().contains(module)) {
+        try {
+          addressSpace.getContent().removeModule(module);
+        }
+ catch (        final CouldntDeleteException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+catch (        final CouldntSaveDataException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

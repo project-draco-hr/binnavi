@@ -1,0 +1,4 @@
+String languageName
+String script
+List<Pair<String,Object>> bindings
+IScriptConsole console

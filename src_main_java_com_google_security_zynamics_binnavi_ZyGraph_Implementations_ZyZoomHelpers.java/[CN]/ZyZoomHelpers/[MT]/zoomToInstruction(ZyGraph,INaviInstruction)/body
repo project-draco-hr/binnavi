@@ -1,0 +1,17 @@
+{
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      if (node.getRawNode() instanceof INaviCodeNode) {
+        final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+        if (codeNode.hasInstruction(instruction)) {
+          uncollapseParents(codeNode);
+          graph.showNode(node,true);
+          ZoomFunctions.zoomToNode(graph,node);
+          return IterationMode.STOP;
+        }
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

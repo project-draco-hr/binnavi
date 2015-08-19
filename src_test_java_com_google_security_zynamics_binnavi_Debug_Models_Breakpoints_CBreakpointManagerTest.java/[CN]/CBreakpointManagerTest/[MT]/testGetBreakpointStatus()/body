@@ -1,0 +1,10 @@
+{
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_manager.getBreakpointStatus(BreakpointType.REGULAR,0));
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,m_manager.getBreakpointStatus(BreakpointType.REGULAR,1));
+  try {
+    m_manager.getBreakpointStatus(BreakpointType.REGULAR,-1);
+    fail("Exception not raised");
+  }
+ catch (  final IllegalArgumentException ex) {
+  }
+}

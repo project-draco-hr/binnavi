@@ -1,0 +1,3 @@
+{
+  return operand.getType() == OperandType.INTEGER_LITERAL ? new Literal(new BigInteger(operand.getValue())) : getState(state,operand);
+}

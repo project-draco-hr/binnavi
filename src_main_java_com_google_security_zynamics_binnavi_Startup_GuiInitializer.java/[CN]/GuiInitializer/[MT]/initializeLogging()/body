@@ -1,0 +1,15 @@
+{
+switch (ConfigManager.instance().getGeneralSettings().getLogLevel()) {
+case 0:
+    NaviLogger.setLevel(Level.OFF);
+  break;
+case 1:
+NaviLogger.setLevel(Level.INFO);
+break;
+case 2:
+NaviLogger.setLevel(Level.ALL);
+break;
+default :
+throw new IllegalStateException("IE00844: Unknown log level read from configuration file");
+}
+}

@@ -1,0 +1,5 @@
+{
+  super("Close View");
+  m_graphPanel=Preconditions.checkNotNull(graphPanel,"IE02814: graph panel argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_CLOSE_HK.getKeyStroke());
+}

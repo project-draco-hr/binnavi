@@ -1,0 +1,2 @@
+List<String> lastDirectories
+List<File> selectedFiles

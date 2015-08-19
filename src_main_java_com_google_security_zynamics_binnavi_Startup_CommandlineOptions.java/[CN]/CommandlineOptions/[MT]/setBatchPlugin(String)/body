@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(pluginName,"IE00843: Plugin name argument can not be null");
+  m_batchPlugin=pluginName;
+}

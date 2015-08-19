@@ -1,0 +1,12 @@
+{
+  final INaviModule module1=getProvider().loadModules().get(0);
+  module1.load();
+  final INaviFunction function1=module1.getContent().getFunctionContainer().getFunctions().get(25);
+  getProvider().setDescription(function1,"description");
+  module1.close();
+  final INaviModule module2=getProvider().loadModules().get(0);
+  module2.load();
+  final INaviFunction function2=module2.getContent().getFunctionContainer().getFunctions().get(25);
+  assertEquals("description",function2.getDescription());
+  module2.close();
+}

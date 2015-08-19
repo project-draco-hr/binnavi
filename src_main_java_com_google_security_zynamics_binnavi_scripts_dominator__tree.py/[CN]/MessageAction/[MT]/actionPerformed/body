@@ -1,0 +1,5 @@
+def actionPerformed(self, e):
+    view = create_dominator_view(self.frame.view2D.view)
+    if (view != None):
+        t = WorkaroundThread(self.pi, self.frame.window, view)
+        t.start()

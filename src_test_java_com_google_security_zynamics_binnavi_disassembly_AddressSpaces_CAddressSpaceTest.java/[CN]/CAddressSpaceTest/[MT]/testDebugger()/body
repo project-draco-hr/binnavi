@@ -1,0 +1,14 @@
+{
+  assertNull(m_addressSpace.getConfiguration().getDebugger());
+  assertNull(m_addressSpace.getConfiguration().getDebuggerTemplate());
+  final DebuggerTemplate template=MockCreator.createDebuggerTemplate(m_sql);
+  m_addressSpace.getConfiguration().setDebuggerTemplate(template);
+  assertNull(m_addressSpace.getConfiguration().getDebugger());
+  assertEquals(template,m_addressSpace.getConfiguration().getDebuggerTemplate());
+  m_addressSpace.load();
+  assertNotNull(m_addressSpace.getConfiguration().getDebugger());
+  assertEquals(template,m_addressSpace.getConfiguration().getDebuggerTemplate());
+  m_addressSpace.getConfiguration().setDebuggerTemplate(null);
+  assertNull(m_addressSpace.getConfiguration().getDebugger());
+  assertNull(m_addressSpace.getConfiguration().getDebuggerTemplate());
+}

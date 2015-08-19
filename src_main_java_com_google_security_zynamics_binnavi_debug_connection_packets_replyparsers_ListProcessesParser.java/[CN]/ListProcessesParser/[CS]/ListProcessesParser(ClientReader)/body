@@ -1,0 +1,3 @@
+{
+  super(clientReader,DebugCommandType.RESP_LIST_PROCESSES_SUCCESS);
+}

@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(connection,"IE00629: Connection argument can not be null");
+  if (!connection.getConnection().getAutoCommit()) {
+    connection.getConnection().rollback();
+    connection.getConnection().setAutoCommit(true);
+  }
+ else {
+    throw new IllegalStateException("IE00712: Auto commit status must be false for manual rollback");
+  }
+}

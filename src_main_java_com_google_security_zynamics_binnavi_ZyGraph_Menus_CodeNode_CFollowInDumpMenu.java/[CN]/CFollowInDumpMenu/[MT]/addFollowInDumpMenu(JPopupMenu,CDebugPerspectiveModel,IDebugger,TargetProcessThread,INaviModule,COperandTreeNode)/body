@@ -1,0 +1,14 @@
+{
+  final BigInteger simpleAddress=getSimpleAddress(treeNode,activeThread.getRegisterValues(),debugger,module);
+  if ((simpleAddress != null) && needsSimpleFollowMenu(debugger,treeNode,simpleAddress)) {
+    menu.add(new CGotoOperandExpressionAction(viewModel,treeNode.getValue(),simpleAddress));
+    return true;
+  }
+  final BigInteger expressionAddress=getExpressionAddress(treeNode,activeThread.getRegisterValues(),debugger,module);
+  if ((expressionAddress != null) && !expressionAddress.equals(simpleAddress) && needsAddressExpressionMenu(debugger,treeNode,expressionAddress)) {
+    final INaviOperandTreeNode addressExpression=getAddressExpression(treeNode);
+    menu.add(new CGotoOperandExpressionAction(viewModel,toString(addressExpression),expressionAddress));
+    return true;
+  }
+  return false;
+}

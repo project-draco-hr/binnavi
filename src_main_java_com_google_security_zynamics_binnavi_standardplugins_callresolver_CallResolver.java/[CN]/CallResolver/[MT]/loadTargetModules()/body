@@ -1,0 +1,16 @@
+{
+  for (  final Module module : target.getModules()) {
+    module.addListener(moduleKeeperListener);
+    modules.add(module);
+    if (!module.isLoaded()) {
+      try {
+        module.load();
+      }
+ catch (      final CouldntLoadDataException e) {
+        errorLoadingModule(module,e);
+        return;
+      }
+    }
+  }
+  step++;
+}

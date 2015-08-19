@@ -1,0 +1,8 @@
+{
+switch (type) {
+case REGULAR:
+    return indexedBreakpointStorage.get(index);
+default :
+  throw new IllegalStateException(String.format("IE01019: Invalid breakpoint type '%s' for indexed breakpoint access",type));
+}
+}

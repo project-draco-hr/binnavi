@@ -1,0 +1,3 @@
+{
+  PostgreSQLTraceFunctions.deleteTrace(null,null);
+}

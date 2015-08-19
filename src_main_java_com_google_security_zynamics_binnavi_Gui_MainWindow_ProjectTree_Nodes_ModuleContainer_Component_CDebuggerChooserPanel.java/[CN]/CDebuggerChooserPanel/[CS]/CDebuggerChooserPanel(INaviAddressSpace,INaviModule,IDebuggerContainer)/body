@@ -1,0 +1,45 @@
+{
+  super(new BorderLayout());
+  m_addressSpace=addressSpace;
+  m_module=module;
+  final JPanel debuggerChooserPanel=new JPanel(new GridLayout(3,1,5,5));
+  debuggerChooserPanel.setBorder(new EmptyBorder(0,0,5,0));
+  final JPanel debuggerPanel=new JPanel(new BorderLayout());
+  if (addressSpace == null) {
+    final JLabel debuggerNameLabel=new JLabel("Debugger" + ":");
+    debuggerNameLabel.setPreferredSize(new Dimension(170,25));
+    m_debuggerCombo=new CDebuggerComboBox(new CDebuggerComboModel(container));
+    m_debuggerCombo.setBorder(new EmptyBorder(0,5,0,0));
+    updateDebuggersComboBox();
+    debuggerPanel.add(debuggerNameLabel,BorderLayout.WEST);
+    debuggerPanel.add(m_debuggerCombo,BorderLayout.CENTER);
+    m_imageBaseAddr.setText(module.getConfiguration().getImageBase().toHexString());
+  }
+ else {
+    m_debuggerCombo=null;
+    final JLabel debuggerNameLabel=new JLabel("Name");
+    debuggerNameLabel.setPreferredSize(new Dimension(170,25));
+    m_debuggerName.setBorder(new EmptyBorder(0,5,0,0));
+    updateDebuggerLabel();
+    debuggerPanel.add(debuggerNameLabel,BorderLayout.WEST);
+    debuggerPanel.add(m_debuggerName,BorderLayout.CENTER);
+    m_imageBaseAddr.setText(addressSpace.getContent().getImageBase(module).toHexString());
+  }
+  m_fileBaseAddr.setText(module.getConfiguration().getFileBase().toHexString());
+  debuggerChooserPanel.add(debuggerPanel);
+  debuggerChooserPanel.add(new CLabeledComponent("Original Base Address" + ":",new COriginalAddressHelp(),m_fileBaseAddr),BorderLayout.SOUTH);
+  debuggerChooserPanel.add(new CLabeledComponent("Relocated Base Address" + ":",new CRelocatedAddressHelp(),m_imageBaseAddr),BorderLayout.SOUTH);
+  setBorder(new TitledBorder((addressSpace == null ? "Module" : "Address Space") + " " + "Debugger"));
+  add(debuggerChooserPanel,BorderLayout.CENTER);
+  final UpdateListener updateListener=new UpdateListener();
+  m_fileBaseAddr.getDocument().addDocumentListener(updateListener);
+  m_imageBaseAddr.getDocument().addDocumentListener(updateListener);
+  if (m_debuggerCombo != null) {
+    m_debuggerCombo.addActionListener(updateListener);
+  }
+  m_module.addListener(m_listener);
+  if (m_addressSpace != null) {
+    m_addressSpace.addListener(m_addressSpaceListener);
+    m_addressSpace.getConfiguration().addListener(m_addressSpaceConfigurationListener);
+  }
+}

@@ -1,0 +1,4 @@
+String description
+List<Long> mandatory
+List<Long> allowed
+boolean next

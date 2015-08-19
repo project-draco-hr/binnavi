@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(edge,"Error: Edge argument can't be null");
+  naviView.getContent().deleteEdge(edge.getNative());
+}

@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  m_tagsTree=new CTagsTree(parent,graph,manager);
+  final JScrollPane pane=new JScrollPane(m_tagsTree);
+  pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+  pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  add(pane);
+  setBorder(new TitledBorder(new LineBorder(Color.LIGHT_GRAY,1,true),"Tagging"));
+  setDoubleBuffered(true);
+}

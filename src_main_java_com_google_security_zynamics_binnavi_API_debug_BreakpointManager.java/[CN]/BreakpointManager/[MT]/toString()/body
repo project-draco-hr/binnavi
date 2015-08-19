@@ -1,0 +1,3 @@
+{
+  return String.format("BreakpointManager (Managing %d Breakpoints)",breakpointManager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+}

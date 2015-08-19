@@ -1,0 +1,6 @@
+{
+  m_module=module;
+  m_progressPanel.setText("Initializing module" + ": '" + m_module.getConfiguration().getName() + "'");
+  CGlobalProgressManager.instance().add(this);
+  module.addListener(m_listener);
+}

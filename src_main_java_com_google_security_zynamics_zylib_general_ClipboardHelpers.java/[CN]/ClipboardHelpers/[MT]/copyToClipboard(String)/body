@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(string,"Error: String argument can not be null");
+  final Clipboard clipboard=Toolkit.getDefaultToolkit().getSystemClipboard();
+  clipboard.setContents(new StringSelection(string),new ClipboardOwner(){
+    @Override public void lostOwnership(    final Clipboard clipboard,    final Transferable contents){
+    }
+  }
+);
+}

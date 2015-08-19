@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Range) && ((Range)rhs).m_lower.equals(m_lower) && ((Range)rhs).m_upper.equals(m_upper);
+}

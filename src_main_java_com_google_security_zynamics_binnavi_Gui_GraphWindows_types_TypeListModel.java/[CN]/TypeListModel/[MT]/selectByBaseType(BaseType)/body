@@ -1,0 +1,6 @@
+{
+  final int index=filteredTypes.indexOf(baseType);
+  if (index != -1) {
+    setSelectedItem(baseType);
+  }
+}

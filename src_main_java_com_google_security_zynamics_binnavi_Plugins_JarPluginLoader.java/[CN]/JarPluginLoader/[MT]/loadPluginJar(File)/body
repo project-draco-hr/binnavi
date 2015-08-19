@@ -1,0 +1,16 @@
+{
+  NaviLogger.info("Loading plugins from " + pluginFile.getAbsolutePath());
+  final JarClassLoader jarLoader=new JarClassLoader(pluginFile.getAbsolutePath());
+  final String mainClassName=getMainClassName(pluginFile);
+  NaviLogger.info("Determined main class as " + mainClassName);
+  if (mainClassName == null) {
+    return new ArrayList<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>>();
+  }
+  final Class<?> cls=jarLoader.loadClass(mainClassName,true);
+  if (IPluginServer.class.isAssignableFrom(cls)) {
+    ClassPathHacker.addFile(pluginFile);
+    @SuppressWarnings("unchecked") final IPluginServer<T> server=(IPluginServer<T>)cls.newInstance();
+    return server.getPlugins();
+  }
+  return new ArrayList<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>>();
+}

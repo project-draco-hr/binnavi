@@ -1,0 +1,5 @@
+{
+  super(rows.length == 1 ? "Delete Bookmark" : "Delete Bookmarks");
+  m_actionProvider=Preconditions.checkNotNull(provider,"IE01328: Provider argument can not be null");
+  m_rows=rows.clone();
+}

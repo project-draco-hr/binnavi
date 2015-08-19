@@ -1,0 +1,3 @@
+{
+  m_selectedNodes=new ArrayList<NaviNode>(selectedNodes);
+}

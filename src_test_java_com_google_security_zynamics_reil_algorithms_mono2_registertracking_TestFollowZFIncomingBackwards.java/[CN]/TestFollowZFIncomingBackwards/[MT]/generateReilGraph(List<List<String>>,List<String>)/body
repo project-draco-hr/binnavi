@@ -1,0 +1,82 @@
+{
+  final Map<Long,ReilBlock> blocks=new HashMap<Long,ReilBlock>();
+  for (  final List<String> currentBlockInstructions : instructions) {
+    final List<ReilInstruction> reilInstructions=new ArrayList<ReilInstruction>();
+    for (    final String addressAndInstruction : currentBlockInstructions) {
+      final StringTokenizer tokenizer=new StringTokenizer(addressAndInstruction,": [,]",false);
+      final long offset=Long.parseLong(tokenizer.nextToken(),16);
+      final String mnemonic=tokenizer.nextToken();
+      if (mnemonic.equalsIgnoreCase("bisz") || mnemonic.equalsIgnoreCase("str") || mnemonic.equalsIgnoreCase("ldm")|| mnemonic.equalsIgnoreCase("stm")|| mnemonic.equalsIgnoreCase("jcc")) {
+        final OperandSize firstSize=OperandSize.valueOf(tokenizer.nextToken());
+        final String firstValue=tokenizer.nextToken();
+        tokenizer.nextToken();
+        final OperandSize thirdSize=OperandSize.valueOf(tokenizer.nextToken());
+        final String thirdValue=tokenizer.nextToken();
+        if (mnemonic.equalsIgnoreCase("bisz")) {
+          reilInstructions.add(ReilHelpers.createBisz(offset,firstSize,firstValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("str")) {
+          reilInstructions.add(ReilHelpers.createStr(offset,firstSize,firstValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("jcc")) {
+          reilInstructions.add(ReilHelpers.createJcc(offset,firstSize,firstValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("ldm")) {
+          reilInstructions.add(ReilHelpers.createLdm(offset,firstSize,firstValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("stm")) {
+          reilInstructions.add(ReilHelpers.createStm(offset,firstSize,firstValue,thirdSize,thirdValue));
+        }
+      }
+ else       if (mnemonic.equalsIgnoreCase("nop")) {
+        reilInstructions.add(ReilHelpers.createNop(offset));
+      }
+ else {
+        final OperandSize firstSize=OperandSize.valueOf(tokenizer.nextToken());
+        final String firstValue=tokenizer.nextToken();
+        final OperandSize secondSize=OperandSize.valueOf(tokenizer.nextToken());
+        final String secondValue=tokenizer.nextToken();
+        final OperandSize thirdSize=OperandSize.valueOf(tokenizer.nextToken());
+        final String thirdValue=tokenizer.nextToken();
+        if (mnemonic.equalsIgnoreCase("add")) {
+          reilInstructions.add(ReilHelpers.createAdd(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("and")) {
+          reilInstructions.add(ReilHelpers.createAnd(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("bsh")) {
+          reilInstructions.add(ReilHelpers.createBsh(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("div")) {
+          reilInstructions.add(ReilHelpers.createDiv(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("mod")) {
+          reilInstructions.add(ReilHelpers.createMod(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("mul")) {
+          reilInstructions.add(ReilHelpers.createMul(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("or")) {
+          reilInstructions.add(ReilHelpers.createOr(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("sub")) {
+          reilInstructions.add(ReilHelpers.createSub(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+        if (mnemonic.equalsIgnoreCase("xor")) {
+          reilInstructions.add(ReilHelpers.createXor(offset,firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue));
+        }
+      }
+    }
+    blocks.put(reilInstructions.get(0).getAddress().toLong(),new ReilBlock(reilInstructions));
+  }
+  final List<ReilEdge> reilEdges=new ArrayList<ReilEdge>();
+  for (  final String edge : edges) {
+    final StringTokenizer edgeTokenizer=new StringTokenizer(edge," []->");
+    final Long sourceAddress=Long.parseLong(edgeTokenizer.nextToken(),16);
+    final EdgeType type=Enum.valueOf(EdgeType.class,edgeTokenizer.nextToken().toUpperCase());
+    final Long targetAddress=Long.parseLong(edgeTokenizer.nextToken(),16);
+    final ReilEdge reilEdge=new ReilEdge(blocks.get(sourceAddress),blocks.get(targetAddress),type);
+    ReilBlock.link(blocks.get(sourceAddress),blocks.get(targetAddress),reilEdge);
+  }
+  m_graph1=new ReilGraph(Lists.newArrayList(blocks.values()),reilEdges);
+}

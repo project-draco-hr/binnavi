@@ -1,0 +1,14 @@
+{
+  if ((col != NAME_COLUMN) && (col != HOST_COLUMN) && (col != PORT_COLUMN)) {
+    throw new IllegalStateException("IE01164: Column can not be edited");
+  }
+  if (col == NAME_COLUMN) {
+    setName(m_database.getContent().getDebuggerTemplateManager().getDebugger(row),(String)value);
+  }
+ else   if (col == HOST_COLUMN) {
+    setHost(m_database.getContent().getDebuggerTemplateManager().getDebugger(row),(String)value);
+  }
+ else   if (col == PORT_COLUMN) {
+    setPort(m_database.getContent().getDebuggerTemplateManager().getDebugger(row),value.toString());
+  }
+}

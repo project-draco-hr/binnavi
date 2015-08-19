@@ -1,0 +1,18 @@
+{
+  final BreakpointManager manager=getDebugger().getBreakpointManager();
+  final Set<BreakpointAddress> addressesToRemove=new HashSet<>();
+  final Set<BreakpointAddress> addressesToInvalidate=new HashSet<>();
+  for (  final Pair<RelocatedAddress,Integer> resultPair : reply.getAddresses()) {
+    if (resultPair.second() == 0) {
+      final BreakpointAddress address=DebuggerHelpers.getBreakpointAddress(getDebugger(),resultPair.first());
+      if (manager.getBreakpointStatus(address,BreakpointType.REGULAR) == BreakpointStatus.BREAKPOINT_DELETING) {
+        addressesToRemove.add(address);
+      }
+    }
+ else {
+      addressesToInvalidate.add(DebuggerHelpers.getBreakpointAddress(getDebugger(),resultPair.first()));
+    }
+  }
+  manager.removeBreakpointsPassive(BreakpointType.REGULAR,addressesToRemove);
+  manager.setBreakpointStatus(addressesToInvalidate,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_INVALID);
+}

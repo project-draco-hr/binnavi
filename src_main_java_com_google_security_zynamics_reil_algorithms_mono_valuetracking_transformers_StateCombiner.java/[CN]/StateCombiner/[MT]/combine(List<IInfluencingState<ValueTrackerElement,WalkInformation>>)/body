@@ -1,0 +1,28 @@
+{
+  if (states.size() == 2) {
+    final ValueTrackerElement state1=states.get(0).getElement();
+    final ValueTrackerElement state2=states.get(1).getElement();
+    if (state1.equals(state2)) {
+      return state1.clone();
+    }
+ else {
+      final ValueTrackerElement result=combine(state1,state2);
+      if (result.getStates().size() < state1.getStates().size()) {
+        System.out.println(state1);
+        System.out.println(state2);
+        System.out.println(result);
+        throw new IllegalStateException();
+      }
+      if (result.getStates().size() < state2.getStates().size()) {
+        System.out.println(state1);
+        System.out.println(state2);
+        System.out.println(result);
+        throw new IllegalStateException();
+      }
+      return result;
+    }
+  }
+ else {
+    throw new IllegalStateException("Not yet implemented");
+  }
+}

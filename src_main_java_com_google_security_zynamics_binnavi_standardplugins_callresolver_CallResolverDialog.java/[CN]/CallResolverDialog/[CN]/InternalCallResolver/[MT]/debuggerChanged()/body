@@ -1,0 +1,4 @@
+{
+  appendOutput("Error: Target debugger changed. Resetting.");
+  updateGui();
+}

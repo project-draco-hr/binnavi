@@ -1,0 +1,9 @@
+{
+  final INaviGroupNode group=node.getRawNode().getParentGroup();
+  if (group != null) {
+    group.removeElement(node.getRawNode());
+    if (group.getParentGroup() != null) {
+      group.getParentGroup().addElement(node.getRawNode());
+    }
+  }
+}

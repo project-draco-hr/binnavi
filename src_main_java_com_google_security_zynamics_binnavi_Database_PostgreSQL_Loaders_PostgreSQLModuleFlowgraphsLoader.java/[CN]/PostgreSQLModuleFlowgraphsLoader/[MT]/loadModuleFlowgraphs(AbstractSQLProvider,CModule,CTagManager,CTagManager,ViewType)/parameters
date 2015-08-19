@@ -1,0 +1,5 @@
+AbstractSQLProvider provider
+CModule module
+CTagManager viewTagManager
+CTagManager nodeTagManager
+ViewType viewType

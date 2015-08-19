@@ -1,0 +1,5 @@
+{
+  mockDebugger.connect();
+  breakpointManager.addBreakpoints(BreakpointType.ECHO,CommonTestObjects.BP_ADDRESS_456_SET);
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.ECHO));
+}

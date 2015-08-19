@@ -1,0 +1,7 @@
+{
+  try {
+    setName(name,false);
+  }
+ catch (  CouldntSaveDataException e) {
+  }
+}

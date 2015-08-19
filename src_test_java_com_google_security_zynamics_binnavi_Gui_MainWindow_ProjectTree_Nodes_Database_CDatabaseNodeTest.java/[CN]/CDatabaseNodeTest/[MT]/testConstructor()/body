@@ -1,0 +1,5 @@
+{
+  final CDatabaseNode node=new CDatabaseNode(m_tree,new DefaultMutableTreeNode(),m_database);
+  assertEquals(m_database,node.getObject());
+  assertNotNull(node.getComponent());
+}

@@ -1,0 +1,14 @@
+{
+  final INaviView currentStoredView=m_customViews.get(m_customViews.indexOf(view));
+  m_customViews.remove(currentStoredView);
+  viewIdView.remove(view.getConfiguration().getId());
+  currentStoredView.removeListener(m_viewListener);
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.deletedView(m_module,currentStoredView);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

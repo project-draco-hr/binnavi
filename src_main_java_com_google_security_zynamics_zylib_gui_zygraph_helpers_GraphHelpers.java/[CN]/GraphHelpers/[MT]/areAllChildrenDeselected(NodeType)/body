@@ -1,0 +1,4 @@
+{
+  final INodeFilter<NodeType> filter=StandardFilters.getSelectedFilter();
+  return GraphAlgorithms.collectChildren(node,filter).size() == 0;
+}

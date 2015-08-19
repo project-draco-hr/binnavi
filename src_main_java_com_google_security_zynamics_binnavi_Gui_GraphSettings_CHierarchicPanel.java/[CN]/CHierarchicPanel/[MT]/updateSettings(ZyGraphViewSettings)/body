@@ -1,0 +1,10 @@
+{
+  final boolean needsLayouting=settings.getLayoutSettings().getHierarchicalSettings().getMinimumLayerDistance() != Integer.valueOf(m_tfHierarchicMinLayerDistance.getText()) || settings.getLayoutSettings().getHierarchicalSettings().getMinimumNodeDistance() != Integer.valueOf(m_tfHierarchicMinNodeDistance.getText()) || settings.getLayoutSettings().getHierarchicalSettings().getMinimumEdgeDistance() != Integer.valueOf(m_tfHierarchicMinEdgeDistance.getText()) || settings.getLayoutSettings().getHierarchicalSettings().getMinimumNodeEdgeDistance() != Integer.valueOf(m_tfHierarchicMinNodeEdgeDistance.getText()) || settings.getLayoutSettings().getHierarchicalSettings().getOrientation() != HierarchicOrientation.parseInt(m_cbHierarchicOrientation.getSelectedIndex()) || settings.getLayoutSettings().getHierarchicalSettings().getStyle() != HierarchicStyle.parseInt(m_cbHierarchicEdgeRoutingStyle.getSelectedIndex());
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumLayerDistance(Integer.valueOf(m_tfHierarchicMinLayerDistance.getText()));
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumNodeDistance(Integer.valueOf(m_tfHierarchicMinNodeDistance.getText()));
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumEdgeDistance(Integer.valueOf(m_tfHierarchicMinEdgeDistance.getText()));
+  settings.getLayoutSettings().getHierarchicalSettings().setMinimumNodeEdgeDistance(Integer.valueOf(m_tfHierarchicMinNodeEdgeDistance.getText()));
+  settings.getLayoutSettings().getHierarchicalSettings().setOrientation(HierarchicOrientation.parseInt(m_cbHierarchicOrientation.getSelectedIndex()));
+  settings.getLayoutSettings().getHierarchicalSettings().setStyle(HierarchicStyle.parseInt(m_cbHierarchicEdgeRoutingStyle.getSelectedIndex()));
+  return needsLayouting;
+}

@@ -1,0 +1,13 @@
+{
+  final CFunction function1=MockCreator.createFunction(m_module,m_sql);
+  @SuppressWarnings("unused") final CFunction function2=MockCreator.createFunction(m_module,m_sql);
+  final CFunction function3=MockCreator.createFunction(m_module,m_sql);
+  final CFunctionNode functionNode1=m_view.getContent().createFunctionNode(function1);
+  final CFunctionNode functionNode2=m_view.getContent().createFunctionNode(m_function);
+  final CFunctionNode functionNode3=m_view.getContent().createFunctionNode(function3);
+  m_view.getContent().createEdge(functionNode1,functionNode2,EdgeType.JUMP_UNCONDITIONAL);
+  m_view.getContent().createEdge(functionNode2,functionNode3,EdgeType.JUMP_UNCONDITIONAL);
+  Iterables.get(m_function.getBasicBlocks().get(0).getInstructions(),0).getOperands().get(0).getRootNode().addReference(new CReference(function1.getAddress(),ReferenceType.UNCONDITIONAL));
+  CInliningHelper.inlineFunctionNode(m_view,functionNode2);
+  assertEquals(2 + 5,m_view.getNodeCount());
+}

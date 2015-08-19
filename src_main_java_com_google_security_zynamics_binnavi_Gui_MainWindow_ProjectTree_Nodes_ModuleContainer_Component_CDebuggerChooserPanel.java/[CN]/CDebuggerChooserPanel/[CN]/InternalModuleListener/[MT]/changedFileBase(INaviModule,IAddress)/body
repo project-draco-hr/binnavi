@@ -1,0 +1,9 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      m_fileBaseAddr.setText(fileBase.toHexString());
+      updateSaveFields();
+    }
+  }
+.invokeLater();
+}

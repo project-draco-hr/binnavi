@@ -1,0 +1,8 @@
+{
+  m_node.addListener(m_internalViewNodeListener);
+  m_node.addGroupListener(m_internalGroupNodeListener);
+  final Iterator<CTag> it=m_node.getTagsIterator();
+  while (it.hasNext()) {
+    it.next().addListener(m_listener);
+  }
+}

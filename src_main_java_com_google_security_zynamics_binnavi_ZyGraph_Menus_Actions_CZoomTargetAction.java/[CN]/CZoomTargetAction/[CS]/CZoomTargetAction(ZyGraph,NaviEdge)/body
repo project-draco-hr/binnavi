@@ -1,0 +1,7 @@
+{
+  super("Zoom to Target Node");
+  Preconditions.checkNotNull(graph,"IE00965: Graph argument can't be null");
+  Preconditions.checkNotNull(edge,"IE00966: Edge argument can't be null");
+  m_graph=graph;
+  m_edge=edge;
+}

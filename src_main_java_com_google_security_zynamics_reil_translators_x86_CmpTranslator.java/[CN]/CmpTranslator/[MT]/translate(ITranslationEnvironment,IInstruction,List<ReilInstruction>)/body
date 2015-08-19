@@ -1,0 +1,19 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmp");
+  Preconditions.checkArgument(instruction.getOperands().size() == 2,"Error: Argument instruction is not a cmp instruction (invalid number of operands)");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree targetOperand=operands.get(0);
+  final IOperandTree sourceOperand=operands.get(1);
+  final TranslationResult firstResult=Helpers.translateOperand(environment,offset,targetOperand,true);
+  instructions.addAll(firstResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult secondResult=Helpers.translateOperand(environment,offset,sourceOperand,true);
+  instructions.addAll(secondResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final String firstRegister=firstResult.getRegister();
+  final String secondRegister=secondResult.getRegister();
+  final OperandSize size=firstResult.getSize();
+  Helpers.generateSub(environment,offset,size,firstRegister,secondRegister,instructions);
+}

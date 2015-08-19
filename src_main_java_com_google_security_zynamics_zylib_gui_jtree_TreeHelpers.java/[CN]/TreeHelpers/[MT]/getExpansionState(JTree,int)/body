@@ -1,0 +1,18 @@
+{
+  final TreePath rowPath=tree.getPathForRow(row);
+  final StringBuffer buf=new StringBuffer();
+  final int rowCount=tree.getRowCount();
+  for (int i=row; i < rowCount; i++) {
+    final TreePath path=tree.getPathForRow(i);
+    if ((i == row) || isDescendant(path,rowPath)) {
+      if (tree.isExpanded(path)) {
+        buf.append(",");
+        buf.append(String.valueOf(i - row));
+      }
+    }
+ else {
+      break;
+    }
+  }
+  return buf.toString();
+}

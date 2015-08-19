@@ -1,0 +1,10 @@
+{
+  Long mask=0L;
+  for (int i=0; i < 8; i++) {
+    mask=(mask << 4);
+    if (((crm >> (7 - i)) & 1) == 1) {
+      mask|=15;
+    }
+  }
+  return mask.toString();
+}

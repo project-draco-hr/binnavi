@@ -1,0 +1,35 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  new Processor(){
+    @Override protected int getResultShiftDelta(){
+      return -1;
+    }
+    @Override protected String[] process(    final long offset,    final String[] firstTwo,    final String[] secondTwo){
+      final String diff1=environment.getNextVariableString();
+      final String diff2=environment.getNextVariableString();
+      final String trueDiff1=environment.getNextVariableString();
+      final String trueDiff2=environment.getNextVariableString();
+      long baseOffset=offset;
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[0],dw,firstTwo[0],16);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[1],dw,firstTwo[1],16);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[0],dw,secondTwo[0],16);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[1],dw,secondTwo[1],16);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.signedSub(baseOffset,environment,instruction,instructions,secondTwo[0],firstTwo[0],diff1,trueDiff1);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.signedSub(baseOffset,environment,instruction,instructions,secondTwo[1],firstTwo[1],diff2,trueDiff2);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      return new String[]{diff1,diff2};
+    }
+  }
+.generate(environment,baseOffset,16,sourceRegister1,sourceRegister2,targetRegister,instructions);
+}

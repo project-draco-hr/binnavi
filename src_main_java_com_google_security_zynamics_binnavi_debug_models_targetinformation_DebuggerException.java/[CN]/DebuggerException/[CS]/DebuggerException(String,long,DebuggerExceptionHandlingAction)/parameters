@@ -1,0 +1,3 @@
+String exceptionName
+long exceptionCode
+DebuggerExceptionHandlingAction exceptionAction

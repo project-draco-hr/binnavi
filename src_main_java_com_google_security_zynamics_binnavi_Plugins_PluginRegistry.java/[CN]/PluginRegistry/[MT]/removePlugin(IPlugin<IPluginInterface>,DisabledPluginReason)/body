@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(plugin,"IE00840: Plugin can't be null");
+  Preconditions.checkNotNull(reason,"IE00841: Reason can't be null");
+  if (!plugins.remove(plugin)) {
+    throw new IllegalArgumentException("IE00842: Plugin is not managed by the registry");
+  }
+  disabledPlugins.add(new Pair<IPlugin<IPluginInterface>,DisabledPluginReason>(plugin,reason));
+}

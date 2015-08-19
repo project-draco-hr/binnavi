@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02594: function argument can not be null");
+  return editComment(new TextNodeCommentingStrategy(node),oldComment,commentText);
+}

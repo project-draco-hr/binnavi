@@ -1,0 +1,27 @@
+{
+  Preconditions.checkNotNull(editedComment,"IE02543: comment argument can not be null");
+  Preconditions.checkNotNull(commentText,"IE02544: commentText argument can not be null");
+  Preconditions.checkArgument(CUserManager.get(provider).isOwner(editedComment),"Error: a comment can only be edited by its owner.");
+  final List<IComment> currentComments=strategy.getComments();
+  if (editedComment.getComment().equals(commentText)) {
+    return editedComment;
+  }
+  final int index=currentComments.indexOf(editedComment);
+  if (index == -1) {
+    throw new IllegalArgumentException("Error: Can not edit comment as there is no comment to edit.");
+  }
+  final IComment newComment=new CComment(editedComment.getId(),editedComment.getUser(),editedComment.getParent(),commentText);
+  strategy.editComment(newComment.getId(),newComment.getUser().getUserId(),commentText);
+  currentComments.set(index,newComment);
+  strategy.saveComments(currentComments);
+  commentIdToComment.put(editedComment.getId(),newComment);
+  for (  final CommentListener listener : listeners) {
+    try {
+      strategy.sendEditedCommentNotification(listener,newComment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return newComment;
+}

@@ -1,0 +1,19 @@
+{
+  if (reply.success()) {
+    SwingUtilities.invokeLater(new Thread(){
+      @Override public void run(){
+        final CRemoteFileBrowserLoader loader=new CRemoteFileBrowserLoader(m_parent,m_debugger);
+        if (!loader.load()) {
+          try {
+            m_debugger.cancelTargetSelection();
+            CDebugEventNotifier.this.stop();
+          }
+ catch (          final DebugExceptionWrapper e) {
+            CUtilityFunctions.logException(e);
+          }
+        }
+      }
+    }
+);
+  }
+}

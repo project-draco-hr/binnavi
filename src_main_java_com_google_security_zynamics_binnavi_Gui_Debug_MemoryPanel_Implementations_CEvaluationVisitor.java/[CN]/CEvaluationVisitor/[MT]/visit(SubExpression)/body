@@ -1,0 +1,9 @@
+{
+  final MemoryExpressionElement child=expression.getChild();
+  child.visit(this);
+  final BigInteger childValue=getValue(child);
+  if (childValue == null) {
+    return;
+  }
+  m_partialEvaluationMap.put(expression,childValue);
+}

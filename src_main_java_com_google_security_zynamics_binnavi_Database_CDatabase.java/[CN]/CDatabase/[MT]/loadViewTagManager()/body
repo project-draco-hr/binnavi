@@ -1,0 +1,11 @@
+{
+  try {
+    return provider.loadTagManager(TagType.VIEW_TAG);
+  }
+ catch (  final CouldntLoadDataException e) {
+    CUtilityFunctions.logException(e);
+    final CTag root=new CTag(0,"Root View Tag","",TagType.VIEW_TAG,provider);
+    final Tree<CTag> tree=new Tree<CTag>(new TreeNode<CTag>(root));
+    return new CTagManager(tree,TagType.VIEW_TAG,provider);
+  }
+}

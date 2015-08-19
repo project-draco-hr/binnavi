@@ -1,0 +1,9 @@
+{
+  if (baseTypes.getSelectedIndex() != -1) {
+    final TypeListModel model=baseTypes.getModel();
+    return (BaseType)model.getSelectedItem();
+  }
+ else {
+    return null;
+  }
+}

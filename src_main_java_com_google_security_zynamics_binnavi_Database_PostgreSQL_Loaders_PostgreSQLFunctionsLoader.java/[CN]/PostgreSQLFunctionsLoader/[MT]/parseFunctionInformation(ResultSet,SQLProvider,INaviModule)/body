@@ -1,0 +1,53 @@
+{
+  final List<INaviFunction> functions=Lists.newArrayList();
+  final Map<Integer,INaviFunction> commentIdToFunction=new HashMap<Integer,INaviFunction>();
+  try {
+    while (resultSet.next()) {
+      final IAddress address=PostgreSQLHelpers.loadAddress(resultSet,"address");
+      final String name=resultSet.getString("name");
+      final String originalName=resultSet.getString("original_name");
+      Integer globalCommentId=resultSet.getInt("global_comment");
+      if (resultSet.wasNull()) {
+        globalCommentId=null;
+      }
+      final String description=resultSet.getString("description");
+      final FunctionType type=FunctionType.valueOf(resultSet.getString("type").toUpperCase());
+      final String parentModuleName=resultSet.getString("parent_module_name");
+      final int parentModuleId=resultSet.getInt("parent_module_id");
+      final IAddress parentModuleFunction=resultSet.wasNull() ? null : PostgreSQLHelpers.loadAddress(resultSet,"parent_module_function");
+      final Integer nodeCount=resultSet.getInt("bbcount");
+      final Integer edgeCount=resultSet.getInt("edgeCount");
+      final Integer indegree=resultSet.getInt("incount");
+      final Integer outdegree=resultSet.getInt("outcount");
+      Integer stackFrameId=resultSet.getInt("stack_frame");
+      if (resultSet.wasNull()) {
+        stackFrameId=null;
+      }
+      Integer prototypeId=resultSet.getInt("prototype");
+      if (resultSet.wasNull()) {
+        prototypeId=null;
+      }
+      final INaviView view=ViewManager.get(provider).getView(resultSet.getInt("view_id"));
+      final BaseType stackFrame=stackFrameId == null ? null : module.getTypeManager().getBaseType(stackFrameId);
+      if (stackFrameId != null) {
+        module.getTypeManager().setStackFrame(stackFrame);
+      }
+      final BaseType prototype=prototypeId == null ? null : module.getTypeManager().getBaseType(prototypeId);
+      final CFunction function=new CFunction(module,view,address,name,originalName,description,indegree,outdegree,nodeCount,edgeCount,type,parentModuleName,parentModuleId,parentModuleFunction,stackFrame,prototype,provider);
+      if (globalCommentId != null) {
+        commentIdToFunction.put(globalCommentId,function);
+      }
+      functions.add(function);
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  if (!commentIdToFunction.isEmpty()) {
+    final HashMap<Integer,ArrayList<IComment>> commentIdToComments=PostgreSQLCommentFunctions.loadMultipleCommentsById(provider,commentIdToFunction.keySet());
+    for (    final Entry<Integer,ArrayList<IComment>> commentIdToComment : commentIdToComments.entrySet()) {
+      CommentManager.get(provider).initializeGlobalFunctionComment(commentIdToFunction.get(commentIdToComment.getKey()),commentIdToComment.getValue());
+    }
+  }
+  return functions;
+}

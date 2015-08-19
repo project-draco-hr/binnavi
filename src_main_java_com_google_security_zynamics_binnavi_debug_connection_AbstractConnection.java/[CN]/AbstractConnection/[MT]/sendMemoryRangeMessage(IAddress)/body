@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Memory Range\" message to the debug client");
+  return sendPacket(new MemoryRangeCommand(getMessageId(),address));
+}

@@ -1,0 +1,5 @@
+{
+  super(name);
+  this.hexView=Preconditions.checkNotNull(hexView,"IE01427: Hex view argument can't be null");
+  m_grouping=grouping;
+}

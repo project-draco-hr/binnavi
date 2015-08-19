@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  final INaviModule realModule=module == null ? null : module.getNative();
+  final BreakpointAddress breakpointAddress=new BreakpointAddress(realModule,new UnrelocatedAddress(new CAddress(address.toLong())));
+  final Set<BreakpointAddress> breakpoints=Sets.newHashSet(breakpointAddress);
+  breakpointManager.addBreakpoints(BreakpointType.ECHO,breakpoints);
+  return echoBreakpointMap.get(breakpointManager.getBreakpoint(BreakpointType.ECHO,breakpointAddress));
+}

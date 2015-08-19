@@ -1,0 +1,4 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  manager.setCurrentActiveUser(null);
+}

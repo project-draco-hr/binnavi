@@ -1,0 +1,3 @@
+{
+  return "In this field you can edit the name of the debugger. This is useful to identify individual debuggers if you have created multiple debuggers.";
+}

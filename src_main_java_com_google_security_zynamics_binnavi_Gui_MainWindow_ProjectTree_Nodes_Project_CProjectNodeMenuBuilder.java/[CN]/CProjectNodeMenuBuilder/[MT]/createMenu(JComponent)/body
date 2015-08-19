@@ -1,0 +1,27 @@
+{
+  if ((m_projects.length == 1) && (m_addAddressSpaceAction == null)) {
+    final INaviProject singleProject=m_projects[0];
+    m_addAddressSpaceAction=CActionProxy.proxy(new CAddAddressSpaceAction(getProjectTree(),singleProject,getSelectionUpdater()));
+    updateActions(singleProject);
+  }
+  final boolean isSingleSelection=m_projects.length == 1;
+  if (canOpen()) {
+    menu.add(new JMenuItem(m_loadProjectAction));
+    menu.add(new JSeparator());
+  }
+  if (isSingleSelection) {
+    menu.add(new JMenuItem(m_searchViewAction));
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(m_addAddressSpaceAction));
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(m_forwardAction));
+    menu.add(new JSeparator());
+  }
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteProjectAction(getParent(),m_database,m_projects,getParentUpdater()))));
+  if (m_table != null) {
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(CActionProxy.proxy(new CSearchTableAction(getParent(),m_table))));
+    menu.add(new JMenuItem(CActionProxy.proxy(new CopySelectionAction(m_table))));
+  }
+  addPluginMenus(menu);
+}

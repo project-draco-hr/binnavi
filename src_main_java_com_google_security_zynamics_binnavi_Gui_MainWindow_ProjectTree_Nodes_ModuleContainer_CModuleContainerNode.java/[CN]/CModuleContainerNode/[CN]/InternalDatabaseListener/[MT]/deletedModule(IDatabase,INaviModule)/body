@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < getChildCount(); i++) {
+    final CModuleNode node=(CModuleNode)getChildAt(i);
+    if (node.getObject() == module) {
+      getTreeModel().removeNodeFromParent(node);
+      node.dispose();
+      break;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (size == OperandSize.QWORD) {
+    return "18446744073709551616";
+  }
+ else {
+    return String.valueOf(Helpers.getCarryMask(size));
+  }
+}

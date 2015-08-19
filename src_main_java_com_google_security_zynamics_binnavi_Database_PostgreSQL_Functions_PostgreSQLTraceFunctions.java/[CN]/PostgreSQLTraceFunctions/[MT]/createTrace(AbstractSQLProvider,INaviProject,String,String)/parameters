@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviProject project
+String name
+String description

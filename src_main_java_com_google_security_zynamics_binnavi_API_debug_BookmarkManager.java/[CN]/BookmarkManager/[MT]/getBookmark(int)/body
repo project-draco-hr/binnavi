@@ -1,0 +1,4 @@
+{
+  final CBookmark bookmark=m_bookmarkManager.getBookmark(index);
+  return ObjectFinders.getObject(bookmark,m_bookmarks);
+}

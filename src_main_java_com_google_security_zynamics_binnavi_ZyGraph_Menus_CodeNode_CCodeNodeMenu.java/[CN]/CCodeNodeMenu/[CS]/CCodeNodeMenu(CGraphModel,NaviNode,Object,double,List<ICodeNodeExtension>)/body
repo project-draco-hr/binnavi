@@ -1,0 +1,35 @@
+{
+  Preconditions.checkNotNull(model,"IE02368: model arguement can not be null");
+  Preconditions.checkNotNull(extensions,"IE02369: extensions argument can not be null");
+  Preconditions.checkNotNull(node,"IE00967: Node argument can't be null");
+  final int line=node.positionToRow(y);
+  final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+  final INaviInstruction instruction=(line != -1) ? CCodeNodeHelpers.lineToInstruction(codeNode,line) : null;
+  CFollowInDumpMenu.addFollowInDumpMenu(this,model,node,clickedObject,y);
+  if (line == 0) {
+    addRenameFunctionMenu(codeNode,model);
+  }
+  if (clickedObject instanceof COperandTreeNode) {
+    addOperandTreeNodeMenu(model,(COperandTreeNode)clickedObject,node,instruction,extensions);
+  }
+  CMenuBuilder.addCommentMenu(this,model,node.getRawNode());
+  CMenuBuilder.addSelectionMenus(this,model.getGraph(),node);
+  if (node.getRawNode().getParentGroup() != null) {
+    add(new CRemoveFromGroupAction(node));
+    addSeparator();
+  }
+  addOpenOriginalFunctionMenu(model,node);
+  final boolean allowUninlining=canUninline((INaviCodeNode)node.getRawNode());
+  final List<Pair<INaviInstruction,INaviFunction>> functions=CReferenceFinder.getCodeReferenceList((INaviCodeNode)node.getRawNode());
+  add(new CSubFunctionMenu(model,functions,allowUninlining));
+  add(new CInliningMenu(model,node,functions,allowUninlining));
+  addSeparator();
+  CMenuBuilder.addTaggingMenu(this,model,node);
+  add(new CClipboardMenu(node,line));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionShowReilCodeNode(model.getParent(),(INaviCodeNode)node.getRawNode())));
+  if (instruction != null) {
+    addSeparator();
+    add(new CInstructionMenu(model,node,instruction,extensions));
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final Set<BreakpointAddress> adds=new HashSet<BreakpointAddress>();
+  for (  final TracePoint address : addresses) {
+    if (address.getModule() == null) {
+      adds.add(new BreakpointAddress(null,new UnrelocatedAddress(new CAddress(address.getAddress().toLong()))));
+    }
+ else {
+      adds.add(new BreakpointAddress(address.getModule().getNative(),new UnrelocatedAddress(new CAddress(address.getAddress().toLong()))));
+    }
+  }
+  return adds;
+}

@@ -1,0 +1,17 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sltiu");
+  final Triple<IOperandTree,IOperandTree,IOperandTree> operands=OperandLoader.loadDuplicateFirst(instruction);
+  final String targetRegister=operands.first().getRootNode().getChildren().get(0).getValue();
+  final String sourceRegister1=operands.second().getRootNode().getChildren().get(0).getValue();
+  final String sourceRegister2=operands.third().getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize qw=OperandSize.QWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String subtractedValue=environment.getNextVariableString();
+  final String maskedCarry=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(offset++,dw,sourceRegister1,dw,sourceRegister2,qw,subtractedValue));
+  instructions.add(ReilHelpers.createAnd(offset++,qw,subtractedValue,qw,String.valueOf(0x100000000L),qw,maskedCarry));
+  instructions.add(ReilHelpers.createBisz(offset++,qw,maskedCarry,dw,targetRegister));
+  instructions.add(ReilHelpers.createBisz(offset++,dw,targetRegister,dw,targetRegister));
+}

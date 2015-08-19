@@ -1,0 +1,14 @@
+{
+  try {
+    m_view.getConfiguration().setName(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_view.getConfiguration().setName("New Name");
+  assertEquals("changedName/changedModificationDate/",m_listener.eventList);
+  assertEquals("New Name",m_view.getName());
+  m_view.getConfiguration().setName("New Name");
+  assertEquals("changedName/changedModificationDate/",m_listener.eventList);
+  assertEquals("New Name",m_view.getName());
+}

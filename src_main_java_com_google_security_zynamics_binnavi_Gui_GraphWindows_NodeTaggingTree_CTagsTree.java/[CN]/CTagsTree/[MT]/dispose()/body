@@ -1,0 +1,6 @@
+{
+  m_rootNode.dispose();
+  removeMouseListener(m_mouseListener);
+  m_graph.removeListener(m_graphSelectionListener);
+  m_graph.removeListener(m_graphVisibilityListener);
+}

@@ -1,0 +1,4 @@
+{
+  super.setCenterX(x);
+  notifyLocationChanged(x,y);
+}

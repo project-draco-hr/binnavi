@@ -1,0 +1,37 @@
+{
+  Preconditions.checkNotNull(connection,"Error: connection argument can not be null");
+  Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  final String query=" SELECT * FROM load_type_substitutions(?) ";
+  final List<RawTypeSubstitution> rawSubstitutions=new ArrayList<RawTypeSubstitution>();
+  try {
+    final PreparedStatement statement=connection.prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    final ResultSet results=statement.executeQuery();
+    try {
+      while (results.next()) {
+        final long address=results.getLong("address");
+        final int position=results.getInt("position");
+        final int expressionId=results.getInt("expression_id");
+        final int baseTypeId=results.getInt("base_type_id");
+        final Array arr=results.getArray("path");
+        Integer[] path=(Integer[])arr.getArray();
+        if (results.wasNull()) {
+          path=new Integer[0];
+        }
+        Integer offset=results.getInt("offset");
+        if (results.wasNull()) {
+          offset=null;
+        }
+        rawSubstitutions.add(new RawTypeSubstitution(new CAddress(address),position,expressionId,baseTypeId,path,offset));
+      }
+    }
+  finally {
+      results.close();
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return rawSubstitutions;
+}

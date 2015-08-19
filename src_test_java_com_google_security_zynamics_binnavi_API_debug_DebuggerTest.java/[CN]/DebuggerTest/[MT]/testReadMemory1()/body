@@ -1,0 +1,3 @@
+{
+  debugger.readMemory(new Address(0),0x100);
+}

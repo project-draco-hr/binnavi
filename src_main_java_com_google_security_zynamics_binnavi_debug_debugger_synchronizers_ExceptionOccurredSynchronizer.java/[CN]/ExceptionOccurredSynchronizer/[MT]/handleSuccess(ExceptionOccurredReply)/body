@@ -1,0 +1,13 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  try {
+    final TargetProcessThread thread=processManager.getThread(reply.getThreadId());
+    processManager.setActiveThread(thread);
+    thread.setCurrentAddress(reply.getAddress());
+    processManager.addExceptionEvent(new DebuggerException(reply.getExceptionName(),reply.getExceptionCode(),DebuggerExceptionHandlingAction.Continue));
+    refreshRegisters();
+  }
+ catch (  final MaybeNullException exception) {
+    NaviLogger.severe("Exception occured in unknown thread %d",reply.getThreadId());
+  }
+}

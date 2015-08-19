@@ -1,0 +1,17 @@
+{
+  final int numberOfTypeInstances=typeInstanceContainer.getTypeInstances().size();
+  final TypeInstance typeInstance1=typeInstanceContainer.createInstance("TYPEINSTANCE1",null,baseType,section,0);
+  Assert.assertEquals(numberOfTypeInstances + 1,typeInstanceContainer.getTypeInstances().size());
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances().contains(typeInstance1));
+  Assert.assertEquals(typeInstance1,typeInstanceContainer.getTypeInstance(typeInstance1.getAddress()));
+  final TypeInstance typeInstance2=typeInstanceContainer.createInstance("TYPEINSTANCE2",null,baseType,section,1);
+  Assert.assertEquals(numberOfTypeInstances + 2,typeInstanceContainer.getTypeInstances().size());
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances().contains(typeInstance2));
+  Assert.assertEquals(typeInstance2,typeInstanceContainer.getTypeInstance(typeInstance2.getAddress()));
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances(section).contains(typeInstance1));
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances(section).contains(typeInstance2));
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances().containsAll(Lists.newArrayList(typeInstance1,typeInstance2)));
+  expectedEvents.addedTypeInstance(typeInstance1);
+  expectedEvents.addedTypeInstance(typeInstance2);
+  Assert.assertEquals(expectedEvents,listener);
+}

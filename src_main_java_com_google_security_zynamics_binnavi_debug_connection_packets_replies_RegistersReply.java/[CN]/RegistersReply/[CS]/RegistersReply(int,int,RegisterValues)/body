@@ -1,0 +1,12 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(values,"IE01070: Register values argument can not be null");
+  }
+ else {
+    if (values != null) {
+      throw new IllegalArgumentException("IE01071: Register values argument must be null");
+    }
+  }
+  this.values=values;
+}

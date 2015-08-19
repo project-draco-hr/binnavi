@@ -1,0 +1,11 @@
+{
+  new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  MockPGNotification notification=new MockPGNotification("comment_changes","bn_group_nodes UPDATE 8888 null");
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processGroupNodeCommentNotification(notification,provider);
+  assertNotNull(result);
+  final GroupNodeCommentNotificationContainer container=(GroupNodeCommentNotificationContainer)result;
+  final INaviGroupNode groupNode=container.getNode();
+  assertEquals(8888,groupNode.getId());
+  assertEquals(CommentOperation.DELETE,container.getOperation());
+  assertNull(container.getCommentId());
+}

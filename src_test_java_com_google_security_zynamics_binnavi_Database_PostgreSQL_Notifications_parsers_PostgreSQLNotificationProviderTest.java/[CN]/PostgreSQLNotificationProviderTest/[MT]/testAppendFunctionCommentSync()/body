@@ -1,0 +1,16 @@
+{
+  final List<IComment> oneBefore=databaseOneFunction.getGlobalComment() == null ? new ArrayList<IComment>() : databaseOneFunction.getGlobalComment();
+  final List<IComment> twoBefore=databaseTwoFunction.getGlobalComment() == null ? new ArrayList<IComment>() : databaseTwoFunction.getGlobalComment();
+  assertEquals(oneBefore,twoBefore);
+  databaseOneFunction.appendGlobalComment(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL FUNCTION COMMENT) ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneFunction.getGlobalComment();
+  final List<IComment> twoAfter=databaseTwoFunction.getGlobalComment();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(oneBefore.size() + 1,oneAfter.size());
+  assertEquals(twoBefore.size() + 1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+}

@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  setFocusable(true);
+  commentsModel=new InstructionCommentsDataModel((CCodeNode)codeNode,graphModel,CommentScope.GLOBAL);
+  codeDisplay=new CodeDisplay(commentsModel);
+  add(codeDisplay);
+}

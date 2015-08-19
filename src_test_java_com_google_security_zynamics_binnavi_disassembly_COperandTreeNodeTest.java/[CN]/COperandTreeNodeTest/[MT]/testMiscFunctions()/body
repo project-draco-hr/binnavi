@@ -1,0 +1,23 @@
+{
+  final COperandTreeNode node=new COperandTreeNode(1,1,"value",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  assertNotNull(node);
+  final INaviOperandTreeNodeListener listener=new CNaviOperandTreeNodeListenerAdapter();
+  node.addListener(listener);
+  final IReference reference=new CReference(new CAddress(0x2132321L),ReferenceType.DATA_STRING);
+  node.addReference(reference);
+  assertNotNull(node.getDisplayStyle());
+  assertEquals(1,node.getId());
+  assertNull(node.getOperand());
+  assertEquals("value",node.getValue());
+  node.setDisplayStyle(OperandDisplayStyle.UNSIGNED_HEXADECIMAL);
+  try {
+    node.setDisplayStyle(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  node.setDisplayStyle(OperandDisplayStyle.UNSIGNED_HEXADECIMAL);
+  node.setId(12345678);
+  node.removeListener(listener);
+  node.toString();
+}

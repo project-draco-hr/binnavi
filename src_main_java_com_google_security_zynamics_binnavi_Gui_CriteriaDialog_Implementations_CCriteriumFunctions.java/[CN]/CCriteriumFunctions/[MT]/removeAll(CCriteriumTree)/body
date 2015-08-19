@@ -1,0 +1,4 @@
+{
+  disposeTree(tree.getRoot());
+  tree.clear();
+}

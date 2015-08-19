@@ -1,0 +1,8 @@
+{
+  for (  final INaviModule naviModule : moduleToBreakpoint.keySet()) {
+    if (naviModule.getConfiguration().getName().equalsIgnoreCase(module.getName())) {
+      return moduleToBreakpoint.get(naviModule);
+    }
+  }
+  return new HashSet<Breakpoint>();
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLModuleCreator.connectInstructionsToCodeNodes(getProvider().getConnection(),rawModuleId,moduleId);
+}

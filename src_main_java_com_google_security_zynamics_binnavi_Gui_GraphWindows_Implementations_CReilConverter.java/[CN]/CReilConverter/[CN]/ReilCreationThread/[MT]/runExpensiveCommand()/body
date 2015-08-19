@@ -1,0 +1,4 @@
+{
+  m_reilView=CReilViewCreator.create(m_module,m_view);
+  m_reilView.getConfiguration().setName(String.format("REIL View of '%s'",m_view.getName()));
+}

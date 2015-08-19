@@ -1,0 +1,2 @@
+BaseType baseType
+List<TypeMember> memberPath

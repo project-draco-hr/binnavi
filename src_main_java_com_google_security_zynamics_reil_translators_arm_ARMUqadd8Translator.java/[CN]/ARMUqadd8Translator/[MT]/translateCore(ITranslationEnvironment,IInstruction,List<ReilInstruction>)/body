@@ -1,0 +1,38 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final String addOperation="ADD";
+  final long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  new Processor(){
+    @Override protected String[] process(    final long offset,    final String[] firstFour,    final String[] secondFour){
+      final String sum1=environment.getNextVariableString();
+      final String sum2=environment.getNextVariableString();
+      final String sum3=environment.getNextVariableString();
+      final String sum4=environment.getNextVariableString();
+      final String sum1Sat=environment.getNextVariableString();
+      final String sum2Sat=environment.getNextVariableString();
+      final String sum3Sat=environment.getNextVariableString();
+      final String sum4Sat=environment.getNextVariableString();
+      long baseOffset=offset;
+      final String usignedDoesSat=environment.getNextVariableString();
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstFour[0],dw,secondFour[0],dw,sum1));
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstFour[1],dw,secondFour[1],dw,sum2));
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstFour[2],dw,secondFour[2],dw,sum3));
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstFour[3],dw,secondFour[3],dw,sum4));
+      Helpers.unsignedSat(baseOffset,environment,instruction,instructions,firstFour[0],secondFour[0],sum1,addOperation,sum1Sat,8,usignedDoesSat);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.unsignedSat(baseOffset,environment,instruction,instructions,firstFour[1],secondFour[1],sum2,addOperation,sum2Sat,8,usignedDoesSat);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.unsignedSat(baseOffset,environment,instruction,instructions,firstFour[2],secondFour[2],sum3,addOperation,sum3Sat,8,usignedDoesSat);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      Helpers.unsignedSat(baseOffset,environment,instruction,instructions,firstFour[3],secondFour[3],sum4,addOperation,sum4Sat,8,usignedDoesSat);
+      baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+      return new String[]{sum1Sat,sum2Sat,sum3Sat,sum4Sat};
+    }
+  }
+.generate(environment,baseOffset,8,sourceRegister1,sourceRegister2,targetRegister,instructions);
+}

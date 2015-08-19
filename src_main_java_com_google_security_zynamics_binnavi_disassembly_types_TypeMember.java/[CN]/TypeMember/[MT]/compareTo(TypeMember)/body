@@ -1,0 +1,15 @@
+{
+  final int offsetComparison=compareOptionalInteger(getBitOffset(),rhs.getBitOffset());
+  if (offsetComparison != 0) {
+    return offsetComparison;
+  }
+  final int numberOfElementsComparison=compareOptionalInteger(getNumberOfElements(),rhs.getNumberOfElements());
+  if (numberOfElementsComparison != 0) {
+    return numberOfElementsComparison;
+  }
+  final int argumentIndexComparison=compareOptionalInteger(getArgumentIndex(),rhs.getArgumentIndex());
+  if (argumentIndexComparison != 0) {
+    return argumentIndexComparison;
+  }
+  return getId() - rhs.getId();
+}

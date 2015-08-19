@@ -1,0 +1,8 @@
+{
+  super(packetId,errorCode);
+  Preconditions.checkNotNull(address,"IE01059: Address argument can not be null");
+  threadId=tid;
+  exceptionCode=code;
+  this.address=address;
+  this.exceptionName=exceptionName;
+}

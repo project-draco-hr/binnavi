@@ -1,0 +1,7 @@
+{
+  m_provider=Preconditions.checkNotNull(provider,"IE01363: Provider can not be null");
+  for (  final IDebugger debugger : provider.getDebuggers()) {
+    addItem(new CDebuggerWrapper(debugger));
+  }
+  provider.addListener(m_internalDebuggerListener);
+}

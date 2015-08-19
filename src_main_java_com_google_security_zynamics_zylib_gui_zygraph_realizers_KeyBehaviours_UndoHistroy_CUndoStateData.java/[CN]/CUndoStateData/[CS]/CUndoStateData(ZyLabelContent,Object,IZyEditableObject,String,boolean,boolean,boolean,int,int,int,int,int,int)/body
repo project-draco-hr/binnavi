@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(labelContent,"Error: Label content can't be null.");
+  Preconditions.checkNotNull(persistentModel,"Error: Persistent model can't be null.");
+  Preconditions.checkNotNull(editableObject,"Error: Editable object cant be null.");
+  Preconditions.checkNotNull(text,"Error: Text can't be null.");
+  m_labelContent=labelContent;
+  m_persistentModel=persistentModel;
+  m_editableObject=editableObject;
+  m_text=text;
+  m_isAboveLineComment=isAboveLineComment;
+  m_isBehindLineComment=isBehindLineComment;
+  m_isLabelComment=isLabelComment;
+  m_caretStartX=caretStartX;
+  m_caretMousePressedX=caretMousePressedX;
+  m_caretMousePressedY=caretMousePressedY;
+  m_caretEndX=caretEndX;
+  m_caretMouseReleasedX=caretMouseReleasedX;
+  m_caretMouseReleasedY=caretMouseReleasedY;
+}

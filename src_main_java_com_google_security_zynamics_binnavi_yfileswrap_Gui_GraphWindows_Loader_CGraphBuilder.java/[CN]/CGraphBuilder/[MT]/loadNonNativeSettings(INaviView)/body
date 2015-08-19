@@ -1,0 +1,10 @@
+{
+  try {
+    return CViewSettingsGenerator.createSettings(view);
+  }
+ catch (  final CouldntLoadDataException exception) {
+    final ConfigManager configFile=ConfigManager.instance();
+    final ZyGraphViewSettings graphSettings=view.getGraphType() == GraphType.CALLGRAPH ? configFile.getDefaultCallGraphSettings() : configFile.getDefaultFlowGraphSettings();
+    return new Pair<Map<String,String>,ZyGraphViewSettings>(new HashMap<String,String>(),graphSettings);
+  }
+}

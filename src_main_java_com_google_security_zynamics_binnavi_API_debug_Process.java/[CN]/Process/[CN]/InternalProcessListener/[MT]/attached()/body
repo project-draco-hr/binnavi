@@ -1,0 +1,10 @@
+{
+  for (  final IProcessListener listener : listeners) {
+    try {
+      listener.attached(Process.this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

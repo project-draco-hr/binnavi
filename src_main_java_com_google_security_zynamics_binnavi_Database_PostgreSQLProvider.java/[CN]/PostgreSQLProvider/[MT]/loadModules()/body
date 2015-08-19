@@ -1,0 +1,7 @@
+{
+  if (getDebuggerManager() == null) {
+    throw new CouldntLoadDataException("Error: Debugger manager must be loaded first");
+  }
+  setModules(PostgreSQLDatabaseFunctions.loadModules(this,getRawModules(),getDebuggerManager()));
+  return new ArrayList<INaviModule>(getModules());
+}

@@ -1,0 +1,12 @@
+{
+  final List<INaviCodeNode> nodelist=new ArrayList<INaviCodeNode>();
+  for (  final INaviViewNode viewnode : view.getGraph().getNodes()) {
+    if (viewnode instanceof INaviCodeNode) {
+      final INaviCodeNode node=(INaviCodeNode)viewnode;
+      if (codeNode.getAddress().equals(node.getAddress()) && !nodelist.contains(node) && (node != codeNode)) {
+        nodelist.add(node);
+      }
+    }
+  }
+  return nodelist;
+}

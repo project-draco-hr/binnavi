@@ -1,0 +1,3 @@
+{
+  PostgreSQLModuleFunctions.assignDebugger(this,module,debugger);
+}

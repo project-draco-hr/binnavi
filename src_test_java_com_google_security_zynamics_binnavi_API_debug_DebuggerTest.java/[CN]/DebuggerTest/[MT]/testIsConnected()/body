@@ -1,0 +1,5 @@
+{
+  assertFalse(debugger.isConnected());
+  debugger.connect();
+  assertTrue(debugger.isConnected());
+}

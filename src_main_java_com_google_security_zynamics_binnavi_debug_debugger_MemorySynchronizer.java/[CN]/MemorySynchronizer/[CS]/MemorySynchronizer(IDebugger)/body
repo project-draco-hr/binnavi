@@ -1,0 +1,6 @@
+{
+  this.debugger=Preconditions.checkNotNull(debugger,"IE00816: Debugger argument can not be null");
+  this.debugger.addListener(debuggerListener);
+  this.debugger.getProcessManager().getMemory().addMemoryListener(memoryListener);
+  memoryLoader=new MemoryLoader(debugger);
+}

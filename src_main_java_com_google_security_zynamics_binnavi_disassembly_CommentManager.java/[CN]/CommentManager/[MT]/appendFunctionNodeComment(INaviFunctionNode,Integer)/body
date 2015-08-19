@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02554: node argument can not be null");
+  appendComment(new FunctionNodeCommentingStrategy(node),commentId);
+}

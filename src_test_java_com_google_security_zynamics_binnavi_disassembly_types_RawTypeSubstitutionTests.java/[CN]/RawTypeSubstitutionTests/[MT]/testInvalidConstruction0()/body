@@ -1,0 +1,3 @@
+{
+  new RawTypeSubstitution(null,POSITION,EXPRESSION_ID,BASE_TYPE_ID,PATH,OFFSET);
+}

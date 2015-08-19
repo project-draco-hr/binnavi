@@ -1,0 +1,6 @@
+{
+  if (firstShrinking && event.getNewState() == NORMAL) {
+    setSize((int)(getWidth() * 0.75),(int)(getHeight() * 0.75));
+    firstShrinking=false;
+  }
+}

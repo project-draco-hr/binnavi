@@ -1,0 +1,11 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  final INaviView view=container.createView("foo","berT");
+  try {
+    container.getFunction(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  assertNull(container.getFunction(view));
+}

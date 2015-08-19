@@ -1,0 +1,3 @@
+{
+  super(DebugCommandType.CMD_LIST_FILES,packetId);
+}

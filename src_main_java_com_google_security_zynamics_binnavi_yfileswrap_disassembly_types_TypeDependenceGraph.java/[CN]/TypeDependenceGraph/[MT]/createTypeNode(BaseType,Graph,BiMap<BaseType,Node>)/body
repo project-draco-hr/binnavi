@@ -1,0 +1,11 @@
+{
+  final Node node=map.get(baseType);
+  if (node == null) {
+    final Node newNode=graph.createNode();
+    map.put(baseType,newNode);
+    return newNode;
+  }
+ else {
+    return node;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(node,"IE02107: Node argument can not be null");
+  if (node instanceof INaviFunctionNode) {
+    return ZyFunctionNodeBuilder.buildContent((INaviFunctionNode)node,graphSettings,modifier);
+  }
+ else   if (node instanceof INaviCodeNode) {
+    return ZyCodeNodeBuilder.buildContent((INaviCodeNode)node,graphSettings,modifier);
+  }
+ else   if (node instanceof CTextNode) {
+    return ZyTextNodeBuilder.buildContent((CTextNode)node);
+  }
+ else   if (node instanceof INaviGroupNode) {
+    return ZyGroupNodeBuilder.buildContent((INaviGroupNode)node);
+  }
+ else {
+    throw new IllegalStateException("IE00912: Unknown node type");
+  }
+}

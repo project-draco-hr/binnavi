@@ -1,0 +1,7 @@
+{
+  for (  final CBend bend : m_rawEdge.getBends()) {
+    bend.removeListener(m_listener);
+  }
+  m_realizer.removeListener(m_listener);
+  m_rawEdge.removeListener(m_listener);
+}

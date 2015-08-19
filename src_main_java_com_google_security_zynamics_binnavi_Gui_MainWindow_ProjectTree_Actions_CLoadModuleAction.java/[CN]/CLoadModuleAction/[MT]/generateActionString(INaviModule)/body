@@ -1,0 +1,8 @@
+{
+  if (module.isInitialized()) {
+    return "Load Module";
+  }
+ else {
+    return "Initialize & Load Module";
+  }
+}

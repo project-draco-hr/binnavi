@@ -1,0 +1,6 @@
+{
+  this.template=Preconditions.checkNotNull(template,"IE00818: Debugger template argument can not be null");
+  debuggerConnection=new DebugConnection(this.template.getHost(),this.template.getPort());
+  debugTargetSettings=Preconditions.checkNotNull(targetSettings,"IE01670: targetSettings argument can not be null");
+  this.template.addListener(internalTemplateListener);
+}

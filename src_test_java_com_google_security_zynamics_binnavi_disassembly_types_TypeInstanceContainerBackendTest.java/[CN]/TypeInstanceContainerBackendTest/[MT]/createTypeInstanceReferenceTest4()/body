@@ -1,0 +1,8 @@
+{
+  final MockOperandTreeNode treeNode=new MockOperandTreeNode();
+  final TypeInstanceReference typeInstanceReference=typeInstancContainerBackend.createTypeInstanceReference(new CAddress("1234",16),1,treeNode,typeInstance,view);
+  Assert.assertNotNull(typeInstanceReference);
+  Assert.assertEquals(new CAddress("1234",16),typeInstanceReference.getAddress());
+  Assert.assertEquals(1,typeInstanceReference.getPosition());
+  Assert.assertEquals(Optional.of(treeNode),typeInstanceReference.getTreeNode());
+}

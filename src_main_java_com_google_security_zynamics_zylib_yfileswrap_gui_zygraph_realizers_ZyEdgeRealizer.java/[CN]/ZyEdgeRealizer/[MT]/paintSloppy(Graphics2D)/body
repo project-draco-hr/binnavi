@@ -1,0 +1,19 @@
+{
+  m_isSloppyPainting=true;
+  m_content.setSloppy(true);
+  if (!m_drawSloppyEdges) {
+    return;
+  }
+  if (isSelected() || m_isHighlighted) {
+    final LineType originalLineType=getLineType();
+    final Color originalSelectionColor=getSelectionColor();
+    setLineType(LineType.LINE_5);
+    setSelectionColor(getLineColor());
+    super.paint(gfx);
+    setLineType(originalLineType);
+    setSelectionColor(originalSelectionColor);
+  }
+ else {
+    super.paintSloppy(gfx);
+  }
+}

@@ -1,0 +1,3 @@
+JHexView hexView
+boolean useVirtualAddresses
+Collection<TypeInstance> instances

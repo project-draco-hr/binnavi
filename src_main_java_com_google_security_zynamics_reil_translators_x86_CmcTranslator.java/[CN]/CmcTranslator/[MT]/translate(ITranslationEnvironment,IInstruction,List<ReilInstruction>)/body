@@ -1,0 +1,8 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmc");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not a cmc instruction (invalid number of operand)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  instructions.add(ReilHelpers.createBisz(baseOffset,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,Helpers.CARRY_FLAG));
+}

@@ -1,0 +1,18 @@
+{
+  if (node instanceof INaviCodeNode) {
+    return new CodeNode(View.this,(INaviCodeNode)node,nodeTagManager);
+  }
+ else   if (node instanceof INaviFunctionNode) {
+    final Function function=getFunction(((INaviFunctionNode)node).getFunction());
+    return new FunctionNode(View.this,(INaviFunctionNode)node,function,nodeTagManager);
+  }
+ else   if (node instanceof INaviTextNode) {
+    return new TextNode(View.this,(INaviTextNode)node,nodeTagManager);
+  }
+ else   if (node instanceof INaviGroupNode) {
+    return new GroupNode(View.this,(INaviGroupNode)node,nodeTagManager);
+  }
+ else {
+    throw new IllegalStateException("Error: Unknown node type");
+  }
+}

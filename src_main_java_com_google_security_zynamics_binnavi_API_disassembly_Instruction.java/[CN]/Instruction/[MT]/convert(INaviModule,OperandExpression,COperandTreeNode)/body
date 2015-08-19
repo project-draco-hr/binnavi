@@ -1,0 +1,10 @@
+{
+  final COperandTreeNode convertedNode=module.createOperandExpression(operandExpression.getNative().getValue(),operandExpression.getType().getNative());
+  if (parent != null) {
+    COperandTreeNode.link(parent,convertedNode);
+  }
+  for (  final OperandExpression child : operandExpression.getChildren()) {
+    convert(module,child,convertedNode);
+  }
+  return convertedNode;
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(connection,"IE00434: connection argument can not be null");
+  final String query="INSERT INTO " + CTableNames.EXPRESSION_TREE_TABLE + "(module_id, id, type, symbol, immediate, position, parent_id)"+ " SELECT "+ moduleId+ ", id, type, symbol, immediate, position, parent_id "+ " FROM ex_"+ rawModuleId+ "_expression_nodes";
+  connection.executeUpdate(query,true);
+}

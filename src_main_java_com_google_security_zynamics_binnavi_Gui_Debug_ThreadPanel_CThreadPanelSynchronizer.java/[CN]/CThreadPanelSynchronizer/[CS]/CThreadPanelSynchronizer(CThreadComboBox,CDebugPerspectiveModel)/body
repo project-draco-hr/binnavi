@@ -1,0 +1,8 @@
+{
+  m_tidBox=Preconditions.checkNotNull(tidBox,"IE01519: Thead box argument can not be null");
+  m_debugPerspectiveModel=Preconditions.checkNotNull(debugPerspectiveModel,"IE01520: Debug perspective model argument can not be null");
+  m_debugPerspectiveModel.addListener(m_debugListener);
+  m_tidBox.addItemListener(m_boxListener);
+  synchronizeDebugger(null,debugPerspectiveModel.getCurrentSelectedDebugger());
+  updateGui();
+}

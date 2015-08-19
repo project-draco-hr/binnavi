@@ -1,0 +1,5 @@
+{
+  m_module=Preconditions.checkNotNull(module,"IE00324: Module argument can not be null");
+  m_address=Preconditions.checkNotNull(address,"IE00325: Address argument can not be null");
+  m_description=Preconditions.checkNotNull(description,"IE00326: Description argument can not be null");
+}

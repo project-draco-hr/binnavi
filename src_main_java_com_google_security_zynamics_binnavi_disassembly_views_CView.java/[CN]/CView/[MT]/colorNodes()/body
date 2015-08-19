@@ -1,0 +1,11 @@
+{
+  final Color blockColor=ConfigManager.instance().getColorSettings().getBasicBlocksColor();
+  for (  final INaviViewNode node : getGraph().getNodes()) {
+    if (node instanceof INaviCodeNode) {
+      node.setColor(blockColor);
+    }
+ else     if (node instanceof INaviFunctionNode) {
+      node.setColor(CFunctionNodeColorizer.getFunctionColor(((INaviFunctionNode)node).getFunction().getType()));
+    }
+  }
+}

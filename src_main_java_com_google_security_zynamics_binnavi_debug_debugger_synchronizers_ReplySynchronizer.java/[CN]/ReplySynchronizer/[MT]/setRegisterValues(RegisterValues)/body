@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(registerValues,"IE01046: Register values argument can not be null");
+  final ProcessManager processManager=debugger.getProcessManager();
+  for (  final ThreadRegisters threadRegister : registerValues) {
+    for (    final TargetProcessThread thread : processManager.getThreads()) {
+      if (thread.getThreadId() == threadRegister.getTid()) {
+        thread.setRegisterValues(threadRegister.getRegisters());
+        for (        final RegisterValue registerValue : threadRegister.getRegisters()) {
+          if (registerValue.isPc()) {
+            thread.setCurrentAddress(new RelocatedAddress(new CAddress(registerValue.getValue())));
+          }
+        }
+      }
+    }
+  }
+}

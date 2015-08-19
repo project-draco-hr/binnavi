@@ -1,0 +1,3 @@
+CGraphModel model
+List<Pair<INaviInstruction,INaviFunction>> functions
+boolean allowUninlining

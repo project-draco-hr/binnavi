@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02422: Base type argument can not be null.");
+  Preconditions.checkNotNull(name,"IE02621: Name argument can not be null.");
+  Preconditions.checkArgument(size >= 0,"Size argument can not be negative.");
+  final boolean sizeChanged=baseType.getBitSize() != size;
+  final ImmutableMap<BaseType,Integer> originalTypeSizes=(sizeChanged) ? captureTypeSizesState(typesContainer.getAffectedTypes(baseType)) : ImmutableMap.<BaseType,Integer>of();
+  backend.updateType(baseType,name,size,isSigned);
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.updateBaseType(baseType,name,isSigned,size);
+  notifyTypesUpdated(affectedTypes);
+  notifySubstitutionsChanged(affectedTypes);
+  if (sizeChanged) {
+    ensureConsistencyAfterTypeUpdate(affectedTypes,Sets.newHashSet(affectedTypes),originalTypeSizes);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return m_data[(int)(address - m_address)];
+}

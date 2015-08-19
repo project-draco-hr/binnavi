@@ -1,0 +1,5 @@
+{
+  final TreePath path=m_tree.getSelectionPath();
+  final Object selectedNode=path.getLastPathComponent();
+  return selectedNode instanceof CFunctionIconNode ? ((CFunctionIconNode)selectedNode).getFunction() : null;
+}

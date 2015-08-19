@@ -1,0 +1,27 @@
+{
+  final CModule module=(CModule)getDatabase().getContent().getModules().get(0);
+  module.load();
+  final CModuleContent moduleContent1=module.getContent();
+  assertNotNull(moduleContent1);
+  final TraceList trace=moduleContent1.getTraceContainer().createTrace("name","desc");
+  assertNotNull(trace);
+  try {
+    moduleContent1.getTraceContainer().createTrace(null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    moduleContent1.getTraceContainer().createTrace("name",null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    moduleContent1.close();
+    moduleContent1.getTraceContainer().createTrace("name2","desc2");
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

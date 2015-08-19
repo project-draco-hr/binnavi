@@ -1,0 +1,3 @@
+{
+  return String.format("Simulated Memory (Size: %d Bytes)",m_memory.getMemorySize());
+}

@@ -1,0 +1,4 @@
+{
+  m_rootNode=new TreeNode<ObjectType>(tree.getRootNode().getObject());
+  generate(m_rootNode,tree.getRootNode());
+}

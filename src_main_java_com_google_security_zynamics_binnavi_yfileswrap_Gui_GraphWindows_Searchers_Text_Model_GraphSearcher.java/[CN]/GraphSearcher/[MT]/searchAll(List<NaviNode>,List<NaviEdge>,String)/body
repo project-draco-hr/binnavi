@@ -1,0 +1,8 @@
+{
+  for (  final NaviNode node : nodes) {
+    searchNode(node,searchString);
+  }
+  for (  final NaviEdge edge : edges) {
+    searchEdge(edge,searchString);
+  }
+}

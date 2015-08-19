@@ -1,0 +1,6 @@
+{
+  appendOutput(String.format("Found %d indirect calls",indirectCallAddresses.size()));
+  if (indirectCallAddresses.isEmpty()) {
+    appendOutput("No indirect function calls found: The resolving process is complete");
+  }
+}

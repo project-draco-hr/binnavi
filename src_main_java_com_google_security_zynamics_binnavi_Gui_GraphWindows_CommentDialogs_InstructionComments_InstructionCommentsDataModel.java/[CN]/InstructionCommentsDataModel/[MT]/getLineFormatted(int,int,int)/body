@@ -1,0 +1,14 @@
+{
+switch (columnIndex) {
+case INSTRUCTION_INDEX:
+    return getInstructionCharacterBuffer(rowIndex,columnIndex,lineIndex);
+case USER_INDEX:
+  return getCommentUserCharacterBuffer(rowIndex,columnIndex,lineIndex);
+case COMMENT_INDEX:
+return getCommentCharacterBuffer(rowIndex,columnIndex,lineIndex);
+default :
+Logger.warning("getLineFormatted called with invalid columnIndex, investigate.");
+break;
+}
+return null;
+}

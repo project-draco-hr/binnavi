@@ -1,0 +1,4 @@
+{
+  final int size=baseType.getByteSize();
+  return (size > THRESHOLD) ? THRESHOLD : size;
+}

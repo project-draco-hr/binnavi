@@ -1,0 +1,17 @@
+{
+  final Set<OperandGraphNode> definitions=new HashSet<OperandGraphNode>();
+  for (  final ReilBlock reilBlock : parents) {
+    if (visited.contains(reilBlock)) {
+      continue;
+    }
+    visited.add(reilBlock);
+    final OperandGraphNode definition=findDefinition(node,reilBlock,graphMap,true);
+    if (definition != null) {
+      definitions.add(definition);
+    }
+ else {
+      definitions.addAll(findDefinitions(getParents(reilBlock),node,graphMap,visited));
+    }
+  }
+  return definitions;
+}

@@ -1,0 +1,22 @@
+{
+  final OperandSize archSize=environment.getArchitectureSize();
+  final String truncationMask=String.valueOf(TranslationHelpers.getAllBitsMask(archSize));
+  String childResult=intermediateResult.getRegister();
+  if (segmentOverride != null) {
+    final String pseudoRegister=getSegmentOverridePseudoRegister(segmentOverride);
+    String nextVariableString=environment.getNextVariableString();
+    intermediateResult.addInstruction(ReilHelpers.createAdd(0,archSize,childResult,archSize,pseudoRegister,archSize,nextVariableString));
+    childResult=nextVariableString;
+  }
+  final String truncatedAddress=environment.getNextVariableString();
+  intermediateResult.addInstruction(ReilHelpers.createAnd(0,archSize,childResult,archSize,truncationMask,archSize,truncatedAddress));
+  if (loadOperand) {
+    final String loadedValue=environment.getNextVariableString();
+    intermediateResult.addInstruction(ReilHelpers.createLdm(0,archSize,truncatedAddress,size,loadedValue));
+    intermediateResult.updateResult(loadedValue,size,truncatedAddress,TranslationResultType.MEMORY_ACCESS);
+  }
+ else {
+    intermediateResult.updateResult(truncatedAddress,size,"",TranslationResultType.MEMORY_ACCESS);
+  }
+  return intermediateResult;
+}

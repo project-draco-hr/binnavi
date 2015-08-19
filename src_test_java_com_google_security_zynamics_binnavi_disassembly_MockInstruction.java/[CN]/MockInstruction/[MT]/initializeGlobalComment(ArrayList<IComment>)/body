@@ -1,0 +1,4 @@
+{
+  m_globalComment.clear();
+  m_globalComment.addAll(comment);
+}

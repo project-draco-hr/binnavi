@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(collection,"Error: Graph argument can't be null");
+  Preconditions.checkNotNull(callback,"Error: Callback argument can't be null");
+  Preconditions.checkNotNull(filter,"Error: Filter argument can't be null");
+  collection.iterate(new IItemCallback<ItemType>(){
+    @Override public IterationMode next(    final ItemType node){
+      if (filter.qualifies(node)) {
+        return callback.next(node);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

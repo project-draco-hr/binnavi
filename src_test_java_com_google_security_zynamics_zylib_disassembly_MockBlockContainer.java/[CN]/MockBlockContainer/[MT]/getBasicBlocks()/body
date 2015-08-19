@@ -1,0 +1,3 @@
+{
+  return new ArrayList<ICodeContainer<MockInstruction>>(m_blocks);
+}

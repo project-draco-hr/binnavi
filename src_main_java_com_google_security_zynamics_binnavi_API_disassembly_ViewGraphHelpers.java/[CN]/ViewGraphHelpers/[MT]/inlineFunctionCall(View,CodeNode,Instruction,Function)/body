@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  Preconditions.checkNotNull(codeNode,"Error: Code node argument can not be null");
+  Preconditions.checkNotNull(instruction,"Error: Instruction argument can not be null");
+  Preconditions.checkNotNull(function,"Error: Function argument can not be null");
+  final CInliningResult result=CInliningHelper.inlineCodeNode(view.getNative(),codeNode.getNative(),instruction.getNative(),function.getNative());
+  final CodeNode firstNode=(CodeNode)ObjectFinders.getObject(result.getFirstNode(),view.getGraph().getNodes());
+  final CodeNode secondNode=(CodeNode)(result.getSecondNode() == null ? null : ObjectFinders.getObject(result.getSecondNode(),view.getGraph().getNodes()));
+  return new InliningResult(firstNode,secondNode);
+}

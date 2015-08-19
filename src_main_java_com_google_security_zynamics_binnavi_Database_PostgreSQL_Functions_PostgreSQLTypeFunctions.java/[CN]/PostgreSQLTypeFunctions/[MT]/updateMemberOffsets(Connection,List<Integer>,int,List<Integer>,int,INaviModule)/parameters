@@ -1,0 +1,6 @@
+Connection connection
+List<Integer> members
+int delta
+List<Integer> implicitlyUpdatedMembers
+int implicitDelta
+INaviModule module

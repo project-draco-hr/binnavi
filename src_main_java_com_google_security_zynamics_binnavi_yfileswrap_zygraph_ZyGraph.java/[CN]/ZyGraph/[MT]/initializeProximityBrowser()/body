@@ -1,0 +1,14 @@
+{
+  if ((m_rawView.getType() == ViewType.Native) && (m_rawView.getNodeCount() >= m_settings.getProximitySettings().getProximityBrowsingActivationThreshold())) {
+    initializeProximityBrowserNative();
+  }
+ else   if ((m_rawView.getType() == ViewType.NonNative) && m_settings.getProximitySettings().getProximityBrowsing()) {
+    initializeProximityBrowserNonNative();
+  }
+  if ((m_rawView.getType() == ViewType.Native) && (visibleNodeCount() >= m_settings.getLayoutSettings().getAutolayoutDeactivationThreshold())) {
+    m_settings.getLayoutSettings().setAutomaticLayouting(false);
+  }
+  if (m_settings.getLayoutSettings().getAutomaticLayouting()) {
+    doLayout();
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: The project has not yet been loaded");
+  }
+  Preconditions.checkNotNull(view,"Error: View argument can't be null");
+  final INaviView newView=m_project.getContent().createView(view.getNative(),name,description);
+  return ObjectFinders.getObject(newView,m_views);
+}

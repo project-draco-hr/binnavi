@@ -1,0 +1,9 @@
+{
+  final CIdaImporterOperation operation=new CIdaImporterOperation(idbFile);
+  try {
+    importModuleInternal(idbFile,idaDirecory,database);
+  }
+  finally {
+    operation.stop();
+  }
+}

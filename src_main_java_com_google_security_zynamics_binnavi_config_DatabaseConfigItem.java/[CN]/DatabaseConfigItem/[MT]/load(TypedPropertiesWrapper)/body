@@ -1,0 +1,11 @@
+{
+  description=properties.getString(DESCRIPTION,DESCRIPTION_DEFAULT);
+  driver=properties.getString(DRIVER,DRIVER_DEFAULT);
+  host=properties.getString(HOST,HOST_DEFAULT);
+  name=properties.getString(NAME,NAME_DEFAULT);
+  user=properties.getString(USER,USER_DEFAULT);
+  password=properties.getString(PASSWORD,PASSWORD_DEFAULT);
+  identity=properties.getString(IDENTITY,IDENTITY_DEFAULT);
+  autoConnect=properties.getBoolean(AUTO_CONNECT,AUTO_CONNECT_DEFAULT);
+  savePassword=properties.getBoolean(SAVE_PASSWORD,SAVE_PASSWORD_DEFAULT);
+}

@@ -1,0 +1,4 @@
+{
+  eventList+="closingView/";
+  return m_closing;
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(edge,"Error: codeNode argument can not be null");
+  deleteComment(new Commentable(edge,CommentScope.GLOBAL),commentId,userId);
+}

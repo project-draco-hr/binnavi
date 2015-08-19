@@ -1,0 +1,4 @@
+JTree projectTree
+CAbstractTreeViewsTableModel model
+IViewContainer container
+IHelpInformation helpInfo

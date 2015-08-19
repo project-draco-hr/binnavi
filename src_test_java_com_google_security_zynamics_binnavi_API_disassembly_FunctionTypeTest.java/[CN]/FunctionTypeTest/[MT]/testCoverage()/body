@@ -1,0 +1,8 @@
+{
+  for (  final FunctionType functionType : FunctionType.values()) {
+    assertEquals(functionType,FunctionType.convert(functionType.getNative()));
+  }
+  for (  final com.google.security.zynamics.zylib.disassembly.FunctionType functionType : com.google.security.zynamics.zylib.disassembly.FunctionType.values()) {
+    assertEquals(functionType,FunctionType.convert(functionType).getNative());
+  }
+}

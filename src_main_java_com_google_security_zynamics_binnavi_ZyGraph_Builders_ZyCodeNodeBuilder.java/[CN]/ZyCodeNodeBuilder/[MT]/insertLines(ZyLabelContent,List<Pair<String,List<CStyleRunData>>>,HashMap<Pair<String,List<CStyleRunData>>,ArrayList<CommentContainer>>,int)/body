@@ -1,0 +1,41 @@
+{
+  for (  final Pair<String,List<CStyleRunData>> lineContent : lines) {
+    final ArrayList<CommentContainer> instructionComments=comments.get(lineContent);
+    final StringBuilder lineBuilder=new StringBuilder(lineContent.first());
+    final List<CStyleRunData> styleRuns=lineContent.second();
+    if ((instructionComments == null) || instructionComments.isEmpty()) {
+      final ZyLineContent instructionLine=new ZyLineContent(lineBuilder.toString(),NORMAL_FONT,styleRuns,null);
+      content.addLineContent(instructionLine);
+      continue;
+    }
+    final String instructionFirstCommentLine=instructionComments.get(0).getCommentingString() != null ? instructionComments.get(0).getCommentingString().get(0) : null;
+    if (instructionFirstCommentLine != null) {
+      lineBuilder.append(Strings.repeat(" ",(maxLineWidth - lineBuilder.length()) + 1));
+      lineBuilder.append(instructionFirstCommentLine);
+    }
+    final ZyLineContent instructionLine=new ZyLineContent(lineBuilder.toString(),NORMAL_FONT,styleRuns,null);
+    if (instructionFirstCommentLine != null) {
+      instructionLine.setFont(maxLineWidth + 1,instructionFirstCommentLine.length(),ITALIC_FONT);
+      instructionLine.setTextColor(maxLineWidth + 1,instructionFirstCommentLine.length(),Color.BLACK);
+      instructionLine.setTextColor(maxLineWidth + 1,instructionComments.get(0).getCommentUserNameLength(),instructionComments.get(0).getCommentColor());
+    }
+    content.addLineContent(instructionLine);
+    boolean firstCommentContainer=true;
+    for (    final CommentContainer commentContainer : instructionComments) {
+      boolean firstCommentLine=true;
+      for (      final String partialCommentString : commentContainer.getCommentingString()) {
+        if (firstCommentContainer) {
+          firstCommentContainer=false;
+          continue;
+        }
+        final ZyLineContent commentLine=new ZyLineContent(Strings.repeat(" ",maxLineWidth + 1) + partialCommentString,ITALIC_FONT,null);
+        commentLine.setTextColor(Color.BLACK);
+        if (firstCommentLine) {
+          firstCommentLine=false;
+          commentLine.setTextColor(maxLineWidth + 1,commentContainer.getCommentUserNameLength(),commentContainer.getCommentColor());
+        }
+        content.addLineContent(commentLine);
+      }
+    }
+  }
+}

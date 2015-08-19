@@ -1,0 +1,7 @@
+{
+  final BaseType deletedType=typesContainer.getBaseTypeById(baseTypeId);
+  final Set<BaseType> affectedTypes=typesContainer.deleteBaseTypeById(baseTypeId);
+  clearMembers(deletedType,affectedTypes);
+  notifySubstitutionsDeleted(typesContainer.deleteSubstitutionsByType(deletedType));
+  notifyTypeDeleted(deletedType);
+}

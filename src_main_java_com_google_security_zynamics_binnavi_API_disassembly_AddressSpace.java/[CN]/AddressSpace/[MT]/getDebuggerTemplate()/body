@@ -1,0 +1,4 @@
+{
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate internalTemplate=m_addressSpace.getConfiguration().getDebuggerTemplate();
+  return internalTemplate == null ? null : ObjectFinders.getObject(internalTemplate,m_database.getDebuggerTemplateManager().getDebuggerTemplates());
+}

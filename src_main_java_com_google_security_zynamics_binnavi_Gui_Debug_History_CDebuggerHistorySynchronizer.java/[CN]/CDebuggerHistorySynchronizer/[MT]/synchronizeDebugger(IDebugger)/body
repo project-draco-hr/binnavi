@@ -1,0 +1,3 @@
+{
+  m_historyStringBuilder.setDebugger(newDebugger);
+}

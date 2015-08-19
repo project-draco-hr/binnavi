@@ -1,0 +1,11 @@
+{
+  super(projectTree,new CAbstractLazyComponent(){
+    @Override protected CAbstractNodeComponent createComponent(){
+      return new CDebuggerNodeComponent(debugger);
+    }
+  }
+,new CDebuggerNodeMenuBuilder(projectTree,parentNode,null,database,new DebuggerTemplate[]{debugger}),debugger);
+  Preconditions.checkNotNull(database,"IE01965: Database argument can not be null.");
+  m_debugger=Preconditions.checkNotNull(debugger,"IE01966: Debugger argument can not be null");
+  m_debugger.addListener(m_listener);
+}

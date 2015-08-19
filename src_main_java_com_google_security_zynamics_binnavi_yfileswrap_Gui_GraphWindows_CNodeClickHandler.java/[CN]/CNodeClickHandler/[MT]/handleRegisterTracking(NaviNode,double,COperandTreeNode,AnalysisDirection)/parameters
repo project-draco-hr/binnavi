@@ -1,0 +1,4 @@
+NaviNode node
+double y
+COperandTreeNode operand
+AnalysisDirection direction

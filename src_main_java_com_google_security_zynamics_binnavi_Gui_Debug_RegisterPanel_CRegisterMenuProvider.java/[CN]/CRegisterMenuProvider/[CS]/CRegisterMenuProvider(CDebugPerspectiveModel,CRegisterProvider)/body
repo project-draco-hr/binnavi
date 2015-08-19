@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01219: Debug perspective model argument can not be null");
+  Preconditions.checkNotNull(dataProvider,"IE01474: Data provider argument can not be null");
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  m_dataProvider=dataProvider;
+}

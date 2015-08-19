@@ -1,0 +1,15 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(projectTree,"IE02003: Project tree argument can not be null");
+  Preconditions.checkNotNull(database,"IE02004: Database argument can not be null");
+  m_database=database;
+  m_tagTreeNode=database.getContent().getViewTagManager().getRootTag();
+  m_childrenTagTable=new CChildTagsTable(projectTree,m_tagTreeNode,database);
+  m_tableBorder=new TitledBorder(getBorderTitle());
+  m_database.getContent().getViewTagManager().addListener(m_tagManagerListener);
+  final JPanel panel=new JPanel(new BorderLayout());
+  panel.setBorder(m_tableBorder);
+  final JScrollPane scrollPane=new JScrollPane(m_childrenTagTable);
+  panel.add(scrollPane,BorderLayout.CENTER);
+  add(panel,BorderLayout.CENTER);
+}

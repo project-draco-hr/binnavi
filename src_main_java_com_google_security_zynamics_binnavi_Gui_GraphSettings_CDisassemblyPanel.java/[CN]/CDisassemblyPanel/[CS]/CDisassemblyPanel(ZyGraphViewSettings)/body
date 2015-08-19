@@ -1,0 +1,6 @@
+{
+  super(new GridLayout(1,1));
+  setBorder(new TitledBorder("Disassembly Settings"));
+  Preconditions.checkNotNull(settings,"IE00666: Settings argument can not be null");
+  CSettingsPanelBuilder.addComboBox(this,m_cbSimplifiedMemoryAccess,"Simplified Variable Access" + ":","Simplifies variable access instructions (example: 'mov eax, [esp + var_4]' " + "is turned into 'mov eax, var_4)",settings.getDisplaySettings().getSimplifiedVariableAccess());
+}

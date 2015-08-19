@@ -1,0 +1,4 @@
+{
+  new CFunction(module,view,address,"Name",null,"Description",0,0,1,0,FunctionType.NORMAL,"",1,null,null,null,provider);
+  fail();
+}

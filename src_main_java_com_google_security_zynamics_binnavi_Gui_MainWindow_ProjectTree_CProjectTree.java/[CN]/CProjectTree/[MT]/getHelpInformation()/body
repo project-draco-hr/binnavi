@@ -1,0 +1,11 @@
+{
+  return new IHelpInformation(){
+    @Override public String getText(){
+      return "The Project Tree gives a quick overview of the BinNavi databases you have configured and the data stored in the databases.";
+    }
+    @Override public URL getUrl(){
+      return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+    }
+  }
+;
+}

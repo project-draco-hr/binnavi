@@ -1,0 +1,18 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  final TargetProcessThread thread=new TargetProcessThread(1,ThreadState.SUSPENDED);
+  debugger.getProcessManager().addThread(thread);
+  debugger.getProcessManager().setActiveThread(thread);
+  debugger.connect();
+  m_model.setActiveDebugger(debugger);
+  debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,true,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  final MemorySection section1=new MemorySection(new CAddress(0x100),new CAddress(0x1FF));
+  final MemorySection section2=new MemorySection(new CAddress(0x300),new CAddress(0x3FF));
+  final MemoryMap memoryMap=new MemoryMap(Lists.newArrayList(section1,section2));
+  debugger.connection.m_synchronizer.receivedEvent(new MemoryMapReply(0,0,memoryMap));
+  assertTrue(m_registerView.isEnabled());
+  debugger.connection.m_synchronizer.receivedEvent(new DetachReply(0,0));
+  assertFalse(m_registerView.isEnabled());
+  m_synchronizer.dispose();
+  debugger.close();
+}

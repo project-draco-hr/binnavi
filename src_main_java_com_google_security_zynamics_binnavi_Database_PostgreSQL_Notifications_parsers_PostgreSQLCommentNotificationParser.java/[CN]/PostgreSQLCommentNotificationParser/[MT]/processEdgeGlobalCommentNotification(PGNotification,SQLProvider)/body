@@ -1,0 +1,27 @@
+{
+  final Matcher matcher=EDGE_GLOBAL_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return new ArrayList<>();
+  }
+  final String databaseOperation=matcher.group(2);
+  final Integer notificationSourceModuleId=Integer.parseInt(matcher.group(3));
+  final Integer notificationDestinationModuleId=Integer.parseInt(matcher.group(4));
+  final IAddress notificationEdgeSourceAddress=new CAddress(new BigInteger(matcher.group(5)));
+  final IAddress notificationEdgeDestinationAddress=new CAddress(new BigInteger(matcher.group(6)));
+  final Integer commentId=matcher.group(8) == null ? null : Integer.parseInt(matcher.group(8));
+  final INaviModule notificationSourceModule=provider.findModule(notificationSourceModuleId);
+  if ((notificationSourceModule == null) || !notificationSourceModule.isLoaded()) {
+    return new ArrayList<>();
+  }
+  final INaviModule notificationDestinationModule=provider.findModule(notificationDestinationModuleId);
+  if ((notificationDestinationModule == null) || !notificationDestinationModule.isLoaded()) {
+    return new ArrayList<>();
+  }
+  final CommentOperation operation=databaseOperation.equalsIgnoreCase("DELETE") ? CommentOperation.DELETE : CommentOperation.APPEND;
+  Collection<CommentNotification> notifications=new ArrayList<>();
+  final ImmutableCollection<INaviEdge> edges=EdgeCache.get(provider).getEdgeBySourceAndTarget(notificationEdgeSourceAddress,notificationSourceModuleId,notificationEdgeDestinationAddress,notificationDestinationModuleId);
+  for (  INaviEdge edge : edges) {
+    notifications.add(new EdgeCommentNotificationContainer(edge,operation,CommentScope.GLOBAL,commentId));
+  }
+  return notifications;
+}

@@ -1,0 +1,4 @@
+{
+  m_graph=ZyGraphFactory.generateTestGraph();
+  m_tree=new CCachedExpressionTree();
+}

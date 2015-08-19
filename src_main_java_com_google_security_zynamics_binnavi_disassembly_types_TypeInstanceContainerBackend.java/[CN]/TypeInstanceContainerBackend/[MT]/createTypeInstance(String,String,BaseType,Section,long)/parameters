@@ -1,0 +1,5 @@
+String name
+String commentString
+BaseType baseType
+Section section
+long sectionOffset

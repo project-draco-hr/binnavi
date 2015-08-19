@@ -1,0 +1,3 @@
+{
+  return insertType((DefaultMutableTreeNode)root,baseType,findInsertIndex(baseType,(DefaultMutableTreeNode)root));
+}

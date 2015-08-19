@@ -1,0 +1,3 @@
+{
+  functionNode=loadFunctionNode(getNotepadModule());
+}

@@ -1,0 +1,9 @@
+{
+  final List<IGraphPanel> modifiedGraphs=new ArrayList<IGraphPanel>();
+  for (  final CGraphPanel panel : panels) {
+    if (panel.getModel().getGraph().getRawView().wasModified()) {
+      modifiedGraphs.add(panel);
+    }
+  }
+  return modifiedGraphs;
+}

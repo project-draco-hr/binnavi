@@ -1,0 +1,3 @@
+{
+  CLogConsoleFunctions.save(CPluginOutputDialog.this,m_textArea.getText());
+}

@@ -1,0 +1,5 @@
+{
+  if (view.getZoom() > MAX_ZOOM) {
+    view.setZoom(MAX_ZOOM);
+  }
+}

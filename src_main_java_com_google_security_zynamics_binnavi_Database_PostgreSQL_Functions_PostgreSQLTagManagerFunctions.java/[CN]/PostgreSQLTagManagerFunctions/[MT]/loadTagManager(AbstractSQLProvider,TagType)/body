@@ -1,0 +1,41 @@
+{
+  Preconditions.checkNotNull(type,"IE00567: Tag type argument can't be null");
+  final CConnection connection=provider.getConnection();
+  if (!PostgreSQLHelpers.hasTable(connection,CTableNames.TAGS_TABLE)) {
+    final CTag rootTag=new CTag(0,"Root Node","",type,provider);
+    return new CTagManager(new Tree<CTag>(new TreeNode<CTag>(rootTag)),type,provider);
+  }
+  final String query=String.format("select id, parent_id, name, description from %s where type = '%s'",CTableNames.TAGS_TABLE,PostgreSQLTagFunctions.tagToString(type));
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      final HashMap<Integer,Pair<TreeNode<CTag>,Integer>> treeNodes=new HashMap<Integer,Pair<TreeNode<CTag>,Integer>>();
+      final CTag rootTag=new CTag(0,"Root Node","",type,provider);
+      final TreeNode<CTag> rootTreeNode=new TreeNode<CTag>(rootTag);
+      treeNodes.put(0,new Pair<TreeNode<CTag>,Integer>(rootTreeNode,-1));
+      while (resultSet.next()) {
+        final int tagId=resultSet.getInt("id");
+        final int parentId=resultSet.getInt("parent_id");
+        final TreeNode<CTag> treeNode=new TreeNode<CTag>(new CTag(tagId,PostgreSQLHelpers.readString(resultSet,"name"),PostgreSQLHelpers.readString(resultSet,"description"),type,provider));
+        final Pair<TreeNode<CTag>,Integer> pair=new Pair<TreeNode<CTag>,Integer>(treeNode,parentId);
+        treeNodes.put(tagId,pair);
+      }
+      for (      final Entry<Integer,Pair<TreeNode<CTag>,Integer>> e : treeNodes.entrySet()) {
+        if (e.getKey() == 0) {
+          continue;
+        }
+        final TreeNode<CTag> child=e.getValue().first();
+        final TreeNode<CTag> parent=treeNodes.get(e.getValue().second()).first();
+        child.setParent(parent);
+        parent.addChild(child);
+      }
+      return new CTagManager(new Tree<CTag>(rootTreeNode),type,provider);
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

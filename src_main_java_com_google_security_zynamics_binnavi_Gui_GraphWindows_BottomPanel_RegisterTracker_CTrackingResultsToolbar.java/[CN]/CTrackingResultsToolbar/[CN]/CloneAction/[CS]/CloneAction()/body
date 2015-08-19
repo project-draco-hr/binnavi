@@ -1,0 +1,3 @@
+{
+  putValue(SHORT_DESCRIPTION,"Create a new graph with only register tracking results");
+}

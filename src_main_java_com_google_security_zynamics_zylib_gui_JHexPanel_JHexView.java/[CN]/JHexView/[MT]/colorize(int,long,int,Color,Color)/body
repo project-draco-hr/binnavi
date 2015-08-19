@@ -1,0 +1,7 @@
+{
+  Preconditions.checkArgument(offset >= 0,"Error: offset argument must be greater or equal to zero");
+  Preconditions.checkArgument(size >= 0,"Error: size argument must be greater or equal to zero");
+  Preconditions.checkArgument((level >= 0) && (level < m_coloredRanges.length),"Error: level argument must be greater or equal to zero");
+  m_coloredRanges[level].addRange(new ColoredRange(offset,size,color,bgcolor));
+  repaint();
+}

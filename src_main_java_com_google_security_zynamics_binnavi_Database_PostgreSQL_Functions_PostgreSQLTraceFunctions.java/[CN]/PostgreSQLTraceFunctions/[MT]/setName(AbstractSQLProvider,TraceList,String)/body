@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(provider,"IE00586: Provider argument can not be null");
+  Preconditions.checkNotNull(trace,"IE00587: Trace list argument can not be null");
+  Preconditions.checkNotNull(name,"IE00588: Name argument can not be null");
+  Preconditions.checkArgument(trace.inSameDatabase(provider),"IE00589: Trace list is not part of this database");
+  final CConnection connection=provider.getConnection();
+  final String query="UPDATE " + CTableNames.TRACES_TABLE + " SET name = ? WHERE id = ?";
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    try {
+      statement.setString(1,name);
+      statement.setInt(2,trace.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

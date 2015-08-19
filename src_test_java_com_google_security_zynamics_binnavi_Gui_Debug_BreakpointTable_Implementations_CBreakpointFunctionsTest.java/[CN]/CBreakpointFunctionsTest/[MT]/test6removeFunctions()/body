@@ -1,0 +1,20 @@
+{
+  final MockFunction mockFunction=new MockFunction();
+  final INaviModule mockModule=mockFunction.getModule();
+  CFunctionContainerHelper.addFunction(mockModule.getContent().getFunctionContainer(),mockFunction);
+  final DebugTargetSettings target=new ModuleTargetSettings(mockModule);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(mockModule));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0x1234)))));
+  @SuppressWarnings("unused") final Breakpoint breakPoint=debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0x1234))));
+  debuggerProvider.addDebugger(debugger);
+  final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+  assertEquals(1,tableModel.getRowCount());
+  final IFilledList<Pair<IDebugger,INaviFunction>> targets=new FilledList<Pair<IDebugger,INaviFunction>>();
+  final Pair<IDebugger,INaviFunction> targetPair=new Pair<IDebugger,INaviFunction>(debugger,mockFunction);
+  targets.add(targetPair);
+  assertEquals(1,targets.size());
+  CBreakpointRemoveFunctions.removeBreakpoints(targets);
+  @SuppressWarnings("unused") final BreakpointManager manager=debugger.getBreakpointManager();
+  assertEquals(0,tableModel.getRowCount());
+}

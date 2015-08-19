@@ -1,0 +1,24 @@
+{
+  try {
+    m_unsavedView.getContent().createEdge(null,null,EdgeType.JUMP_UNCONDITIONAL);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  final CCodeNode codeNode=m_unsavedView.getContent().createCodeNode(m_function,Lists.newArrayList(m_instruction));
+  final CFunctionNode functionNode=m_unsavedView.getContent().createFunctionNode(m_function);
+  assertEquals(0,m_unsavedView.getEdgeCount());
+  assertEquals("addedNode/changedGraphType/addedNode/changedGraphType/",m_listener.eventList);
+  final CNaviViewEdge edge1=m_unsavedView.getContent().createEdge(codeNode,codeNode,EdgeType.JUMP_CONDITIONAL_FALSE);
+  assertEquals("addedNode/changedGraphType/addedNode/changedGraphType/addedEdge/",m_listener.eventList);
+  assertEquals(codeNode,edge1.getSource());
+  assertEquals(codeNode,edge1.getTarget());
+  assertEquals(EdgeType.JUMP_CONDITIONAL_FALSE,edge1.getType());
+  assertEquals(1,m_unsavedView.getEdgeCount());
+  final CNaviViewEdge edge2=m_unsavedView.getContent().createEdge(codeNode,functionNode,EdgeType.JUMP_CONDITIONAL_TRUE);
+  assertEquals("addedNode/changedGraphType/addedNode/changedGraphType/addedEdge/addedEdge/",m_listener.eventList);
+  assertEquals(codeNode,edge2.getSource());
+  assertEquals(functionNode,edge2.getTarget());
+  assertEquals(EdgeType.JUMP_CONDITIONAL_TRUE,edge2.getType());
+  assertEquals(2,m_unsavedView.getEdgeCount());
+}

@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(description,"IE00080: New comment can not be null");
+  if (description.equals(this.description)) {
+    return;
+  }
+  if (saveToDatabase) {
+    provider.setDescription(this,description);
+  }
+  this.description=description;
+  for (  final IFunctionListener<IComment> listener : functionListeners) {
+    listener.changedDescription(this,description);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (operandTree.getRootNode().getChildren().get(0).getValue().equals(" ")) {
+    return ReilHelpers.createOperand(OperandSize.EMPTY,"");
+  }
+ else {
+    return ReilHelpers.createOperand(OperandSize.sizeStringToValue(operandTree.getRootNode().getValue()),operandTree.getRootNode().getChildren().get(0).getValue());
+  }
+}

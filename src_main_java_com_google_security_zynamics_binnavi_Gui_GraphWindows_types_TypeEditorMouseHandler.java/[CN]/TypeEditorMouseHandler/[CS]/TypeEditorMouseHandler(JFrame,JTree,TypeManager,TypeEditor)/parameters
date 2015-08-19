@@ -1,0 +1,4 @@
+JFrame owner
+JTree tree
+TypeManager typeManager
+TypeEditor typeEditor

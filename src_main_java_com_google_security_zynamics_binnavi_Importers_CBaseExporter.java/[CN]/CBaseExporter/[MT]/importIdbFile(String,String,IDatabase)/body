@@ -1,0 +1,14 @@
+{
+  try {
+    importModule(idbFile,idaDirectory,database);
+  }
+ catch (  final ConfigFileException configFileException) {
+    throw new ImportFailedException("Error: Could not create the IDA2SQL temp file.\nImporting project failed.\n" + configFileException);
+  }
+catch (  final IdaException idaException) {
+    throw new ImportFailedException("Error: Could not start IDA Pro.\nImporting project failed.\n" + idaException);
+  }
+catch (  final ExporterException exporterException) {
+    throw new ImportFailedException("Error: Importing project failed.\n" + exporterException);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  this.translator=translator;
+  this.operandSize=operandSize;
+}

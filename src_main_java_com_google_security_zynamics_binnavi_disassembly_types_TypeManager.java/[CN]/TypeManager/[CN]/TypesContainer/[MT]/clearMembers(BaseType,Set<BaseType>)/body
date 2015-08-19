@@ -1,0 +1,18 @@
+{
+  final List<TypeMember> deletedMembers=Lists.newArrayList();
+  for (  final BaseType currentType : affectedTypes) {
+    final List<TypeMember> membersToDelete=Lists.newArrayList();
+    for (    final TypeMember member : currentType) {
+      if (member.getBaseType() == deletedType) {
+        membersToDelete.add(member);
+      }
+    }
+    if (membersToDelete.size() > 0) {
+      for (      final TypeMember typeMembert : membersToDelete) {
+        deleteTypeMember(typeMembert);
+      }
+      deletedMembers.addAll(membersToDelete);
+    }
+  }
+  return deletedMembers;
+}

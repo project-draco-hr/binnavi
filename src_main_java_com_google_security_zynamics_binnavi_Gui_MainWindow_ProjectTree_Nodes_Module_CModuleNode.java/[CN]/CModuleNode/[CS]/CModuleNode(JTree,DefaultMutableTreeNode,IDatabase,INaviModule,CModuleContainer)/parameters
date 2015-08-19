@@ -1,0 +1,5 @@
+JTree projectTree
+DefaultMutableTreeNode parentNode
+IDatabase database
+INaviModule module
+CModuleContainer contextContainer

@@ -1,0 +1,4 @@
+{
+  m_tagManager.removeListener(m_tagManagerListener);
+  deleteChildren();
+}

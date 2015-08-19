@@ -1,0 +1,4 @@
+{
+  m_lhs=lhs;
+  m_rhs=rhs;
+}

@@ -1,0 +1,2 @@
+Collection<List<ReilInstruction>> instructionList
+Collection<IAddress> nativeJumpTargets

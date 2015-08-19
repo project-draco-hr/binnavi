@@ -1,0 +1,20 @@
+{
+  try {
+    m_view.getContent().createFunctionNode(m_function);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_view.load();
+  try {
+    m_view.getContent().createFunctionNode(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals(0,m_view.getNodeCount());
+  assertEquals("loadedView/",m_listener.eventList);
+  m_view.getContent().createFunctionNode(m_function);
+  assertEquals(1,m_view.getNodeCount());
+  assertEquals("loadedView/addedNode/changedGraphType/",m_listener.eventList);
+}

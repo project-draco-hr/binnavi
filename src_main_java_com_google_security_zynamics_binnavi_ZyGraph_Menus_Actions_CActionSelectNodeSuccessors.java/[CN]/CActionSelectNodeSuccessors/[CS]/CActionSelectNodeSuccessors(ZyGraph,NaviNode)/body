@@ -1,0 +1,5 @@
+{
+  super("Select successors");
+  m_graph=Preconditions.checkNotNull(graph,"IE00934: Graph argument can't be null");
+  m_node=Preconditions.checkNotNull(node,"IE00935: Node argument can't be null");
+}

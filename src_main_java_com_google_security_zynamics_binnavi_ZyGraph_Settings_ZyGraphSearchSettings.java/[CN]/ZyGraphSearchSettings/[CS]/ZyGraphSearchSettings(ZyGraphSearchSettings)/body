@@ -1,0 +1,7 @@
+{
+  m_type=null;
+  m_searchCaseSensitive=settings.getSearchCaseSensitive();
+  m_searchRegEx=settings.getSearchRegEx();
+  m_searchSelectedNodesOnly=settings.getSearchSelectedNodesOnly();
+  m_searchVisibleNodesOnly=settings.getSearchVisibleNodesOnly();
+}

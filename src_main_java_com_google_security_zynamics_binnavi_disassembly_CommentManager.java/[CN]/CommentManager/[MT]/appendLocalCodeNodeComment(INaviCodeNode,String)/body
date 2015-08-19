@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02558: group node argument can not be null");
+  return appendComment(new CodeNodeCommentingStrategy(node,CommentScope.LOCAL),comment);
+}

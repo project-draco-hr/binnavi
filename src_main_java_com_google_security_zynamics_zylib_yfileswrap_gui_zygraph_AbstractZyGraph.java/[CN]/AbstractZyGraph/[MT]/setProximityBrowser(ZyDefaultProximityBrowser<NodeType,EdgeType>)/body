@@ -1,0 +1,6 @@
+{
+  if (m_proximityBrowser != null) {
+    m_proximityBrowser.dispose();
+  }
+  m_proximityBrowser=proximityBrowser;
+}

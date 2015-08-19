@@ -1,0 +1,2 @@
+List<INaviView> views
+int viewId

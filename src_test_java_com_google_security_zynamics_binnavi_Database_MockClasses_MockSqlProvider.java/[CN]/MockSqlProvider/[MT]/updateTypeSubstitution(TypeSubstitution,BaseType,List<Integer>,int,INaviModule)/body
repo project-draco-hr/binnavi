@@ -1,0 +1,10 @@
+{
+  final RawTypeSubstitution rawSubstitution=findSubstitution(substitution.getAddress().toBigInteger(),substitution.getPosition(),substitution.getOperandTreeNode().getId(),module);
+  if (rawSubstitution != null) {
+    substitutions.remove(module,rawSubstitution);
+    substitutions.put(module,new RawTypeSubstitution(substitution.getAddress(),substitution.getPosition(),substitution.getOperandTreeNode().getId(),baseType.getId(),Arrays.copyOf(memberPath.toArray(),memberPath.size(),Integer[].class),offset));
+  }
+ else {
+    throw new IllegalStateException("Trying to update non-existing type substitution.");
+  }
+}

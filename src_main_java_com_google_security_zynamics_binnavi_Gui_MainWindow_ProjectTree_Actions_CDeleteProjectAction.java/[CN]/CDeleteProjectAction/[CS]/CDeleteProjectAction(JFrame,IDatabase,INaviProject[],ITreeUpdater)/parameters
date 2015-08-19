@@ -1,0 +1,4 @@
+JFrame parent
+IDatabase database
+INaviProject[] projects
+ITreeUpdater updater

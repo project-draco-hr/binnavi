@@ -1,0 +1,11 @@
+{
+  final Set<String> taintedRegs=new TreeSet<String>();
+  for (  final String register : registers) {
+    taintedRegs.add(register);
+  }
+  final Set<String> newlyTaintedRegs=new TreeSet<String>();
+  final Set<String> untaintedRegs=new TreeSet<String>();
+  final Set<String> readRegs=new TreeSet<String>();
+  final Set<String> updatedRegs=new TreeSet<String>();
+  return new RegisterSetLatticeElement(taintedRegs,newlyTaintedRegs,untaintedRegs,readRegs,updatedRegs);
+}

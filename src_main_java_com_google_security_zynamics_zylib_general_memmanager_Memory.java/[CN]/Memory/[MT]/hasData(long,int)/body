@@ -1,0 +1,27 @@
+{
+  Preconditions.checkArgument(address >= 0,"Error: Address can't be less than 0");
+  Preconditions.checkArgument(length > 0,"Error: Length must be positive");
+  try {
+    m_readLock.lock();
+    MemoryChunk nextChunk=findChunk(address);
+    int nextLength=length;
+    long nextAddress=address;
+    do {
+      if (nextChunk == null) {
+        return false;
+      }
+ else       if (((nextChunk.getAddress() + nextChunk.getLength()) - nextAddress) >= nextLength) {
+        return true;
+      }
+ else {
+        nextLength-=(nextChunk.getAddress() + nextChunk.getLength()) - nextAddress;
+        nextAddress=nextChunk.getAddress() + nextChunk.getLength();
+        nextChunk=findChunk(nextAddress);
+      }
+    }
+ while (true);
+  }
+  finally {
+    m_readLock.unlock();
+  }
+}

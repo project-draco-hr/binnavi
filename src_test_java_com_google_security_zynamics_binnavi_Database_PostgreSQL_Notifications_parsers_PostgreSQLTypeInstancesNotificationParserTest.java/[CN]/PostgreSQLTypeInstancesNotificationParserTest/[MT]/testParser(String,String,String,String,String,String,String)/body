@@ -1,0 +1,32 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  builder.append(table);
+  builder.append(' ');
+  builder.append(databaseOperation);
+  builder.append(' ');
+  builder.append(moduleId);
+  builder.append(' ');
+  if (address != null) {
+    builder.append(address);
+    builder.append(' ');
+  }
+  if (position != null) {
+    builder.append(position);
+    builder.append(' ');
+  }
+  if (expressionId != null) {
+    builder.append(expressionId);
+    builder.append(' ');
+  }
+  builder.append(typeInstanceId);
+  final String notification=builder.toString();
+  notifications.add(new MockPGNotification("type_instances_changes",notification));
+  final PostgreSQLTypeInstancesNotificationParser parser=new PostgreSQLTypeInstancesNotificationParser();
+  final Collection<TypeInstancesNotificationContainer> result=parser.parse(notifications,provider);
+  assertNotNull(result);
+  assertTrue(!result.isEmpty());
+  assertTrue(result.size() == 1);
+  final TypeInstancesNotificationContainer container=Iterables.getFirst(result,null);
+  assertNotNull(container);
+  assertEquals(databaseOperation,container.getDatabaseOperation());
+}

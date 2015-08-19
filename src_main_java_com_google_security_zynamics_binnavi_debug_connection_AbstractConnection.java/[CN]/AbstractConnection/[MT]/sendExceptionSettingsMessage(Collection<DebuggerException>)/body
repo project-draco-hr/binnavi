@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Exception Settings\" message to the debug client");
+  return sendPacket(new SetExceptionSettingsCommand(getMessageId(),exceptions));
+}

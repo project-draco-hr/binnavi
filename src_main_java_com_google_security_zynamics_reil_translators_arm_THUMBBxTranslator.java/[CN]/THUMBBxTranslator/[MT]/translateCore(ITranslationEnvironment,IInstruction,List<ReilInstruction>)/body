@@ -1,0 +1,11 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final String sourceRegister1=(registerOperand1.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  final String tmpVar1=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,sourceRegister1,bt,String.valueOf(1L),bt,"T"));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,sourceRegister1,dw,String.valueOf(0xFFFFFFFEL),dw,tmpVar1));
+  instructions.add(ReilHelpers.createJcc(baseOffset++,dw,String.valueOf(1),dw,tmpVar1));
+}

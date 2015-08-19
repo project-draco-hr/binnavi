@@ -1,0 +1,8 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    closeOk();
+  }
+ else {
+    dispose();
+  }
+}

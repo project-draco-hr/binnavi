@@ -1,0 +1,31 @@
+{
+  if (!(obj instanceof Triple<?,?,?>)) {
+    return false;
+  }
+  final Triple<?,?,?> t=(Triple<?,?,?>)obj;
+  if (!((t.first() == null) && (m_first == null))) {
+    if ((t.first() == null) || (m_first == null)) {
+      return false;
+    }
+ else     if (!t.m_first.equals(m_first)) {
+      return false;
+    }
+  }
+  if (!((t.second() == null) && (m_second == null))) {
+    if ((t.second() == null) || (m_second == null)) {
+      return false;
+    }
+ else     if (!t.m_second.equals(m_second)) {
+      return false;
+    }
+  }
+  if (!((t.third() == null) && (m_third == null))) {
+    if ((t.third() == null) || (m_third == null)) {
+      return false;
+    }
+ else     if (!t.m_third.equals(m_third)) {
+      return false;
+    }
+  }
+  return true;
+}

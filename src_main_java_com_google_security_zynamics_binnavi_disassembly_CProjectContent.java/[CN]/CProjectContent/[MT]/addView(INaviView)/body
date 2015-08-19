@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(view,"IE00232: View argument can't be null");
+  Preconditions.checkArgument(view.getType() == ViewType.NonNative,"IE00233: Only non-native views can be added to projects");
+  Preconditions.checkArgument(!m_views.contains(view),"IE00235: View can not be added to the project more than once");
+  Preconditions.checkArgument(view.inSameDatabase(m_provider),"IE00236: View and project are not in the same database");
+  m_views.add(view);
+  for (  final IProjectListener listener : m_listeners) {
+    try {
+      listener.addedView(m_project,view);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

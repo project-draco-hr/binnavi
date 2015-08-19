@@ -1,0 +1,4 @@
+{
+  this.packetId=packetId;
+  this.errorCode=errorCode;
+}

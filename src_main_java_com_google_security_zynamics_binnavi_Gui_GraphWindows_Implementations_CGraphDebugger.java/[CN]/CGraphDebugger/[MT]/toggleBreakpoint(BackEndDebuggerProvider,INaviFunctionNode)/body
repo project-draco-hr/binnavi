@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01721: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(functionNode,"IE01722: Function node argument can not be null");
+  if (functionNode.getFunction().getType() == FunctionType.IMPORT) {
+    return;
+  }
+  final IDebugger debugger=getDebugger(debuggerProvider,functionNode);
+  if (debugger == null) {
+    return;
+  }
+  final INaviModule module=functionNode.getFunction().getModule();
+  CGraphDebugger.toggleBreakpoint(debugger.getBreakpointManager(),module,new UnrelocatedAddress(functionNode.getFunction().getAddress()));
+}

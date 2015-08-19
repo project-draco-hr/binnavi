@@ -1,0 +1,8 @@
+{
+  m_tags.remove(tag);
+  final List<CTag> tagList=Lists.newArrayList(tag);
+  for (  final INaviViewNodeListener listener : m_naviViewNodeListeners) {
+    listener.untaggedNodes(CNaviViewNode.this,tagList);
+  }
+  tag.removeListener(m_tagListener);
+}

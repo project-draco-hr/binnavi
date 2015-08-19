@@ -1,0 +1,16 @@
+{
+  try {
+    m_node.deleteLocalFunctionComment(comment);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntDeleteException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+  for (  final IFunctionNodeListener listener : m_listeners) {
+    try {
+      listener.deletedComment(this,comment);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  while (!inconsistentTypes.isEmpty()) {
+    final BaseType baseType=inconsistentTypes.iterator().next();
+    if (baseType.getCategory() == BaseTypeCategory.STRUCT) {
+      adjustMemberOffsets(baseType,inconsistentTypes,oldSizes,affectedTypes);
+    }
+ else {
+      inconsistentTypes.remove(baseType);
+    }
+  }
+}

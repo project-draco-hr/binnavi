@@ -1,0 +1,15 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"setalc");
+  if (instruction.getOperands().size() != 0) {
+    throw new InternalTranslationException("Error: Argument instruction is not an setalc instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final String subResult=environment.getNextVariableString();
+  final String truncatedSubResult=environment.getNextVariableString();
+  final String clearedEax=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(offset++,OperandSize.BYTE,"0",OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.WORD,subResult));
+  instructions.add(ReilHelpers.createAnd(offset++,OperandSize.WORD,subResult,OperandSize.BYTE,"255",OperandSize.BYTE,truncatedSubResult));
+  instructions.add(ReilHelpers.createAnd(offset++,OperandSize.DWORD,"eax",OperandSize.DWORD,String.valueOf(0xFFFFFF00),OperandSize.BYTE,clearedEax));
+  instructions.add(ReilHelpers.createOr(offset++,OperandSize.DWORD,clearedEax,OperandSize.BYTE,truncatedSubResult,OperandSize.DWORD,"eax"));
+}

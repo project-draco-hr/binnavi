@@ -1,0 +1,8 @@
+{
+  if (m_database.isConnected() && m_database.isLoaded()) {
+    add(new CProjectContainerNode(getProjectTree(),m_database));
+    add(new CModuleContainerNode(getProjectTree(),m_database));
+    add(new CDebuggerContainerNode(getProjectTree(),m_database));
+    add(new CTagContainerNode(getProjectTree(),m_database));
+  }
+}

@@ -1,0 +1,15 @@
+{
+  highlightNode(state.getNode());
+  highlightEdges(state.getNode());
+  updateTooltip(state.getGraph(),state.getNode());
+  final AbstractZyGraph<NodeType,EdgeType> graph=state.getGraph();
+  final NodeType node=graph.getNode(state.getNode());
+  for (  final IZyEditModeListener<NodeType,EdgeType> listener : state.getStateFactory().getListeners()) {
+    try {
+      listener.nodeEntered(node,event);
+    }
+ catch (    final Exception exception) {
+    }
+  }
+  graph.updateViews();
+}

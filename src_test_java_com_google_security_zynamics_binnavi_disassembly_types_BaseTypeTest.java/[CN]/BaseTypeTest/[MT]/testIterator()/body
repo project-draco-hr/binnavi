@@ -1,0 +1,8 @@
+{
+  addMembersAndVerifyOperation();
+  int offset=0;
+  for (  final TypeMember member : testStruct) {
+    Preconditions.checkArgument(member.getBitOffset().get() >= offset);
+    offset=member.getBitOffset().get();
+  }
+}

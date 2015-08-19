@@ -1,0 +1,3 @@
+IFilteredTable<T> table
+IFilterFactory<T> filterFactory
+IHelpInformation filterHelp

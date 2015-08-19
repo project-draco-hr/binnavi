@@ -1,0 +1,8 @@
+{
+  try {
+    callResolver.getTarget().getDebugger().resume();
+  }
+ catch (  final DebugException exception) {
+    appendOutput(String.format("Error: Could not resume the debugger (%s)",exception.toString()));
+  }
+}

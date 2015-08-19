@@ -1,0 +1,11 @@
+{
+  return new IHelpInformation(){
+    @Override public String getText(){
+      return "This field shows both the local and global variables referenced by the view.\n\n" + "To rename variables, right-click on the variables.\n" + "To highlight variable access in the code, select the variables.\n"+ "To see the references and quickly navigate between them, "+ "double-click on the variable names.";
+    }
+    @Override public URL getUrl(){
+      return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+    }
+  }
+;
+}

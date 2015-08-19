@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(listener,"Internal Error: Listener can't be null");
+  if (!m_listeners.remove(listener)) {
+    throw new IllegalArgumentException("Internal Error: Listener was not listening on object");
+  }
+}

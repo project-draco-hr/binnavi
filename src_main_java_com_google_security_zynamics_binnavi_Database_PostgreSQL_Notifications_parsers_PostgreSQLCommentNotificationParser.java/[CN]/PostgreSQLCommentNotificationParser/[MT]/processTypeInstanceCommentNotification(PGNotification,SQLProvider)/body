@@ -1,0 +1,19 @@
+{
+  final Matcher matcher=TYPE_INSTANCE_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return null;
+  }
+  final Integer moduleId=Integer.parseInt(matcher.group(3));
+  final Integer typeInstanceId=Integer.parseInt(matcher.group(4));
+  final Integer commentId=matcher.group(5).equals("null") ? null : Integer.parseInt(matcher.group(5));
+  final INaviModule module=provider.findModule(moduleId);
+  if (module == null || !module.isLoaded()) {
+    return null;
+  }
+  final TypeInstance instance=module.getContent().getTypeInstanceContainer().getTypeInstanceById(typeInstanceId);
+  if (instance == null) {
+    return null;
+  }
+  final CommentOperation operation=commentId == null ? CommentOperation.DELETE : CommentOperation.APPEND;
+  return new TypeInstanceCommentNotificationContainer(instance,operation,commentId);
+}

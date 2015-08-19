@@ -1,0 +1,6 @@
+{
+  unInline(graph.getRawView(),node);
+  if (graph.getSettings().getLayoutSettings().getAutomaticLayouting()) {
+    CGraphLayouter.refreshLayout(parent,graph);
+  }
+}

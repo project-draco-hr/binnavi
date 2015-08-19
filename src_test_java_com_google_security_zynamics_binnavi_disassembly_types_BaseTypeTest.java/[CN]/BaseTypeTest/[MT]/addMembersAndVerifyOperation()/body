@@ -1,0 +1,9 @@
+{
+  final List<TypeMember> members=Lists.newArrayList(testMember0,testMember1,testMember2,testMember3);
+  for (  TypeMember member : members) {
+    testStruct.addMember(member);
+  }
+  assertEquals(testMember0.getBitSize() + testMember1.getBitSize() + testMember2.getBitSize()+ testMember3.getBitSize(),testStruct.getBitSize());
+  assertEquals(4,testStruct.getMemberCount());
+  assertEquals(testMember3,testStruct.getLastMember());
+}

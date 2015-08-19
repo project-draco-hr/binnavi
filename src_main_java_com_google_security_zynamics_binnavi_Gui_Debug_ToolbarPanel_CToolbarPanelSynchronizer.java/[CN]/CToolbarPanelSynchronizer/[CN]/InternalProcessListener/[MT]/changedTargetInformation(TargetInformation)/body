@@ -1,0 +1,3 @@
+{
+  updateFromDebuggerOptions(information.getDebuggerOptions());
+}

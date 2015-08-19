@@ -1,0 +1,3 @@
+{
+  return m_lattice.combine(wrap(states));
+}

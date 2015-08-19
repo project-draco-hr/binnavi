@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(name,"IE00803: Name argument can not be null");
+  if (debuggerTemplateName.equals(name)) {
+    return;
+  }
+  sqlProvider.setName(this,name);
+  debuggerTemplateName=name;
+  for (  final IDebuggerTemplateListener listener : listeners) {
+    try {
+      listener.changedName(this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

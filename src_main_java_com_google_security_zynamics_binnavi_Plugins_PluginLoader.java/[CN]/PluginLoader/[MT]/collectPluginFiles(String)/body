@@ -1,0 +1,19 @@
+{
+  final Set<File> pluginFiles=new HashSet<File>();
+  final File file=new File(directory);
+  DirUtils.traverse(file,new IDirectoryTraversalCallback(){
+    @Override public void entering(    final File directory){
+      System.out.println(directory.getName());
+    }
+    @Override public void leaving(    final File directory){
+    }
+    @Override public void nextFile(    final File pluginFile){
+      System.out.println(pluginFile.getName());
+      if (pluginFile.getName().endsWith(".jar") || pluginFile.getName().endsWith(".class")) {
+        pluginFiles.add(pluginFile);
+      }
+    }
+  }
+);
+  return pluginFiles;
+}

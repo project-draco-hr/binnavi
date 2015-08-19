@@ -1,0 +1,23 @@
+{
+  super("Inline Subfunction");
+  final List<INaviEdge> outgoingEdges=node.getRawNode().getOutgoingEdges();
+  if (allowUninlining) {
+    add(CActionProxy.proxy(new CUnInlineAction(model.getParent(),model.getGraph(),(INaviCodeNode)node.getRawNode())));
+  }
+  boolean alreadyInlined=false;
+  if (outgoingEdges.size() == 1) {
+    alreadyInlined=outgoingEdges.get(outgoingEdges.size() - 1).getType() == EdgeType.ENTER_INLINED_FUNCTION;
+  }
+  int functionCounter=0;
+  for (  final Pair<INaviInstruction,INaviFunction> p : functions) {
+    if (functionCounter == functions.size() - 1 && alreadyInlined) {
+      break;
+    }
+    if (functionCounter == 0 && allowUninlining) {
+      addSeparator();
+    }
+    add(new JMenuItem(CActionProxy.proxy(new CInlineFunctionAction(model,(INaviCodeNode)node.getRawNode(),p.first(),p.second()))));
+    functionCounter++;
+  }
+  setEnabled(getMenuComponentCount() != 0);
+}

@@ -1,0 +1,9 @@
+{
+  final BaseTypeHelpers.WalkResult result=BaseTypeHelpers.findMember(baseType,offset);
+  if (result.getMember() == null) {
+    return String.format("%s%s",baseType.getName(),toByteOffsetString(offset));
+  }
+ else {
+    return result.getPathString();
+  }
+}

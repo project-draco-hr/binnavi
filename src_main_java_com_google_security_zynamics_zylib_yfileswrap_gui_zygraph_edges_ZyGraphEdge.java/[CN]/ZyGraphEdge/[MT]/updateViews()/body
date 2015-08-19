@@ -1,0 +1,5 @@
+{
+  if (getGraph(m_edge) != null) {
+    getGraph(m_edge).updateViews();
+  }
+}

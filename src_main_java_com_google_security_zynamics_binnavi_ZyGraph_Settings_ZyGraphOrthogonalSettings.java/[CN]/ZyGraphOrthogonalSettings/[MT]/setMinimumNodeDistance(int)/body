@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00885: Distance argument must not be negative");
+  if (value == getMinimumNodeDistance()) {
+    return;
+  }
+  if (m_type == null) {
+    m_mininmumNodeDistance=value;
+  }
+ else {
+    m_type.setOrthogonalMinimumNodeDistance(value);
+  }
+}

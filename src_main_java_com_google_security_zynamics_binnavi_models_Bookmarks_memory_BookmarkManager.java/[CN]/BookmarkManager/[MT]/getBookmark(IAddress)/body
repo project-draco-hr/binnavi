@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(address,"IE00384: Bookmark address can not be null");
+  for (  final CBookmark bookmark : m_bookmarks) {
+    if (bookmark.getAddress().equals(address)) {
+      return bookmark;
+    }
+  }
+  return null;
+}

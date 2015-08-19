@@ -1,0 +1,10 @@
+{
+  super.paint(graphics);
+  if (m_module.isStared()) {
+    graphics.drawImage(starImage,0,0,getHeight() - 2,getHeight() - 2,m_table);
+  }
+  final boolean isOpen=m_module.isLoaded();
+  graphics.setColor(Color.BLACK);
+  graphics.setFont(isOpen ? normalBoldFont : normalFont);
+  graphics.drawString(m_module.getConfiguration().getName(),m_module.isStared() ? getHeight() : 0,12);
+}

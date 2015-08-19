@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(conditionGenerator,"Error: Argument conditionGenerator can't be null");
+  this.conditionGenerator=conditionGenerator;
+}

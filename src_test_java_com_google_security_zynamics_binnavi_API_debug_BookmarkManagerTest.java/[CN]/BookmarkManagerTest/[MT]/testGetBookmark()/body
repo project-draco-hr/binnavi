@@ -1,0 +1,12 @@
+{
+  try {
+    assertEquals(0x123,m_apiManager.getBookmark(null).getAddress().toLong());
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertNull(m_apiManager.getBookmark(new Address(0x123)));
+  m_apiManager.addBookmark(new Address(0x123),"Fark");
+  assertEquals(1,m_apiManager.getNumberOfBookmarks());
+  assertEquals(0x123,m_apiManager.getBookmark(new Address(0x123)).getAddress().toLong());
+  assertEquals("Fark",m_apiManager.getBookmark(new Address(0x123)).getDescription());
+}

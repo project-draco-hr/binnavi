@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  m_model=model;
+  m_graph=graph;
+  m_traceProvider=traceProvider;
+  m_graphPanel=graphPanel;
+  m_innerPanel=new CDebugEventListPanel(traceProvider);
+  add(m_innerPanel);
+  m_traceTable=m_innerPanel.getTracesTable();
+  m_eventTable=m_innerPanel.getEventsTable();
+  m_traceTable.addMouseListener(new InternalTraceTableListener());
+  m_eventTable.addMouseListener(new InternalEventsTableListener());
+}

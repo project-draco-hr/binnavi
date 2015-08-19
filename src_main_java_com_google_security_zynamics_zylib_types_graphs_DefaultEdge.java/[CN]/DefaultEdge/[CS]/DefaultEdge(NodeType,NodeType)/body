@@ -1,0 +1,4 @@
+{
+  m_source=Preconditions.checkNotNull(source,"Error: Source argument can not be null");
+  m_target=Preconditions.checkNotNull(target,"Error: Target argument can not be null");
+}

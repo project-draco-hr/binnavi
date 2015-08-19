@@ -1,0 +1,10 @@
+{
+  final CHistoryStringBuilder builder=new CHistoryStringBuilder();
+  builder.setDebugger(m_debugger);
+  m_debugger.connect();
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(mockMemoryModule));
+  m_debugger.getProcessManager().addThread(new TargetProcessThread(1,ThreadState.RUNNING));
+  m_synchronizer.receivedEvent(new AttachReply(0,0));
+  m_synchronizer.receivedEvent(new AttachReply(0,1));
+  m_synchronizer.receivedEvent(new AuthenticationFailedReply());
+}

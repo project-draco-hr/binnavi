@@ -1,0 +1,4 @@
+{
+  final INaviInstruction instruction=new MockInstruction(m_address,m_mnemonic,m_operands,m_globalComment);
+  return instruction;
+}

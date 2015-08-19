@@ -1,0 +1,3 @@
+{
+  CGraphZoomer.zoomNode(m_graph,Lists.newArrayList(m_edge.getSource(),m_edge.getTarget()));
+}

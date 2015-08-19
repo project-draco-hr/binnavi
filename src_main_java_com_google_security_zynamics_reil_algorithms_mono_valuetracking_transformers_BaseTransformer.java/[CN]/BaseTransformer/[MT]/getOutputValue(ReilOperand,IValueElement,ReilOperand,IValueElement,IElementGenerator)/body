@@ -1,0 +1,17 @@
+{
+  if ((previousState1 == null) && (previousState2 == null)) {
+    return generator.generate(getAtomicType(firstOperand),getAtomicType(secondOperand));
+  }
+ else   if ((previousState1 instanceof Undefined) || (previousState2 instanceof Undefined)) {
+    return new Undefined();
+  }
+ else   if ((previousState1 != null) && (previousState2 == null)) {
+    return generator.generate(previousState1,getAtomicType(secondOperand));
+  }
+ else   if ((previousState1 == null) && (previousState2 != null)) {
+    return generator.generate(getAtomicType(firstOperand),previousState2);
+  }
+ else {
+    return generator.generate(previousState1,previousState2);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  final InstructionGraphNode fakeNode1=new InstructionGraphNode(ReilHelpers.createNop(0));
+  final InstructionGraphNode fakeNode2=new InstructionGraphNode(ReilHelpers.createNop(1));
+  final InstructionGraphNode node1=new InstructionGraphNode(ReilHelpers.createAdd(2,OperandSize.DWORD,"eax",OperandSize.DWORD,"5",OperandSize.DWORD,"ecx"));
+  final InstructionGraphEdge edge1=new InstructionGraphEdge(fakeNode1,node1,EdgeType.JUMP_UNCONDITIONAL);
+  InstructionGraphNode.link(fakeNode1,node1,edge1);
+  final InstructionGraphEdge edge2=new InstructionGraphEdge(fakeNode2,node1,EdgeType.JUMP_UNCONDITIONAL);
+  InstructionGraphNode.link(fakeNode2,node1,edge2);
+  final List<InstructionGraphNode> nodes=Lists.newArrayList(fakeNode1,fakeNode2,node1);
+  final StateVector<InstructionGraphNode,RegisterSet> init=new StateVector<InstructionGraphNode,RegisterSet>();
+  init.setState(nodes.get(0),new RegisterSet("eax"));
+  init.setState(nodes.get(1),new RegisterSet("ebx"));
+  init.setState(nodes.get(2),new RegisterSet());
+}

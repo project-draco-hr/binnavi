@@ -1,0 +1,3 @@
+{
+  CDatabaseFunctions.addNewDatabase(m_projectTree);
+}

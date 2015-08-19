@@ -1,0 +1,4 @@
+{
+  m_address=Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"Error: module argument can not be null");
+}

@@ -1,0 +1,8 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  typeManager.renameType(typeSystem.intType,"NARF");
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.typesUpdated(Sets.<BaseType>newHashSet(typeSystem.intType,typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.simpleUnion,typeSystem.complexUnion));
+  Assert.assertEquals(expectedEvents,events);
+}

@@ -1,0 +1,9 @@
+{
+  if (type == TagType.VIEW_TAG) {
+    return "view_tag";
+  }
+ else   if (type == TagType.NODE_TAG) {
+    return "node_tag";
+  }
+  throw new IllegalArgumentException("IE00566: Unknown tag type");
+}

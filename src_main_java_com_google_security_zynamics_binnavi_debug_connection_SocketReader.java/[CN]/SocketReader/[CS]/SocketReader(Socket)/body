@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(socket,"IE00745: Socket can not be null");
+  m_InputStream=new BufferedInputStream(socket.getInputStream());
+}

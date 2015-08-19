@@ -1,0 +1,4 @@
+{
+  debugger.addListener(m_debuggerListener);
+  fireTableDataChanged();
+}

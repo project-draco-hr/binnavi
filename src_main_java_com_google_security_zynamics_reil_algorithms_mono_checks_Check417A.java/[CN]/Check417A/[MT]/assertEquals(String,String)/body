@@ -1,0 +1,5 @@
+{
+  if (!lhs.equals(rhs)) {
+    throw new IllegalStateException(rhs + " != " + lhs);
+  }
+}

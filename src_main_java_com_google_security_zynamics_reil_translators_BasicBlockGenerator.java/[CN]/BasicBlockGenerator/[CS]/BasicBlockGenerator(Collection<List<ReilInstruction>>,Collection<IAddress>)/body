@@ -1,0 +1,15 @@
+{
+  for (  final List<ReilInstruction> instructions : instructionList) {
+    final HashSet<IAddress> jumpTargets=fillJumpTargets(instructions);
+    jumpTargets.addAll(nativeJumpTargets);
+    final ReilInstruction lastInstruction=Iterables.getLast(instructions);
+    for (    final ReilInstruction reilInstruction : instructions) {
+      addInstruction(reilInstruction,jumpTargets,lastInstruction);
+    }
+    if (currentBlock.size() != 0) {
+      final ReilBlock reilBlock=new ReilBlock(currentBlock);
+      blocks.add(reilBlock);
+      currentBlock=new ArrayList<ReilInstruction>();
+    }
+  }
+}

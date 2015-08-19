@@ -1,0 +1,14 @@
+{
+  final Tag deletedTag=m_allTags.get(tag);
+  final Tag parentTag=deletedTag.getParent();
+  Tag.unlink(parentTag,deletedTag);
+  removeTree(tag);
+  for (  final ITagManagerListener listener : m_listeners) {
+    try {
+      listener.deletedTagTree(TagManager.this,deletedTag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

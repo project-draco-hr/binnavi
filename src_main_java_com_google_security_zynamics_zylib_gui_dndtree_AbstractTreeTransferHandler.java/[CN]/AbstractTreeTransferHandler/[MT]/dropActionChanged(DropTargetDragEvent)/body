@@ -1,0 +1,23 @@
+{
+  final Point pt=dtde.getLocation();
+  final int action=dtde.getDropAction();
+  if (drawImage) {
+    paintImage(pt);
+  }
+  if (draggedNode == null) {
+    if (canPerformAction(tree,dtde.getCurrentDataFlavorsAsList().get(0),dtde.getTransferable(),action,pt)) {
+      dtde.acceptDrag(action);
+    }
+ else {
+      dtde.rejectDrag();
+    }
+  }
+ else {
+    if (canPerformAction(tree,draggedNode,action,pt)) {
+      dtde.acceptDrag(action);
+    }
+ else {
+      dtde.rejectDrag();
+    }
+  }
+}

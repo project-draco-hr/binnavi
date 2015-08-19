@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(identity,"IE00067: identity argument can not be null");
+  if (identity.equals(m_identity)) {
+    return;
+  }
+  m_identity=identity;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedIdentity(m_database,identity);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  final List<? extends IViewEdge<? extends IViewNode<?>>> edges=m_viewNode.getOutgoingEdges();
+  final List<IViewNode<?>> nodes=new ArrayList<IViewNode<?>>();
+  for (  final IViewEdge<? extends IViewNode<?>> viewEdge : edges) {
+    nodes.add(viewEdge.getTarget());
+  }
+  return wrap(nodes);
+}

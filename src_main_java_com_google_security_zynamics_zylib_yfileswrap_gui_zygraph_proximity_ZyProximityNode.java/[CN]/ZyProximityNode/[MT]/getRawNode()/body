@@ -1,0 +1,3 @@
+{
+  return (CProximityNode<T>)super.getRawNode();
+}

@@ -1,0 +1,3 @@
+{
+  manager.appendTextNodeComment(node,getCommentId());
+}

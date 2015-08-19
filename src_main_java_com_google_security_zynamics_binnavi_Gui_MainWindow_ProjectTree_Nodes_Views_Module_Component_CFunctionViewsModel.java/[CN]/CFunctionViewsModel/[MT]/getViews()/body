@@ -1,0 +1,15 @@
+{
+  IFilledList<INaviView> localCachedValues=m_cachedValues;
+  if (localCachedValues == null) {
+    final IFilter<INaviView> filter=getFilter();
+    if (m_module.isLoaded()) {
+      localCachedValues=filter == null ? convert(m_module.getContent().getViewContainer().getNativeFlowgraphViews()) : filter.get(convert(m_module.getContent().getViewContainer().getNativeFlowgraphViews()));
+    }
+ else {
+      localCachedValues=new FilledList<INaviView>();
+    }
+    CStaredItemFunctions.sort(localCachedValues);
+  }
+  m_cachedValues=localCachedValues;
+  return new ArrayList<INaviView>(localCachedValues);
+}

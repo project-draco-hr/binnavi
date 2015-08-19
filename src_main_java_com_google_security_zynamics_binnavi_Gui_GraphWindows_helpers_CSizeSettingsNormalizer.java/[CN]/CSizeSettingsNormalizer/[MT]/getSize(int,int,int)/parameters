@@ -1,0 +1,3 @@
+int settingSize
+int maximum
+int defaultValue

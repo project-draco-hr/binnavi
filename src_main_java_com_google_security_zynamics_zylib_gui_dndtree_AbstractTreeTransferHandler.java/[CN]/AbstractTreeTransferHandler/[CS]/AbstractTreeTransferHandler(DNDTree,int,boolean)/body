@@ -1,0 +1,7 @@
+{
+  this.tree=tree;
+  drawImage=drawIcon;
+  dragSource=new DragSource();
+  dragSource.createDefaultDragGestureRecognizer(tree,action,this);
+  dropTarget=new DropTarget(tree,action,this);
+}

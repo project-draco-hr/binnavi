@@ -1,0 +1,3 @@
+IComment currentComment
+IComment newComment
+CommentOperation operation

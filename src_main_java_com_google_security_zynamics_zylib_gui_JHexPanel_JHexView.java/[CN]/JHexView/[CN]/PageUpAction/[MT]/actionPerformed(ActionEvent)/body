@@ -1,0 +1,3 @@
+{
+  changeBy(event,-getNumberOfVisibleRows() * m_bytesPerRow * 2);
+}

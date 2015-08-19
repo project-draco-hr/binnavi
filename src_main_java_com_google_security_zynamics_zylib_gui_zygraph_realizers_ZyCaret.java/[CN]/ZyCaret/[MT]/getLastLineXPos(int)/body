@@ -1,0 +1,8 @@
+{
+  final ZyLineContent lineContent=m_content.getLineContent(lineYPos);
+  final String text=lineContent.getText();
+  if (text.endsWith("\n") || text.endsWith("\r")) {
+    return text.length() - 1;
+  }
+  return text.length();
+}

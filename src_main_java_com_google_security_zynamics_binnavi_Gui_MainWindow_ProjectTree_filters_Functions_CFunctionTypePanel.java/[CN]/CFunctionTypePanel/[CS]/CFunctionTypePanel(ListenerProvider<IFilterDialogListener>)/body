@@ -1,0 +1,12 @@
+{
+  super(new BorderLayout());
+  m_listeners=listeners;
+  final JPanel innerPanel=new JPanel(new GridLayout(5,1));
+  innerPanel.add(buildRow("Normal functions",m_normalFunctionCheckbox));
+  innerPanel.add(buildRow("Imported functions",m_importedFunctionCheckbox));
+  innerPanel.add(buildRow("Library functions",m_libraryFunctionCheckbox));
+  innerPanel.add(buildRow("Thunk functions",m_thunkFunctionCheckbox));
+  innerPanel.add(buildRow("Thunk adjustor functions",m_adjustorFunctionCheckbox));
+  add(innerPanel,BorderLayout.NORTH);
+  setBorder(new TitledBorder("Function type"));
+}

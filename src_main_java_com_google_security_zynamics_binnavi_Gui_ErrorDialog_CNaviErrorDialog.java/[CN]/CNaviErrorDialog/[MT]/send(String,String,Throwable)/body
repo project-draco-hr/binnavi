@@ -1,0 +1,3 @@
+{
+  CErrorDialogFunctions.send(this,description,message,exception);
+}

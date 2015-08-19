@@ -1,0 +1,31 @@
+{
+  ConfigManager.instance().read();
+  final CDatabase database=new CDatabase("","","","","","","",false,false);
+  final Database apiDatabase=new Database(database);
+  final SQLProvider mockProvider=new MockSqlProvider();
+  final ITreeNode<CTag> nodeRootNode=new TreeNode<CTag>(new CTag(0,"","",TagType.NODE_TAG,mockProvider));
+  final Tree<CTag> nodeTagTree=new Tree<CTag>(nodeRootNode);
+  final TagManager nodeTagManager=new TagManager(new CTagManager(nodeTagTree,TagType.NODE_TAG,mockProvider));
+  final ITreeNode<CTag> viewRootNode=new TreeNode<CTag>(new CTag(0,"","",TagType.VIEW_TAG,mockProvider));
+  final Tree<CTag> viewTagTree=new Tree<CTag>(viewRootNode);
+  final TagManager viewTagManager=new TagManager(new CTagManager(viewTagTree,TagType.VIEW_TAG,mockProvider));
+  m_module=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,mockProvider);
+  m_module.load();
+  m_mockDebugger=new MockDebugger(m_moduleDebugSettings);
+  m_mockDebugger.connect();
+  m_debugger=new Debugger(m_mockDebugger);
+  final INaviFunction parentFunction=m_module.getContent().getFunctionContainer().getFunctions().get(0);
+  m_mockDebugger.setAddressTranslator(m_module,new CAddress(0),new CAddress(0x1000));
+  final ViewContainer viewContainer=new Module(apiDatabase,m_module,nodeTagManager,viewTagManager);
+  final INaviView naviView=new MockView(mockProvider);
+  final Function apiFunction=new Function(ModuleFactory.get(),parentFunction);
+  final COperandTreeNode rootNode1=new COperandTreeNode(1,IOperandTree.NODE_TYPE_REGISTER_ID,"eax",null,new ArrayList<IReference>(),mockProvider,m_module.getTypeManager(),m_module.getContent().getTypeInstanceContainer());
+  final COperandTreeNode rootNode2=new COperandTreeNode(1,IOperandTree.NODE_TYPE_REGISTER_ID,"ebx",null,new ArrayList<IReference>(),mockProvider,m_module.getTypeManager(),m_module.getContent().getTypeInstanceContainer());
+  final COperandTree operand1=new COperandTree(rootNode1,mockProvider,m_module.getTypeManager(),m_module.getContent().getTypeInstanceContainer());
+  final COperandTree operand2=new COperandTree(rootNode2,mockProvider,m_module.getTypeManager(),m_module.getContent().getTypeInstanceContainer());
+  final List<COperandTree> operands=Lists.newArrayList(operand1,operand2);
+  final CInstruction internalInstruction=new CInstruction(true,m_module,new CAddress(0x1234),"mov",operands,new byte[]{1,2,3},"x86-32",mockProvider);
+  m_view=new View(viewContainer,naviView,nodeTagManager,viewTagManager);
+  m_node=m_view.createCodeNode(apiFunction,Lists.newArrayList(new Instruction(internalInstruction)));
+  setM_functionNode(m_view.createFunctionNode(apiFunction));
+}

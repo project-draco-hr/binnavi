@@ -1,0 +1,13 @@
+{
+  final Graph2D graph=getGraph();
+  for (  final INaviEdge edge : m_rawView.getGraph().getEdges()) {
+    if (!edge.isVisible()) {
+      graph.removeEdge(getYEdge(edge));
+    }
+  }
+  for (  final INaviViewNode node : m_rawView.getGraph()) {
+    if (!node.isVisible()) {
+      graph.removeNode(getYNode(node));
+    }
+  }
+}

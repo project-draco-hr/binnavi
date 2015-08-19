@@ -1,0 +1,15 @@
+{
+  m_type=null;
+  m_defaultGraphLayout=settings.getDefaultGraphLayout();
+  m_animateLayoutEdgeThreshold=settings.getAnimateLayoutEdgeThreshold();
+  m_animateLayoutNodeThreshold=settings.getAnimateLayoutNodeThreshold();
+  m_autoLayoutDeactivationThreshold=settings.getAutolayoutDeactivationThreshold();
+  m_automaticLayouting=settings.getAutomaticLayouting();
+  m_layoutAnimation=settings.getAnimateLayout();
+  m_layoutCalculationTimeWarningThreshold=settings.getLayoutCalculationTimeWarningThreshold();
+  m_visibilityWarningThreshold=settings.getVisibilityWarningTreshold();
+  m_circularSettings=new ZyGraphCircularSettings(settings.getCircularSettings());
+  m_hierarchicalSettings=new ZyGraphHierarchicalSettings(settings.getHierarchicalSettings());
+  m_orthogonalSettings=new ZyGraphOrthogonalSettings(settings.getOrthogonalSettings());
+  updateLayouter();
+}

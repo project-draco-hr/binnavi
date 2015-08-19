@@ -1,0 +1,28 @@
+{
+  super(parent,"IDA Pro Selection",ModalityType.APPLICATION_MODAL);
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+  m_chooser.setControlButtonsAreShown(false);
+  m_chooser.addPropertyChangeListener(JFileChooser.DIRECTORY_CHANGED_PROPERTY,new DirectoryChangedListener());
+  m_chooser.setCurrentDirectory(new File(initialDirectory));
+  m_chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+  m_chooser.setAcceptAllFileFilterUsed(false);
+  add(m_chooser);
+  final JPanel lowerPanel=new JPanel(new BorderLayout());
+  final CPanelTwoButtons buttonPanel=new CPanelTwoButtons(new InternalActionListener(),"OK","Cancel");
+  lowerPanel.add(buttonPanel,BorderLayout.EAST);
+  final JPanel cppPanel=new JPanel(new GridLayout(1,2));
+  cppPanel.setBorder(new EmptyBorder(5,5,5,5));
+  final JPanel install=new JPanel();
+  install.add(m_cppButton);
+  final JLabel exporterLabel=new JLabel("BinExport IDA plugin: ");
+  exporterLabel.setBorder(new EmptyBorder(5,5,5,5));
+  cppPanel.add(exporterLabel);
+  cppPanel.add(m_cppStateLabel);
+  cppPanel.add(install);
+  lowerPanel.add(cppPanel,BorderLayout.CENTER);
+  add(lowerPanel,BorderLayout.SOUTH);
+  updateDialog(m_chooser.getCurrentDirectory());
+  pack();
+}

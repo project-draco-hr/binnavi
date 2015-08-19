@@ -1,0 +1,8 @@
+{
+  final BreakpointManager breakpointManager=debugger.getBreakpointManager();
+  for (  final Address address : myBreakpoints) {
+    if (breakpointManager.hasBreakpoint(null,address)) {
+      breakpointManager.removeBreakpoint(null,address);
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  final MockViewNodeListener listener=new MockViewNodeListener();
+  m_node.addListener(listener);
+  assertEquals(20,m_node.getY(),0.1);
+  m_node.setY(15);
+  assertEquals(15,m_node.getY(),0.1);
+  assertEquals("changedY;",listener.events);
+  m_node.removeListener(listener);
+}

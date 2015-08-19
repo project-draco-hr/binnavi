@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(source,"IE00290: Source argument can not be null");
+  Preconditions.checkNotNull(target,"IE00291: Target argument can not be null");
+  Preconditions.checkNotNull(edgeType,"IE00292: Edge type argument can not be null");
+  Preconditions.checkArgument(source.inSameDatabase(provider),"IE00187: Source node is not in the same database");
+  Preconditions.checkArgument(target.inSameDatabase(provider),"IE00189: Target node is not in the same database");
+  final CNaviViewEdge edge=new CNaviViewEdge(-1,source,target,edgeType,0,0,0,0,Color.BLACK,false,true,null,new ArrayList<CBend>(),provider);
+  source.addOutgoingEdge(edge);
+  target.addIncomingEdge(edge);
+  edge.addListener(m_internalEdgeListener);
+  graph.addEdge(edge);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.addedEdge(view,edge);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return edge;
+}

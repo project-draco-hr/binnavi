@@ -1,0 +1,5 @@
+{
+  debugClientHost=Preconditions.checkNotNull(host,"IE00739: Host can not be null");
+  Preconditions.checkArgument(NetHelpers.isValidPort(port),"IE00740: Invalid port");
+  debugClientPort=port;
+}

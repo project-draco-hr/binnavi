@@ -1,0 +1,8 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      m_stdEditPanel.setDescription(description);
+    }
+  }
+.invokeLater();
+}

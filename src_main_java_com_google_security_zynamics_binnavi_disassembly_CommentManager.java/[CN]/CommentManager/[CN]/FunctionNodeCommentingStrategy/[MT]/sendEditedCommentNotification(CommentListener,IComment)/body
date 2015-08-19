@@ -1,0 +1,3 @@
+{
+  listener.editedFunctionNodeComment(functionNode,comment);
+}

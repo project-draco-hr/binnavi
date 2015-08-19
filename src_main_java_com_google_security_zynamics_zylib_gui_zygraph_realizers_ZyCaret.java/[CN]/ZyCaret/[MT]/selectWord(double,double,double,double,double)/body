@@ -1,0 +1,30 @@
+{
+  final double x=mouseX - labelParentX - m_content.getPaddingLeft();
+  final double y=mouseY - labelParentY - m_content.getPaddingTop();
+  m_mouse_released_y=calcHitLine(y);
+  m_mouse_pressed_y=m_mouse_released_y;
+  m_mouse_released_x=calcHitPosition(m_caret_endpos_x,(float)x,(float)y,zoomFactor);
+  final String s=m_content.getLineContent(m_mouse_released_y).getText();
+  if (m_mouse_released_x > (s.length() - 1)) {
+    return;
+  }
+  if (s.charAt(m_mouse_released_x) == ' ') {
+    return;
+  }
+  m_caret_endpos_x=s.length();
+  for (int charX=m_mouse_released_x; charX < m_caret_endpos_x; ++charX) {
+    if (s.charAt(charX) == ' ') {
+      m_caret_endpos_x=charX;
+      break;
+    }
+  }
+  m_caret_startpos_x=0;
+  for (int charX=m_mouse_released_x; charX >= 0; --charX) {
+    if (s.charAt(charX) == ' ') {
+      m_caret_startpos_x=charX + 1;
+      break;
+    }
+  }
+  m_mouse_pressed_x=m_caret_startpos_x;
+  m_mouse_released_x=m_caret_endpos_x;
+}

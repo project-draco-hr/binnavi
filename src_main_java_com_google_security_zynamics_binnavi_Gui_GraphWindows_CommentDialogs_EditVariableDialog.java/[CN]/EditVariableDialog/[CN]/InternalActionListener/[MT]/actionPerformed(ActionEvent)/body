@@ -1,0 +1,11 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    okClicked=validateUserInput();
+    if (okClicked) {
+      dispose();
+    }
+  }
+ else {
+    dispose();
+  }
+}

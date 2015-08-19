@@ -1,0 +1,3 @@
+{
+  getInputPane().setCaretPosition(getInputPane().getText().length());
+}

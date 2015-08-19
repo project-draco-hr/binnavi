@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(parent,"IE01448: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01449: Debug perspective model argument can not be null");
+  m_parent=parent;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  m_rangeProvider=rangeProvider;
+  m_stackRangeProvider=stackRangeProvider;
+  putValue(Action.SMALL_ICON,new ImageIcon(CMain.class.getResource("data/memoryupdate_up.jpg")));
+  putValue(Action.SHORT_DESCRIPTION,"Refresh Memory");
+}

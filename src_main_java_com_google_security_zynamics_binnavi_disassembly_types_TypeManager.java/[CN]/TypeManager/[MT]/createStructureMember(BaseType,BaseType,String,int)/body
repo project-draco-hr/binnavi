@@ -1,0 +1,30 @@
+{
+  Preconditions.checkNotNull(containingType,"Error: containing type argument can not be null");
+  Preconditions.checkNotNull(memberType,"Error: member type can not be null");
+  Preconditions.checkNotNull(memberName,"Error: name argument can not be null");
+  Preconditions.checkArgument(!memberName.isEmpty(),"Error: name argument can not be empty");
+  Preconditions.checkArgument(memberOffset >= 0,"Error: argument index argument can not be smaller than zero");
+  if (typesContainer.willTypeCreateCyclicReference(containingType,memberType)) {
+    return null;
+  }
+  final ImmutableMap<BaseType,Integer> originalTypeSizes=captureTypeSizesState(typesContainer.getAffectedTypes(containingType));
+  final ImmutableList<TypeMember> subsequentMembers=containingType.getSubsequentMembersInclusive(memberOffset);
+  if (!subsequentMembers.isEmpty()) {
+    final int moveDelta=(memberOffset + memberType.getBitSize()) - subsequentMembers.get(0).getBitOffset().get();
+    if (moveDelta > 0) {
+      for (      final TypeMember member : subsequentMembers) {
+        final int newOffset=member.getBitOffset().get() + moveDelta;
+        backend.updateStructureMember(member,member.getBaseType(),member.getName(),newOffset);
+        member.setOffset(Optional.of(newOffset));
+        notifyMemberUpdated(member);
+      }
+    }
+  }
+  final TypeMember member=backend.createStructureMember(containingType,memberType,memberName,memberOffset);
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.addMember(member);
+  notifyMemberCreation(member,affectedTypes);
+  final Set<BaseType> inconsistentTypes=Sets.newHashSet(affectedTypes);
+  inconsistentTypes.remove(containingType);
+  ensureConsistencyAfterTypeUpdate(affectedTypes,inconsistentTypes,originalTypeSizes);
+  return member;
+}

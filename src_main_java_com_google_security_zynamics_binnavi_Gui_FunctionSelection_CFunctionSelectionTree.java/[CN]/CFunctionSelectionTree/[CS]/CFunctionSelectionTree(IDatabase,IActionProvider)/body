@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(database,"IE01575: Database argument can not be null");
+  Preconditions.checkNotNull(actionProvider,"IE01576: Action provider argument can not be null");
+  final DefaultTreeModel model=new DefaultTreeModel(null);
+  setModel(model);
+  setRootVisible(false);
+  model.setRoot(new CRootNode(database,model,actionProvider));
+  setCellRenderer(new IconNodeRenderer());
+  addMouseListener(new InternalMouseListener());
+}

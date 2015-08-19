@@ -1,0 +1,5 @@
+{
+  if (isCopy() || isPaste()) {
+    setCaret(m_caretX,m_caretX,m_caretY,m_caretX,m_caretX,m_caretY);
+  }
+}

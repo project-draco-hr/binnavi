@@ -1,0 +1,3 @@
+{
+  return new COperandTree(node,m_provider,getTypeManager(),m_content.getTypeInstanceContainer());
+}

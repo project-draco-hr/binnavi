@@ -1,0 +1,5 @@
+{
+  super("Select");
+  m_graph=Preconditions.checkNotNull(graph,"IE01287: Graph argument can not be null");
+  m_list=Preconditions.checkNotNull(list,"IE01288: Trace list argument can't be null");
+}

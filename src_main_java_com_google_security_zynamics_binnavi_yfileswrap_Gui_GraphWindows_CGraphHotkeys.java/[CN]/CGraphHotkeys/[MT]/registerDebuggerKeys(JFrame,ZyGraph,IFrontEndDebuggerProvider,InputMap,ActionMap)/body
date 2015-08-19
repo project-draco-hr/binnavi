@@ -1,0 +1,14 @@
+{
+  final CStepIntoHotkeyAction stepIntoAction=new CStepIntoHotkeyAction(parent,debuggerProvider);
+  final CStepOverHotkeyAction stepOverAction=new CStepOverHotkeyAction(parent,graph,debuggerProvider);
+  final CStepBlockHotkeyAction stepBlockAction=new CStepBlockHotkeyAction(parent,graph,debuggerProvider);
+  final CResumeHotkeyAction resumeAction=new CResumeHotkeyAction(parent,debuggerProvider);
+  inputMap.put(HotKeys.DEBUGGER_SINGLE_STEP_KEY.getKeyStroke(),"SINGLE_STEP");
+  actionMap.put("SINGLE_STEP",stepIntoAction);
+  inputMap.put(HotKeys.DEBUGGER_STEP_OVER_KEY.getKeyStroke(),"STEP_OVER");
+  actionMap.put("STEP_OVER",stepOverAction);
+  inputMap.put(HotKeys.DEBUGGER_STEP_BLOCK_KEY.getKeyStroke(),"STEP_BLOCK");
+  actionMap.put("STEP_BLOCK",stepBlockAction);
+  inputMap.put(HotKeys.DEBUGGER_RESUME_KEY.getKeyStroke(),"RESUME");
+  actionMap.put("RESUME",resumeAction);
+}

@@ -1,0 +1,3 @@
+{
+  PostgreSQLEdgeFunctions.editGlobalEdgeComment(this,edge,commentId,userId,newCommentText);
+}

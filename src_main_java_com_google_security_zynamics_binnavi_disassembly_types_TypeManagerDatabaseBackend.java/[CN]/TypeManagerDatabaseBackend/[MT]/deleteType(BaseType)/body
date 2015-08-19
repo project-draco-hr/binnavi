@@ -1,0 +1,3 @@
+{
+  provider.deleteType(baseType,module);
+}

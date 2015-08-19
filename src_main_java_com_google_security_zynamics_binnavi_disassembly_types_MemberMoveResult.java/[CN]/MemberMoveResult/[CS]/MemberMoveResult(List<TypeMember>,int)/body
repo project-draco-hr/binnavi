@@ -1,0 +1,4 @@
+{
+  this.implicitlyMoved=implicitlyMoved;
+  this.implicitlyMovedDelta=implicitlyMovedDelta;
+}

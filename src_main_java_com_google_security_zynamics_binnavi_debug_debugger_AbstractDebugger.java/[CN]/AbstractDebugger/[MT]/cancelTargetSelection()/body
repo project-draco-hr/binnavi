@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    connection.sendCancelTargetSelection();
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

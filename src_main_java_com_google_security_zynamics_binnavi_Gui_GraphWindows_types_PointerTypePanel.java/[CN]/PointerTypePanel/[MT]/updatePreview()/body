@@ -1,0 +1,5 @@
+{
+  if (UserInputTypeValidation.validateComboBox(baseTypes)) {
+    preview.setText(String.format("%s my_new_type;",BaseType.getPointerTypeName(getSelectedType(),getPointerLevel())));
+  }
+}

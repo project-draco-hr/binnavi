@@ -1,0 +1,8 @@
+{
+  checkArguments(parent,graph);
+  if (!askLayout(parent,graph)) {
+    return;
+  }
+  graph.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.ORTHOGONAL);
+  refreshLayout(parent,graph);
+}

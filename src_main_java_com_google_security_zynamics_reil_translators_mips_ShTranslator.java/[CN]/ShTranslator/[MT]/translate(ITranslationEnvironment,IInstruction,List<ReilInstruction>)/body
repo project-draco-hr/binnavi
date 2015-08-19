@@ -1,0 +1,13 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sh");
+  final String rt=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String address=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize wd=OperandSize.WORD;
+  final String isolatedHalfword=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rt,wd,String.valueOf(0xFFFFL),wd,isolatedHalfword));
+  instructions.add(ReilHelpers.createStm(offset++,wd,isolatedHalfword,dw,address));
+}

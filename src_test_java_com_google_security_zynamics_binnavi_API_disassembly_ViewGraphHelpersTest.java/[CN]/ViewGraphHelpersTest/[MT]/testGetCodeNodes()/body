@@ -1,0 +1,5 @@
+{
+  final List<CodeNode> codeNodes=ViewGraphHelpers.getCodeNodes(m_graph);
+  assertEquals(1,codeNodes.size());
+  assertEquals(m_codeNode,codeNodes.get(0));
+}

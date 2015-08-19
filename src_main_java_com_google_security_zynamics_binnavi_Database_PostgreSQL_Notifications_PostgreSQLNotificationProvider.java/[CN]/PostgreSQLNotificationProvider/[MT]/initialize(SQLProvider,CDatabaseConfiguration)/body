@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(provider,"IE02417: provider argument can not be null");
+  Preconditions.checkNotNull(databaseConfiguration,"IE02418: databaseConfiguration argument can not be null");
+  m_notificationProviders.put(provider,new PostgreSQLNotificationProvider(databaseConfiguration,provider));
+  return get(provider);
+}

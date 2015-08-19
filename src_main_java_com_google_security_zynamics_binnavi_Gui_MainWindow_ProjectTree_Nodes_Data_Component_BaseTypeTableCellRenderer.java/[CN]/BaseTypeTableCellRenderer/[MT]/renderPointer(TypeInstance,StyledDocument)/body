@@ -1,0 +1,10 @@
+{
+  final Style pointerStyle=createDeclarationStyle(document);
+  try {
+    document.remove(0,document.getLength());
+    appendString(document,instance.getBaseType().getName(),pointerStyle);
+  }
+ catch (  final BadLocationException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

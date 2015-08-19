@@ -1,0 +1,3 @@
+{
+  return parentNode instanceof CTagTreeNode && draggedNode instanceof CTagTreeNode && parentNode != draggedNode;
+}

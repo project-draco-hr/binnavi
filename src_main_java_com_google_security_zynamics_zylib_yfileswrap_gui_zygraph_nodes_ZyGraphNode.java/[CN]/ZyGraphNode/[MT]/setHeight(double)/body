@@ -1,0 +1,4 @@
+{
+  m_realizer.setHeight(value);
+  updateViews();
+}

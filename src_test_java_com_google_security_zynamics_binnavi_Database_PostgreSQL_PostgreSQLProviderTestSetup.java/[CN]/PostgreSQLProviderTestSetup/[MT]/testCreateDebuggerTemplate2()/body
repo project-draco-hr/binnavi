@@ -1,0 +1,3 @@
+{
+  getProvider().createDebuggerTemplate("Test Debugger",null,2222);
+}

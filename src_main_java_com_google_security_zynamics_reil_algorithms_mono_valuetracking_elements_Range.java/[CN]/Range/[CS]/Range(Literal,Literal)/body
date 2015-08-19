@@ -1,0 +1,4 @@
+{
+  m_lower=lower;
+  m_upper=upper;
+}

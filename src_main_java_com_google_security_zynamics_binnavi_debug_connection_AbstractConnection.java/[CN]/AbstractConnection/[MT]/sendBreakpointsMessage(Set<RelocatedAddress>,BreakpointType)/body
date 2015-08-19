@@ -1,0 +1,5 @@
+{
+  Preconditions.checkArgument(addresses.size() != 0,"ERROR: addresses can not be empty");
+  NaviLogger.info("Sending \"Set Breakpoint\" message to the debug client");
+  return sendPacket(new SetBreakpointCommand(getMessageId(),addresses,type));
+}

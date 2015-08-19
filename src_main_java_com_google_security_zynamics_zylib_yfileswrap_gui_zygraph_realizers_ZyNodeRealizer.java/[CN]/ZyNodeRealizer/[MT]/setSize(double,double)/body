@@ -1,0 +1,12 @@
+{
+  if (super.getX() != x || super.getY() != y) {
+    super.setSize(x,y);
+    for (    final IZyNodeRealizerListener<?> listener : m_listeners) {
+      try {
+        listener.changedSize(this,x,y);
+      }
+ catch (      final Exception exception) {
+      }
+    }
+  }
+}

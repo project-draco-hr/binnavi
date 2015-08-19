@@ -1,0 +1,10 @@
+{
+  if (addresses.size() != 0) {
+    try {
+      debugger.removeBreakpoints(addresses,type);
+    }
+ catch (    final DebugExceptionWrapper exception) {
+      NaviLogger.severe("Error: Debugger could not remove " + type.toString() + " breakpoints. Exception %s",exception);
+    }
+  }
+}

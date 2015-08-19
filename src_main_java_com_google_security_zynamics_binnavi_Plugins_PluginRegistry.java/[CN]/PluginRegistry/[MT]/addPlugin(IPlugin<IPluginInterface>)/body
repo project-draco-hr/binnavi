@@ -1,0 +1,10 @@
+{
+  verifyPluginToAdd(plugin);
+  for (  final PluginConfigItem pluginType : ConfigManager.instance().getGeneralSettings().getPlugins()) {
+    if ((pluginType.getGUID() == plugin.getGuid()) && !pluginType.isLoad()) {
+      addDisabledPlugin(plugin,DisabledPluginReason.NotLoaded);
+      return;
+    }
+  }
+  plugins.add(plugin);
+}

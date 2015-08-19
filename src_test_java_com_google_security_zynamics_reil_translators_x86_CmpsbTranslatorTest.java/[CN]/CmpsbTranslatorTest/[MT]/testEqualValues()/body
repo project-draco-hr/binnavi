@@ -1,0 +1,15 @@
+{
+  interpreter.setRegister("DF",BigInteger.ZERO,OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("esi",BigInteger.valueOf(0x1000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("edi",BigInteger.valueOf(0x2000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.getMemory().store(0x1000,0x12345678,4);
+  interpreter.getMemory().store(0x2000,0x12345678,4);
+  final MockInstruction instruction=new MockInstruction("cmpsb",new ArrayList<MockOperandTree>());
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(8,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.ONE,interpreter.getVariableValue("ZF"));
+  assertEquals(BigInteger.valueOf(0x1001),interpreter.getVariableValue("esi"));
+  assertEquals(BigInteger.valueOf(0x2001),interpreter.getVariableValue("edi"));
+  assertEquals(BigInteger.valueOf(8L),BigInteger.valueOf(interpreter.getMemorySize()));
+}

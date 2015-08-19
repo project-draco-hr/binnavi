@@ -1,0 +1,10 @@
+{
+switch (col) {
+case PID_COLUMN:
+    return m_processes.get(row).getPID();
+case NAME_COLUMN:
+  return String.valueOf(m_processes.get(row).getName());
+default :
+throw new IllegalStateException("IE01136: Unknown column");
+}
+}

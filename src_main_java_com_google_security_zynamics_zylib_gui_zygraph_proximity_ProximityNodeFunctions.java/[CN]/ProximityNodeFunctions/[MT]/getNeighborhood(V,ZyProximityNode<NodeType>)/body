@@ -1,0 +1,33 @@
+{
+  final List<? extends NodeType> candidates=zyNode.isIncoming() ? zyNode.getRawNode().getAttachedNode().getChildren() : zyNode.getRawNode().getAttachedNode().getParents();
+  final Set<NodeType> nodes=new LinkedHashSet<NodeType>();
+  for (  final NodeType candidate : candidates) {
+    if (candidate.isVisible()) {
+      continue;
+    }
+    if (candidate.getParentGroup() != null) {
+      nodes.add((NodeType)candidate.getParentGroup());
+      nodes.add(candidate);
+    }
+ else {
+      nodes.add(candidate);
+    }
+  }
+  for (  final NodeType node : new ArrayList<NodeType>(nodes)) {
+    if (zyNode.isIncoming()) {
+      for (      final NodeType parent : node.getParents()) {
+        if (parent instanceof ITextNode) {
+          nodes.add(parent);
+        }
+      }
+    }
+ else {
+      for (      final NodeType child : node.getChildren()) {
+        if (child instanceof ITextNode) {
+          nodes.add(child);
+        }
+      }
+    }
+  }
+  return GraphConverters.convert(graph,nodes);
+}

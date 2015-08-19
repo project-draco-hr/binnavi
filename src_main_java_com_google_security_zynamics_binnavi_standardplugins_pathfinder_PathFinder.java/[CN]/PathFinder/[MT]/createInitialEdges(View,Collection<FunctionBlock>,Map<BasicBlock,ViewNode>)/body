@@ -1,0 +1,9 @@
+{
+  for (  final FunctionBlock functionBlock : passedFunctions) {
+    final Function function=functionBlock.getFunction();
+    for (    final BlockEdge edge : function.getGraph().getEdges()) {
+      final ViewEdge newEdge=view.createEdge(nodeMap.get(edge.getSource()),nodeMap.get(edge.getTarget()),edge.getType());
+      newEdge.setColor(getEdgeColor(edge));
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  m_module.load();
+  final byte[] bytes={(byte)0xFF};
+  m_module.setData(bytes);
+  try {
+    m_module.setData(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

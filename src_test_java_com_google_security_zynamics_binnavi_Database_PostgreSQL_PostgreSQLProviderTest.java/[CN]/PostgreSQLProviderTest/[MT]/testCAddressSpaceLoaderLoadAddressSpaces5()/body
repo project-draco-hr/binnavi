@@ -1,0 +1,5 @@
+{
+  final CProject project=(CProject)getProvider().loadProjects().get(0);
+  final DebuggerTemplateManager debuggerManager=new DebuggerTemplateManager(getProvider());
+  PostgreSQLAddressSpaceLoader.loadAddressSpaces((AbstractSQLProvider)getProvider(),project,debuggerManager,null);
+}

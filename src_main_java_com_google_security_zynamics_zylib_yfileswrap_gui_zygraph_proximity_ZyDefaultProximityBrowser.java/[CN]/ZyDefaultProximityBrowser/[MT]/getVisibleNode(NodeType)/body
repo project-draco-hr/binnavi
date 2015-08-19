@@ -1,0 +1,9 @@
+{
+  NodeType previousNode=node;
+  IGroupNode<?,?> parentGroup=((IViewNode<?>)node.getRawNode()).getParentGroup();
+  while ((parentGroup != null) && parentGroup.isCollapsed()) {
+    previousNode=m_graph.getNode(parentGroup);
+    parentGroup=parentGroup.getParentGroup();
+  }
+  return previousNode;
+}

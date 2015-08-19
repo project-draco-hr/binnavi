@@ -1,0 +1,9 @@
+{
+  final List<ViewEdge> edges=new ArrayList<ViewEdge>();
+  for (  final ViewEdge edge : m_view.getGraph().getEdges()) {
+    if (edge.getSource() == this) {
+      edges.add(edge);
+    }
+  }
+  return edges;
+}

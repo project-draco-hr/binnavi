@@ -1,0 +1,74 @@
+{
+  final FilterParser.primaryExpression_return retval=new FilterParser.primaryExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token PREDICATE8=null;
+  Token char_literal9=null;
+  Token char_literal11=null;
+  FilterParser.expression_return expression10=null;
+  Object PREDICATE8_tree=null;
+  final Object char_literal9_tree=null;
+  final Object char_literal11_tree=null;
+  final RewriteRuleTokenStream stream_10=new RewriteRuleTokenStream(adaptor,"token 10");
+  final RewriteRuleTokenStream stream_9=new RewriteRuleTokenStream(adaptor,"token 9");
+  final RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
+  try {
+    int alt3=2;
+    final int LA3_0=input.LA(1);
+    if ((LA3_0 == PREDICATE)) {
+      alt3=1;
+    }
+ else     if ((LA3_0 == 9)) {
+      alt3=2;
+    }
+ else {
+      final NoViableAltException nvae=new NoViableAltException("",3,0,input);
+      throw nvae;
+    }
+switch (alt3) {
+case 1:
+{
+        root_0=adaptor.nil();
+        PREDICATE8=(Token)match(input,PREDICATE,FOLLOW_PREDICATE_in_primaryExpression183);
+        PREDICATE8_tree=adaptor.create(PREDICATE8);
+        adaptor.addChild(root_0,PREDICATE8_tree);
+      }
+    break;
+case 2:
+{
+    char_literal9=(Token)match(input,9,FOLLOW_9_in_primaryExpression189);
+    stream_9.add(char_literal9);
+    pushFollow(FOLLOW_expression_in_primaryExpression191);
+    expression10=expression();
+    state._fsp--;
+    stream_expression.add(expression10.getTree());
+    char_literal11=(Token)match(input,10,FOLLOW_10_in_primaryExpression193);
+    stream_10.add(char_literal11);
+    retval.tree=root_0;
+    final RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval != null ? retval.tree : null);
+    root_0=adaptor.nil();
+{
+{
+        Object root_1=adaptor.nil();
+        root_1=adaptor.becomeRoot(adaptor.create(SUB_EXPRESSION,"SUB_EXPRESSION"),root_1);
+        adaptor.addChild(root_1,stream_expression.nextTree());
+        adaptor.addChild(root_0,root_1);
+      }
+    }
+    retval.tree=root_0;
+  }
+break;
+}
+retval.stop=input.LT(-1);
+retval.tree=adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException re) {
+reportError(re);
+recover(input,re);
+retval.tree=adaptor.errorNode(input,retval.start,input.LT(-1),re);
+}
+ finally {
+}
+return retval;
+}

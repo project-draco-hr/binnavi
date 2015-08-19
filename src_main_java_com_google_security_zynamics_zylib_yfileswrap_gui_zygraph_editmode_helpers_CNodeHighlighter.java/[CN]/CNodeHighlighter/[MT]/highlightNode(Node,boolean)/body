@@ -1,0 +1,16 @@
+{
+  final NodeRealizer r=((Graph2D)node.getGraph()).getRealizer(node);
+  if (r == null) {
+    return;
+  }
+  if (state) {
+    if (r.getLineType() == LineType.LINE_2) {
+      r.setLineType(LineType.LINE_5);
+    }
+  }
+ else {
+    if (r.getLineType() == LineType.LINE_5) {
+      r.setLineType(LineType.LINE_2);
+    }
+  }
+}

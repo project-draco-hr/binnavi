@@ -1,0 +1,9 @@
+{
+  final JMenu menu=new JMenu("Settings");
+  menu.setMnemonic('S');
+  menu.add(new CActionShowSettingsDialog(getParent()));
+  menu.add(new JSeparator());
+  menu.add(new CActionInitialCallgraphSettings(getParent()));
+  menu.add(new CActionInitialFlowgraphSettings(getParent()));
+  return menu;
+}

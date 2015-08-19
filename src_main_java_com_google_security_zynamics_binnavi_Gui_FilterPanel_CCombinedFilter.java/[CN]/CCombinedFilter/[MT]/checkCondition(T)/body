@@ -1,0 +1,8 @@
+{
+  for (  final IFilter<T> filter : m_filters) {
+    if (!filter.checkCondition(element)) {
+      return false;
+    }
+  }
+  return true;
+}

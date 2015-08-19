@@ -1,0 +1,3 @@
+{
+  CTagFunctions.removeTagFromAllNodes(m_parent,m_graph,m_tag);
+}

@@ -1,0 +1,46 @@
+{
+  ColoredRange range=findRangeWith(offset);
+  if (range == null) {
+    range=findRange(offset);
+  }
+  if (range == null) {
+    return;
+  }
+  if (offset <= range.getStart()) {
+    if (range.getSize() == size) {
+      ranges.remove(range);
+    }
+ else     if (range.getSize() < size) {
+      ranges.remove(range);
+      removeRange(range.getStart() + range.getSize(),size - range.getSize());
+    }
+ else {
+      ranges.remove(range);
+      addRange(new ColoredRange(offset + size,range.getSize() - size,range.getColor(),range.getBackgroundColor()));
+    }
+  }
+ else {
+    if ((offset + size) == (range.getStart() + range.getSize())) {
+      ranges.remove(range);
+      final long newStart=range.getStart();
+      final int newSize=range.getSize() - size;
+      addRange(new ColoredRange(newStart,newSize,range.getColor(),range.getBackgroundColor()));
+    }
+ else     if ((offset + size) < (range.getStart() + range.getSize())) {
+      ranges.remove(range);
+      final long newStartFirst=range.getStart();
+      final int newSizeFirst=(int)(offset - range.getStart());
+      addRange(new ColoredRange(newStartFirst,newSizeFirst,range.getColor(),range.getBackgroundColor()));
+      final long newStartLast=offset + size;
+      final int newSizeLast=(int)((range.getStart() + range.getSize()) - offset - size);
+      addRange(new ColoredRange(newStartLast,newSizeLast,range.getColor(),range.getBackgroundColor()));
+    }
+ else {
+      ranges.remove(range);
+      final long newStart=range.getStart();
+      final int newSize=(int)(offset - range.getStart());
+      addRange(new ColoredRange(newStart,newSize,range.getColor(),range.getBackgroundColor()));
+      removeRange(range.getStart() + range.getSize(),size - (int)((range.getStart() + range.getSize()) - offset));
+    }
+  }
+}

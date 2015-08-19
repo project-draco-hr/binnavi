@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Single Step\" message to the debug client");
+  return sendPacket(new SingleStepCommand(getMessageId()));
+}

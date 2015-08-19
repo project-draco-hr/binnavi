@@ -1,0 +1,11 @@
+{
+  for (  final IndirectCall indirectCall : indirectCallAddresses) {
+    final Module module=indirectCall.getModule();
+    final Address address=indirectCall.getAddress();
+    final Address rebasedAddress=debugger.toImagebase(module,address);
+    if (rebasedAddress.equals(new Address(callAddress))) {
+      return indirectCall;
+    }
+  }
+  return null;
+}

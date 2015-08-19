@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(viewNode,"Error: View node argument can not be null");
+  m_viewNode=viewNode;
+}

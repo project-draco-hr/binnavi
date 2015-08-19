@@ -1,0 +1,4 @@
+{
+  updateMenuState();
+  return m_popup;
+}

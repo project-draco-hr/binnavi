@@ -1,0 +1,11 @@
+{
+  boolean accept=false;
+  final String filenameLower=f.getName().toLowerCase();
+  for (  final String ext : m_fileExtensions) {
+    accept=filenameLower.endsWith(ext.toLowerCase());
+    if (accept) {
+      break;
+    }
+  }
+  return accept || f.isDirectory();
+}

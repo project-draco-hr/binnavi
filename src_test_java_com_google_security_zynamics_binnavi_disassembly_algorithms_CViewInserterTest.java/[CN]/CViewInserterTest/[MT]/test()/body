@@ -1,0 +1,31 @@
+{
+  ConfigManager.instance().read();
+  final INaviModule mockModule=new MockModule();
+  final MockSqlProvider mockProvider=new MockSqlProvider();
+  final CUserManager userManager=CUserManager.get(mockProvider);
+  final IUser user=userManager.addUser(" VIEW INSERTER USER ");
+  userManager.setCurrentActiveUser(user);
+  final CModuleViewGenerator generator=new CModuleViewGenerator(mockProvider,mockModule);
+  final CView view=generator.generate(1,"","",ViewType.NonNative,GraphType.MIXED_GRAPH,new Date(),new Date(),0,0,new HashSet<CTag>(),new HashSet<CTag>(),false);
+  view.load();
+  final MockFunction mockFunction=new MockFunction(mockProvider);
+  final CFunctionNode fnode1=view.getContent().createFunctionNode(mockFunction);
+  final CFunctionNode fnode2=view.getContent().createFunctionNode(mockFunction);
+  @SuppressWarnings("unused") final CNaviViewEdge edge1=view.getContent().createEdge(fnode1,fnode2,EdgeType.JUMP_UNCONDITIONAL);
+  final MockInstruction instruction1=new MockInstruction();
+  final CCodeNode cnode1=view.getContent().createCodeNode(mockFunction,Lists.newArrayList(instruction1));
+  final CCodeNode cnode2=view.getContent().createCodeNode(mockFunction,Lists.newArrayList(instruction1));
+  @SuppressWarnings("unused") final CNaviViewEdge edge2=view.getContent().createEdge(cnode1,cnode2,EdgeType.JUMP_UNCONDITIONAL);
+  final ArrayList<IComment> comments=Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null,"Foo"));
+  final CTextNode tnode1=view.getContent().createTextNode(comments);
+  @SuppressWarnings("unused") final CNaviViewEdge edge3=view.getContent().createEdge(cnode1,tnode1,EdgeType.JUMP_UNCONDITIONAL);
+  final CGroupNode gnode1=view.getContent().createGroupNode(Lists.newArrayList((INaviViewNode)fnode1,(INaviViewNode)fnode2));
+  gnode1.appendComment("TEST GROUP NODE COMMENT 1");
+  final CView view2=generator.generate(2,"","",ViewType.NonNative,GraphType.MIXED_GRAPH,new Date(),new Date(),0,0,new HashSet<CTag>(),new HashSet<CTag>(),false);
+  view2.load();
+  CViewInserter.insertView(view,view2);
+  final List<INaviViewNode> nodes=view2.getGraph().getNodes();
+  assertEquals(view2.getNodeCount(),6);
+  assertEquals(mockFunction,((INaviFunctionNode)nodes.get(0)).getFunction());
+  assertEquals(nodes.get(5),((INaviFunctionNode)nodes.get(0)).getParentGroup());
+}

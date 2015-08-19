@@ -1,0 +1,6 @@
+{
+  module.addListener(m_moduleListener);
+  if (module.isLoaded()) {
+    notifyModuleViews(module);
+  }
+}

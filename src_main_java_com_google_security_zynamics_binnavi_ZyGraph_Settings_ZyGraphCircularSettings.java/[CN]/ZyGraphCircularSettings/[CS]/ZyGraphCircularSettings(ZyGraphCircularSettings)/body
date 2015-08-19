@@ -1,0 +1,5 @@
+{
+  m_type=null;
+  m_layout=settings.getStyle();
+  m_minimumNodeDistance=settings.getMinimumNodeDistance();
+}

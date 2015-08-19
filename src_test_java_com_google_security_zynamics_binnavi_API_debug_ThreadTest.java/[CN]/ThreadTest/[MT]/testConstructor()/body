@@ -1,0 +1,7 @@
+{
+  assertEquals(0,m_thread.getThreadId());
+  assertEquals(null,m_thread.getCurrentAddress());
+  assertEquals(0,m_thread.getRegisters().size());
+  assertEquals(ThreadState.Running,m_thread.getState());
+  assertEquals("Thread (TID: 0)",m_thread.toString());
+}

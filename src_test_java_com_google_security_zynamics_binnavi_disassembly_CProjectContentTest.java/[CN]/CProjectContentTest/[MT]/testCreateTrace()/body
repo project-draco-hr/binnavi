@@ -1,0 +1,18 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  assertNotNull(projectContent);
+  final TraceList trace=projectContent.createTrace("Trace Name","Trace Description");
+  assertNotNull(trace);
+  try {
+    projectContent.createTrace(null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    projectContent.createTrace("",null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+}

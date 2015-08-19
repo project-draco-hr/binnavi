@@ -1,0 +1,5 @@
+{
+  final CDebugPerspectiveModel model=new CDebugPerspectiveModel(new MockGraphModel());
+  final CModulesPanel panel=new CModulesPanel(model);
+  panel.dispose();
+}

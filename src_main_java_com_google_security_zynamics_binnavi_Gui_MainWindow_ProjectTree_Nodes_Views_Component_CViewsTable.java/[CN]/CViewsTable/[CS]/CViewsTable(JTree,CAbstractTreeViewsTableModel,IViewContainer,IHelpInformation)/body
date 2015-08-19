@@ -1,0 +1,15 @@
+{
+  super(projectTree,model,helpInfo);
+  viewContainer=Preconditions.checkNotNull(container,"IE02031: Container argument can not be null");
+  viewsTableModel=Preconditions.checkNotNull(model,"IE02350: model argument can not be null");
+  if (!GraphicsEnvironment.isHeadless()) {
+    setDragEnabled(true);
+  }
+  setTransferHandler(new CViewDragHandler(this));
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.LOAD_NEW_WINDOW_HK.getKeyStroke(),"ShowNewKeyStroke");
+  getActionMap().put("ShowNewKeyStroke",CActionProxy.proxy(new ShowNewWindowAction()));
+  windowImap.put(HotKeys.LOAD_LAST_WINDOW_HK.getKeyStroke(),"ShowLastKeyStroke");
+  getActionMap().put("ShowLastKeyStroke",CActionProxy.proxy(new ShowLastWindowAction()));
+  ZyGraphBuilderManager.instance().addListener(builderManagerListener);
+}

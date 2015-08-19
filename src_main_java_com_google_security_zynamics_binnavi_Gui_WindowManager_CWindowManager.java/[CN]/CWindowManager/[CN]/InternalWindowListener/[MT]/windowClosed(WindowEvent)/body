@@ -1,0 +1,5 @@
+{
+  final CGraphWindow window=(CGraphWindow)event.getSource();
+  unregister(window);
+  window.getFrame().removeWindowListener(this);
+}

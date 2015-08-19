@@ -1,0 +1,3 @@
+{
+  this(ReilHelpers.createOperand(OperandSize.valueOf(size),value));
+}

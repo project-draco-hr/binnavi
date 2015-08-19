@@ -1,0 +1,26 @@
+{
+  final Collection<CSpecialInstruction> instructions=new ArrayList<CSpecialInstruction>();
+  final Set<INaviInstruction> calls=new HashSet<INaviInstruction>();
+  for (  final ReilBlock block : reilCode.getGraph()) {
+    for (    final ReilInstruction reilInstruction : block) {
+      if (ReilHelpers.isFunctionCall(reilInstruction)) {
+        calls.addAll(instructionMap.get(ReilHelpers.toNativeAddress(reilInstruction.getAddress())));
+      }
+    }
+  }
+  for (  final ReilBlock block : reilCode.getGraph()) {
+    for (    final ReilInstruction reilInstruction : block) {
+      if (reilInstruction.getMnemonic().equals(ReilHelpers.OPCODE_STM)) {
+        final List<INaviInstruction> firstInstructions=instructionMap.get(ReilHelpers.toNativeAddress(reilInstruction.getAddress()));
+        if (isAnyCall(firstInstructions,calls)) {
+          continue;
+        }
+        final List<INaviInstruction> nativeInstructions=instructionMap.get(ReilHelpers.toNativeAddress(reilInstruction.getAddress()));
+        for (        final INaviInstruction naviInstruction : nativeInstructions) {
+          instructions.add(new CSpecialInstruction(this,naviInstruction));
+        }
+      }
+    }
+  }
+  return instructions;
+}

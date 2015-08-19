@@ -1,0 +1,8 @@
+{
+  final CViewSearcherDialog dlg=new CViewSearcherDialog(parent,container,address);
+  dlg.setVisible(true);
+  final INaviView result=dlg.getSelectionResult();
+  if (result != null) {
+    CViewOpener.showView(parent,container,result,CWindowManager.instance().getLastWindow());
+  }
+}

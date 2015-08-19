@@ -1,0 +1,9 @@
+{
+  super.paintNode(gfx);
+  final Rectangle2D contentBounds=getNodeContent().getBounds();
+  final double xratio=getWidth() / contentBounds.getWidth();
+  final double yratio=getHeight() / contentBounds.getHeight();
+  gfx.scale(xratio,yratio);
+  getNodeContent().draw(gfx,(getX() * 1) / xratio,(getY() * 1) / yratio);
+  gfx.scale(1 / xratio,1 / yratio);
+}

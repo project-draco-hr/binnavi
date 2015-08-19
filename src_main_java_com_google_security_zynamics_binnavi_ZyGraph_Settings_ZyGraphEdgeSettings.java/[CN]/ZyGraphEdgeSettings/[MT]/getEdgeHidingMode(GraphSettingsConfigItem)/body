@@ -1,0 +1,9 @@
+{
+  try {
+    return EdgeHidingMode.parseInt(type.getEdgeHidingMode());
+  }
+ catch (  final IllegalStateException e) {
+    CUtilityFunctions.logException(e);
+    return EdgeHidingMode.HIDE_ON_THRESHOLD;
+  }
+}

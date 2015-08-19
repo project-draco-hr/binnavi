@@ -1,0 +1,7 @@
+{
+  final RawTestTypeSystem typeSystem=new RawTestTypeSystem();
+  final TypeManager manager=new TypeManager(new TypeManagerMockBackend());
+  for (  final BaseType baseType : manager.getTypes()) {
+    findAndCompareType(baseType,typeSystem.getRawTypes());
+  }
+}

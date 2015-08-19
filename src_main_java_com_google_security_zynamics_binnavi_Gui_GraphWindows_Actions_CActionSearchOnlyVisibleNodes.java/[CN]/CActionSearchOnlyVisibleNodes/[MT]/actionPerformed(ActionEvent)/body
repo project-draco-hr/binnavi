@@ -1,0 +1,3 @@
+{
+  CGraphSearcher.toggleRestrictSearchToVisibleNodes(m_graph);
+}

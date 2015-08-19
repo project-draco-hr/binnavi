@@ -1,0 +1,14 @@
+{
+  if ("NEXT".equals(m_action)) {
+    centerNextSearchHit(false,false);
+  }
+ else   if ("NEXT_ZOOM".equals(m_action)) {
+    centerNextSearchHit(false,true);
+  }
+ else   if ("PREVIOUS".equals(m_action)) {
+    centerNextSearchHit(true,false);
+  }
+ else   if ("PREVIOUS_ZOOM".equals(m_action)) {
+    centerNextSearchHit(true,true);
+  }
+}

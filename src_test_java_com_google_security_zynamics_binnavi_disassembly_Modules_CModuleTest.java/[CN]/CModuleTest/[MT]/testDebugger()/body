@@ -1,0 +1,11 @@
+{
+  assertNull(m_module.getConfiguration().getDebugger());
+  assertNull(m_module.getConfiguration().getDebuggerTemplate());
+  final DebuggerTemplate template=MockCreator.createDebuggerTemplate(m_sql);
+  m_module.getConfiguration().setDebuggerTemplate(template);
+  assertNotNull(m_module.getConfiguration().getDebugger());
+  assertEquals(template,m_module.getConfiguration().getDebuggerTemplate());
+  m_module.getConfiguration().setDebuggerTemplate(null);
+  assertNull(m_module.getConfiguration().getDebugger());
+  assertNull(m_module.getConfiguration().getDebuggerTemplate());
+}

@@ -1,0 +1,18 @@
+{
+  final MemberDialog dlg=MemberDialog.createBuildNewMemberDialog(owner,typeManager);
+  GuiHelper.centerChildToParent(owner,dlg,true);
+  dlg.setVisible(true);
+  if (!dlg.wasCanceled()) {
+    final String name=dlg.getMemberName();
+    final BaseType baseType=dlg.getBaseType();
+    try {
+      final TypeMember member=typeManager.appendMember(selectedType,baseType,name);
+      if (member == null) {
+        CMessageBox.showInformation(owner,"Unable to append member since that would create a recursive type definition.");
+      }
+    }
+ catch (    final CouldntSaveDataException exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

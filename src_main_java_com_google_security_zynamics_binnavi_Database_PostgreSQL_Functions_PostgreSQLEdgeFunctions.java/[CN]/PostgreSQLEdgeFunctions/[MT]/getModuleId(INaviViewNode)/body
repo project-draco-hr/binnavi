@@ -1,0 +1,11 @@
+{
+  if (node instanceof INaviCodeNode) {
+    return ((INaviCodeNode)node).getParentFunction().getModule().getConfiguration().getId();
+  }
+ else   if (node instanceof INaviFunctionNode) {
+    return ((INaviFunctionNode)node).getFunction().getModule().getConfiguration().getId();
+  }
+ else {
+    throw new IllegalArgumentException("IE00432: Edge's source node must be an instance of CCodeNode or CFunctionNode");
+  }
+}

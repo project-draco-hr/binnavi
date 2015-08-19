@@ -1,0 +1,16 @@
+{
+  final AbstractZyGraph<NodeType,EdgeType> graph=state.getGraph();
+  CMouseCursorHelper.setDefaultCursor(graph);
+  final double x=graph.getEditMode().translateX(event.getX());
+  final double y=graph.getEditMode().translateY(event.getY());
+  final NodeType node=graph.getNode(state.getNode());
+  if (node != null) {
+    for (    final IZyEditModeListener<NodeType,EdgeType> listener : state.getStateFactory().getListeners()) {
+      try {
+        listener.nodeHovered(node,x,y);
+      }
+ catch (      final Exception exception) {
+      }
+    }
+  }
+}

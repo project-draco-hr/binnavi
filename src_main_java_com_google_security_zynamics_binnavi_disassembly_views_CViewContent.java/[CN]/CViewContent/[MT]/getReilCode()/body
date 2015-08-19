@@ -1,0 +1,7 @@
+{
+  if (m_reilFunction == null) {
+    final StandardEnvironment env=new StandardEnvironment();
+    m_reilFunction=m_translator.translate(env,view);
+  }
+  return m_reilFunction;
+}

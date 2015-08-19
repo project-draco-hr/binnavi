@@ -1,0 +1,11 @@
+{
+  if (!module.isLoaded()) {
+    return;
+  }
+  final Map<Address,Function> functionMap=new HashMap<Address,Function>();
+  for (  final Function function : module.getFunctions()) {
+    final Address rebasedAddress=target.getDebugger().toImagebase(module,function.getAddress());
+    functionMap.put(rebasedAddress,function);
+  }
+  resolvedFunctions.put(module,functionMap);
+}

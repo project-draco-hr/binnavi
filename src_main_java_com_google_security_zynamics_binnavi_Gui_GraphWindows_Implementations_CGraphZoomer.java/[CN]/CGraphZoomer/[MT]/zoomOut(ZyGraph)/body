@@ -1,0 +1,4 @@
+{
+  checkArguments(graph);
+  graph.zoomOut();
+}

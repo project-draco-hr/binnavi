@@ -1,0 +1,3 @@
+{
+  return super.validateTableRow(rowIndex) && isNonOverlappingMember(members,rowIndex);
+}

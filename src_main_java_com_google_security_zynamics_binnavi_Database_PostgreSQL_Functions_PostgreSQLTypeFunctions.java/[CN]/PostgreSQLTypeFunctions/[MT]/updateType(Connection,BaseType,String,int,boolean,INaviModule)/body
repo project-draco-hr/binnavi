@@ -1,0 +1,19 @@
+{
+  try {
+    final PreparedStatement statement=connection.prepareStatement("UPDATE " + CTableNames.BASE_TYPES_TABLE + " SET name = ?, size = ?, signed = ? WHERE module_id = ? AND id = ?");
+    try {
+      statement.setString(1,name);
+      statement.setInt(2,size);
+      statement.setBoolean(3,isSigned);
+      statement.setInt(4,module.getConfiguration().getId());
+      statement.setInt(5,baseType.getId());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

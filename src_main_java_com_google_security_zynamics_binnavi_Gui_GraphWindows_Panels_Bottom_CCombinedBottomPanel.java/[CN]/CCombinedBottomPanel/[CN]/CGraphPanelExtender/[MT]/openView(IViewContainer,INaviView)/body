@@ -1,0 +1,3 @@
+{
+  CGraphOpener.showGraph(container,view,m_model.getParent(),m_model.getParent());
+}

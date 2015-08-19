@@ -1,0 +1,6 @@
+{
+  m_graph.getRawView().removeListener(m_listener);
+  for (  final ITypeDescription description : m_model.getDescriptions()) {
+    description.removeListener(m_descriptionListener);
+  }
+}

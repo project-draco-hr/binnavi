@@ -1,0 +1,21 @@
+{
+  final List<IComment> comments=new ArrayList<IComment>();
+  try {
+    comments.addAll(m_node.appendLocalFunctionComment(comment));
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntLoadDataException exception) {
+    throw new com.google.security.zynamics.binnavi.API.disassembly.CouldntLoadDataException(exception);
+  }
+  for (  final IFunctionNodeListener listener : m_listeners) {
+    try {
+      listener.appendedComment(this,Iterables.getLast(comments));
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return comments;
+}

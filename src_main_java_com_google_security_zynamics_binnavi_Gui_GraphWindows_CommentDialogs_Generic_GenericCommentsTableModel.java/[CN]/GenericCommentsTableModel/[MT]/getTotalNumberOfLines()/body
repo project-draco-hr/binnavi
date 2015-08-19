@@ -1,0 +1,7 @@
+{
+  int totalNumberOfLines=0;
+  for (  IComment comment : cachedComments) {
+    totalNumberOfLines+=comment.getNumberOfCommentLines();
+  }
+  return totalNumberOfLines + 1;
+}

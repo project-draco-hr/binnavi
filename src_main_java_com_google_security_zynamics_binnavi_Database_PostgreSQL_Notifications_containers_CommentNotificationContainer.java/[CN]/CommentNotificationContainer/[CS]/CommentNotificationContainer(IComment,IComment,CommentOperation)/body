@@ -1,0 +1,5 @@
+{
+  this.currentComment=Preconditions.checkNotNull(currentComment,"Error: Current comment argument can not be null.");
+  this.newComment=newComment;
+  this.operation=Preconditions.checkNotNull(operation,"Error: Operation argument can not be null.");
+}

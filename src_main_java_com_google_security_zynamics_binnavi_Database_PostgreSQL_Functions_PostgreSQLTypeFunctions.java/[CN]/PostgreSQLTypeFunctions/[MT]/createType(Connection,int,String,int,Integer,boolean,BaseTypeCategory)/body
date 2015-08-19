@@ -1,0 +1,32 @@
+{
+  try {
+    final String query=String.format("INSERT INTO %s (module_id, id, name, size, pointer, signed, category) " + "VALUES (?, nextval('bn_base_types_id_seq'), ?, ?, ?, ?, ?) returning id",CTableNames.BASE_TYPES_TABLE);
+    final PreparedStatement statement=connection.prepareStatement(query);
+    try {
+      statement.setInt(1,moduleId);
+      statement.setString(2,name);
+      statement.setInt(3,size);
+      if (childPointerTypeId == null) {
+        statement.setNull(4,Types.INTEGER);
+      }
+ else {
+        statement.setInt(4,childPointerTypeId);
+      }
+      statement.setBoolean(5,signed);
+      statement.setObject(6,category.toString(),Types.OTHER);
+      final ResultSet resultSet=statement.executeQuery();
+      if (resultSet.next()) {
+        return resultSet.getInt(1);
+      }
+ else {
+        throw new CouldntSaveDataException("Empty result set while inserting base type.");
+      }
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

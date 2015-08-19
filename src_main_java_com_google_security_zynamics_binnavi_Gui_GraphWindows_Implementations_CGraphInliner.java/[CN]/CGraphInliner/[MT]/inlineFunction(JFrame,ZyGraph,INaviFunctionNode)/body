@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(parent,"IE01743: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01744: Graph argument can not be null");
+  Preconditions.checkNotNull(node,"IE01745: Node argument can not be null");
+  final INaviView view=graph.getRawView();
+  final INaviFunction function=node.getFunction();
+  try {
+    if (!function.isLoaded()) {
+      function.load();
+    }
+    CInliningHelper.inlineFunctionNode(view,node);
+    if (graph.getSettings().getLayoutSettings().getAutomaticLayouting()) {
+      CGraphLayouter.refreshLayout(parent,graph);
+    }
+  }
+ catch (  final CouldntLoadDataException e) {
+    exceptionDialog(parent,function,e);
+  }
+}

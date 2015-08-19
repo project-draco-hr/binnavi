@@ -1,0 +1,8 @@
+{
+  try {
+    getNative().initialize();
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

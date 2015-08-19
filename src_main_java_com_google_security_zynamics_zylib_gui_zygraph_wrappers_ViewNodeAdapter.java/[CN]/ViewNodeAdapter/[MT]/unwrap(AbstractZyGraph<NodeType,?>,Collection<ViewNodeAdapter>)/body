@@ -1,0 +1,7 @@
+{
+  final List<IViewNode<?>> nodes=new FilledList<IViewNode<?>>();
+  for (  final ViewNodeAdapter fooWrapper : successors) {
+    nodes.add(fooWrapper.getNode());
+  }
+  return convert(graph,nodes);
+}

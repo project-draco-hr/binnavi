@@ -1,0 +1,70 @@
+{
+  if (ydelta != 0) {
+    handleShiftAndNotCtrl(0,ydelta);
+  }
+ else   if (xdelta != 0) {
+    final ZyLabelContent labelContent=getLabelContent();
+    final ZyLineContent lineContent=labelContent.getLineContent(getCaretMouseReleasedY());
+    int caretStartPos_X=getCaretStartPosX();
+    final int mousePressed_X=getCaretMousePressedX();
+    final int mousePressed_Y=getCaretMousePressedY();
+    int caretEndPos_X=getCaretEndPosX();
+    int mouseReleased_X=getCaretMouseReleasedX();
+    final int mouseReleased_Y=getCaretMouseReleasedY();
+    final String s=lineContent.getText() + " ";
+    if (xdelta > 0) {
+      final boolean firstIsSpace=s.charAt(caretEndPos_X) == ' ';
+      int endindex=0;
+      for (int i=caretEndPos_X; i < s.length(); ++i) {
+        endindex=i;
+        if (firstIsSpace) {
+          if (s.charAt(i) != ' ') {
+            break;
+          }
+        }
+ else {
+          if (s.charAt(i) == ' ') {
+            break;
+          }
+        }
+      }
+      if ((lineContent.getText().endsWith("\n") || lineContent.getText().endsWith("\r")) && (lineContent.getText().length() == endindex)) {
+        endindex-=1;
+      }
+      caretStartPos_X=mousePressed_X;
+      mouseReleased_X=endindex;
+      caretEndPos_X=endindex;
+      final boolean noReturn=getCaretEndPosX() == lineContent.getText().length();
+      final boolean withReturn=lineContent.getText().endsWith("\n") && (getCaretEndPosX() == (lineContent.getText().length() - 1));
+      final boolean withCReturn=lineContent.getText().endsWith("\r") && (getCaretEndPosX() == (lineContent.getText().length() - 1));
+      if (noReturn || withReturn || withCReturn) {
+        mouseReleased_X=getMaxLineLength(getCaretMousePressedY(),getCaretMouseReleasedY());
+      }
+    }
+ else     if (xdelta < 0) {
+      if (caretEndPos_X == 0) {
+        return;
+      }
+      final boolean firstIsSpace=s.charAt(caretEndPos_X - 1) == ' ';
+      int startindex=caretEndPos_X - 1;
+      for (int i=caretEndPos_X - 1; i >= 0; --i) {
+        if (firstIsSpace) {
+          if (s.charAt(i) != ' ') {
+            break;
+          }
+        }
+ else {
+          if (s.charAt(i) == ' ') {
+            break;
+          }
+        }
+        startindex=i;
+      }
+      caretStartPos_X=mousePressed_X;
+      mouseReleased_X=startindex;
+      caretEndPos_X=startindex;
+    }
+    mouseReleased_X=correctMouseReleasedX(mouseReleased_X,mouseReleased_Y,mousePressed_Y);
+    setCaret(caretStartPos_X,mousePressed_X,mousePressed_Y,caretEndPos_X,mouseReleased_X,mouseReleased_Y);
+  }
+}

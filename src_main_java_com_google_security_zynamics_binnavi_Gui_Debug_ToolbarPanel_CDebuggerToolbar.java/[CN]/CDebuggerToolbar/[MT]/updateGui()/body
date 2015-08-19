@@ -1,0 +1,20 @@
+{
+  final IDebugger debugger=m_debugger.getCurrentSelectedDebugger();
+  final TargetProcessThread activeThread=debugger == null ? null : debugger.getProcessManager().getActiveThread();
+  final boolean connected=(debugger != null) && debugger.isConnected();
+  final boolean suspended=connected && (activeThread != null);
+  m_startAction.setEnabled(!connected);
+  final boolean haltBeforeCommunicating=(debugger != null) && connected && (debugger.getProcessManager().getTargetInformation() != null)&& debugger.getProcessManager().getTargetInformation().getDebuggerOptions().mustHaltBeforeCommunicating();
+  m_detachAction.setEnabled(connected && (!haltBeforeCommunicating || suspended));
+  m_terminateAction.setEnabled(connected);
+  m_stepIntoAction.setEnabled(connected && suspended);
+  m_stepIntoAction.setEnabled(connected && suspended);
+  m_stepOverAction.setEnabled(connected && suspended);
+  m_stepBlockAction.setEnabled(connected && suspended);
+  m_stepEndAction.setEnabled(connected && suspended);
+  m_resumeAction.setEnabled(connected && suspended);
+  m_haltAction.setEnabled(connected && !suspended);
+  final boolean tracing=(debugger != null) && m_debugger.getTraceLogger(debugger).hasEchoBreakpoints();
+  m_startTraceAction.setEnabled(connected && (!haltBeforeCommunicating || suspended));
+  m_stopTraceAction.setEnabled(connected && tracing && (!haltBeforeCommunicating || suspended));
+}

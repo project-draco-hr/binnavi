@@ -1,0 +1,12 @@
+{
+  if (graphevent.getType() == GraphEvent.PRE_EVENT) {
+    sequenceCounter++;
+  }
+ else   if (graphevent.getType() == GraphEvent.POST_EVENT) {
+    sequenceCounter--;
+    if (sequenceCounter == 0) {
+      updateSelectionState((Graph2D)graphevent.getGraph());
+      fireFlag=true;
+    }
+  }
+}

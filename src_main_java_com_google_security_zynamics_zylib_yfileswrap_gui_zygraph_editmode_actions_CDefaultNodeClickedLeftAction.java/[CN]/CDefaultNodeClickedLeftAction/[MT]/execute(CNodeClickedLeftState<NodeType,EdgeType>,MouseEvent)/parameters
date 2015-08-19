@@ -1,0 +1,2 @@
+CNodeClickedLeftState<NodeType,EdgeType> state
+MouseEvent event

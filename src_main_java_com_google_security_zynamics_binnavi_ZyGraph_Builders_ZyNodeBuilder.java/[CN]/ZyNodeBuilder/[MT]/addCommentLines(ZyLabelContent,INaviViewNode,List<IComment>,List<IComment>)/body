@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(content,"IE01530: Content argument can't be null");
+  final ColorsConfigItem colorSettings=ConfigManager.instance().getColorSettings();
+  if (localComment != null) {
+    addCommentLines(content,localComment,colorSettings.getLocalCommentColor(),new CLocalNodeCommentWrapper(node));
+  }
+  if (globalComment != null) {
+    addCommentLines(content,globalComment,colorSettings.getGlobalCommentColor(),new CGlobalNodeCommentWrapper(node));
+  }
+}

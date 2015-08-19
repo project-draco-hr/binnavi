@@ -1,0 +1,66 @@
+{
+  final ZyLabelContent labelContent=getLabelContent();
+  int caretStartPos_X=getCaretStartPosX();
+  int mousePressed_X=getCaretMousePressedX();
+  final int mousePressed_Y=getCaretMousePressedY();
+  int caretEndPos_X=getCaretEndPosX();
+  int mouseReleased_X=getCaretMouseReleasedX();
+  final int mouseReleased_Y=getCaretMouseReleasedY();
+  if (xdelta != 0) {
+    final ZyLineContent lineContent=labelContent.getLineContent(mouseReleased_Y);
+    final String s=lineContent.getText() + " ";
+    if (xdelta > 0) {
+      final boolean firstIsSpace=s.charAt(caretEndPos_X) == ' ';
+      int endindex=0;
+      for (int i=caretEndPos_X; i < s.length(); ++i) {
+        endindex=i;
+        if (firstIsSpace) {
+          if (s.charAt(i) != ' ') {
+            break;
+          }
+        }
+ else {
+          if (s.charAt(i) == ' ') {
+            break;
+          }
+        }
+      }
+      if ((lineContent.getText().endsWith("\n") || lineContent.getText().endsWith("\r")) && (lineContent.getText().length() == endindex)) {
+        endindex-=1;
+      }
+      caretStartPos_X=endindex;
+      mousePressed_X=endindex;
+      mouseReleased_X=endindex;
+      caretEndPos_X=endindex;
+    }
+ else     if (xdelta < 0) {
+      if (caretEndPos_X == 0) {
+        return;
+      }
+      final boolean firstIsSpace=s.charAt(caretEndPos_X - 1) == ' ';
+      int startindex=caretEndPos_X - 1;
+      for (int i=caretEndPos_X - 1; i >= 0; --i) {
+        if (firstIsSpace) {
+          if (s.charAt(i) != ' ') {
+            break;
+          }
+        }
+ else {
+          if (s.charAt(i) == ' ') {
+            break;
+          }
+        }
+        startindex=i;
+      }
+      caretStartPos_X=startindex;
+      mousePressed_X=startindex;
+      mouseReleased_X=startindex;
+      caretEndPos_X=startindex;
+    }
+    mouseReleased_X=correctMouseReleasedX(mouseReleased_X,mouseReleased_Y,mousePressed_Y);
+    setCaret(caretStartPos_X,mousePressed_X,mousePressed_Y,caretEndPos_X,mouseReleased_X,mouseReleased_Y);
+  }
+ else   if (ydelta != 0) {
+    handleNotShiftAndNotCtrl(0,ydelta);
+  }
+}

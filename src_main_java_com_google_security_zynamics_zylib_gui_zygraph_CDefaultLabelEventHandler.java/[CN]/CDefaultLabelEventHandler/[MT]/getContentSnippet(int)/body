@@ -1,0 +1,26 @@
+{
+  String snippet="";
+  int firstLineIndex=getActiveLabelContent().getFirstLineIndexOfModelAt(yPos);
+  int lastLineIndex=getActiveLabelContent().getLastLineIndexOfModelAt(yPos);
+  for (int lineIndex=firstLineIndex; lineIndex <= lastLineIndex; ++lineIndex) {
+    snippet+=getActiveLabelContent().getLineContent(lineIndex).getText();
+  }
+  if (firstLineIndex > 0) {
+    lastLineIndex=firstLineIndex - 1;
+    firstLineIndex=getActiveLabelContent().getFirstLineIndexOfModelAt(lastLineIndex);
+    String content="";
+    for (int lineIndex=firstLineIndex; lineIndex <= lastLineIndex; ++lineIndex) {
+      content+=getActiveLabelContent().getLineContent(lineIndex).getText();
+    }
+    snippet=content + snippet;
+  }
+  lastLineIndex=getActiveLabelContent().getLastLineIndexOfModelAt(yPos);
+  if ((lastLineIndex + 1) < (getActiveLabelContent().getLineCount() - 1)) {
+    firstLineIndex=lastLineIndex + 1;
+    lastLineIndex=getActiveLabelContent().getLastLineIndexOfModelAt(firstLineIndex);
+    for (int lineIndex=firstLineIndex; lineIndex <= lastLineIndex; ++lineIndex) {
+      snippet+=getActiveLabelContent().getLineContent(lineIndex).getText();
+    }
+  }
+  return snippet;
+}

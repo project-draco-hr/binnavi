@@ -1,0 +1,35 @@
+{
+  final INaviTextNode textNode=setupTextNode();
+  final List<IComment> storedComments=textNode.getComments() == null ? new ArrayList<IComment>() : textNode.getComments();
+  final IComment lastComment=storedComments.size() == 0 ? null : Iterables.getLast(storedComments);
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final String comment1String=" Comment 1: ";
+  final int comment1Id=getProvider().appendTextNodeComment(textNode,comment1String,user.getUserId());
+  final IComment comment1=new CComment(comment1Id,user,lastComment,comment1String);
+  final String comment2String=" Comment 2: ";
+  final int comment2Id=getProvider().appendTextNodeComment(textNode,comment2String,user.getUserId());
+  final IComment comment2=new CComment(comment2Id,user,comment1,comment2String);
+  final String comment3String=" Comment 3: ";
+  final int comment3Id=getProvider().appendTextNodeComment(textNode,comment3String,user.getUserId());
+  final IComment comment3=new CComment(comment3Id,user,comment2,comment3String);
+  final ArrayList<IComment> commentsBeforeDelete=getProvider().loadCommentById(comment3Id);
+  assertNotNull(commentsBeforeDelete);
+  assertEquals(storedComments.size() + 3,commentsBeforeDelete.size());
+  assertTrue(commentsBeforeDelete.contains(comment1));
+  assertTrue(commentsBeforeDelete.contains(comment2));
+  assertTrue(commentsBeforeDelete.contains(comment3));
+  assertEquals(comment3,Iterables.getLast(commentsBeforeDelete));
+  assertEquals(comment2,commentsBeforeDelete.get(commentsBeforeDelete.size() - 2));
+  assertEquals(comment1,commentsBeforeDelete.get(commentsBeforeDelete.size() - 3));
+  getProvider().deleteTextNodeComment(textNode,comment3Id,user.getUserId());
+  final ArrayList<IComment> commentsAfterDelete1=getProvider().loadCommentById(comment3Id);
+  assertNotNull(commentsAfterDelete1);
+  assertTrue(commentsAfterDelete1.isEmpty());
+  final ArrayList<IComment> commentsAfterDelete2=getProvider().loadCommentById(comment2Id);
+  assertNotNull(commentsAfterDelete2);
+  assertEquals(storedComments.size() + 2,commentsAfterDelete2.size());
+  assertTrue(commentsAfterDelete2.contains(comment2));
+  assertTrue(commentsAfterDelete2.contains(comment1));
+  assertEquals(comment2,Iterables.getLast(commentsAfterDelete2));
+  assertEquals(comment1,commentsAfterDelete2.get(commentsAfterDelete2.size() - 2));
+}

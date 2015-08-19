@@ -1,0 +1,4 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  PostgreSQLProjectFunctions.removeDebugger((AbstractSQLProvider)getProvider(),project,null);
+}

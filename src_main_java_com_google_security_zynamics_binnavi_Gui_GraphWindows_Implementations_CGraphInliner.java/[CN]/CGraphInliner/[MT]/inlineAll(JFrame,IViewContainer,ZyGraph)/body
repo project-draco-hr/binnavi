@@ -1,0 +1,28 @@
+{
+  Preconditions.checkNotNull(parent,"IE02285: Parent argument can not be null");
+  Preconditions.checkNotNull(container,"IE02286: Container argument can not be null");
+  Preconditions.checkNotNull(graph,"IE02287: Graph Argument can not be null");
+  final MutableDirectedGraph<INaviViewNode,INaviEdge> mutableGraph=(MutableDirectedGraph<INaviViewNode,INaviEdge>)graph.getRawView().getGraph();
+  final List<INaviViewNode> nodes=mutableGraph.getNodes();
+  final HashMap<INaviInstruction,INaviFunction> instructionToFunctionMap=new HashMap<INaviInstruction,INaviFunction>();
+  for (  final INaviViewNode iNaviViewNode : nodes) {
+    if (iNaviViewNode instanceof INaviCodeNode) {
+      instructionToFunctionMap.putAll(CReferenceFinder.getCodeReferenceMap((INaviCodeNode)iNaviViewNode));
+    }
+  }
+  for (  final INaviInstruction iNaviInstruction : instructionToFunctionMap.keySet()) {
+    INaviCodeNode updatedNode=null;
+    for (    final INaviViewNode iNaviViewNode2 : graph.getRawView().getGraph().getNodes()) {
+      final INaviCodeNode codeNode=(INaviCodeNode)iNaviViewNode2;
+      if (codeNode.hasInstruction(iNaviInstruction)) {
+        updatedNode=codeNode;
+      }
+    }
+    if (updatedNode != null) {
+      inlineFunctionSilently(parent,container,graph,updatedNode,iNaviInstruction,instructionToFunctionMap.get(iNaviInstruction));
+    }
+ else {
+      throw new IllegalStateException("IE01174: Graph final has been rendered final to an final inconsitant state");
+    }
+  }
+}

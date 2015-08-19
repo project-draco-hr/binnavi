@@ -1,0 +1,3 @@
+{
+  return s.equals("") ? 0 : Long.parseLong(s);
+}

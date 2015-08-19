@@ -1,0 +1,3 @@
+{
+  setData(m_provider.loadData(this));
+}

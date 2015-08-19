@@ -1,0 +1,5 @@
+NaviNode node
+MouseEvent event
+double x
+double y
+List<ICodeNodeExtension> extensions

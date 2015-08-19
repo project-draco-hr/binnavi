@@ -1,0 +1,32 @@
+{
+  Preconditions.checkNotNull(data,"IE01299: Data argument can not be null");
+  final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+  try {
+    final DocumentBuilder builder=factory.newDocumentBuilder();
+    final Document document=builder.parse(new ByteArrayInputStream(data,0,data.length));
+    final NodeList nodes=document.getFirstChild().getChildNodes();
+    final List<ThreadRegisters> threads=new ArrayList<>();
+    for (int i=0; i < nodes.getLength(); ++i) {
+      final Node node=nodes.item(i);
+      if (node.getNodeName().equals("Thread")) {
+        threads.add(parseThreadNode(node));
+      }
+ else {
+        throw new MessageParserException(String.format("IE01040: Invalid node '%s' found during register values message parsing",node.getNodeName()));
+      }
+    }
+    return new RegisterValues(threads);
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+catch (  final ParserConfigurationException exception) {
+    CUtilityFunctions.logException(exception);
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+catch (  final SAXException exception) {
+    CUtilityFunctions.logException(exception);
+    throw new MessageParserException(exception.getLocalizedMessage());
+  }
+}

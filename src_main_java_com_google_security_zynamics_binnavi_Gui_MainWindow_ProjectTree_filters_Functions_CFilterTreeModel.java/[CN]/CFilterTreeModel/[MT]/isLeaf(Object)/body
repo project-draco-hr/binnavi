@@ -1,0 +1,4 @@
+{
+  final CTagFilterNode n=(CTagFilterNode)node;
+  return n.getTag().getChildren().isEmpty();
+}

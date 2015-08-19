@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTypeFunctions.loadRawTypes(getConnection().getConnection(),module);
+}

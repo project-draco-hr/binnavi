@@ -1,0 +1,30 @@
+{
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be greater then zero");
+  Preconditions.checkArgument(instanceId >= 0,"instance id must be greater or equal to zero");
+  Preconditions.checkNotNull(commentText,"Error: comment text argument can not be null");
+  Preconditions.checkNotNull(userId,"Error: user id argument can not be null");
+  final CConnection connection=provider.getConnection();
+  final String function=" { ? = call append_type_instance_comment(?, ?, ?, ?) } ";
+  try {
+    final CallableStatement appendCommentFunction=connection.getConnection().prepareCall(function);
+    try {
+      appendCommentFunction.registerOutParameter(1,Types.INTEGER);
+      appendCommentFunction.setInt(2,moduleId);
+      appendCommentFunction.setInt(3,instanceId);
+      appendCommentFunction.setInt(4,userId);
+      appendCommentFunction.setString(5,commentText);
+      appendCommentFunction.execute();
+      final int commentId=appendCommentFunction.getInt(1);
+      if (appendCommentFunction.wasNull()) {
+        throw new CouldntSaveDataException("Error: Got an comment id of null from the database");
+      }
+      return commentId;
+    }
+  finally {
+      appendCommentFunction.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

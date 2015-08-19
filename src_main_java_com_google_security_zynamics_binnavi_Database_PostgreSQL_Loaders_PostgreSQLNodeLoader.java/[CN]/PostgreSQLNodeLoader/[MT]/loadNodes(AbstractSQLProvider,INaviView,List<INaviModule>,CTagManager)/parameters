@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviView view
+List<INaviModule> modules
+CTagManager nodeTagManager

@@ -1,0 +1,7 @@
+{
+  assertEquals("",Convert.hexStringToAsciiString(""));
+  assertEquals("0123456789",Convert.hexStringToAsciiString("30313233343536373839"));
+  assertEquals("AbCdEf",Convert.hexStringToAsciiString("416243644566"));
+  assertEquals("89AB",Convert.hexStringToAsciiString("38394142"));
+  assertEquals("....",Convert.hexStringToAsciiString("3839413"));
+}

@@ -1,0 +1,3 @@
+{
+  m_settings.getDisplaySettings().removeListener(m_settingsListener);
+}

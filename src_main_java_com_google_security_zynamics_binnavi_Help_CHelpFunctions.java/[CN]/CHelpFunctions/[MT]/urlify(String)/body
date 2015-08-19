@@ -1,0 +1,10 @@
+{
+  final String urlString=Constants.startPath + "manual/html/" + helpfile;
+  try {
+    return new File(urlString).toURI().toURL();
+  }
+ catch (  final MalformedURLException exception) {
+    CUtilityFunctions.logException(exception);
+    return null;
+  }
+}

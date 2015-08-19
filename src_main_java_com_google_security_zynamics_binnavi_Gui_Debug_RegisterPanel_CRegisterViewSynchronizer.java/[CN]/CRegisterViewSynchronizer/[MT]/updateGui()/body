@@ -1,0 +1,5 @@
+{
+  final IDebugger activeDebugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread activeThread=activeDebugger == null ? null : activeDebugger.getProcessManager().getActiveThread();
+  m_registerView.setEnabled(activeThread != null && activeDebugger != null && activeDebugger.isConnected());
+}

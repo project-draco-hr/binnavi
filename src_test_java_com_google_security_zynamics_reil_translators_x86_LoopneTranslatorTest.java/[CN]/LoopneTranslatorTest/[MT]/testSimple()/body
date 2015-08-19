@@ -1,0 +1,28 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(3),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("ecx",BigInteger.valueOf(5),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"eax"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1);
+  final IInstruction instruction=new MockInstruction("dec",operands);
+  final ArrayList<ReilInstruction> instructionsDec=new ArrayList<ReilInstruction>();
+  decTranslator.translate(environment,instruction,instructionsDec);
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"256"));
+  final MockInstruction instruction2=new MockInstruction("loopne",Lists.newArrayList(operandTree2));
+  instruction2.address=new CAddress(0x101);
+  translator.translate(environment,instruction2,instructions);
+  final HashMap<BigInteger,List<ReilInstruction>> mapping=new HashMap<BigInteger,List<ReilInstruction>>();
+  mapping.put(BigInteger.valueOf(instructions.get(0).getAddress().toLong()),instructions);
+  mapping.put(BigInteger.valueOf(instructionsDec.get(0).getAddress().toLong()),instructionsDec);
+  interpreter.interpret(mapping,BigInteger.valueOf(0x100));
+  assertEquals(6,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("eax"));
+  assertEquals(BigInteger.valueOf(2),interpreter.getVariableValue("ecx"));
+  assertEquals(BigInteger.ONE,interpreter.getVariableValue("ZF"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("SF"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("OF"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+}

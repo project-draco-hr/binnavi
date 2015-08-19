@@ -1,0 +1,3 @@
+{
+  ((ViewReferencesTableModel)getModel()).dispose();
+}

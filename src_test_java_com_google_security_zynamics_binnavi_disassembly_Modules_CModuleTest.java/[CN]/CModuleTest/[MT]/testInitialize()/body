@@ -1,0 +1,8 @@
+{
+  m_module.setInitialized();
+  assertTrue(m_module.isInitialized());
+  m_module.initialize();
+  final MockModule module=new MockModule();
+  assertFalse(module.isInitialized());
+  module.initialize();
+}

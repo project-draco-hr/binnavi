@@ -1,0 +1,3 @@
+{
+  return (column == COLUMN_CONDITION) || (column == COLUMN_DESCRIPTION);
+}

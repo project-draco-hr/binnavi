@@ -1,0 +1,6 @@
+{
+  m_database=database;
+  m_loadProgressPanel.start();
+  database.addListener(m_databaseListener);
+  CGlobalProgressManager.instance().add(this);
+}

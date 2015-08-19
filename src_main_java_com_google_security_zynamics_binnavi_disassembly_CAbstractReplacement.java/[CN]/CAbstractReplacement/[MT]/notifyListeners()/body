@@ -1,0 +1,10 @@
+{
+  for (  final INaviReplacementListener listener : m_listeners) {
+    try {
+      listener.changed(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

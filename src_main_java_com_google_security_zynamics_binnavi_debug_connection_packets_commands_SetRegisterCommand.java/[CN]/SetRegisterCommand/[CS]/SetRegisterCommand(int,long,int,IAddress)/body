@@ -1,0 +1,8 @@
+{
+  super(DebugCommandType.CMD_SET_REGISTER,packetId);
+  Preconditions.checkNotNull(value,"IE01029: Value argument can not be null");
+  Preconditions.checkArgument(index >= 0,"IE01030: Register index can not be negative");
+  addArgument(new DebugMessageIntegerArgument((int)tid));
+  addArgument(new DebugMessageIntegerArgument(index));
+  addArgument(new DebugMessageAddressArgument(value));
+}

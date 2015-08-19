@@ -1,0 +1,13 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  final LinkedHashSet<?> m_daListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(bookmarkManager,"m_listeners"),"m_listeners");
+  assertEquals(1,m_daListeners.size());
+  final CCodeBookmark bookmark=new CCodeBookmark(new MockModule(),new MockAddress(),"burzel");
+  bookmarkManager.addBookmark(bookmark);
+  final LinkedHashSet<?> m_bmListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(bookmark,"m_listeners"),"m_listeners");
+  assertEquals(1,m_bmListeners.size());
+  tableModel.dispose();
+  assertTrue(m_daListeners.isEmpty());
+  assertTrue(m_bmListeners.isEmpty());
+}

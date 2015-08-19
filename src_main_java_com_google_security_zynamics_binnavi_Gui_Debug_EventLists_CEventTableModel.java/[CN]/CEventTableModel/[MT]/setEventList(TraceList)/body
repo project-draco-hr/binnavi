@@ -1,0 +1,5 @@
+{
+  m_eventList=list;
+  m_cachedValues=null;
+  fireTableDataChanged();
+}

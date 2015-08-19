@@ -1,0 +1,5 @@
+{
+  final StringBuilder builder=new StringBuilder(String.format("VA: 0x%X",address.getVirtualAddress()));
+  builder.append(String.format("0x%X:%X",address.getBaseAddress().toLong(),address.getOffset()));
+  return builder.toString();
+}

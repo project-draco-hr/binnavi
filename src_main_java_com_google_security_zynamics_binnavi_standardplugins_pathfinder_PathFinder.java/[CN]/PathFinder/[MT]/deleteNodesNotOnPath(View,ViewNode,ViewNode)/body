@@ -1,0 +1,17 @@
+{
+  final Set<ViewNode> succs=GraphAlgorithms.getSuccessors(startNode);
+  final Set<ViewNode> preds=GraphAlgorithms.getPredecessors(targetNode);
+  final HashSet<ViewNode> combined=new HashSet<ViewNode>(succs);
+  combined.retainAll(preds);
+  combined.add(startNode);
+  combined.add(targetNode);
+  final List<ViewNode> nodesToDelete=new ArrayList<ViewNode>();
+  for (  final ViewNode node : view.getGraph().getNodes()) {
+    if (!combined.contains(node)) {
+      nodesToDelete.add(node);
+    }
+  }
+  for (  final ViewNode node : nodesToDelete) {
+    view.deleteNode(node);
+  }
+}

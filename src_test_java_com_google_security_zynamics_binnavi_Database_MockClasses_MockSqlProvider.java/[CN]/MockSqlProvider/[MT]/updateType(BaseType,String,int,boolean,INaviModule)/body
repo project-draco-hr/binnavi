@@ -1,0 +1,10 @@
+{
+  final RawBaseType rawType=findType(baseType,module);
+  if (rawType != null) {
+    types.remove(module.getConfiguration().getId(),rawType);
+    types.put(module.getConfiguration().getId(),new RawBaseType(rawType.getId(),name,size,rawType.getPointerId(),isSigned,rawType.getCategory()));
+  }
+ else {
+    throw new IllegalStateException("Trying to update non-existing type.");
+  }
+}

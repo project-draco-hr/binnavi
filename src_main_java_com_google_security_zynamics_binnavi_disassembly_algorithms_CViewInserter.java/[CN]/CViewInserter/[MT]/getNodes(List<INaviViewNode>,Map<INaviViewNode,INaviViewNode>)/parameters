@@ -1,0 +1,2 @@
+List<INaviViewNode> sourceNodes
+Map<INaviViewNode,INaviViewNode> nodeMap

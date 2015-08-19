@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviView view
+List<INaviViewNode> nodes
+List<? extends INaviModule> modules

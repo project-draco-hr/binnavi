@@ -1,0 +1,3 @@
+ITreeNode<CTag> parent
+ITreeNode<CTag> child
+TagType type

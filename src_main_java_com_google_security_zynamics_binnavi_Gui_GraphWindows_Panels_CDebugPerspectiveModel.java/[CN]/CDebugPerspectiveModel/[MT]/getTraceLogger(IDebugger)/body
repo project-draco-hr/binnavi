@@ -1,0 +1,3 @@
+{
+  return m_eventLoggerMap.get(debugger);
+}

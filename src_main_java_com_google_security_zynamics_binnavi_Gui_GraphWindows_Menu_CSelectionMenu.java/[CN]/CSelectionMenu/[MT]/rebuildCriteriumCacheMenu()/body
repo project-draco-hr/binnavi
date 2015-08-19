@@ -1,0 +1,7 @@
+{
+  m_previousCriteriaMenu.removeAll();
+  m_previousCriteriaMenu.setVisible(true);
+  for (  final CCachedExpressionTree tree : m_criteriumCache.getTrees()) {
+    m_previousCriteriaMenu.add(new JMenuItem(new CExecuteCachedCriterium(m_model.getGraph(),tree)));
+  }
+}

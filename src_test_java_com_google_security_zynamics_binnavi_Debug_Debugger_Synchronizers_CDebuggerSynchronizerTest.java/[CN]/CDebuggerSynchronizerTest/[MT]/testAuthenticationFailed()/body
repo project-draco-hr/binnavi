@@ -1,0 +1,6 @@
+{
+  mockDebugger.connect();
+  assertTrue(mockDebugger.isConnected());
+  debuggerSynchronizer.receivedEvent(new AuthenticationFailedReply());
+  assertFalse(mockDebugger.isConnected());
+}

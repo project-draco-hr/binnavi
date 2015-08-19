@@ -1,0 +1,6 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  final INaviView view=container.createView("view1","information");
+  assertEquals(3,container.getViews().size());
+  assertTrue(container.getViews().contains(view));
+}

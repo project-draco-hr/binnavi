@@ -1,0 +1,4 @@
+{
+  m_rawNode.setX(x);
+  m_rawNode.setY(y);
+}

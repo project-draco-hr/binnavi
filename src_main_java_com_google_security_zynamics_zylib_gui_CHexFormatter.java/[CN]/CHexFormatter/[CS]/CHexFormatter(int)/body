@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(maxSize > 0,"Error: Maximum input size must be positive");
+  this.maxSize=maxSize;
+}

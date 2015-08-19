@@ -1,0 +1,2 @@
+GroupNode groupNode
+List<IComment> comment

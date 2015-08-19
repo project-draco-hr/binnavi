@@ -1,0 +1,11 @@
+{
+switch (columnIndex) {
+case 0:
+    return 15;
+case 1:
+  return 40;
+case 2:
+return 40;
+}
+throw new ArrayIndexOutOfBoundsException();
+}

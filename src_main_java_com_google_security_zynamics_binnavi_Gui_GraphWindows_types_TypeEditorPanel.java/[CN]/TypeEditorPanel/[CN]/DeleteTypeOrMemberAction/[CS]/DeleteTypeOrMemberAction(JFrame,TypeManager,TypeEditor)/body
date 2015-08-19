@@ -1,0 +1,4 @@
+{
+  typeAction=new DeleteTypeAction(owner,typeManager,typeEditor);
+  memberAction=new DeleteMemberAction(owner,typeManager,typeEditor);
+}

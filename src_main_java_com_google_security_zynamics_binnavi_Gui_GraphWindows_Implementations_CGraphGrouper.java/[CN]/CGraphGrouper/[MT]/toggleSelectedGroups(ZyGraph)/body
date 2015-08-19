@@ -1,0 +1,8 @@
+{
+  for (  final NaviNode node : graph.getSelectedNodes()) {
+    if (node.getRawNode() instanceof INaviGroupNode) {
+      final INaviGroupNode gnode=(INaviGroupNode)node.getRawNode();
+      gnode.setCollapsed(!gnode.isCollapsed());
+    }
+  }
+}

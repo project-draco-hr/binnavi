@@ -1,0 +1,9 @@
+{
+  final List<IViewEdgeListener> listeners=new ArrayList<IViewEdgeListener>();
+  for (  final IViewEdgeListener listener : m_listeners) {
+    listeners.add(listener);
+  }
+  for (  final IViewEdgeListener listener : listeners) {
+    removeListener(listener);
+  }
+}

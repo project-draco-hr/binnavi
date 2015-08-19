@@ -1,0 +1,3 @@
+Set<File> scriptFiles
+T pluginInterface
+IStandardDescriptionUpdater descriptionUpdater

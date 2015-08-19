@@ -1,0 +1,3 @@
+{
+  m_reference=Preconditions.checkNotNull(reference,"Error: Reference argument can't be null");
+}

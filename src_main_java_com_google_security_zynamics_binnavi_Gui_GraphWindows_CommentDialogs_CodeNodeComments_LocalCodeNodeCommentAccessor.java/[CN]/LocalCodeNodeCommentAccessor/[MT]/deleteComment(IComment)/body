@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02646: comment argument can not be null");
+  m_codeNode.getComments().deleteLocalCodeNodeComment(comment);
+}

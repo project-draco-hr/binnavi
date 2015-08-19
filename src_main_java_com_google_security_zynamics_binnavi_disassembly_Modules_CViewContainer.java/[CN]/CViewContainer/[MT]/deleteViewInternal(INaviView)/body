@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(view,"IE02756: View argument can not be null");
+  if (view.getType() == ViewType.Native) {
+    return;
+  }
+  Preconditions.checkArgument(m_customViews.contains(view),"IE00172: View is not part of the module");
+  delete(view);
+}

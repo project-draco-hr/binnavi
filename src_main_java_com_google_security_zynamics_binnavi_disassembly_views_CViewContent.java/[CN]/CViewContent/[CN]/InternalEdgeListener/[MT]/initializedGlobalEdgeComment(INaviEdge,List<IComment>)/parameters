@@ -1,0 +1,2 @@
+INaviEdge naviEdge
+List<IComment> comments

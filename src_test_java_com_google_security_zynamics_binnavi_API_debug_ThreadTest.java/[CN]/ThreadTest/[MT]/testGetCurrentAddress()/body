@@ -1,0 +1,8 @@
+{
+  final MockThreadListener listener=new MockThreadListener();
+  m_thread.addListener(listener);
+  m_internalThread.setCurrentAddress(new RelocatedAddress(new CAddress(0x200)));
+  assertEquals("changedProgramCounter;",listener.events);
+  assertEquals(0x200,m_thread.getCurrentAddress().toLong());
+  m_thread.removeListener(listener);
+}

@@ -1,0 +1,9 @@
+{
+  addMouseListener(m_listener);
+  addMouseMotionListener(m_listener);
+  addMouseWheelListener(m_listener);
+  addFocusListener(m_listener);
+  addComponentListener(m_listener);
+  addKeyListener(m_listener);
+  m_caret.addCaretListener(m_listener);
+}

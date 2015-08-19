@@ -1,0 +1,3 @@
+{
+  return (CModuleNodeComponent)super.getComponent();
+}

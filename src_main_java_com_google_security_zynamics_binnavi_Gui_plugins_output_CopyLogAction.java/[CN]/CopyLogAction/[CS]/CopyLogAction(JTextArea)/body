@@ -1,0 +1,4 @@
+{
+  super("Copy");
+  m_area=area;
+}

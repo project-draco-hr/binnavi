@@ -1,0 +1,12 @@
+{
+  final int oldX=m_event.getX();
+  final int oldY=m_event.getY();
+  final int newX=event.getX();
+  final int newY=event.getY();
+  if (CNodeMover.isDraggedFar(oldX,oldY,newX,newY)) {
+    return new CStateChange(m_factory.createBackgroundDraggedRightState(event),true);
+  }
+ else {
+    return new CStateChange(this,true);
+  }
+}

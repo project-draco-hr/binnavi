@@ -1,0 +1,3 @@
+{
+  return getStatusValue(lhs.getStartInstruction(),lhs.getTrackedRegister(),lhs.getResult()) - getStatusValue(rhs.getStartInstruction(),rhs.getTrackedRegister(),rhs.getResult());
+}

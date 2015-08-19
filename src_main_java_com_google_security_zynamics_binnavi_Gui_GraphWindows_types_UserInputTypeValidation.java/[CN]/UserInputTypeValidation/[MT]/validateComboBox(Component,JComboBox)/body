@@ -1,0 +1,9 @@
+{
+  if (validateComboBox(baseTypes)) {
+    return true;
+  }
+ else {
+    CMessageBox.showWarning(parent,"Please select a type from the list of base types.");
+    return false;
+  }
+}

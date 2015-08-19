@@ -1,0 +1,3 @@
+{
+  return String.format("%d Projects in Database '%s'",m_database.getContent().getProjects().size(),m_database.getConfiguration().getDescription());
+}

@@ -1,0 +1,2 @@
+JTable table
+List<ITraceEvent> traces

@@ -1,0 +1,3 @@
+{
+  m_provider=Preconditions.checkNotNull(provider,"IE02042: Connection argument can not be null");
+}

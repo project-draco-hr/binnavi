@@ -1,0 +1,5 @@
+{
+  final long threadId=parseThreadId();
+  final int value=parseInteger();
+  return new SetRegisterReply(packetId,0,threadId,value);
+}

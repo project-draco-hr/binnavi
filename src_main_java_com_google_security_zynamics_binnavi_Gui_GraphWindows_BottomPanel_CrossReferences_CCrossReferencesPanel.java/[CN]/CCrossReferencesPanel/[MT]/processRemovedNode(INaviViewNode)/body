@@ -1,0 +1,28 @@
+{
+  if (node instanceof INaviCodeNode) {
+    final INaviCodeNode cnode=(INaviCodeNode)node;
+    try {
+      final INaviFunction targetFunction=cnode.getParentFunction();
+      if (m_nodeCounter.containsKey(targetFunction)) {
+        final int newCounter=m_nodeCounter.get(targetFunction) - 1;
+        if (newCounter == 0) {
+          m_nodeCounter.remove(targetFunction);
+          final Set<CCrossReference> toDelete=new HashSet<CCrossReference>();
+          for (          final CCrossReference reference : m_crossReferences) {
+            if (reference.getCalledFunction() == targetFunction) {
+              toDelete.add(reference);
+            }
+          }
+          m_crossReferences.removeAll(toDelete);
+          return true;
+        }
+ else {
+          m_nodeCounter.put(targetFunction,newCounter);
+        }
+      }
+    }
+ catch (    final MaybeNullException exception) {
+    }
+  }
+  return false;
+}

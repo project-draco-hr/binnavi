@@ -1,0 +1,19 @@
+{
+  final int currPos=getInputPane().getCaretPosition() - m_LastAutoCompleteChunkLength;
+  final String word=getDocument().getWord(currPos);
+  if (word.length() > 0) {
+    final String completion=m_tabCompletion.getCompletion(word);
+    if (completion != null) {
+      final String completionChunk=completion.substring(word.length(),completion.length());
+      try {
+        getDocument().remove(currPos,m_LastAutoCompleteChunkLength);
+        getDocument().insertString(currPos,completionChunk,null);
+      }
+ catch (      final BadLocationException excp) {
+        excp.printStackTrace();
+      }
+      m_LastAutoCompleteChunkLength=completionChunk.length();
+      e.consume();
+    }
+  }
+}

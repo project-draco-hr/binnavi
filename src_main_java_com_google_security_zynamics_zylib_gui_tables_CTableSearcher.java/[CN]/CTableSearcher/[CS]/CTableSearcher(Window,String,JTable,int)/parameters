@@ -1,0 +1,4 @@
+Window frame
+String windowTitle
+JTable table
+int startRow

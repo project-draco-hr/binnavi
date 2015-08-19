@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"IE01192: Graph argument can not be null");
+  Preconditions.checkNotNull(address,"IE01216: Address argument can not be null");
+  final INaviViewNode rawNode=node.getRawNode();
+  if (rawNode instanceof ICodeNode) {
+    final INaviCodeNode codeNode=(INaviCodeNode)rawNode;
+    updateDebuggerHighlighting(graph,address,node,codeNode);
+  }
+ else   if (rawNode instanceof INaviFunctionNode) {
+    final INaviFunctionNode functionNode=(INaviFunctionNode)rawNode;
+    updateDebuggerHighlighting(address,node,functionNode);
+  }
+}

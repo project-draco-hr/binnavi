@@ -1,0 +1,5 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  PostgreSQLDataFunctions.loadData((AbstractSQLProvider)getProvider(),(CModule)module);
+}

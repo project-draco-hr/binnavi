@@ -1,0 +1,16 @@
+{
+  super(parent,"Edit Edge Comments",true);
+  Preconditions.checkNotNull(edge,"IE02386: edge argument can not be null");
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  add(new CEdgeCommentsPanel(edge),BorderLayout.CENTER);
+  add(new OKButtonPanel(this),BorderLayout.SOUTH);
+  final Dimension dim=getPreferredSize();
+  if (dim.height < 300) {
+    dim.height=300;
+  }
+  dim.width=600;
+  setPreferredSize(dim);
+  setMinimumSize(dim);
+  pack();
+}

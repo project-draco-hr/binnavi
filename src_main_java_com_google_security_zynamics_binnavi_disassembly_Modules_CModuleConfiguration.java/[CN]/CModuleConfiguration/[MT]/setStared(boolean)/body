@@ -1,0 +1,15 @@
+{
+  if (m_isStared == isStared) {
+    return;
+  }
+  m_provider.setStared(m_module,isStared);
+  m_isStared=isStared;
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedStarState(m_module,isStared);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

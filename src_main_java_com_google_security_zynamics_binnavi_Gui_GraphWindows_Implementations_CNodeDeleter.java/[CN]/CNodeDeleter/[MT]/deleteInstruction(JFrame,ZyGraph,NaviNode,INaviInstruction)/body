@@ -1,0 +1,16 @@
+{
+  if (JOptionPane.YES_OPTION == CMessageBox.showYesNoCancelQuestion(parent,String.format("Do you really want to delete the instruction '%s' from the code node?",instruction.getInstructionString()))) {
+    final INaviCodeNode rawNode=(INaviCodeNode)node.getRawNode();
+    if (!rawNode.hasInstruction(instruction)) {
+      CMessageBox.showError(parent,"The instruction is not part of the code node");
+      return;
+    }
+    if (Iterables.size(rawNode.getInstructions()) == 1) {
+      connectParentsWithChildren(graph.getRawView(),node.getRawNode());
+      graph.deleteNodes(Lists.newArrayList(node));
+    }
+ else {
+      ((INaviCodeNode)node.getRawNode()).removeInstruction(instruction);
+    }
+  }
+}

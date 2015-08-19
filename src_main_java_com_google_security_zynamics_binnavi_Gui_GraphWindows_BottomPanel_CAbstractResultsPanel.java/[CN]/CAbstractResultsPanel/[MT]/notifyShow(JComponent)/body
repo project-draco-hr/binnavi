@@ -1,0 +1,10 @@
+{
+  for (  final IResultsPanelListener listener : m_listeners) {
+    try {
+      listener.show(panel);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

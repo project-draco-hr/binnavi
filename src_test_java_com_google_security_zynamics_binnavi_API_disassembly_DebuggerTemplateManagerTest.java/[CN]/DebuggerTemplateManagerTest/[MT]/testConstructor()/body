@@ -1,0 +1,5 @@
+{
+  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplateManager internalManager=new com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplateManager(new MockSqlProvider());
+  final DebuggerTemplateManager manager=new DebuggerTemplateManager(internalManager);
+  assertEquals("Debugger Template Manager (0 templates)",manager.toString());
+}

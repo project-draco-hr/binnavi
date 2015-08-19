@@ -1,0 +1,4 @@
+{
+  this.typeMember=member;
+  setIcon(determineIcon(typeMember));
+}

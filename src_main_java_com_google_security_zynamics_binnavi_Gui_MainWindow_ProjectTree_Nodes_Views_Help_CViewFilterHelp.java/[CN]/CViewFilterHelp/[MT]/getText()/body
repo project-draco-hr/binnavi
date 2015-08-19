@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible views.\n\nFilter by view name: Enter the view name\nFilter by view description: Enter the view description\nFilter by node count: nodes ==/!=/</>/<=/>= value\nFilter by edge count: edges ==/!=/</>/<=/>= value\nFilter by containing instruction: contains == HexAddress";
+}

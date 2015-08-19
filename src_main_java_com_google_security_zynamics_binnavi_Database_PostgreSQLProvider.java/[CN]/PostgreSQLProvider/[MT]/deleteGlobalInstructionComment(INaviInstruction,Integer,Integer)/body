@@ -1,0 +1,3 @@
+{
+  PostgreSQLInstructionFunctions.deleteGlobalInstructionComment(this,instruction,commentId,userId);
+}

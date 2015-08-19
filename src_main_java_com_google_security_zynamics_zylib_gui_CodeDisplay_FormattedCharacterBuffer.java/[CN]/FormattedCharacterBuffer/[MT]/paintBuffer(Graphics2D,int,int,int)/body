@@ -1,0 +1,9 @@
+{
+  context.setFont(perCharFonts[0]);
+  FontMetrics fontMetrics=context.getFontMetrics();
+  context.fillRect(0,0,numberOfColumnsInBuffer * fontMetrics.charWidth('a'),numberOfLinesInBuffer * fontMetrics.getHeight());
+  for (int i=0; i < numberOfLinesInBuffer; i++) {
+    AttributedString stringToDraw=getAttributedStringForLine(i,skipColumns);
+    context.drawString(stringToDraw.getIterator(),x,y + fontMetrics.getHeight() * (i + 1));
+  }
+}

@@ -1,0 +1,3 @@
+{
+  m_type=Preconditions.checkNotNull(type,"IE02018: Type argument can't be null");
+}

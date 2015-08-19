@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
+  Preconditions.checkNotNull(edge,"Edge argument can not be null");
+  if (graph.getView() instanceof ZyGraph2DView) {
+    if (((ZyGraph2DView)graph.getView()).isEdgeSloppyPaintMode()) {
+      final String tooltip=TooltipGenerator.createTooltip(graph,edge);
+      graph.getView().setToolTipText(tooltip);
+      return tooltip;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,5 @@
+{
+  if (m_nodeHoverer.clear(node)) {
+    m_model.getGraph().updateViews();
+  }
+}

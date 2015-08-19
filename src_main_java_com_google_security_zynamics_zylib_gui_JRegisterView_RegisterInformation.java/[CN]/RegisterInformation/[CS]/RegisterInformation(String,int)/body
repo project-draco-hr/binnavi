@@ -1,0 +1,4 @@
+{
+  this.registerName=registerName;
+  this.registerSize=registerSize;
+}

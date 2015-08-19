@@ -1,0 +1,48 @@
+{
+  inputMap.put(HotKeys.GRAPH_SEARCHFIELD_FOCUS_KEY.getKeyStroke(),"FOCUS_SEARCHFIELD");
+  view.getInputMap().put(HotKeys.GRAPH_SEARCH_NEXT_KEY.getKeyStroke(),"NEXT");
+  inputMap.put(HotKeys.GRAPH_SEARCH_NEXT_ZOOM_KEY.getKeyStroke(),"NEXT_ZOOM");
+  inputMap.put(HotKeys.GRAPH_SEARCH_PREVIOUS_KEY.getKeyStroke(),"PREVIOUS");
+  inputMap.put(HotKeys.GRAPH_SEARCH_PREVIOUS_ZOOM_KEY.getKeyStroke(),"PREVIOUS_ZOOM");
+  view.getActionMap().put("NEXT",new AbstractAction(){
+    private static final long serialVersionUID=-7289167985570632361L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      searchField.centerNextSearchHit(false,false);
+    }
+  }
+);
+  actionMap.put("NEXT_ZOOM",new AbstractAction(){
+    private static final long serialVersionUID=-74113347341296669L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      searchField.centerNextSearchHit(false,true);
+    }
+  }
+);
+  actionMap.put("PREVIOUS",new AbstractAction(){
+    private static final long serialVersionUID=5698412623106859554L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      searchField.centerNextSearchHit(true,false);
+    }
+  }
+);
+  actionMap.put("PREVIOUS_ZOOM",new AbstractAction(){
+    /** 
+ * Used for serialization.
+ */
+    private static final long serialVersionUID=-5246885767421937156L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      searchField.centerNextSearchHit(true,true);
+    }
+  }
+);
+  actionMap.put("FOCUS_SEARCHFIELD",new AbstractAction(){
+    /** 
+ * Used for serialization.
+ */
+    private static final long serialVersionUID=7918948798657638098L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      searchField.requestFocusInWindow();
+    }
+  }
+);
+}

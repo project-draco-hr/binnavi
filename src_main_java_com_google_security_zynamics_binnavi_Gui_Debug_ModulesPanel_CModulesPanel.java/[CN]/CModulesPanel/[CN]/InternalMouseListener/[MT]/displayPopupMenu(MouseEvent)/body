@@ -1,0 +1,8 @@
+{
+  final int selectedIndex=getSelectionIndex(event);
+  if (selectedIndex != -1) {
+    final MemoryModule memoryModule=m_table.getTreeTableModel().getModules().get(selectedIndex);
+    final CModulesTableMenu popupMenu=new CModulesTableMenu(SwingUtilities.getWindowAncestor(CModulesPanel.this),m_debugPerspectiveModel,memoryModule);
+    popupMenu.show(m_table,event.getX(),event.getY());
+  }
+}

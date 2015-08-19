@@ -1,0 +1,2 @@
+def init(self, pi):
+    self.pi = pi

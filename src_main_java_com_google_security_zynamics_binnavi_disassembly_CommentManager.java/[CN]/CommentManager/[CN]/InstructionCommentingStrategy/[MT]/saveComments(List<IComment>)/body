@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    globalInstructionsCommentContainer.setComments(instruction,comments);
+  }
+ else {
+    localInstructionCommentContainer.setComments(new Pair<INaviCodeNode,INaviInstruction>(codeNode,instruction),comments);
+  }
+}

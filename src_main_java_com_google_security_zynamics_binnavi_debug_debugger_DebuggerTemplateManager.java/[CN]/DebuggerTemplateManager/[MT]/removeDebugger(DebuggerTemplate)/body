@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(debugger,"IE00812: Debugger argument can not be null");
+  Preconditions.checkArgument(debugger.inSameDatabase(sqlProvider),"IE00813: Debugger template and debugger template manager are not in the same database");
+  sqlProvider.deleteDebugger(debugger);
+  debuggers.remove(debugger);
+  for (  final IDebuggerTemplateManagerListener listener : listeners) {
+    try {
+      listener.removedDebugger(this,debugger);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

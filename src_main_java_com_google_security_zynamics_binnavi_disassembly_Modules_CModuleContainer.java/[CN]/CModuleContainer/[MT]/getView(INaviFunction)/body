@@ -1,0 +1,8 @@
+{
+  for (  final INaviView view : m_module.getContent().getViewContainer().getViews()) {
+    if (m_module.getContent().getViewContainer().getFunction(view) == function) {
+      return view;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(panel,"IE01592: Panel argument can not be null");
+  Preconditions.checkNotNull(comboBox,"IE01593: Combo box argument can not be null");
+  Preconditions.checkNotNull(description,"IE01594: Description argument can not be null");
+  comboBox.addItem("On");
+  comboBox.addItem("Off");
+  comboBox.setSelectedItem(value ? "On" : "Off");
+  comboBox.setPreferredSize(new Dimension(PREFERRED_WIDTH,PREFERRED_HEIGHT));
+  addComponent(panel,comboBox,description,hint);
+}

@@ -1,0 +1,3 @@
+IViewContainer container
+INaviView view
+List<INaviInstruction> keptInstructions

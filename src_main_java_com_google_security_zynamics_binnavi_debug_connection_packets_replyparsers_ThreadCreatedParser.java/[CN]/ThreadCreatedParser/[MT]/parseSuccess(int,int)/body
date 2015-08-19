@@ -1,0 +1,5 @@
+{
+  final long thread_id=parseThreadId();
+  final ThreadState threadState=convertThreadState(parseInteger());
+  return new ThreadCreatedReply(packetId,0,thread_id,threadState);
+}

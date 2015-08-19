@@ -1,0 +1,10 @@
+{
+  TypeMember lastMember=null;
+  for (  final TypeMember member : members) {
+    if (lastMember != null && member.getBitOffset().get() - lastMember.getBitOffset().get() != lastMember.getBitSize()) {
+      return false;
+    }
+    lastMember=member;
+  }
+  return true;
+}

@@ -1,0 +1,6 @@
+Graphics2D gfx
+double x
+double y
+double width
+double height
+Color color

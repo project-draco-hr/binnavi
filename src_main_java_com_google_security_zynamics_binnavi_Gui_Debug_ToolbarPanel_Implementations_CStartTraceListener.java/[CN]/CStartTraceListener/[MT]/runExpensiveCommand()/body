@@ -1,0 +1,3 @@
+{
+  m_logger.start(m_trace,m_addresses,m_maximumHits);
+}

@@ -1,0 +1,5 @@
+{
+  final List<RawBaseType> foundTypes=findRawTypes(name,rawTypes);
+  Assert.assertTrue(foundTypes.size() == 1);
+  return foundTypes.get(0);
+}

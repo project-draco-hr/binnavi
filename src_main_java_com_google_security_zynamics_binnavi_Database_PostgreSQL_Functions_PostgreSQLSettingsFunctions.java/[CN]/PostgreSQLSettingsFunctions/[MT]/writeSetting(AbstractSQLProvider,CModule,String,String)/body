@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(provider,"IE01999: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE00540: Module argument can not be null");
+  Preconditions.checkNotNull(key,"IE00541: Key argument can not be null");
+  Preconditions.checkNotNull(value,"IE02011: Value argument can not be null");
+  Preconditions.checkArgument(module.inSameDatabase(provider),"IE00542: Module is not part of this database");
+  writeSetting(provider.getConnection(),module.getConfiguration().getId(),key,value,CTableNames.MODULE_SETTINGS_TABLE);
+}

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(thread,"Error: Thread argument can't be null");
+  final EndlessHelperWrapper helperThread=new EndlessHelperWrapper(thread);
+  CProgressDialog.showEndless(parent,title,helperThread);
+  return helperThread.getException();
+}

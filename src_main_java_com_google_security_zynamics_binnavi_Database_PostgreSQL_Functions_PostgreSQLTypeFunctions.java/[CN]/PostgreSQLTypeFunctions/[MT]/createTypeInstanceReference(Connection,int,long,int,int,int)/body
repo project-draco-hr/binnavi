@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(connection,"Error: connection argument can not be null");
+  Preconditions.checkArgument(moduleId > 0,"Error: module id must be greater than zero");
+  Preconditions.checkArgument(position >= 0,"Error: position must be larger or equal to zero");
+  Preconditions.checkArgument(expressionId > 0,"Error: expression id must be larger or equal to zero");
+  Preconditions.checkArgument(typeInstanceId >= 0,"Error: type instance id must be larger or equal to zero");
+  final String query=" { call create_expression_type_instance(?, ?, ?, ?, ?) } ";
+  try {
+    final CallableStatement procedure=connection.prepareCall(query);
+    try {
+      procedure.setInt(1,moduleId);
+      procedure.setLong(2,address);
+      procedure.setInt(3,position);
+      procedure.setInt(4,expressionId);
+      procedure.setInt(5,typeInstanceId);
+      procedure.execute();
+    }
+  finally {
+      procedure.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

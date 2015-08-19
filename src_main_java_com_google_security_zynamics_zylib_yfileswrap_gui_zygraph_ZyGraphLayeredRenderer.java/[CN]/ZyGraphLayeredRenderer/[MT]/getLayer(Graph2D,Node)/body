@@ -1,0 +1,15 @@
+{
+  final boolean isGroupNode=graph.getRealizer(node) instanceof ZyGroupNodeRealizer<?>;
+  if ((graph.isSelected(node) || isAnyParentNodeSelected(node)) && !isGroupNode) {
+    return 3;
+  }
+ else   if ((m_node == node) && !isGroupNode) {
+    return 4;
+  }
+ else   if (isGroupNode) {
+    return 1;
+  }
+ else {
+    return 2;
+  }
+}

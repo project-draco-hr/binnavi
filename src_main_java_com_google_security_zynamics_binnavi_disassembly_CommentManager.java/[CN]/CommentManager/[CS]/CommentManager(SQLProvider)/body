@@ -1,0 +1,4 @@
+{
+  provider=Preconditions.checkNotNull(sqlProvider,"IE00089: Provider argument can not be null");
+  provider.addListener(providerListener);
+}

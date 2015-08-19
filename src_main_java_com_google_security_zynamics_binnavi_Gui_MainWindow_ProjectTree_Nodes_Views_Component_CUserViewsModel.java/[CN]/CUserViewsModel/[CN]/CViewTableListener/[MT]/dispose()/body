@@ -1,0 +1,3 @@
+{
+  m_originContainer.removeListener(m_containerListener);
+}

@@ -1,0 +1,11 @@
+{
+  super(new GridLayout(6,1));
+  Preconditions.checkNotNull(settings,"IE01589: Settings argument can not be null");
+  setBorder(new TitledBorder("Hierarchic Layout"));
+  CSettingsPanelBuilder.addComboBox(this,m_cbHierarchicOrientation,"Orientation:","Specifies whether hierarchic graph orientation goes from left to right or " + "from top to bottom.",new String[]{"Vertical","Horizontal"},settings.getLayoutSettings().getHierarchicalSettings().getOrientation().ordinal());
+  CSettingsPanelBuilder.addComboBox(this,m_cbHierarchicEdgeRoutingStyle,"Edge Routing Style:","Specifies how edges are routed between nodes.",new String[]{"Octlinear Optimal","Orthogonal Optimal","Polyline Optimal","Octlinear Topmost","Orthogonal Topmost","Polyline Topmost","Octlinear Tight Tree","Orthogonal Tight Tree","Polyline Tight Tree","Octlinear BFS","Orthogonal BFS","Polyline BFS"},settings.getLayoutSettings().getHierarchicalSettings().getStyle().ordinal());
+  CSettingsPanelBuilder.addTextField(this,m_tfHierarchicMinLayerDistance,"Minimum Layer Distance:","Minimum distance between hierarchic graph layers in pixels.",String.valueOf(settings.getLayoutSettings().getHierarchicalSettings().getMinimumLayerDistance()));
+  CSettingsPanelBuilder.addTextField(this,m_tfHierarchicMinNodeDistance,"Node to Node Distance:","Minimum distance between nodes in pixels on the same layer.",String.valueOf(settings.getLayoutSettings().getHierarchicalSettings().getMinimumNodeDistance()));
+  CSettingsPanelBuilder.addTextField(this,m_tfHierarchicMinEdgeDistance,"Edge to Edge Distance:","Minimum distance between edges in pixels on the same layer.",String.valueOf(settings.getLayoutSettings().getHierarchicalSettings().getMinimumEdgeDistance()));
+  CSettingsPanelBuilder.addTextField(this,m_tfHierarchicMinNodeEdgeDistance,"Node to Edge Distance:","Minimum distance between a node and a non-adjacent edge in the same layer",String.valueOf(settings.getLayoutSettings().getHierarchicalSettings().getMinimumEdgeDistance()));
+}

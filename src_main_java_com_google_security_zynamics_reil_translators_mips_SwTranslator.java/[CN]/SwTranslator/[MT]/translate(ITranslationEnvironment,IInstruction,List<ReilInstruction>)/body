@@ -1,0 +1,16 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sw");
+  final IOperandTreeNode targetRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize qw=OperandSize.QWORD;
+  final String extendedValue=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  if (Helpers.getRegisterSize() == 32) {
+    instructions.add(ReilHelpers.createStm(offset,dw,targetRegister.getValue(),dw,extendedValue));
+  }
+ else {
+    instructions.add(ReilHelpers.createStm(offset,qw,targetRegister.getValue(),dw,extendedValue));
+  }
+}

@@ -1,0 +1,16 @@
+{
+  final String tablesFile=getTablesFile();
+  Preconditions.checkNotNull(tablesFile,"IE01225: E00037: Tables file can not be null");
+  NaviLogger.info("Reading BinNavi tables definition file %s",tablesFile);
+  final String sqlStatements=parseSystemResourceAsSQLFile("com/google/security/zynamics/binnavi/data/" + tablesFile);
+  final boolean hasModulesTable=hasTable("modules");
+  try {
+    if (!hasModulesTable) {
+      createModulesTable();
+    }
+    executeUpdate(sqlStatements);
+  }
+ catch (  final SQLException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

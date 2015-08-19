@@ -1,0 +1,10 @@
+{
+  final List<? extends IAbstractCriteriumTreeNode> children=node.getChildren();
+  if (children.isEmpty()) {
+    throw new IllegalStateException("IE00469: Root node no child criterion.");
+  }
+  if (children.size() > 1) {
+    throw new IllegalStateException("IE01112: Root node has more than one child criterion.");
+  }
+  return qualifies(children.get(0),naviNode);
+}

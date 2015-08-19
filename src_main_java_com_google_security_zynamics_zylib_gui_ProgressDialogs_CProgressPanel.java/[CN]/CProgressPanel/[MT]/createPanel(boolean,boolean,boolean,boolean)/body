@@ -1,0 +1,36 @@
+{
+  setLayout(new BorderLayout());
+  final JPanel pPb=new JPanel(new BorderLayout());
+  pPb.setBorder(new TitledBorder(""));
+  if (m_description == null) {
+    m_label.setVisible(false);
+  }
+ else {
+    m_label.setText(convertTextToHtml(m_description));
+  }
+  pPb.add(m_label,BorderLayout.NORTH);
+  m_progressBar.setIndeterminate(indeterminate);
+  m_progressBar.setStringPainted(true);
+  final JPanel borderPanel=new JPanel(new BorderLayout());
+  if (addBorder) {
+    borderPanel.setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.GRAY),new EmptyBorder(1,1,1,1)));
+  }
+  if (showCancelButton) {
+    final JPanel buttonPanel=new JPanel(new BorderLayout());
+    final JButton cancelButton=new JButton(new CancelAction());
+    cancelButton.setFocusable(false);
+    final JPanel paddingPanel=new JPanel(new BorderLayout());
+    paddingPanel.setBorder(new EmptyBorder(0,1,0,0));
+    paddingPanel.setMinimumSize(new Dimension(1,0));
+    buttonPanel.add(paddingPanel,BorderLayout.WEST);
+    buttonPanel.add(cancelButton,BorderLayout.EAST);
+    borderPanel.add(buttonPanel,BorderLayout.EAST);
+  }
+  borderPanel.add(m_progressBar,BorderLayout.CENTER);
+  pPb.add(borderPanel,BorderLayout.CENTER);
+  if (indeterminate && showSeconds) {
+    updateSecondsText();
+    m_timer.setRepeats(true);
+  }
+  add(pPb,BorderLayout.NORTH);
+}

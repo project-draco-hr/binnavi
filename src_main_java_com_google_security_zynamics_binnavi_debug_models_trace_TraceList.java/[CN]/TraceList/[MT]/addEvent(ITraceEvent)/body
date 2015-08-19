@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(event,"IE00781: Trace event can not be null");
+  if (traceEvents.contains(event)) {
+    throw new IllegalStateException("IE00782: Trace event already belongs to the trace list");
+  }
+  traceEvents.add(event);
+  for (  final ITraceListListener listener : listeners) {
+    try {
+      listener.eventAdded(this,event);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

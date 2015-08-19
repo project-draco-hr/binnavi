@@ -1,0 +1,15 @@
+{
+  final Map<Section,Integer> sectionToComment=provider.loadSections(module);
+  final Map<Section,Integer> sectionWithCommemnt=Maps.filterValues(sectionToComment,new Predicate<Integer>(){
+    @Override public boolean apply(    final Integer commentId){
+      return commentId != null;
+    }
+  }
+);
+  final CommentManager manager=CommentManager.get(provider);
+  final HashMap<Integer,ArrayList<IComment>> typeInstanceTocomments=provider.loadMultipleCommentsById(sectionWithCommemnt.values());
+  for (  final Entry<Section,Integer> entry : sectionWithCommemnt.entrySet()) {
+    manager.initializeSectionComment(entry.getKey(),typeInstanceTocomments.get(entry.getValue()));
+  }
+  return Lists.newArrayList(sectionToComment.keySet());
+}

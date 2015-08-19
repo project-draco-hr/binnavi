@@ -1,0 +1,9 @@
+{
+  m_selectionStart=newPosition;
+  if (!isPositionVisible(getSelectionStart())) {
+    scrollToPosition(getSelectionStart());
+  }
+  for (  final IHexPanelListener listener : m_listeners) {
+    listener.selectionChanged(getSelectionStart(),1);
+  }
+}

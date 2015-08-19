@@ -1,0 +1,7 @@
+{
+  final Pattern pattern=Pattern.compile(RULE_REGEX);
+  final Matcher matcher=pattern.matcher(text);
+  matcher.matches();
+  final String data=(matcher.group(1).length() % 2) == 0 ? matcher.group(1) : "0" + matcher.group(1);
+  return new CMemoryFilterExpression(data);
+}

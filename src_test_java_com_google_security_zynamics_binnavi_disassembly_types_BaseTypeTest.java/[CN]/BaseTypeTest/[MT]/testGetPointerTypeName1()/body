@@ -1,0 +1,3 @@
+{
+  BaseType.getPointerTypeName(null,0);
+}

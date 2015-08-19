@@ -1,0 +1,8 @@
+{
+  final Node mappedNaviNode=m_mappings.getYNode(node);
+  final Node mappedGroupNode=groupNode == null ? null : m_mappings.getYNode(groupNode);
+  if (mappedNaviNode != null) {
+    m_graph.getGraph().getHierarchyManager().setParentNode(mappedNaviNode,mappedGroupNode);
+    m_graph.updateViews();
+  }
+}

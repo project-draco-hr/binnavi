@@ -1,0 +1,8 @@
+int projectId
+String name
+String description
+Date creationDate
+Date modificationDate
+int addressSpaceCount
+List<DebuggerTemplate> assignedDebuggers
+SQLProvider provider

@@ -1,0 +1,21 @@
+{
+  final Map<IAddress,INaviFunction> functionMap=getFunctionMap(functions);
+  final List<ICallgraphNode> nodes=new ArrayList<ICallgraphNode>();
+  final String nodeQuery="SELECT nodes.id, function FROM " + CTableNames.NODES_TABLE + " AS nodes JOIN "+ CTableNames.FUNCTION_NODES_TABLE+ " AS function_nodes ON nodes.id = function_nodes.node_id WHERE nodes.view_id = "+ callgraphId;
+  final ResultSet nodeResult=connection.executeQuery(nodeQuery,true);
+  final HashMap<Integer,CCallgraphNode> nodeMap=new HashMap<Integer,CCallgraphNode>();
+  try {
+    while (nodeResult.next()) {
+      final int nodeId=nodeResult.getInt("id");
+      final IAddress functionAddress=PostgreSQLHelpers.loadAddress(nodeResult,"function");
+      final INaviFunction function=functionMap.get(functionAddress);
+      final CCallgraphNode cgnode=new CCallgraphNode(function);
+      nodeMap.put(nodeId,cgnode);
+      nodes.add(cgnode);
+    }
+  }
+  finally {
+    nodeResult.close();
+  }
+  return new Pair<List<ICallgraphNode>,Map<Integer,CCallgraphNode>>(nodes,nodeMap);
+}

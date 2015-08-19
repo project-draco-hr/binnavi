@@ -1,0 +1,7 @@
+{
+  if (instance != null) {
+    throw new IllegalStateException("Error: Plugin interface can not be instantiated more than once");
+  }
+  instance=new PluginInterface(startPath,manager,registry);
+  return instance;
+}

@@ -1,0 +1,10 @@
+{
+  for (  final IThreadListener listener : m_listeners) {
+    try {
+      listener.changedProgramCounter(Thread.this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+AbstractZyGraph<?,?> graph
+Edge edge
+double mouseX
+double mouseY

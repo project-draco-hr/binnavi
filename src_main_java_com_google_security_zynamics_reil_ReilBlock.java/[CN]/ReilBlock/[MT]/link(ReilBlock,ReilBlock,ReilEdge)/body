@@ -1,0 +1,4 @@
+{
+  source.outedges.add(edge);
+  target.inedges.add(edge);
+}

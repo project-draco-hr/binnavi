@@ -1,0 +1,3 @@
+{
+  return fromVersion.getString().equals("4.0.0") || fromVersion.getString().equals("5.0.0");
+}

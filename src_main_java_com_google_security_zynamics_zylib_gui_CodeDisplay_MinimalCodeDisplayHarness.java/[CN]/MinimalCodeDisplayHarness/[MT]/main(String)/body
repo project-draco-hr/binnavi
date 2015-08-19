@@ -1,0 +1,4 @@
+{
+  MinimalCodeDisplayHarness app=new MinimalCodeDisplayHarness();
+  app.buildAndDisplayGui();
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: base type argument can not be null.");
+  Preconditions.checkArgument(pointerLevel > 0,"Error: pointer level must be greater than zero.");
+  return String.format("%s %s",BaseType.getValueTypeName(baseType),Strings.repeat("*",pointerLevel));
+}

@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(manager,"IE01262: Manager argument can not be null");
+  Preconditions.checkNotNull(rows,"IE01263: Rows argument can not be null");
+  final List<CCodeBookmark> bookmarks=new ArrayList<CCodeBookmark>();
+  for (  final int row : rows) {
+    bookmarks.add(manager.get(row));
+  }
+  for (  final CCodeBookmark bookmark : bookmarks) {
+    manager.removeBookmark(bookmark);
+  }
+}

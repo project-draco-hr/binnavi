@@ -1,0 +1,21 @@
+{
+  m_graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode cnode){
+      final INaviViewNode rawNode=cnode.getRawNode();
+      if (rawNode.equals(node)) {
+        rebuildNode(cnode);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  addTagListener(tag);
+  for (  final INaviGraphListener listener : m_listeners) {
+    try {
+      listener.taggedNode(m_graph.getRawView(),node,tag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

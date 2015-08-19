@@ -1,0 +1,4 @@
+{
+  super(operation,commentId);
+  this.instance=Preconditions.checkNotNull(instance,"Error: instance argument can not be null.");
+}

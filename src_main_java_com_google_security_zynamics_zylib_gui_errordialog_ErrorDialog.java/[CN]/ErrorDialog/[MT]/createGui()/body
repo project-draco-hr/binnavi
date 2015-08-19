@@ -1,0 +1,40 @@
+{
+  final JPanel topPanel=new JPanel(new BorderLayout());
+  final JPanel messagePanel=new JPanel(new BorderLayout());
+  final JTextField messageField=new JTextField();
+  messageField.setEditable(false);
+  messageField.setText(m_message);
+  messageField.setBackground(Color.WHITE);
+  messagePanel.add(messageField);
+  messagePanel.setBorder(new TitledBorder("Error Message"));
+  topPanel.add(messagePanel,BorderLayout.NORTH);
+  final JTabbedPane tabbedPane=new JTabbedPane();
+  final JTextArea descriptionArea=new JTextArea();
+  descriptionArea.setEditable(false);
+  descriptionArea.setText(m_description);
+  descriptionArea.setLineWrap(true);
+  descriptionArea.setWrapStyleWord(true);
+  tabbedPane.addTab("Description",descriptionArea);
+  if (m_exception != null) {
+    final JTextArea traceArea=new JTextArea();
+    traceArea.setEditable(false);
+    traceArea.setText(StackTrace.toString(m_exception.getStackTrace()));
+    tabbedPane.addTab("Stack Trace",new JScrollPane(traceArea));
+  }
+  add(topPanel,BorderLayout.NORTH);
+  add(tabbedPane);
+  final JPanel bottomButtonPanel=new JPanel(new BorderLayout());
+  final JPanel leftButtonPanelBottom=new JPanel();
+  final JButton sendButton=new JButton(new SendAction());
+  sendButton.setMinimumSize(new Dimension(180,sendButton.getHeight()));
+  final JButton reportButton=new JButton(new ReportAction());
+  leftButtonPanelBottom.add(sendButton);
+  leftButtonPanelBottom.add(reportButton);
+  bottomButtonPanel.add(leftButtonPanelBottom,BorderLayout.WEST);
+  final JPanel rightButtonPanelBottom=new JPanel();
+  final JButton okButton=new JButton(new CloseButtonListener());
+  getRootPane().setDefaultButton(okButton);
+  rightButtonPanelBottom.add(okButton);
+  bottomButtonPanel.add(rightButtonPanelBottom,BorderLayout.EAST);
+  add(bottomButtonPanel,BorderLayout.SOUTH);
+}

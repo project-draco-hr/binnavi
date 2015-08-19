@@ -1,0 +1,4 @@
+{
+  m_message=message.toByteArray();
+  return 0;
+}

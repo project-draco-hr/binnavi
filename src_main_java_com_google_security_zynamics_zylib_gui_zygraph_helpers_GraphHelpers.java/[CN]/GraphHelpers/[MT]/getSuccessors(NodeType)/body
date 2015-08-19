@@ -1,0 +1,5 @@
+{
+  final List<NodeType> nodes=new ArrayList<NodeType>();
+  nodes.add(node);
+  return GraphAlgorithms.getSuccessors(nodes);
+}

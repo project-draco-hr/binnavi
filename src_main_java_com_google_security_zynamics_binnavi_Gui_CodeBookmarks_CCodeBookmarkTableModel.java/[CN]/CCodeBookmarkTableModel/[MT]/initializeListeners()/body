@@ -1,0 +1,6 @@
+{
+  m_bookmarkManager.addListener(m_listener);
+  for (  final CCodeBookmark bookmark : m_bookmarkManager) {
+    bookmark.addListener(m_listener);
+  }
+}

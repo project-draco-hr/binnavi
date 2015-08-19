@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible projects.\n\nFilter by project name: Enter the project name\nFilter by project description: Enter the project description\n";
+}

@@ -1,0 +1,3 @@
+{
+  TypesTreeModel.createSingleTypeModel(null,typeManager.getTypes().get(0));
+}

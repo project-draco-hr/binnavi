@@ -1,0 +1,13 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS_SET);
+  debuggerProvider.addDebugger(debugger);
+  final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+  assertFalse(tableModel.isCellEditable(0,0));
+  assertFalse(tableModel.isCellEditable(0,1));
+  assertFalse(tableModel.isCellEditable(0,2));
+  assertTrue(tableModel.isCellEditable(0,5));
+  assertTrue(tableModel.isCellEditable(0,6));
+}

@@ -1,0 +1,12 @@
+{
+  super(owner,"Select a graph",ModalityType.APPLICATION_MODAL);
+  Preconditions.checkNotNull(viewContainer,"IE02057: View container can't be null");
+  m_viewContainer=viewContainer;
+  createGui();
+  new CDialogEscaper(this);
+  GuiHelper.centerChildToParent(owner,this,true);
+  if (address != null) {
+    m_offsetField.setText(address.toHexString());
+    search(address.toLong());
+  }
+}

@@ -1,0 +1,11 @@
+{
+  INaviModule sectionModule=null;
+  for (  final INaviModule module : modules) {
+    if (module.getConfiguration().getId() == moduleId) {
+      sectionModule=module;
+    }
+  }
+  final Section section=new Section(sectionId++,name,CommentManager.get(this),sectionModule,new CAddress(startAddress),new CAddress(endAddress),permission,data);
+  sections.put(moduleId,section);
+  return section.getId();
+}

@@ -1,0 +1,8 @@
+{
+  m_database=Preconditions.checkNotNull(database,"IE01969: Database argument can't be null");
+  final DebuggerTemplateManager debuggerManager=m_database.getContent().getDebuggerTemplateManager();
+  debuggerManager.addListener(m_debuggerManagerListener);
+  for (  final DebuggerTemplate debugger : debuggerManager) {
+    debugger.addListener(m_debuggerListener);
+  }
+}

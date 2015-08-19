@@ -1,0 +1,17 @@
+{
+  final ArrayList<Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>> loadedPlugins=new ArrayList<>();
+  final ArrayList<Pair<String,Throwable>> failedPlugins=new ArrayList<>();
+  for (  final File pluginFile : pluginFiles) {
+    if (pluginFile.getName().endsWith(".jar")) {
+      descriptionUpdater.next();
+      descriptionUpdater.setDescription(String.format("Loading plugin JAR file '%s'",pluginFile.getName()));
+      JarPluginLoader.processJarFile(pluginFile,loadedPlugins,failedPlugins);
+    }
+ else     if (pluginFile.getName().endsWith(".class")) {
+      descriptionUpdater.next();
+      descriptionUpdater.setDescription(String.format("Loading plugin CLASS file '%s'",pluginFile.getName()));
+      ClassPluginLoader.processClassFile(pluginPath,pluginFile,loadedPlugins,failedPlugins);
+    }
+  }
+  return new LoadResult<T>(loadedPlugins,failedPlugins);
+}

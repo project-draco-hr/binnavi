@@ -1,0 +1,4 @@
+{
+  m_criterium=criterium;
+  m_menuBuilder=new CNodeMenuBuilder(this,ctree,criteria);
+}

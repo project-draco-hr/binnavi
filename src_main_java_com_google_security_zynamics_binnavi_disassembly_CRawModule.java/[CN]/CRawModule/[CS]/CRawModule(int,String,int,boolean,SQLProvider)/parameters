@@ -1,0 +1,5 @@
+int rawModuleId
+String name
+int functionCount
+boolean isComplete
+SQLProvider provider

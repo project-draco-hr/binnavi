@@ -1,0 +1,16 @@
+{
+  try {
+    apiManager.removeBreakpoint(null,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  apiManager.setBreakpoint(module,new Address(0x123));
+  apiManager.setBreakpoint(module,new Address(0x124));
+  apiManager.addListener(mockListener);
+  apiManager.removeBreakpoint(module,new Address(0x123));
+  internalManager.removeBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(CommonTestObjects.MODULE,new UnrelocatedAddress(new CAddress(0x124)))));
+  assertEquals("removedBreakpoint/124;",mockListener.events);
+  assertEquals(1,apiManager.getBreakpoints().size());
+  apiManager.removeListener(mockListener);
+}

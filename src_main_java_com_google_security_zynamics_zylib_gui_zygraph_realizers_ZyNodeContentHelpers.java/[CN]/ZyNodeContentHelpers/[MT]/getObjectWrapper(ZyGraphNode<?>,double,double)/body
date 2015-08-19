@@ -1,0 +1,14 @@
+{
+  final IZyNodeRealizer realizer=node.getRealizer();
+  final ZyLabelContent content=realizer.getNodeContent();
+  final Rectangle2D bounds=content.getBounds();
+  final double xScale=realizer.getWidth() / bounds.getWidth();
+  final double yPos=y - node.getY();
+  final int row=node.positionToRow(yPos);
+  if (row == -1) {
+    return null;
+  }
+  final ZyLineContent lineContent=content.getLineContent(row);
+  final double position=(((x - node.getX()) / xScale) - content.getPaddingLeft()) / lineContent.getCharWidth();
+  return lineContent.getObjectWrapper((int)position);
+}

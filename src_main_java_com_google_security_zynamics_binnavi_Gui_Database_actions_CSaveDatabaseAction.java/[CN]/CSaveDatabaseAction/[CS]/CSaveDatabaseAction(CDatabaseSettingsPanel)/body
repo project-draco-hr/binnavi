@@ -1,0 +1,5 @@
+{
+  super("Save");
+  m_settingsPanel=settingsPanel;
+  putValue(SHORT_DESCRIPTION,"Saves the current database configuration (CTRL-S)");
+}

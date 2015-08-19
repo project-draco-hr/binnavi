@@ -1,0 +1,8 @@
+def generateStartVector(graph):
+    startVector = DefaultStateVector()
+    for node in graph:
+        element = SkeletonLatticeElement()
+        if writes_native_register(node.instruction):
+            element.written_registers.add(node.instruction.thirdOperand.value)
+        startVector.setState(node, element)
+    return startVector

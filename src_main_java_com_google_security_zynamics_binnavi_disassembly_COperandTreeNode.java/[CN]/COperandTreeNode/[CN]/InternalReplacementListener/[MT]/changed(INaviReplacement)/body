@@ -1,0 +1,10 @@
+{
+  for (  final INaviOperandTreeNodeListener listener : listeners) {
+    try {
+      listener.changedValue(COperandTreeNode.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

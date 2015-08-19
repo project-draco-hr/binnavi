@@ -1,0 +1,12 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"jalr");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final long returnAddress=instruction.getAddress().toLong() + 4;
+  final String rd=operands.size() == 1 ? "$ra" : operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final String rs=operands.size() == 1 ? operands.get(0).getRootNode().getChildren().get(0).getValue() : operands.get(1).getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  instructions.add(ReilHelpers.createStr(offset++,dw,String.valueOf(returnAddress),dw,rd));
+  instructions.add(ReilHelpers.createJcc(offset++,dw,String.valueOf(1L),dw,rs,"isCall","true"));
+}

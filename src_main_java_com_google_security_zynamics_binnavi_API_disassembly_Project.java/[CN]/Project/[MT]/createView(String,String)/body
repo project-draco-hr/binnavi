@@ -1,0 +1,7 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: The project has not yet been loaded");
+  }
+  final INaviView newView=m_project.getContent().createView(name,description);
+  return ObjectFinders.getObject(newView,m_views);
+}

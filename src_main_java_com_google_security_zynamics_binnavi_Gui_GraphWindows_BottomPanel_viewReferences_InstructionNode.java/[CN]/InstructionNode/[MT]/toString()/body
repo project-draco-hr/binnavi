@@ -1,0 +1,5 @@
+{
+  final ZyGraphViewSettings settings=new ZyGraphViewSettings(new GraphSettingsConfigItem());
+  final DebuggerProvider provider=new DebuggerProvider(new ModuleTargetSettings(instruction.getModule()));
+  return ZyInstructionBuilder.buildInstructionLine(instruction,settings,new CDefaultModifier(settings,provider)).first();
+}

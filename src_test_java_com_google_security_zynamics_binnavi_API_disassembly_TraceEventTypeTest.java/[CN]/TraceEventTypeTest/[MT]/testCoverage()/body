@@ -1,0 +1,8 @@
+{
+  for (  final TraceEventType traceType : TraceEventType.values()) {
+    assertEquals(traceType,TraceEventType.convert(traceType.getNative()));
+  }
+  for (  final com.google.security.zynamics.binnavi.debug.models.trace.TraceEventType traceType : com.google.security.zynamics.binnavi.debug.models.trace.TraceEventType.values()) {
+    assertEquals(traceType,TraceEventType.convert(traceType).getNative());
+  }
+}

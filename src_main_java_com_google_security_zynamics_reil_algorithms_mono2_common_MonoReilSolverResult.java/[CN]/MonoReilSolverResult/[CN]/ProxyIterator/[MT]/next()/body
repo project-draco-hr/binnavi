@@ -1,0 +1,4 @@
+{
+  final Map.Entry<IInstructionGraphEdge,LatticeElementType> entry=m_internalIterator.next();
+  return new Pair<IInstructionGraphEdge,LatticeElementType>(entry.getKey(),entry.getValue());
+}

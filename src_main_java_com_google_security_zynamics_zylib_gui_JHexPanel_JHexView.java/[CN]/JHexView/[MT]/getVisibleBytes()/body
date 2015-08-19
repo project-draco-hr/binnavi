@@ -1,0 +1,9 @@
+{
+  final int visibleBytes=getMaximumVisibleBytes();
+  if ((m_dataProvider.getDataLength() - getFirstVisibleByte()) >= visibleBytes) {
+    return visibleBytes;
+  }
+ else {
+    return m_dataProvider.getDataLength() - getFirstVisibleByte();
+  }
+}

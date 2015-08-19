@@ -1,0 +1,6 @@
+{
+  final RemoteFileSystem fileSystem=RemoteFileSystem.parse("<foo><Drives><Drive name='C' /></Drives><Directories><Directory name='Directory' /></Directories><Directory name='Directory' /><Files><File name='File' /></Files></foo>".getBytes());
+  final CRemoteFileSystemView remoteFileSystemView=new CRemoteFileSystemView(fileSystem);
+  final File file=new CRemoteFile("Directory",true);
+  assertEquals(file,remoteFileSystemView.getHomeDirectory());
+}

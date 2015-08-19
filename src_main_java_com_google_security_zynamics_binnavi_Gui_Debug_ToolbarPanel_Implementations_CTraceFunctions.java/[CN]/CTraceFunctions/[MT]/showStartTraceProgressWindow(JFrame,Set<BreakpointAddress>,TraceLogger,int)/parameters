@@ -1,0 +1,4 @@
+JFrame parent
+Set<BreakpointAddress> addresses
+TraceLogger logger
+int maximumHits

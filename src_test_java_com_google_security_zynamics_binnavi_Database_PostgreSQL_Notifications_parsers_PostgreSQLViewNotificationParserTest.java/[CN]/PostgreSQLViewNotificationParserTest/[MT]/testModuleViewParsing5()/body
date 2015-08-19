@@ -1,0 +1,3 @@
+{
+  testParser(CTableNames.MODULE_VIEWS_TABLE,"DELETE","0xDEADBEEF","1");
+}

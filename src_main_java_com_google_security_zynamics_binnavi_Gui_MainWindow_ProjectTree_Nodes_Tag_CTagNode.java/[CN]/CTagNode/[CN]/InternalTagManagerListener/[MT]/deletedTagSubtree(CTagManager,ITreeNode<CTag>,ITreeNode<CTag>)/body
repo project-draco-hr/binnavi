@@ -1,0 +1,13 @@
+{
+  if (hasChild(tag)) {
+    for (int i=0; i < getChildCount(); i++) {
+      final CTagNode node=(CTagNode)getChildAt(i);
+      if (node.getObject() == tag) {
+        node.dispose();
+        remove(node);
+        break;
+      }
+    }
+  }
+  getTreeModel().nodeStructureChanged(CTagNode.this);
+}

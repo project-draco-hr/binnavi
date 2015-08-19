@@ -1,0 +1,4 @@
+{
+  final IGroupNode<?,?> gnode=(IGroupNode<?,?>)node.getRawNode();
+  gnode.setCollapsed(!gnode.isCollapsed());
+}

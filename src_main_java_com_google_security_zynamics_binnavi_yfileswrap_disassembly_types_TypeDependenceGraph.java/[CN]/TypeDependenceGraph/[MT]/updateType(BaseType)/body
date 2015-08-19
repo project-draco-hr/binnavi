@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02770: Base type can not be null.");
+  return determineDependentTypes(baseType);
+}

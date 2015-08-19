@@ -1,0 +1,9 @@
+{
+  if (!(m_minEdgesForSloppyEdgeHiding < getGraph2D().E())) {
+    return true;
+  }
+  if (!(m_sloppyEdgeHidingThreshold > getZoom())) {
+    return true;
+  }
+  return false;
+}

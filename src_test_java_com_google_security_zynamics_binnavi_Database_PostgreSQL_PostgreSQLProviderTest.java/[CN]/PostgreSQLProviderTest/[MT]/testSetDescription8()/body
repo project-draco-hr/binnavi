@@ -1,0 +1,3 @@
+{
+  getProvider().setDescription((CProject)null,"New Description");
+}

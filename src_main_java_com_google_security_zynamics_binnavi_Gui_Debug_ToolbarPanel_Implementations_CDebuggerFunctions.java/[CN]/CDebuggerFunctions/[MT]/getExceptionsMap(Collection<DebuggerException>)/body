@@ -1,0 +1,7 @@
+{
+  final Map<Long,DebuggerException> result=new HashMap<Long,DebuggerException>();
+  for (  final DebuggerException exception : exceptions) {
+    result.put(exception.getExceptionCode(),exception);
+  }
+  return result;
+}

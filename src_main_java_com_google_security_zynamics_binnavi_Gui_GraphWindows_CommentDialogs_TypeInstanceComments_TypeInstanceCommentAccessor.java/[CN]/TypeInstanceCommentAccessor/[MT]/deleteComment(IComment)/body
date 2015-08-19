@@ -1,0 +1,3 @@
+{
+  instanceContainer.deleteComment(instance,comment);
+}

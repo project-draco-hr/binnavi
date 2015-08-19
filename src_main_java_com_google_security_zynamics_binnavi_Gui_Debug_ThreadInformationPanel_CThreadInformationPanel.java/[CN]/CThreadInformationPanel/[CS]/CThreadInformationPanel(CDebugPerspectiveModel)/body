@@ -1,0 +1,8 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE00647: Debug perspective model argument can not be null");
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  add(new JScrollPane(m_table));
+  m_synchronizer=new CThreadInformationTableSynchronizer(m_table,debugPerspectiveModel);
+  m_table.addMouseListener(new InternalMouseListener());
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00882: Distance argument must not be negative");
+  if (value == getMinimumEdgeDistance()) {
+    return;
+  }
+  if (m_type == null) {
+    m_minimumEdgeDistance=value;
+  }
+ else {
+    m_type.setHierarchicMinimumEdgeDistance(value);
+  }
+}

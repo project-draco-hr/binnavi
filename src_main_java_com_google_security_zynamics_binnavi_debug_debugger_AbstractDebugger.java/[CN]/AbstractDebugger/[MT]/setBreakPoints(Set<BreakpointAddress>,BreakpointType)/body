@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    connection.sendBreakpointsMessage(relocate(addresses),type);
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

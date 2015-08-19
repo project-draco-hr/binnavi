@@ -1,0 +1,9 @@
+{
+  final BigInteger availableBefore=offset.subtract(sectionStart.toBigInteger());
+  final BigInteger availableAfter=sectionEnd.toBigInteger().subtract(offset).add(BigInteger.ONE);
+  final BigInteger loadBefore=availableBefore.compareTo(BigInteger.valueOf(3L * size)) == -1 ? availableBefore : BigInteger.valueOf(3L * size);
+  final BigInteger loadAfter=availableAfter.compareTo(BigInteger.valueOf(3L * size)) == -1 ? availableAfter : BigInteger.valueOf(3L * size);
+  final BigInteger realOffset=offset.subtract(loadBefore);
+  final int realSize=(int)(loadBefore.add(loadAfter)).longValue();
+  return new Pair<IAddress,Integer>(new CAddress(realOffset),realSize);
+}

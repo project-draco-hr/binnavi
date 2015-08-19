@@ -1,0 +1,3 @@
+int level
+long offset
+int size

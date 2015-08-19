@@ -1,0 +1,2 @@
+Pair<CConnection,String> cacheKey
+ImmutableSet<String> rawTableNames

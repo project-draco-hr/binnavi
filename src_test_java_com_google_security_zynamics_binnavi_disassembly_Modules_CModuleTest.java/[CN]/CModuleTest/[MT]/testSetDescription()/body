@@ -1,0 +1,17 @@
+{
+  try {
+    m_module.getConfiguration().setDescription(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  assertEquals("Mock Comment",m_module.getConfiguration().getDescription());
+  m_module.getConfiguration().setDescription("Test Description");
+  assertEquals("changedDescription=Test Description/",m_listener.eventList);
+  assertEquals("Test Description",m_module.getConfiguration().getDescription());
+  m_module.getConfiguration().setDescription("Imported by ida2sql from BinNavi");
+  assertEquals("changedDescription=Test Description/changedDescription=Imported by ida2sql from BinNavi/",m_listener.eventList);
+  m_module.getConfiguration().setDescription("Imported by ida2sql from BinNavi");
+  assertEquals("changedDescription=Test Description/changedDescription=Imported by ida2sql from BinNavi/",m_listener.eventList);
+  assertEquals("Imported by ida2sql from BinNavi",m_module.getConfiguration().getDescription());
+}

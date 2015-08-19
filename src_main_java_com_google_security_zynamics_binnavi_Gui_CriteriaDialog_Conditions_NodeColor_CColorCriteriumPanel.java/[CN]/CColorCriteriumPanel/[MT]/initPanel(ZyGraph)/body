@@ -1,0 +1,27 @@
+{
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.setBorder(new TitledBorder("Edit Color Condition"));
+  final JPanel selectedColorPanel=new JPanel(new BorderLayout());
+  selectedColorPanel.setBorder(new EmptyBorder(0,5,3,5));
+  selectedColorPanel.add(m_selectedColorPanel);
+  final List<Color> colors=getColors(graph);
+  final JPanel colorGrid=new JPanel(new GridLayout(1 + colors.size() / 4,4));
+  colorGrid.setBorder(new TitledBorder(""));
+  for (  final Color color : colors) {
+    final JPanel outerColorPanel=new JPanel(new BorderLayout());
+    outerColorPanel.setBorder(new EmptyBorder(3,3,3,3));
+    final ColorPanel colorPanel=new ColorPanel(color,false);
+    outerColorPanel.add(colorPanel,BorderLayout.CENTER);
+    m_colorPanels.add(colorPanel);
+    colorPanel.addListener(m_colorPanelListener);
+    colorPanel.addMouseListener(m_colorPanelListener);
+    colorGrid.add(outerColorPanel,BorderLayout.NORTH);
+  }
+  m_selectedColorPanel.setColor(colors.isEmpty() ? new Color(255,255,255) : colors.get(0));
+  mainPanel.add(selectedColorPanel,BorderLayout.NORTH);
+  final JPanel gridContainer=new JPanel(new BorderLayout());
+  gridContainer.add(colorGrid,BorderLayout.NORTH);
+  gridContainer.setBorder(new EmptyBorder(3,5,0,5));
+  mainPanel.add(gridContainer,BorderLayout.CENTER);
+  add(mainPanel,BorderLayout.CENTER);
+}

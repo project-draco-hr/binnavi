@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(col == DESCRIPTION_COLUMN,"IE01313: Only the description column can be modified");
+  m_bookmarkManager.get(row).setDescription(value.toString());
+}

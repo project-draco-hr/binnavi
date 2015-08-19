@@ -1,0 +1,11 @@
+{
+  Integer retval=0;
+  try {
+    retval=Integer.decode(register);
+  }
+ catch (  final NumberFormatException e) {
+    final String registerNumber=register.substring(2);
+    retval=Integer.decode(registerNumber);
+  }
+  return retval;
+}

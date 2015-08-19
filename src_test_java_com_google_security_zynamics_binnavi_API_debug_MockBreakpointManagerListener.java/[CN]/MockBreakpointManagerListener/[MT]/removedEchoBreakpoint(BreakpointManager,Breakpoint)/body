@@ -1,0 +1,3 @@
+{
+  events+="removedEchoBreakpoint/" + breakpoint.getAddress().toHexString() + ";";
+}

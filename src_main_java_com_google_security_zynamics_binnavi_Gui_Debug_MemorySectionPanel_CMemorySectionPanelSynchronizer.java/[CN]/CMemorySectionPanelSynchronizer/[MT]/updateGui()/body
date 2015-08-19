@@ -1,0 +1,11 @@
+{
+  final IDebugger activeDebugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread activeThread=activeDebugger == null ? null : activeDebugger.getProcessManager().getActiveThread();
+  final boolean enable=(activeThread != null) && (activeDebugger != null) && activeDebugger.isConnected()&& (activeDebugger.getProcessManager().getTargetInformation() != null)&& activeDebugger.getProcessManager().getTargetInformation().getDebuggerOptions().canMemmap()&& (memorySectionBox.getItemCount() != 0);
+  new SwingInvoker(){
+    @Override protected void operation(){
+      memorySectionBox.setEnabled(enable);
+    }
+  }
+.invokeAndWait();
+}

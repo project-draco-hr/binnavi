@@ -1,0 +1,8 @@
+{
+  super(new BorderLayout());
+  m_perspectiveModel=perspectiveModel;
+  m_leftPanel=new CStandardLeftPanel(model.getGraph(),model.getSelectionHistory(),searchField);
+  m_debugLeftPanel=new CDebugLeftPanel(model.getParent(),model.getDebuggerProvider(),(CDebugPerspectiveModel)perspectiveModel.getModel(PerspectiveType.DebugPerspective));
+  add(m_leftPanel);
+  perspectiveModel.addListener(m_listener);
+}

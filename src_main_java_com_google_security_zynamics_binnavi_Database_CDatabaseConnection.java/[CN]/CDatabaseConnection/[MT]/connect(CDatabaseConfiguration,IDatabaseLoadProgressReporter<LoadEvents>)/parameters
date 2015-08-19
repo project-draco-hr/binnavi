@@ -1,0 +1,2 @@
+CDatabaseConfiguration m_databaseConfiguration
+IDatabaseLoadProgressReporter<LoadEvents> reporter

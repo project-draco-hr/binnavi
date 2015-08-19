@@ -1,0 +1,12 @@
+{
+  CodeDisplayCoordinate coordinate=new CodeDisplayCoordinate(rowIndex,lineIndex,columnIndex,0);
+  Pair<IComment,Pair<Integer,Integer>> commentAndIndex=getCommentAndIndexAtCoordinate(coordinate);
+  String finalComment="";
+  if (commentAndIndex.first().getNumberOfCommentLines() > 0) {
+    String commentString=commentAndIndex.first().getComment();
+    Pair<Integer,Integer> indices=commentAndIndex.second();
+    finalComment=commentString.substring(indices.first(),indices.second());
+  }
+  finalComment=CodeDisplay.padRight(finalComment,getColumnWidthInCharacters(columnIndex));
+  return new FormattedCharacterBuffer(finalComment,STANDARD_FONT,columns[COMMENT_INDEX].getDefaultFontColor(),columns[COMMENT_INDEX].getDefaultBackgroundColor());
+}

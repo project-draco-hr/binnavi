@@ -1,0 +1,11 @@
+{
+  super(new GridLayout(4,1));
+  Preconditions.checkNotNull(settings,"IE01585: Settings argument can not be null");
+  setBorder(new TitledBorder("Edge Settings"));
+  final String[] modes=new String[]{com.google.security.zynamics.zylib.resources.Constants.HIDE_NEVER,com.google.security.zynamics.zylib.resources.Constants.HIDE_ALWAYS,com.google.security.zynamics.zylib.resources.Constants.THRESHOLD};
+  final int selectionIndex=settings.getEdgeSettings().getEdgeHidingMode().ordinal();
+  CSettingsPanelBuilder.addComboBox(this,m_cbDisplayMultiEdgesAsOne,"Display multiple edges as one" + ":","If enabled, only one edge between two nodes is shown even if more than one edge " + "connects the two nodes.\nThis is especially useful for cutting down on the " + "number of edges in callgraphs.",settings.getEdgeSettings().getDisplayMultipleEdgesAsOne());
+  CSettingsPanelBuilder.addComboBox(this,m_cbDrawSelectedBends,"Draw Selected Bends" + ":","If enabled, corners of selected edges are highlighted.",settings.getEdgeSettings().getDrawSelectedBends());
+  CSettingsPanelBuilder.addComboBox(this,m_cbEdgeHidingMode,"Hide Edges when zoomed out" + ":","Specifies under what circumstances edges are not drawn when the graph is zoomed out.",modes,selectionIndex);
+  CSettingsPanelBuilder.addTextField(this,m_tfEdgeHidingThreshold,"Edge Hiding Threshold when zoomed out" + ":","If threshold mode is enabled, edges are automatically hidden when more than the " + "specified number of edges are visible.",String.format("%d",settings.getEdgeSettings().getEdgeHidingThreshold()));
+}

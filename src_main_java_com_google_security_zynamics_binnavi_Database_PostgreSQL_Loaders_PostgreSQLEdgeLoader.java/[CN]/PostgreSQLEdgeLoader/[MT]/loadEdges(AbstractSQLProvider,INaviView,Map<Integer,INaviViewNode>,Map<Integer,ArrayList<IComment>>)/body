@@ -1,0 +1,71 @@
+{
+  final String query="SELECT * FROM load_view_edges(" + view.getConfiguration().getId() + ")";
+  List<CBend> currentPaths=new ArrayList<CBend>();
+  final Map<Integer,INaviEdge> commentIdToEdge=new HashMap<Integer,INaviEdge>();
+  final Map<Integer,INaviEdge> edgeIdToEdge=new HashMap<Integer,INaviEdge>();
+  try {
+    final CConnection connection=provider.getConnection();
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        final int edgeId=resultSet.getInt("id");
+        if (edgeIdToEdge.containsKey(edgeId)) {
+          final INaviEdge edge=edgeIdToEdge.get(edgeId);
+          final double pathX=resultSet.getDouble("x");
+          final double pathY=resultSet.getDouble("y");
+          if (!resultSet.wasNull()) {
+            edge.addBend(pathX,pathY);
+          }
+          continue;
+        }
+        final int sourceNode=resultSet.getInt("source_node_id");
+        final int targetNode=resultSet.getInt("target_node_id");
+        Integer localCommentId=resultSet.getInt("comment_id");
+        if (resultSet.wasNull()) {
+          localCommentId=null;
+        }
+        final double x1=resultSet.getDouble("x1");
+        final double y1=resultSet.getDouble("y1");
+        final double x2=resultSet.getDouble("x2");
+        final double y2=resultSet.getDouble("y2");
+        final EdgeType type=EdgeType.valueOf(resultSet.getString("type").toUpperCase());
+        final Color color=new Color(resultSet.getInt("color"));
+        final boolean visible=resultSet.getBoolean("visible");
+        final boolean selected=resultSet.getBoolean("selected");
+        final INaviViewNode source=nodeLookup.get(sourceNode);
+        final INaviViewNode target=nodeLookup.get(targetNode);
+        final double pathX=resultSet.getDouble("x");
+        final double pathY=resultSet.getDouble("y");
+        if (!resultSet.wasNull()) {
+          currentPaths.add(new CBend(pathX,pathY));
+        }
+        final CNaviViewEdge edge=new CNaviViewEdge(edgeId,source,target,type,x1,y1,x2,y2,color,selected,visible,null,currentPaths,provider);
+        if (localCommentId != null) {
+          commentIdToEdge.put(localCommentId,edge);
+        }
+        final ArrayList<IComment> globalComments=edgeToGlobalCommentMap.containsKey(edgeId) ? edgeToGlobalCommentMap.get(edgeId) : null;
+        if ((globalComments != null) && (globalComments.size() != 0)) {
+          initializeGlobalComment(edge,globalComments,provider);
+        }
+        source.addOutgoingEdge(edge);
+        target.addIncomingEdge(edge);
+        edgeIdToEdge.put(edge.getId(),edge);
+        currentPaths=new ArrayList<CBend>();
+      }
+      if (!commentIdToEdge.isEmpty()) {
+        final HashMap<Integer,ArrayList<IComment>> commentIdToComments=PostgreSQLCommentFunctions.loadMultipleCommentsById(provider,commentIdToEdge.keySet());
+        for (        final Entry<Integer,ArrayList<IComment>> commentIdToComment : commentIdToComments.entrySet()) {
+          commentIdToEdge.get(commentIdToComment.getKey()).initializeLocalComment(commentIdToComment.getValue());
+        }
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException("Error: Loading of view edges failed");
+  }
+  return Lists.newArrayList(edgeIdToEdge.values());
+}

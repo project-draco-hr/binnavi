@@ -1,0 +1,16 @@
+{
+  mockDebugger.connect();
+  final TargetProcessThread thread=new TargetProcessThread(0,ThreadState.RUNNING);
+  mockDebugger.getProcessManager().addThread(thread);
+  mockDebugger.getBreakpointManager().addBreakpoints(BreakpointType.STEP,CommonTestObjects.BP_ADDRESS_123_SET);
+  mockDebugger.getBreakpointManager().addBreakpoints(BreakpointType.STEP,CommonTestObjects.BP_ADDRESS_456_SET);
+  debuggerSynchronizer.receivedEvent(new StepBreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_123_RELOC,0),new Pair<RelocatedAddress,Integer>(CommonTestObjects.BP_ADDRESS_456_RELOC,0))));
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,mockDebugger.getBreakpointManager().getBreakpointStatus(CommonTestObjects.BP_ADDRESS_123,BreakpointType.STEP));
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,mockDebugger.getBreakpointManager().getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.STEP));
+  final RegisterValues registerValues=new RegisterValues(Lists.<ThreadRegisters>newArrayList(new ThreadRegisters(0,Lists.newArrayList(new RegisterValue("esp",BigInteger.valueOf(0x123),new byte[0],true,false)))));
+  debuggerSynchronizer.receivedEvent(new StepBreakpointHitReply(0,0,0,registerValues));
+  listener.toString();
+  assertTrue(Iterables.isEmpty(mockDebugger.getBreakpointManager().getBreakpoints(BreakpointType.STEP)));
+  assertEquals(thread,mockDebugger.getProcessManager().getActiveThread());
+  assertEquals(0x123,thread.getCurrentAddress().getAddress().toLong());
+}

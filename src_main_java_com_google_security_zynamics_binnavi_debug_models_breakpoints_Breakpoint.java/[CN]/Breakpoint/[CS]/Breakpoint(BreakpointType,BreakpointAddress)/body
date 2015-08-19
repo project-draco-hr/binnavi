@@ -1,0 +1,4 @@
+{
+  this.type=Preconditions.checkNotNull(type,"IE00196: type argument can not be null");
+  this.address=Preconditions.checkNotNull(address,"IE00717: address argument can not be null");
+}

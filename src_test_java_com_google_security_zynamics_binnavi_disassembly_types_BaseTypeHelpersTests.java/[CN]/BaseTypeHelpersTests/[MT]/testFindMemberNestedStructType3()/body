@@ -1,0 +1,7 @@
+{
+  final WalkResult result=BaseTypeHelpers.findMember(typeSystem.doubleNestedStruct,64);
+  assertNotNull(result);
+  assertTrue(result.isValid());
+  assertEquals(typeSystem.ssUintMember,result.getMember());
+  assertEquals("DoubleNestedStruct.dns_nested_struct_member.ns_simple_struct_member.ss_uint_member",result.getPathString());
+}

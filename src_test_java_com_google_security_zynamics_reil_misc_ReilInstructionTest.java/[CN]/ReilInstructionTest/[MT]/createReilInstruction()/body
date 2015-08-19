@@ -1,0 +1,3 @@
+{
+  return ReilHelpers.createAdd(0x666,OperandSize.DWORD,"1",OperandSize.DWORD,"2",OperandSize.DWORD,"eax");
+}

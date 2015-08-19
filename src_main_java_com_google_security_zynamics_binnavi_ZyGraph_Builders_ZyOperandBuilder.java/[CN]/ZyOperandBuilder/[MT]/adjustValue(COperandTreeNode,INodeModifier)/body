@@ -1,0 +1,9 @@
+{
+  if (treeNode.getType() == ExpressionType.IMMEDIATE_INTEGER) {
+    return buildIntegerOperand(treeNode,modifier);
+  }
+ else   if (treeNode.getType() == ExpressionType.SIZE_PREFIX) {
+    return treeNode.getValue() + " ";
+  }
+  return treeNode.getValue();
+}

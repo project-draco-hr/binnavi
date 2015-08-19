@@ -1,0 +1,3 @@
+{
+  events.append(SUBSTITUTION_CHANGED).append(';');
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(firstOperand,"Error: First operand can not be null");
+  return firstOperand;
+}

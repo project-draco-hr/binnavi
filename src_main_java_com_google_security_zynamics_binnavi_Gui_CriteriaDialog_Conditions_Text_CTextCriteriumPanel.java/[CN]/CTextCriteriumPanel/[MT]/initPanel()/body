@@ -1,0 +1,15 @@
+{
+  final JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.setBorder(new TitledBorder("Edit Text Condition"));
+  final JPanel inputPanel=new JPanel(new BorderLayout());
+  inputPanel.setBorder(new EmptyBorder(5,5,5,5));
+  m_inputField.setPreferredSize(new Dimension(m_inputField.getPreferredSize().width,23));
+  inputPanel.add(m_inputField,BorderLayout.NORTH);
+  final JPanel checkboxesPanel=new JPanel(new GridLayout(2,1));
+  checkboxesPanel.setBorder(new EmptyBorder(5,0,0,0));
+  checkboxesPanel.add(m_caseSensitiveBox);
+  checkboxesPanel.add(m_regExBox);
+  inputPanel.add(checkboxesPanel,BorderLayout.CENTER);
+  mainPanel.add(inputPanel,BorderLayout.NORTH);
+  add(mainPanel,BorderLayout.CENTER);
+}

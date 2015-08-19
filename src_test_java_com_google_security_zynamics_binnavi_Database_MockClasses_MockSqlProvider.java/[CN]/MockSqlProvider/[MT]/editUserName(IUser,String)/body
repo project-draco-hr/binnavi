@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(user,"Error: user argument can not be null");
+  Preconditions.checkNotNull(userName,"Error: userName argument can not be null");
+  users.remove(user);
+  final CUser newUser=new CUser(user.getUserId(),userName);
+  users.add(newUser);
+  return newUser;
+}

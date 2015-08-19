@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(connection,"IE00453: connection argument can not be null");
+  final String query=" { call connect_views_to_functions(?,?) } ";
+  final CallableStatement call=connection.getConnection().prepareCall(query);
+  call.setInt(1,moduleId);
+  call.setInt(2,firstViewId);
+  call.execute();
+}

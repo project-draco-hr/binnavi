@@ -1,0 +1,12 @@
+{
+  super("Open Subfunction");
+  final Set<INaviFunction> added=new HashSet<INaviFunction>();
+  for (  final Pair<INaviInstruction,INaviFunction> p : functions) {
+    if (added.contains(p.second())) {
+      continue;
+    }
+    added.add(p.second());
+    add(new JMenuItem(CActionProxy.proxy(new COpenFunctionAction(model.getParent(),model.getViewContainer(),p.second()))));
+  }
+  setEnabled(allowUninlining || !functions.isEmpty());
+}

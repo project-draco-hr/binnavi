@@ -1,0 +1,7 @@
+{
+  m_mnemonic=mnemonic;
+  m_globalComment=globalComment;
+  m_address=new CAddress(0x123);
+  m_operands=operands;
+  m_module=new MockModule();
+}

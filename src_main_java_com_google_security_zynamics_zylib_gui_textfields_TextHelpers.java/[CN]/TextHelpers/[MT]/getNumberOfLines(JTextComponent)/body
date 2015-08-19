@@ -1,0 +1,4 @@
+{
+  final Element root=component.getDocument().getDefaultRootElement();
+  return root.getElementCount();
+}

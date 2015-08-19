@@ -1,0 +1,7 @@
+def createView(view, tree_node):
+    'Fills a given view with the nodes of a dominator tree'
+    graph_node = view.createNode(tree_node.object)
+    for child in tree_node.children:
+        child_node = createView(view, child)
+        view.createEdge(graph_node, child_node, EdgeType.JumpUnconditional)
+    return graph_node

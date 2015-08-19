@@ -1,0 +1,7 @@
+{
+  final DefaultStateVector<GraphNode,LatticeElement> convertedVector=new DefaultStateVector<GraphNode,LatticeElement>();
+  for (  final GraphNode node : graph.getNodes()) {
+    convertedVector.setState(node,vector.getState(node));
+  }
+  return convertedVector;
+}

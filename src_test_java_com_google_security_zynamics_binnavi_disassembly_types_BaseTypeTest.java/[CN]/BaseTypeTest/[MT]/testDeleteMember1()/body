@@ -1,0 +1,6 @@
+{
+  addMembersAndVerifyOperation();
+  testStruct.deleteMember(testMember0);
+  assertEquals(testMember0.getBaseType().getBitSize() + testMember1.getBaseType().getBitSize() + testMember2.getBaseType().getBitSize()+ testMember3.getBaseType().getBitSize(),testStruct.getBitSize());
+  assertEquals(3,testStruct.getMemberCount());
+}

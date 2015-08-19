@@ -1,0 +1,14 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("Error: Function must be loaded first");
+  }
+  if (m_reilGraph == null) {
+    try {
+      m_reilGraph=new ReilFunction(m_translator.translate(new StandardEnvironment(),m_function));
+    }
+ catch (    final com.google.security.zynamics.reil.translators.InternalTranslationException e) {
+      throw new InternalTranslationException(e,InstructionFinders.findInstruction(this,e.getInstruction()));
+    }
+  }
+  return m_reilGraph;
+}

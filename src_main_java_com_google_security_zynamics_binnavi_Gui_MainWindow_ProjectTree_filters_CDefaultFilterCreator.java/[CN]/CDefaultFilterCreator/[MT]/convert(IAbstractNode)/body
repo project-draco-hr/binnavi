@@ -1,0 +1,28 @@
+{
+  if (node instanceof CPredicateExpression) {
+    final CPredicateExpression predicate=(CPredicateExpression)node;
+    for (    final IPredicateGenerator<WrapperType> expression : m_expressions) {
+      if (expression.canParse(predicate.getText())) {
+        return expression.createExpression(predicate.getText());
+      }
+    }
+    throw new IllegalStateException();
+  }
+ else   if (node instanceof CAbstractAndExpression) {
+    final CAbstractAndExpression andExpression=(CAbstractAndExpression)node;
+    final List<IFilterExpression<WrapperType>> children=new ArrayList<IFilterExpression<WrapperType>>();
+    for (    final IAbstractNode child : andExpression.getChildren()) {
+      children.add(convert(child));
+    }
+    return new CAndExpression<WrapperType>(children);
+  }
+ else   if (node instanceof CAbstractOrExpression) {
+    final CAbstractOrExpression orExpression=(CAbstractOrExpression)node;
+    final List<IFilterExpression<WrapperType>> children=new ArrayList<IFilterExpression<WrapperType>>();
+    for (    final IAbstractNode child : orExpression.getChildren()) {
+      children.add(convert(child));
+    }
+    return new COrExpression<WrapperType>(children);
+  }
+  throw new IllegalStateException("IE01158: Not yet implemented");
+}

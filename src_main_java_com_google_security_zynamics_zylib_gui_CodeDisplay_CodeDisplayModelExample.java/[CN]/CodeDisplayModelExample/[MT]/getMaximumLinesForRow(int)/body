@@ -1,0 +1,7 @@
+{
+  int max=0;
+  for (int columnIndex=0; columnIndex < getNumberOfColumns(); columnIndex++) {
+    max=Math.max(data.get(rowIndex).get(columnIndex).size(),max);
+  }
+  return max;
+}

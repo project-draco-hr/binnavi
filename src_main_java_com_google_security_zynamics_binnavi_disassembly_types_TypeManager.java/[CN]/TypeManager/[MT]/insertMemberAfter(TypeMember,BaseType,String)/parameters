@@ -1,0 +1,3 @@
+TypeMember existingMember
+BaseType memberType
+String memberName

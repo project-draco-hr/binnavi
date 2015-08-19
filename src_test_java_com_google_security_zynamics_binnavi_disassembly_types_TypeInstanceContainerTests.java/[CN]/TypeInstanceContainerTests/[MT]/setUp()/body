@@ -1,0 +1,11 @@
+{
+  typeManager=new TypeManager(new TypeManagerMockBackend());
+  baseType=typeManager.getTypes().get(0);
+  Assert.assertNotNull(baseType);
+  sectionContainer=new SectionContainer(sectionContainerBackend);
+  section=sectionContainer.createSection("SECTION",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ,new byte[0x100]);
+  view=module.getContent().getViewContainer().getViews().get(0);
+  typeInstanceContainerBackend=new TypeInstanceContainerBackend(provider,module,typeManager,sectionContainer);
+  typeInstanceContainer=new TypeInstanceContainer(typeInstanceContainerBackend,provider);
+  typeInstanceContainer.addListener(listener);
+}

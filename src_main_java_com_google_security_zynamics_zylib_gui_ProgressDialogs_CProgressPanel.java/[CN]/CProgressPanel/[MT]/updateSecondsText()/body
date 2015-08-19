@@ -1,0 +1,3 @@
+{
+  m_progressBar.setString(String.format("%d seconds",++m_seconds));
+}

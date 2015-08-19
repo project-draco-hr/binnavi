@@ -1,0 +1,11 @@
+{
+  if (functionNode.getFunction().getAddress().equals(address)) {
+    uncollapseParents(functionNode);
+    if (!node.isVisible()) {
+      graph.showNode(node,true);
+    }
+    ZoomFunctions.zoomToNode(graph,node);
+    return true;
+  }
+  return false;
+}

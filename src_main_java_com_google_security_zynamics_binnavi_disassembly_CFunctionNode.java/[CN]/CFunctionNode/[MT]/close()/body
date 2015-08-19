@@ -1,0 +1,5 @@
+{
+  super.close();
+  CommentManager.get(m_provider).unloadFunctionNodeComment(this,getLocalFunctionComment());
+  CommentManager.get(m_provider).removeListener(m_internalCommentListener);
+}

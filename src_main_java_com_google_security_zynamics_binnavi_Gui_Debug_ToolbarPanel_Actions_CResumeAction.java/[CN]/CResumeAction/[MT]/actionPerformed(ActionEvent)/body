@@ -1,0 +1,6 @@
+{
+  final IDebugger debugger=m_debuggerProvider.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    CDebuggerFunctions.resume(m_parent,debugger);
+  }
+}

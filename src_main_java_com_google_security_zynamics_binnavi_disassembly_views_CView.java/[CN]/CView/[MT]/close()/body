@@ -1,0 +1,34 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE00284: View is not loaded");
+  }
+  for (  final INaviViewListener listener : m_listeners) {
+    try {
+      if (!listener.closingView(this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  final IDirectedGraph<INaviViewNode,INaviEdge> oldGraph=m_content.getGraph();
+  for (  final INaviViewNode node : oldGraph) {
+    node.close();
+  }
+  for (  final INaviEdge edge : oldGraph.getEdges()) {
+    edge.dispose();
+  }
+  m_nodeTags.clear();
+  m_nodeTags.addAll(m_content.getNodeTags());
+  m_content=null;
+  for (  final INaviViewListener listener : m_listeners) {
+    try {
+      listener.closedView(this,oldGraph);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

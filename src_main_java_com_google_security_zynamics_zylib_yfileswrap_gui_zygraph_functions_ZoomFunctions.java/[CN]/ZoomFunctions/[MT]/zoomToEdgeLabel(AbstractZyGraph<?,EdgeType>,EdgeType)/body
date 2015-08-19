@@ -1,0 +1,15 @@
+{
+  final EdgeLabel label=edge.getRealizer().getLabel();
+  final YRectangle labelBounds=label.getBox();
+  final Rectangle viewBounds=graph.getView().getBounds();
+  final double widthZoom=viewBounds.getWidth() / labelBounds.getWidth();
+  final double heightZoom=viewBounds.getHeight() / labelBounds.getHeight();
+  final double oldZoom=graph.getView().getZoom();
+  graph.getView().setZoom(0.8 * Math.min(widthZoom,heightZoom));
+  ZoomHelpers.keepZoomValid(graph.getView());
+  final double newZoom=graph.getView().getZoom();
+  graph.getView().setZoom(oldZoom);
+  final Point2D newCenter=new Point2D.Double(labelBounds.getX() + (0.5 * labelBounds.getWidth()),labelBounds.getY() + (0.5 * labelBounds.getHeight()));
+  graph.getView().focusView(newZoom,newCenter,true);
+  graph.updateViews();
+}

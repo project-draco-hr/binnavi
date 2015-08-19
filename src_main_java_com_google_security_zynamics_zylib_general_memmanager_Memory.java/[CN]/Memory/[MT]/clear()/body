@@ -1,0 +1,8 @@
+{
+  m_writeLock.lock();
+  m_chunks.clear();
+  m_writeLock.unlock();
+  for (  final IMemoryListener listener : m_listeners) {
+    listener.memoryCleared();
+  }
+}

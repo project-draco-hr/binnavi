@@ -1,0 +1,4 @@
+{
+  final ImmutableSet<BaseType> affectedTypes=dependenceGraph.deleteType(typeSystem.intType);
+  assertEquals(ImmutableSet.<BaseType>of(typeSystem.intType,typeSystem.simpleStruct,typeSystem.nestedStruct,typeSystem.doubleNestedStruct,typeSystem.simpleUnion,typeSystem.complexUnion),affectedTypes);
+}

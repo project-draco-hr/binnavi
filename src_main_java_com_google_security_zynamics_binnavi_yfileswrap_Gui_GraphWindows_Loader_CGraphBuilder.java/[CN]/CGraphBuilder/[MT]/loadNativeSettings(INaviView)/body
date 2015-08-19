@@ -1,0 +1,6 @@
+{
+  final ConfigManager configFile=ConfigManager.instance();
+  final ZyGraphViewSettings graphSettings=view.getGraphType() == GraphType.CALLGRAPH ? configFile.getDefaultCallGraphSettings() : configFile.getDefaultFlowGraphSettings();
+  graphSettings.getProximitySettings().setProximityBrowsing(view.getGraph().nodeCount() >= graphSettings.getProximitySettings().getProximityBrowsingActivationThreshold());
+  return new Pair<Map<String,String>,ZyGraphViewSettings>(new HashMap<String,String>(),graphSettings);
+}

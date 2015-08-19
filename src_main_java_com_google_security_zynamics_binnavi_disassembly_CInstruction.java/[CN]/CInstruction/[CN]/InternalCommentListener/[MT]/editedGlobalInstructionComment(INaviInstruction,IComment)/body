@@ -1,0 +1,12 @@
+{
+  if (instruction.getAddress().equals(getAddress())) {
+    for (    final IInstructionListener listener : m_listeners) {
+      try {
+        listener.editedComment(instruction,comment);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

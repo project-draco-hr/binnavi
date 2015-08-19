@@ -1,0 +1,13 @@
+{
+  if (remainingTextString == null) {
+    return;
+  }
+  try {
+    insertString(lastPos,remainingTextString,remainingTextAttr);
+  }
+ catch (  final Exception ex) {
+    ex.printStackTrace();
+  }
+  remainingTextString=null;
+  remainingTextAttr=null;
+}

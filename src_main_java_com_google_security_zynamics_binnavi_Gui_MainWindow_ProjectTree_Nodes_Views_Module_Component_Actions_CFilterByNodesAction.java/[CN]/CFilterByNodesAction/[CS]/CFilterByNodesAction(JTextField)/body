@@ -1,0 +1,4 @@
+{
+  super("Filter by node count");
+  m_filterField=filterField;
+}

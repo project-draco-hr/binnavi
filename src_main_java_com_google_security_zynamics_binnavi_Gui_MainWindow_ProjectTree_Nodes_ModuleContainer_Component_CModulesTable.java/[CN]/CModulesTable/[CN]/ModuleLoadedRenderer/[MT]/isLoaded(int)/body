@@ -1,0 +1,3 @@
+{
+  return getModules(new int[]{convertRowIndexToModel(row)})[0].isLoaded();
+}

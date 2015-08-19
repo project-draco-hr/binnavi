@@ -1,0 +1,5 @@
+{
+  debugger.connect();
+  assertEquals("CONNECT;",mockDebugger.requests);
+  assertEquals("Debugger 'Mock'",debugger.toString());
+}

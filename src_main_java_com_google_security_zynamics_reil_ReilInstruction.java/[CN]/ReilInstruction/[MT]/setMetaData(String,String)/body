@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(key,"Error: Argument key can't be null");
+  if (value == null) {
+    metaData.remove(key);
+  }
+ else {
+    metaData.put(key,value);
+  }
+}

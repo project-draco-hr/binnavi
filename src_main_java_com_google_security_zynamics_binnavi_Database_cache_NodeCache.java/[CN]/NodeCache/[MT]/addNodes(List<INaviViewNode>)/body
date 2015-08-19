@@ -1,0 +1,23 @@
+{
+  nodeByIdCache.putAll(Maps.uniqueIndex(nodes,new Function<INaviViewNode,Integer>(){
+    @Override public Integer apply(    final INaviViewNode node){
+      return node.getId();
+    }
+  }
+));
+  for (  final INaviViewNode node : nodes) {
+    if (node instanceof INaviCodeNode) {
+      final IAddress nodeAddress=((INaviCodeNode)node).getAddress();
+      Integer moduleId=null;
+      try {
+        moduleId=((INaviCodeNode)node).getParentFunction().getModule().getConfiguration().getId();
+      }
+ catch (      final MaybeNullException e) {
+        continue;
+      }
+      if (moduleId != null) {
+        UpdateAddressModuleIdCache(nodeAddress,moduleId,node);
+      }
+    }
+  }
+}

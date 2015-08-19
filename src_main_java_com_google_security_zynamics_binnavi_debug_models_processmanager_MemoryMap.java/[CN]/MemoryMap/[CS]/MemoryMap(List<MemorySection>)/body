@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(sections,"IE00747: Section list can not be null");
+  for (  final MemorySection section : sections) {
+    Preconditions.checkNotNull(section,"IE00748: Section can not be null");
+  }
+  memorySections=new ArrayList<>(sections);
+}

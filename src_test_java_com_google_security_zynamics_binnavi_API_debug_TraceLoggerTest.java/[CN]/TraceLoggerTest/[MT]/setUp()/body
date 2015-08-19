@@ -1,0 +1,22 @@
+{
+  final SQLProvider mockProvider=new MockSqlProvider();
+  final IDatabase internalDatabase=new MockDatabase();
+  final Database database=new Database(internalDatabase);
+  database.load();
+  final MockProject mockProject=new MockProject();
+  final ITreeNode<CTag> nodeRootNode=new TreeNode<CTag>(new CTag(0,"","",TagType.NODE_TAG,mockProvider));
+  final Tree<CTag> nodeTagTree=new Tree<CTag>(nodeRootNode);
+  final TagManager nodeTagManager=new TagManager(new CTagManager(nodeTagTree,TagType.NODE_TAG,mockProvider));
+  final ITreeNode<CTag> viewRootNode=new TreeNode<CTag>(new CTag(0,"","",TagType.VIEW_TAG,mockProvider));
+  final Tree<CTag> viewTagTree=new Tree<CTag>(viewRootNode);
+  final TagManager viewTagManager=new TagManager(new CTagManager(viewTagTree,TagType.VIEW_TAG,mockProvider));
+  final Module module=new Module(database,mockModule,nodeTagManager,viewTagManager);
+  final Project project=new Project(database,mockProject,nodeTagManager,viewTagManager);
+  m_mockModule=new Module(database,mockModule,viewTagManager,nodeTagManager);
+  m_debugSettings=new ModuleTargetSettings(m_mockModule.getNative());
+  m_mockDebugger=new MockDebugger(m_debugSettings);
+  m_mockDebugger.setAddressTranslator(mockModule,new CAddress(0),new CAddress(0x1000));
+  final Debugger debugger=new Debugger(m_mockDebugger);
+  m_logger=new TraceLogger(debugger,module);
+  m_projectLogger=new TraceLogger(debugger,project);
+}

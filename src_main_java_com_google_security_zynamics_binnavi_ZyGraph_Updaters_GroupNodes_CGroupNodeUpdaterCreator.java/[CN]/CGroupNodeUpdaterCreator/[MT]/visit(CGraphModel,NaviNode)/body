@@ -1,0 +1,5 @@
+{
+  if (node.getRawNode() instanceof INaviGroupNode) {
+    node.getRealizer().setUpdater(new CGroupNodeUpdater(model.getGraph(),(INaviGroupNode)node.getRawNode()));
+  }
+}

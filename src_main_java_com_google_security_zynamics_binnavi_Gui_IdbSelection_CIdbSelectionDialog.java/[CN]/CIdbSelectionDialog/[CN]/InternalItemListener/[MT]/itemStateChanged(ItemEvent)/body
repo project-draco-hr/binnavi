@@ -1,0 +1,6 @@
+{
+  final File file=new File(event.getItem().toString());
+  if (file.exists() && file.isDirectory()) {
+    m_chooser.setCurrentDirectory(file);
+  }
+}

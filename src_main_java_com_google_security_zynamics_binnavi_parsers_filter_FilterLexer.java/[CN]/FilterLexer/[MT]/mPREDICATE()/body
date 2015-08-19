@@ -1,0 +1,77 @@
+{
+  try {
+    final int _type=PREDICATE;
+    final int _channel=DEFAULT_TOKEN_CHANNEL;
+{
+      int cnt1=0;
+      loop1:       do {
+        int alt1=11;
+        alt1=dfa1.predict(input);
+switch (alt1) {
+case 1:
+{
+            matchRange('a','z');
+          }
+        break;
+case 2:
+{
+        matchRange('A','Z');
+      }
+    break;
+case 3:
+{
+    matchRange('0','9');
+  }
+break;
+case 4:
+{
+match('<');
+}
+break;
+case 5:
+{
+match('>');
+}
+break;
+case 6:
+{
+match('=');
+}
+break;
+case 7:
+{
+match('_');
+}
+break;
+case 8:
+{
+match('@');
+}
+break;
+case 9:
+{
+match('!');
+}
+break;
+case 10:
+{
+mWS();
+}
+break;
+default :
+if (cnt1 >= 1) {
+break loop1;
+}
+final EarlyExitException eee=new EarlyExitException(1,input);
+throw eee;
+}
+cnt1++;
+}
+ while (true);
+}
+state.type=_type;
+state.channel=_channel;
+}
+  finally {
+}
+}

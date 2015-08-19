@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  breakpointManager.removeBreakpoints(BreakpointType.ECHO,Sets.newHashSet(new BreakpointAddress(module == null ? null : module.getNative(),new UnrelocatedAddress(new CAddress(address.toLong())))));
+}

@@ -1,0 +1,11 @@
+{
+  m_data=module.getData();
+  for (  final IDataChangedListener listener : m_listeners) {
+    try {
+      listener.dataChanged();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

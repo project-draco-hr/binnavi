@@ -1,0 +1,5 @@
+NotificationObject notifiedObject
+CommentScope commentScope
+Integer id
+CommentOperation commentOperation
+IComment newComment

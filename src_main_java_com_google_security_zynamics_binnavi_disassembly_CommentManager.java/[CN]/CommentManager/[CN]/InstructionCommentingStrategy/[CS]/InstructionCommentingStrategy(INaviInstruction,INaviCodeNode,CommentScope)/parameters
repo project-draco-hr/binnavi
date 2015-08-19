@@ -1,0 +1,3 @@
+INaviInstruction currentInstruction
+INaviCodeNode node
+CommentScope currentScope

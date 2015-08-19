@@ -1,0 +1,9 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  m_view.addListener(listener);
+  m_view.load();
+  m_view.setDescription("New Description");
+  assertEquals("New Description",m_view.getDescription());
+  assertEquals("changedDescription;changedModificationDate;",listener.events);
+  m_view.removeListener(listener);
+}

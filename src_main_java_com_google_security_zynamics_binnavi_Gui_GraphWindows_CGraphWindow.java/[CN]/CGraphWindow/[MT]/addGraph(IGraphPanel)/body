@@ -1,0 +1,12 @@
+{
+  if (panel.getPanel() == null) {
+    throw new IllegalStateException("IE01145: Invalid panel object returned");
+  }
+  final ZyGraph graph=panel.getModel().getGraph();
+  graph.addListener(m_graphListener);
+  final INaviView rawView=graph.getRawView();
+  if (!alreadyListening(rawView)) {
+    rawView.addListener(m_viewListener);
+  }
+  m_tabbedPane.addTab(CNameShortener.shorten(rawView),panel.getPanel());
+}

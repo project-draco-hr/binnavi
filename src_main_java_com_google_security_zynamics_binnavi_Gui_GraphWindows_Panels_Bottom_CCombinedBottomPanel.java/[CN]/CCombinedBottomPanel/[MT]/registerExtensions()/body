@@ -1,0 +1,5 @@
+{
+  for (  final IGraphPanelExtension extension : m_extensions) {
+    extension.visit(m_model,m_extender);
+  }
+}

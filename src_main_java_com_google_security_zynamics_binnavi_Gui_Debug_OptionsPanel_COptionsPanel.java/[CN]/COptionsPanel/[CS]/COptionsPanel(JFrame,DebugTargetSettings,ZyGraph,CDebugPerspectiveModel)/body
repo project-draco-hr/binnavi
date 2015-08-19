@@ -1,0 +1,11 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(graph,"IE01468: Graph argument can not be null");
+  m_parent=parent;
+  m_debugTarget=debugTarget;
+  m_graph=graph;
+  setBorder(new TitledBorder("Debugger Options"));
+  setDebugger(debugModel.getCurrentSelectedDebugger());
+  debugModel.addListener(m_listener);
+  setPreferredSize(new Dimension(200,300));
+}

@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    listener.editedGLobalCodeNodeComment(codeNode,comment);
+  }
+ else {
+    listener.editedLocalCodeNodeComment(codeNode,comment);
+  }
+}

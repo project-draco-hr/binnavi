@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(debugger,"IE01437: Debugger argument can not be null");
+  Preconditions.checkNotNull(offset,"IE01438: Offset argument can not be null");
+  m_debugger=debugger;
+  m_offset=offset;
+  m_size=size;
+  m_data=data.clone();
+  debugger.addListener(m_debuggerListener);
+  debugger.getProcessManager().addListener(m_processListener);
+}

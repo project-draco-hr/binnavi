@@ -1,0 +1,7 @@
+{
+  final int selectedRow=m_table.getSelectedRow();
+  if (selectedRow != -1) {
+    final CGraphSelectionTableModel model=(CGraphSelectionTableModel)m_table.getModel();
+    m_selectionResult=model.getViews().get(selectedRow);
+  }
+}

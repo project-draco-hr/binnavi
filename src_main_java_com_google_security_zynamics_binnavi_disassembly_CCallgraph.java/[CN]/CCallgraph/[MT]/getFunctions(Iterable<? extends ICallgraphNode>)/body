@@ -1,0 +1,7 @@
+{
+  final Set<INaviFunction> functions=new HashSet<INaviFunction>();
+  for (  final ICallgraphNode callgraphNode : nodes) {
+    functions.add(callgraphNode.getFunction());
+  }
+  return functions;
+}

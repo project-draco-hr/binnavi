@@ -1,0 +1,2 @@
+List<NodeType> nodes
+List<EdgeType> edges

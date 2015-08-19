@@ -1,0 +1,3 @@
+{
+  getProvider().setGlobalReplacement(new MockOperandTreeNode(),null);
+}

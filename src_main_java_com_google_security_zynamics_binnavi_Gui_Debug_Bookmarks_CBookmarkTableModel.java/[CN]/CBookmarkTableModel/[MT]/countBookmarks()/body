@@ -1,0 +1,7 @@
+{
+  int bookmarks=0;
+  for (  final IDebugger debugger : m_debuggerProvider) {
+    bookmarks+=debugger.getBookmarkManager().getNumberOfBookmarks();
+  }
+  return bookmarks;
+}

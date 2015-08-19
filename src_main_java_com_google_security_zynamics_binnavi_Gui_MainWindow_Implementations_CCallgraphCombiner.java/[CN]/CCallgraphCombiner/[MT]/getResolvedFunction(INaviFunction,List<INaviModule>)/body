@@ -1,0 +1,11 @@
+{
+  if (function.getForwardedFunctionAddress() == null) {
+    return null;
+  }
+  for (  final INaviModule module : modules) {
+    if (module.getConfiguration().getId() == function.getForwardedFunctionModuleId()) {
+      return module.getContent().getFunctionContainer().getFunction(function.getForwardedFunctionAddress());
+    }
+  }
+  return null;
+}

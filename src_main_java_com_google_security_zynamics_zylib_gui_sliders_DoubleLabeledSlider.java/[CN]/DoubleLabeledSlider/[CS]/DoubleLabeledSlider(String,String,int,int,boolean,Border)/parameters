@@ -1,0 +1,6 @@
+String leftText
+String rightText
+int min
+int max
+boolean trackbar
+Border border

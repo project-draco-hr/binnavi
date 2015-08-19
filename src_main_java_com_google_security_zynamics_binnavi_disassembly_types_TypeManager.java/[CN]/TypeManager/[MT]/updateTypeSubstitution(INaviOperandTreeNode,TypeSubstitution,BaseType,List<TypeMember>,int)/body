@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(node,"IE02799: Operand tree node can not be null.");
+  Preconditions.checkNotNull(substitution,"IE02800: Type subustitution can not be null.");
+  Preconditions.checkNotNull(baseType,"IE02801: Base type can not be null.");
+  typesContainer.updateTypeSubstitution(substitution,baseType,memberPath,offset);
+  backend.updateSubstitution(substitution,baseType,membersToIds(memberPath),offset);
+  notifySubstitutionChanged(substitution);
+}

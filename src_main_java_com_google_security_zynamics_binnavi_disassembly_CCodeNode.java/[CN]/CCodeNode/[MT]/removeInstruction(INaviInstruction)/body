@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(instruction,"IE00062: Instruction argument can not be null");
+  Preconditions.checkArgument(codeNodeInstructions.contains(instruction),"IE00063: Instruction is not part of this node");
+  codeNodeInstructions.remove(instruction);
+  for (  final INaviCodeNodeListener listener : m_listeners) {
+    try {
+      listener.removedInstruction(this,instruction);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

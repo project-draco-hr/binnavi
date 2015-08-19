@@ -1,0 +1,7 @@
+{
+  CAbstractGraphPanelExtensionFactory.register(new CVariablesExtensionCreator());
+  CAbstractGraphPanelExtensionFactory.register(new CCrossReferenceExtensionCreator());
+  CAbstractGraphPanelExtensionFactory.register(new CRegisterTrackingExtensionCreator());
+  CAbstractGraphPanelExtensionFactory.register(new CInstructionHighlighterExtensionCreator());
+  CAbstractGraphPanelExtensionFactory.register(new CCodeBookmarkExtensionCreator());
+}

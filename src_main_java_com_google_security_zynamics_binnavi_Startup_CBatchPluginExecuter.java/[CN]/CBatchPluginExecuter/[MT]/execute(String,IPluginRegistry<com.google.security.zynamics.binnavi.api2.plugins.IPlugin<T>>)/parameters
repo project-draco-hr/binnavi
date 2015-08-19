@@ -1,0 +1,2 @@
+String pluginName
+IPluginRegistry<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>> pluginRegistry

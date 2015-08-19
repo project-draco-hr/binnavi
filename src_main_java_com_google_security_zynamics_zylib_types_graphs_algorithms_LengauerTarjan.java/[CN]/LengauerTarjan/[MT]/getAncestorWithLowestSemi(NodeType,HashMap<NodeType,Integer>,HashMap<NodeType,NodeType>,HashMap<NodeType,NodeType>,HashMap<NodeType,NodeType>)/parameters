@@ -1,0 +1,5 @@
+NodeType node
+HashMap<NodeType,Integer> dfnum
+HashMap<NodeType,NodeType> semi
+HashMap<NodeType,NodeType> ancestor
+HashMap<NodeType,NodeType> best

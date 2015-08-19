@@ -1,0 +1,4 @@
+{
+  checkBinaryOperandSizeTypes(firstSize,thirdSize);
+  return createBinaryInstruction(ReilHelpers.OPCODE_STM,new CAddress(offset),firstSize,firstValue,thirdSize,thirdValue);
+}

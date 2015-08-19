@@ -1,0 +1,24 @@
+{
+  final SQLProvider provider=new MockSqlProvider();
+  final CModule internalModule=new CModule(123,"Name","Comment",new Date(),new Date(),"12345678123456781234567812345678","1234567812345678123456781234567812345678",55,66,new CAddress(0x555),new CAddress(0x666),new DebuggerTemplate(1,"Mock Debugger","localhaus",88,provider),null,Integer.MAX_VALUE,false,provider);
+  internalModule.load();
+  final Database database=new Database(new MockDatabase());
+  final CTagManager mockTagManager=new CTagManager(new Tree<CTag>(new TreeNode<CTag>(new CTag(1,"Root","",TagType.NODE_TAG,provider))),TagType.NODE_TAG,provider);
+  final TagManager nodeTagManager=new TagManager(mockTagManager);
+  final TagManager viewTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.VIEW_TAG));
+  final Module module=new Module(database,internalModule,nodeTagManager,viewTagManager);
+  final List<Operand> operands=new ArrayList<Operand>();
+  final OperandExpression ex2=OperandExpression.create(module,"eax",ExpressionType.Register);
+  final OperandExpression ex4=OperandExpression.create(module,"ebx",ExpressionType.Register);
+  operands.add(Operand.create(module,ex2));
+  operands.add(Operand.create(module,ex4));
+  final Instruction instruction=Instruction.create(module,new Address(0x123),"mov",operands,new byte[]{1,2,3},"x86-32");
+  assertEquals(0x123,instruction.getAddress().toLong());
+  assertEquals(null,instruction.getComment());
+  assertArrayEquals(new byte[]{1,2,3},instruction.getData());
+  assertEquals("mov",instruction.getMnemonic());
+  assertEquals(2,instruction.getOperands().size());
+  assertEquals("eax",instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue());
+  assertEquals("ebx",instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue());
+  assertEquals("123  mov eax, ebx",instruction.toString());
+}

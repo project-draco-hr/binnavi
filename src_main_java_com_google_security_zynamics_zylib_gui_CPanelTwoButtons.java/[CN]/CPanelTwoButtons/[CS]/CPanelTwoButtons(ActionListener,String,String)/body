@@ -1,0 +1,27 @@
+{
+  super();
+  m_listener=listener;
+  m_FirstButtonName=firstButtonName;
+  m_SecondButtonName=secondButtonName;
+  setLayout(new BorderLayout());
+  m_FirstButton=new JButton(m_FirstButtonName);
+  m_SecondButton=new JButton(m_SecondButtonName);
+  m_FirstButton.addActionListener(listener);
+  m_SecondButton.addActionListener(listener);
+  if (m_FirstButton.getPreferredSize().width > m_SecondButton.getPreferredSize().width) {
+    m_SecondButton.setPreferredSize(m_FirstButton.getPreferredSize());
+  }
+ else {
+    m_FirstButton.setPreferredSize(m_SecondButton.getPreferredSize());
+  }
+  final JPanel p=new JPanel(new GridLayout(1,2));
+  final JPanel p_ok=new JPanel();
+  final JPanel p_cancel=new JPanel();
+  p_ok.setBorder(new EmptyBorder(5,5,5,5));
+  p_cancel.setBorder(new EmptyBorder(5,5,5,5));
+  p_ok.add(m_FirstButton);
+  p_cancel.add(m_SecondButton);
+  p.add(p_ok);
+  p.add(p_cancel);
+  add(p,BorderLayout.EAST);
+}

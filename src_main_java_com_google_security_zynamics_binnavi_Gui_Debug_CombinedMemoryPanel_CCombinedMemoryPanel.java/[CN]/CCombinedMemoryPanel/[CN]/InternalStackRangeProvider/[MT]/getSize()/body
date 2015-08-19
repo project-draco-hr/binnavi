@@ -1,0 +1,12 @@
+{
+  final IDebugger activeDebugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (activeDebugger == null) {
+    return 0;
+  }
+  final MemoryMap memoryMap=activeDebugger.getProcessManager().getMemoryMap();
+  if (memoryMap == null) {
+    return 0;
+  }
+  final MemorySection section=ProcessHelpers.getSectionWith(memoryMap,getAddress());
+  return section == null ? 0 : section.getSize();
+}

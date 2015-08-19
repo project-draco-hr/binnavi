@@ -1,0 +1,14 @@
+{
+  CIconInitializer.initializeWindowIcons(this);
+  setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+  addWindowListener(new CWindowCloser(m_tabbedPane));
+  final InternalTabListener listener=new InternalTabListener();
+  m_tabbedPane.getModel().addChangeListener(listener);
+  m_tabbedPane.addContainerListener(listener);
+  addWindowStateListener(new WorkaroundListener());
+  m_tabbedPane.addMouseListener(new InternalMouseListener());
+  add(m_tabbedPane);
+  final JPanel statusBar=new JPanel(new BorderLayout());
+  statusBar.add(new CProgressStatusBar(),BorderLayout.EAST);
+  add(statusBar,BorderLayout.SOUTH);
+}

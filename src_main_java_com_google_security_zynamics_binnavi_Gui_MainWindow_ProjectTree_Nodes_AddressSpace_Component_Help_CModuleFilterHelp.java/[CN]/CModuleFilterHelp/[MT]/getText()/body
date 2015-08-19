@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible modules.\n\nFilter by module name: Enter the module name\nFilter by module description: Enter the module description\nFilter by view count: views ==/!=/</>/<=/>= value";
+}

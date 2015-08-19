@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(content,"IE00918: Content argument can't be null");
+  Preconditions.checkNotNull(node,"IE00919: Node argument can't be null");
+  Preconditions.checkNotNull(color,"IE00920: Color argument can't be null");
+  final Iterator<CTag> it=node.getTagsIterator();
+  while (it.hasNext()) {
+    final CTag tag=it.next();
+    if (!"".equals(tag.getName())) {
+      final ZyLineContent lineComment=new ZyLineContent(prefix + tag.getName(),null);
+      lineComment.setTextColor(color);
+      lineComment.setFont(ITALIC_BOLD_FONT);
+      content.addLineContent(lineComment);
+    }
+  }
+}

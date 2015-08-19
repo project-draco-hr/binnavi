@@ -1,0 +1,7 @@
+{
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread currentThread=debugger == null ? null : debugger.getProcessManager().getActiveThread();
+  if (currentThread != null && debugger != null) {
+    CDebuggerFunctions.stepInto(m_parent,debugger);
+  }
+}

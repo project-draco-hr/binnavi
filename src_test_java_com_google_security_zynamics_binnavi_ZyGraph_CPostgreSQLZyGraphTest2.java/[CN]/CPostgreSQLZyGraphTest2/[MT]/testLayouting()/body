@@ -1,0 +1,11 @@
+{
+  final ICallgraphView cg=m_module.getContent().getViewContainer().getNativeCallgraphView();
+  final ZyGraphViewSettings settings=ConfigManager.instance().getDefaultFlowGraphSettings();
+  settings.getProximitySettings().setProximityBrowsingActivationThreshold(50);
+  cg.load();
+  final ZyGraph g=CGraphBuilder.buildGraph(cg);
+  g.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.HIERARCHIC);
+  g.doLayout();
+  g.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.CIRCULAR);
+  g.doLayout();
+}

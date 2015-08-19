@@ -1,0 +1,11 @@
+{
+  final Set<DebuggerTemplate> selectedTemplates=new HashSet<>();
+  final ListModel<DebuggerTemplate> model=m_checkedList.getModel();
+  for (int i=0; i < model.getSize(); ++i) {
+    final DebuggerTemplate debugger=model.getElementAt(i);
+    if (m_checkedList.isChecked(i)) {
+      selectedTemplates.add(debugger);
+    }
+  }
+  return selectedTemplates;
+}

@@ -1,0 +1,26 @@
+{
+  final INaviModule mockModule=new MockModule();
+  final INaviModule mockModule2=new MockModule(true);
+  final INaviModule mockModule3=new MockModule();
+  final CEventTableModel model=new CEventTableModel();
+  final TraceList list=new TraceList(1,"","",new MockSqlProvider());
+  list.addEvent(new TraceEvent(1,new BreakpointAddress(mockModule,new UnrelocatedAddress(new CAddress(0x123))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{05}))));
+  list.addEvent(new TraceEvent(1,new BreakpointAddress(mockModule2,new UnrelocatedAddress(new CAddress(0x124))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{06}))));
+  list.addEvent(new TraceEvent(1,new BreakpointAddress(mockModule3,new UnrelocatedAddress(new CAddress(0x125))),TraceEventType.REGULAR_BREAKPOINT,Lists.newArrayList(new TraceRegister("eax",new CAddress(0x123),new byte[]{07,05}))));
+  assertEquals(0,model.getRowCount());
+  model.setEventList(list);
+  assertEquals(3,model.getRowCount());
+  final IFilter<ITraceEvent> filter=new CTraceFilterCreator().createFilter("mem == 05");
+  model.setFilter(filter);
+  assertEquals(2,model.getRowCount());
+  assertEquals(2,model.getEvents().size());
+  assertEquals(0x123,model.getEvents().get(0).getOffset().getAddress().getAddress().toLong());
+  assertEquals(0x125,model.getEvents().get(1).getOffset().getAddress().getAddress().toLong());
+  model.setFilter(null);
+  assertEquals(3,model.getRowCount());
+  for (int i=0; i < model.getRowCount(); i++) {
+    for (int j=0; j < model.getColumnCount(); j++) {
+      model.getValueAt(i,j);
+    }
+  }
+}

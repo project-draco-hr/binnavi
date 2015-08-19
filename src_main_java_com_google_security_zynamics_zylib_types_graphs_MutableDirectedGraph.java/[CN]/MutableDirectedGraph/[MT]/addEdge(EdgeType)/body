@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(edge,"Edge argument can not be null");
+  m_edges.add(edge);
+  updateNodeToEdgeMapping(edge);
+}

@@ -1,0 +1,3 @@
+{
+  return m_pointer < m_text.length();
+}

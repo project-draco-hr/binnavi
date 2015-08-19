@@ -1,0 +1,35 @@
+{
+  super(parent,"Proximity Browsing Settings",true);
+  Preconditions.checkNotNull(settings,"IE01154: Settings argument can not be null");
+  m_settings=settings;
+  new CDialogEscaper(this);
+  m_parentDepthSlider.setMinorTickSpacing(1);
+  m_parentDepthSlider.setPaintTicks(true);
+  m_parentDepthSlider.setSnapToTicks(true);
+  m_parentDepthSlider.setPaintTrack(true);
+  m_parentDepthSlider.addChangeListener(new ChangeListener(){
+    @Override public void stateChanged(    final ChangeEvent event){
+      m_parentLabel.setText(((Integer)m_parentDepthSlider.getValue()).toString());
+    }
+  }
+);
+  m_childDepthSlider.setMinorTickSpacing(1);
+  m_childDepthSlider.setPaintTicks(true);
+  m_childDepthSlider.setSnapToTicks(true);
+  m_childDepthSlider.setPaintTrack(true);
+  m_childDepthSlider.addChangeListener(new ChangeListener(){
+    @Override public void stateChanged(    final ChangeEvent event){
+      m_childLabel.setText(((Integer)m_childDepthSlider.getValue()).toString());
+    }
+  }
+);
+  m_buttonOk.addActionListener(m_actionListener);
+  m_buttonCancel.addActionListener(m_actionListener);
+  m_checkBoxChildDepth.addItemListener(m_itemListener);
+  m_checkBoxParentDepth.addItemListener(m_itemListener);
+  setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+  synchronizeGUIFromSettings();
+  createPanels();
+  pack();
+  GuiHelper.centerChildToParent(parent,this,true);
+}

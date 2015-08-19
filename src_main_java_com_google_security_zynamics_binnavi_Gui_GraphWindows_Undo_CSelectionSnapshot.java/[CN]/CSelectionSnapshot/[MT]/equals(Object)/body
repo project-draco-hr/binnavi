@@ -1,0 +1,3 @@
+{
+  return rhs instanceof CSelectionSnapshot && ((CSelectionSnapshot)rhs).m_selectedNodes.equals(m_selectedNodes);
+}

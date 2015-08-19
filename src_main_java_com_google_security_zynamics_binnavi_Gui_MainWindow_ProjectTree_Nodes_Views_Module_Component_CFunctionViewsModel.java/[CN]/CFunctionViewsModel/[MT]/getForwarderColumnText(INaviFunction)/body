@@ -1,0 +1,21 @@
+{
+  final IAddress address=function.getForwardedFunctionAddress();
+  if (address == null) {
+    return "-";
+  }
+  final int moduleId=function.getForwardedFunctionModuleId();
+  final INaviModule forwardedModule=m_database.getContent().getModule(moduleId);
+  if (forwardedModule == null) {
+    return "INVALID";
+  }
+ else   if (!forwardedModule.isLoaded()) {
+    return String.format("%s:%s",forwardedModule.getConfiguration().getName(),address.toHexString());
+  }
+  final INaviFunction forwardedFunction=forwardedModule.getContent().getFunctionContainer().getFunction(address);
+  if (forwardedFunction == null) {
+    return "INVALID";
+  }
+ else {
+    return String.format("%s:%s",forwardedModule.getConfiguration().getName(),forwardedFunction.getName());
+  }
+}

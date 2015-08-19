@@ -1,0 +1,4 @@
+AbstractZyGraph<NodeType,?> graph
+Collection<NodeType> nodes
+int childDepth
+int parentDepth

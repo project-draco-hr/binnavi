@@ -1,0 +1,8 @@
+{
+  for (  final RegisterValue r : m_thread.getRegisterValues()) {
+    if (r.getName().equalsIgnoreCase(register)) {
+      return r.getValue();
+    }
+  }
+  throw new CEvaluationException(String.format("Unknown register name %s",register));
+}

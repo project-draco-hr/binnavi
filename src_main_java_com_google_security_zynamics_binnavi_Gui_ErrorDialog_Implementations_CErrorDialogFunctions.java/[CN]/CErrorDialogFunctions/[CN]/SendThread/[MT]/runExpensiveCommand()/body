@@ -1,0 +1,6 @@
+{
+  final String urlString="http://bugs.zynamics.com/BinNavi/index.php";
+  final String content=m_description + "\n\n" + (m_exception == null ? "" : StackTrace.toString(m_exception.getStackTrace()));
+  final String data="&" + URLEncoder.encode("email","UTF-8") + "="+ URLEncoder.encode(m_email,"UTF-8")+ "&"+ URLEncoder.encode("subject","UTF-8")+ "="+ URLEncoder.encode(m_message + " (" + m_email+ ")","UTF-8")+ "&"+ URLEncoder.encode("body","UTF-8")+ "="+ URLEncoder.encode(content,"UTF-8");
+  WebsiteReader.sendPost(urlString,data);
+}

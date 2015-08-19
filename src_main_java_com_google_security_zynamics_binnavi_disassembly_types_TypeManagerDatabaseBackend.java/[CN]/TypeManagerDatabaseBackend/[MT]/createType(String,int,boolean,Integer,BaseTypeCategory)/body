@@ -1,0 +1,4 @@
+{
+  final int typeId=provider.createType(module.getConfiguration().getId(),name,size,childPointerTypeId,signed,category);
+  return new BaseType(typeId,name,size,signed,category);
+}

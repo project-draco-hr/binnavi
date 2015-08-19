@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(commentId,"IE02668: commentId argument can not be null");
+  Preconditions.checkNotNull(newComment,"IE02669: newComment argument can not be null");
+  return m_function.editGlobalComment(commentId,newComment);
+}

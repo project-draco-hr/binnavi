@@ -1,0 +1,11 @@
+{
+  final String newName="narf_type";
+  final int newSize=64;
+  final boolean newIsSigned=false;
+  final BaseType intType=backend.createType("test_int",32,true,null,BaseTypeCategory.ATOMIC);
+  backend.updateType(intType,newName,newSize,newIsSigned);
+  final RawBaseType updatedType=mockProvider.loadType(mockModule,intType.getId());
+  Assert.assertEquals(newName,updatedType.getName());
+  Assert.assertEquals(newSize,updatedType.getSize());
+  Assert.assertEquals(newIsSigned,updatedType.isSigned());
+}

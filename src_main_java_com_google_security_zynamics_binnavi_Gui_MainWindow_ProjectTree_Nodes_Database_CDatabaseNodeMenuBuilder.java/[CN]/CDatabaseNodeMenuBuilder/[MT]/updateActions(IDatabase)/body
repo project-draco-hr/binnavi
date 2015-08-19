@@ -1,0 +1,4 @@
+{
+  openAction.setEnabled(allowConnection && !database.isConnected() && !database.getConfiguration().getIdentity().isEmpty()&& !database.getConfiguration().getUser().isEmpty()&& !database.getConfiguration().getPassword().isEmpty());
+  closeAction.setEnabled(database.isConnected());
+}

@@ -1,0 +1,19 @@
+{
+  final JCriteriumTreeNode parentNode=findParentNode((JCriteriumTreeNode)getRoot(),parent.getCriterium());
+  final JCriteriumTreeNode newNode=new JCriteriumTreeNode(criteriumTree,child.getCriterium(),m_criteria);
+  final List<JCriteriumTreeNode> grandChildren=new ArrayList<JCriteriumTreeNode>();
+  final Enumeration<?> enumeration=parentNode.children();
+  while (enumeration.hasMoreElements()) {
+    grandChildren.add((JCriteriumTreeNode)enumeration.nextElement());
+  }
+  for (  final JCriteriumTreeNode grandChild : grandChildren) {
+    newNode.add(grandChild);
+    grandChild.setParent(newNode);
+  }
+  parentNode.removeAllChildren();
+  parentNode.add(newNode);
+  newNode.setParent(parentNode);
+  nodeStructureChanged(parentNode);
+  m_jtree.setSelectionPath(new TreePath(newNode.getPath()));
+  child.getCriterium().addListener(m_internalCriteriumListener);
+}

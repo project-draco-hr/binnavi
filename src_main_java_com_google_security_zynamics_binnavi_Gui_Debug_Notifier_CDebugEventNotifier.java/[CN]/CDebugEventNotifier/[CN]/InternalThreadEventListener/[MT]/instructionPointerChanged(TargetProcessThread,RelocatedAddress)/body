@@ -1,0 +1,33 @@
+{
+  if (thread != m_debugger.getProcessManager().getActiveThread()) {
+    return;
+  }
+  final RelocatedAddress threadAddress=thread.getCurrentAddress();
+  if (threadAddress == null) {
+    return;
+  }
+  if ((oldAddress != null) && oldAddress.equals(threadAddress)) {
+    return;
+  }
+  if (CGlobalSettings.SHOW_DIALOGS) {
+    final UnrelocatedAddress address=m_debugger.memoryToFile(threadAddress);
+    final INaviModule naviModule=m_debugger.getModule(threadAddress);
+    final IGraphPanel panel=CPanelFinder.getPanelWithAddress(m_debugger,address);
+    if (panel == null) {
+      try {
+        final List<INaviView> views=naviModule.getViewsWithAddresses(Lists.newArrayList(address),true);
+        if (views.size() > 0) {
+          selectView(views);
+        }
+      }
+ catch (      final CouldntLoadDataException e) {
+        CUtilityFunctions.logException(e);
+      }
+    }
+ else {
+      final CGraphWindow parent=panel.getModel().getParent();
+      parent.toFront();
+      parent.activate(panel);
+    }
+  }
+}

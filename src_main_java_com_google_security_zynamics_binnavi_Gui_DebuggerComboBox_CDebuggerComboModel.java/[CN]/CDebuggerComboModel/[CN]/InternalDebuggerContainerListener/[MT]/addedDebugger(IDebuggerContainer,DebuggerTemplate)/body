@@ -1,0 +1,6 @@
+{
+  updateElements();
+  for (  final ListDataListener listener : modelListeners) {
+    listener.contentsChanged(new ListDataEvent(CDebuggerComboModel.this,ListDataEvent.CONTENTS_CHANGED,0,getSize()));
+  }
+}

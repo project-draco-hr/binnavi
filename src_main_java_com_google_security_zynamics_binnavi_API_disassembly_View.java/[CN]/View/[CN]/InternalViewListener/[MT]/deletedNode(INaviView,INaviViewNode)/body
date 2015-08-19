@@ -1,0 +1,16 @@
+{
+  if (node instanceof INaviGroupNode || !isConverted()) {
+    return;
+  }
+  final ViewNode oldNode=cachedNodes.get(node);
+  viewGraph.removeNode(oldNode);
+  cachedNodes.remove(node);
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.deletedNode(View.this,oldNode);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

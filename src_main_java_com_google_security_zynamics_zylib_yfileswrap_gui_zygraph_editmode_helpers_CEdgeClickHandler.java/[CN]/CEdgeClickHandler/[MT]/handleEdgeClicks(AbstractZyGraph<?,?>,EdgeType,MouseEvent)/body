@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(edge,"Error: Edge argument can not be null");
+  Preconditions.checkNotNull(event,"Error: Event argument can not be null");
+  if ((event.getButton() == MouseEvent.BUTTON1) && event.isShiftDown()) {
+    graph.getGraph().setSelected(edge.getEdge(),!edge.isSelected());
+  }
+ else   if ((event.getButton() == MouseEvent.BUTTON1) && !event.isShiftDown()) {
+    if (edge.getSource() != edge.getTarget()) {
+      final double x=graph.getView().toWorldCoordX(event.getX());
+      final double y=graph.getView().toWorldCoordY(event.getY());
+      zoomEdgeNode(graph,edge.getEdge(),x,y);
+    }
+  }
+}

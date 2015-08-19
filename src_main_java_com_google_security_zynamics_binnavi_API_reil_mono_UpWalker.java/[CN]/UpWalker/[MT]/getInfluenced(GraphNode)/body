@@ -1,0 +1,10 @@
+{
+  if (node == null) {
+    throw new IllegalArgumentException("Error: Node argument can not be null");
+  }
+  final List<GraphNode> nodes=new ArrayList<GraphNode>();
+  for (  final GraphNode parent : node.getParents()) {
+    nodes.add(parent);
+  }
+  return nodes;
+}

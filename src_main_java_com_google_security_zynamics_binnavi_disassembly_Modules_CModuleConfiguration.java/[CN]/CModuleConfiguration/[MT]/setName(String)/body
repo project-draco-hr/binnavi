@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(name,"IE00202: Name string can not be null");
+  if (name.equals(m_name)) {
+    return;
+  }
+  m_provider.setName(m_module,name);
+  m_name=name;
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedName(m_module,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

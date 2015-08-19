@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(listener,"Internal Error: Listener cannot be null");
+  if (m_listeners != null) {
+synchronized (m_listeners) {
+      if (!m_listeners.remove(new ComparableReference(listener))) {
+      }
+    }
+  }
+}

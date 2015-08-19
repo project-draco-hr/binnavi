@@ -1,0 +1,5 @@
+{
+  addOpenFunction(SwingUtilities.getWindowAncestor(table),traces);
+  add(new JMenuItem(CActionProxy.proxy(new CSearchTableAction(SwingUtilities.getWindowAncestor(table),table))));
+  add(new CopySelectionAction(table));
+}

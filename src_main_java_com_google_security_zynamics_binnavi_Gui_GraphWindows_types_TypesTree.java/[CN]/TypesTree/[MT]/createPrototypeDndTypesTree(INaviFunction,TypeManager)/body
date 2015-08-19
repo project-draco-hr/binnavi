@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(function,"Error: function argument can not be null");
+  Preconditions.checkNotNull(typeManager,"Error: typeManager argument can not be null");
+  final TypesTree typesTree=CreateDragAndDropTypesTree(typeManager);
+  final TypesTreeModel model=function.getPrototype() == null ? TypesTreeModel.createEmptyTypeModel() : TypesTreeModel.createSingleTypeModel(typeManager,function.getPrototype());
+  typesTree.setModel(model);
+  unfoldFirstNode(typesTree);
+  return typesTree;
+}

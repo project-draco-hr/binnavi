@@ -1,0 +1,13 @@
+{
+  final MemberTableRowData element=model.get(rowIndex);
+switch (columnIndex) {
+case INDEX_COLUMN:
+    return element.getIndex();
+case TYPE_COLUMN:
+  return element.getBaseType();
+case NAME_COLUMN:
+return element.getName();
+default :
+return null;
+}
+}

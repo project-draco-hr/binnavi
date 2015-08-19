@@ -1,0 +1,11 @@
+{
+  if (node instanceof INaviCodeNode) {
+    return new DialogEditCodeNodeComment(model,(INaviCodeNode)node,initialTab);
+  }
+ else   if (node instanceof INaviFunctionNode) {
+    return new CDialogEditFunctionNodeComment(model,(INaviFunctionNode)node,initialTab);
+  }
+ else {
+    throw new IllegalStateException("IE02127: Unknown node type");
+  }
+}

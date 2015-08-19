@@ -1,0 +1,3 @@
+CCriteriumTree criteriumTree
+ICriteriumTreeNode parent
+ICriteriumTreeNode child

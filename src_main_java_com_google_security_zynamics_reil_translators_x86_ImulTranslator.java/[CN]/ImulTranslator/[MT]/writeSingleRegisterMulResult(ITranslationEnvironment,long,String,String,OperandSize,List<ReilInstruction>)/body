@@ -1,0 +1,9 @@
+{
+  final OperandSize archSize=environment.getArchitectureSize();
+  if (size1 == archSize) {
+    instructions.add(ReilHelpers.createAnd(offset,OperandSize.QWORD,resultRegister,OperandSize.DWORD,"4294967295",OperandSize.DWORD,register1));
+  }
+ else {
+    Helpers.moveAndMask(environment,offset,size1,resultRegister,register1,instructions);
+  }
+}

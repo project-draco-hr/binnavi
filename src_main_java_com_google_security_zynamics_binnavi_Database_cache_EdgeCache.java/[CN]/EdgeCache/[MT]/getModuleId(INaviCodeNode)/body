@@ -1,0 +1,8 @@
+{
+  try {
+    return node.getParentFunction().getModule().getConfiguration().getId();
+  }
+ catch (  MaybeNullException e) {
+    return null;
+  }
+}

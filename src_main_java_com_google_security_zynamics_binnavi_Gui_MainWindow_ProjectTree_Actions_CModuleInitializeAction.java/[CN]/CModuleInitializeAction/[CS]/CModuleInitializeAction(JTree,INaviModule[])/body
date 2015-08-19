@@ -1,0 +1,7 @@
+{
+  super(generateMenuEntryName(modules));
+  m_projectTree=Preconditions.checkNotNull(projectTree,"IE01901: Project tree argument can not be null");
+  m_modules=Preconditions.checkNotNull(modules,"IE01902: Module argument can't be null").clone();
+  putValue(ACCELERATOR_KEY,HotKeys.INITIALIZE_MODULE_ACCELERATOR_KEY.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_INITIALIZE_MODULE".charAt(0));
+}

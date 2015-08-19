@@ -1,0 +1,19 @@
+{
+  if (value == getSearchRegEx()) {
+    return;
+  }
+  if (m_type == null) {
+    m_searchRegEx=value;
+  }
+ else {
+    m_type.setRegexSearch(value);
+  }
+  for (  final IZyGraphSearchSettingsListener listener : m_listeners) {
+    try {
+      listener.changedSearchRegEx(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

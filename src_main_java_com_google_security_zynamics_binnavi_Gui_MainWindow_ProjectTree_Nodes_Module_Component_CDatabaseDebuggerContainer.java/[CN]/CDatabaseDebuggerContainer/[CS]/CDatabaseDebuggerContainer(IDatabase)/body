@@ -1,0 +1,3 @@
+{
+  m_database=Preconditions.checkNotNull(database,"IE01976: Database argument can not be null");
+}

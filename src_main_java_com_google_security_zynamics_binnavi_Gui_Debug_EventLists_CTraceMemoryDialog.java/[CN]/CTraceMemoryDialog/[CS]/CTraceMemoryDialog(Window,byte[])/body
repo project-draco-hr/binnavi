@@ -1,0 +1,18 @@
+{
+  super(parent,"Trace Memory Data");
+  setSize(500,300);
+  setResizable(false);
+  setLayout(new BorderLayout());
+  final JHexView hexView=new JHexView();
+  hexView.setData(new SimpleDataProvider(data){
+    @Override public boolean isEditable(){
+      return false;
+    }
+  }
+);
+  hexView.setEnabled(true);
+  hexView.setDefinitionStatus(DefinitionStatus.DEFINED);
+  add(new JScrollPane(hexView));
+  new CDialogEscaper(this);
+  CIconInitializer.initializeWindowIcons(this);
+}

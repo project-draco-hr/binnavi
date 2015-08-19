@@ -1,0 +1,6 @@
+{
+  super.dispose();
+  final DebuggerTemplateManager debuggerManager=m_database.getContent().getDebuggerTemplateManager();
+  debuggerManager.removeListener(m_debuggerManagerListener);
+  deleteChildren();
+}

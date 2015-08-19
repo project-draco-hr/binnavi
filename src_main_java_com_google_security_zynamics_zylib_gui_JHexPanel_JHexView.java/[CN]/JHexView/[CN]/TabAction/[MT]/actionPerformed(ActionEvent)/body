@@ -1,0 +1,11 @@
+{
+  if (m_activeView == Views.HEX_VIEW) {
+    m_activeView=Views.ASCII_VIEW;
+    setSelectionStart(getSelectionStart() - (getSelectionStart() % 2));
+  }
+ else {
+    m_activeView=Views.HEX_VIEW;
+  }
+  m_caret.setVisible(true);
+  repaint();
+}

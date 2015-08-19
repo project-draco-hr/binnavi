@@ -1,0 +1,3 @@
+{
+  return m_viewFunctionBiMap.get(Preconditions.checkNotNull(view,"IE00174: View argument can not be null"));
+}

@@ -1,0 +1,7 @@
+{
+  super("Delete Selected Nodes (Keep Edges)");
+  m_graph=Preconditions.checkNotNull(graph,"IE02817: graph argument can not be null");
+  putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/deleteselectednodeskeepedges_up.png")));
+  putValue(SHORT_DESCRIPTION,HotKeys.GRAPH_DELETE_SELECTED_NODES_KEEP_EDGES_HK.getDescription());
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_DELETE_SELECTED_NODES_KEEP_EDGES_HK.getKeyStroke());
+}

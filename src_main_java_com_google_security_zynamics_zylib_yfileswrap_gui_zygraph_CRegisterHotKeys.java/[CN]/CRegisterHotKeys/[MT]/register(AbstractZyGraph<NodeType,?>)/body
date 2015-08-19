@@ -1,0 +1,24 @@
+{
+  final Graph2DView view=graph.getView();
+  final Graph2DViewActions actions=new Graph2DViewActions(view);
+  final ActionMap amap=actions.createActionMap();
+  final InputMap imap=actions.createDefaultInputMap(amap);
+  view.setActionMap(amap);
+  view.setInputMap(JComponent.WHEN_FOCUSED,imap);
+  view.getCanvasComponent().setActionMap(amap);
+  view.getCanvasComponent().setInputMap(JComponent.WHEN_FOCUSED,imap);
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0),"DOWN");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0),"UP");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0),"LEFT");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0),"RIGHT");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_PLUS,0),"+");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,0),"-");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_M,0),"m");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S,0),"s");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LESS,0),"<");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A,KeyEvent.CTRL_DOWN_MASK),"SELECT_VISIBLE_NODES");
+  imap.put(KeyStroke.getKeyStroke(KeyEvent.VK_C,KeyEvent.CTRL_DOWN_MASK),"COPY_CONTENT_FROM_SELECTED_NODES");
+  amap.remove(Graph2DViewActions.DELETE_SELECTION);
+  amap.remove(Graph2DViewActions.EDIT_LABEL);
+  registerActions(graph);
+}

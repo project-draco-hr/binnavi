@@ -1,0 +1,4 @@
+{
+  super(0,0,0,0,0,Color.WHITE,Color.BLACK,false,false);
+  m_attachedNode=Preconditions.checkNotNull(attachedNode,"Error: Attached node argument can not be null");
+}

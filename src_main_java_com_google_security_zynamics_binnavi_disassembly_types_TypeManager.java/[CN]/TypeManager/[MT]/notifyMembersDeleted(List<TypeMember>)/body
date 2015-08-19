@@ -1,0 +1,5 @@
+{
+  for (  final TypeMember member : membersToDelete) {
+    notifyMemberDeleted(member);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  final List<ICallgraphView> views=loadModuleCallgraphs(provider,module,viewTagManager,nodeTagManager,ViewType.Native);
+  if (views.size() != 1) {
+    throw new CouldntLoadDataException("Error: Malformed project");
+  }
+  return views.get(0);
+}

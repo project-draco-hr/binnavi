@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can not be null");
+  final IZyNodeRealizer realizer=node.getRealizer();
+  final ZyLabelContent content=realizer.getNodeContent();
+  if (content.isSelectable()) {
+    final ZyLabelContent zyContent=content;
+    final StringBuilder textBuilder=new StringBuilder();
+    for (    final ZyLineContent zyLineContent : zyContent) {
+      textBuilder.append(zyLineContent.getText());
+      textBuilder.append("\n");
+    }
+    ClipboardHelpers.copyToClipboard(textBuilder.toString());
+  }
+}

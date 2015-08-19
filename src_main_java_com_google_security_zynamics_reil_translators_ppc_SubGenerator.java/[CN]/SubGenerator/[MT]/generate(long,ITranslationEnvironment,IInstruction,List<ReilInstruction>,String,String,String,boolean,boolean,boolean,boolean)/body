@@ -1,0 +1,44 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,mnemonic);
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final String targetRegister=registerOperand1.getValue();
+  final String extendedSubResult=environment.getNextVariableString();
+  final String twoComplementfirstOperand=environment.getNextVariableString();
+  final String tmpResult=environment.getNextVariableString();
+  final String tmpVar3=setOverflow ? environment.getNextVariableString() : null;
+  final String tmpVar4=setOverflow ? environment.getNextVariableString() : null;
+  final String overflowTmp=setOverflow ? environment.getNextVariableString() : null;
+  final String msbVara=setOverflow ? environment.getNextVariableString() : null;
+  final String msbVarb=setOverflow ? environment.getNextVariableString() : null;
+  final String msbVarr=setOverflow ? environment.getNextVariableString() : null;
+  final String crTemp=setCr ? environment.getNextVariableString() : null;
+  instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.DWORD,"4294967295",OperandSize.DWORD,twoComplementfirstOperand));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.DWORD,twoComplementfirstOperand,OperandSize.DWORD,secondOperand,OperandSize.QWORD,tmpResult));
+  if (isExtended) {
+    instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.QWORD,tmpResult,OperandSize.BYTE,Helpers.XER_CARRY_BIT,OperandSize.QWORD,extendedSubResult));
+  }
+ else {
+    instructions.add(ReilHelpers.createAdd(baseOffset++,OperandSize.QWORD,tmpResult,OperandSize.BYTE,"1",OperandSize.QWORD,extendedSubResult));
+  }
+  instructions.add(ReilHelpers.createAnd(baseOffset++,OperandSize.QWORD,extendedSubResult,OperandSize.DWORD,"4294967295",OperandSize.DWORD,targetRegister));
+  if (setOverflow) {
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,firstOperand,OperandSize.WORD,"-31",OperandSize.DWORD,msbVara));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,secondOperand,OperandSize.WORD,"-31",OperandSize.DWORD,msbVarb));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.WORD,"-31",OperandSize.DWORD,msbVarr));
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,msbVara,OperandSize.DWORD,msbVarb,OperandSize.DWORD,tmpVar4));
+    instructions.add(ReilHelpers.createXor(baseOffset++,OperandSize.DWORD,msbVarb,OperandSize.DWORD,msbVarr,OperandSize.DWORD,tmpVar3));
+    instructions.add(ReilHelpers.createAnd(baseOffset++,OperandSize.DWORD,tmpVar4,OperandSize.DWORD,tmpVar3,OperandSize.DWORD,overflowTmp));
+    instructions.add(ReilHelpers.createStr(baseOffset++,OperandSize.DWORD,overflowTmp,OperandSize.WORD,Helpers.XER_OVERFLOW));
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.WORD,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.DWORD,overflowTmp,OperandSize.WORD,Helpers.XER_SUMMARY_OVERFLOW));
+  }
+  if (setCarry) {
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.QWORD,extendedSubResult,OperandSize.DWORD,"-32",OperandSize.WORD,Helpers.XER_CARRY_BIT));
+  }
+  if (setCr) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.BYTE,Helpers.CR0_EQUAL));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.WORD,"-31",OperandSize.BYTE,Helpers.CR0_LESS_THEN));
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,Helpers.CR0_EQUAL,OperandSize.BYTE,Helpers.CR0_LESS_THEN,OperandSize.BYTE,crTemp));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.BYTE,crTemp,OperandSize.BYTE,Helpers.CR0_GREATER_THEN));
+    instructions.add(ReilHelpers.createStr(baseOffset,OperandSize.BYTE,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.BYTE,Helpers.CRO_SUMMARY_OVERFLOW));
+  }
+}

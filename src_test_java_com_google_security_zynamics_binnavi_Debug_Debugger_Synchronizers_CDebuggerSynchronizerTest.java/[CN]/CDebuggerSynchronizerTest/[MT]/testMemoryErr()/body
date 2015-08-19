@@ -1,0 +1,6 @@
+{
+  debuggerSynchronizer.receivedEvent(new ReadMemoryReply(0,5,null,null));
+  assertEquals(0,listener.exception);
+  assertEquals("ERROR_READING_MEMORY/5;",listener.events);
+  assertFalse(mockDebugger.getProcessManager().getMemory().hasData(CommonTestObjects.BP_ADDRESS_123.getAddress().getAddress().toLong(),6));
+}

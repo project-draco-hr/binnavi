@@ -1,0 +1,24 @@
+{
+  final Address address=new Address(0x100);
+  final String mnemonic="mov";
+  final byte[] data={1,2,3,4};
+  final List<Operand> operands=new ArrayList<Operand>();
+  final OperandExpression ex2=OperandExpression.create(m_module,"eax",ExpressionType.Register);
+  final OperandExpression ex4=OperandExpression.create(m_module,"123",ExpressionType.ImmediateInteger);
+  operands.add(Operand.create(m_module,ex2));
+  operands.add(Operand.create(m_module,ex4));
+  assertEquals("dword",operands.get(0).getRootNode().getValue());
+  assertEquals(1,operands.get(0).getRootNode().getChildren().size());
+  assertEquals("eax",operands.get(0).getRootNode().getChildren().get(0).getValue());
+  assertEquals("dword",operands.get(1).getRootNode().getValue());
+  assertEquals(1,operands.get(1).getRootNode().getChildren().size());
+  assertEquals("123",operands.get(1).getRootNode().getChildren().get(0).getValue());
+  final Instruction instruction=Instruction.create(m_module,address,mnemonic,operands,data,"x86-32");
+  assertEquals("dword",instruction.getOperands().get(0).getRootNode().getValue());
+  assertEquals(1,instruction.getOperands().get(0).getRootNode().getChildren().size());
+  assertEquals("eax",instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue());
+  assertEquals("dword",instruction.getOperands().get(1).getRootNode().getValue());
+  assertEquals(1,instruction.getOperands().get(1).getRootNode().getChildren().size());
+  assertEquals("123",instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue());
+  instruction.getReilCode();
+}

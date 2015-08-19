@@ -1,0 +1,15 @@
+{
+  super(parent,"Log file content",ModalityType.APPLICATION_MODAL);
+  new CDialogEscaper(this);
+  CIconInitializer.initializeWindowIcons(this);
+  setLayout(new BorderLayout());
+  final JTextArea area=new JTextArea(content);
+  area.setEditable(false);
+  add(new JScrollPane(area));
+  final JPanel buttonPanel=new JPanel(new BorderLayout());
+  final JButton closeButton=new JButton(new CCloseAction());
+  buttonPanel.add(closeButton);
+  add(buttonPanel,BorderLayout.SOUTH);
+  getRootPane().setDefaultButton(closeButton);
+  setSize(800,600);
+}

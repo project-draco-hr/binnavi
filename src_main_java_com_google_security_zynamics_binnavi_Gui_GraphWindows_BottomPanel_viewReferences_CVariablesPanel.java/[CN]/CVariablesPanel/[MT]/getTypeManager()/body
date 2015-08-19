@@ -1,0 +1,3 @@
+{
+  return graphModel.getGraph().getRawView().getConfiguration().getModule().getTypeManager();
+}

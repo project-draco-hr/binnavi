@@ -1,0 +1,21 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.connect();
+  m_model.setActiveDebugger(debugger);
+  assertEquals(0,m_tableModel.getRowCount());
+  final MemoryModule module=new MemoryModule("Hannes","C:\\Hannes.dll",new RelocatedAddress(new CAddress(0x100)),0x200);
+  debugger.connection.m_synchronizer.receivedEvent(new ModuleLoadedReply(0,0,module,new TargetProcessThread(123,ThreadState.SUSPENDED)));
+  assertEquals(1,m_tableModel.getRowCount());
+  assertEquals("Hannes",m_tableModel.getValueAt(0,0));
+  assertEquals("00000100",m_tableModel.getValueAt(0,1));
+  assertEquals(0x200L,m_tableModel.getValueAt(0,2));
+  debugger.getProcessManager().setTargetInformation(new TargetInformation(5,Lists.newArrayList(new RegisterDescription("eax",4,true),new RegisterDescription("ebx",4,false)),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  debugger.connection.m_synchronizer.receivedEvent(new ModuleUnloadedReply(0,0,module));
+  assertEquals(0,m_tableModel.getRowCount());
+  m_synchronizer.dispose();
+  debugger.close();
+  final LinkedHashSet<?> debuggerListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ReflectionHelpers.getField(AbstractDebugger.class,debugger,"synchronizer"),"listeners"),"m_listeners");
+  final LinkedHashSet<?> processListeners=(LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(ReflectionHelpers.getField(AbstractDebugger.class,debugger,"processManager"),"listeners"),"m_listeners");
+  assertEquals(1,debuggerListeners.size());
+  assertEquals(1,processListeners.size());
+}

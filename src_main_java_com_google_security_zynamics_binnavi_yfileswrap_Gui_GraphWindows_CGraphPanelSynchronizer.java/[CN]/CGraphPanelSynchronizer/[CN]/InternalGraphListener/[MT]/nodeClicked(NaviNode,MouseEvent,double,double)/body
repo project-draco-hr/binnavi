@@ -1,0 +1,3 @@
+{
+  m_clickHandler.nodeClicked(node,event,x,y,m_codeNodeExtensions);
+}

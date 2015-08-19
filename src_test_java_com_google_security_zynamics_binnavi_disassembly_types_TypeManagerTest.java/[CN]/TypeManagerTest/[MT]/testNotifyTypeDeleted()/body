@@ -1,0 +1,13 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.memberDeleted(typeSystem.ssIntMember);
+  expectedEvents.memberDeleted(typeSystem.nsIntMember);
+  expectedEvents.memberDeleted(typeSystem.dnsIntMember);
+  expectedEvents.memberDeleted(typeSystem.suIntMember);
+  expectedEvents.memberDeleted(typeSystem.cuIntMember);
+  expectedEvents.typeDeleted(typeSystem.intType);
+  typeManager.deleteType(typeSystem.intType);
+  Assert.assertEquals(expectedEvents,events);
+}

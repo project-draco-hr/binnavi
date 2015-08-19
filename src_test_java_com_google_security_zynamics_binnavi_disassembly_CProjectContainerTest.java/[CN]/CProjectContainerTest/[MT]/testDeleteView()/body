@@ -1,0 +1,13 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  final INaviView view=container.createView("foo","berT");
+  assertNotNull(view);
+  try {
+    container.deleteView(null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  container.deleteView(view);
+  assertEquals(2,container.getViews().size());
+}

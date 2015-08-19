@@ -1,0 +1,14 @@
+{
+  Section oldSection=null;
+  for (  final Section section : sections.get(moduleId)) {
+    if (section.getId() == sectionId) {
+      oldSection=section;
+      break;
+    }
+  }
+  if (oldSection != null) {
+    final Section newSection=new Section(oldSection.getId(),name,CommentManager.get(this),oldSection.getModule(),oldSection.getStartAddress(),oldSection.getEndAddress(),oldSection.getSectionPermission(),oldSection.getData());
+    sections.remove(moduleId,oldSection);
+    sections.put(moduleId,newSection);
+  }
+}

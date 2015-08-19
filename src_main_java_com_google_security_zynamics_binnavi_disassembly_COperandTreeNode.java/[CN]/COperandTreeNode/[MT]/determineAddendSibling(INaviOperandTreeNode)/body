@@ -1,0 +1,12 @@
+{
+  final INaviOperandTreeNode parent=node.getParent();
+  if (parent == null || parent.getChildren().size() != 2 || !parent.getValue().equals("+")) {
+    return null;
+  }
+  final INaviOperandTreeNode firstChild=parent.getChildren().get(0);
+  final INaviOperandTreeNode secondChild=parent.getChildren().get(1);
+  if (firstChild.getType().equals(ExpressionType.IMMEDIATE_INTEGER) ^ secondChild.getType().equals(ExpressionType.IMMEDIATE_INTEGER)) {
+    return firstChild == node ? secondChild : firstChild;
+  }
+  return null;
+}

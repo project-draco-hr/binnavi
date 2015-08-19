@@ -1,0 +1,14 @@
+{
+  final int action=dsde.getDropAction();
+  if (action == DnDConstants.ACTION_COPY) {
+    dsde.getDragSourceContext().setCursor(DragSource.DefaultCopyDrop);
+  }
+ else {
+    if (action == DnDConstants.ACTION_MOVE) {
+      dsde.getDragSourceContext().setCursor(DragSource.DefaultMoveDrop);
+    }
+ else {
+      dsde.getDragSourceContext().setCursor(DragSource.DefaultMoveNoDrop);
+    }
+  }
+}

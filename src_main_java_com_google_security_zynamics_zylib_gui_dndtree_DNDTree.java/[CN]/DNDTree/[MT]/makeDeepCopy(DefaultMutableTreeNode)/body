@@ -1,0 +1,7 @@
+{
+  final DefaultMutableTreeNode copy=new DefaultMutableTreeNode(node.getUserObject());
+  for (final Enumeration<?> e=node.children(); e.hasMoreElements(); ) {
+    copy.add(makeDeepCopy((DefaultMutableTreeNode)e.nextElement()));
+  }
+  return copy;
+}

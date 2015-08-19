@@ -1,0 +1,13 @@
+{
+  if (oldDebugger != null) {
+    oldDebugger.getProcessManager().removeListener(m_internalProcessListener);
+  }
+  if (newDebugger != null) {
+    final TargetInformation targetInformation=newDebugger.getProcessManager().getTargetInformation();
+    if (targetInformation != null) {
+      updateGuiFromOptions(targetInformation.getDebuggerOptions());
+    }
+    newDebugger.getProcessManager().addListener(m_internalProcessListener);
+  }
+  updateGui();
+}

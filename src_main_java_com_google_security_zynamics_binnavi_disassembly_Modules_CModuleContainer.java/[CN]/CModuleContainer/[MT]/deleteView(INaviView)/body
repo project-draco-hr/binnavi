@@ -1,0 +1,3 @@
+{
+  m_module.getContent().getViewContainer().deleteView(view);
+}

@@ -1,0 +1,8 @@
+{
+  if (m_dialog == null) {
+    final Window parent=SwingUtilities.getWindowAncestor(CGraphSearchPanel.this);
+    m_dialog=new CSearchResultsDialog(parent,m_searchField);
+    GuiHelper.centerChildToParent(parent,m_dialog,true);
+  }
+  m_dialog.setVisible(true);
+}

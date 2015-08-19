@@ -1,0 +1,4 @@
+{
+  final Integer commentId=provider.appendSectionComment(section.getModule().getConfiguration().getId(),section.getId(),commentText,userId);
+  return provider.loadCommentById(commentId);
+}

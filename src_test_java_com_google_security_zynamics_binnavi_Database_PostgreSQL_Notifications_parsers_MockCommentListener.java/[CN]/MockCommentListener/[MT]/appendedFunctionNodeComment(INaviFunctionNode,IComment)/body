@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(APPENDED_FUNCTION_NODE_COMMENT);
+}

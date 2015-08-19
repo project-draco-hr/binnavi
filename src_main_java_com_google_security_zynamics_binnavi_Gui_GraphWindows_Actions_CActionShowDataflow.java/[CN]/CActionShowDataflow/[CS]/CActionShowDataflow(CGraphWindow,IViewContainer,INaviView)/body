@@ -1,0 +1,6 @@
+{
+  super("Show Dataflow graph");
+  m_parent=Preconditions.checkNotNull(parent,"IE01647: Parent can not be null");
+  m_container=Preconditions.checkNotNull(container,"IE01649: Container argument can not be null");
+  m_view=Preconditions.checkNotNull(view,"IE02298: View argument can not be null");
+}

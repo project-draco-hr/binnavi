@@ -1,0 +1,11 @@
+{
+  if (!item.getRawNode().isVisible()) {
+    return false;
+  }
+  for (  final CTag tag : m_tags) {
+    if (item.getRawNode().isTagged(tag)) {
+      return true;
+    }
+  }
+  return false;
+}

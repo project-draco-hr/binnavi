@@ -1,0 +1,11 @@
+{
+  settings.getMouseSettings().setScrollSensitivity(5 * m_tfScrollSensitivity.getValue());
+  settings.getMouseSettings().setZoomSensitivity(5 * m_tfZoomSensitivity.getValue());
+  try {
+    settings.getMouseSettings().setMousewheelAction(MouseWheelAction.parseInt(mouseWheelBehaviorBox.getSelectedIndex()));
+  }
+ catch (  final ParseException e) {
+    CUtilityFunctions.logException(e);
+  }
+  return false;
+}

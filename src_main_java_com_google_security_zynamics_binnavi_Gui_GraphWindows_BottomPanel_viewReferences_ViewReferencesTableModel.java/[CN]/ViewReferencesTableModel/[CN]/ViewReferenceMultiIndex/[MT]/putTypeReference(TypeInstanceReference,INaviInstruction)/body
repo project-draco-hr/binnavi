@@ -1,0 +1,7 @@
+{
+  final InstructionNode node=new InstructionNode(instruction,false);
+  instructionNodes.put(instruction,node);
+  typeInstanceReferences.put(reference,node);
+  typeInstances.put(reference.getTypeInstance(),reference);
+  return node;
+}

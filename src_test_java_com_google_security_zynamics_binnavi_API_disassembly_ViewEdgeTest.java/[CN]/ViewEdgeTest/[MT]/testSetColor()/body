@@ -1,0 +1,8 @@
+{
+  final MockViewEdgeListener listener=new MockViewEdgeListener();
+  m_edge.addListener(listener);
+  m_edge.setColor(Color.RED);
+  assertEquals(Color.RED,m_edge.getColor());
+  assertEquals("changedColor;",listener.events);
+  m_edge.removeListener(listener);
+}

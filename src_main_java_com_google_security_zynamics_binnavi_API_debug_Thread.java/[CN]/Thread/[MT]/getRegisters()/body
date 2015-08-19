@@ -1,0 +1,7 @@
+{
+  final List<Register> registers=new ArrayList<Register>();
+  for (  final RegisterValue register : m_thread.getRegisterValues()) {
+    registers.add(new Register(register));
+  }
+  return registers;
+}

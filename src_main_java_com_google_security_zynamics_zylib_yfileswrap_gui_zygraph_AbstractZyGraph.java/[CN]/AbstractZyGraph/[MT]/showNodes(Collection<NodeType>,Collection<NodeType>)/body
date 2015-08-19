@@ -1,0 +1,11 @@
+{
+  final IProximitySettings proxiSettings=getSettings().getProximitySettings();
+  final Set<NodeType> neighbors=ProximityRangeCalculator.getNeighbors(this,toShow,proxiSettings.getProximityBrowsingChildren(),proxiSettings.getProximityBrowsingParents());
+  toHide.removeAll(neighbors);
+  for (  final NodeType node : sortLayers(toHide)) {
+    Preconditions.checkNotNull(node,"Error: The list of nodes to hide contained an invalid node");
+    ((IViewNode<?>)node.getRawNode()).setVisible(false);
+  }
+  showNeighbors(toShow);
+  notifyVisibilityListeners();
+}

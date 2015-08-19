@@ -1,0 +1,17 @@
+{
+  final int numberOfTypeInstances=typeInstanceContainer.getTypeInstances().size();
+  final TypeInstance typeInstance=typeInstanceContainer.createInstance("TYPEINSTANCE",null,baseType,section,0);
+  Assert.assertEquals(numberOfTypeInstances + 1,typeInstanceContainer.getTypeInstances().size());
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances().contains(typeInstance));
+  Assert.assertEquals(typeInstance,typeInstanceContainer.getTypeInstance(typeInstance.getAddress()));
+  Assert.assertEquals(0,typeInstanceContainer.getReferences(typeInstance).size());
+  final TypeInstanceReference typeInstanceReference=typeInstanceContainer.createReference(new CAddress("41000",16),0,new MockOperandTreeNode(),typeInstance,view);
+  Assert.assertEquals(1,typeInstanceContainer.getReferences(typeInstance).size());
+  Assert.assertTrue(typeInstanceContainer.getReferences(typeInstance).contains(typeInstanceReference));
+  typeInstanceContainer.deleteReference(typeInstanceReference);
+  Assert.assertEquals(Lists.newArrayList(),typeInstanceContainer.getReferences(typeInstance));
+  expectedEvents.addedTypeInstance(typeInstance);
+  expectedEvents.addedTypeInstanceReference(typeInstanceReference);
+  expectedEvents.removedTypeInstanceReference(typeInstanceReference);
+  Assert.assertEquals(expectedEvents,listener);
+}

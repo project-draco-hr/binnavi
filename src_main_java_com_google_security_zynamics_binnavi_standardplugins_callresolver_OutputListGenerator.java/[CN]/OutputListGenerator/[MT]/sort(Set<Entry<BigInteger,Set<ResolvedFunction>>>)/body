@@ -1,0 +1,10 @@
+{
+  final ArrayList<Entry<BigInteger,Set<ResolvedFunction>>> entryList=new ArrayList<Entry<BigInteger,Set<ResolvedFunction>>>(entries);
+  Collections.sort(entryList,new Comparator<Entry<BigInteger,Set<ResolvedFunction>>>(){
+    @Override public int compare(    final Entry<BigInteger,Set<ResolvedFunction>> lhs,    final Entry<BigInteger,Set<ResolvedFunction>> rhs){
+      return lhs.getKey().compareTo(rhs.getKey());
+    }
+  }
+);
+  return entryList;
+}

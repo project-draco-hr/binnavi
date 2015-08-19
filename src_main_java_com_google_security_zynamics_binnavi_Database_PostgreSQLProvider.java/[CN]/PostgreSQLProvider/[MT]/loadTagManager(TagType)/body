@@ -1,0 +1,10 @@
+{
+  final CTagManager manager=PostgreSQLTagManagerFunctions.loadTagManager(this,type);
+  if (type == TagType.NODE_TAG) {
+    nodeTagManager=manager;
+  }
+ else {
+    setViewTagManager(manager);
+  }
+  return manager;
+}

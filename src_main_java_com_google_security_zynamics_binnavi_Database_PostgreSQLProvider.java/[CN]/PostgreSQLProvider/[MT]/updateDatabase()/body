@@ -1,0 +1,3 @@
+{
+  PostgreSQLDatabaseFunctions.updateDatabase(this);
+}

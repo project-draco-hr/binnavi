@@ -1,0 +1,11 @@
+{
+  if (eitherZero(lhs,rhs)) {
+    return new Literal(BigInteger.ZERO);
+  }
+ else   if (lhs.equals(rhs)) {
+    return lhs.clone();
+  }
+ else {
+    return new BitwiseAnd(lhs,rhs).getSimplified();
+  }
+}

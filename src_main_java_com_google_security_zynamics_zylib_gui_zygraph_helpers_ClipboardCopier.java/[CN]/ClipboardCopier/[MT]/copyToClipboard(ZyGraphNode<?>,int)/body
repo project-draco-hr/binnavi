@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can not be null");
+  final IZyNodeRealizer realizer=node.getRealizer();
+  final ZyLabelContent content=realizer.getNodeContent();
+  Preconditions.checkArgument((line >= 0) && (line < content.getLineCount()),"Error: Line argument is out of bounds");
+  if (content.isSelectable()) {
+    final ZyLabelContent zyContent=content;
+    ClipboardHelpers.copyToClipboard(zyContent.getLineContent(line).getText());
+  }
+}

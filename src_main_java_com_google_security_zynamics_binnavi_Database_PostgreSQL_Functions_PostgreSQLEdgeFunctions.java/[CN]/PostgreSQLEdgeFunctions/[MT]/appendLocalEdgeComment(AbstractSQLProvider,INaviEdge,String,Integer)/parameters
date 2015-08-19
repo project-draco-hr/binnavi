@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+INaviEdge edge
+String commentText
+Integer userId

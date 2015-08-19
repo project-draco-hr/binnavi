@@ -1,0 +1,6 @@
+{
+  if (m_statePointer < (m_undoStates.size() - 1)) {
+    ++m_statePointer;
+    m_undoStates.get(m_statePointer).restore();
+  }
+}

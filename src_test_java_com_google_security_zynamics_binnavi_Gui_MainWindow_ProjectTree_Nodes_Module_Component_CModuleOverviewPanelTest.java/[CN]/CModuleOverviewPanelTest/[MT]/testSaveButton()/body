@@ -1,0 +1,11 @@
+{
+  m_editPanel.setNameString("New Name");
+  m_editPanel.setDescription("New Description");
+  assertTrue(m_saveButton.isEnabled());
+  m_saveButton.getAction().actionPerformed(null);
+  Thread.sleep(500);
+  assertFalse(m_saveButton.isEnabled());
+  assertEquals("New Name",m_module.getConfiguration().getName());
+  assertEquals("New Description",m_module.getConfiguration().getDescription());
+  testListenersRemoved();
+}

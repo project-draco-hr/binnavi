@@ -1,0 +1,5 @@
+{
+  final CBackgroundClickedRightState<NodeType> state=new CBackgroundClickedRightState<NodeType>(this,m_graph);
+  m_factory.createBackgroundClickedRightAction().execute(state,event);
+  return state;
+}

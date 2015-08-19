@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(graph,"IE01741: Graph argument can not be null");
+  SelectionFunctions.invertSelection(graph);
+  if (graph.getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+    graph.selectNodes(GraphHelpers.filter(graph,new CInvisibleNodeFilter()),false);
+  }
+}

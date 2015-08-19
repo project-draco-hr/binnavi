@@ -1,0 +1,14 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"divu");
+  final String sourceRegister1=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String sourceRegister2=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final OperandSize dw=OperandSize.DWORD;
+  final String quotient=environment.getNextVariableString();
+  final String reminder=environment.getNextVariableString();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  instructions.add(ReilHelpers.createDiv(offset++,dw,sourceRegister1,dw,sourceRegister2,dw,quotient));
+  instructions.add(ReilHelpers.createMod(offset++,dw,sourceRegister1,dw,sourceRegister2,dw,reminder));
+  instructions.add(ReilHelpers.createStr(offset++,dw,quotient,dw,"LO"));
+  instructions.add(ReilHelpers.createStr(offset,dw,reminder,dw,"HI"));
+}

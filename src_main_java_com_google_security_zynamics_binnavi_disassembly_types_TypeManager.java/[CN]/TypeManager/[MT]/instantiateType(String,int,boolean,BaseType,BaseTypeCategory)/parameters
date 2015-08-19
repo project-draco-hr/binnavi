@@ -1,0 +1,5 @@
+String name
+int size
+boolean signed
+BaseType childPointer
+BaseTypeCategory category

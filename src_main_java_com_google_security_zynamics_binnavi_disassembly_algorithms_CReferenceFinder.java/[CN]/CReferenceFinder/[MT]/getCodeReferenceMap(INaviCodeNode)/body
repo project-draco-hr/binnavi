@@ -1,0 +1,9 @@
+{
+  final HashMap<INaviInstruction,INaviFunction> references=new HashMap<INaviInstruction,INaviFunction>();
+  for (  final INaviInstruction instruction : node.getInstructions()) {
+    for (    final IOperandTree operand : instruction.getOperands()) {
+      fetchReferenceMap(operand.getRootNode(),instruction,references);
+    }
+  }
+  return references;
+}

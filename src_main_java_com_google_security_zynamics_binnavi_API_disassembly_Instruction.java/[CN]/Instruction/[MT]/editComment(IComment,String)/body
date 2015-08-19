@@ -1,0 +1,13 @@
+{
+  IComment editedComment=null;
+  try {
+    editedComment=m_instruction.editGlobalComment(comment,newComment);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  for (  final IInstructionListener listener : m_listeners) {
+    listener.editedComment(this,comment);
+  }
+  return editedComment;
+}

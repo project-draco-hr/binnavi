@@ -1,0 +1,6 @@
+{
+  for (  final INaviView view : container.getViews()) {
+    view.addListener(m_viewListener);
+  }
+  updateBorderText(getBorderText());
+}

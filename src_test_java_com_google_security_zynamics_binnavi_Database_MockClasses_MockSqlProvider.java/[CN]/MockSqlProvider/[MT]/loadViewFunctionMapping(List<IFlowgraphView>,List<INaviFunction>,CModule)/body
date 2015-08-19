@@ -1,0 +1,3 @@
+{
+  return new ImmutableBiMap.Builder<INaviView,INaviFunction>().put(flowGraphViews.get(0),functions.get(0)).build();
+}

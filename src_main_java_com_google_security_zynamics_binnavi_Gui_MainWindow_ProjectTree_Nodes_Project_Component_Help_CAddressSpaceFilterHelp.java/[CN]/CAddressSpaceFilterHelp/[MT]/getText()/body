@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible address spaces.\n\nFilter by address space name: Enter the address space name\nFilter by address space description: Enter the address space description\nFilter by module count: modules ==/!=/</>/<=/>= value";
+}

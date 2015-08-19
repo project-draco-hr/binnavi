@@ -1,0 +1,11 @@
+{
+  final String[] meta=instruction.getMnemonic().startsWith("BL") ? new String[]{"isCall","true"} : new String[0];
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final String sourceRegister1=(registerOperand1.getValue());
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  if (instruction.getMnemonic().startsWith("BL")) {
+    instructions.add(ReilHelpers.createStr(baseOffset++,dw,String.valueOf(instruction.getAddress().toLong() + 0x4),dw,("LR")));
+  }
+  instructions.add(ReilHelpers.createJcc(baseOffset++,dw,String.valueOf(1L),dw,sourceRegister1,meta));
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(value,"IE00878: Style argument can't be null");
+  if (value == getStyle()) {
+    return;
+  }
+  if (m_type == null) {
+    m_style=value;
+  }
+ else {
+    m_type.setHierarchicEdgeRoutingStyle(value.ordinal());
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final CDebuggerNode node=new CDebuggerNode(m_tree,new DefaultMutableTreeNode(),m_database,m_template);
+  assertEquals(m_template,node.getObject());
+  assertNotNull(node.getComponent());
+}

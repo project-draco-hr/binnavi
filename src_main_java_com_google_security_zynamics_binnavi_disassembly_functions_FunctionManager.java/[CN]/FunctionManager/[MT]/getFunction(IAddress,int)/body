@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  return functionsToAddressModule.inverse().get(new Pair<IAddress,Integer>(address,moduleId));
+}

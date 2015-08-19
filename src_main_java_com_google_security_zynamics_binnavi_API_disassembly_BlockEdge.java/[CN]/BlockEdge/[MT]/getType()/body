@@ -1,0 +1,3 @@
+{
+  return EdgeType.convert(m_edge.getType());
+}

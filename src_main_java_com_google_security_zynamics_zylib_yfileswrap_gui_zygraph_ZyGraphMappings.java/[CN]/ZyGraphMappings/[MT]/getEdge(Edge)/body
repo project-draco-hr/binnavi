@@ -1,0 +1,7 @@
+{
+  if (edge.getGraph() != m_graph) {
+    return null;
+  }
+  @SuppressWarnings("unchecked") final EdgeType result=(EdgeType)((ZyEdgeRealizer<?>)m_graph.getRealizer(edge)).getUserData().getEdge();
+  return result;
+}

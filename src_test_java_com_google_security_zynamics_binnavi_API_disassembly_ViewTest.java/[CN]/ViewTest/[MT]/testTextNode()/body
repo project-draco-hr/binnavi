@@ -1,0 +1,12 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  m_view.addListener(listener);
+  m_view.load();
+  final ArrayList<IComment> comment=Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null," COMMENT VIEW TEST "));
+  final TextNode textNode=m_view.createTextNode(comment);
+  assertEquals(textNode,m_view.getGraph().getNodes().get(0));
+  assertEquals(listener.events,"addedNode;");
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.GraphType.MixedGraph,m_view.getGraphType());
+  assertEquals(" COMMENT VIEW TEST ",textNode.getComments().get(0).getComment());
+  m_view.removeListener(listener);
+}

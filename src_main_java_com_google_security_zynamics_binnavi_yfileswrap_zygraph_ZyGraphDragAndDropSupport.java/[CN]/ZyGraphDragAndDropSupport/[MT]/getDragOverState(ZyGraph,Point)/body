@@ -1,0 +1,14 @@
+{
+  final Graph2DView view=graph.getView();
+  final double worldX=view.toWorldCoordX((int)location.getX());
+  final double worldY=view.toWorldCoordY((int)location.getY());
+  final HitInfoFactory factory=view.getHitInfoFactory();
+  final HitInfo hit=factory.createHitInfo(worldX,worldY,Graph2DTraversal.NODES,true);
+  if (hit.hasHitNodes()) {
+    final NaviNode naviNode=graph.getMappings().getNode(hit.getHitNode());
+    if (naviNode != null) {
+      return new DragOverState(naviNode,ZyNodeContentHelpers.getObjectWrapper(naviNode,worldX,worldY));
+    }
+  }
+  return new DragOverState(null,null);
+}

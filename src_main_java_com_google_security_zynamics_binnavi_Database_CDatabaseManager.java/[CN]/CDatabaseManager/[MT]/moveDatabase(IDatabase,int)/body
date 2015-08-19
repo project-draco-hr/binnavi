@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(database,"IE00696: Database argument can't be null");
+  Preconditions.checkArgument(m_databases.remove(database),"IE00697: The database is not known to the database manager");
+  m_databases.add(index - 1,database);
+  for (  final DatabaseManagerListener listener : m_listeners) {
+    try {
+      listener.reorderedDatabases(this,database,index);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

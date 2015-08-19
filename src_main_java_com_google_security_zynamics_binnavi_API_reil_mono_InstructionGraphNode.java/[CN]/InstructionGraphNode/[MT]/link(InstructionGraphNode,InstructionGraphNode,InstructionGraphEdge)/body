@@ -1,0 +1,13 @@
+{
+  if (source == null) {
+    throw new IllegalArgumentException("Error: Source argument can not be null");
+  }
+  if (target == null) {
+    throw new IllegalArgumentException("Error: Target argument can not be null");
+  }
+  if (edge == null) {
+    throw new IllegalArgumentException("Error: Edge argument can not be null");
+  }
+  source.outgoingEdges.add(edge);
+  target.incomingEdges.add(edge);
+}

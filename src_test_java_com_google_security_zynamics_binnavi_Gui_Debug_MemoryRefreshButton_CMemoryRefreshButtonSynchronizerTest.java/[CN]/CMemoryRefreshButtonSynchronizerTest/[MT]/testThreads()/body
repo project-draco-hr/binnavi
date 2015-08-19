@@ -1,0 +1,20 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.connect();
+  debugger.getProcessManager().setAttached(true);
+  final TargetProcessThread thread=new TargetProcessThread(1,ThreadState.RUNNING);
+  m_model.setActiveDebugger(debugger);
+  debugger.getProcessManager().setActiveThread(null);
+  assertFalse(m_refreshButton.isEnabled());
+  debugger.getProcessManager().addThread(thread);
+  assertFalse(m_refreshButton.isEnabled());
+  debugger.getProcessManager().setActiveThread(thread);
+  assertTrue(m_refreshButton.isEnabled());
+  debugger.getProcessManager().setActiveThread(null);
+  assertFalse(m_refreshButton.isEnabled());
+  debugger.getProcessManager().removeThread(thread);
+  assertFalse(m_refreshButton.isEnabled());
+  debugger.getProcessManager().setAttached(false);
+  m_synchronizer.dispose();
+  debugger.close();
+}

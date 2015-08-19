@@ -1,0 +1,3 @@
+{
+  return new CView(1,project,name,description,ViewType.NonNative,GraphType.MIXED_GRAPH,new Date(),new Date(),0,0,new HashSet<CTag>(),new HashSet<CTag>(),false,this);
+}

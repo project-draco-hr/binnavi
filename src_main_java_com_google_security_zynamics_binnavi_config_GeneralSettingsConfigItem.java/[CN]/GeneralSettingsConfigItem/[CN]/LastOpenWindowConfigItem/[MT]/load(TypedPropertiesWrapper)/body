@@ -1,0 +1,6 @@
+{
+  top=properties.getInteger(TOP,TOP_DEFAULT);
+  left=properties.getInteger(LEFT,LEFT_DEFAULT);
+  height=properties.getInteger(HEIGHT,HEIGHT_DEFAULT);
+  width=properties.getInteger(WIDTH,WIDTH_DEFAULT);
+}

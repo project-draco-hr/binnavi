@@ -1,0 +1,3 @@
+{
+  document.insertString(document.getLength(),string,style);
+}

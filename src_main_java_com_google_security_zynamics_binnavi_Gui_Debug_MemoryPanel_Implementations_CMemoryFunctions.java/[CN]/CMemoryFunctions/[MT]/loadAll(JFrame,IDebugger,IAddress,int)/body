@@ -1,0 +1,11 @@
+{
+  checkArguments(parent,debugger,offset);
+  final CDumpAllWaiter waiter=new CDumpAllWaiter(debugger,offset,size);
+  CProgressDialog.showEndless(parent,"Loading memory" + " ...",waiter);
+  if (waiter.getException() != null) {
+    CUtilityFunctions.logException(waiter.getException());
+    final String innerMessage="E00078: " + "Could not load memory section";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The memory section starting at address '%s' could not loaded.",offset.toHexString()),new String[]{"There was a problem with the connection to the debug client."},new String[]{"The memory data was not loaded."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,waiter.getException());
+  }
+}

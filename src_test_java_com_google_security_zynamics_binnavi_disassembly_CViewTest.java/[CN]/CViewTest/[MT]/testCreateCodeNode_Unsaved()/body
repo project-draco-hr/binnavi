@@ -1,0 +1,7 @@
+{
+  assertEquals(0,m_unsavedView.getNodeCount());
+  assertEquals("",m_listener.eventList);
+  m_unsavedView.getContent().createCodeNode(m_function,Lists.newArrayList(m_instruction));
+  assertEquals(1,m_unsavedView.getNodeCount());
+  assertEquals("addedNode/changedGraphType/",m_listener.eventList);
+}

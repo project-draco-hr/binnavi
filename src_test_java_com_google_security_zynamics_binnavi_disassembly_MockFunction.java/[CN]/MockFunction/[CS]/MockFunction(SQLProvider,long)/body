@@ -1,0 +1,5 @@
+{
+  this.address=new CAddress(address);
+  this.provider=provider;
+  FunctionManager.get(provider).putFunction(this);
+}

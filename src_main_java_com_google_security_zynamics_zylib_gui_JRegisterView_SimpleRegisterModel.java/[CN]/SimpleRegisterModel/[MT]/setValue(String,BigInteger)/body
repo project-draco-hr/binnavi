@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(register,"Error: Argument register can't be null");
+  Preconditions.checkArgument(registerMap.containsKey(register),"Error: Invalid register name");
+  final RegisterInformationInternal registerInfo=registerMap.get(register);
+  registerInfo.setValue(value);
+  registerInfo.setModified(true);
+}

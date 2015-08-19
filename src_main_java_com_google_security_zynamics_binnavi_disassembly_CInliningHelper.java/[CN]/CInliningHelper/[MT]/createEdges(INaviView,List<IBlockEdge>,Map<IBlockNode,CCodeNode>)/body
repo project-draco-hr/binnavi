@@ -1,0 +1,7 @@
+{
+  for (  final IBlockEdge edge : edges) {
+    final CCodeNode sourceNode=map.get(edge.getSource());
+    final CCodeNode targetNode=map.get(edge.getTarget());
+    view.getContent().createEdge(sourceNode,targetNode,edge.getType());
+  }
+}

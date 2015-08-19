@@ -1,0 +1,4 @@
+{
+  parent.getChildren().add(child);
+  child.m_parent=parent;
+}

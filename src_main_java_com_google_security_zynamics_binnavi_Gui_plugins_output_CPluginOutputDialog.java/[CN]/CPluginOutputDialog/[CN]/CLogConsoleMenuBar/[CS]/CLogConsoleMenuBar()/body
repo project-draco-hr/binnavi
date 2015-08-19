@@ -1,0 +1,6 @@
+{
+  final JMenu menu=new JMenu("Log");
+  menu.setMnemonic("LogMenuMnemonic".charAt(0));
+  menu.add(new JMenuItem(new CSaveToFileAction()));
+  add(menu);
+}

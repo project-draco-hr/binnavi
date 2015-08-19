@@ -1,0 +1,12 @@
+{
+  super("Delete Module");
+  m_parent=Preconditions.checkNotNull(parent,"IE01877: Parent argument can't be null");
+  m_database=Preconditions.checkNotNull(database,"IE01878: Database argument can't be null");
+  m_modules=Preconditions.checkNotNull(modules,"IE01879: Modules argument can't be null").clone();
+  m_updater=Preconditions.checkNotNull(updater,"IE01880: Updater argument can not be null");
+  for (  final INaviModule module : modules) {
+    Preconditions.checkNotNull(module,"IE01881: Modules list contains a null-element");
+  }
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_MODULE".charAt(0));
+}

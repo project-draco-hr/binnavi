@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(instruction,"IE01264: Instruction argument can not be null");
+  Preconditions.checkArgument(codeNodeInstructions.contains(instruction),"IE01276: Instruction does not belong to the code node");
+  for (  final INaviCodeNodeListener listener : m_listeners) {
+    try {
+      listener.changedInstructionColor(this,instruction,level,color);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

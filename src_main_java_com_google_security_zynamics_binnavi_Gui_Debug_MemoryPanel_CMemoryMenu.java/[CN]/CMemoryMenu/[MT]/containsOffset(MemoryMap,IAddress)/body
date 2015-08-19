@@ -1,0 +1,3 @@
+{
+  return ProcessHelpers.getSectionWith(memoryMap,offset) != null;
+}

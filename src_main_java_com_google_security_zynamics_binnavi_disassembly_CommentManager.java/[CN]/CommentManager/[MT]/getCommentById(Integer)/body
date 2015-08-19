@@ -1,0 +1,6 @@
+{
+  if (commentId == null) {
+    return null;
+  }
+  return commentIdToComment.get(commentId);
+}

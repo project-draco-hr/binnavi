@@ -1,0 +1,6 @@
+{
+  super("Split node after instruction");
+  m_view=view;
+  m_node=node;
+  m_instruction=instruction;
+}

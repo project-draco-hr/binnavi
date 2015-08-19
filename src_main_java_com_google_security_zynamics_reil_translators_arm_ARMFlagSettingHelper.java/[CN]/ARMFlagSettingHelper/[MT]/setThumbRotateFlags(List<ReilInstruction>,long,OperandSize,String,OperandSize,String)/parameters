@@ -1,0 +1,6 @@
+List<ReilInstruction> instructions
+long baseOffset
+OperandSize carrySize
+String carryOperand
+OperandSize resultSize
+String resultOperand

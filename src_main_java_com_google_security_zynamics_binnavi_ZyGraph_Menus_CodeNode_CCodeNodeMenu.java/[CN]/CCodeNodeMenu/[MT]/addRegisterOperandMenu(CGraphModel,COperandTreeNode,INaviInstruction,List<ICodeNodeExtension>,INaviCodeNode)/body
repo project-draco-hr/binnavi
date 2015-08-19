@@ -1,0 +1,17 @@
+{
+  try {
+    add(new COperandsMenu(codeNode,instruction,extensions));
+  }
+ catch (  final InternalTranslationException|MaybeNullException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  final TypeManager typeManager=model.getViewContainer().getModules().get(0).getTypeManager();
+  if (treeNode.getTypeSubstitution() == null) {
+    add(TypeSubstitutionAction.instantiateCreateTypeSubstitution(model.getParent(),typeManager,getStackFrame(model),treeNode));
+  }
+ else {
+    add(new DeleteTypeSubstitutionMenuAction(typeManager,treeNode));
+    add(TypeSubstitutionAction.instantiateEditTypeSubstitution(model.getParent(),typeManager,getStackFrame(model),treeNode));
+  }
+  addSeparator();
+}

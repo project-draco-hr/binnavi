@@ -1,0 +1,6 @@
+{
+  if (m_externalCancelButtonListener != null) {
+    m_externalCancelButtonListener.actionPerformed(e);
+  }
+  closeRequested();
+}

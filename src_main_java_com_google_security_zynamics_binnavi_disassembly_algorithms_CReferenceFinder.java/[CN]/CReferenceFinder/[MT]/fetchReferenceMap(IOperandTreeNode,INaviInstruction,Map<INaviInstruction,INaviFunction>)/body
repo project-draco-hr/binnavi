@@ -1,0 +1,15 @@
+{
+  final List<IReference> references=node.getReferences();
+  for (  final IReference reference : references) {
+    if (ReferenceType.isCodeReference(reference.getType())) {
+      final IAddress target=reference.getTarget();
+      final INaviFunction function=instruction.getModule().getContent().getFunctionContainer().getFunction(target);
+      if (function != null) {
+        functions.put(instruction,function);
+      }
+    }
+  }
+  for (  final IOperandTreeNode child : node.getChildren()) {
+    fetchReferenceMap(child,instruction,functions);
+  }
+}

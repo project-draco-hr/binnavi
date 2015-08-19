@@ -1,0 +1,40 @@
+{
+  Preconditions.checkNotNull(connection,"Error: connection argument can not be null");
+  Preconditions.checkNotNull(module,"Error: module argument can not be null");
+  final List<RawTypeMember> rawMembers=new ArrayList<RawTypeMember>();
+  final String query=" SELECT * FROM load_type_members(?) ";
+  try {
+    final PreparedStatement statement=connection.prepareStatement(query);
+    statement.setInt(1,module.getConfiguration().getId());
+    final ResultSet results=statement.executeQuery();
+    try {
+      while (results.next()) {
+        final Integer parentId=results.getInt("parent_id");
+        if (results.wasNull()) {
+          continue;
+        }
+        Integer argument=results.getInt("argument");
+        if (results.wasNull()) {
+          argument=null;
+        }
+        Integer offset=results.getInt("offset");
+        if (results.wasNull()) {
+          offset=null;
+        }
+        Integer numberOfElements=results.getInt("number_of_elements");
+        if (results.wasNull()) {
+          numberOfElements=null;
+        }
+        rawMembers.add(new RawTypeMember(results.getInt("id"),results.getString("name"),results.getInt("base_type"),parentId,offset,argument,numberOfElements));
+      }
+    }
+  finally {
+      results.close();
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntLoadDataException(exception);
+  }
+  return rawMembers;
+}

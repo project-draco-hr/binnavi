@@ -1,0 +1,23 @@
+{
+  final int linecount=m_content.getLineCount();
+  final double lineHeight=m_content.getLineHeight();
+  int hitline=0;
+  if (y < m_content.getLineContent(0).getBounds().getMinY()) {
+    hitline=0;
+  }
+ else   if (y > (m_content.getLineContent(linecount - 1).getBounds().getMinY() + (linecount * lineHeight))) {
+    hitline=linecount - 1;
+  }
+ else {
+    for (int line=0; line < linecount; ++line) {
+      Rectangle2D bounds=m_content.getLineContent(line).getBounds();
+      final double boundY=bounds.getY() + (line * lineHeight) + m_content.getPaddingTop();
+      bounds=new Rectangle2D.Double(bounds.getX(),boundY,bounds.getWidth(),bounds.getHeight());
+      if ((bounds.getY() < y) && ((bounds.getY() + lineHeight) > y)) {
+        hitline=line;
+        break;
+      }
+    }
+  }
+  return hitline;
+}

@@ -1,0 +1,3 @@
+{
+  return new CCachedTagCriterium(m_panel.isAny(),m_panel.getTag());
+}

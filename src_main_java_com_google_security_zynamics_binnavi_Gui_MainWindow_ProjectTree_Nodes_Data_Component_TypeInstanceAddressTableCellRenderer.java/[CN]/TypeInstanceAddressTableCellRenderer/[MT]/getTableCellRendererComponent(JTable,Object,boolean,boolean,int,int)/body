@@ -1,0 +1,10 @@
+{
+  super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  if (value instanceof TypeInstanceAddress) {
+    this.setText(getStringToDisplay(showvirtualAddress,(TypeInstanceAddress)value));
+    this.setFont(GuiHelper.MONOSPACED_FONT);
+    this.setVerticalAlignment(SwingConstants.TOP);
+    this.setVerticalTextPosition(SwingConstants.TOP);
+  }
+  return this;
+}

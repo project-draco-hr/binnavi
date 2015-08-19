@@ -1,0 +1,16 @@
+{
+  final BreakpointManager manager=debugger.getBreakpointManager();
+  final Set<BreakpointAddress> addressesToRemove=new HashSet<>();
+  final Set<BreakpointAddress> addressesToDisable=new HashSet<>();
+  for (  final Breakpoint breakpoint : manager.getBreakpoints(BreakpointType.REGULAR)) {
+    final BreakpointAddress address=breakpoint.getAddress();
+    if (manager.getBreakpointStatus(address,BreakpointType.REGULAR) == BreakpointStatus.BREAKPOINT_DELETING) {
+      addressesToRemove.add(address);
+    }
+ else     if (manager.getBreakpointStatus(address,BreakpointType.REGULAR) != BreakpointStatus.BREAKPOINT_DISABLED) {
+      addressesToDisable.add(address);
+    }
+  }
+  manager.removeBreakpoints(BreakpointType.REGULAR,addressesToRemove);
+  manager.setBreakpointStatus(addressesToDisable,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_INACTIVE);
+}

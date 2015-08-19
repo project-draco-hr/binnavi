@@ -1,0 +1,10 @@
+{
+  final IGraphPanel window=getActiveGraphWindow();
+  if (window == null) {
+    return;
+  }
+  final INaviView currentView=window.getModel().getGraph().getRawView();
+  if (view == currentView) {
+    setTitle(CWindowTitle.generate(window));
+  }
+}

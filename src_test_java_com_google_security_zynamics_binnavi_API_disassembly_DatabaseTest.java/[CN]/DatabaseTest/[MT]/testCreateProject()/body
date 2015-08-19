@@ -1,0 +1,14 @@
+{
+  final MockDatabaseListener listener=new MockDatabaseListener();
+  final MockDatabase mockDatabase=new MockDatabase();
+  final Database database=new Database(mockDatabase);
+  database.addListener(listener);
+  final Project newProject=database.createProject("Hannes");
+  mockDatabase.getContent().addProject("Fork");
+  assertEquals("addedProject;addedProject;",listener.events);
+  assertEquals(2,database.getProjects().size());
+  database.deleteProject(newProject);
+  assertEquals("addedProject;addedProject;deletedProject;",listener.events);
+  assertEquals(1,database.getProjects().size());
+  database.removeListener(listener);
+}

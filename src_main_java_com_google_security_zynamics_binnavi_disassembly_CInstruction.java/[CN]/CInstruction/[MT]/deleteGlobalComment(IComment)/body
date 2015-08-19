@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02537: comment argument can not be null");
+  CommentManager.get(m_provider).deleteGlobalInstructionComment(this,comment);
+}

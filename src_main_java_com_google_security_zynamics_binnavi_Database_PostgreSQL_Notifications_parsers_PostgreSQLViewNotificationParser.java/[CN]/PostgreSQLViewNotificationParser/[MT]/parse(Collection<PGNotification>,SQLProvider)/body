@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(notifications,"IE02745: notifications argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02746: provider argument can not be null");
+  final Collection<ViewNotificationContainer> containers=Lists.newArrayList();
+  for (  final PGNotification notification : notifications) {
+    if (notification.getParameter().startsWith(CTableNames.VIEWS_TABLE)) {
+      containers.add(parseViewNotification(notification,provider));
+    }
+ else     if (notification.getParameter().startsWith(CTableNames.MODULE_VIEWS_TABLE)) {
+      containers.add(parseModuleViewNotification(notification,provider));
+    }
+ else     if (notification.getParameter().startsWith(CTableNames.PROJECT_VIEWS_TABLE)) {
+      containers.add(parseProjectViewNotification(notification,provider));
+    }
+ else {
+      throw new IllegalStateException("IE02747: Table name supplied in notification: " + notification.getParameter() + " does not match tables where view notifications are accepted on.");
+    }
+  }
+  return containers;
+}

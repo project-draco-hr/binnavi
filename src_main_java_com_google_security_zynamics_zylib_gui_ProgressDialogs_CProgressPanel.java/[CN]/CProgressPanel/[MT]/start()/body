@@ -1,0 +1,7 @@
+{
+  if (m_progressBar.isIndeterminate() && m_showSeconds) {
+    m_seconds=0;
+    updateSecondsText();
+    m_timer.start();
+  }
+}

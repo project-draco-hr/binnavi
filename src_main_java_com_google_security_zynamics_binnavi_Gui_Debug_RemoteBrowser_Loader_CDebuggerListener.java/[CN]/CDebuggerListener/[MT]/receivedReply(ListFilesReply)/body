@@ -1,0 +1,10 @@
+{
+  ((CRemoteFileSystemView)m_browser.getFileSystemView()).setFileSystem(reply.getFileSystem());
+  m_thread.finished();
+  SwingUtilities.invokeLater(new Thread(){
+    @Override public void run(){
+      m_browser.updateUI();
+    }
+  }
+);
+}

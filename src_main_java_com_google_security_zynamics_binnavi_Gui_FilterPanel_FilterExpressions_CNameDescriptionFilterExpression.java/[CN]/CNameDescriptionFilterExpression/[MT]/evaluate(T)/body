@@ -1,0 +1,8 @@
+{
+  if (element.getDescription() != null) {
+    return element.getName().toLowerCase().contains(m_text.toLowerCase()) || element.getDescription().toLowerCase().contains(m_text.toLowerCase()) || ((element instanceof CViewWrapper) && checkAddress(((CViewWrapper)element).unwrap()));
+  }
+ else {
+    return element.getName().toLowerCase().contains(m_text.toLowerCase()) || ((element instanceof CViewWrapper) && checkAddress(((CViewWrapper)element).unwrap()));
+  }
+}

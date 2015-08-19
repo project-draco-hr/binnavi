@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(processList,"IE01500: Processes argument can not be null");
+  m_processes=processList;
+}

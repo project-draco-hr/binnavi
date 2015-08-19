@@ -1,0 +1,11 @@
+{
+  return new IHelpInformation(){
+    @Override public String getText(){
+      return "This tree is used to configure and assign node tags. " + "Once you have assigned tags to nodes you can use this " + "tree to quickly select all nodes tagged with given tags.";
+    }
+    @Override public URL getUrl(){
+      return CHelpFunctions.urlify(CHelpFunctions.MAIN_WINDOW_FILE);
+    }
+  }
+;
+}

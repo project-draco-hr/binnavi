@@ -1,0 +1,4 @@
+{
+  m_settings=Preconditions.checkNotNull(settings,"IE02109: Settings argument can not be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE02110: Provider argument can not be null");
+}

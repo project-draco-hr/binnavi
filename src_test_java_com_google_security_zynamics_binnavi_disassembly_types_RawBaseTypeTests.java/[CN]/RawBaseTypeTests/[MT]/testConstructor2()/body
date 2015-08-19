@@ -1,0 +1,3 @@
+{
+  new RawBaseType(ID,null,SIZE,POINTER_ID,true,null);
+}

@@ -1,0 +1,7 @@
+{
+  this.criterium=criterium;
+  addItem("<");
+  addItem("=");
+  addItem(">");
+  addActionListener(comboBoxListener);
+}

@@ -1,0 +1,18 @@
+{
+  final String destination=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final String operand=instruction.getOperands().get(1).getRootNode().getChildren().get(0).getValue();
+  final Integer lsb=Integer.parseInt(instruction.getOperands().get(2).getRootNode().getChildren().get(0).getValue());
+  final Integer width=Integer.parseInt(instruction.getOperands().get(3).getRootNode().getChildren().get(0).getValue());
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Integer msb=(lsb + width) - 1;
+  if (msb <= 31) {
+    final long mask=TranslationHelpers.generateOneMask(lsb,width,OperandSize.DWORD);
+    final String tempVar1=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAnd(baseOffset++,dw,operand,dw,String.valueOf(mask),dw,tempVar1));
+    Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,tempVar1,dw,destination,32);
+  }
+ else {
+    instructions.add(ReilHelpers.createUnknown(baseOffset));
+  }
+}

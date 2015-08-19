@@ -1,0 +1,3 @@
+{
+  return getDocument().getLineStartOffset(getInputPane().getText().length());
+}

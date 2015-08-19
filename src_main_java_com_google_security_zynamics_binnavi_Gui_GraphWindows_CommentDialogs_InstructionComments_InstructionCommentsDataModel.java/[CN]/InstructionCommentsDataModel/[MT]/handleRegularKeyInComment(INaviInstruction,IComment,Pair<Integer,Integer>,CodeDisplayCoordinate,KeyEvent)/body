@@ -1,0 +1,9 @@
+{
+  if (coordinate.getFieldIndex() > (indices.second() - indices.first())) {
+    String newComment=CodeDisplay.padRight("",coordinate.getFieldIndex() - (indices.second() - indices.first())) + event.getKeyChar();
+    insertStringIntoComment(instruction,comment,indices.second(),newComment);
+  }
+ else {
+    insertStringIntoComment(instruction,comment,indices.first() + coordinate.getFieldIndex(),"" + event.getKeyChar());
+  }
+}

@@ -1,0 +1,26 @@
+{
+  final double x=graph.getEditMode().translateX(event.getX());
+  final double y=graph.getEditMode().translateY(event.getY());
+  final HitInfo hitInfo=graph.getGraph().getHitInfo(x,y);
+  if (hitInfo.hasHitNodes()) {
+    return CHitNodesTransformer.enterNode(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitNodeLabels()) {
+    throw new IllegalStateException();
+  }
+ else   if (hitInfo.hasHitEdges()) {
+    return CHitEdgesTransformer.enterEdge(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitEdgeLabels()) {
+    return CHitEdgeLabelsTransformer.enterEdgeLabel(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitBends()) {
+    return CHitBendsTransformer.enterBend(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitPorts()) {
+    return new CStateChange(state,true);
+  }
+ else {
+    return new CStateChange(m_factory.createDefaultState(),true);
+  }
+}

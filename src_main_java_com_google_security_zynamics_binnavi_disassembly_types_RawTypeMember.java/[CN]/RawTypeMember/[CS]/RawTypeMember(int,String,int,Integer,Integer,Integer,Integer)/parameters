@@ -1,0 +1,7 @@
+int id
+String name
+int baseTypeId
+Integer parentId
+Integer offset
+Integer argument
+Integer numberOfElements

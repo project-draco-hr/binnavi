@@ -1,0 +1,11 @@
+{
+  final URL url_=new URL(url);
+  final BufferedReader in=new BufferedReader(new InputStreamReader(url_.openStream()));
+  final StringBuilder sb=new StringBuilder();
+  String str;
+  while ((str=in.readLine()) != null) {
+    sb.append(str);
+  }
+  in.close();
+  return sb.toString();
+}

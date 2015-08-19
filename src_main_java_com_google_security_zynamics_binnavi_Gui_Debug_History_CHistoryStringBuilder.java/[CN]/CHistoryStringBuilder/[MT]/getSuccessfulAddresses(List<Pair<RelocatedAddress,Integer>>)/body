@@ -1,0 +1,8 @@
+{
+  return getAddressString(addresses,new ICollectionFilter<Pair<RelocatedAddress,Integer>>(){
+    @Override public boolean qualifies(    final Pair<RelocatedAddress,Integer> item){
+      return item.second() == 0;
+    }
+  }
+);
+}

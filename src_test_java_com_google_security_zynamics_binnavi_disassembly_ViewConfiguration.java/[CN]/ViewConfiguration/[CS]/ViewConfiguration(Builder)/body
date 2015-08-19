@@ -1,0 +1,17 @@
+{
+  provider=builder.provider;
+  view=builder.view;
+  type=builder.type;
+  viewId=builder.viewId;
+  name=builder.name;
+  description=builder.description;
+  modificationDate=builder.modificationDate;
+  creationDate=builder.creationDate;
+  module=builder.module;
+  project=builder.project;
+  viewTags=builder.viewTags;
+  staredState=builder.staredState;
+  edgeCount=builder.edgeCount;
+  nodeCount=builder.nodeCount;
+  graphType=builder.graphType;
+}

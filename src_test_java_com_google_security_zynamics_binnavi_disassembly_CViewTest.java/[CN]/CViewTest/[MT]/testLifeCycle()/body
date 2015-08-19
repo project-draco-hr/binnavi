@@ -1,0 +1,16 @@
+{
+  final MockSqlProvider sql=new MockSqlProvider();
+  final Set<CTag> tags=new HashSet<CTag>();
+  tags.add(new CTag(1,"","",TagType.VIEW_TAG,sql));
+  final CModuleViewGenerator generator=new CModuleViewGenerator(sql,m_module);
+  final CView view=generator.generate(1,"New View","New View Description",ViewType.Native,GraphType.FLOWGRAPH,new Date(),new Date(),33,44,tags,new HashSet<CTag>(),false);
+  final MockViewListener listener=new MockViewListener();
+  view.addListener(listener);
+  view.load();
+  listener.m_closing=false;
+  view.close();
+  assertTrue(view.isLoaded());
+  listener.m_closing=true;
+  view.close();
+  assertFalse(view.isLoaded());
+}

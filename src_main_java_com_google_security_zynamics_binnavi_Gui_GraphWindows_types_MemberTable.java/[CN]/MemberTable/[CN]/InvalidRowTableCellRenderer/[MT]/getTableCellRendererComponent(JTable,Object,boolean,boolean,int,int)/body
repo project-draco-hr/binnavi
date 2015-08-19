@@ -1,0 +1,11 @@
+{
+  final Component renderer=super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+  final int modelIndex=convertRowIndexToModel(row);
+  if (getModel().isRowValid(modelIndex)) {
+    renderer.setBackground(defaultBackgroundColor);
+  }
+ else {
+    renderer.setBackground(invalidBackgroundColor);
+  }
+  return renderer;
+}

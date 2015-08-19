@@ -1,0 +1,12 @@
+{
+  if (!member.getBitOffset().isPresent()) {
+    return 0;
+  }
+  int index=0;
+  for (  final TypeMember currentMember : member.getParentType()) {
+    if (currentMember.getBitOffset().get() < member.getBitOffset().get()) {
+      index++;
+    }
+  }
+  return index;
+}

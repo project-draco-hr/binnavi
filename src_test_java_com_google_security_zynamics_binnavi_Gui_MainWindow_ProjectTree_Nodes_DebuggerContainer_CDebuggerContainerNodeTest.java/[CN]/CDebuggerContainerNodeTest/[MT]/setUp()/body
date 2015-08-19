@@ -1,0 +1,7 @@
+{
+  ConfigManager.instance().read();
+  m_database=new MockDatabase(m_provider);
+  final CProjectTreeModel model=new CProjectTreeModel(m_tree);
+  model.setRoot(new DefaultMutableTreeNode());
+  m_tree.setModel(model);
+}

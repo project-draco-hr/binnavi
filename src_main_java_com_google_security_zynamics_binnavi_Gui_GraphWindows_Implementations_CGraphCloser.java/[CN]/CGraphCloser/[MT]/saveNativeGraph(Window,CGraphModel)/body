@@ -1,0 +1,11 @@
+{
+  final CSaveProgress progress=CGraphSaver.saveAs(parent,model.getGraph(),model.getViewContainer());
+  while (!progress.isDone()) {
+    try {
+      Thread.sleep(100);
+    }
+ catch (    final InterruptedException e) {
+      java.lang.Thread.currentThread().interrupt();
+    }
+  }
+}

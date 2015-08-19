@@ -1,0 +1,3 @@
+{
+  return String.format("%d Modules in Database '%s'",m_database.getContent().getModules().size(),m_database.getConfiguration().getDescription());
+}

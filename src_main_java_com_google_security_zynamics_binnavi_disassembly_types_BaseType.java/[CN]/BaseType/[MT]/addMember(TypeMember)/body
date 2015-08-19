@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(member,"Error: member argument can not be null.");
+  Preconditions.checkArgument(member.getParentType() == this,"Error: the member's parent type is not this type.");
+  members.add(member);
+}

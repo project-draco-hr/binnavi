@@ -1,0 +1,4 @@
+{
+  position++;
+  return (IGraphPanel)m_tabbedPane.getComponentAt(position - 1);
+}

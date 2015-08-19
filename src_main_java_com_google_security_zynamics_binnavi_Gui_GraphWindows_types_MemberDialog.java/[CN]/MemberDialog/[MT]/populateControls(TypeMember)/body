@@ -1,0 +1,4 @@
+{
+  memberName.setText(member.getName());
+  memberType.getModel().selectByBaseType(member.getBaseType());
+}

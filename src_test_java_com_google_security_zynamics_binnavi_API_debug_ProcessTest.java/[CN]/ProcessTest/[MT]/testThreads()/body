@@ -1,0 +1,17 @@
+{
+  final MockProcessListener listener=new MockProcessListener();
+  final ProcessManager manager=new ProcessManager();
+  manager.addThread(new TargetProcessThread(0,ThreadState.RUNNING));
+  final Process process=new Process(manager);
+  process.addListener(listener);
+  final Thread thread1=process.getThreads().get(0);
+  assertEquals(0,thread1.getThreadId());
+  final TargetProcessThread thread=new TargetProcessThread(1,ThreadState.RUNNING);
+  manager.addThread(thread);
+  assertEquals("addedThread/1;",listener.events);
+  assertEquals(2,process.getThreads().size());
+  manager.removeThread(thread);
+  assertEquals("addedThread/1;removedThread/1;",listener.events);
+  assertEquals(1,process.getThreads().size());
+  process.removeListener(listener);
+}

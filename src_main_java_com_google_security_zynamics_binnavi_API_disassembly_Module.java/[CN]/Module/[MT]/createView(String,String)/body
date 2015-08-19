@@ -1,0 +1,4 @@
+{
+  final CView newView=m_module.getContent().getViewContainer().createView(name,description);
+  return ObjectFinders.getObject(newView,m_views);
+}

@@ -1,0 +1,4 @@
+{
+  browseButton.setEnabled(enable);
+  super.setEnabled(enable);
+}

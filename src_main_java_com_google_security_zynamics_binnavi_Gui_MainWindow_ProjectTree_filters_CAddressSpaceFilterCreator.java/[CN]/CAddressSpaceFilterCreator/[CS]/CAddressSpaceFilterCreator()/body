@@ -1,0 +1,3 @@
+{
+  super(Lists.newArrayList(new CModuleGenerator(),new CNameDescriptionGenerator<CAddressSpaceWrapper>()));
+}

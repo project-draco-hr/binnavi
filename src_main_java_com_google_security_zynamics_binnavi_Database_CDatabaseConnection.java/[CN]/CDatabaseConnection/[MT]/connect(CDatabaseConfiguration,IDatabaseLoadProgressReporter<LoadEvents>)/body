@@ -1,0 +1,28 @@
+{
+  try {
+    reportProgress(reporter,LoadEvents.CONNECTING_TO_DATABASE);
+    final CConnection connection=new CConnection(m_databaseConfiguration);
+    final AbstractSQLProvider sql=new PostgreSQLProvider(connection);
+    reportProgress(reporter,LoadEvents.CHECKING_EXPORTER_TABLE_FORMAT);
+    if (!sql.isExporterDatabaseFormatValid()) {
+      throw new InvalidExporterDatabaseFormatException("E00202: Database exporter format is not compatible with " + Constants.PROJECT_NAME_VERSION);
+    }
+    reportProgress(reporter,LoadEvents.CHECKING_INITIALIZATION_STATUS);
+    final DatabaseVersion databaseVersion=sql.getDatabaseVersion();
+    final DatabaseVersion currentVersion=new DatabaseVersion(Constants.PROJECT_VERSION);
+    if ((databaseVersion.compareTo(currentVersion) == 0) && !sql.isInitialized()) {
+      reportProgress(reporter,LoadEvents.INITIALIZING_DATABASE_TABLES);
+      sql.initializeDatabase();
+    }
+    if ((databaseVersion.compareTo(currentVersion) == 0) && !sql.isInitialized()) {
+      throw new CouldntInitializeDatabaseException("E00052: Database could not be initialized.");
+    }
+    return new Pair<CConnection,SQLProvider>(connection,sql);
+  }
+ catch (  final CouldntLoadDataException e) {
+    throw new CouldntConnectException(e,0,"");
+  }
+catch (  final SQLException e) {
+    throw new CouldntConnectException(e,e.getErrorCode(),e.getSQLState());
+  }
+}

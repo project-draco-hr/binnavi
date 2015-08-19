@@ -1,0 +1,10 @@
+{
+  this.parentComponent=Preconditions.checkNotNull(parentComponent,"Error: parent component argument can not be null");
+  setLayout(new BorderLayout());
+  button=new JButton(OK);
+  button.addActionListener(new OKButtonListener());
+  final JPanel panel=new JPanel();
+  panel.setBorder(new EmptyBorder(5,5,5,5));
+  panel.add(button);
+  add(panel,BorderLayout.EAST);
+}

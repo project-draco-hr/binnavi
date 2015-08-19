@@ -1,0 +1,6 @@
+{
+  final DefaultMutableTreeNode root=(DefaultMutableTreeNode)typesTree.getModel().getRoot();
+  if (root != null && root.getChildCount() > 0 && root.getFirstChild().getChildCount() > 0) {
+    typesTree.setSelectionPath(new TreePath(typesTree.getModel().getPathToRoot(root.getFirstChild().getChildAt(0))));
+  }
+}

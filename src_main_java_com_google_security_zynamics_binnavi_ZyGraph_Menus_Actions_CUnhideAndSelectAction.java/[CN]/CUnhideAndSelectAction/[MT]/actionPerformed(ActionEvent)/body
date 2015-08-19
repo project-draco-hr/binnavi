@@ -1,0 +1,3 @@
+{
+  new CProximityFunctions().unhideAndSelectOnly(m_graph,m_node);
+}

@@ -1,0 +1,3 @@
+{
+  return new CAddress(address.toLong() / 0x100);
+}

@@ -1,0 +1,10 @@
+{
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_333_SET);
+  breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_333_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_HIT);
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(123,ThreadState.SUSPENDED));
+  debuggerSynchronizer.receivedEvent(new SingleStepReply(0,0,123,new RelocatedAddress(new CAddress(0x999)),RegisterValuesParser.parse(("<Registers><Thread id=\"123\">" + "<Register name=\"EAX\" value=\"123\" memory=\"\" />" + "<Register name=\"EBX\" value=\"456\" memory=\"\" />"+ "<Register name=\"EIP\" value=\"999\" memory=\"\" pc=\"true\" />"+ "</Thread></Registers>").getBytes())));
+  assertEquals(ThreadState.SUSPENDED,mockDebugger.getProcessManager().getThread(123).getState());
+  assertEquals(0x999,mockDebugger.getProcessManager().getThread(123).getCurrentAddress().getAddress().toLong());
+  assertEquals(0x456,mockDebugger.getProcessManager().getThread(123).getRegisterValues().get(1).getValue().longValue());
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_333,BreakpointType.REGULAR));
+}

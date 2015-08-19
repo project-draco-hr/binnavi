@@ -1,0 +1,3 @@
+{
+  typeSystem.simpleStruct.moveMembers(Sets.newTreeSet(typeSystem.ssIntMember,typeSystem.ssUintMember),999);
+}

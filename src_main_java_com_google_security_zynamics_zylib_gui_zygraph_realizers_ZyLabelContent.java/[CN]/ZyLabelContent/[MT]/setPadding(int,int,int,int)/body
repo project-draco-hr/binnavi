@@ -1,0 +1,6 @@
+{
+  m_leftPadding=left;
+  m_rightPadding=right;
+  m_topPadding=top;
+  m_bottomPadding=bottom;
+}

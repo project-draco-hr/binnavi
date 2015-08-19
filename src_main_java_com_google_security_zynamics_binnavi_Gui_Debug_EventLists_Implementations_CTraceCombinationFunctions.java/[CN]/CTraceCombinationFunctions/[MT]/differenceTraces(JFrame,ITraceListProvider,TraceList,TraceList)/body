@@ -1,0 +1,25 @@
+{
+  new Thread(){
+    @Override public void run(){
+      try {
+        final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,true);
+        operation.getProgressPanel().setMaximum(3);
+        operation.getProgressPanel().setText(String.format("Creating trace difference between '%s' and '%s'",trace1.getName(),trace2.getName()));
+        final TraceList newTrace=provider.createTrace("Combined Trace",String.format("%s - %s",trace1.getName(),trace2.getName()));
+        operation.getProgressPanel().next();
+        createCombinedTrace(newTrace,Lists.newArrayList(trace1,trace2),getDifferenceAddresses(trace1,trace2));
+        operation.getProgressPanel().next();
+        newTrace.save();
+        operation.getProgressPanel().next();
+        operation.stop();
+      }
+ catch (      final CouldntSaveDataException e) {
+        CUtilityFunctions.logException(e);
+        final String innerMessage="E00191: " + "Could not combine debug traces";
+        final String innerDescription=CUtilityFunctions.createDescription("The selected traces could not be combined into a larger trace.",new String[]{"There was a problem with the database connection."},new String[]{"The trace list was not created. You could try to combine the lists again once the connection problem was resolved."});
+        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      }
+    }
+  }
+.start();
+}

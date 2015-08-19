@@ -1,0 +1,36 @@
+{
+  final String fileBaseText=m_debuggerPanel.getFileBase();
+  if (!Convert.isHexString(fileBaseText)) {
+    CMessageBox.showError(this,"Could not save original base address. Value is not a valid hexadecimal address.");
+    return;
+  }
+  final String imageBaseText=m_debuggerPanel.getImageBase();
+  if (!Convert.isHexString(imageBaseText)) {
+    CMessageBox.showError(this,"Could not save relocated base address. Value is not a valid hexadecimal address.");
+    return;
+  }
+  new Thread(){
+    @Override public void run(){
+      final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,true);
+      operation.getProgressPanel().setMaximum(5);
+      operation.getProgressPanel().setText("Saving module configuration" + ": " + "Saving Name");
+      saveName();
+      operation.getProgressPanel().next();
+      operation.getProgressPanel().setText("Saving module configuration" + ": " + "Saving Description");
+      saveDescription();
+      operation.getProgressPanel().next();
+      operation.getProgressPanel().setText("Saving module configuration" + ": " + "Saving Debugger");
+      saveDebugger();
+      operation.getProgressPanel().next();
+      operation.getProgressPanel().setText("Saving module configuration" + ": " + "Saving File Base");
+      saveFileBase();
+      operation.getProgressPanel().next();
+      operation.getProgressPanel().setText("Saving module configuration" + ": " + "Saving Image Base");
+      saveImageBase();
+      operation.getProgressPanel().next();
+      operation.stop();
+      updateSaveButton();
+    }
+  }
+.start();
+}

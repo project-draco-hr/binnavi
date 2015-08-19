@@ -1,0 +1,4 @@
+{
+  final CFirstStartDialog dialog=new CFirstStartDialog(parent);
+  dialog.setVisible(true);
+}

@@ -1,0 +1,11 @@
+{
+  final BaseType baseType=new BaseType(1,NAME,4,false,BaseTypeCategory.ATOMIC);
+  assertEquals(1,baseType.getId());
+  assertEquals(NAME,baseType.getName());
+  assertEquals(4,baseType.getBitSize());
+  assertEquals(1,baseType.getByteSize());
+  assertEquals(false,baseType.isSigned());
+  assertNull(baseType.pointedToBy());
+  assertNull(baseType.pointsTo());
+  assertFalse(baseType.isStackFrame());
+}

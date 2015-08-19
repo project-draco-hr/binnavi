@@ -1,0 +1,5 @@
+{
+  super.dispose();
+  m_databaseManager.removeListener(m_listener);
+  deleteChildren();
+}

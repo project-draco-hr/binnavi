@@ -1,0 +1,11 @@
+{
+  assertFalse(m_saveButton.isEnabled());
+  m_nameTextField.setText("Hannes");
+  assertTrue(m_saveButton.isEnabled());
+  m_template.setName("Hannes");
+  assertFalse(m_saveButton.isEnabled());
+  m_template.setName("Hannes2");
+  assertEquals("Hannes2",m_nameTextField.getText());
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

@@ -1,0 +1,3 @@
+{
+  JOptionPane.showMessageDialog(isIconified(parent) ? null : parent,msg,System.getProperty(DEFAULT_WINDOW_TITLE_PROPERTY),JOptionPane.WARNING_MESSAGE);
+}

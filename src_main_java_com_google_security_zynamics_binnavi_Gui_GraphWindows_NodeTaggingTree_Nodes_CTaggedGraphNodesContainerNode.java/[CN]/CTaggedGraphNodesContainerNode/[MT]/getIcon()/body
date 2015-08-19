@@ -1,0 +1,39 @@
+{
+  int selected=0;
+  int unselected=0;
+  int invisible=0;
+  final List<NaviNode> nodes=getGraphNodes();
+  for (  final NaviNode n : nodes) {
+    if (n.getRawNode().isSelected()) {
+      selected++;
+    }
+ else {
+      unselected++;
+    }
+    if (!n.getRawNode().isVisible()) {
+      invisible++;
+    }
+  }
+  if (nodes.isEmpty()) {
+    return ICON_EMPTY_FOLDER;
+  }
+ else   if (invisible == nodes.size()) {
+    return ICON_ALL_INVISIBLE_GRAPHNODES;
+  }
+ else   if (selected == nodes.size()) {
+    return ICON_ALL_SELECTED_GRAPHNODES;
+  }
+ else   if ((unselected == nodes.size()) && (invisible == 0)) {
+    return ICON_ALL_UNSELECTED_GRAPHNODES;
+  }
+ else   if (selected == 0) {
+    return ICON_ALL_UNSELECTED_SOME_VISIBLE_SOME_INVISIBLE_GRAPHNODES;
+  }
+ else   if (invisible == 0) {
+    return ICON_ALL_VISIBLE_SOME_SELECTED_SOME_UNSELECTED_GRAPHNODES;
+  }
+ else   if ((invisible != 0) && (selected != 0)) {
+    return ICON_SOME_SELECTED_SOME_VISIBLE_SOME_INVISIBLE_GRAPHNODES;
+  }
+  throw new IllegalStateException("IE00669: Unknown container state");
+}

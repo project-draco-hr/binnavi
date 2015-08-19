@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(provider,"IE02253: Provider argument can not be null");
+  Preconditions.checkNotNull(edges,"IE02254: Edges argument can not be null");
+  for (  final INaviEdge edge : edges) {
+    Preconditions.checkArgument(edge.inSameDatabase(provider),"IE02255: Edge list contains an edge that is not part of this database");
+  }
+  if (edges.isEmpty()) {
+    return;
+  }
+  final CConnection connection=provider.getConnection();
+  fillEdgesTable(connection,edges);
+  fillEdgepathsTable(connection,edges);
+}

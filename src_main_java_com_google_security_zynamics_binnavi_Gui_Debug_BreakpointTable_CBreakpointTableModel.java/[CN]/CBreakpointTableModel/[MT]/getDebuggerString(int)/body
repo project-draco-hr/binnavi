@@ -1,0 +1,9 @@
+{
+  final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(m_debuggerProvider,row);
+  for (  final IDebugger debugger : m_debuggerProvider) {
+    if (debugger.getBreakpointManager() == breakpoint.first().getBreakpointManager()) {
+      return debugger.getPrintableString();
+    }
+  }
+  return null;
+}

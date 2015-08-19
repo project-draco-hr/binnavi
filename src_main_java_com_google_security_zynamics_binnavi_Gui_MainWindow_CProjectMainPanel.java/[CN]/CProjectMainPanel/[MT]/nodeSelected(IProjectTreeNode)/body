@@ -1,0 +1,10 @@
+{
+  final Component component=node.getComponent();
+  m_componentPanel.removeAll();
+  if (component != null) {
+    m_componentPanel.add(component);
+  }
+  m_componentPanel.updateUI();
+  m_window.setJMenuBar(node.getMainMenu());
+  m_window.getJMenuBar().updateUI();
+}

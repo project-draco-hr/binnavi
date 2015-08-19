@@ -1,0 +1,3 @@
+{
+  CDebuggerFunctions.showDebuggerOptionsDialogAlways(m_parent,m_debugTarget,m_debugger);
+}

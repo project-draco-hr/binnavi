@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(size,"Error: size argument can not be null");
+  Preconditions.checkPositionIndex(lsb,size.getBitSize() - 1);
+  Preconditions.checkArgument(width >= 1);
+  Preconditions.checkPositionIndex((lsb + width) - 1,size.getBitSize());
+  long mask=getAllBitsMask(size);
+  final long msb=(lsb + width) - 1;
+  final long xorBit=1;
+  for (long i=lsb; i <= msb; i++) {
+    mask=(mask ^ (xorBit << i));
+  }
+  return mask & getAllBitsMask(size);
+}

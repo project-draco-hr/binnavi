@@ -1,0 +1,8 @@
+{
+  Preconditions.checkArgument(BaseTypeCategory.isOffsetCategory(baseType.getCategory()),"Error: Can only determine append offset if base type is of offset category.");
+  if (!baseType.hasMembers()) {
+    return 0;
+  }
+  final TypeMember lastMember=baseType.getLastMember();
+  return lastMember.getBitOffset().get() + lastMember.getBitSize();
+}

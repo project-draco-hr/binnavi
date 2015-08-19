@@ -1,0 +1,3 @@
+{
+  return PostgreSQLProjectMixedGraphsLoader.loadMixedgraphs(this,project,getViewTagManager(),nodeTagManager);
+}

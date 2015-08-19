@@ -1,0 +1,10 @@
+{
+  if (coordinate.getColumn() != 1) {
+    return false;
+  }
+  if (coordinate.getRow() >= cachedComments.size()) {
+    return true;
+  }
+  IComment comment=cachedComments.get(coordinate.getRow());
+  return comment.getNumberOfCommentLines() == 0 || commentAccessor.isOwner(comment);
+}

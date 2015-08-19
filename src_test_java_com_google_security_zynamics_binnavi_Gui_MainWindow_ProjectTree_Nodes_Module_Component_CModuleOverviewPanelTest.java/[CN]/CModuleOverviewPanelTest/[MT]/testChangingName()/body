@@ -1,0 +1,14 @@
+{
+  assertFalse(m_saveButton.isEnabled());
+  m_editPanel.setNameString("Hannes");
+  sleep();
+  assertTrue(m_saveButton.isEnabled());
+  m_module.getConfiguration().setName("Hannes");
+  sleep();
+  assertFalse(m_saveButton.isEnabled());
+  m_module.getConfiguration().setName("Hannes2");
+  sleep();
+  assertEquals("Hannes2",m_editPanel.getNameString());
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

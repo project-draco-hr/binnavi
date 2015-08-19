@@ -1,0 +1,9 @@
+{
+  IteratorFunctions.iterateSelected(graph,new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      node.getRawNode().setColor(color);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

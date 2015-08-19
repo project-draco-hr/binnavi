@@ -1,0 +1,10 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"popf");
+  Preconditions.checkArgument(instruction.getOperands().size() == 0,"Error: Argument instruction is not a popf instruction (invalid number of operand)");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final String result=environment.getNextVariableString();
+  Helpers.generateLoadFromStack(environment,offset,OperandSize.DWORD,result,instructions);
+  offset=baseOffset + instructions.size();
+  Helpers.shiftValueIntoFlags(environment,offset,result,OperandSize.DWORD,instructions);
+}

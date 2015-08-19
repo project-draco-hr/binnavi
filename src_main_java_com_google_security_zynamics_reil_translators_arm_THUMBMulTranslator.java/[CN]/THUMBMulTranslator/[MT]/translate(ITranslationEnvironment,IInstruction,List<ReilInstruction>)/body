@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"MUL");
+  translateAll(environment,instruction,"MUL",instructions);
+}

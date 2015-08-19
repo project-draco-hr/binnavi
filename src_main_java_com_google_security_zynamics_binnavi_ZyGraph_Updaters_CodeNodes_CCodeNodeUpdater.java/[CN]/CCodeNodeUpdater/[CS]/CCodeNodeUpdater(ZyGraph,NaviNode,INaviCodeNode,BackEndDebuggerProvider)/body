@@ -1,0 +1,17 @@
+{
+  this.graph=Preconditions.checkNotNull(graph,"IE00984: Graph argument can't be null");
+  this.node=Preconditions.checkNotNull(node,"IE02238: Node argument can not be null");
+  this.codeNode=Preconditions.checkNotNull(codeNode,"IE00985: Code node argument can't be null");
+  provider=Preconditions.checkNotNull(debuggerProvider,"IE02239: Debugger provider argument can not be null");
+  nodeModifier=new CDefaultModifier(graph.getSettings(),debuggerProvider);
+  tagUpdater=new CTagUpdater(graph);
+  settingsUpdater=new CSettingsUpdater(graph);
+  operandTreeUpdater=new COperandUpdater(graph);
+  moduleUpdater=new CModuleUpdater(graph);
+  instructionUpdater=new CInstructionUpdater(graph);
+  functionUpdater=new CFunctionUpdater(graph);
+  debuggerUpdater=new CDebuggerUpdater(graph);
+  debuggerProviderListener=new CDebuggerProviderUpdater(debuggerUpdater);
+  substitutionsUpdater=new TypeSubstitutionsUpdater(codeNode,node);
+  initializeListeners();
+}

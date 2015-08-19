@@ -1,0 +1,5 @@
+IAddress sourceAddress
+Integer sourceModuleId
+IAddress targetAddress
+Integer targetModuleId
+INaviEdge edge

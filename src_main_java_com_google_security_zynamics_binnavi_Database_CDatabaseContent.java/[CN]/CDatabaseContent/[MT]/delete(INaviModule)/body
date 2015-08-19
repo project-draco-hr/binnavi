@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(module,"IE00670: Module can not be null");
+  Preconditions.checkArgument(m_database.isConnected(),"IE00671: Database must be connected before you can delete modules");
+  Preconditions.checkArgument(m_database.isLoaded(),"IE00672: Database must be loaded before you can delete modules");
+  Preconditions.checkArgument(m_modules.contains(module),"IE00673: Module does not belong to this database");
+  m_provider.deleteModule(module);
+  m_modules.remove(module);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.deletedModule(m_database,module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  removeDeletedModuleFromNamespaces(module);
+}

@@ -1,0 +1,20 @@
+{
+  super();
+  Preconditions.checkNotNull(fileExtension,"Error: File extension can't be null.");
+  Preconditions.checkNotNull(fileDescription,"Error: File description can't be null.");
+  if (fileExtension.isEmpty()) {
+    return;
+  }
+  addChoosableFileFilter(new FileFilter(){
+    @Override public boolean accept(    final File f){
+      if ("".equals(fileExtension)) {
+        return f.isDirectory() || f.canExecute();
+      }
+      return f.isDirectory() || f.getName().toLowerCase().endsWith(fileExtension.toLowerCase()) || fileExtension.equals("*");
+    }
+    @Override public String getDescription(){
+      return fileDescription + " (*." + fileExtension+ ")";
+    }
+  }
+);
+}

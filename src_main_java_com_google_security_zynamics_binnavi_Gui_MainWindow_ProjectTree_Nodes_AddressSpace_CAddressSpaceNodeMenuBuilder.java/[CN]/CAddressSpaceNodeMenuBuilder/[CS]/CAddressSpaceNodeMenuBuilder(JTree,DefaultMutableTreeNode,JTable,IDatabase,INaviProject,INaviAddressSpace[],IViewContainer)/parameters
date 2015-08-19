@@ -1,0 +1,7 @@
+JTree projectTree
+DefaultMutableTreeNode parentNode
+JTable table
+IDatabase database
+INaviProject project
+INaviAddressSpace[] addressSpaces
+IViewContainer container

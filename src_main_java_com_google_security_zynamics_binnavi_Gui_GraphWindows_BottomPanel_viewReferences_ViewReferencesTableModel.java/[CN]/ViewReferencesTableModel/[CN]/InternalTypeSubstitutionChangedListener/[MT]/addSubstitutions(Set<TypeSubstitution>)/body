@@ -1,0 +1,8 @@
+{
+  for (  TypeSubstitution typeSubstitution : substitutions) {
+    final INaviInstruction instruction=findInstruction(typeSubstitution.getAddress());
+    if (instruction != null) {
+      addTypeSubstitutionToTree(typeSubstitution.getOperandTreeNode(),instruction);
+    }
+  }
+}

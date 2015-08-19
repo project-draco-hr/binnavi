@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(name,"IE00159: Database name can not be null");
+  if (name.equals(m_name)) {
+    return;
+  }
+  m_name=name;
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.changedName(m_database,name);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

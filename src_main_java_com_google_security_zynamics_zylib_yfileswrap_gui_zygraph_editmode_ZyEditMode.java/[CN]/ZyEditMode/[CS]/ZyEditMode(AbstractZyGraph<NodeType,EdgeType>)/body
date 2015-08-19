@@ -1,0 +1,8 @@
+{
+  m_graph=Preconditions.checkNotNull(graph,"Graph argument cannot be null");
+  m_labelKeyHandler=createNodeKeyHandler(graph);
+  m_actionFactory=createStateActionFactory();
+  m_stateFactory=new CStateFactory<NodeType,EdgeType>(graph,m_listeners,m_actionFactory);
+  m_state=m_stateFactory.createDefaultState();
+  setDefaultBehaviour();
+}

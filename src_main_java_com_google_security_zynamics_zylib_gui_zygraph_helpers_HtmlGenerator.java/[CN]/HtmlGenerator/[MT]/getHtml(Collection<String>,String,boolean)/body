@@ -1,0 +1,13 @@
+{
+  final StringBuilder html=new StringBuilder(String.format("<html><font face=\"%s\" size=\"3\" color=\"000000\">",fontname));
+  boolean first=true;
+  for (  final String string : strings) {
+    html.append(boldFirstLine && first ? "<b>" : "");
+    html.append(escapeHtml(string));
+    html.append(boldFirstLine && first ? "</b>" : "");
+    html.append("<br>");
+    first=false;
+  }
+  html.append("</font></html>");
+  return html.toString();
+}

@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  Preconditions.checkNotNull(data,"Error: Data argument can not be null");
+  try {
+    m_debugger.writeMemory(new CAddress(address.toLong()),data);
+  }
+ catch (  final DebugExceptionWrapper e) {
+    throw new DebugException(e);
+  }
+}

@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(provider,"IE02457: provider argument can not be null");
+  Preconditions.checkNotNull(functionNode,"IE02458: functionNode argument can not be null");
+  Preconditions.checkNotNull(commentText,"IE02459: comment argument can not be null");
+  Preconditions.checkNotNull(userId,"IE02460: userId argument can not be null");
+  final Connection connection=provider.getConnection().getConnection();
+  final int moduleId=functionNode.getFunction().getModule().getConfiguration().getId();
+  final String function=" { ? = call append_function_node_comment(?, ?, ?, ?) } ";
+  try {
+    final CallableStatement appendCommentFunction=connection.prepareCall(function);
+    try {
+      appendCommentFunction.registerOutParameter(1,Types.INTEGER);
+      appendCommentFunction.setInt(2,moduleId);
+      appendCommentFunction.setInt(3,functionNode.getId());
+      appendCommentFunction.setInt(4,userId);
+      appendCommentFunction.setString(5,commentText);
+      appendCommentFunction.execute();
+      final int commentId=appendCommentFunction.getInt(1);
+      if (appendCommentFunction.wasNull()) {
+        throw new CouldntSaveDataException("Error: Got an comment id of null from the database");
+      }
+      return commentId;
+    }
+  finally {
+      appendCommentFunction.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

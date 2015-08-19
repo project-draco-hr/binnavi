@@ -1,0 +1,33 @@
+{
+  final Database database=new Database(new MockDatabase());
+  @SuppressWarnings("unused") final MockModule mockModule=new MockModule();
+  final MockSqlProvider provider=new MockSqlProvider();
+  final CModule internalModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,provider);
+  try {
+    internalModule.load();
+  }
+ catch (  final CouldntLoadDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+catch (  final LoadCancelledException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  @SuppressWarnings("unused") final CFunction parentFunction=new CFunction(internalModule,new MockView(),new CAddress(0x123),"Mock Function","Mock Function","Mock Description",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,provider);
+  final TagManager nodeTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.NODE_TAG));
+  final TagManager viewTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.VIEW_TAG));
+  final Module module=new Module(database,internalModule,nodeTagManager,viewTagManager);
+  assertEquals(module.getFunctions().get(0),ModuleHelpers.getFunction(module,0x123));
+  assertNull(ModuleHelpers.getFunction(module,0x1235));
+  try {
+    ModuleHelpers.getFunction(null,-1);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    ModuleHelpers.getFunction(module,-1);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    return new BreakpointCondition(condition,parse(condition));
+  }
+ catch (  final MaybeNullException e) {
+    return new BreakpointCondition(condition,null);
+  }
+catch (  final RecognitionException e) {
+    throw new InvalidFormulaException();
+  }
+}

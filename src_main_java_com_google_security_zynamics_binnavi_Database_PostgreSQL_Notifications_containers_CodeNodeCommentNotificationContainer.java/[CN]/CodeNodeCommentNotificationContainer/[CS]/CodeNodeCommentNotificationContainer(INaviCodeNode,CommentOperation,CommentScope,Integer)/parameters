@@ -1,0 +1,4 @@
+INaviCodeNode node
+CommentOperation operation
+CommentScope scope
+Integer commentId

@@ -1,0 +1,3 @@
+IDatabase database
+DefaultTreeModel model
+IActionProvider actionProvider

@@ -1,0 +1,3 @@
+{
+  return TypeMember.createStructureMember(++typeMemberId,containingType,memberType,memberName,memberOffset);
+}

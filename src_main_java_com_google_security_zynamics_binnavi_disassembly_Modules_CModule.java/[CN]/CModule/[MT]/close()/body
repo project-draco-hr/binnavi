@@ -1,0 +1,30 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE00156: Module is not loaded");
+  }
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      if (!listener.closingModule(this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  final ICallgraphView oldNativeCallgraphView=m_content.getViewContainer().getNativeCallgraphView();
+  final List<IFlowgraphView> oldFlowgraphs=m_content.getViewContainer().getNativeFlowgraphViews();
+  if (!m_content.close()) {
+    return false;
+  }
+  m_content=null;
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.closedModule(this,oldNativeCallgraphView,oldFlowgraphs);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

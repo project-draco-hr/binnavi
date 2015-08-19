@@ -1,0 +1,9 @@
+{
+  final double y=mouseY - labelParentY - m_content.getPaddingTop();
+  m_mouse_released_y=calcHitLine(y);
+  m_mouse_pressed_y=m_mouse_released_y;
+  m_mouse_released_x=m_content.getLineContent(m_mouse_pressed_y).getTextLayout().getCharacterCount();
+  m_mouse_pressed_x=0;
+  m_caret_endpos_x=m_mouse_released_x;
+  m_caret_startpos_x=m_mouse_pressed_x;
+}

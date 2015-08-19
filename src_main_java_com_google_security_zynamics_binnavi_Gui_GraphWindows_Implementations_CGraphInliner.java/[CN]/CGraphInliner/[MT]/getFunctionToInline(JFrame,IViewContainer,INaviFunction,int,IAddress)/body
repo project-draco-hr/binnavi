@@ -1,0 +1,27 @@
+{
+  if (forwarderAddress == null) {
+    return function;
+  }
+ else {
+    final IDatabase database=viewContainer.getDatabase();
+    final INaviModule module=database.getContent().getModule(forwarderModuleId);
+    if (!viewContainer.containsModule(module)) {
+      CMessageBox.showInformation(parent,String.format("You are trying to inline an external function into a module view. " + "This is not possible.\n" + "To inline external functions it is necessary to create projects."));
+      return null;
+    }
+    if (!module.isLoaded()) {
+      try {
+        module.load();
+      }
+ catch (      final CouldntLoadDataException e) {
+        CUtilityFunctions.logException(e);
+        return null;
+      }
+catch (      final LoadCancelledException e) {
+        CUtilityFunctions.logException(e);
+        return null;
+      }
+    }
+    return module.getContent().getFunctionContainer().getFunction(forwarderAddress);
+  }
+}

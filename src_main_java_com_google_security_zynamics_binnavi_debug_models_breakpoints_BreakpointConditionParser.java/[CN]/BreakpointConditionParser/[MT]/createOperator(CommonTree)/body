@@ -1,0 +1,7 @@
+{
+  final List<ConditionNode> children=new ArrayList<>();
+  for (  final Object child : ast.getChildren()) {
+    children.add(convert((CommonTree)child));
+  }
+  return children;
+}

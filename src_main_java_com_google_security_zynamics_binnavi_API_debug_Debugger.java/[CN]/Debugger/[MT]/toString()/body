@@ -1,0 +1,3 @@
+{
+  return String.format("Debugger '%s'",m_debugger.getPrintableString());
+}

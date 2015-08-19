@@ -1,0 +1,8 @@
+{
+  if (ins.getFirstOperand().getValue().equalsIgnoreCase(ins.getSecondOperand().getValue())) {
+    final RegisterSetLatticeElement newState=state.copy();
+    newState.untaint(ins.getThirdOperand().getValue());
+    return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newState,null);
+  }
+  return transformNormalInstruction(ins,state);
+}

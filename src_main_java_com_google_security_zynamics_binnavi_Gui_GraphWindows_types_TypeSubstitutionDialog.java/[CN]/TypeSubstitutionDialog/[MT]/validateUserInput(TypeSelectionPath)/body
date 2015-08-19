@@ -1,0 +1,18 @@
+{
+  if (!path.hasSelection()) {
+    preview.setText("Error: No type selected.");
+    return false;
+  }
+  if (path.containsUnion() && path.containsBaseTypeOnly()) {
+    preview.setText("Selection is ambigious due to contained union. Please select a member explicitly.");
+    return false;
+  }
+  final int effectiveOffset=path.determineTotalMemberOffset() + addendValue;
+  if (!BaseTypeHelpers.isValidOffset(path.getRootType(),effectiveOffset)) {
+    final int displayedOffset=effectiveOffset < 0 ? (effectiveOffset - 7) / 8 : (effectiveOffset + 7) / 8;
+    preview.setText(String.format("Cannot create substitution: offset %d points outside of %s.",displayedOffset,path.getRootType().getName()));
+    return false;
+  }
+  preview.setText("");
+  return true;
+}

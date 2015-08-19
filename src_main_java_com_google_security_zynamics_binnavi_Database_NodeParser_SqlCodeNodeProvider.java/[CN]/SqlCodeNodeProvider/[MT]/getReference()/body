@@ -1,0 +1,14 @@
+{
+  try {
+    final IAddress address=PostgreSQLHelpers.loadAddress(m_resultSet,"target");
+    if (address != null) {
+      return new CReference(PostgreSQLHelpers.loadAddress(m_resultSet,"target"),ReferenceType.valueOf(m_resultSet.getString("address_references_type").toUpperCase()));
+    }
+ else {
+      return null;
+    }
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  if (debugger.getProcess().getTargetInformation() == null) {
+    errorNotAttached();
+    step=2;
+    return;
+  }
+  try {
+    debugger.resume();
+  }
+ catch (  final DebugException e) {
+    errorResuming(e);
+  }
+  step++;
+}

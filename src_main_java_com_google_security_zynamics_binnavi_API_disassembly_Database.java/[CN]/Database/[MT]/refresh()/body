@@ -1,0 +1,8 @@
+{
+  try {
+    m_database.getContent().refreshRawModules();
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntLoadDataException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

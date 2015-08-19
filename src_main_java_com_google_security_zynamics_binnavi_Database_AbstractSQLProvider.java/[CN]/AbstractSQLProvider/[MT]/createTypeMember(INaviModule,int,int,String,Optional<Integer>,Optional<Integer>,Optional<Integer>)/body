@@ -1,0 +1,3 @@
+{
+  return PostgreSQLTypeFunctions.createTypeMember(getConnection().getConnection(),containingTypeId,offset,name,baseTypeId,numberOfElements,module);
+}

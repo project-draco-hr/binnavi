@@ -1,0 +1,13 @@
+{
+  final IncrementalHierarchicLayouter layouter=new IncrementalHierarchicLayouter();
+  final OrientationLayouter ol=(OrientationLayouter)layouter.getOrientationLayouter();
+  ol.setOrientation(orientation == HierarchicOrientation.HORIZONTAL ? OrientationLayouter.TOP_TO_BOTTOM : OrientationLayouter.LEFT_TO_RIGHT);
+  layouter.setMinimumLayerDistance(minLayerDist);
+  layouter.setNodeToNodeDistance(minNodeDist);
+  layouter.setEdgeToEdgeDistance(25);
+  layouter.setNodeToEdgeDistance(25);
+  layouter.setBackloopRoutingEnabled(true);
+  layouter.setSelfLoopLayouterEnabled(true);
+  layouter.setOrthogonallyRouted(orthogonalEdgeRooting);
+  return layouter;
+}

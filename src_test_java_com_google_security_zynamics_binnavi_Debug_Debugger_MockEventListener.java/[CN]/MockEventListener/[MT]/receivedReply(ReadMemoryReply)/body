@@ -1,0 +1,8 @@
+{
+  if (reply.success()) {
+    events+="RECEIVED_MEMORY/" + reply.getAddress().toHexString() + "/"+ reply.getData().length+ ";";
+  }
+ else {
+    events+="ERROR_READING_MEMORY/" + reply.getErrorCode() + ";";
+  }
+}

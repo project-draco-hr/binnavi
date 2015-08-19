@@ -1,0 +1,19 @@
+{
+  if (!m_function.isLoaded()) {
+    ProgressDialog.show(m_parent,"Loading Function",new IProgressThread(){
+      @Override public boolean close(){
+        return false;
+      }
+      @Override public void run(){
+        try {
+          m_function.load();
+        }
+ catch (        final CouldntLoadDataException e) {
+          Logger.logException(e);
+          MessageBox.showException(m_parent,e,"Function could not be loaded.");
+        }
+      }
+    }
+);
+  }
+}

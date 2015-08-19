@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"IE00093: Instruction argument can not be null");
+  return globalInstructionsCommentContainer.getComments(instruction);
+}

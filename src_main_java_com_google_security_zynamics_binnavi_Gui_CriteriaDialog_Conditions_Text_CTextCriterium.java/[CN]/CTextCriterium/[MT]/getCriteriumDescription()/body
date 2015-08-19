@@ -1,0 +1,3 @@
+{
+  return String.format("Nodes with Text '%s'",m_panel.getText());
+}

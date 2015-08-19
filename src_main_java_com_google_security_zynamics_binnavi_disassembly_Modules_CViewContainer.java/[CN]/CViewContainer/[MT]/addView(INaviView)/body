@@ -1,0 +1,19 @@
+{
+  Preconditions.checkNotNull(view,"IE00151: View can not be null");
+  Preconditions.checkArgument(view.getType() != ViewType.Native,"IE00152: Only non-native views can be added to modules");
+  Preconditions.checkArgument(!m_customViews.contains(view),"IE00154: View can not be added to the module more than once");
+  Preconditions.checkArgument(view.inSameDatabase(m_provider),"IE00155: View and module are not in the same database");
+  m_customViews.add(view);
+  if (view.getConfiguration().getId() != -1) {
+    viewIdView.put(view.getConfiguration().getId(),view);
+  }
+  view.addListener(m_viewListener);
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.addedView(m_module,view);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

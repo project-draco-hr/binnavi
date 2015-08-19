@@ -1,0 +1,3 @@
+{
+  return (int)g.getFontMetrics().getStringBounds("0",g).getWidth();
+}

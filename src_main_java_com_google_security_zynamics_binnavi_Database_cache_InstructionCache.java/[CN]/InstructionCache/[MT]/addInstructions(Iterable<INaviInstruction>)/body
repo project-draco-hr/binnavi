@@ -1,0 +1,8 @@
+{
+  instructionByAddressCache.putAll(Maps.uniqueIndex(instructions,new Function<INaviInstruction,Pair<IAddress,Integer>>(){
+    @Override public Pair<IAddress,Integer> apply(    final INaviInstruction instruction){
+      return new Pair<IAddress,Integer>(instruction.getAddress(),instruction.getModule().getConfiguration().getId());
+    }
+  }
+));
+}

@@ -1,0 +1,9 @@
+{
+  graph.iterateEdges(new IEdgeCallback<EdgeType>(){
+    @Override public IterationMode nextEdge(    final EdgeType edge){
+      edge.getRawEdge().setVisible(edge.getSource().isVisible() && edge.getTarget().isVisible());
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+}

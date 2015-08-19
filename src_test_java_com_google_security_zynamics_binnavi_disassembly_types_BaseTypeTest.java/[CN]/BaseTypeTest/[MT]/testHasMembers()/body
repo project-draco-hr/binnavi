@@ -1,0 +1,5 @@
+{
+  assertEquals(false,testStruct.hasMembers());
+  addMembersAndVerifyOperation();
+  assertEquals(true,testStruct.hasMembers());
+}

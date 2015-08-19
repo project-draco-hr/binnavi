@@ -1,0 +1,3 @@
+{
+  CDatabaseConnectionFunctions.closeDatabase(SwingUtilities.getWindowAncestor(m_parent),m_database);
+}

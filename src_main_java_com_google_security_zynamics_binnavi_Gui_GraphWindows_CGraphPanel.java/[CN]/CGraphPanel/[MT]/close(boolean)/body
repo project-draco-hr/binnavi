@@ -1,0 +1,5 @@
+{
+  if (!askSave || CPanelCloser.closeTab(m_model.getParent(),this)) {
+    m_model.getParent().close(this);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final CInstruction instruction=new CInstruction(m_saved,m_module,m_address,m_mnemonic,clone(m_operands),m_data,m_architecture,m_provider);
+  CommentManager.get(m_provider).initializeGlobalInstructionComment(instruction,getGlobalComment());
+  return instruction;
+}

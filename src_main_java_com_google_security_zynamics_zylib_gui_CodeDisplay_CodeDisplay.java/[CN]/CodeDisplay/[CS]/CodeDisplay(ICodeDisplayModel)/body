@@ -1,0 +1,25 @@
+{
+  codeModel=codeDisplayModel;
+  textFont=new Font(Font.MONOSPACED,Font.PLAIN,12);
+  setFocusable(true);
+  setLayout(new BorderLayout());
+  initializeListeners();
+  initializeScrollbars();
+  initializeFontMetrics(textFont);
+  currentlyVisibleLines=getNumberOfVisibleLines();
+  currentlyVisibleColumns=getNumberOfVisibleColumns();
+  initializeGraphicsBuffer();
+  setScrollBarMaximum();
+  setEnabled(true);
+  int xPosition=0;
+  CodeDisplayCoordinate testCoordinate=new CodeDisplayCoordinate(0,0,0,0);
+  for (int columnIndex=0; columnIndex < codeModel.getNumberOfColumns(); columnIndex++) {
+    xPosition+=codeModel.getColumnWidthInCharacters(columnIndex);
+    testCoordinate.setColumn(columnIndex);
+    if (codeModel.canHaveCaret(testCoordinate)) {
+      setCaretPosition(testCoordinate);
+      caretX=xPosition;
+      caretY=1;
+    }
+  }
+}

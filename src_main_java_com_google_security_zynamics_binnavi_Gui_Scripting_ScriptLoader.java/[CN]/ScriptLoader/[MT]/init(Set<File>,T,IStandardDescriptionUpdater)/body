@@ -1,0 +1,10 @@
+{
+  descriptionUpdater.reset();
+  descriptionUpdater.setMaximum(scriptFiles.size());
+  for (  final File file : scriptFiles) {
+    final String rawFilename=file.getName();
+    descriptionUpdater.next();
+    descriptionUpdater.setDescription(String.format("Loading script file '%s'",rawFilename));
+    executeScript(file,pluginInterface);
+  }
+}

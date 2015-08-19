@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02596: node argument can not be null");
+  return groupNodeCommentContainer.getComments(node);
+}

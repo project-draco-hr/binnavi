@@ -1,0 +1,3 @@
+{
+  return "The name / ip of the database host.";
+}

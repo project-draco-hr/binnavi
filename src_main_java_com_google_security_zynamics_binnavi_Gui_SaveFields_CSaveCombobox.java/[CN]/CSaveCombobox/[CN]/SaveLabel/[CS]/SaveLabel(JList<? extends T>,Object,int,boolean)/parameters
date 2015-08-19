@@ -1,0 +1,4 @@
+JList<? extends T> list
+Object value
+int index
+boolean isSelected

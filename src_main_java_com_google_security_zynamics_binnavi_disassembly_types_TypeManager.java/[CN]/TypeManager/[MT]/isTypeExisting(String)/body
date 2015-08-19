@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(name,"Error: Name can not be null.");
+  return typesContainer.doesTypeNameExist(name);
+}

@@ -1,0 +1,7 @@
+{
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree operand1=operands.get(0);
+  final IOperandTree operand2=operands.size() == 2 ? operands.get(0) : operands.get(1);
+  final IOperandTree operand3=operands.size() == 2 ? operands.get(1) : operands.get(2);
+  return new Triple<IOperandTree,IOperandTree,IOperandTree>(operand1,operand2,operand3);
+}

@@ -1,0 +1,4 @@
+{
+  super("Filter by register values");
+  m_filterField=filterField;
+}

@@ -1,0 +1,14 @@
+{
+  try {
+    install(directory);
+    CMessageBox.showInformation(parent,"Installation successful");
+  }
+ catch (  final FileNotFoundException e) {
+    CUtilityFunctions.logException(e);
+    handleException(parent,e);
+  }
+catch (  final IOException e) {
+    CUtilityFunctions.logException(e);
+    handleException(parent,e);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super(new CSelectionHistoryNodeWrapper(snapshot,stateIndex));
+  m_snapshot=snapshot;
+  m_root=false;
+}

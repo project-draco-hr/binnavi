@@ -1,0 +1,7 @@
+{
+  final ZyGraphViewSettings settings=ConfigManager.instance().getDefaultFlowGraphSettings();
+  final CGraphSettingsDialog dlg=new CGraphSettingsDialog(parent,"Initial Flow graph Settings",settings,true,false);
+  dlg.setVisible(true);
+  ConfigManager.instance().updateFlowgraphSettings(settings);
+  ConfigManager.instance().saveSettings(parent);
+}

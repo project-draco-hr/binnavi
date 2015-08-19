@@ -1,0 +1,16 @@
+{
+  final Set<BreakpointAddress> instructions=new HashSet<BreakpointAddress>();
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      if (node.getRawNode() instanceof INaviCodeNode) {
+        stepInCodeNode((INaviCodeNode)node.getRawNode(),address,instructions);
+      }
+ else       if (node.getRawNode() instanceof INaviFunctionNode) {
+        stepInFunctionNode((INaviFunctionNode)node.getRawNode(),address,instructions);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return instructions;
+}

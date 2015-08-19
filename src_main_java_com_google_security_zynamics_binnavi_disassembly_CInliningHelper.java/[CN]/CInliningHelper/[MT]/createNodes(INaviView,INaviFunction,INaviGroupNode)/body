@@ -1,0 +1,7 @@
+{
+  final LinkedHashMap<IBlockNode,CCodeNode> map=new LinkedHashMap<IBlockNode,CCodeNode>();
+  for (  final IBlockNode blockNode : function.getBasicBlocks()) {
+    createNode(view,function,blockNode,map,parentGroup);
+  }
+  return map;
+}

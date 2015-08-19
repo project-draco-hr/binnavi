@@ -1,0 +1,7 @@
+{
+  removeMouseListener(m_mouselistener);
+  m_searchField.removeListener(m_searchFieldListener);
+  m_graph.removeListener((INaviGraphListener)m_viewListener);
+  m_graph.removeListener((IZyGraphSelectionListener)m_viewListener);
+  removeViewListeners(m_graph.getRawView());
+}

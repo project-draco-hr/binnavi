@@ -1,0 +1,8 @@
+{
+  super("Delete Tag");
+  m_parent=Preconditions.checkNotNull(parent,"IE01890: Parent argument can not be null");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE01891: Tag manager argument can not be null");
+  m_tag=Preconditions.checkNotNull(tag,"IE01892: Tag argument can not be null");
+  putValue(MNEMONIC_KEY,(int)"HK_MENU_DELETE_TAG".charAt(0));
+  putValue(ACCELERATOR_KEY,HotKeys.DELETE_HK.getKeyStroke());
+}

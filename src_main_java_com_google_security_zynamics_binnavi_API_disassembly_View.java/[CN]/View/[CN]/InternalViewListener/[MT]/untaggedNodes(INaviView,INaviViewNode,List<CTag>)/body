@@ -1,0 +1,17 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  for (  final CTag tag : tags) {
+    final Tag removedTag=nodeTagManager.getTag(tag);
+    final ViewNode viewNode=cachedNodes.get(node);
+    for (    final IViewNodeListener listener : viewNode.getListeners()) {
+      try {
+        listener.removedTag(viewNode,removedTag);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  final Builder<TypeMember,Integer> builder=ImmutableMap.<TypeMember,Integer>builder();
+  for (  BaseType baseType : typeSystem.getTypes()) {
+    for (    TypeMember member : baseType) {
+      if (member.getBitOffset().isPresent()) {
+        builder.put(member,member.getBitOffset().get());
+      }
+    }
+  }
+  return builder.build();
+}

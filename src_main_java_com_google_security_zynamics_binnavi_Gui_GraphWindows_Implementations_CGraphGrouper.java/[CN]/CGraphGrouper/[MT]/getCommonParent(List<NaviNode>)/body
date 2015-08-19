@@ -1,0 +1,16 @@
+{
+  INaviGroupNode parent=null;
+  boolean first=true;
+  for (  final NaviNode node : nodes) {
+    if (first) {
+      parent=node.getRawNode().getParentGroup();
+      first=false;
+    }
+ else {
+      if (parent != node.getRawNode().getParentGroup()) {
+        return null;
+      }
+    }
+  }
+  return parent;
+}

@@ -1,0 +1,15 @@
+{
+  Function apiFunction=viewContainer.getFunction(function);
+  if (apiFunction != null) {
+    return apiFunction;
+  }
+  for (  final Project project : viewContainer.getDatabase().getProjects()) {
+    if (project.isLoaded()) {
+      apiFunction=project.getFunction(function);
+      if (apiFunction != null) {
+        return apiFunction;
+      }
+    }
+  }
+  throw new IllegalStateException(String.format("Error: Could not determine API function object for native function object '%s'",function.getName()));
+}

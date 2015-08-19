@@ -1,0 +1,8 @@
+{
+  final boolean needsLayouting=settings.getEdgeSettings().getDisplayMultipleEdgesAsOne() != (m_cbDisplayMultiEdgesAsOne.getSelectedIndex() == 0) || settings.getEdgeSettings().getDrawSelectedBends() != (m_cbDrawSelectedBends.getSelectedIndex() == 0) || settings.getEdgeSettings().getEdgeHidingMode() != EdgeHidingMode.parseInt(m_cbEdgeHidingMode.getSelectedIndex()) || settings.getEdgeSettings().getEdgeHidingThreshold() != Integer.parseInt(m_tfEdgeHidingThreshold.getText());
+  settings.getEdgeSettings().setDisplayMultipleEdgesAsOne(m_cbDisplayMultiEdgesAsOne.getSelectedIndex() == 0);
+  settings.getEdgeSettings().setDrawSelectedBends(m_cbDrawSelectedBends.getSelectedIndex() == 0);
+  settings.getEdgeSettings().setEdgeHidingMode(EdgeHidingMode.parseInt(m_cbEdgeHidingMode.getSelectedIndex()));
+  settings.getEdgeSettings().setEdgeHidingThreshold(Integer.parseInt(m_tfEdgeHidingThreshold.getText()));
+  return needsLayouting;
+}

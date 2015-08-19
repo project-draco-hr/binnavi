@@ -1,0 +1,6 @@
+{
+  if (!visible && (m_parentGroup != null) && m_parentGroup.isCollapsed()&& m_parentGroup.isVisible()) {
+    return;
+  }
+  super.setVisible(visible);
+}

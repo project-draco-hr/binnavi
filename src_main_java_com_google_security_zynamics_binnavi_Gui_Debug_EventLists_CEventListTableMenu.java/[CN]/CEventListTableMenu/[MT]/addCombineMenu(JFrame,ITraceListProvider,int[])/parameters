@@ -1,0 +1,3 @@
+JFrame parent
+ITraceListProvider traceProvider
+int[] selectedRows

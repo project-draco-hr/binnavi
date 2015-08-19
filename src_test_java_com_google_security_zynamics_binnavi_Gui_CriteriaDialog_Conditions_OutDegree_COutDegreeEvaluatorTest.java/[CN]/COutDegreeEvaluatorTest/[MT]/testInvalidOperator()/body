@@ -1,0 +1,15 @@
+{
+  final NaviNode node=CNaviNodeFactory.get();
+  try {
+    COutdegreeEvaluator.matches(node,"!=",1);
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  try {
+    COutdegreeEvaluator.matches(node,"==",1);
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

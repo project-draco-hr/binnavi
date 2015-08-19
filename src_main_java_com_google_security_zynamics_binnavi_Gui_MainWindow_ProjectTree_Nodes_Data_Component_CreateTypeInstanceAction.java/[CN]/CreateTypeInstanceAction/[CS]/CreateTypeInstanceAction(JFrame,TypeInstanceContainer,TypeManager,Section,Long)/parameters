@@ -1,0 +1,5 @@
+JFrame owner
+TypeInstanceContainer instanceContainer
+TypeManager typeManager
+Section section
+Long sectionOffset

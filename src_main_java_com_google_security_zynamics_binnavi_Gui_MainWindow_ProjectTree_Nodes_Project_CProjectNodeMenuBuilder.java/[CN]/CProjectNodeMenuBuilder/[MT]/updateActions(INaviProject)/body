@@ -1,0 +1,8 @@
+{
+  m_loadProjectAction.setEnabled(!project.isLoaded());
+  if (m_addAddressSpaceAction != null) {
+    m_addAddressSpaceAction.setEnabled(project.isLoaded());
+  }
+  m_searchViewAction.setEnabled(project.isLoaded());
+  m_forwardAction.setEnabled(project.isLoaded());
+}

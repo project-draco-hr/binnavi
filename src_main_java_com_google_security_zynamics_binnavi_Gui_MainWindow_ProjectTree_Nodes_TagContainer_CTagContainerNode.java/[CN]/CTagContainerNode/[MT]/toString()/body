@@ -1,0 +1,3 @@
+{
+  return "View Tags" + " (" + m_rootTag.getChildren().size() + ")";
+}

@@ -1,0 +1,4 @@
+{
+  final int rawWidth=getWidth() - verticalScrollbar.getWidth();
+  return (rawWidth / fontCharWidth) + ((rawWidth % fontCharWidth) == 0 ? 0 : 1);
+}

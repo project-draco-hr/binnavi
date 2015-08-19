@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.updateTypeMember(getConnection().getConnection(),member,newName,newBaseType,newoffset,newNumberOfElements,newArgumentIndex,module);
+}

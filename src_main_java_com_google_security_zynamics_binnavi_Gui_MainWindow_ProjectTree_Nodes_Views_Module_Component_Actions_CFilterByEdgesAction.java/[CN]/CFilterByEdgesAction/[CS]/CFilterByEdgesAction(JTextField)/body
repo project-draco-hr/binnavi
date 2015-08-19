@@ -1,0 +1,4 @@
+{
+  super("Filter by edge count");
+  m_filterField=filterField;
+}

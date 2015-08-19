@@ -1,0 +1,4 @@
+{
+  checkArguments(provider,module);
+  return PostgreSQLHelpers.getModificationDate(provider.getConnection(),CTableNames.MODULES_TABLE,module.getConfiguration().getId());
+}

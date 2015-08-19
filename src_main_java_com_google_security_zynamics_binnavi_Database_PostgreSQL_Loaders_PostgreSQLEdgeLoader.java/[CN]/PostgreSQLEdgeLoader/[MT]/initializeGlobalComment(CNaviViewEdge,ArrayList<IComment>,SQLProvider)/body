@@ -1,0 +1,10 @@
+{
+  final INaviViewNode source=edge.getSource();
+  final INaviViewNode target=edge.getTarget();
+  if ((source instanceof INaviCodeNode) && (target instanceof IAddressNode)) {
+    CommentManager.get(provider).initializeGlobalEdgeComment(edge,globalComments);
+  }
+ else   if ((source instanceof INaviFunctionNode) && (target instanceof IAddressNode)) {
+    CommentManager.get(provider).initializeGlobalEdgeComment(edge,globalComments);
+  }
+}

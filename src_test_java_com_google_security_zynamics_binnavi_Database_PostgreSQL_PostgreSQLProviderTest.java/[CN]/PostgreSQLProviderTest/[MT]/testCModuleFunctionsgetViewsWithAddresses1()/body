@@ -1,0 +1,15 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final IFilledList<UnrelocatedAddress> addresses=new FilledList<UnrelocatedAddress>();
+  List<INaviView> views=PostgreSQLModuleFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),module,addresses,true);
+  assertEquals(0,views.size());
+  addresses.add(new UnrelocatedAddress(new CAddress(0x10033DCL)));
+  views=PostgreSQLModuleFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),module,addresses,true);
+  assertEquals(1,views.size());
+  addresses.add(new UnrelocatedAddress(new CAddress(0x1003429)));
+  views=PostgreSQLModuleFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),module,addresses,true);
+  assertEquals(0,views.size());
+  views=PostgreSQLModuleFunctions.getViewsWithAddresses((AbstractSQLProvider)getProvider(),module,addresses,false);
+  assertEquals(2,views.size());
+}

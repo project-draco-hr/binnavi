@@ -1,0 +1,18 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.connect();
+  debugger.getProcessManager().addModule(new MemoryModule("Hannes","C:\\Hannes.dll",new RelocatedAddress(new CAddress(0x200)),0x100));
+  final MockDebugger debugger2=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger2.connect();
+  debugger2.getProcessManager().addModule(new MemoryModule("Hannes","C:\\Hannes.dll",new RelocatedAddress(new CAddress(0x200)),0x100));
+  debugger2.getProcessManager().addModule(new MemoryModule("Hannes","C:\\Hannes.dll",new RelocatedAddress(new CAddress(0x200)),0x100));
+  m_model.setActiveDebugger(debugger);
+  assertEquals(1,m_tableModel.getRowCount());
+  m_model.setActiveDebugger(debugger2);
+  assertEquals(2,m_tableModel.getRowCount());
+  m_model.setActiveDebugger(null);
+  assertEquals(0,m_tableModel.getRowCount());
+  m_synchronizer.dispose();
+  debugger.close();
+  debugger2.close();
+}

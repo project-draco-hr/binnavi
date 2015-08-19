@@ -1,0 +1,7 @@
+{
+  final INaviProject project=loadProject();
+  final TraceList trace=getProvider().createTrace(project,"Trace Name","Trace Description");
+  assertEquals("Trace Name",trace.getName());
+  assertEquals("Trace Description",trace.getDescription());
+  assertEquals(0,trace.getEventCount());
+}

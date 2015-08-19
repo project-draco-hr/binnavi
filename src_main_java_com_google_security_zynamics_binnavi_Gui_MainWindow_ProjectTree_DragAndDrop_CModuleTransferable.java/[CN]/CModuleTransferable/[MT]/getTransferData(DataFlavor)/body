@@ -1,0 +1,6 @@
+{
+  if (flavor.equals(MODULE_FLAVOR)) {
+    return new ArrayList<INaviModule>(m_modules);
+  }
+  throw new UnsupportedFlavorException(flavor);
+}

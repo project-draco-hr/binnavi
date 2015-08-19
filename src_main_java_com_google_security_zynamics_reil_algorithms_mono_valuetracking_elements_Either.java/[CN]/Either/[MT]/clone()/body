@@ -1,0 +1,3 @@
+{
+  return new Either(m_lhs.clone(),m_rhs.clone());
+}

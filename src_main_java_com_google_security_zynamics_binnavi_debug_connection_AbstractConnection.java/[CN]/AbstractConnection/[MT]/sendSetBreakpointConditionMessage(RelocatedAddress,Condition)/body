@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Set Breakpoint Condition\" message to the debug client");
+  return sendPacket(new SetBreakpointConditionCommand(getMessageId(),address,condition));
+}

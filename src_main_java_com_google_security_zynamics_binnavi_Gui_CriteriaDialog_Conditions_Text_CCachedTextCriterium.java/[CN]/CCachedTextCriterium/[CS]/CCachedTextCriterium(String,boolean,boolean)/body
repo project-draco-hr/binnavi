@@ -1,0 +1,5 @@
+{
+  m_text=text;
+  m_regularExpression=regularExpression;
+  m_caseSensitive=caseSensitive;
+}

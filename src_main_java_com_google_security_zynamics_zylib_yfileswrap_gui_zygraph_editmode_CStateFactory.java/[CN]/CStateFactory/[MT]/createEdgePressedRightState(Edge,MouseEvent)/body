@@ -1,0 +1,5 @@
+{
+  final CEdgePressedRightState state=new CEdgePressedRightState(this,m_graph,e,event);
+  m_factory.createEdgePressedRightAction().execute(state,event);
+  return state;
+}

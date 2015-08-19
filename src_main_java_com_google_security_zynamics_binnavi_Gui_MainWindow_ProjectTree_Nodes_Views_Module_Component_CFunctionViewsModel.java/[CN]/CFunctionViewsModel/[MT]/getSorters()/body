@@ -1,0 +1,10 @@
+{
+  final List<Pair<Integer,Comparator<?>>> sorters=new ArrayList<Pair<Integer,Comparator<?>>>();
+  sorters.add(new Pair<Integer,Comparator<?>>(ADDRESS_COLUM,new HexStringComparator()));
+  sorters.add(new Pair<Integer,Comparator<?>>(FUNCTIONNAME_COLUM,new FunctionNameComparator()));
+  sorters.add(new Pair<Integer,Comparator<?>>(BASICBLOCK_COUNT_COLUMN,new IntComparator()));
+  sorters.add(new Pair<Integer,Comparator<?>>(EDGE_COUNT_COLUMN,new IntComparator()));
+  sorters.add(new Pair<Integer,Comparator<?>>(INCOMING_CALLS_COUNT_COLUMN,new IntComparator()));
+  sorters.add(new Pair<Integer,Comparator<?>>(OUTGOING_CALLS_COUNT_COLUMN,new IntComparator()));
+  return sorters;
+}

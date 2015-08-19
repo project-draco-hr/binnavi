@@ -1,0 +1,6 @@
+{
+  provider=new MockSqlProvider();
+  module=new MockModule(provider);
+  view=new MockView(provider);
+  address=new CAddress(0x12345678L);
+}

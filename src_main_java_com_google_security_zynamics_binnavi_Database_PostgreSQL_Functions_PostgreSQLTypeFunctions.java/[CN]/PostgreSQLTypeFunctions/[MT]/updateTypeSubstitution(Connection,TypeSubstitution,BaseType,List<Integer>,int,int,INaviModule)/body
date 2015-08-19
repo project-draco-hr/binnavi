@@ -1,0 +1,21 @@
+{
+  try {
+    final PreparedStatement statement=connection.prepareStatement("UPDATE " + CTableNames.EXPRESSION_TYPES_TABLE + " SET base_type_id = ?, \"position\" = ?, \"offset\" = ?, path = ? "+ "WHERE module_id = ? AND expression_id = ? AND address = ?");
+    try {
+      statement.setInt(1,baseType.getId());
+      statement.setInt(2,position);
+      statement.setInt(3,offset);
+      statement.setArray(4,connection.createArrayOf("int4",memberPath.toArray()));
+      statement.setInt(5,module.getConfiguration().getId());
+      statement.setInt(6,substitution.getExpressionId());
+      statement.setLong(7,substitution.getAddress().toLong());
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

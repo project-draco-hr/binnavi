@@ -1,0 +1,3 @@
+{
+  return m_addressSpace.isLoaded() ? ICON_ADDRESSSPACE : ICON_ADDRESSSPACE_GRAY;
+}

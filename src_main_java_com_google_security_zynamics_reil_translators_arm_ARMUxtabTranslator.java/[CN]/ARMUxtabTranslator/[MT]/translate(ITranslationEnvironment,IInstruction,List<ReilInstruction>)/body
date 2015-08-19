@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"UXTAB");
+  translateAll(environment,instruction,"UXTAB",instructions);
+}

@@ -1,0 +1,3 @@
+{
+  CTagFunctions.addTag(m_parent,m_tagManager,m_parentTag,m_name);
+}

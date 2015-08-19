@@ -1,0 +1,4 @@
+INaviView view
+INaviInstruction startInstruction
+String trackedRegister
+RegisterTrackingOptions options

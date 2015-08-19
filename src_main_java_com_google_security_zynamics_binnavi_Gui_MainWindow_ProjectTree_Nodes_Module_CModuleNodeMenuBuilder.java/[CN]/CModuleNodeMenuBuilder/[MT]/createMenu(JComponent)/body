@@ -1,0 +1,33 @@
+{
+  menu.add(new JMenuItem(m_loadModulesAction));
+  menu.add(new JMenuItem(m_initializeModuleAction));
+  menu.add(new JSeparator());
+  if (CStaredItemFunctions.allStared(m_modules)) {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CUnstarModulesAction(getParent(),m_modules))));
+  }
+ else   if (CStaredItemFunctions.allNotStared(m_modules)) {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CStarModulesAction(getParent(),m_modules))));
+  }
+ else {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CToggleStarsModulesAction(getParent(),m_modules))));
+  }
+  if (m_modules.length == 1) {
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(m_searchAction));
+    menu.add(new JMenuItem(m_resolveAction));
+    menu.add(new JMenuItem(m_resolveAllAction));
+  }
+  menu.add(new JSeparator());
+  if (m_addressSpace == null) {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteModuleAction(getParent(),m_database,m_modules,getParentUpdater()))));
+  }
+ else {
+    menu.add(new JMenuItem(CActionProxy.proxy(new CRemoveModuleAction(getParent(),m_addressSpace,m_modules))));
+  }
+  if (m_table != null) {
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(CActionProxy.proxy(new CSearchTableAction(getParent(),m_table))));
+    menu.add(new JMenuItem(CActionProxy.proxy(new CopySelectionAction(m_table))));
+  }
+  addPluginMenus(menu);
+}

@@ -1,0 +1,8 @@
+{
+  for (  final INaviFunction function : m_functions) {
+    if (function.isLoaded() && function.close()) {
+      return false;
+    }
+  }
+  return true;
+}

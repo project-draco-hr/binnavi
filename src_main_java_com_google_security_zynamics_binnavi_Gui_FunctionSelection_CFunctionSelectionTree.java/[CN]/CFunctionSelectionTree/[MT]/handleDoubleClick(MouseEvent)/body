@@ -1,0 +1,7 @@
+{
+  final IFunctionTreeNode selectedNode=(IFunctionTreeNode)TreeHelpers.getNodeAt(this,event.getX(),event.getY());
+  if (selectedNode == null) {
+    return;
+  }
+  selectedNode.doubleClicked();
+}

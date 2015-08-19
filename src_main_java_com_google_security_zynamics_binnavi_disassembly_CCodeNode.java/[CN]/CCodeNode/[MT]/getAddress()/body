@@ -1,0 +1,3 @@
+{
+  return codeNodeInstructions.get(0).getAddress();
+}

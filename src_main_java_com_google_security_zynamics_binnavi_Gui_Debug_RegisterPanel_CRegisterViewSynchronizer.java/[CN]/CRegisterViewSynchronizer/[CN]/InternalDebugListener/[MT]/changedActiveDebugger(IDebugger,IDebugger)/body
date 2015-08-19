@@ -1,0 +1,9 @@
+{
+  if (newDebugger != null) {
+    final TargetInformation targetInformation=newDebugger.getProcessManager().getTargetInformation();
+    if (targetInformation != null) {
+      m_dataProvider.setRegisterDescription(targetInformation.getRegisters());
+    }
+  }
+  synchronizeDebugger(oldDebugger,newDebugger);
+}

@@ -1,0 +1,2 @@
+Iterable<NodeType> selectedNodes
+int depth

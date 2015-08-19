@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(content,"Internal Error: Content cannot be null");
+  m_content=content;
+  setArrow(Arrow.STANDARD);
+  setSmoothedBends(true);
+  if (content.getLineCount() > 0) {
+    addLabel(new ZyEdgeLabel(content));
+  }
+  setUpdater(updater);
+}

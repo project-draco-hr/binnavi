@@ -1,0 +1,4 @@
+{
+  assertEquals(pluginInterface.getDatabaseManager().getDatabases().get(0).getModules().get(0),m_view2d.getContainer());
+  assertEquals("View2D 'name'",m_view2d.toString());
+}

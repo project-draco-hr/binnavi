@@ -1,0 +1,3 @@
+INaviCodeNode node
+INaviFunction originalFunction
+Set<INaviCodeNode> visited

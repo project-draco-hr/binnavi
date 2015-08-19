@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"PKHBT");
+  translateAll(environment,instruction,"PKHBT",instructions);
+}

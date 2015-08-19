@@ -1,0 +1,66 @@
+{
+  final JPanel panel=new JPanel();
+  getContentPane().add(panel,BorderLayout.SOUTH);
+  panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+  final JButton okButton=new JButton("OK");
+  okButton.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      if (validateUserInput()) {
+        okClicked=true;
+        dispose();
+      }
+    }
+  }
+);
+  panel.add(okButton);
+  final JButton cancelButton=new JButton("Cancel");
+  cancelButton.addActionListener(new ActionListener(){
+    @Override public void actionPerformed(    final ActionEvent e){
+      dispose();
+    }
+  }
+);
+  panel.add(cancelButton);
+  types=new TypeComboBox(model);
+  getContentPane().add(types,BorderLayout.CENTER);
+  final JPanel panel_1=new JPanel();
+  getContentPane().add(panel_1,BorderLayout.NORTH);
+  final GridBagLayout gbl_panel_1=new GridBagLayout();
+  gbl_panel_1.columnWidths=new int[]{166,109,0};
+  gbl_panel_1.rowHeights=new int[]{0,0,15,0};
+  gbl_panel_1.columnWeights=new double[]{0.0,1.0,Double.MIN_VALUE};
+  gbl_panel_1.rowWeights=new double[]{0.0,0.0,0.0,Double.MIN_VALUE};
+  panel_1.setLayout(gbl_panel_1);
+  final JLabel lblInstanceName_1=new JLabel("Instance name:");
+  final GridBagConstraints gbc_lblInstanceName_1=new GridBagConstraints();
+  gbc_lblInstanceName_1.anchor=GridBagConstraints.WEST;
+  gbc_lblInstanceName_1.insets=new Insets(0,0,5,5);
+  gbc_lblInstanceName_1.gridx=0;
+  gbc_lblInstanceName_1.gridy=0;
+  panel_1.add(lblInstanceName_1,gbc_lblInstanceName_1);
+  instanceName=new JTextField();
+  final GridBagConstraints gbc_instanceName=new GridBagConstraints();
+  gbc_instanceName.insets=new Insets(0,0,5,0);
+  gbc_instanceName.fill=GridBagConstraints.HORIZONTAL;
+  gbc_instanceName.gridx=1;
+  gbc_instanceName.gridy=0;
+  panel_1.add(instanceName,gbc_instanceName);
+  instanceName.setColumns(10);
+  final JLabel lblSectionOffset=new JLabel("Section offset:");
+  final GridBagConstraints gbc_lblSectionOffset=new GridBagConstraints();
+  gbc_lblSectionOffset.anchor=GridBagConstraints.WEST;
+  gbc_lblSectionOffset.insets=new Insets(0,0,5,5);
+  gbc_lblSectionOffset.gridx=0;
+  gbc_lblSectionOffset.gridy=1;
+  panel_1.add(lblSectionOffset,gbc_lblSectionOffset);
+  sectionOffset=new JTextField();
+  final GridBagConstraints gbc_sectionOffset=new GridBagConstraints();
+  gbc_sectionOffset.insets=new Insets(0,0,5,0);
+  gbc_sectionOffset.fill=GridBagConstraints.HORIZONTAL;
+  gbc_sectionOffset.gridx=1;
+  gbc_sectionOffset.gridy=1;
+  panel_1.add(sectionOffset,gbc_sectionOffset);
+  sectionOffset.setColumns(10);
+  pack();
+  new CDialogEscaper(this);
+}

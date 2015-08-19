@@ -1,0 +1,23 @@
+{
+  module.load();
+  final TypeInstance typeInstance=module.getContent().getTypeInstanceContainer().getTypeInstances().get(0);
+  final TypeInstanceAddress address1=typeInstance.getAddress();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction(new CAddress("1001929",16));
+  final INaviView view=module.getContent().getViewContainer().getView(function);
+  view.load();
+  final INaviInstruction instruction=view.getBasicBlocks().get(1).getInstructions().iterator().next();
+  Assert.assertNotNull(typeInstance);
+  provider.createTypeInstanceReference(typeInstance.getModule().getConfiguration().getId(),instruction.getAddress().toLong(),instruction.getOperandPosition(instruction.getOperands().get(0)),instruction.getOperands().get(0).getNodes().get(0).getId(),typeInstance.getId());
+  view.close();
+  module.close();
+  module.load();
+  view.load();
+  final TypeInstance typeInstance2=module.getContent().getTypeInstanceContainer().getTypeInstance(typeInstance.getAddress());
+  Assert.assertEquals(address1,typeInstance2.getAddress());
+  final List<TypeInstanceReference> references=module.getContent().getTypeInstanceContainer().getReferences(typeInstance2);
+  Assert.assertTrue(!references.isEmpty());
+  Assert.assertEquals(instruction.getAddress(),references.get(0).getAddress());
+  Assert.assertEquals(instruction.getOperandPosition(instruction.getOperands().get(0)),references.get(0).getPosition());
+  Assert.assertEquals(instruction.getOperands().get(0).getNodes().get(0).getId(),references.get(0).getTreeNode().get().getId());
+  Assert.assertEquals(typeInstance.getId(),references.get(0).getTypeInstance().getId());
+}

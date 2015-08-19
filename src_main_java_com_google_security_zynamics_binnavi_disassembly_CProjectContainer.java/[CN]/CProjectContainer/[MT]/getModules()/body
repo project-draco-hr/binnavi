@@ -1,0 +1,11 @@
+{
+  final Set<INaviModule> modules=new HashSet<INaviModule>();
+  for (  final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+    if (addressSpace.isLoaded()) {
+      for (      final INaviModule naviModule : addressSpace.getContent().getModules()) {
+        modules.add(naviModule);
+      }
+    }
+  }
+  return new FilledList<INaviModule>(modules);
+}

@@ -1,0 +1,14 @@
+{
+  m_provider.assignDebugger(m_addressSpace,template);
+  m_debuggerTemplate=template;
+  m_addressSpace.getConfiguration().updateDebugger(m_debuggerTemplate);
+  for (  final IAddressSpaceConfigurationListener listener : m_listeners) {
+    try {
+      listener.changedDebugger(m_addressSpace,template);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

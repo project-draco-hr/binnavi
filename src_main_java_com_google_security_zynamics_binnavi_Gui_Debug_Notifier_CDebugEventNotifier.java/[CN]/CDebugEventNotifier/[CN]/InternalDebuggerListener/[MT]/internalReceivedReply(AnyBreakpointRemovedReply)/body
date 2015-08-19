@@ -1,0 +1,11 @@
+{
+  final Iterable<Pair<RelocatedAddress,Integer>> failedAddresses=Collections2.filter(reply.getAddresses(),new Predicate<Pair<RelocatedAddress,Integer>>(){
+    @Override public boolean apply(    final Pair<RelocatedAddress,Integer> item){
+      return item.second().intValue() != 0;
+    }
+  }
+);
+  if (!Iterables.isEmpty(failedAddresses)) {
+    CBreakpointRemovalDialog.show(m_parent,failedAddresses);
+  }
+}

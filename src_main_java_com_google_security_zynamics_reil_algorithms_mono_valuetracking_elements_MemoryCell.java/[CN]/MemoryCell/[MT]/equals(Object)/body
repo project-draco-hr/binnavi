@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof MemoryCell) && ((MemoryCell)rhs).m_element.equals(m_element);
+}

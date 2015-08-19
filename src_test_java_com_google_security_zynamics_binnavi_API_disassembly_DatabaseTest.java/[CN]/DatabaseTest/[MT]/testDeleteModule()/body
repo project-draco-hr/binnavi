@@ -1,0 +1,12 @@
+{
+  final MockDatabaseListener listener=new MockDatabaseListener();
+  final MockDatabase mockDatabase=new MockDatabase();
+  mockDatabase.getContent().m_modules.add(CModuleFactory.get());
+  final Database database=new Database(mockDatabase);
+  database.addListener(listener);
+  database.connect();
+  database.load();
+  database.deleteModule(database.getModules().get(0));
+  assertEquals("openedDatabase;loadedDatabase;deletedModule;",listener.events);
+  assertTrue(database.getModules().isEmpty());
+}

@@ -1,0 +1,3 @@
+{
+  return HEX_ARRAY[b & 0xFF];
+}

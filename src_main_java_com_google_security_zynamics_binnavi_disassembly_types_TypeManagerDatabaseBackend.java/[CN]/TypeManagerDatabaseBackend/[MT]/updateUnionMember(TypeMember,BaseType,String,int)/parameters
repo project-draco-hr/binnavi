@@ -1,0 +1,4 @@
+TypeMember member
+BaseType newMemberBaseType
+String newMemberName
+int newMemberOffset

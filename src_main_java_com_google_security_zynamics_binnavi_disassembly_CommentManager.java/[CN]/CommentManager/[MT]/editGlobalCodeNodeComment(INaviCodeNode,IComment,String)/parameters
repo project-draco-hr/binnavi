@@ -1,0 +1,3 @@
+INaviCodeNode codeNode
+IComment editedComment
+String commentText

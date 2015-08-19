@@ -1,0 +1,26 @@
+{
+  final MockViewNodeListener listener=new MockViewNodeListener();
+  m_node.addListener(listener);
+  assertEquals(1,m_node.getTags().size());
+  assertEquals(m_initialTag,m_node.getTags().get(0));
+  assertTrue(m_node.isTagged(m_initialTag));
+  final Tag newTag=m_nodeTagManager.addTag(null,"New Tag");
+  assertFalse(m_node.isTagged(newTag));
+  m_node.addTag(newTag);
+  assertEquals(2,m_node.getTags().size());
+  assertTrue(m_node.isTagged(m_initialTag));
+  assertTrue(m_node.isTagged(newTag));
+  assertEquals("addedTag;",listener.events);
+  m_node.removeTag(newTag);
+  assertEquals(1,m_node.getTags().size());
+  assertEquals(m_initialTag,m_node.getTags().get(0));
+  assertTrue(m_node.isTagged(m_initialTag));
+  assertFalse(m_node.isTagged(newTag));
+  assertEquals("addedTag;removedTag;",listener.events);
+  m_node.removeTag(m_initialTag);
+  assertEquals(0,m_node.getTags().size());
+  assertFalse(m_node.isTagged(m_initialTag));
+  assertFalse(m_node.isTagged(newTag));
+  assertEquals("addedTag;removedTag;removedTag;",listener.events);
+  m_node.removeListener(listener);
+}

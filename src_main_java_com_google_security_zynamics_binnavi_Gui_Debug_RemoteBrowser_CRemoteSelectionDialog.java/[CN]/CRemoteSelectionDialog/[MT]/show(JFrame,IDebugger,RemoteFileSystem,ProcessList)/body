@@ -1,0 +1,6 @@
+{
+  final CRemoteSelectionDialog dlg=new CRemoteSelectionDialog(parent,debugger,system,list);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  return dlg;
+}

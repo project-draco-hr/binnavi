@@ -1,0 +1,3 @@
+{
+  return getUpdatedRegisters().size() != 0;
+}

@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout(5,5));
+  final JLabel label=new CHelpLabel(labelText,helpInfo);
+  label.setPreferredSize(new Dimension(170,25));
+  add(label,BorderLayout.WEST);
+  add(component,BorderLayout.CENTER);
+}

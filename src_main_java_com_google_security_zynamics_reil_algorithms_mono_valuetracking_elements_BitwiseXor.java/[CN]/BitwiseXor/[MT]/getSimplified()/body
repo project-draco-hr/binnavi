@@ -1,0 +1,8 @@
+{
+  final IValueElement simplifiedLhs=m_lhs.getSimplified();
+  final IValueElement simplifiedRhs=m_rhs.getSimplified();
+  if ((simplifiedRhs instanceof Literal) && (simplifiedLhs instanceof Literal)) {
+    return new Literal(((Literal)simplifiedLhs).getValue().xor(((Literal)simplifiedRhs).getValue()));
+  }
+  return new BitwiseXor(simplifiedLhs,simplifiedRhs);
+}

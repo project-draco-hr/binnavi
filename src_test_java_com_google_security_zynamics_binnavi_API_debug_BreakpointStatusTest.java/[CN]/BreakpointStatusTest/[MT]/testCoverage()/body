@@ -1,0 +1,8 @@
+{
+  for (  final BreakpointStatus breakpointStatus : BreakpointStatus.values()) {
+    assertEquals(breakpointStatus,BreakpointStatus.convert(breakpointStatus.getNative()));
+  }
+  for (  final com.google.security.zynamics.binnavi.debug.models.breakpoints.enums.BreakpointStatus breakpointStatus : com.google.security.zynamics.binnavi.debug.models.breakpoints.enums.BreakpointStatus.values()) {
+    assertEquals(breakpointStatus,BreakpointStatus.convert(breakpointStatus).getNative());
+  }
+}

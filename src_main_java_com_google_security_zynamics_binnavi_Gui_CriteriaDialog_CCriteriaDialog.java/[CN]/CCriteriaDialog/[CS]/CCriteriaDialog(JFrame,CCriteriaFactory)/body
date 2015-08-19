@@ -1,0 +1,14 @@
+{
+  super(owner,"Select by Criteria",true);
+  Preconditions.checkNotNull(conditionFactory,"IE01315: Condition factory argument can not be null");
+  final List<ICriteriumCreator> criteria=conditionFactory.getConditions();
+  m_jtree=new JCriteriumTree(m_ctree,criteria);
+  final CConditionBox selectionBox=new CConditionBox(criteria);
+  final CAddConditionButtonListener addConditionButtonListner=new CAddConditionButtonListener(m_jtree,m_ctree,selectionBox);
+  final JButton addConditionButton=new JButton(addConditionButtonListner);
+  final CPanelTwoButtons okCancelPanel=new CPanelTwoButtons(new InternalOkCancelButttonListener(),"Execute","Cancel");
+  final JPanel defineConditionPanel=new JPanel(new BorderLayout());
+  initDialog(m_jtree,selectionBox,defineConditionPanel,okCancelPanel,addConditionButton);
+  GuiHelper.centerChildToParent(owner,this,true);
+  m_updater=new CDialogUpdater(m_jtree,m_ctree,defineConditionPanel,addConditionButton,okCancelPanel.getFirstButton());
+}

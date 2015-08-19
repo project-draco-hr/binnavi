@@ -1,0 +1,3 @@
+{
+  model.setActiveMemoryAddress(offset,focusMemoryWindow);
+}

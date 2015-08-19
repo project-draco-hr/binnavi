@@ -1,0 +1,14 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.load();
+  final DebuggerTemplate template=database.getDebuggerTemplateManager().createDebuggerTemplate("Foo","Bar",123);
+  m_project.addListener(listener);
+  m_project.addDebuggerTemplate(template);
+  assertEquals(1,m_project.getDebuggerTemplates().size());
+  assertEquals(template,m_project.getDebuggerTemplates().get(0));
+  assertEquals("addedDebuggerTemplate;changedModificationDate;",listener.events);
+  m_project.removeDebuggerTemplate(template);
+  assertEquals(0,m_project.getDebuggerTemplates().size());
+  assertEquals("addedDebuggerTemplate;changedModificationDate;removedDebuggerTemplate;changedModificationDate;",listener.events);
+  m_project.removeListener(listener);
+}

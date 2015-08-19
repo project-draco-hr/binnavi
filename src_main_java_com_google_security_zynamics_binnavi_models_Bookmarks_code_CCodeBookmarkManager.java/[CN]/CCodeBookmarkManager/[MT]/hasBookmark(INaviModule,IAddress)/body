@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(address,"IE00330: Address argument can not be null");
+  for (  final CCodeBookmark bookmark : m_bookmarks) {
+    if ((bookmark.getModule() == module) && bookmark.getAddress().equals(address)) {
+      return true;
+    }
+  }
+  return false;
+}

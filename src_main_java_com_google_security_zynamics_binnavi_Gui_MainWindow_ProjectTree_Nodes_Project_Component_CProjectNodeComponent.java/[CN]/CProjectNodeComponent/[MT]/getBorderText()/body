@@ -1,0 +1,3 @@
+{
+  return String.format("%d Address Spaces in Project '%s'",m_project.getAddressSpaceCount(),m_project.getConfiguration().getName());
+}

@@ -1,0 +1,6 @@
+{
+  final CUserManager userManager=CUserManager.get(provider);
+  final IUser user=userManager.addUser(new BigInteger(130,random).toString(32));
+  userManager.setCurrentActiveUser(user);
+  return user;
+}

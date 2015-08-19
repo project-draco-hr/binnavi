@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  if (!m_views.contains(view)) {
+    throw new IllegalArgumentException("Error: View is not part of this module");
+  }
+  if (view.getType() != ViewType.Native) {
+    throw new IllegalArgumentException("Error: View is not a native view");
+  }
+  return m_functionMap.get(m_module.getContent().getViewContainer().getFunction(view.getNative()));
+}

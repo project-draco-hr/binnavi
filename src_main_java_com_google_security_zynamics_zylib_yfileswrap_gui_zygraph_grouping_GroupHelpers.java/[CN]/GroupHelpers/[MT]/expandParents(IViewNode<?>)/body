@@ -1,0 +1,11 @@
+{
+  if (node.getParentGroup() != null) {
+    expandParents(node.getParentGroup());
+  }
+  if (node instanceof IGroupNode<?,?>) {
+    final IGroupNode<?,?> gnode=(IGroupNode<?,?>)node;
+    if (gnode.isCollapsed()) {
+      gnode.setCollapsed(false);
+    }
+  }
+}

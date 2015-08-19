@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(baseType,"IE02786: Base type can not be null.");
+  if (!canDeletePointerType(baseType)) {
+    return false;
+  }
+  final Set<BaseType> affectedTypes=typesContainer.getAffectedTypes(baseType);
+  clearMembers(baseType,affectedTypes);
+  clearTypeSubstitutions(baseType);
+  typesContainer.deleteBaseType(baseType);
+  backend.deleteType(baseType);
+  notifyTypeDeleted(baseType);
+  return true;
+}

@@ -1,0 +1,8 @@
+{
+  if (model.getGraph().getRawView().getType() == ViewType.Native) {
+    saveNativeGraph(parent,model);
+  }
+ else {
+    saveNonNativeGraph(parent,model);
+  }
+}

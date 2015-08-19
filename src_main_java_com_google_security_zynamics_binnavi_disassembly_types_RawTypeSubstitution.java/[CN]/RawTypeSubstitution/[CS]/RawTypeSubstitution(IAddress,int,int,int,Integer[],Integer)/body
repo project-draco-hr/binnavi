@@ -1,0 +1,9 @@
+{
+  this.address=Preconditions.checkNotNull(address,"Error: address can not be null.");
+  Preconditions.checkArgument(position >= 0,"Error: position must be positive.");
+  this.position=position;
+  this.expressionId=expressionId;
+  this.baseTypeId=baseTypeId;
+  this.path=Preconditions.checkNotNull(path,"Error: path argument can not be null.");
+  this.offset=offset;
+}

@@ -1,0 +1,4 @@
+AffineTransform currentMatrix
+double xOffset
+double yOffset
+int linenr

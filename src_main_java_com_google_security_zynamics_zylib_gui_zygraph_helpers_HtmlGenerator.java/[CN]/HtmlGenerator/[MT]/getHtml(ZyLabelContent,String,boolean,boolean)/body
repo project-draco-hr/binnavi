@@ -1,0 +1,25 @@
+{
+  if (!initLineCache.containsKey(fontname)) {
+    initLineCache.put(fontname,String.format("<html><font face=\"%s\" size=\"3\" color=\"000000\">",fontname));
+  }
+  final StringBuilder html=new StringBuilder(initLineCache.get(fontname));
+  final int tooltipMaxLength=content.getLineCount() >= 40 ? 40 : content.getLineCount();
+  for (int i=0; i < tooltipMaxLength; ++i) {
+    final String text=content.getLineContent(i).getText();
+    if (eliminateEmptyLines) {
+      if ((text.length() < 1) || text.equals("\n") || text.equals("\r")|| text.equals("\t")) {
+        continue;
+      }
+    }
+    html.append(boldFirstLine && (i == 0) ? "<b>" : "");
+    html.append(escapeHtml(text));
+    html.append(boldFirstLine && (i == 0) ? "</b>" : "");
+    html.append("<br>");
+  }
+  if (content.getLineCount() > 40) {
+    html.append("...");
+    html.append("<br>");
+  }
+  html.append("</font></html>");
+  return html.toString();
+}

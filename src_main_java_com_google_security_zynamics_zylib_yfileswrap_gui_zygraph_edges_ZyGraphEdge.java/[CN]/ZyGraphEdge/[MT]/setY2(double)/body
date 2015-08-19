@@ -1,0 +1,3 @@
+{
+  getRealizer(m_edge).setTargetPoint(new YPoint(getX2(),y2));
+}

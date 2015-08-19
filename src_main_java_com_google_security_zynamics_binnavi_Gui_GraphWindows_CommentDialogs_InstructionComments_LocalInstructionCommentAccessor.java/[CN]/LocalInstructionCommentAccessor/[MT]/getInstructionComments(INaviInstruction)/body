@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"IE02703: instruction argument can not be null");
+  return m_codeNode.getComments().getLocalInstructionComment(instruction);
+}

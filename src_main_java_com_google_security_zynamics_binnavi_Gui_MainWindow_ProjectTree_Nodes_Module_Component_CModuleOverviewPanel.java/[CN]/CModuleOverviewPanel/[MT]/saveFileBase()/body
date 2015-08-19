@@ -1,0 +1,12 @@
+{
+  try {
+    final CAddress fileBase=new CAddress(Convert.hexStringToLong(m_debuggerPanel.getFileBase()));
+    m_module.getConfiguration().setFileBase(new CAddress(fileBase));
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+    final String message="E00165: " + "Could not change the module file base";
+    final String description=CUtilityFunctions.createDescription("The new module file base could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the module file base was saved"},new String[]{"The module file base was not saved. Please try to find out what went wrong with the database connection and try to save the module file base again."});
+    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),message,description,e);
+  }
+}

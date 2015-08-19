@@ -1,0 +1,11 @@
+{
+  if (!m_drawEdges) {
+    return;
+  }
+  if (m_view.isEdgeSloppyPaintMode()) {
+    er.paintSloppy(gfx);
+  }
+ else {
+    er.paint(gfx);
+  }
+}

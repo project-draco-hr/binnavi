@@ -1,0 +1,8 @@
+{
+  if (coverage != null) {
+    coverage.removeListener(traceListener);
+    coverage.dispose();
+    coverage=null;
+    graphFrame=null;
+  }
+}

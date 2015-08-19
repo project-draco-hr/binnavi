@@ -1,0 +1,11 @@
+{
+  graph.addNode(node);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.addedNode(view,node);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

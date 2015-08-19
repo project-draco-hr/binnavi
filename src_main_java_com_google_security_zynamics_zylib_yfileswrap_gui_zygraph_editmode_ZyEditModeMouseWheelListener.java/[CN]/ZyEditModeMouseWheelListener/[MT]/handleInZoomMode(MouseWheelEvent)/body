@@ -1,0 +1,3 @@
+{
+  zoom(event,event.getUnitsToScroll() > 0,event.isShiftDown());
+}

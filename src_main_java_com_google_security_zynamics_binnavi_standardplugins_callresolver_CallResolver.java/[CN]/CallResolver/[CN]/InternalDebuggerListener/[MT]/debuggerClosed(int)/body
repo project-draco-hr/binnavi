@@ -1,0 +1,5 @@
+{
+  step=5;
+  stopResolving();
+  CallResolver.this.debuggerClosed();
+}

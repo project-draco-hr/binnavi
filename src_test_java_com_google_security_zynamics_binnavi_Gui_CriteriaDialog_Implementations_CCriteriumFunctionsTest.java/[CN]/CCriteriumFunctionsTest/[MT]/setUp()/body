@@ -1,0 +1,8 @@
+{
+  m_graph=ZyGraphFactory.generateTestGraph();
+  try {
+    PluginInterface.instance("",new MockDatabaseManager(),new PluginRegistry());
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

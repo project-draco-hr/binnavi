@@ -1,0 +1,9 @@
+{
+  final InternalScriptRunner loader=new InternalScriptRunner();
+  final CEndlessProgressDialog dlg=new CEndlessProgressDialog(null,getProgressWindowTitle(),Constants.MESSAGE_RUNNING_SCRIPT,loader);
+  loader.run();
+  dlg.setVisible(true);
+  if (loader.quitProperly()) {
+    getOutputPane().setText(console.getOutput());
+  }
+}

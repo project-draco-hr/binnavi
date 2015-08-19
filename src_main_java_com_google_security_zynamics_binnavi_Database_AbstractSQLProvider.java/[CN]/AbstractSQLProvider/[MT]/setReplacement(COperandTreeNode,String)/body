@@ -1,0 +1,3 @@
+{
+  PostgreSQLInstructionFunctions.setReplacement(this,operandTreeNode,replacement);
+}

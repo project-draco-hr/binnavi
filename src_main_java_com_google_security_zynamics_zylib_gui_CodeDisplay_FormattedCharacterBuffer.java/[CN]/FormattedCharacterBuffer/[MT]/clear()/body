@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < numberOfLinesInBuffer * numberOfColumnsInBuffer; i++) {
+    charBuffer[i]=' ';
+    perCharFonts[i]=DEFAULT_FONT;
+    perCharForegroundColor[i]=defaultForegroundColor;
+    perCharBackgroundColor[i]=defaultBackgroundColor;
+  }
+}

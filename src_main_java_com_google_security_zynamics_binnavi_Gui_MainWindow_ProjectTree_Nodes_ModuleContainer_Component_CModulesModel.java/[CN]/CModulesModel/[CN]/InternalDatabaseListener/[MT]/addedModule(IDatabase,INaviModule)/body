@@ -1,0 +1,5 @@
+{
+  m_cachedValues=null;
+  module.addListener(m_moduleListener);
+  fireTableDataChanged();
+}

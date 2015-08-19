@@ -1,0 +1,16 @@
+{
+  final int index=m_pane.indexOfTabComponent(ButtonTabComponent.this);
+  if (index != -1) {
+    for (    final IButtonTabListener listener : m_listeners) {
+      try {
+        if (!listener.closing(ButtonTabComponent.this)) {
+          return;
+        }
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+    m_pane.remove(index);
+  }
+}

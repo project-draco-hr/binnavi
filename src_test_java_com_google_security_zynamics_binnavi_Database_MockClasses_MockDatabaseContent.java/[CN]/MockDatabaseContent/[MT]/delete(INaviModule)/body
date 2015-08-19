@@ -1,0 +1,11 @@
+{
+  m_modules.remove(module);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.deletedModule(m_database,module);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

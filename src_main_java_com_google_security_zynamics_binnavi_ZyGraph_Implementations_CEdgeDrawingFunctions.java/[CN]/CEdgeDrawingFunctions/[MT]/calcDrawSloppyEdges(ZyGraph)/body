@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(graph,"IE02113: Graph argument can not be null");
+  final EdgeHidingMode mode=graph.getSettings().getEdgeSettings().getEdgeHidingMode();
+  return (mode == EdgeHidingMode.HIDE_NEVER) || ((mode == EdgeHidingMode.HIDE_ON_THRESHOLD) && (graph.getSettings().getEdgeSettings().getEdgeHidingThreshold() > graph.getEdgeCount()));
+}

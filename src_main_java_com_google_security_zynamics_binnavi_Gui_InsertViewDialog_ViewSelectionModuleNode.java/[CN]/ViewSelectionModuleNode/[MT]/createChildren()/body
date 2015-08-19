@@ -1,0 +1,10 @@
+{
+  if (m_module.isLoaded()) {
+    for (    final INaviView view : m_module.getContent().getViewContainer().getViews()) {
+      if (view.getNodeCount() == 0) {
+        continue;
+      }
+      add(new CViewIconNode(view));
+    }
+  }
+}

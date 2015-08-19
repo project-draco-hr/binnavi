@@ -1,0 +1,8 @@
+{
+  final boolean isSingleLineSelection=(getXmousePressed() != getXmouseReleased()) && (getYmousePressed() == getYmouseReleased());
+  if (isSingleLineSelection) {
+    final int maxIndex=m_content.getLastLineIndexOfModelAt(m_mouse_pressed_y);
+    return maxIndex >= m_mouse_pressed_y;
+  }
+  return (getXmousePressed() != getXmouseReleased()) || (getYmousePressed() != getYmouseReleased());
+}

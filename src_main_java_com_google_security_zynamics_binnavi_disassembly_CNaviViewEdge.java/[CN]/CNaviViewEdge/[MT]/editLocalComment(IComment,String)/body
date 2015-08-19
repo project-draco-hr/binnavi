@@ -1,0 +1,3 @@
+{
+  return CommentManager.get(m_provider).editLocalEdgeComment(this,oldComment,commentText);
+}

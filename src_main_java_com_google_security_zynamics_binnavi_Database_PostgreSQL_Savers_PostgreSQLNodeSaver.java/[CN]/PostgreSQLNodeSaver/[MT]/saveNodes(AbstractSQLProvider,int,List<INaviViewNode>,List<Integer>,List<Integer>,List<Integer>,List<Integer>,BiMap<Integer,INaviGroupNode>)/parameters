@@ -1,0 +1,8 @@
+AbstractSQLProvider provider
+int newViewId
+List<INaviViewNode> nodes
+List<Integer> functionNodeIndices
+List<Integer> codeNodeIndices
+List<Integer> textNodeIndices
+List<Integer> groupNodeIndices
+BiMap<Integer,INaviGroupNode> groupNodeMap

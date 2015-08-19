@@ -1,0 +1,9 @@
+{
+  numberOfLinesInBuffer=lines;
+  numberOfColumnsInBuffer=columns;
+  charBuffer=new char[numberOfLinesInBuffer * numberOfColumnsInBuffer];
+  perCharFonts=new Font[numberOfLinesInBuffer * numberOfColumnsInBuffer];
+  perCharForegroundColor=new Color[numberOfLinesInBuffer * numberOfColumnsInBuffer];
+  perCharBackgroundColor=new Color[numberOfLinesInBuffer * numberOfColumnsInBuffer];
+  clear();
+}

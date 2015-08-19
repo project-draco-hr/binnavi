@@ -1,0 +1,10 @@
+{
+  if ((path == null) || path.equals("")) {
+    return "";
+  }
+  final StringBuilder buf=new StringBuilder(path);
+  while (buf.charAt(buf.length() - 1) == File.separatorChar) {
+    buf.deleteCharAt(buf.length() - 1);
+  }
+  return buf.append(File.separatorChar).toString();
+}

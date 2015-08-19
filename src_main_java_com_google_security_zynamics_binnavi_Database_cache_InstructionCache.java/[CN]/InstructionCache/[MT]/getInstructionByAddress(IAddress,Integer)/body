@@ -1,0 +1,3 @@
+{
+  return instructionByAddressCache.getIfPresent(new Pair<IAddress,Integer>(address,moduleId));
+}

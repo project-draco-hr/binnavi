@@ -1,0 +1,14 @@
+{
+  for (int i=0; i < members.getModel().getRowCount(); i++) {
+    if (!validateTableRow(i)) {
+      CMessageBox.showError(parent,"Members must not overlap and need a valid name and base type.");
+      return false;
+    }
+  }
+  if (name.getText().isEmpty()) {
+    CMessageBox.showError(parent,"Please enter a valid name for the structure.");
+    name.requestFocusInWindow();
+    return false;
+  }
+  return true;
+}

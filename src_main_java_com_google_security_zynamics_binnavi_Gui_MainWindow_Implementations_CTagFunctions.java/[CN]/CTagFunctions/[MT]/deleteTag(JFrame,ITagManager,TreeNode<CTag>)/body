@@ -1,0 +1,23 @@
+{
+  if (CMessageBox.showYesNoQuestion(parent,String.format("Do you really want to delete the tag '%s' from the database?",tag.getObject().getName())) == JOptionPane.YES_OPTION) {
+    new Thread(){
+      @Override public void run(){
+        try {
+          final CDefaultProgressOperation operation=new CDefaultProgressOperation("",false,false);
+          operation.getProgressPanel().setMaximum(1);
+          operation.getProgressPanel().setText("Deleting tag" + ": " + tag.getObject().getName());
+          tagManager.deleteTag(tag);
+          operation.getProgressPanel().next();
+          operation.stop();
+        }
+ catch (        final CouldntDeleteException e) {
+          CUtilityFunctions.logException(e);
+          final String innerMessage="E00145: " + "Could not delete tag";
+          final String innerDescription=CUtilityFunctions.createDescription(String.format("The tag '%s' could not be deleted.",tag.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag was not deleted and can still be used."});
+          CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+        }
+      }
+    }
+.start();
+  }
+}

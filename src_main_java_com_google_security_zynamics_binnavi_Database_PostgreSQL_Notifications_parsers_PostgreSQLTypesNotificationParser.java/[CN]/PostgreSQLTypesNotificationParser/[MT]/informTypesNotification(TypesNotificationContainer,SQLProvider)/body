@@ -1,0 +1,15 @@
+{
+  final TypeManager typeManager=provider.findModule(container.getModuleId()).getTypeManager();
+  if (container.getDatabaseOperation().equals("INSERT")) {
+    typeManager.loadAndInitializeTypeMember(container.getTypeId().get());
+  }
+ else   if (container.getDatabaseOperation().equals("UPDATE")) {
+    typeManager.loadAndUpdateTypeMember(container.getTypeId().get());
+  }
+ else   if (container.getDatabaseOperation().equals("DELETE")) {
+    typeManager.removeMemberInstance(container.getTypeId().get());
+  }
+ else {
+    throw new IllegalStateException("Error: the database operation " + container.getDatabaseOperation() + " is currently not supported.");
+  }
+}

@@ -1,0 +1,23 @@
+{
+  if (comment.getNumberOfCommentLines() == 0) {
+    String newComment=CodeDisplay.padRight("",index);
+    newComment+=string;
+    try {
+      commentAccessor.appendInstructionComment(instruction,newComment);
+    }
+ catch (    CouldntSaveDataException|CouldntLoadDataException e) {
+      Logger.logException(e);
+    }
+  }
+ else {
+    String oldComment=comment.getComment();
+    String newComment=oldComment.substring(0,index) + string + oldComment.substring(index);
+    try {
+      commentAccessor.editInstructionComment(instruction,comment,newComment);
+    }
+ catch (    CouldntSaveDataException e) {
+      Logger.logException(e);
+    }
+  }
+  updateDataRepresentation();
+}

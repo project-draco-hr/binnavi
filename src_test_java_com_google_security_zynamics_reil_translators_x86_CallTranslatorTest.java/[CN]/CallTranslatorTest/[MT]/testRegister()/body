@@ -1,0 +1,16 @@
+{
+  interpreter.setRegister("eax",BigInteger.valueOf(0x2345),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("esp",BigInteger.valueOf(0x1000),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"eax"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1);
+  final MockInstruction instruction=new MockInstruction("call",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  assertEquals(3,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(BigInteger.valueOf(0x0FFC),interpreter.getVariableValue("esp"));
+  assertEquals(BigInteger.valueOf(0x2345),interpreter.getVariableValue("eip"));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(0x105,interpreter.readMemoryDword(0x0FFC));
+}

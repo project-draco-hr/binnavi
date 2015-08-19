@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(taintedRegs,"Error: Tainted registers argument can not be null");
+  Preconditions.checkNotNull(newlyTaintedRegs,"Error: Newly tainted registers argument can not be null");
+  Preconditions.checkNotNull(untaintedRegs,"Error: Untainted registers argument can not be null");
+  Preconditions.checkNotNull(readRegs,"Error: Read registers argument can not be null");
+  Preconditions.checkNotNull(updatedRegs,"Error: Updated registers argument can not be null");
+  m_taintedRegs=new TreeSet<String>(taintedRegs);
+  m_newlyTaintedRegs=new TreeSet<String>(newlyTaintedRegs);
+  m_untaintedRegs=new TreeSet<String>(untaintedRegs);
+  m_readRegs=new TreeSet<String>(readRegs);
+  m_updatedRegs=new TreeSet<String>(updatedRegs);
+}

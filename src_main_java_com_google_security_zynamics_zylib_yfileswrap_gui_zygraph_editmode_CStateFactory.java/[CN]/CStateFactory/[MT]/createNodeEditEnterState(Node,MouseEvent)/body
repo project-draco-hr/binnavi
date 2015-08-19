@@ -1,0 +1,5 @@
+{
+  final CNodeEditEnterState state=new CNodeEditEnterState(this,m_graph,n);
+  m_factory.createNodeEditEnterAction().execute(state,event);
+  return state;
+}

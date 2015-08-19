@@ -1,0 +1,5 @@
+{
+  m_parent=Preconditions.checkNotNull(parent,"IE02387: parent argument can not be null");
+  m_view=Preconditions.checkNotNull(view,"IE02388: view argument can not be null");
+  m_container=Preconditions.checkNotNull(container,"IE02389: container argument can not be null");
+}

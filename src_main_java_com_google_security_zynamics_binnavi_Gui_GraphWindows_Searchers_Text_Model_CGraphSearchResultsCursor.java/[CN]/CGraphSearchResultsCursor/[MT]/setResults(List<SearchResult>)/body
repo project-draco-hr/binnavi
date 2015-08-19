@@ -1,0 +1,4 @@
+{
+  m_results=new ArrayList<SearchResult>(results);
+  removeDuplicates();
+}

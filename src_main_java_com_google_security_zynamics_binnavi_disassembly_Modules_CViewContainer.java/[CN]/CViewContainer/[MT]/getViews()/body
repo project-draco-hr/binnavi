@@ -1,0 +1,7 @@
+{
+  final List<INaviView> views=new ArrayList<INaviView>();
+  views.add(m_nativeCallgraphView);
+  views.addAll(m_nativeFlowgraphs);
+  views.addAll(m_customViews);
+  return views;
+}

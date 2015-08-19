@@ -1,0 +1,23 @@
+{
+  final MockTagManagerListener listener=new MockTagManagerListener();
+  final Tag firstTag=tagManager.insertTag(null,"Hannes");
+  final Tag secondTag=tagManager.insertTag(null,"Fork");
+  final Tag thirdTag=tagManager.insertTag(secondTag,"FooBar");
+  tagManager.addListener(listener);
+  tagManager.deleteTag(thirdTag);
+  assertEquals(1,tagManager.getRootTags().size());
+  assertEquals(secondTag,tagManager.getRootTags().get(0));
+  assertEquals("Fork",manager.getRootTag().getChildren().get(0).getObject().getName());
+  assertEquals(firstTag,tagManager.getRootTags().get(0).getChildren().get(0));
+  assertEquals("Hannes",manager.getRootTag().getChildren().get(0).getChildren().get(0).getObject().getName());
+  assertEquals("deletedTag;",listener.events);
+  tagManager.deleteTag(firstTag);
+  assertEquals(1,tagManager.getRootTags().size());
+  assertEquals(secondTag,tagManager.getRootTags().get(0));
+  assertEquals("Fork",manager.getRootTag().getChildren().get(0).getObject().getName());
+  assertEquals("deletedTag;deletedTag;",listener.events);
+  tagManager.deleteTag(secondTag);
+  assertEquals(0,tagManager.getRootTags().size());
+  assertEquals("deletedTag;deletedTag;deletedTag;",listener.events);
+  tagManager.removeListener(listener);
+}

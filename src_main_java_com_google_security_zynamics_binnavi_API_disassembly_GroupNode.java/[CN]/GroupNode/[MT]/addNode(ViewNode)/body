@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(node,"Error: Node argument can not be null");
+  if (m_node.getElements().contains(node.getNative())) {
+    if (!m_elements.contains(node)) {
+      m_elements.add(node);
+    }
+  }
+ else {
+    m_node.addElement(node.getNative());
+  }
+}

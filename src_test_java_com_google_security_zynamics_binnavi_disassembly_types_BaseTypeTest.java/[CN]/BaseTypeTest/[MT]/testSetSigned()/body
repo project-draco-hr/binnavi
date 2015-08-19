@@ -1,0 +1,6 @@
+{
+  typeSystem.uintType.setSigned(true);
+  assertEquals(true,typeSystem.uintType.isSigned());
+  typeSystem.uintType.setSigned(false);
+  assertEquals(false,typeSystem.uintType.isSigned());
+}

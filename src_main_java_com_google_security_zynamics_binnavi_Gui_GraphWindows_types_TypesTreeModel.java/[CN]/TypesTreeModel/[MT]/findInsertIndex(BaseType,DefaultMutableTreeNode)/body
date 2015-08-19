@@ -1,0 +1,4 @@
+{
+  final int index=findTreeNodeIndex(baseType,root);
+  return index < 0 ? -index : index;
+}

@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(color,"Error: Color argument can not be null");
+  if (m_borderColor.equals(color)) {
+    return;
+  }
+  m_borderColor=color;
+  for (  final IViewNodeListener listener : m_listeners) {
+    try {
+      listener.changedBorderColor(this,color);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getNewlyTaintedRegisters().isEmpty());
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getUntaintedRegisters().isEmpty());
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getReadRegisters().isEmpty());
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getUpdatedRegisters().isEmpty());
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getTaintedRegisters().containsAll(m_fullSet));
+  m_fullRegisterSetLatticeElement.onInstructionExit();
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getNewlyTaintedRegisters().containsAll(m_fullSet));
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getUntaintedRegisters().isEmpty());
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getReadRegisters().containsAll(m_fullSet));
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getUpdatedRegisters().containsAll(m_fullSet));
+  Assert.assertTrue(m_fullRegisterSetLatticeElement.getTaintedRegisters().containsAll(m_fullSet));
+}

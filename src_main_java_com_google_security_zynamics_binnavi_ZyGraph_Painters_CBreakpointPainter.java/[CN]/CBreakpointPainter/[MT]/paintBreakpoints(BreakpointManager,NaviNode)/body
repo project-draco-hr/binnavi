@@ -1,0 +1,8 @@
+{
+  if (node.getRawNode() instanceof INaviCodeNode) {
+    paintBreakpoints(manager,node,(INaviCodeNode)node.getRawNode());
+  }
+ else   if (node.getRawNode() instanceof INaviFunctionNode) {
+    paintBreakpoints(manager,node,(INaviFunctionNode)node.getRawNode());
+  }
+}

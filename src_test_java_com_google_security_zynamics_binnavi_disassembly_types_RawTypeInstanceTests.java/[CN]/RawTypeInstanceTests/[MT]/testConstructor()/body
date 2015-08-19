@@ -1,0 +1,10 @@
+{
+  final RawTypeInstance rawInstance=new RawTypeInstance(MODULE_ID,ID,NAME,COMMENT_ID,TYPE_ID,SECTION_ID,SECTION_OFFSET);
+  assertEquals(MODULE_ID,rawInstance.getModuleId());
+  assertEquals(ID,rawInstance.getId());
+  assertEquals(NAME,rawInstance.getName());
+  assertEquals(COMMENT_ID,rawInstance.getCommentId());
+  assertEquals(TYPE_ID,rawInstance.getTypeId());
+  assertEquals(SECTION_ID,rawInstance.getSectionId());
+  assertEquals(SECTION_OFFSET,rawInstance.getSectionOffset());
+}

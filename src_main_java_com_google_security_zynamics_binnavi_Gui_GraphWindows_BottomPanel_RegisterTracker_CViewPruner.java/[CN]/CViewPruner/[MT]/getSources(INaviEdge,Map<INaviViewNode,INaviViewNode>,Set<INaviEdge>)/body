@@ -1,0 +1,16 @@
+{
+  final INaviViewNode source=edge.getSource();
+  visited.add(edge);
+  final Set<EdgeResult> sources=new HashSet<EdgeResult>();
+  if (nodeMap.containsKey(source)) {
+    sources.add(new EdgeResult(nodeMap.get(source),edge.getType()));
+  }
+ else {
+    for (    final INaviEdge incomingEdge : source.getIncomingEdges()) {
+      if (!visited.contains(incomingEdge)) {
+        sources.addAll(getSources(incomingEdge,nodeMap,visited));
+      }
+    }
+  }
+  return sources;
+}

@@ -1,0 +1,9 @@
+{
+  m_module.load();
+  m_module.loadData();
+  m_module.readSetting("foo");
+  m_module.isLoading();
+  m_module.isInitialized();
+  m_module.isInitializing();
+  m_module.isLoading();
+}

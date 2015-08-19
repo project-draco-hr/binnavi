@@ -1,0 +1,8 @@
+{
+  if (m_modeBox.getSelectedIndex() == 0) {
+    searchText();
+  }
+ else {
+    searchHex();
+  }
+}

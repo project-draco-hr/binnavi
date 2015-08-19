@@ -1,0 +1,7 @@
+{
+  super(projectTree);
+  m_parentNode=parentNode;
+  m_database=database;
+  m_debuggers=debuggers.clone();
+  m_table=table;
+}

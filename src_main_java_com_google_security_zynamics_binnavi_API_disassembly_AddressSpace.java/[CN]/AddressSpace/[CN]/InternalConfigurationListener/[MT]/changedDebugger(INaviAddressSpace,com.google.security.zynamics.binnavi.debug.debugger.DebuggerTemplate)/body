@@ -1,0 +1,11 @@
+{
+  m_debugger=addressSpace.getConfiguration().getDebugger() == null ? null : new Debugger(addressSpace.getConfiguration().getDebugger());
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      listener.changedDebugger(AddressSpace.this,m_debugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

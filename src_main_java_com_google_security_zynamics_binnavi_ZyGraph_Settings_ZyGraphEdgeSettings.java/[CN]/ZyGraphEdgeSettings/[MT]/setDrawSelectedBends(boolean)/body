@@ -1,0 +1,19 @@
+{
+  if (value == getDrawSelectedBends()) {
+    return;
+  }
+  if (type == null) {
+    drawSelectedBends=value;
+  }
+ else {
+    type.setDrawBends(true);
+  }
+  for (  final IZyGraphEdgeSettingsListener listener : listeners) {
+    try {
+      listener.changedDrawSelectedBends(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

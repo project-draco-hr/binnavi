@@ -1,0 +1,8 @@
+{
+  m_database.removeListener(m_databaseListener);
+  if (m_database.isLoaded()) {
+    for (    final INaviModule module : m_database.getContent().getModules()) {
+      module.removeListener(m_moduleListener);
+    }
+  }
+}

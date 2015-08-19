@@ -1,0 +1,7 @@
+{
+  for (  final BreakpointAddress breakpointAddres : addresses) {
+    final Breakpoint breakpoint=breakpointAddressToBreakpoint.remove(breakpointAddres);
+    moduleToBreakpoint.get(breakpointAddres.getModule()).remove(breakpoint);
+    breakpointAddressToStatus.remove(breakpointAddres);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  final Graph2D graph=(Graph2D)m_userData.getNode().getNode().getGraph();
+  final HierarchyManager hm=graph.getHierarchyManager();
+  final NodeList childNodes=new NodeList();
+  addChildren(hm,getNode(),childNodes);
+  moveNodes(graph,childNodes.nodes(),dx,dy);
+}

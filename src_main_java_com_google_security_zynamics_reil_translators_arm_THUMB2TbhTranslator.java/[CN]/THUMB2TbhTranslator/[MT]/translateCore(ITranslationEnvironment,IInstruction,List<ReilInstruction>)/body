@@ -1,0 +1,20 @@
+{
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize wd=OperandSize.WORD;
+  final OperandSize bt=OperandSize.BYTE;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+  final IOperandTreeNode shifterRootOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getChildren().get(0).getChildren().get(1);
+  final String firstRegister=registerOperand1.getValue();
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Pair<String,String> shifterOut=AddressingModeOneGenerator.generate(baseOffset,environment,instruction,instructions,shifterRootOperand);
+  final String memoryAddress=environment.getNextVariableString();
+  final String halfword=environment.getNextVariableString();
+  final String twoTimesHalfword=environment.getNextVariableString();
+  final String jumpTarget=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstRegister,dw,shifterOut.first(),dw,memoryAddress));
+  instructions.add(ReilHelpers.createLdm(baseOffset++,dw,memoryAddress,wd,halfword));
+  instructions.add(ReilHelpers.createMul(baseOffset++,wd,halfword,wd,String.valueOf(2),dw,twoTimesHalfword));
+  instructions.add(ReilHelpers.createAdd(baseOffset++,dw,"PC",dw,twoTimesHalfword,dw,jumpTarget));
+  instructions.add(ReilHelpers.createJcc(baseOffset++,bt,String.valueOf(1),dw,jumpTarget));
+}

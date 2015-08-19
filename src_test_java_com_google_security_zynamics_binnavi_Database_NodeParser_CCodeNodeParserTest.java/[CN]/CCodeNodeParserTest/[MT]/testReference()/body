@@ -1,0 +1,18 @@
+{
+  final MockCodeNodeProvider cnProvider=new MockCodeNodeProvider();
+  final MockCodeNodeData instruction1=new MockCodeNodeData();
+  instruction1.reference=new CReference(new CAddress(BigInteger.valueOf(123)),ReferenceType.CONDITIONAL_TRUE);
+  instruction1.nodeId=0;
+  instruction1.expressionId=0;
+  instruction1.expressionType=2;
+  instruction1.operandPosition=0;
+  instruction1.immediate="123";
+  cnProvider.data.add(instruction1);
+  final MockSqlProvider provider=new MockSqlProvider();
+  final MockModule module=new MockModule();
+  CFunctionContainerHelper.addFunction(module.getContent().getFunctionContainer(),new MockFunction(0));
+  final CCodeNodeParser p=new CCodeNodeParser(cnProvider,Lists.newArrayList(module),provider);
+  final List<CCodeNode> result=p.parse();
+  assertEquals(1,result.size());
+  assertEquals(1,Iterables.size(result.get(0).getInstructions()));
+}

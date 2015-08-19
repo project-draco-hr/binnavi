@@ -1,0 +1,5 @@
+{
+  model.add(rowData);
+  validRows.add(false);
+  fireTableRowsInserted(model.size() - 1,model.size() - 1);
+}

@@ -1,0 +1,7 @@
+{
+  initializeLogging();
+  System.setProperty(CMessageBox.DEFAULT_WINDOW_TITLE_PROPERTY,Constants.DEFAULT_WINDOW_TITLE);
+  initializeFont();
+  initializeTooltipDelay();
+  initializeHotkeys();
+}

@@ -1,0 +1,17 @@
+{
+  if (m_dataProvider == null) {
+    return -1;
+  }
+  if (x < (getHexViewLeft() + m_paddingHexLeft)) {
+    return -1;
+  }
+  if (y >= (m_paddingTop - m_font.getSize())) {
+    if ((x >= getHexViewLeft()) && (x < (getHexViewLeft() + getHexViewWidth()))) {
+      return getNibbleAtCoordinatesHex(x,y);
+    }
+ else     if (x >= getAsciiViewLeft()) {
+      return getNibbleAtCoordinatesAscii(x,y);
+    }
+  }
+  return -1;
+}

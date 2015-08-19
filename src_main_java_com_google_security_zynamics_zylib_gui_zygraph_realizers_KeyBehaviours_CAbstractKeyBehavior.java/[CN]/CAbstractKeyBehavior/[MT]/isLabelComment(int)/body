@@ -1,0 +1,3 @@
+{
+  return getLabelContent().getNonPureCommentLineIndexOfModelAt(lineYPos) == -1;
+}

@@ -1,0 +1,5 @@
+{
+  final CEdgeLabelHoverState state=new CEdgeLabelHoverState(this,m_graph,l);
+  m_factory.createEdgeLabelHoverAction().execute(state,event);
+  return state;
+}

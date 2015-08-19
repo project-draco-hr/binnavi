@@ -1,0 +1,9 @@
+{
+  try {
+    codeNode.getParentFunction();
+    return 1;
+  }
+ catch (  final MaybeNullException e) {
+    return 0;
+  }
+}

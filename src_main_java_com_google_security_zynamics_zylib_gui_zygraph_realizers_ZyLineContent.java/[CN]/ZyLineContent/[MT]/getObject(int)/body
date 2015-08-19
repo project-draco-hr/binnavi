@@ -1,0 +1,4 @@
+{
+  final ObjectWrapper wrapper=getObjectWrapper(position);
+  return wrapper == null ? null : wrapper.getObject();
+}

@@ -1,0 +1,11 @@
+{
+  for (  final ListenerWrapper wrapper : new ArrayList<ListenerWrapper>(listenerWrapper)) {
+    if (wrapper.getListener() == listener) {
+      module.removeListener(wrapper);
+      listenerWrapper.remove(wrapper);
+      if (module.isLoaded()) {
+        module.getContent().getTraceContainer().removeListener(wrapper);
+      }
+    }
+  }
+}

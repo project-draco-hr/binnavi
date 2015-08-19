@@ -1,0 +1,12 @@
+{
+  final INaviModule module=m_database.getContent().getModules().get(0);
+  module.load();
+  final INaviView view=module.getContent().getViewContainer().getView(module.getContent().getFunctionContainer().getFunction("sub_1003429"));
+  view.load();
+  assertEquals(92,view.getNodeCount());
+  assertEquals(144,view.getEdgeCount());
+  final INaviView reilView=CReilViewCreator.create(module,view.getContent().getReilCode().getGraph());
+  reilView.close();
+  view.close();
+  module.close();
+}

@@ -1,0 +1,9 @@
+{
+  final List<SearchResult> results=m_searcher.getResults();
+  for (  final SearchResult result : results) {
+    if ((result.getObject() instanceof NaviNode) && ((NaviNode)result.getObject()).getRawNode().equals(node)) {
+      setBackground(SEARCH_HIT_BACKGROUND);
+      return;
+    }
+  }
+}

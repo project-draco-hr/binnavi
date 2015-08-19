@@ -1,0 +1,4 @@
+{
+  super("Expand Group");
+  m_node=node;
+}

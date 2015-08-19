@@ -1,0 +1,28 @@
+{
+  if ((col != NAME_COLUMN) && (col != DESCRIPTION_COLUMN)) {
+    throw new IllegalStateException("IE01172: Column can not be edited");
+  }
+  final INaviProject project=getProjects().get(row);
+  if (col == NAME_COLUMN) {
+    try {
+      project.getConfiguration().setName((String)value);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00174: " + "Could not save project name";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The new name of the project '%s' could not be saved.",project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The project keeps its old name."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    }
+  }
+ else   if (col == DESCRIPTION_COLUMN) {
+    try {
+      project.getConfiguration().setDescription((String)value);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00175: " + "Could not save project description";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The new description of the project '%s' could not be saved.",project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The project keeps its old description."});
+      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    }
+  }
+}

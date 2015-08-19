@@ -1,0 +1,4 @@
+{
+  super(formatter);
+  m_information=information;
+}

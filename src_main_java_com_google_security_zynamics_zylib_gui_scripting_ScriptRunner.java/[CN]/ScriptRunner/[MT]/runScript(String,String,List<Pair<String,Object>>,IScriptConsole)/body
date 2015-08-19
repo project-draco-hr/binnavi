@@ -1,0 +1,6 @@
+{
+  final ScriptEngine engine=manager.getEngineByName(languageName);
+  Preconditions.checkNotNull(engine,"Error: Unknown scripting language");
+  engine.getContext().setWriter(console.getWriter());
+  runScript(engine,script,bindings);
+}

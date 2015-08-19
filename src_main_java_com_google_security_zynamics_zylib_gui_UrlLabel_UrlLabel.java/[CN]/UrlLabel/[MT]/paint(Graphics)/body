@@ -1,0 +1,13 @@
+{
+  super.paint(g);
+  final Border border=getBorder();
+  int realLeft=0;
+  int realWidth=getWidth();
+  if (border != null) {
+    final Insets insets=border.getBorderInsets(this);
+    realWidth-=insets.right;
+    realWidth-=insets.left;
+    realLeft+=insets.left;
+  }
+  g.drawLine(realLeft,getHeight() - 2,realWidth,getHeight() - 2);
+}

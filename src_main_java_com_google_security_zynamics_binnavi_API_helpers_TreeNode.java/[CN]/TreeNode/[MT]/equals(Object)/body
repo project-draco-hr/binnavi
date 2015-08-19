@@ -1,0 +1,10 @@
+{
+  if (object == null) {
+    return false;
+  }
+  if (getClass() != object.getClass()) {
+    return false;
+  }
+  @SuppressWarnings("unchecked") final TreeNode<ObjectType> safeNode=(TreeNode<ObjectType>)object;
+  return (Objects.equals(this.m_object,safeNode.m_object));
+}

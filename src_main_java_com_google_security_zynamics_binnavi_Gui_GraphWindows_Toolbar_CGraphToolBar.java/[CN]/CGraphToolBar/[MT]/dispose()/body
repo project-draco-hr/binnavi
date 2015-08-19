@@ -1,0 +1,4 @@
+{
+  m_settings.getDisplaySettings().removeListener(m_internalListener);
+  m_navigationPanel.dispose();
+}

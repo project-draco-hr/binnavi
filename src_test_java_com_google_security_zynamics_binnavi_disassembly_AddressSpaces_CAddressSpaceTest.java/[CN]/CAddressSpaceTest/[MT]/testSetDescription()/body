@@ -1,0 +1,14 @@
+{
+  try {
+    m_addressSpace.getConfiguration().setDescription(null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  m_addressSpace.getConfiguration().setDescription("New Description");
+  assertEquals("changedDescription;changedModificationDate;",m_listener.events);
+  assertEquals("New Description",m_addressSpace.getConfiguration().getDescription());
+  m_addressSpace.getConfiguration().setDescription("New Description");
+  assertEquals("changedDescription;changedModificationDate;",m_listener.events);
+  assertEquals("New Description",m_addressSpace.getConfiguration().getDescription());
+}

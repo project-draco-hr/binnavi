@@ -1,0 +1,3 @@
+{
+  m_root=Preconditions.checkNotNull(root,"Error: Root value can't be null");
+}

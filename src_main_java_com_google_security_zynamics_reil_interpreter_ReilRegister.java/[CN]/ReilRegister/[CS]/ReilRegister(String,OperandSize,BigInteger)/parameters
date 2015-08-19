@@ -1,0 +1,3 @@
+String register
+OperandSize size
+BigInteger value

@@ -1,0 +1,11 @@
+{
+  CCriteriumTreeNode.append(parent,child);
+  for (  final ICriteriumTreeListener listener : m_listeners) {
+    try {
+      listener.appendedNode(this,parent,child);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

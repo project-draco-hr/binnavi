@@ -1,0 +1,5 @@
+{
+  if (EdgeCache.this.provider.equals(provider)) {
+    EdgeCache.this.close();
+  }
+}

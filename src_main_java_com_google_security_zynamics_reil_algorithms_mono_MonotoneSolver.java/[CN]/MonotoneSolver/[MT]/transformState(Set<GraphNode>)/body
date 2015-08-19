@@ -1,0 +1,25 @@
+{
+  final StateVector<GraphNode,LatticeElement> newState=new StateVector<GraphNode,LatticeElement>();
+  final Set<GraphNode> newNodesToUpdate=new LinkedHashSet<GraphNode>();
+  for (  final GraphNode node : nodesToUpdate) {
+    final List<IInfluencingState<LatticeElement,ObjectType>> influencingStates=getStates(walker.getInfluencing(node));
+    final LatticeElement combinedState=lattice.combine(influencingStates);
+    final LatticeElement transformedState=transformationList.transform(node,state.getState(node),combinedState);
+    newState.setState(node,transformedState);
+    if (debugger != null) {
+      debugger.updatedState(node,influencingStates,transformedState);
+    }
+    if (!newState.getState(node).equals(state.getState(node))) {
+      newNodesToUpdate.addAll(walker.getInfluenced(node));
+    }
+    if (newState.getState(node).lessThan(state.getState(node))) {
+      throw new IllegalStateException("Non-monotone transformation detected");
+    }
+  }
+  updateCurrentState(newState);
+  if (debugger != null) {
+    debugger.updatedState(state);
+  }
+  nodesToUpdate.clear();
+  nodesToUpdate.addAll(newNodesToUpdate);
+}

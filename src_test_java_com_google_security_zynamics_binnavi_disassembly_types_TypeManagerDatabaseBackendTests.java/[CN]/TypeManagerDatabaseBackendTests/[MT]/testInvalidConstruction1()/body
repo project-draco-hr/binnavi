@@ -1,0 +1,3 @@
+{
+  new TypeManagerDatabaseBackend(new MockSqlProvider(),null);
+}

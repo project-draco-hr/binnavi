@@ -1,0 +1,5 @@
+{
+  if (m_showColorText) {
+    m_textLabel.setText(text);
+  }
+}

@@ -1,0 +1,22 @@
+{
+  Preconditions.checkNotNull(formula,"Error: formula argument can not be null.");
+  final Breakpoint breakpoint=getBreakpoint(BreakpointType.REGULAR,breakpointIndex);
+  final Set<Breakpoint> conditinalBreakPoints=Sets.newHashSet();
+  Condition condition=null;
+  try {
+    condition=BreakpointConditionParser.evaluate(formula);
+  }
+ catch (  final InvalidFormulaException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  breakpoint.setCondition(condition);
+  conditinalBreakPoints.add(breakpoint);
+  for (  final BreakpointManagerListener listener : listeners) {
+    try {
+      listener.breakpointsConditionChanged(conditinalBreakPoints);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

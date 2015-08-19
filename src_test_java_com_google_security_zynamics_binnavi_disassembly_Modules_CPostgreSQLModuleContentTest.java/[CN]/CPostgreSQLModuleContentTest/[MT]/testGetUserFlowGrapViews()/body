@@ -1,0 +1,12 @@
+{
+  final CModule module6=(CModule)getDatabase().getContent().getModules().get(0);
+  module6.load();
+  final CModuleContent moduleContent6=module6.getContent();
+  assertNotNull(CViewFilter.getFlowgraphViewCount(moduleContent6.getViewContainer().getUserViews()));
+  module6.close();
+  try {
+    CViewFilter.getFlowgraphViewCount(moduleContent6.getViewContainer().getUserViews());
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

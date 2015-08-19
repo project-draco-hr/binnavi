@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(parsedFunctionNotifications,"Error: parsedFunctionNotifications argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02740: provider argument can not be null");
+  for (  final FunctionNotificationContainer container : parsedFunctionNotifications) {
+    informFunctionNotification(container,provider);
+  }
+}

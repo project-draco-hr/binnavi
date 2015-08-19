@@ -1,0 +1,4 @@
+{
+  this.loadedPlugins=Lists.newArrayList(Preconditions.checkNotNull(loadedPlugins,"IE01657: Loaded plugins argument can not be null"));
+  this.failedPlugins=Lists.newArrayList(Preconditions.checkNotNull(failedPlugins,"IE01659: Failed plugins argument can not be null"));
+}

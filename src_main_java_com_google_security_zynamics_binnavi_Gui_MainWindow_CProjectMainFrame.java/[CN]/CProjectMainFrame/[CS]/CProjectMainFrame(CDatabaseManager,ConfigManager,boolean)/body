@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(databaseManager,"IE01828: Database manager can't be null");
+  Preconditions.checkNotNull(configFile,"IE01829: Config file argument can't be null");
+  m_firstStart=firstStart;
+  final CProjectMainPanel mainPanel=new CProjectMainPanel(this,databaseManager);
+  final JPanel statusBar=new JPanel(new BorderLayout());
+  statusBar.add(new CProgressStatusBar(),BorderLayout.EAST);
+  add(mainPanel,BorderLayout.CENTER);
+  add(statusBar,BorderLayout.SOUTH);
+  mainPanel.init();
+  restoreSettings(configFile);
+  setTitle(Constants.DEFAULT_WINDOW_TITLE);
+  setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+  addWindowListener(new WindowAdapter(){
+    @Override public void windowClosing(    final WindowEvent Event){
+      CWindowClosingFunctions.exit(CProjectMainFrame.this);
+    }
+  }
+);
+  CIconInitializer.initializeWindowIcons(this);
+}

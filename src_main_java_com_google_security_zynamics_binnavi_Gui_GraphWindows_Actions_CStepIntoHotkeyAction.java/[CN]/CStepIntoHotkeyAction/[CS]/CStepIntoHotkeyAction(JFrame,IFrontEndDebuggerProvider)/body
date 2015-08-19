@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(panel,"IE01655: Panel argument can not be null");
+  m_parent=parent;
+  m_debugPerspectiveModel=panel;
+}

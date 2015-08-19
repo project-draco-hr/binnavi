@@ -1,0 +1,21 @@
+{
+  m_provider=new MockSqlProvider();
+  m_module=new MockModule(m_provider);
+  m_database=new MockDatabase(m_provider);
+  m_function=new MockFunction(m_provider);
+  m_project=new CProject(123,"Name","Comment",new Date(),new Date(),55,new FilledList<DebuggerTemplate>(),m_provider);
+  m_project.load();
+  m_space=m_project.getContent().createAddressSpace("space");
+  m_space.load();
+  m_space.getContent().addModule(m_module);
+  m_debugger=new DebuggerTemplate(2,"gdb","local",2222,m_provider);
+  m_space.getConfiguration().setDebuggerTemplate(m_debugger);
+  m_listener=new MockAddressSpaceListener();
+  m_space.addListener(m_listener);
+  m_module.load();
+  CFunctionContainerHelper.addFunction(m_module.getContent().getFunctionContainer(),m_function);
+  final CView view=m_module.getContent().getViewContainer().createView("foo","bar");
+  @SuppressWarnings("unused") final MockViewContainer mockViewContainer=new MockViewContainer();
+  final MockViewListener listener=new MockViewListener();
+  view.addListener(listener);
+}

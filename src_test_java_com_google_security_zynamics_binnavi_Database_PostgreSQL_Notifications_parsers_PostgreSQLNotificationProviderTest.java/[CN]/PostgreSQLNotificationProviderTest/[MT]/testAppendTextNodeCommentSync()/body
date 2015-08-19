@@ -1,0 +1,31 @@
+{
+  final CView databaseOneTextNodeView=databaseOneModuleTwo.getContent().getViewContainer().createView(" TEXT NODE TESTING VIEW ","");
+  CViewInserter.insertView(databaseOneView,databaseOneTextNodeView);
+  final INaviTextNode databaseOneTextNode=databaseOneTextNodeView.getContent().createTextNode(new ArrayList<IComment>());
+  databaseOneTextNodeView.save();
+  databaseTwoModuleTwo.close();
+  databaseTwoModuleTwo.load();
+  databaseTwoView.load();
+  final INaviView databaseTwoTextNodeView=Iterables.getLast(databaseTwoModuleTwo.getContent().getViewContainer().getUserViews());
+  INaviTextNode databaseTwoTextNode=null;
+  assertEquals(databaseOneTextNodeView.getName(),databaseTwoTextNodeView.getName());
+  databaseTwoTextNodeView.load();
+  for (  final INaviViewNode node : databaseTwoTextNodeView.getContent().getGraph().getNodes()) {
+    if (node instanceof INaviTextNode) {
+      databaseTwoTextNode=(INaviTextNode)node;
+    }
+  }
+  assertNotNull(databaseTwoTextNode);
+  assertEquals(databaseTwoTextNode.getId(),databaseOneTextNode.getId());
+  databaseOneTextNode.appendComment(" TEST NOTIFICATION PROVIDER TESTS (TEXT NODE COMMENT) ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneAfter=databaseOneTextNode.getComments();
+  final List<IComment> twoAfter=databaseTwoTextNode.getComments();
+  assertNotNull(oneAfter);
+  assertNotNull(twoAfter);
+  assertEquals(1,oneAfter.size());
+  assertEquals(1,twoAfter.size());
+  assertEquals(oneAfter,twoAfter);
+}

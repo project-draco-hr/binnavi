@@ -1,0 +1,34 @@
+{
+  checkArguments(provider,view);
+  Preconditions.checkNotNull(settings,"IE02414: settings argument can not be null");
+  if (settings.isEmpty()) {
+    return;
+  }
+  final CConnection connection=provider.getConnection();
+  final StringBuilder deleteQuery=new StringBuilder("DELETE FROM " + CTableNames.VIEW_SETTINGS_TABLE + " WHERE ");
+  final StringBuilder insertQuery=new StringBuilder("INSERT INTO " + CTableNames.VIEW_SETTINGS_TABLE + " VALUES");
+  boolean first=true;
+  for (  final Map.Entry<String,String> pair : settings.entrySet()) {
+    final String value=pair.getValue();
+    final String key=pair.getKey();
+    if ((value == null) || (key == null)) {
+      continue;
+    }
+ else {
+      if (!first) {
+        deleteQuery.append("OR");
+        insertQuery.append(',');
+      }
+      deleteQuery.append(" (view_id = " + view.getConfiguration().getId() + " AND name = '"+ key+ "') ");
+      insertQuery.append(" (" + view.getConfiguration().getId() + ", '"+ key+ "', '"+ value+ "' ) ");
+    }
+    first=false;
+  }
+  try {
+    connection.executeUpdate(deleteQuery.toString(),true);
+    connection.executeUpdate(insertQuery.toString(),true);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException("E00115: Could not update settings in " + CTableNames.VIEW_SETTINGS_TABLE);
+  }
+}

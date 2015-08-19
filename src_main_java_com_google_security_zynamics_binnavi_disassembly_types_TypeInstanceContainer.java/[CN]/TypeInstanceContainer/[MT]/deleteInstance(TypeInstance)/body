@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(instance,"Error: instance argument can not be null");
+  instancesByAddress.remove(instance.getAddress());
+  instances.remove(instance);
+  backend.deleteInstance(instance);
+  notifyInstanceRemoved(instance);
+}

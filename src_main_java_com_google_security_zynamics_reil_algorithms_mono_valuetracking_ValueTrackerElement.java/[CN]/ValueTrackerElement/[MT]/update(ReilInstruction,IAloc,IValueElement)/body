@@ -1,0 +1,16 @@
+{
+  if (m_influences.contains(influence) && (getState(aloc) != null) && !influence.getThirdOperand().getValue().equals(aloc.toString())&& !value.equals(getState(aloc))) {
+    System.out.println(influence);
+    System.out.println(aloc + " -> " + value);
+    System.out.println(getState(aloc));
+    System.out.println(m_influences);
+    System.out.println(m_values);
+    throw new IllegalStateException();
+  }
+  final Set<ReilInstruction> newInfluences=new HashSet<ReilInstruction>(m_influences);
+  newInfluences.add(influence);
+  final Map<String,Set<IAddress>> newLastWritten=createLastWritten(m_lastWritten,influence);
+  final HashMap<IAloc,IValueElement> updatedValues=new HashMap<IAloc,IValueElement>(m_values);
+  updatedValues.put(aloc,value);
+  return new ValueTrackerElement(newInfluences,updatedValues,newLastWritten);
+}

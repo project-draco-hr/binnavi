@@ -1,0 +1,9 @@
+{
+  if (!event.getValueIsAdjusting()) {
+    @SuppressWarnings("unchecked") final PluginItem<T> pluginItem=(PluginItem<T>)pluginList.getSelectedValue();
+    if (pluginItem == null) {
+      return;
+    }
+    pluginDescriptionTextArea.setText(pluginItem.getObject().getDescription());
+  }
+}

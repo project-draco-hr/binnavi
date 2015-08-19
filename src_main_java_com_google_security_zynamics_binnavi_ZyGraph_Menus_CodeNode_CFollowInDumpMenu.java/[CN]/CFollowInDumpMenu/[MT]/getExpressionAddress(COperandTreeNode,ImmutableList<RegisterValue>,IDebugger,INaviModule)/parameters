@@ -1,0 +1,4 @@
+COperandTreeNode treeNode
+ImmutableList<RegisterValue> registerValues
+IDebugger debugger
+INaviModule module

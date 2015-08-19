@@ -1,0 +1,4 @@
+{
+  super("Delete Unselected Nodes");
+  m_graph=graph;
+}

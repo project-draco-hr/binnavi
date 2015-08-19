@@ -1,0 +1,29 @@
+{
+  final List<IComment> oneOne=databaseOneFunction.getGlobalComment() == null ? new ArrayList<IComment>() : databaseOneFunction.getGlobalComment();
+  final List<IComment> twoOne=databaseTwoFunction.getGlobalComment() == null ? new ArrayList<IComment>() : databaseTwoFunction.getGlobalComment();
+  assertEquals(oneOne,twoOne);
+  final List<IComment> comments=databaseOneFunction.appendGlobalComment(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL FUNCTION COMMENT) BEFORE ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneTwo=databaseOneFunction.getGlobalComment();
+  final List<IComment> twoTwo=databaseTwoFunction.getGlobalComment();
+  assertNotNull(oneTwo);
+  assertNotNull(twoTwo);
+  assertEquals(oneOne.size() + 1,oneTwo.size());
+  assertEquals(twoOne.size() + 1,twoTwo.size());
+  assertEquals(oneTwo,twoTwo);
+  final int oneTwoSize=oneTwo.size();
+  final int twoTwoSize=twoTwo.size();
+  databaseOneFunction.editGlobalComment(Iterables.getLast(comments)," TEST NOTIFICATION PROVIDER TESTS (GLOBAL FUNCTION COMMENT) AFTER ");
+synchronized (lock) {
+    lock.await(1000,TimeUnit.MILLISECONDS);
+  }
+  final List<IComment> oneThree=databaseOneFunction.getGlobalComment();
+  final List<IComment> twoThree=databaseTwoFunction.getGlobalComment();
+  assertEquals(oneTwoSize,oneThree.size());
+  assertEquals(twoTwoSize,twoThree.size());
+  assertEquals(oneThree,twoThree);
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL FUNCTION COMMENT) AFTER ",Iterables.getLast(oneThree).getComment());
+  assertEquals(" TEST NOTIFICATION PROVIDER TESTS (GLOBAL FUNCTION COMMENT) AFTER ",Iterables.getLast(twoThree).getComment());
+}

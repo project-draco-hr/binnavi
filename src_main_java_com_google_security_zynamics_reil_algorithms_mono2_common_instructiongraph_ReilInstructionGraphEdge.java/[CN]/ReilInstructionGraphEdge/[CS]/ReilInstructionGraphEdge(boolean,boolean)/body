@@ -1,0 +1,4 @@
+{
+  this.isTrue=isTrue;
+  this.isExit=isExit;
+}

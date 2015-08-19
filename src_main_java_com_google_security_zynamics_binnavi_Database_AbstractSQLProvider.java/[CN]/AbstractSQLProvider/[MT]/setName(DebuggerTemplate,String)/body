@@ -1,0 +1,3 @@
+{
+  PostgresSQLDebuggerFunctions.setName(this,debugger,name);
+}

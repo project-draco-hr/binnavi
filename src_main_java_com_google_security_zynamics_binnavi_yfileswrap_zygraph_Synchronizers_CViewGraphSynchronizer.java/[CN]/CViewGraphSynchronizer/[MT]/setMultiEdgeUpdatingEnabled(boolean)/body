@@ -1,0 +1,4 @@
+{
+  m_multiEdgeUpdatingEnabled=enabled;
+  updateMultiEdges();
+}

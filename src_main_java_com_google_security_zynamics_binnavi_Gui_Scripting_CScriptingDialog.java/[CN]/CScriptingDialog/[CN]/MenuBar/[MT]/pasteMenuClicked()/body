@@ -1,0 +1,6 @@
+{
+  final ConsolePane panel=(ConsolePane)scriptTab.getSelectedComponent();
+  if (panel == null) {
+    return;
+  }
+}

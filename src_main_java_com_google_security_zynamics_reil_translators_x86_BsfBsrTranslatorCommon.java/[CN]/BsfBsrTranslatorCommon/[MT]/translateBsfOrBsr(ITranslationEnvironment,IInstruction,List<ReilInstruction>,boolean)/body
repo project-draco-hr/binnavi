@@ -1,0 +1,48 @@
+{
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a bsr/bsf instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final IOperandTree targetOperand=instruction.getOperands().get(0);
+  final IOperandTree sourceOperand=instruction.getOperands().get(1);
+  final TranslationResult sourceResult=Helpers.translateOperand(environment,offset,sourceOperand,true);
+  instructions.addAll(sourceResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final OperandSize sourceSize=sourceResult.getSize();
+  final List<ReilInstruction> tempInstructions=new ArrayList<>();
+  final String targetRegister=Helpers.getLeafValue(targetOperand.getRootNode());
+  final String labelNotZero=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 4);
+  final String labelLoopStart=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 7);
+  final String labelLoopEnd=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 12);
+  final String labelEnd=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + tempInstructions.size() + 12);
+  instructions.add(ReilHelpers.createJcc(offset++,sourceSize,sourceResult.getRegister(),OperandSize.ADDRESS,labelNotZero));
+  instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"1",OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createUndef(offset++,environment.getArchitectureSize(),targetRegister));
+  instructions.add(ReilHelpers.createJcc(offset++,OperandSize.BYTE,"1",OperandSize.ADDRESS,labelEnd));
+  final String counter=environment.getNextVariableString();
+  final String shiftedValue=environment.getNextVariableString();
+  final String isolatedMsb=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"0",OperandSize.BYTE,Helpers.ZERO_FLAG));
+  instructions.add(ReilHelpers.createStr(offset++,sourceSize,sourceResult.getRegister(),sourceSize,shiftedValue));
+  if (translateBsf) {
+    instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"0",OperandSize.BYTE,counter));
+    instructions.add(ReilHelpers.createAnd(offset++,sourceSize,shiftedValue,sourceSize,"1",OperandSize.BYTE,isolatedMsb));
+  }
+ else {
+    instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"31",OperandSize.BYTE,counter));
+    instructions.add(ReilHelpers.createAnd(offset++,sourceSize,shiftedValue,sourceSize,String.valueOf(TranslationHelpers.getMsbMask(sourceSize)),OperandSize.BYTE,isolatedMsb));
+  }
+  instructions.add(ReilHelpers.createJcc(offset++,sourceSize,isolatedMsb,OperandSize.ADDRESS,labelLoopEnd));
+  if (translateBsf) {
+    instructions.add(ReilHelpers.createAdd(offset++,OperandSize.BYTE,counter,OperandSize.BYTE,"1",OperandSize.BYTE,counter));
+    instructions.add(ReilHelpers.createBsh(offset++,sourceSize,shiftedValue,sourceSize,"-1",sourceSize,shiftedValue));
+  }
+ else {
+    instructions.add(ReilHelpers.createSub(offset++,OperandSize.BYTE,counter,OperandSize.BYTE,"1",OperandSize.BYTE,counter));
+    instructions.add(ReilHelpers.createBsh(offset++,sourceSize,shiftedValue,sourceSize,"1",sourceSize,shiftedValue));
+  }
+  instructions.add(ReilHelpers.createJcc(offset++,OperandSize.BYTE,"1",OperandSize.ADDRESS,labelLoopStart));
+  instructions.add(ReilHelpers.createStr(offset++,OperandSize.DWORD,counter,OperandSize.DWORD,targetRegister));
+  instructions.add(ReilHelpers.createNop(offset++));
+}

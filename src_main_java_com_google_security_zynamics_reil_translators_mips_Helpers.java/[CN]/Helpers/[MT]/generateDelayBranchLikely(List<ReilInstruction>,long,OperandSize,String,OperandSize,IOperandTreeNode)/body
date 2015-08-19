@@ -1,0 +1,3 @@
+{
+  generateDelayBranchInternal(instructions,baseOffset,conditionSize,conditionOperand,targetSize,targetOperand,new String[]{"branch_delay_true","true"});
+}

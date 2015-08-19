@@ -1,0 +1,17 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.connect();
+  m_model.setActiveDebugger(debugger);
+  final MemorySection section1=new MemorySection(new CAddress(0x1000),new CAddress(0x1FF0));
+  final MemorySection section2=new MemorySection(new CAddress(0x3000),new CAddress(0x3FF0));
+  final MemoryMap memoryMap=new MemoryMap(Lists.newArrayList(section1,section2));
+  debugger.connection.m_synchronizer.receivedEvent(new MemoryMapReply(0,0,memoryMap));
+  assertEquals(2,m_sectionBox.getItemCount());
+  assertEquals(section1,m_sectionBox.getItemAt(0).getObject());
+  assertEquals(section2,m_sectionBox.getItemAt(1).getObject());
+  assertEquals(section1,m_sectionBox.getSelectedItem().getObject());
+  m_model.setActiveMemoryAddress(new CAddress(0x3000),false);
+  assertEquals(section2,m_sectionBox.getSelectedItem().getObject());
+  m_synchronizer.dispose();
+  debugger.close();
+}

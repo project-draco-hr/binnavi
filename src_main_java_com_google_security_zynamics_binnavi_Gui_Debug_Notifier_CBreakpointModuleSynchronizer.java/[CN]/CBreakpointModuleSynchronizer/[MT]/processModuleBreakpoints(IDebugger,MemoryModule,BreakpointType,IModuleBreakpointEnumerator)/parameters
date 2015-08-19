@@ -1,0 +1,4 @@
+IDebugger debugger
+MemoryModule module
+BreakpointType breakPointType
+IModuleBreakpointEnumerator callback

@@ -1,0 +1,5 @@
+{
+  super(operation,commentId,scope);
+  this.instruction=Preconditions.checkNotNull(instruction,"Error: Instruction argument can not be null.");
+  this.node=node;
+}

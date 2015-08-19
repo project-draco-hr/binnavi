@@ -1,0 +1,17 @@
+{
+  final Set<Pair<INaviViewNode,INaviViewNode>> createdEdges=new HashSet<Pair<INaviViewNode,INaviViewNode>>();
+  for (  final INaviEdge edge : view.getGraph().getEdges()) {
+    final Set<EdgeResult> sources=getSources(edge,nodeMap,new HashSet<INaviEdge>());
+    final Set<EdgeResult> targets=getTargets(edge,nodeMap,new HashSet<INaviEdge>());
+    for (    final EdgeResult source : sources) {
+      for (      final EdgeResult target : targets) {
+        final Pair<INaviViewNode,INaviViewNode> edgePair=new Pair<INaviViewNode,INaviViewNode>(source.m_node,target.m_node);
+        if (createdEdges.contains(edgePair)) {
+          continue;
+        }
+        prunedView.getContent().createEdge(source.m_node,target.m_node,source.m_type);
+        createdEdges.add(edgePair);
+      }
+    }
+  }
+}

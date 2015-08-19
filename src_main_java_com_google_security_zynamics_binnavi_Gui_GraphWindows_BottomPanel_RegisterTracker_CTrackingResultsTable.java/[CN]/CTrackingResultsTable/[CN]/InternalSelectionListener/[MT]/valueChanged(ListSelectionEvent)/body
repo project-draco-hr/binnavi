@@ -1,0 +1,8 @@
+{
+  if (event.getValueIsAdjusting()) {
+    return;
+  }
+  final int[] normalizedRows=normalizeRows(getSelectedRows());
+  final List<CInstructionResult> instructionResults=getInstructionResults(m_container.getResult(),normalizedRows);
+  CTrackingResultsHighlighter.updateHighlighting(m_container.getGraph(),m_container.getResult().getStartInstruction(),m_container.getResult().getTrackedRegister(),instructionResults);
+}

@@ -1,0 +1,19 @@
+{
+  final int lastPressedXPos=getLastLineXPos(mousePressed_Y);
+  if (caretStartPos_X > lastPressedXPos) {
+    caretStartPos_X=lastPressedXPos;
+  }
+  if (mousePressed_X > lastPressedXPos) {
+    mousePressed_X=lastPressedXPos;
+  }
+  final int lastReleasedXPos=getLastLineXPos(mouseReleased_Y);
+  if (caretEndPos_X > lastReleasedXPos) {
+    caretEndPos_X=lastReleasedXPos;
+  }
+  m_caret_startpos_x=caretStartPos_X;
+  m_mouse_pressed_x=mousePressed_X;
+  m_mouse_pressed_y=mousePressed_Y;
+  m_caret_endpos_x=caretEndPos_X;
+  m_mouse_released_x=mouseReleased_X;
+  m_mouse_released_y=mouseReleased_Y;
+}

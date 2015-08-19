@@ -1,0 +1,12 @@
+{
+  if (m_texture == null) {
+    try {
+      final BufferedImage backgroundImage=ImageIO.read(CMain.class.getResource("data/unsaved_bg.png"));
+      final Double rect=new Rectangle2D.Double(0,0,backgroundImage.getWidth(),backgroundImage.getHeight());
+      m_texture=new TexturePaint(backgroundImage,rect);
+    }
+ catch (    final IOException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

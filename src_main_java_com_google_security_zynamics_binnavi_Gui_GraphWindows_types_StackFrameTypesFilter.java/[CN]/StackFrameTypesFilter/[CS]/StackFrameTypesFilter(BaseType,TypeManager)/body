@@ -1,0 +1,4 @@
+{
+  this.stackFrameType=stackFrameType;
+  this.typeManager=typeManager;
+}

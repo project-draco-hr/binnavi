@@ -1,0 +1,7 @@
+{
+  super("Unhide and add to selection");
+  Preconditions.checkNotNull(graph,"IE00946: Graph argument can't be null");
+  Preconditions.checkNotNull(node,"IE00947: Node argument can't be null");
+  m_graph=graph;
+  m_node=node;
+}

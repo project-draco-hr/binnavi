@@ -1,0 +1,10 @@
+{
+  if (m_actionsLogFile.exists()) {
+    try {
+      load(m_actionsLogFile);
+    }
+ catch (    final IOException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

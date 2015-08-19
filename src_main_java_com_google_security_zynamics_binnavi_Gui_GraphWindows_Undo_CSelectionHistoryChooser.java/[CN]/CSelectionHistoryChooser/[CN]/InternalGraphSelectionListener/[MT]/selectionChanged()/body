@@ -1,0 +1,7 @@
+{
+  final CSelectionSnapshot snapshot=new CSelectionSnapshot(m_graph.getSelectedNodes());
+  if (snapshot.size() != 0 && !snapshot.equals(lastSnapshot)) {
+    m_selectionHistory.addSnapshot(snapshot);
+    lastSnapshot=snapshot;
+  }
+}

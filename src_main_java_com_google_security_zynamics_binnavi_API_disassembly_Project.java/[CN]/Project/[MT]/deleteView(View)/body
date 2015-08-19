@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(view,"Error: View argument can not be null");
+  try {
+    return m_project.getContent().deleteView(view.getNative());
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntDeleteException e) {
+    throw new CouldntDeleteException(e);
+  }
+}

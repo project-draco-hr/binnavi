@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    provider.editGlobalEdgeComment(edge,id,userId,commentText);
+  }
+ else {
+    provider.editLocalEdgeComment(edge,id,userId,commentText);
+  }
+}

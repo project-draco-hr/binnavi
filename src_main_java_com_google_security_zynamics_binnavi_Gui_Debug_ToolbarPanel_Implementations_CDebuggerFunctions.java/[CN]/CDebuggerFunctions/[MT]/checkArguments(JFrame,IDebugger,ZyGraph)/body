@@ -1,0 +1,4 @@
+{
+  checkArguments(parent,debugger);
+  Preconditions.checkNotNull(graph,"IE01555: Graph argument can not be null");
+}

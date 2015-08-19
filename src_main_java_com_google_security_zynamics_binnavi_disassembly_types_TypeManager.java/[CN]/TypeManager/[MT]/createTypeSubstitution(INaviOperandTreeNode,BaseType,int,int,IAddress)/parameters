@@ -1,0 +1,5 @@
+INaviOperandTreeNode node
+BaseType baseType
+int position
+int offset
+IAddress address

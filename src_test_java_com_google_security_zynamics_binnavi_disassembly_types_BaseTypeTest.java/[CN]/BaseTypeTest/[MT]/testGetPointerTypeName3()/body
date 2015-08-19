@@ -1,0 +1,4 @@
+{
+  final String pointerName=BaseType.getPointerTypeName(typeSystem.uintType,10);
+  assertEquals(typeSystem.uintType.getName() + " " + Strings.repeat("*",10),pointerName);
+}

@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  Preconditions.checkArgument(offset >= 0,"Error: Argument offset can't be less than 0");
+  final String zfZero=environment.getNextVariableString();
+  final String cfZero=environment.getNextVariableString();
+  final String bothZero=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBisz(offset,OperandSize.BYTE,Helpers.ZERO_FLAG,OperandSize.BYTE,zfZero));
+  instructions.add(ReilHelpers.createBisz(offset + 1,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,cfZero));
+  instructions.add(ReilHelpers.createAnd(offset + 2,OperandSize.BYTE,zfZero,OperandSize.BYTE,cfZero,OperandSize.BYTE,bothZero));
+  return new Pair<OperandSize,String>(OperandSize.BYTE,bothZero);
+}

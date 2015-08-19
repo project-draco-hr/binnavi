@@ -1,0 +1,12 @@
+{
+  final CBend path=new CBend(x,y);
+  m_paths.add(index,path);
+  for (  final IViewEdgeListener listener : m_listeners) {
+    try {
+      listener.insertedBend(this,index,path);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

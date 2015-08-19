@@ -1,0 +1,8 @@
+{
+  try {
+    return PostgreSQLHelpers.loadAddress(m_resultSet,"function_address");
+  }
+ catch (  final SQLException e) {
+    throw new ParserException(e);
+  }
+}

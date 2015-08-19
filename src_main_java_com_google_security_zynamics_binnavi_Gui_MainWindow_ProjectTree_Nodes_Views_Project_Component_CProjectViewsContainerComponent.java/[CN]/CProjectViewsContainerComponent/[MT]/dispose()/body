@@ -1,0 +1,8 @@
+{
+  m_project.removeListener(m_viewContainerListener);
+  if (m_project.isLoaded()) {
+    for (    final INaviView view : m_project.getContent().getViews()) {
+      view.removeListener(m_viewListener);
+    }
+  }
+}

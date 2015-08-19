@@ -1,0 +1,3 @@
+IAddress start
+int size
+byte[] data

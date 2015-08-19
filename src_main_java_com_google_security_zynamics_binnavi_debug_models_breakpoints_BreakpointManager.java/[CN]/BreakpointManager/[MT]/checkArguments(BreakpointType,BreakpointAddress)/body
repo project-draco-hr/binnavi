@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(type,"IE01012: Type argument can not be null");
+  Preconditions.checkNotNull(address,"IE01022: Address argument can not be null");
+}

@@ -1,0 +1,5 @@
+{
+  if ((getInputPane().getSelectionStart() == getInputPane().getSelectionEnd()) && (getDocument().getCaretOffsetInLine(getInputPane().getCaretPosition()) <= m_CurrentPrompt.length())) {
+    e.consume();
+  }
+}

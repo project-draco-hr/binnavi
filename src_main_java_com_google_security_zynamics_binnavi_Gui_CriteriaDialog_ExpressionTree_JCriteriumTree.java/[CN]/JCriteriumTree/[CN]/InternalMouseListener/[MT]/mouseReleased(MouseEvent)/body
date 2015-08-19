@@ -1,0 +1,6 @@
+{
+  m_currentCriteriumPath=getPathForLocation(event.getX(),event.getY());
+  if (event.isPopupTrigger()) {
+    showPopupMenu(event);
+  }
+}

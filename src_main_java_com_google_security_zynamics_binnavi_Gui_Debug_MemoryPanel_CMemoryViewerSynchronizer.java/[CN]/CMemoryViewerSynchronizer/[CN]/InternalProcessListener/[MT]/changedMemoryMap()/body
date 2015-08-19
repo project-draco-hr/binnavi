@@ -1,0 +1,23 @@
+{
+  final boolean showingData=m_provider.getDataLength() != 0;
+  final long currentOffset=m_hexView.getCurrentOffset();
+  if (!resizeData(new CAddress(m_hexView.getCurrentOffset()))) {
+    final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+    if (debugger != null && debugger.getProcessManager().getMemoryMap().getNumberOfSections() != 0) {
+      final MemorySection section=debugger.getProcessManager().getMemoryMap().getSection(0);
+      m_hexView.setBaseAddress(section.getStart().toLong());
+      m_provider.setMemorySize(section.getSize());
+      m_hexView.gotoOffset(section.getStart().toLong());
+    }
+    if (showingData) {
+      for (      final IMemoryViewerSynchronizerListener listener : m_listeners) {
+        try {
+          listener.addressTurnedInvalid(currentOffset);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return String.format("View Edge [%s -> %s]",super.getSource().getName(),super.getTarget().getName());
+}

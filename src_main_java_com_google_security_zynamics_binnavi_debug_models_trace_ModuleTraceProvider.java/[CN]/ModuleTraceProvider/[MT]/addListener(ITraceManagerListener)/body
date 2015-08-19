@@ -1,0 +1,8 @@
+{
+  final ListenerWrapper newListener=new ListenerWrapper(listener);
+  listenerWrapper.add(newListener);
+  module.addListener(newListener);
+  if (module.isLoaded()) {
+    module.getContent().getTraceContainer().addListener(newListener);
+  }
+}

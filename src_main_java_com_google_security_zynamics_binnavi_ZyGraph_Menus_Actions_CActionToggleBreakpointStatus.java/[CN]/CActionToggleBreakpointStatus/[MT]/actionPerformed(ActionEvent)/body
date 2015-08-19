@@ -1,0 +1,3 @@
+{
+  CGraphDebugger.toggleBreakpointStatus(m_manager,m_module,m_address);
+}

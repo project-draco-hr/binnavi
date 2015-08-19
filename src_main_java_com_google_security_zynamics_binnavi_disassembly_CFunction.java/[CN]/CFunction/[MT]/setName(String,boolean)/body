@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(name,"IE00085: Null is not a valid function name");
+  if (name.equals(this.name)) {
+    return;
+  }
+  if (saveToDatabase) {
+    provider.setName(this,name);
+  }
+  this.name=name;
+  for (  final IFunctionListener<IComment> listener : functionListeners) {
+    listener.changedName(this,name);
+  }
+}

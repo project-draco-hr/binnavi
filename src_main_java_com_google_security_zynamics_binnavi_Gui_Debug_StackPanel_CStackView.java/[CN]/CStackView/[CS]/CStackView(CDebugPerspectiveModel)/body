@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01503: Debug perspective model argument can not be null");
+  setBorder(new TitledBorder("Stack"));
+  m_model.setDebugger(debugPerspectiveModel.getCurrentSelectedDebugger());
+  m_stackView=new JStackView(m_model);
+  m_stackView.addMouseListener(new InternalMouseListener());
+  add(m_stackView);
+  m_synchronizer=new CStackViewSynchronizer(m_stackView,m_model,debugPerspectiveModel);
+}

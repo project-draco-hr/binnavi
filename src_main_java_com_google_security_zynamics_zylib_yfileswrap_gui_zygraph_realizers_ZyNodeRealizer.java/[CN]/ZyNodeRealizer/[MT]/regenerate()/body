@@ -1,0 +1,13 @@
+{
+  final ZyLabelContent content=getNodeContent();
+  final double widthOld=content.getBounds().getWidth();
+  final double heightOld=content.getBounds().getHeight();
+  if (m_updater != null) {
+    m_updater.generateContent(this,content);
+  }
+  final Rectangle2D bounds=content.getBounds();
+  setSize(bounds.getWidth(),bounds.getHeight());
+  scalePortCoordinates(getNode(),widthOld,bounds.getWidth(),heightOld,bounds.getHeight());
+  notifyHasRegenerated();
+  repaint();
+}

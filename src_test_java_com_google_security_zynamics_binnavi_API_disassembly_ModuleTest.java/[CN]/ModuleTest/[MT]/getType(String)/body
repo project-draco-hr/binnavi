@@ -1,0 +1,3 @@
+{
+  return Convert.isDecString(value) ? ExpressionType.ImmediateInteger : ExpressionType.Register;
+}

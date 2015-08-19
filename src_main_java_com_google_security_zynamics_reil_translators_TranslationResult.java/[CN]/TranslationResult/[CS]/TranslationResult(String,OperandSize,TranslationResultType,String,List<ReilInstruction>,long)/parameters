@@ -1,0 +1,6 @@
+String register
+OperandSize size
+TranslationResultType type
+String address
+List<ReilInstruction> instructions
+long baseAddress

@@ -1,0 +1,4 @@
+ZyGraph2DView view
+LinkedHashMap<Node,NodeType> nodeMap
+LinkedHashMap<Edge,EdgeType> edgeMap
+AbstractZyGraphSettings settings

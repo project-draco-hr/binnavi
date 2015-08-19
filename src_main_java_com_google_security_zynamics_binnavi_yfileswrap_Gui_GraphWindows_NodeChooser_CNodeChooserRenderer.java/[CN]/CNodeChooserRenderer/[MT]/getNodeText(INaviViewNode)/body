@@ -1,0 +1,17 @@
+{
+  if (node instanceof INaviFunctionNode) {
+    return ((INaviFunctionNode)node).getFunction().getName();
+  }
+ else   if (node instanceof INaviCodeNode) {
+    return Iterables.getFirst(((INaviCodeNode)node).getInstructions(),null).getAddress().toHexString();
+  }
+ else   if (node instanceof INaviGroupNode) {
+    return "GroupNode";
+  }
+ else   if (node instanceof INaviTextNode) {
+    return "Comment node";
+  }
+ else {
+    throw new IllegalStateException("IE01152: Invalid node in node chooser");
+  }
+}

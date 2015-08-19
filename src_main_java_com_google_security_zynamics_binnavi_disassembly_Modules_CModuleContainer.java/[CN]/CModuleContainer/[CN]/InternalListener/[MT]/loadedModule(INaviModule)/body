@@ -1,0 +1,10 @@
+{
+  for (  final IViewContainerListener listener : m_listeners) {
+    try {
+      listener.loaded(CModuleContainer.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

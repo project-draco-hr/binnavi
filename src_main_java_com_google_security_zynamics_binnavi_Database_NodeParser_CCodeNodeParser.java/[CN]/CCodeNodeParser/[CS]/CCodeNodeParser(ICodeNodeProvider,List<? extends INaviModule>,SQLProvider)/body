@@ -1,0 +1,8 @@
+{
+  this.dataProvider=Preconditions.checkNotNull(dataProvider,"IE00645: Data provider argument can't be null");
+  this.sqlProvider=Preconditions.checkNotNull(sqlProvider,"IE00646: SQL provider argument can't be null");
+  Preconditions.checkNotNull(modules,"IE01664: modules argument can not be null");
+  for (  final INaviModule module : modules) {
+    this.modules.put(module.getConfiguration().getId(),module);
+  }
+}

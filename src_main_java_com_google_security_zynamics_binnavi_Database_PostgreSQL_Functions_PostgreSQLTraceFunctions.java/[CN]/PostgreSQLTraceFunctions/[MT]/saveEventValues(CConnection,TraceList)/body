@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(connection,"IE02412: connection argument can not be null");
+  Preconditions.checkNotNull(trace,"IE02413: trace argument can not be null");
+  final String query="INSERT INTO " + CTableNames.TRACE_EVENT_VALUES_TABLE + "(trace_id, position, register_name, register_value, memory_value) VALUES "+ "(?, ?, ?, ?, ?)";
+  try {
+    final PreparedStatement preparedStatement=connection.getConnection().prepareStatement(query);
+    int position=0;
+    for (    final ITraceEvent traceEvent : trace) {
+      for (      final TraceRegister register : traceEvent.getRegisterValues()) {
+        preparedStatement.setInt(1,trace.getId());
+        preparedStatement.setInt(2,position);
+        preparedStatement.setString(3,register.getName());
+        preparedStatement.setLong(4,register.getValue().toLong());
+        preparedStatement.setBytes(5,register.getMemory());
+        preparedStatement.addBatch();
+      }
+      ++position;
+    }
+    preparedStatement.executeBatch();
+    preparedStatement.close();
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

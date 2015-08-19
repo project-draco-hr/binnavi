@@ -1,0 +1,10 @@
+{
+  for (  final ITraceListener listener : listeners) {
+    try {
+      listener.changedDescription(Trace.this,traceList.getDescription());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

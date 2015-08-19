@@ -1,0 +1,9 @@
+{
+  final RegisterSetLatticeElement copiedElement=m_fullRegisterSetLatticeElement.copy();
+  m_fullRegisterSetLatticeElement.onInstructionExit();
+  copiedElement.onInstructionExit();
+  Assert.assertTrue(copiedElement.getTaintedRegisters().containsAll(m_fullRegisterSetLatticeElement.getTaintedRegisters()));
+  Assert.assertTrue(copiedElement.getUntaintedRegisters().containsAll(m_fullRegisterSetLatticeElement.getUntaintedRegisters()));
+  Assert.assertTrue(copiedElement.getReadRegisters().containsAll(m_fullRegisterSetLatticeElement.getReadRegisters()));
+  Assert.assertTrue(copiedElement.getUpdatedRegisters().containsAll(m_fullRegisterSetLatticeElement.getUpdatedRegisters()));
+}

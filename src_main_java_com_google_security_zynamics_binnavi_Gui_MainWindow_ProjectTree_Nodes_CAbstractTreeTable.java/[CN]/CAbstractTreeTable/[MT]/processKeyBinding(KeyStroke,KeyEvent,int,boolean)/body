@@ -1,0 +1,9 @@
+{
+  if (event.getKeyCode() == KeyEvent.VK_DELETE) {
+    putClientProperty("JTable.autoStartsEdit",Boolean.FALSE);
+    final boolean retvalue=super.processKeyBinding(keyStroke,event,condition,pressed);
+    putClientProperty("JTable.autoStartsEdit",Boolean.TRUE);
+    return retvalue;
+  }
+  return super.processKeyBinding(keyStroke,event,condition,pressed);
+}

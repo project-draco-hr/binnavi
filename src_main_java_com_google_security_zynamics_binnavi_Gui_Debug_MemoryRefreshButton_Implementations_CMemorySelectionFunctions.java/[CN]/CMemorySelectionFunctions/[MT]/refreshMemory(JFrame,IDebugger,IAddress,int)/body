@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(parent,"IE01451: Parent argument can not be null");
+  Preconditions.checkNotNull(debugger,"IE01452: Debugger argument can not be null");
+  if (!debugger.isConnected()) {
+    return;
+  }
+  try {
+    debugger.getMemoryMap();
+    debugger.readMemory(address,size);
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00080: " + "Could not refresh memory";
+    final String innerDescription=CUtilityFunctions.createDescription("The memory list and the memory data could not be refreshed.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The memory data was not refreshed."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+  }
+}

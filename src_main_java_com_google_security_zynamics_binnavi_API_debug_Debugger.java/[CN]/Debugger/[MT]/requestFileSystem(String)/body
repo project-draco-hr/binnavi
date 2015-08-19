@@ -1,0 +1,8 @@
+{
+  try {
+    m_debugger.requestFileSystem(path);
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    throw new DebugException(exception);
+  }
+}

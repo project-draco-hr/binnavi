@@ -1,0 +1,11 @@
+{
+  super("Tag event nodes with selected tag");
+  Preconditions.checkNotNull(parent,"IE01282: Parent argument can not be null");
+  Preconditions.checkNotNull(graph,"IE01379: Graph argument can not be null");
+  Preconditions.checkNotNull(list,"IE01380: Trace list argument can't be null");
+  Preconditions.checkNotNull(tag,"IE01283: Tag argument can not be null");
+  m_parent=parent;
+  m_graph=graph;
+  m_list=list;
+  m_tag=tag;
+}

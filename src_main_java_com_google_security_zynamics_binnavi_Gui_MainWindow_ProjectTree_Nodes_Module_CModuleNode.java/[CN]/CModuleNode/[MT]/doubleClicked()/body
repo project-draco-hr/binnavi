@@ -1,0 +1,5 @@
+{
+  if (m_module.getConfiguration().getRawModule().isComplete() && !m_module.isLoaded()) {
+    CModuleFunctions.loadModules(getProjectTree(),new INaviModule[]{m_module});
+  }
+}

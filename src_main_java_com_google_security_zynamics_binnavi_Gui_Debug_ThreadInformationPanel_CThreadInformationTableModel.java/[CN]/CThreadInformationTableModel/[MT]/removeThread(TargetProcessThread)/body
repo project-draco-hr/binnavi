@@ -1,0 +1,7 @@
+{
+synchronized (m_threads) {
+    thread.removeListener(m_threadListener);
+    m_threads.remove(thread);
+  }
+  fireTableDataChanged();
+}

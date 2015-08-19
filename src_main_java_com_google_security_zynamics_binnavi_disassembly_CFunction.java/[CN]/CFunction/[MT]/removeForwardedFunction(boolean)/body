@@ -1,0 +1,13 @@
+{
+  if (forwardedFunctionAddress == null) {
+    return;
+  }
+  if (saveToDatabase) {
+    provider.forwardFunction(this,null);
+  }
+  forwardedFunctionAddress=null;
+  forwardedFunctionModuleId=0;
+  for (  final IFunctionListener<IComment> listener : functionListeners) {
+    listener.changedForwardedFunction(this);
+  }
+}

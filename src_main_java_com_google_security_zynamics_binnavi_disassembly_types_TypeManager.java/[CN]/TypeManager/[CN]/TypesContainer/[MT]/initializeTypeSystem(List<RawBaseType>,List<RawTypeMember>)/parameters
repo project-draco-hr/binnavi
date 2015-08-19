@@ -1,0 +1,2 @@
+List<RawBaseType> rawBaseTypes
+List<RawTypeMember> rawMembers

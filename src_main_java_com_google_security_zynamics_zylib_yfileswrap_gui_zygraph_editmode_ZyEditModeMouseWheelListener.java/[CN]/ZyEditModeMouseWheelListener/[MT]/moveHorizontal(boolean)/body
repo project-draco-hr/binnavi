@@ -1,0 +1,8 @@
+{
+  if (zoomOut) {
+    MoveFunctions.pan(m_zyGraph,0,SCROLL_SUB_FACTOR * m_zyGraph.getSettings().getMouseSettings().getScrollSensitivity());
+  }
+ else {
+    MoveFunctions.pan(m_zyGraph,0,-SCROLL_SUB_FACTOR * m_zyGraph.getSettings().getMouseSettings().getScrollSensitivity());
+  }
+}

@@ -1,0 +1,6 @@
+{
+  super(new DefaultMutableTreeNode("invisible_root"));
+  this.filter=filter;
+  createNodes(typeManager);
+  typeManager.addListener(listener);
+}

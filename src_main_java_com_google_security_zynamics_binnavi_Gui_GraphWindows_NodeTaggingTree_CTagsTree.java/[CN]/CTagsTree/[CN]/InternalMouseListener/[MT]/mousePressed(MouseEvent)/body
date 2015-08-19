@@ -1,0 +1,62 @@
+{
+  if (event.isPopupTrigger()) {
+    showPopupMenu(event);
+  }
+ else {
+    final int y=event.getY();
+    final int x=event.getX();
+    final TreePath path=getPathForLocation(x,y);
+    if (path == null) {
+      return;
+    }
+    final Object treenode=path.getLastPathComponent();
+    if (event.getButton() == 1) {
+      if (treenode instanceof CTagTreeNode) {
+        m_lastValidSelectedNode=(CTagTreeNode)treenode;
+        m_lastValidSelectionPath=path;
+        ((CTagTreeCellRenderer)getCellRenderer()).setSelectedNode(m_lastValidSelectedNode);
+      }
+ else       if (treenode instanceof CTaggedGraphNodesContainerNode) {
+        final CTaggedGraphNodesContainerNode containerNode=(CTaggedGraphNodesContainerNode)treenode;
+        final Collection<NaviNode> nodes=containerNode.getGraphNodes();
+        boolean select=false;
+        int countunselected=0;
+        int countinvisible=0;
+        for (        final NaviNode nn : nodes) {
+          if (!nn.getRawNode().isSelected()) {
+            select=true;
+            countunselected++;
+          }
+          if (!nn.getRawNode().isVisible()) {
+            countinvisible++;
+          }
+        }
+        if (((countinvisible == countunselected) || !select) && !m_graph.getSettings().getProximitySettings().getProximityBrowsingFrozen()) {
+          m_graph.selectNodes(nodes,select);
+        }
+ else {
+          final Collection<NaviNode> visiblenodes=new ArrayList<NaviNode>();
+          for (          final NaviNode nn : nodes) {
+            if (nn.isVisible()) {
+              visiblenodes.add(nn);
+            }
+          }
+          m_graph.selectNodes(visiblenodes,select);
+        }
+      }
+ else       if (treenode instanceof CTaggedGraphNodeNode) {
+        final CTaggedGraphNodeNode graphNode=(CTaggedGraphNodeNode)treenode;
+        final boolean graphNodeSelected=graphNode.getGraphNode().getRawNode().isSelected();
+        if (!(m_graph.getSettings().getProximitySettings().getProximityBrowsingFrozen() && !graphNode.getGraphNode().isVisible())) {
+          m_graph.selectNode(graphNode.getGraphNode(),!graphNodeSelected);
+        }
+      }
+      new SwingInvoker(){
+        @Override protected void operation(){
+          getSelectionModel().setSelectionPath(m_lastValidSelectionPath);
+        }
+      }
+.invokeLater();
+    }
+  }
+}

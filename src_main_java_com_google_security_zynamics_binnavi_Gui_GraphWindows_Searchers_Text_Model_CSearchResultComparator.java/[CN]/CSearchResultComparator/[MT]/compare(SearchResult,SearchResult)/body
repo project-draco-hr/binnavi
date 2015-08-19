@@ -1,0 +1,20 @@
+{
+  IAddress firstAddress=null;
+  IAddress secondAddress=null;
+  if (first.getObject() instanceof NaviEdge) {
+    firstAddress=getAddress((NaviEdge)first.getObject());
+  }
+ else   if (first.getObject() instanceof NaviNode) {
+    firstAddress=getAddress(((NaviNode)first.getObject()).getRawNode());
+  }
+  if (second.getObject() instanceof NaviEdge) {
+    secondAddress=getAddress((NaviEdge)second.getObject());
+  }
+ else   if (second.getObject() instanceof NaviNode) {
+    secondAddress=getAddress(((NaviNode)second.getObject()).getRawNode());
+  }
+  if ((firstAddress == null) || (secondAddress == null)) {
+    throw new IllegalStateException("IE01155: Address can't be null.");
+  }
+  return firstAddress.toBigInteger().compareTo(secondAddress.toBigInteger());
+}

@@ -1,0 +1,44 @@
+{
+  setDescription("Loading JAR files");
+  final Set<File> jarFiles=JarLoader.collectJars(rootPath);
+  JarLoader.loadJars(jarFiles,this);
+  final Set<File> scriptFiles=ScriptLoader.collectScripts(rootPath);
+  ScriptLoader.init(scriptFiles,pluginInterface,this);
+  final List<IPlugin<T>> scriptPlugins=registry.getPlugins();
+  for (  final String pluginPath : pluginPaths) {
+    final Set<File> pluginFiles=PluginLoader.collectPluginFiles(pluginPath);
+    final LoadResult<T> plugins=PluginLoader.loadPlugins(pluginPath,pluginFiles,this);
+    for (    final Pair<String,Throwable> failedPlugin : plugins.getFailedPlugins()) {
+      CUtilityFunctions.logException(failedPlugin.second());
+      final String message="E00007: " + "Loading a plugin failed";
+      final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the plugin file file '%s' because the plugin " + "caused an exception.",failedPlugin.first()),new String[]{"The plugin file contains a bug that caused the exception"},new String[]{"The plugin file was not loaded and the functionality of " + "the script will not be available in BinNavi"});
+      CNaviErrorDialog.show(parent,message,description,failedPlugin.second());
+    }
+    for (    final Pair<IPlugin<T>,PluginStatus> pair : plugins.getLoadedPlugins()) {
+      final IPlugin<T> plugin=pair.first();
+      final PluginStatus status=pair.second();
+      if (status != PluginStatus.Valid) {
+        showError(plugins,plugin,status);
+      }
+    }
+    PluginInitializer.initializePlugins(pluginInterface,registry,plugins.getLoadedPlugins(),configFile);
+    for (    final IPlugin<T> plugin : scriptPlugins) {
+      try {
+        plugin.init(pluginInterface);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+        registry.removePlugin(plugin,DisabledPluginReason.ThrewOnInit);
+      }
+    }
+    for (    final Pair<IPlugin<T>,DisabledPluginReason> disabledPair : registry.getDisabledPlugins()) {
+      final IPlugin<T> plugin=disabledPair.first();
+      final DisabledPluginReason reason=disabledPair.second();
+      if (reason == DisabledPluginReason.ThrewOnInit) {
+        final String message="E00102: " + "Error during plugin initialization";
+        final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not initialize the plugin '%s' because the plugin " + "caused an exception.",plugin.getName()),new String[]{"A bug in the plugin caused an exception."},new String[]{"The plugin could not be initialized properly and was removed " + "from the list of loaded plugins."});
+        CNaviErrorDialog.show(parent,message,description);
+      }
+    }
+  }
+}

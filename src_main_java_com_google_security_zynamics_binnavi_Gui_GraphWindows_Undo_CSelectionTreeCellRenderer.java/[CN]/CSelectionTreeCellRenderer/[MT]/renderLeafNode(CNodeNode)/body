@@ -1,0 +1,10 @@
+{
+  final NaviNode graphNode=treeNode.getNode();
+  if (graphNode.isSelected() && graphNode.isVisible()) {
+    setForeground(SELECTED_FONT_COLOR);
+  }
+ else   if (!graphNode.isVisible()) {
+    setForeground(INVISIBLE_FONT_COLOR);
+  }
+  setToolTipText(buildToolTip(graphNode));
+}

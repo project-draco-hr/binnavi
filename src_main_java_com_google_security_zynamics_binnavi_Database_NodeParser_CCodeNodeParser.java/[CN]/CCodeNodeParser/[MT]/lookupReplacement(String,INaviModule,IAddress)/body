@@ -1,0 +1,14 @@
+{
+  if (functionAddress != null) {
+    final INaviFunction function=module.getContent().getFunctionContainer().getFunction(functionAddress);
+    if (function != null) {
+      return new CFunctionReplacement(function);
+    }
+  }
+  if (replacementString != null) {
+    return new CStringReplacement(replacementString);
+  }
+ else {
+    return null;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_HIT);
+  final TargetProcessThread thread=new TargetProcessThread(123,ThreadState.RUNNING);
+  mockDebugger.getProcessManager().addThread(thread);
+  mockDebugger.getProcessManager().setActiveThread(thread);
+  debuggerSynchronizer.receivedEvent(new ResumeReply(0,0));
+  assertEquals(0,listener.exception);
+  assertNull(mockDebugger.getProcessManager().getActiveThread());
+  assertEquals(ThreadState.RUNNING,mockDebugger.getProcessManager().getThread(123).getState());
+  assertEquals(BreakpointStatus.BREAKPOINT_ACTIVE,breakpointManager.getBreakpointStatus(CommonTestObjects.BP_ADDRESS_456,BreakpointType.REGULAR));
+}

@@ -1,0 +1,5 @@
+{
+  super(String.format("Remove bookmark at offset %s",bookmark.getAddress().toHexString()));
+  m_manager=Preconditions.checkNotNull(manager,"IE01411: Manager argument can't be null");
+  m_bookmark=bookmark;
+}

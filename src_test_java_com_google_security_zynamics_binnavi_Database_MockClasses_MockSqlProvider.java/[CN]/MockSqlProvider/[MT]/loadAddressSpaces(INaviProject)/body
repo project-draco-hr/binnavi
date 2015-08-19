@@ -1,0 +1,3 @@
+{
+  return Lists.newArrayList(new CAddressSpace(1,"","",new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,this,new MockProject()));
+}

@@ -1,0 +1,6 @@
+{
+  if (!reply.success()) {
+    CMessageBox.showError(activateWindow(),"The debug client could not attach to the target process.");
+    stop();
+  }
+}

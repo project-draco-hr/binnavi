@@ -1,0 +1,4 @@
+{
+  databaseHostField.setText(database.getConfiguration().getHost());
+  updateSaveButton();
+}

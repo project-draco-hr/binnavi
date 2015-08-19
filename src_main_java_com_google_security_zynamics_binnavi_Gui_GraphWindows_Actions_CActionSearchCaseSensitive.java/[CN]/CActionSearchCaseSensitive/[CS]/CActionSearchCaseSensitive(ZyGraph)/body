@@ -1,0 +1,4 @@
+{
+  super("Case Sensitive Search");
+  m_graph=graph;
+}

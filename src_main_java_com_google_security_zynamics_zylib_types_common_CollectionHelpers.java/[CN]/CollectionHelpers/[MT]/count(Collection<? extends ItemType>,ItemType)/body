@@ -1,0 +1,9 @@
+{
+  int counter=0;
+  for (  final ItemType itemType : collection) {
+    if (itemType == item) {
+      counter++;
+    }
+  }
+  return counter;
+}

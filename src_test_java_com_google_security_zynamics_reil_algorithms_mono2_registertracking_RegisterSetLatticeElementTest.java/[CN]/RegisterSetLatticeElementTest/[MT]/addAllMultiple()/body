@@ -1,0 +1,10 @@
+{
+  final RegisterSetLatticeElement element1=new RegisterSetLatticeElement(Sets.newHashSet("register1"),Sets.newHashSet("register2"),Sets.newHashSet("register3"),Sets.newHashSet("register4"),Sets.newHashSet("register5"));
+  final RegisterSetLatticeElement element2=new RegisterSetLatticeElement(Sets.newHashSet("register6"),Sets.newHashSet("register7"),Sets.newHashSet("register8"),Sets.newHashSet("register9"),Sets.newHashSet("register10"));
+  m_emptyRegisterSetLatticeElement.addAll(Lists.newArrayList(element1,element2));
+  m_emptyRegisterSetLatticeElement.onInstructionExit();
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.getTaintedRegisters().containsAll(Lists.newArrayList("register1","register6")));
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.getUntaintedRegisters().containsAll(Lists.newArrayList("register3","register8")));
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.getReadRegisters().containsAll(Lists.newArrayList("register4","register9")));
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.getUpdatedRegisters().containsAll(Lists.newArrayList("register5","register10")));
+}

@@ -1,0 +1,6 @@
+ITranslationEnvironment environment
+String value
+String source1
+String source2
+String destination
+TranslationResult finalResult

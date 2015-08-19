@@ -1,0 +1,13 @@
+{
+  final TypeChangedEventCollector events=new TypeChangedEventCollector();
+  typeManager.addListener(events);
+  final TypeMember member=typeManager.insertMemberAfter(typeSystem.ssIntMember,typeSystem.intType,"new_member");
+  final TypeChangedEventCollector expectedEvents=new TypeChangedEventCollector();
+  expectedEvents.memberAdded(member);
+  expectedEvents.memberUpdated(typeSystem.ssUintMember);
+  expectedEvents.memberUpdated(typeSystem.ssArrayMember);
+  expectedEvents.memberUpdated(typeSystem.dnsIntMember);
+  expectedEvents.memberUpdated(typeSystem.dnsPointerMember);
+  assertEquals(expectedEvents,events);
+  assertEquals(typeSystem.intType.getBitSize() + typeSystem.ssIntMember.getBitSize() + typeSystem.ssUintMember.getBitSize()+ typeSystem.ssArrayMember.getBitSize(),typeSystem.simpleStruct.getBitSize());
+}

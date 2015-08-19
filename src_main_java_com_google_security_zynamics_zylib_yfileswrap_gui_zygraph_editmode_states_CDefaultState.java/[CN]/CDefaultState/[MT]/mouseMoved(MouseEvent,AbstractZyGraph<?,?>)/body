@@ -1,0 +1,23 @@
+{
+  final double x=g.getEditMode().translateX(event.getX());
+  final double y=g.getEditMode().translateY(event.getY());
+  final HitInfo hitInfo=g.getGraph().getHitInfo(x,y);
+  if (hitInfo.hasHitNodes()) {
+    return CHitNodesTransformer.enterNode(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitEdges()) {
+    return CHitEdgesTransformer.enterEdge(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitEdgeLabels()) {
+    return CHitEdgeLabelsTransformer.enterEdgeLabel(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitBends()) {
+    return CHitBendsTransformer.enterBend(m_factory,event,hitInfo);
+  }
+ else   if (hitInfo.hasHitPorts()) {
+    return new CStateChange(this,true);
+  }
+ else {
+    return new CStateChange(this,true);
+  }
+}

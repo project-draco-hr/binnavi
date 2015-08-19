@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(modules,"IE01929: Modules argument can't be null");
+  m_modules=new ArrayList<INaviModule>(modules);
+}

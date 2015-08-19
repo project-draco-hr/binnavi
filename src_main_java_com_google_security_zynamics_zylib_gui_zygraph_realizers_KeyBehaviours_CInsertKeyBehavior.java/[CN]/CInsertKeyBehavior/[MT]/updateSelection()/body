@@ -1,0 +1,6 @@
+{
+  if (isPaste()) {
+    m_wasUneditableSelection=!isDeleteableSelection() && isSelection();
+    deleteSelection();
+  }
+}

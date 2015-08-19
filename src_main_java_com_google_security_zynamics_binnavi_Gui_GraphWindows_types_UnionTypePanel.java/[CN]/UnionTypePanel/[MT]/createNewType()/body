@@ -1,0 +1,3 @@
+{
+  createOrUpdateMembers(typeManager.createUnion(name.getText()),members.getModel());
+}

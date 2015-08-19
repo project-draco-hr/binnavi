@@ -1,0 +1,18 @@
+{
+  final Map<INaviViewNode,IBlockNode> blockMap=new LinkedHashMap<INaviViewNode,IBlockNode>();
+  final List<IBlockEdge> edges=new FilledList<IBlockEdge>();
+  for (  final INaviViewNode viewNode : viewGraph) {
+    if (viewNode instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)viewNode;
+      final CBasicBlock block=new CBasicBlock(1,"",Lists.newArrayList(cnode.getInstructions()));
+      final CBlockNode blockNode=new CBlockNode(block);
+      blockMap.put(cnode,blockNode);
+    }
+  }
+  for (  final INaviEdge viewEdge : viewGraph.getEdges()) {
+    final INaviViewNode source=viewEdge.getSource();
+    final INaviViewNode target=viewEdge.getTarget();
+    edges.add(new CFunctionEdge(blockMap.get(source),blockMap.get(target),viewEdge.getType()));
+  }
+  return new DirectedGraph<IBlockNode,IBlockEdge>(new ArrayList<IBlockNode>(blockMap.values()),edges);
+}

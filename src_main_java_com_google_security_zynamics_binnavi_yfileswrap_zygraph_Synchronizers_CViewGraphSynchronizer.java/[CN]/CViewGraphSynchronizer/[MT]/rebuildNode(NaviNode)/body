@@ -1,0 +1,3 @@
+{
+  (((ZyNodeRealizer<?>)m_graph.getGraph().getRealizer(node.getNode()))).regenerate();
+}

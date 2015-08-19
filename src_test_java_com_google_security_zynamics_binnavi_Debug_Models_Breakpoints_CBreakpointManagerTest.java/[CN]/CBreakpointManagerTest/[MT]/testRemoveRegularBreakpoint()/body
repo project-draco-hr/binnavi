@@ -1,0 +1,15 @@
+{
+  try {
+    m_manager.removeBreakpoints(BreakpointType.REGULAR,null);
+    fail("Exception not raised");
+  }
+ catch (  final NullPointerException ex) {
+  }
+  assertEquals(3,m_manager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  m_manager.removeBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x123)))));
+  assertEquals(2,m_manager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  m_manager.removeBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x456)))));
+  assertEquals(1,m_manager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+  m_manager.removeBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x789)))));
+  assertEquals(0,m_manager.getNumberOfBreakpoints(BreakpointType.REGULAR));
+}

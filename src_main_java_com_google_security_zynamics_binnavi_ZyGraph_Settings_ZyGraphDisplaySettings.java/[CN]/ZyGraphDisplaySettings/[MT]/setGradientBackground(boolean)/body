@@ -1,0 +1,19 @@
+{
+  if (value == getGradientBackground()) {
+    return;
+  }
+  if (m_type == null) {
+    m_gradientBackground=value;
+  }
+ else {
+    m_type.setGradientBackground(value);
+  }
+  for (  final IZyGraphDisplaySettingsListener listener : m_listeners) {
+    try {
+      listener.changedGradientBackground(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

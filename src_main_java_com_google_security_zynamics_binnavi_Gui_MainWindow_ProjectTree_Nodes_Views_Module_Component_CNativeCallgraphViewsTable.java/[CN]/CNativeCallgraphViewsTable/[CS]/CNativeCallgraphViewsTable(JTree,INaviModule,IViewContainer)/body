@@ -1,0 +1,4 @@
+{
+  super(projectTree,new CNativeCallgraphsViewsModel(module),container,new CNativeCallgraphViewsTableHelp());
+  setDefaultRenderer(Object.class,new CViewsTableRenderer(this,container));
+}

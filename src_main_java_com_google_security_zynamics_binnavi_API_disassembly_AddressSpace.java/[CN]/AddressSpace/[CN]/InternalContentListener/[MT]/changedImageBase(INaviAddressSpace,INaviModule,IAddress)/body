@@ -1,0 +1,11 @@
+{
+  final Address newAddress=new Address(address.toBigInteger());
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      listener.changedImageBase(AddressSpace.this,ObjectFinders.getObject(module,m_modules),newAddress);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

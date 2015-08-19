@@ -1,0 +1,32 @@
+{
+  final int mouseStartY=Math.min(getCaretMousePressedY(),getCaretMouseReleasedY());
+  final int mouseEndY=Math.max(getCaretMousePressedY(),getCaretMouseReleasedY());
+  final int caretStartX=Math.min(getCaretStartPosX(),getCaretEndPosX());
+  final int caretEndX=Math.max(getCaretStartPosX(),getCaretEndPosX());
+  final ZyLineContent firstLineContent=getLineContent(mouseStartY);
+  final ZyLineContent lastLineContent=getLineContent(mouseEndY);
+  final IZyEditableObject firstEditObject=firstLineContent.getLineFragmentObjectAt(caretStartX);
+  final IZyEditableObject lastEditObject=firstLineContent.getLineFragmentObjectAt(caretEndX);
+  if (firstLineContent.getLineObject() != lastLineContent.getLineObject()) {
+    return false;
+  }
+  if (isComment(caretStartX,mouseStartY)) {
+    if (mouseEndY > mouseStartY) {
+      final int noneCommentLine=m_labelContent.getNonPureCommentLineIndexOfModelAt(mouseStartY);
+      if (noneCommentLine != -1) {
+        if ((mouseStartY < noneCommentLine) && (mouseEndY >= noneCommentLine)) {
+          return false;
+        }
+ else         if ((mouseStartY >= noneCommentLine) && (mouseEndY < noneCommentLine)) {
+          return false;
+        }
+      }
+    }
+  }
+ else {
+    if ((firstEditObject != lastEditObject) || ((firstEditObject == null) && (lastEditObject == null))) {
+      return false;
+    }
+  }
+  return true;
+}

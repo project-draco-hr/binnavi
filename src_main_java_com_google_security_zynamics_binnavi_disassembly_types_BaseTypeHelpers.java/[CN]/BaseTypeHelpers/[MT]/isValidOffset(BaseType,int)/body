@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: base type argument can not be null.");
+  return (offset < 0) ? false : findMember(baseType,offset).isValid();
+}

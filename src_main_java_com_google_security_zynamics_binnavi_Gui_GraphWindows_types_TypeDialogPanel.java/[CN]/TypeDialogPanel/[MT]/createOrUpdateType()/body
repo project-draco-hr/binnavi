@@ -1,0 +1,12 @@
+{
+  if (!validateModel()) {
+    return false;
+  }
+  if (existingType == null) {
+    createNewType();
+  }
+ else {
+    updateExistingType();
+  }
+  return true;
+}

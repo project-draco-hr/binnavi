@@ -1,0 +1,10 @@
+{
+  final Map<Integer,INaviViewNode> nodeLookup=new HashMap<Integer,INaviViewNode>();
+  final List<Integer> nodeIdList=new ArrayList<Integer>();
+  for (  final INaviViewNode viewNode : nodes) {
+    nodeLookup.put(viewNode.getId(),viewNode);
+    nodeIdList.add(viewNode.getId());
+  }
+  final Map<Integer,ArrayList<IComment>> edgeToGlobalCommentMap=loadGlobalEdgeComments(provider,view.getConfiguration().getId());
+  return loadEdges(provider,view,nodeLookup,edgeToGlobalCommentMap);
+}

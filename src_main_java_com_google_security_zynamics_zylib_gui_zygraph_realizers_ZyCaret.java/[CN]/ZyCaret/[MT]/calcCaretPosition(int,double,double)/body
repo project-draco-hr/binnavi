@@ -1,0 +1,6 @@
+{
+  final ZyLineContent content=m_content.getLineContent(hitLine);
+  final TextLayout textlayout=m_content.getLineContent(hitLine).getTextLayout();
+  final TextHitInfo hitInfo=textlayout.hitTestChar((float)x,(float)y,content.getBounds());
+  return hitInfo.getInsertionIndex();
+}

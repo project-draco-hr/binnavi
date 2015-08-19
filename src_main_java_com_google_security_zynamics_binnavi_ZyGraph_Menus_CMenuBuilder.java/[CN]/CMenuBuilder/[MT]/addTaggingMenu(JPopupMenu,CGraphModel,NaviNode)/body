@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(menu,"IE02147: Menu argument can not be null");
+  Preconditions.checkNotNull(model,"IE02148: Model argument can not be null");
+  Preconditions.checkNotNull(node,"IE02149: Node argument can not be null");
+  final JMenuItem tagNodeItem=new JMenuItem(CActionProxy.proxy(new CTagNodeAction(model.getParent(),model.getGraphPanel().getTagsTree(),node)));
+  final JMenuItem tagSelectedNodesItem=new JMenuItem(CActionProxy.proxy(new CTagSelectedNodesAction(model.getParent(),model.getGraphPanel().getTagsTree(),model.getGraph())));
+  final CTagsTree tree=model.getGraphPanel().getTagsTree();
+  tagNodeItem.setEnabled(tree.getSelectionPath() != null);
+  tagSelectedNodesItem.setEnabled((tree.getSelectionPath() != null) && !model.getGraph().getSelectedNodes().isEmpty());
+  menu.add(tagNodeItem);
+  menu.add(tagSelectedNodesItem);
+  menu.addSeparator();
+}

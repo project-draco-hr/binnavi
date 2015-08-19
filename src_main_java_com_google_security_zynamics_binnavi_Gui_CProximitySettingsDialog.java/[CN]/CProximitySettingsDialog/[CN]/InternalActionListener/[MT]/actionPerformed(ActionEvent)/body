@@ -1,0 +1,9 @@
+{
+  if (actionEvent.getSource() == m_buttonOk) {
+    final int childDepth=m_checkBoxChildDepth.isSelected() ? m_childDepthSlider.getValue() : -1;
+    final int parentDepth=m_checkBoxParentDepth.isSelected() ? m_parentDepthSlider.getValue() : -1;
+    m_settings.getProximitySettings().setProximityBrowsingParents(parentDepth);
+    m_settings.getProximitySettings().setProximityBrowsingChildren(childDepth);
+  }
+  dispose();
+}

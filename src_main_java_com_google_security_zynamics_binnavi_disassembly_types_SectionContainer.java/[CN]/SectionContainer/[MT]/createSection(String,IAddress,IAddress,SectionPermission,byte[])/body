@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  Preconditions.checkNotNull(startAddress,"Error: startAddress argument can not be null");
+  Preconditions.checkNotNull(endAddress,"Error: endAddress argument can not be null");
+  Preconditions.checkNotNull(sectionPermission,"Error: sectionPermission argument can not be null");
+  final Section section=backend.createSection(name,startAddress,endAddress,sectionPermission,data);
+  sections.add(section);
+  sectionsById.put(section.getId(),section);
+  return section;
+}

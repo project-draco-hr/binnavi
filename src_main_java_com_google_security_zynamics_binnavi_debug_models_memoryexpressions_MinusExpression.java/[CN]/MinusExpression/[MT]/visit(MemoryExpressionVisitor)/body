@@ -1,0 +1,6 @@
+{
+  for (  final MemoryExpressionElement child : children) {
+    child.visit(visitor);
+  }
+  visitor.visit(this);
+}

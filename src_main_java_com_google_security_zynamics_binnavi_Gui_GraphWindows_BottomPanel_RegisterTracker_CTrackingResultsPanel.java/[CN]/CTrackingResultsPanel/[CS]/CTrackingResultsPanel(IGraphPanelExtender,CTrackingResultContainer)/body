@@ -1,0 +1,7 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(container,"IE01690: Container argument can not be null");
+  Preconditions.checkNotNull(extender,"IE02304: extender argument can not be null");
+  add(new CTrackingResultsToolbar(extender,container),BorderLayout.NORTH);
+  add(new JScrollPane(m_table=new CTrackingResultsTable(container)),BorderLayout.CENTER);
+}

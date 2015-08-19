@@ -1,0 +1,12 @@
+{
+  final StringBuilder tooltip=new StringBuilder("<html>");
+  boolean first=true;
+  for (  final NaviNode graphNode : nodes) {
+    if (!first) {
+      tooltip.append("<br>");
+    }
+    tooltip.append(CNodesDisplayString.getDisplayString(graphNode));
+    first=false;
+  }
+  return tooltip + "</html>";
+}

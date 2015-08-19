@@ -1,0 +1,6 @@
+{
+  m_bookmarkManager.removeListener(m_listener);
+  for (  final CCodeBookmark bookmark : m_bookmarkManager) {
+    bookmark.removeListener(m_listener);
+  }
+}

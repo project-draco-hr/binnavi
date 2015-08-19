@@ -1,0 +1,3 @@
+{
+  return m_module.isLoaded() ? ICON_MODULE : ICON_MODULE_GRAY;
+}

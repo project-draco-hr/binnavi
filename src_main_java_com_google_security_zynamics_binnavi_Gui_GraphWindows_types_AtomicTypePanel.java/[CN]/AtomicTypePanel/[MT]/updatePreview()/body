@@ -1,0 +1,5 @@
+{
+  if (!name.getText().isEmpty()) {
+    preview.setText(String.format("%s %s",name.getText()," my_new_type;"));
+  }
+}

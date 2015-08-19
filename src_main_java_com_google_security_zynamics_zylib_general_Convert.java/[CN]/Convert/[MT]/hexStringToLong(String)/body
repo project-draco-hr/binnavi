@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(hexString,"Error: Unicode string can't be null");
+  Preconditions.checkArgument(isHexString(hexString),String.format("Error: Hex string '%s' is not a vaild hex string",hexString));
+  if ((hexString.length() == 16) && (hexString.charAt(0) >= 8)) {
+    final String strAddr1=hexString.substring(0,hexString.length() - 8);
+    final String strAddr2=hexString.substring(hexString.length() - 8);
+    return (Long.parseLong(strAddr1,16) << 32) + Long.parseLong(strAddr2,16);
+  }
+  return Long.parseLong(hexString,16);
+}

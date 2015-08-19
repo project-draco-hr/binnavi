@@ -1,0 +1,7 @@
+{
+  final List<IInfluencingState<LatticeElement,ObjectType>> states=new ArrayList<IInfluencingState<LatticeElement,ObjectType>>();
+  for (  final IInfluencingNode<GraphNode,ObjectType> node : nodes) {
+    states.add(new InfluencingState<LatticeElement,ObjectType>(state.getState(node.getNode()),node.getObject()));
+  }
+  return states;
+}

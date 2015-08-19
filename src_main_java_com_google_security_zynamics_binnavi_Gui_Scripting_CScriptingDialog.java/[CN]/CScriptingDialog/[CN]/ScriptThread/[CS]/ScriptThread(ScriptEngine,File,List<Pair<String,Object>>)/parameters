@@ -1,0 +1,3 @@
+ScriptEngine engine
+File selectedFile
+List<Pair<String,Object>> bindings

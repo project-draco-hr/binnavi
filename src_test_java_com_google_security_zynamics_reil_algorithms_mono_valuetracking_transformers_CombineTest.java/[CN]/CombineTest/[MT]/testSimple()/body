@@ -1,0 +1,24 @@
+{
+  final ReilInstruction instruction1=ReilHelpers.createStr(100,OperandSize.DWORD,"0",OperandSize.DWORD,"eax");
+  final ReilInstruction instruction2=ReilHelpers.createJcc(101,OperandSize.DWORD,"eax",OperandSize.DWORD,"104");
+  final ReilInstruction instruction3=ReilHelpers.createAdd(102,OperandSize.DWORD,"eax",OperandSize.DWORD,"4",OperandSize.DWORD,"ebx");
+  final ReilInstruction instruction4=ReilHelpers.createJcc(103,OperandSize.DWORD,"1",OperandSize.DWORD,"104");
+  final ReilInstruction instruction5=ReilHelpers.createAdd(104,OperandSize.DWORD,"eax",OperandSize.DWORD,"8",OperandSize.DWORD,"ebx");
+  final ReilInstruction instruction6=ReilHelpers.createStr(105,OperandSize.DWORD,"ebx",OperandSize.DWORD,"ecx");
+  final ReilBlock block1=new ReilBlock(Lists.newArrayList(instruction1,instruction2));
+  final ReilBlock block2=new ReilBlock(Lists.newArrayList(instruction3,instruction4));
+  final ReilBlock block3=new ReilBlock(Lists.newArrayList(instruction5));
+  final ReilBlock block4=new ReilBlock(Lists.newArrayList(instruction6));
+  final ReilEdge edge1=new ReilEdge(block1,block2,EdgeType.JUMP_UNCONDITIONAL);
+  final ReilEdge edge2=new ReilEdge(block1,block3,EdgeType.JUMP_UNCONDITIONAL);
+  final ReilEdge edge3=new ReilEdge(block2,block4,EdgeType.JUMP_UNCONDITIONAL);
+  final ReilEdge edge4=new ReilEdge(block3,block4,EdgeType.JUMP_UNCONDITIONAL);
+  ReilBlock.link(block1,block2,edge1);
+  ReilBlock.link(block1,block3,edge2);
+  ReilBlock.link(block2,block4,edge3);
+  ReilBlock.link(block3,block4,edge4);
+  final ReilFunction function=new ReilFunction("Fark",new ReilGraph(Lists.newArrayList(block1,block2,block3,block4),Lists.newArrayList(edge1,edge2,edge3,edge4)));
+  System.out.println(function.getGraph());
+  final IStateVector<InstructionGraphNode,ValueTrackerElement> result=ValueTracker.track(function);
+  System.out.println(result);
+}

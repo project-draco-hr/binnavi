@@ -1,0 +1,11 @@
+{
+  final SectionContainerBackend sectionContainerBackend=new SectionContainerBackend(provider,module);
+  Assert.assertNotNull(sectionContainerBackend);
+  final Section section=sectionContainerBackend.createSection(".data2",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0xFF,(byte)0x00});
+  Assert.assertNotNull(section);
+  Assert.assertEquals(".data2",section.getName());
+  Assert.assertEquals(new CAddress("100",16),section.getStartAddress());
+  Assert.assertEquals(new CAddress("200",16),section.getEndAddress());
+  Assert.assertEquals(SectionPermission.READ_WRITE_EXECUTE,section.getSectionPermission());
+  org.junit.Assert.assertArrayEquals(new byte[]{(byte)0x90,(byte)0xFF,(byte)0x00},section.getData());
+}

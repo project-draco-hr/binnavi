@@ -1,0 +1,7 @@
+{
+  int counter=0;
+  for (  final INaviOperandTree operandTree : instruction.getOperands()) {
+    buildOperand(instruction,operandTree,graphSettings,line,styleRun,modifier,counter);
+    counter++;
+  }
+}

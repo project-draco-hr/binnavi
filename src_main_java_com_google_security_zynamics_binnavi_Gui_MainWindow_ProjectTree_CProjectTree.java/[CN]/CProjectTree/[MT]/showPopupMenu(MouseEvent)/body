@@ -1,0 +1,13 @@
+{
+  final IProjectTreeNode selectedNode=(IProjectTreeNode)TreeHelpers.getNodeAt(this,event.getX(),event.getY());
+  if (selectedNode == null) {
+    m_popup.show(this,event.getX(),event.getY());
+  }
+ else {
+    setSelectionPath(new TreePath(((DefaultMutableTreeNode)selectedNode).getPath()));
+    final JPopupMenu menu=selectedNode.getPopupMenu();
+    if (menu != null) {
+      menu.show(this,event.getX(),event.getY());
+    }
+  }
+}

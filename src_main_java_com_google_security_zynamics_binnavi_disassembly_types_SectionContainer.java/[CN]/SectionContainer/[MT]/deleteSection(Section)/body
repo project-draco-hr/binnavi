@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  Preconditions.checkArgument(sections.contains(section),"Error: section is not known to the section container");
+  backend.deleteSection(section);
+  sections.remove(section);
+  sectionsById.remove(section.getId());
+}

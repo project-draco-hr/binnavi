@@ -1,0 +1,7 @@
+{
+  final Graph2D graph=new Graph2D();
+  final CTextNode node=CTextNodeFactory.get();
+  final ZyLabelContent content=ZyTextNodeBuilder.buildContent(node);
+  final IZyNodeRealizer realizer=new ZyNormalNodeRealizer<NaviNode>(content);
+  return new NaviNode(graph.createNode(),realizer,node);
+}

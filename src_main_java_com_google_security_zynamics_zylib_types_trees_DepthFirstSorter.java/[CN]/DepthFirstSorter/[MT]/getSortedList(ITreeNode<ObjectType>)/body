@@ -1,0 +1,8 @@
+{
+  final DepthFirstIterator<ObjectType> iter=new DepthFirstIterator<ObjectType>(rootNode);
+  final ArrayList<ITreeNode<ObjectType>> list=new ArrayList<ITreeNode<ObjectType>>();
+  while (iter.hasNext()) {
+    list.add(iter.next());
+  }
+  return list;
+}

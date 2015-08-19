@@ -1,0 +1,5 @@
+{
+  super(new GridLayout(1,1,5,5));
+  commentsPanel=new GenericCommentsTable(new TextNodeCommentAccessor(textNode),"Text node comment");
+  add(commentsPanel);
+}

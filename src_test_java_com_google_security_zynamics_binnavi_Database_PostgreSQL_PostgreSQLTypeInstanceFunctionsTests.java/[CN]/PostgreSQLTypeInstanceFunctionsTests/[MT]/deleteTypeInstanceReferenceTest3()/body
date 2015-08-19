@@ -1,0 +1,3 @@
+{
+  provider.deleteTypeInstanceReference(module.getConfiguration().getId(),new BigInteger("200",16),-1,-1);
+}

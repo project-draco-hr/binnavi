@@ -1,0 +1,5 @@
+{
+  super(String.format("Follow '%s' (%s) in memory",value,address.toString(16).toUpperCase()));
+  m_model=model;
+  m_address=address;
+}

@@ -1,0 +1,8 @@
+{
+  for (  final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin : registry) {
+    if (guid == plugin.getGuid()) {
+      model.addElement(new PluginItem<T>(plugin));
+      added.add(plugin);
+    }
+  }
+}

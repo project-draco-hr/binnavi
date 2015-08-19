@@ -1,0 +1,6 @@
+{
+  this.directory=directory;
+  this.drives=new ArrayList<>(drives);
+  this.directories=new ArrayList<>(directories);
+  this.files=new ArrayList<>(files);
+}

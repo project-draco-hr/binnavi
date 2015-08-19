@@ -1,0 +1,29 @@
+{
+  Preconditions.checkNotNull(startInstruction,"IE01671: Start instruction argument can not be null");
+  Preconditions.checkNotNull(trackedRegister,"IE01672: Tracked register argument can not be null");
+  Preconditions.checkNotNull(result,"IE01673: Result argument can not be null");
+  if (result.getInstruction() == startInstruction) {
+    return Color.decode("0x00BF00");
+  }
+ else   if (result.undefinesAll()) {
+    return Color.decode("0xB30000");
+  }
+ else   if (result.clearsTrackedRegister(trackedRegister)) {
+    return Color.decode("0xA12967");
+  }
+ else   if (result.undefinesSome()) {
+    return Color.decode("0xED693F");
+  }
+ else   if (result.defines()) {
+    return Color.decode("0xFFCD55");
+  }
+ else   if (result.updates()) {
+    return Color.decode("0x5AAB47");
+  }
+ else   if (result.uses()) {
+    return Color.decode("0x414142");
+  }
+ else {
+    return Color.WHITE;
+  }
+}

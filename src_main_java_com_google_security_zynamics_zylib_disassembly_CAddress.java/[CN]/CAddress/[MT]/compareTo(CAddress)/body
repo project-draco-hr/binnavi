@@ -1,0 +1,3 @@
+{
+  return compare(m_address,addr.m_address);
+}

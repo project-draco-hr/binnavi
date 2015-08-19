@@ -1,0 +1,4 @@
+CConnection connection
+List<INaviViewNode> nodes
+int firstNode
+BiMap<Integer,INaviGroupNode> groupNodeMap

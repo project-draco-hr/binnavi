@@ -1,0 +1,8 @@
+{
+  if (!treeNode.getTypeInstanceReferences().isEmpty()) {
+    return treeNode.getTypeInstanceReferences().get(0).getTypeInstance().getName();
+  }
+ else {
+    return replacement.toString();
+  }
+}

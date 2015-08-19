@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(provider,"IE00579: Provider argument can not be null");
+  Preconditions.checkNotNull(trace,"IE00580: List argument can not be null");
+  Preconditions.checkArgument(trace.inSameDatabase(provider),"IE00581: List is not part of this database");
+  final CConnection connection=provider.getConnection();
+  if (trace.getEventCount() != 0) {
+    saveEvents(connection,trace);
+    saveEventValues(connection,trace);
+  }
+}

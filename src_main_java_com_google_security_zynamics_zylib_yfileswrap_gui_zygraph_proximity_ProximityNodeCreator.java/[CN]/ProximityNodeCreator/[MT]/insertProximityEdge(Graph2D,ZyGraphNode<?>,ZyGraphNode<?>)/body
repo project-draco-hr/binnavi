@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
+  Preconditions.checkNotNull(sourceNode,"Source node argument can not be null");
+  Preconditions.checkNotNull(targetNode,"Target node argument can not be null");
+  Preconditions.checkArgument((sourceNode instanceof ZyProximityNode<?>) || (targetNode instanceof ZyProximityNode<?>),"One of the two arguments must be a proximity browsing node");
+  final ZyEdgeRealizer<ZyInfoEdge> r=new ZyEdgeRealizer<ZyInfoEdge>(new ZyLabelContent(null),null);
+  r.setLineType(LineType.LINE_2);
+  final Edge edge=graph.createEdge(sourceNode.getNode(),targetNode.getNode(),r);
+  final ZyInfoEdge infoEdge=new ZyInfoEdge(sourceNode,targetNode,edge,r);
+  final ZyEdgeData<ZyInfoEdge> data=new ZyEdgeData<ZyInfoEdge>(infoEdge);
+  r.setUserData(data);
+  return infoEdge;
+}

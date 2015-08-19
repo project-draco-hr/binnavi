@@ -1,0 +1,5 @@
+{
+  if (breakpointAddressToBreakpoint.get(address) != null) {
+    breakpointAddressToStatus.put(address,status);
+  }
+}

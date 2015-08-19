@@ -1,0 +1,16 @@
+{
+  if (position < (2 * getFirstVisibleByte())) {
+    return new Rectangle(-1,-1,-1,-1);
+  }
+  if (position > ((2 * getFirstVisibleByte()) + (2 * getMaximumVisibleBytes()))) {
+    return new Rectangle(-1,-1,-1,-1);
+  }
+  final int relativePosition=position - (2 * getFirstVisibleByte());
+  final int columnSize=getColumnSize();
+  final int row=relativePosition / (2 * m_bytesPerRow);
+  final int column=(relativePosition % (2 * m_bytesPerRow)) / (2 * m_bytesPerColumn);
+  final int nibble=relativePosition % (2 * m_bytesPerRow) % (2 * m_bytesPerColumn);
+  final int x=getHexViewLeft() + m_paddingHexLeft + (column * columnSize)+ (nibble * m_charWidth);
+  final int y=(m_paddingTop - m_charHeight) + (row * m_rowHeight);
+  return new Rectangle(x,y,m_charWidth,m_charHeight);
+}

@@ -1,0 +1,18 @@
+{
+  final MemberTableRowData element=model.get(rowIndex);
+switch (columnIndex) {
+case INDEX_COLUMN:
+    element.setIndex((Integer)value);
+  break;
+case TYPE_COLUMN:
+element.setBaseType((BaseType)value);
+break;
+case NAME_COLUMN:
+element.setName((String)value);
+break;
+default :
+break;
+}
+model.set(rowIndex,element);
+fireTableRowsUpdated(rowIndex,rowIndex);
+}

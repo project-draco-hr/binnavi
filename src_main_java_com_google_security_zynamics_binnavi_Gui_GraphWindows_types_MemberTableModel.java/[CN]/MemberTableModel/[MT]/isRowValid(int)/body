@@ -1,0 +1,6 @@
+{
+  if (rowIndex >= validRows.size()) {
+    return false;
+  }
+  return validRows.get(rowIndex);
+}

@@ -1,0 +1,3 @@
+JStackView stackView
+CStackMemoryProvider model
+CDebugPerspectiveModel debugPerspectiveModel

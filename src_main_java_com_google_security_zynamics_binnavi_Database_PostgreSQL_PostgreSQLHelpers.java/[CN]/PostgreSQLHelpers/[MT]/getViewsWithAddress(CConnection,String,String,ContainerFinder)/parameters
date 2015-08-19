@@ -1,0 +1,4 @@
+CConnection connection
+String query
+String columnName
+ContainerFinder finder

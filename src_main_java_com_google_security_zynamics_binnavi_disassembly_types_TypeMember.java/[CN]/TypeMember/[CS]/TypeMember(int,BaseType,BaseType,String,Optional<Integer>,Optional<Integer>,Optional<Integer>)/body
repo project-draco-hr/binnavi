@@ -1,0 +1,14 @@
+{
+  this.id=id;
+  this.name=Preconditions.checkNotNull(name,"IE02622: Member name can not be null.");
+  this.baseType=Preconditions.checkNotNull(baseType,"IE02623: Base type of member can not be null.");
+  this.parentType=Preconditions.checkNotNull(parentType,"IE02624: The parent type can not be null.");
+  Preconditions.checkArgument(parentType != baseType,"Error: Cannot create recursive member declaration.");
+  this.numberOfElements=Preconditions.checkNotNull(numberOfElements,"Error: number of elements can not be null.");
+  Preconditions.checkArgument(!numberOfElements.isPresent() || numberOfElements.get() >= 0,"Error: Number of elements for member must either be greater zero or absent.");
+  this.offset=Preconditions.checkNotNull(offset,"Error: offset argument can not be null.");
+  this.argumentIndex=Preconditions.checkNotNull(argumentIndex,"Error: argument can not be null.");
+  Preconditions.checkArgument(!argumentIndex.isPresent() || argumentIndex.get() >= 0,"Error: Argument index member must either be greater zero or absent.");
+  Preconditions.checkArgument((numberOfElements.isPresent() != offset.isPresent()) ^ argumentIndex.isPresent(),"Error: Either this is a struct member or an array member, or a prototype argument");
+  Preconditions.checkArgument(!offset.isPresent() || offset.get() >= 0,"Error: Member offset must either be greater zero or absent.");
+}

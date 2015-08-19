@@ -1,0 +1,5 @@
+Window parent
+IViewContainer container
+INaviView view
+INaviFunction function
+CGraphWindow window

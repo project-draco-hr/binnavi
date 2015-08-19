@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(transformationProvider,"Error: transformation provider argument can not be null");
+  Preconditions.checkNotNull(initialStates,"Error: initialStates argument can not be null");
+  for (  final Pair<IInstructionGraphEdge,LatticeElementType> initialState : initialStates) {
+    setState(initialState.first(),initialState.second());
+  }
+  while (m_workList.size() > 0) {
+    if (--maximumIteration == 0) {
+      throw new IllegalStateException("Solver could not generate a sane result");
+    }
+    final CComparableInstructionGraphNode comparableInstructionGraphNode=m_workList.removeFirst();
+    final List<LatticeElementType> statesToCombine=new ArrayList<LatticeElementType>();
+    for (    final IInstructionGraphEdge edge : getRelevantEdges(comparableInstructionGraphNode)) {
+      if (m_stateMap.containsKey(edge)) {
+        statesToCombine.add(m_stateMap.get(edge));
+      }
+    }
+    final LatticeElementType combinedState=m_lattice.combine(statesToCombine);
+    Pair<LatticeElementType,LatticeElementType> newStates;
+    newStates=transformationProvider.transform(comparableInstructionGraphNode.getNode(),combinedState);
+    setOutgoingState(comparableInstructionGraphNode.getNode(),newStates);
+  }
+  return new MonoReilSolverResult<LatticeElementType>(m_graph,m_direction,m_lattice,m_stateMap,m_traversedEdges);
+}

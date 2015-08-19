@@ -1,0 +1,9 @@
+{
+  ensureConnection();
+  try {
+    return connection.sendRequestProcessList();
+  }
+ catch (  final IOException e) {
+    throw new DebugExceptionWrapper(e);
+  }
+}

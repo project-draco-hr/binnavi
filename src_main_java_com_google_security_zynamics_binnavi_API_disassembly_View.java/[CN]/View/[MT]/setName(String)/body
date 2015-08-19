@@ -1,0 +1,8 @@
+{
+  try {
+    naviView.getConfiguration().setName(name);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

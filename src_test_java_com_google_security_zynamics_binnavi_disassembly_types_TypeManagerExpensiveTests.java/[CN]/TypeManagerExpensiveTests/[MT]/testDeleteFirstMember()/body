@@ -1,0 +1,4 @@
+{
+  testDeleteFirstMember(getKernel32Module());
+  testDeleteFirstMember(getNotepadModule());
+}

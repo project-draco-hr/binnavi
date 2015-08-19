@@ -1,0 +1,16 @@
+{
+  isDebuggerAttached=value;
+  for (  final ProcessManagerListener listener : listeners) {
+    try {
+      if (value) {
+        listener.attached();
+      }
+ else {
+        listener.detached();
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

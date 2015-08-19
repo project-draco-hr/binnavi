@@ -1,0 +1,3 @@
+AbstractZyGraph<NodeType,?> graph
+NodeType node
+boolean addToSelection

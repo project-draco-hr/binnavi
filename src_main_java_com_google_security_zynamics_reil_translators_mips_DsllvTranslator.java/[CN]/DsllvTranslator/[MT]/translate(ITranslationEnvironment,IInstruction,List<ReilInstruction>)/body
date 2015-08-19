@@ -1,0 +1,14 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"dsllv");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String rd=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final String rt=operands.size() == 2 ? rd : operands.get(1).getRootNode().getChildren().get(0).getValue();
+  final String rs=operands.size() == 2 ? operands.get(1).getRootNode().getChildren().get(0).getValue() : operands.get(2).getRootNode().getChildren().get(0).getValue();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final OperandSize qw=OperandSize.QWORD;
+  final OperandSize ow=OperandSize.OWORD;
+  final String shiftedValue=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(offset++,qw,rt,qw,rs,ow,shiftedValue));
+  instructions.add(ReilHelpers.createAnd(offset++,ow,shiftedValue,qw,String.valueOf(0xFFFFFFFFFFFFFFFFL),qw,rd));
+}

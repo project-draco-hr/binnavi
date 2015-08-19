@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(nodes,"Node list argument can't be null");
+  Preconditions.checkArgument(nodes.size() != 0,"Node list argument can't be empty");
+  final Rectangle2D box=new Rectangle2D.Double();
+  for (  final NodeType node : nodes) {
+    node.calcUnionRect(box);
+  }
+  return box;
+}

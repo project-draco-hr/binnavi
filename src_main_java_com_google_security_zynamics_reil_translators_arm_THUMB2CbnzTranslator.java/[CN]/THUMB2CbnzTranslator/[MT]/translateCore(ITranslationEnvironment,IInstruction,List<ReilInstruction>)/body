@@ -1,0 +1,14 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode labelOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final String sourceRegister1=(registerOperand1.getValue());
+  final String realJumpLabel=(labelOperand1.getValue());
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final String jmpGoal=String.format("%d.%d",instruction.getAddress().toLong(),3);
+  final String jumpCondition=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBisz(baseOffset++,dw,sourceRegister1,dw,jumpCondition));
+  instructions.add(ReilHelpers.createJcc(baseOffset++,dw,jumpCondition,dw,jmpGoal));
+  instructions.add(ReilHelpers.createJcc(baseOffset++,dw,String.valueOf(1),dw,realJumpLabel));
+  instructions.add(ReilHelpers.createNop(baseOffset++));
+}

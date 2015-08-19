@@ -1,0 +1,3 @@
+Integer commentId
+int userId
+String commentText

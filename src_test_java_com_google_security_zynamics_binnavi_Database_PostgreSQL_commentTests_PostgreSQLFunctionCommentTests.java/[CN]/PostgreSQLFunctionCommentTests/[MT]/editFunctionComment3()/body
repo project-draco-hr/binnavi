@@ -1,0 +1,3 @@
+{
+  getProvider().editFunctionComment(function,1,null,null);
+}

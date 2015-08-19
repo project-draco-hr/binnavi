@@ -1,0 +1,9 @@
+{
+  if (m_database.isLoaded()) {
+    final List<? extends ITreeNode<CTag>> children=m_rootTag.getChildren();
+    Collections.sort(children,new TagComparator());
+    for (    final ITreeNode<CTag> tag : children) {
+      add(new CTagNode(getProjectTree(),m_database,(TreeNode<CTag>)tag));
+    }
+  }
+}

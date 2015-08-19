@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(host,"IE00802: Host argument can not be null");
+  if (debugClientHost.equals(host)) {
+    return;
+  }
+  sqlProvider.setHost(this,host);
+  debugClientHost=host;
+  for (  final IDebuggerTemplateListener listener : listeners) {
+    try {
+      listener.changedHost(this);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  if (node == null) {
+    return false;
+  }
+ else   if (parent == node) {
+    return true;
+  }
+ else {
+    return isAncestor(node.getParent(),parent);
+  }
+}

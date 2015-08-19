@@ -1,0 +1,13 @@
+{
+  if (m_debugger != null) {
+    m_debugger.getProcessManager().getMemory().removeMemoryListener(m_listener);
+    m_debugger.getProcessManager().removeListener(m_internalProcessListener);
+  }
+  m_debugger=debugger;
+  m_memoryProvider=debugger == null ? null : debugger.getMemoryProvider();
+  if (debugger != null) {
+    m_debugger.getProcessManager().getMemory().addMemoryListener(m_listener);
+    m_debugger.getProcessManager().addListener(m_internalProcessListener);
+  }
+  notifyListeners();
+}

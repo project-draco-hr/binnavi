@@ -1,0 +1,8 @@
+{
+  final Component currentTab=scriptTab.getSelectedComponent();
+  if (currentTab == null) {
+    dispose();
+    return;
+  }
+  menuBar.updateGui(currentTab instanceof ConsolePane);
+}

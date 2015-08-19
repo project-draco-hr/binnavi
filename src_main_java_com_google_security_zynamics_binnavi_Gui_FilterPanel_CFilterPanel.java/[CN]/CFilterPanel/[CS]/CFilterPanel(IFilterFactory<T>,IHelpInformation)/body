@@ -1,0 +1,14 @@
+{
+  super(new BorderLayout());
+  m_filterFactory=filterFactory;
+  m_inputField=new CHelpTextField(filterHelp);
+  m_inputField.addMouseListener(m_internalMouseListener);
+  add(m_inputField);
+  m_inputField.getDocument().addDocumentListener(new InternalDocumentListener());
+  final IFilterComponent<T> filterComponent=filterFactory.getFilterComponent();
+  if (filterComponent != null) {
+    add(filterComponent.getComponent(),BorderLayout.WEST);
+    filterComponent.addListener(m_filterComponentListener);
+  }
+  setBorder(new TitledBorder("Filter"));
+}

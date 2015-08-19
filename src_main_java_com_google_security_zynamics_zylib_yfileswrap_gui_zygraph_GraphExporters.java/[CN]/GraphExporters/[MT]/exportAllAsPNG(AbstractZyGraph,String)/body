@@ -1,0 +1,6 @@
+{
+  Graph2DView view=zygraph.getView();
+  final ImageOutputHandler png=createPNGOutputHandler();
+  exportGraphToImageFileFormat(view.getGraph2D(),png,filename,png.createDefaultGraph2DView(view.getGraph2D()));
+  return true;
+}

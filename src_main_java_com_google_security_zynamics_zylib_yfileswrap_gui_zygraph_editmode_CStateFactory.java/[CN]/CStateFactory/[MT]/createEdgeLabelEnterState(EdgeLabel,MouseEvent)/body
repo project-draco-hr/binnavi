@@ -1,0 +1,5 @@
+{
+  final CEdgeLabelEnterState<NodeType,EdgeType> state=new CEdgeLabelEnterState<NodeType,EdgeType>(this,m_graph,l);
+  m_factory.createEdgeLabelEnterAction().execute(state,event);
+  return state;
+}

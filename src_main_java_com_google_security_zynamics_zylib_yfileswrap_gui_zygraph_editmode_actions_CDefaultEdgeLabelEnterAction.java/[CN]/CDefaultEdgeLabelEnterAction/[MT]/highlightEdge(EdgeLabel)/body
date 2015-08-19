@@ -1,0 +1,3 @@
+{
+  CEdgeHighlighter.highlightEdge(label.getOwner(),true);
+}

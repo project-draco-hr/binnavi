@@ -1,0 +1,15 @@
+{
+  final boolean selected=m_lastSelectionNode != null && ((DefaultMutableTreeNode)value).getUserObject() == m_lastSelectionNode.getUserObject();
+  super.getTreeCellRendererComponent(tree,value,selected,expanded,leaf,row,selected);
+  setForeground(DEFAULT_FOREGROUND_COLOR);
+  if (value instanceof CTagTreeNode) {
+    renderTagTreeNode((CTagTreeNode)value);
+  }
+ else   if (value instanceof CTaggedGraphNodeNode) {
+    renderTaggedGraphNodeNode((CTaggedGraphNodeNode)value);
+  }
+ else   if (value instanceof CTaggedGraphNodesContainerNode) {
+    renderTaggedGraphNodesContainerNode((CTaggedGraphNodesContainerNode)value);
+  }
+  return this;
+}

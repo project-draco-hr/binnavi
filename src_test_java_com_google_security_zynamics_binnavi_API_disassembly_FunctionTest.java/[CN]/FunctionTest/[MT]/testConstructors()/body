@@ -1,0 +1,11 @@
+{
+  final Module m=ModuleFactory.get();
+  final Function function=new Function(m,m_internalFunction);
+  assertEquals(m,function.getModule());
+  assertEquals(0x123,function.getAddress().toLong());
+  assertEquals("Mock Function",function.getName());
+  assertEquals("Mock Description",function.getDescription());
+  assertEquals(null,function.getComment());
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.FunctionType.Normal,function.getType());
+  assertEquals("123 Mock Function",function.toString());
+}

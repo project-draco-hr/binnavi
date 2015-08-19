@@ -1,0 +1,2 @@
+def getDescription(self):
+    return 'Displays a few statistics about the configured databases'

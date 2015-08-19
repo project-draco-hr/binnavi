@@ -1,0 +1,9 @@
+{
+  final IOperandTreeNode registerOperand=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode immediateOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode immediateOperand2=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final long clearMask=TranslationHelpers.generateZeroMask(Integer.parseInt(immediateOperand1.getValue()),Integer.parseInt(immediateOperand2.getValue()),OperandSize.DWORD);
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,registerOperand.getValue(),dw,String.valueOf(clearMask),dw,registerOperand.getValue()));
+}

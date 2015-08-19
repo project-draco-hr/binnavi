@@ -1,0 +1,3 @@
+{
+  return String.format("View2D '%s'",m_view.getName());
+}

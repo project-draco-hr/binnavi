@@ -1,0 +1,17 @@
+{
+  ArrayList<IComment> comments=internalData.get(rowIndex).second();
+  int currentLineIndex=0;
+  String username="";
+  for (  IComment comment : comments) {
+    if ((currentLineIndex + comment.getNumberOfCommentLines() > lineIndex) && (currentLineIndex == lineIndex)) {
+      String temp=comment.getUser().getUserName();
+      if (temp != null) {
+        username=temp;
+      }
+      break;
+    }
+    currentLineIndex+=comment.getNumberOfCommentLines();
+  }
+  username=CodeDisplay.padRight(username,getColumnWidthInCharacters(columnIndex));
+  return new FormattedCharacterBuffer(username,STANDARD_FONT,columns[USER_INDEX].getDefaultFontColor(),columns[USER_INDEX].getDefaultBackgroundColor());
+}

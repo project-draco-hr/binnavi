@@ -1,0 +1,2 @@
+def writes_native_register(instruction):
+    return (instruction.thirdOperand.value.isalnum() and (instruction.thirdOperand.value.isdigit() == False) and (instruction.thirdOperand.value[0] != 't') and (instruction.mnemonic not in ('jcc', 'ldm', 'stm')))

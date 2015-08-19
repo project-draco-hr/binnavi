@@ -1,0 +1,7 @@
+{
+  final DebuggerTemplate[] projects=new DebuggerTemplate[sortSelectedRows.length];
+  for (int i=0; i < projects.length; i++) {
+    projects[i]=m_database.getContent().getDebuggerTemplateManager().getDebugger(sortSelectedRows[i]);
+  }
+  return projects;
+}

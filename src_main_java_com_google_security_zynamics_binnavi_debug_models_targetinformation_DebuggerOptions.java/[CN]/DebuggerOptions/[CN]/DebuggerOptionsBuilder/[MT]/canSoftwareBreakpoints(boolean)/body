@@ -1,0 +1,4 @@
+{
+  this.canSoftwareBreakpoints=value;
+  return this;
+}

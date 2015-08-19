@@ -1,0 +1,4 @@
+{
+  node.getCriterium().dispose();
+  tree.remove(node);
+}

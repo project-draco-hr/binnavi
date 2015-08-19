@@ -1,0 +1,3 @@
+{
+  members.remove(Preconditions.checkNotNull(member,"Error: member argument can not be null."));
+}

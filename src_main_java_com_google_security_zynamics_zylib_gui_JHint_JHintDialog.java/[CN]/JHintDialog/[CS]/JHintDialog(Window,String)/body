@@ -1,0 +1,14 @@
+{
+  super(parent);
+  setResizable(false);
+  setLayout(new BorderLayout());
+  setAlwaysOnTop(true);
+  setUndecorated(true);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.setBorder(new LineBorder(Color.BLACK));
+  final JTextArea textField=new JTextArea(message);
+  textField.setEditable(false);
+  innerPanel.add(textField);
+  add(innerPanel);
+  pack();
+}

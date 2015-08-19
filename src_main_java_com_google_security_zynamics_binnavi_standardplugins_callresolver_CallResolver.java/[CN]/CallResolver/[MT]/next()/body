@@ -1,0 +1,24 @@
+{
+switch (step) {
+case 0:
+    loadTargetModules();
+  break;
+case 1:
+findIndirectCallAddresses();
+break;
+case 2:
+startDebugger();
+break;
+case 3:
+setBreakpoints();
+break;
+case 4:
+resolveBreakpoints();
+break;
+case 5:
+stopResolving();
+break;
+case 6:
+reset();
+}
+}

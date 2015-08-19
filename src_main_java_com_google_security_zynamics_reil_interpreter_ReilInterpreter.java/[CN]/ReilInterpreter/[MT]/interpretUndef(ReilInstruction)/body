@@ -1,0 +1,3 @@
+{
+  registers.remove(instruction.getThirdOperand().getValue());
+}

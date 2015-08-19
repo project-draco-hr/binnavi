@@ -1,0 +1,6 @@
+int id
+String name
+BaseType baseType
+Section section
+long sectionOffset
+INaviModule module

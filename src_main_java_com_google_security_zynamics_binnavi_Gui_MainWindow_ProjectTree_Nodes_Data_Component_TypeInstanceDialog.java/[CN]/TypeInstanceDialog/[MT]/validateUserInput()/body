@@ -1,0 +1,13 @@
+{
+  if (getInstanceType() == null || getInstanceName() == null) {
+    CMessageBox.showWarning(this,"Please enter a name for the type instance and select a base type.");
+    return false;
+  }
+ else   if (!isValidSectionOffset(sectionOffset,section)) {
+    CMessageBox.showWarning(this,String.format("Please enter a valid section offset!\n The valid range for '%s' is [0x%X-0x%X).",section.getName(),section.getStartAddress().toLong(),section.getEndAddress().toLong()));
+    return false;
+  }
+ else {
+    return true;
+  }
+}

@@ -1,0 +1,25 @@
+{
+  Preconditions.checkNotNull(menu,"IE02371: menu argument can not be null");
+  Preconditions.checkNotNull(model,"IE02372: model argument can not be null");
+  Preconditions.checkNotNull(node,"IE02373: node argument can not be null");
+  final int line=node.positionToRow(y);
+  if (line == -1) {
+    return;
+  }
+  final INaviCodeNode codeNode=(INaviCodeNode)node.getRawNode();
+  final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(codeNode,line);
+  if (instruction != null) {
+    final IDebugger debugger=CGraphDebugger.getDebugger(model.getDebuggerProvider(),instruction);
+    if ((debugger != null) && (clickedObject instanceof COperandTreeNode)) {
+      final TargetProcessThread activeThread=debugger.getProcessManager().getActiveThread();
+      if (activeThread != null) {
+        final CDebugPerspectiveModel viewModel=(CDebugPerspectiveModel)model.getGraphPanel().getViewModel().getModel(PerspectiveType.DebugPerspective);
+        final COperandTreeNode treeNode=(COperandTreeNode)clickedObject;
+        final boolean added=addFollowInDumpMenu(menu,viewModel,debugger,activeThread,instruction.getModule(),treeNode);
+        if (added) {
+          menu.addSeparator();
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  final List<NodeType> items=new ArrayList<NodeType>();
+  graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      if (filter.qualifies(node)) {
+        items.add(node);
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return items;
+}

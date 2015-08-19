@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(instruction,"IE02599: instruction argument can not be null");
+  Preconditions.checkNotNull(codeNode,"IE02600: codeNode argument can not be null");
+  return localInstructionCommentContainer.getComments(new Pair<INaviCodeNode,INaviInstruction>(codeNode,instruction));
+}

@@ -1,0 +1,13 @@
+{
+  m_component=component;
+  m_addressSpace=addressSpace;
+  m_stdEditPanel=stdEditPanel;
+  m_debuggerCombo=debuggerCombo;
+  m_titledBorder=titledBorder;
+  addressSpace.addListener(m_addressSpaceListener);
+  addressSpace.getConfiguration().addListener(m_addressSpaceConfigurationListener);
+  if (addressSpace.isLoaded()) {
+    addressSpace.getContent().addListener(m_addressSpaceContentListener);
+  }
+  m_titledBorder.setTitle(getBorderText());
+}

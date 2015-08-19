@@ -1,0 +1,7 @@
+{
+  assertEquals(m_source,m_edge.getSource());
+  assertEquals(m_target,m_edge.getTarget());
+  assertEquals(EdgeType.JumpUnconditional,m_edge.getType());
+  assertTrue(m_edge.isVisible());
+  assertEquals("View Edge [Text Node with: '1' comments. -> Text Node with: '1' comments.]",m_edge.toString());
+}

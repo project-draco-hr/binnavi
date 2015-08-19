@@ -1,0 +1,6 @@
+{
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger != null) {
+    debugger.getProcessManager().setActiveThread(m_tidBox.getSelectedItem());
+  }
+}

@@ -1,0 +1,11 @@
+{
+  int counter=0;
+  for (  final INaviViewNode node : nodes) {
+    if (node.getParentGroup() != null) {
+      final int parentId=firstNode + groupNodeMap.inverse().get(node.getParentGroup());
+      final int childId=firstNode + counter;
+      connection.executeUpdate(String.format("UPDATE " + CTableNames.NODES_TABLE + " set parent_id = %d WHERE id = %d",parentId,childId),true);
+    }
+    counter++;
+  }
+}

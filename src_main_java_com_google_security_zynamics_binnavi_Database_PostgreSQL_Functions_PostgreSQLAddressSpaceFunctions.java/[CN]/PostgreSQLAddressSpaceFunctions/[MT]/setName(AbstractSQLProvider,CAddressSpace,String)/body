@@ -1,0 +1,7 @@
+{
+  checkArguments(provider,addressSpace);
+  Preconditions.checkNotNull(name,"IE00399: Name argument can not be null");
+  final CConnection connection=provider.getConnection();
+  PostgreSQLHelpers.setName(connection,addressSpace.getConfiguration().getId(),name,CTableNames.ADDRESS_SPACES_TABLE);
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

@@ -1,0 +1,4 @@
+{
+  super(CNodesDisplayString.getDisplayString(node));
+  m_node=node;
+}

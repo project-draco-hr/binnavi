@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(threads,"IE01035: Threads argument can not be null");
+  this.threads=ImmutableList.<ThreadRegisters>copyOf(threads);
+}

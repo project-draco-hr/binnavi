@@ -1,0 +1,3 @@
+{
+  return (Action)java.lang.reflect.Proxy.newProxyInstance(action.getClass().getClassLoader(),new Class<?>[]{Action.class},new CActionProxy(action));
+}

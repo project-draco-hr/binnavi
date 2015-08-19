@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Either) && ((Either)rhs).m_lhs.equals(m_lhs) && ((Either)rhs).m_rhs.equals(m_rhs);
+}

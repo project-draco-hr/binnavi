@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(container,"IE01822: Container argument can not be null");
+  final List<INaviAddressSpace> addressSpaces=container.getAddressSpaces();
+  if (addressSpaces == null) {
+    final INaviModule module=container.getModules().get(0);
+    add(new ViewSelectionModuleNode(dialog,module,model));
+  }
+ else {
+    for (    final INaviAddressSpace addressSpace : addressSpaces) {
+      add(new CAddressSpaceNode(dialog,addressSpace,model));
+    }
+  }
+}

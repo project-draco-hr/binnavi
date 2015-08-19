@@ -1,0 +1,9 @@
+{
+  for (  final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+    final IDebugger debugger=addressSpace.getConfiguration().getDebugger();
+    if (debugger != null) {
+      m_activeDebuggers.put(addressSpace,debugger);
+      m_debuggerProvider.addDebugger(debugger);
+    }
+  }
+}

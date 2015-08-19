@@ -1,0 +1,33 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand3=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceRegister1=(registerOperand2.getValue());
+  final String sourceRegister2=(registerOperand3.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize wd=OperandSize.WORD;
+  final long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  new Processor(){
+    @Override protected int getResultShiftDelta(){
+      return 0;
+    }
+    @Override protected String[] process(    final long offset,    final String[] firstTwo,    final String[] secondTwo){
+      final String sum1=environment.getNextVariableString();
+      final String sum2=environment.getNextVariableString();
+      final String tmpVar1=environment.getNextVariableString();
+      final String tmpVar2=environment.getNextVariableString();
+      long baseOffset=offset;
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[0],dw,secondTwo[0],dw,sum1));
+      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[1],dw,secondTwo[1],dw,sum2));
+      instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sum1,wd,String.valueOf(-16L),bt,tmpVar1));
+      instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar1,dw,String.valueOf(1L),bt,"CPSR_GE_0"));
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CPSR_GE_0",bt,"CPSR_GE_1"));
+      instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sum2,wd,String.valueOf(-16L),bt,tmpVar2));
+      instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar2,dw,String.valueOf(1L),bt,"CPSR_GE_2"));
+      instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CPSR_GE_2",bt,"CPSR_GE_3"));
+      return new String[]{sum1,sum2};
+    }
+  }
+.generate(environment,baseOffset,16,sourceRegister1,sourceRegister2,targetRegister,instructions);
+}

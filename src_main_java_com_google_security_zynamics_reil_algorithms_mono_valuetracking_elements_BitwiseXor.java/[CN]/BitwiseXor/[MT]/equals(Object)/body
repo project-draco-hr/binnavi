@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof BitwiseXor) && ((BitwiseXor)rhs).m_lhs.equals(m_lhs) && ((BitwiseXor)rhs).m_rhs.equals(m_rhs);
+}

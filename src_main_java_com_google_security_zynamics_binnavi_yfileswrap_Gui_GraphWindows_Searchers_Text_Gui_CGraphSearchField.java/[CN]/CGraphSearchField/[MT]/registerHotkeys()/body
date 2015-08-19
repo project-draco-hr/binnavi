@@ -1,0 +1,14 @@
+{
+  final ActionMap actionMap=((JTextField)getEditor().getEditorComponent()).getActionMap();
+  final InputMap imap=((JTextField)getEditor().getEditorComponent()).getInputMap();
+  setActionMap(actionMap);
+  setInputMap(JComponent.WHEN_FOCUSED,imap);
+  imap.put(HotKeys.GRAPH_SEARCH_NEXT_KEY.getKeyStroke(),"NEXT");
+  imap.put(HotKeys.GRAPH_SEARCH_NEXT_ZOOM_KEY.getKeyStroke(),"NEXT_ZOOM");
+  imap.put(HotKeys.GRAPH_SEARCH_PREVIOUS_KEY.getKeyStroke(),"PREVIOUS");
+  imap.put(HotKeys.GRAPH_SEARCH_PREVIOUS_ZOOM_KEY.getKeyStroke(),"PREVIOUS_ZOOM");
+  actionMap.put("NEXT",CActionProxy.proxy(new CActionHotKey("NEXT")));
+  actionMap.put("NEXT_ZOOM",CActionProxy.proxy(new CActionHotKey("NEXT_ZOOM")));
+  actionMap.put("PREVIOUS",CActionProxy.proxy(new CActionHotKey("PREVIOUS")));
+  actionMap.put("PREVIOUS_ZOOM",CActionProxy.proxy(new CActionHotKey("PREVIOUS_ZOOM")));
+}

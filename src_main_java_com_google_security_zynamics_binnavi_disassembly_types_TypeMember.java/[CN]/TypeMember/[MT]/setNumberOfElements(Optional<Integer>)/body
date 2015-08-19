@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(this.numberOfElements.isPresent() == numberOfElements.isPresent(),"Error: can not change a non array type to an array type.");
+  this.numberOfElements=numberOfElements;
+}

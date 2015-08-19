@@ -1,0 +1,4 @@
+{
+  final Node n=hitInfo.getHitNode();
+  return new CStateChange(m_factory.createNodeEnterState(n,event),true);
+}

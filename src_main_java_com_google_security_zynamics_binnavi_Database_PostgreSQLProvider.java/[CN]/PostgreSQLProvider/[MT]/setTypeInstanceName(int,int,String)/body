@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.setTypeInstanceName(this,moduleId,id,name);
+}

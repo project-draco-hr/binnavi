@@ -1,0 +1,19 @@
+{
+  final double yPos=y - node.getY();
+  final int row=node.positionToRow(yPos);
+  final INaviInstruction instruction=CCodeNodeHelpers.lineToInstruction(codeNode,row);
+  if (instruction == null) {
+    return;
+  }
+  if (m_grayedInstructions.contains(instruction)) {
+    final Pair<String,List<CStyleRunData>> content=ZyInstructionBuilder.buildInstructionLine(instruction,model.getGraph().getSettings(),new CDefaultModifier(model.getGraph().getSettings(),model.getDebuggerProvider()));
+    for (    final CStyleRunData style : content.second()) {
+      node.setColor(row,style.getStart(),style.getLength(),style.getColor());
+    }
+    m_grayedInstructions.remove(instruction);
+  }
+ else {
+    node.setColor(row,Color.LIGHT_GRAY);
+    m_grayedInstructions.add(instruction);
+  }
+}

@@ -1,0 +1,35 @@
+{
+  Preconditions.checkArgument(address >= 0,"Error: Address can't be less than 0");
+  Preconditions.checkArgument(length > 0,"Error: Length must be positive");
+  m_readLock.lock();
+  MemoryChunk nextChunk=findChunk(address);
+  int nextLength=length;
+  long nextAddress=address;
+  final byte[] data=new byte[length];
+  int copied=0;
+  try {
+    do {
+      if (nextChunk == null) {
+        throw new IllegalArgumentException("Error: Data is not available");
+      }
+ else       if (((nextChunk.getAddress() + nextChunk.getLength()) - nextAddress) >= nextLength) {
+        final int start=(int)(nextAddress - nextChunk.getAddress());
+        System.arraycopy(nextChunk.getBytes(),start,data,copied,nextLength);
+        return data;
+      }
+ else {
+        final int start=(int)(nextAddress - nextChunk.getAddress());
+        final int toCopy=nextChunk.getLength() - start;
+        System.arraycopy(nextChunk.getBytes(),start,data,copied,toCopy);
+        copied+=toCopy;
+        nextLength-=(nextChunk.getAddress() + nextChunk.getLength()) - nextAddress;
+        nextAddress=nextChunk.getAddress() + nextChunk.getLength();
+        nextChunk=findChunk(nextAddress);
+      }
+    }
+ while (true);
+  }
+  finally {
+    m_readLock.unlock();
+  }
+}

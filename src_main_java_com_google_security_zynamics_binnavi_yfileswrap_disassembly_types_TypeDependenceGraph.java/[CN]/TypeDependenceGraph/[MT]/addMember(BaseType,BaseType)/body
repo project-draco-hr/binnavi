@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(parentType,"IE02762: Parent type can not be null.");
+  Preconditions.checkNotNull(memberType,"IE02763: Member type can not be null.");
+  final Node memberTypeNode=Preconditions.checkNotNull(containedRelationMap.get(memberType),"Type node for member type must exist prior to adding a member.");
+  final Node parentNode=Preconditions.checkNotNull(containedRelationMap.get(parentType),"Type node for member parent must exist prior to adding a member");
+  if (willCreateCycle(parentType,memberType)) {
+    return new DependenceResult(false,ImmutableSet.<BaseType>of());
+  }
+  containedRelation.createEdge(memberTypeNode,parentNode);
+  final TypeSearch search=new TypeSearch(containedRelationMap.inverse());
+  search.start(containedRelation,containedRelationMap.get(parentType));
+  return new DependenceResult(true,search.getDependentTypes());
+}

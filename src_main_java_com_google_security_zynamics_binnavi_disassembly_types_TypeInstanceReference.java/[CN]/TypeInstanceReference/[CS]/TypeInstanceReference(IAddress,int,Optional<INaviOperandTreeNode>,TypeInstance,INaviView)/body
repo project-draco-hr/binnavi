@@ -1,0 +1,8 @@
+{
+  this.address=Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  Preconditions.checkArgument(position >= 0,"Error: the operand position must be larger or equal to zero");
+  this.position=position;
+  this.node=Preconditions.checkNotNull(node,"Error: node argument can not be null");
+  this.typeInstance=Preconditions.checkNotNull(typeInstance,"Error: typeInstance argument can not be null");
+  this.view=Preconditions.checkNotNull(view,"Error: view argument can not be null");
+}

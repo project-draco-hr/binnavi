@@ -1,0 +1,5 @@
+{
+  for (int i=3; i >= 0; --i) {
+    byteData.add(Byte.valueOf((byte)(number >> 8 * i & 0xFF)));
+  }
+}

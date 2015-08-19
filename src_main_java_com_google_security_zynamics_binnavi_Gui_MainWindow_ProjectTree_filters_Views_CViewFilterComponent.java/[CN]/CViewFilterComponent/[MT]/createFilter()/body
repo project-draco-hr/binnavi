@@ -1,0 +1,17 @@
+{
+  return new IFilter<INaviView>(){
+    @Override public boolean checkCondition(    final INaviView element){
+      final CViewTypePanel typePanel=m_dialog.getViewTypePanel();
+      return ((typePanel.isShowCallgraphViews() && (element.getGraphType() == GraphType.CALLGRAPH)) || (typePanel.isShowMixedViews() && (element.getGraphType() == GraphType.MIXED_GRAPH)) || (typePanel.isShowFlowgraphViews() && (element.getGraphType() == GraphType.FLOWGRAPH)));
+    }
+    @Override public IFilledList<INaviView> get(    final List<INaviView> elements){
+      return new FilledList<INaviView>(CollectionHelpers.filter(elements,new ICollectionFilter<INaviView>(){
+        @Override public boolean qualifies(        final INaviView item){
+          return checkCondition(item);
+        }
+      }
+));
+    }
+  }
+;
+}

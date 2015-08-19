@@ -1,0 +1,4 @@
+{
+  this.keyStroke=Preconditions.checkNotNull(keyStroke,"IE02861: keyStroke argument can not be null");
+  this.description=Preconditions.checkNotNull(description,"IE02862: description argument can not be null");
+}

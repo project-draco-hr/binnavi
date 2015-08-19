@@ -1,0 +1,4 @@
+boolean clearAll
+Set<String> clearedRegisters
+boolean trackIncoming
+AnalysisDirection analysisDirection

@@ -1,0 +1,27 @@
+{
+  final JPopupMenu menu=new JPopupMenu();
+  if (selectedNode instanceof TypeMemberTreeNode) {
+    menu.add(new EditMemberAction(graphModel.getParent(),getTypeManager(),((TypeMemberTreeNode)selectedNode).getTypeMember()));
+    return menu;
+  }
+  if (selectedNode instanceof BaseTypeTreeNode) {
+    menu.add(new EditTypeAction(graphModel.getParent(),getTypeManager(),((BaseTypeTreeNode)selectedNode).getBaseType()));
+    return menu;
+  }
+  if (selectedNode instanceof InstructionNode) {
+    final ViewReferencesTableModel model=(ViewReferencesTableModel)referencesTable.getModel();
+    if (model.getTypeInstanceReference((InstructionNode)selectedNode) != null) {
+      menu.add(new EditTypeInstanceAction(graphModel.getParent(),getTypeManager(),model.getTypeInstanceReference((InstructionNode)selectedNode).getTypeInstance(),getTypeInstanceContainer()));
+    }
+    if (model.getTypeSubstitution((InstructionNode)selectedNode) != null) {
+      try {
+        menu.add(TypeSubstitutionAction.instantiateEditTypeSubstitution(graphModel.getParent(),getTypeManager(),graphModel.getGraph().getRawView().getConfiguration().getModule().getContent().getFunctionContainer().getFunction(graphModel.getGraph().getRawView().getConfiguration().getName()).getStackFrame(),model.getTypeSubstitution((InstructionNode)selectedNode).getOperandTreeNode()));
+      }
+ catch (      MaybeNullException exception) {
+        exception.printStackTrace();
+      }
+    }
+    return menu;
+  }
+  return null;
+}

@@ -1,0 +1,15 @@
+{
+  addressSpace.load();
+  final MockAddressSpaceListener listener=new MockAddressSpaceListener();
+  addressSpace.addListener(listener);
+  final DebuggerTemplate template=database.getDebuggerTemplateManager().createDebuggerTemplate("foo","",0);
+  addressSpace.setDebuggerTemplate(template);
+  assertEquals("changedDebugger;changedModificationDate;",listener.events);
+  assertNotNull(addressSpace.getDebugger());
+  assertEquals(template,addressSpace.getDebuggerTemplate());
+  addressSpace.setDebuggerTemplate(null);
+  assertEquals("changedDebugger;changedModificationDate;changedDebugger;changedModificationDate;",listener.events);
+  assertNull(addressSpace.getDebugger());
+  assertNull(addressSpace.getDebuggerTemplate());
+  addressSpace.removeListener(listener);
+}

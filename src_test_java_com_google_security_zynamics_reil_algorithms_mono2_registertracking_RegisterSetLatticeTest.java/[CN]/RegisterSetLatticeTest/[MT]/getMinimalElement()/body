@@ -1,0 +1,8 @@
+{
+  final RegisterSetLattice lattice=new RegisterSetLattice();
+  lattice.getMinimalElement().getNewlyTaintedRegisters().isEmpty();
+  lattice.getMinimalElement().getTaintedRegisters().isEmpty();
+  lattice.getMinimalElement().getUntaintedRegisters().isEmpty();
+  lattice.getMinimalElement().getUpdatedRegisters().isEmpty();
+  lattice.getMinimalElement().getReadRegisters().isEmpty();
+}

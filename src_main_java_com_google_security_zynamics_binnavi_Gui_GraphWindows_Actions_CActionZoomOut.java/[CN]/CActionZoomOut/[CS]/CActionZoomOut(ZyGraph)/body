@@ -1,0 +1,6 @@
+{
+  super("Zoom Out");
+  m_graph=Preconditions.checkNotNull(graph,"IE02835: graph argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Zoom Out");
+  putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/reduce_up.jpg")));
+}

@@ -1,0 +1,7 @@
+{
+  final ZyGraph graph=m_graph.get();
+  final JFrame parent=m_parent.get();
+  if ((graph != null) && (parent != null)) {
+    CGraphSaver.save(parent,graph);
+  }
+}

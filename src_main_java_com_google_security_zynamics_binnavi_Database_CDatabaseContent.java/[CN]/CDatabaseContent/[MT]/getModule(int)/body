@@ -1,0 +1,8 @@
+{
+  for (  final INaviModule module : m_modules) {
+    if (module.getConfiguration().getId() == moduleId) {
+      return module;
+    }
+  }
+  return null;
+}

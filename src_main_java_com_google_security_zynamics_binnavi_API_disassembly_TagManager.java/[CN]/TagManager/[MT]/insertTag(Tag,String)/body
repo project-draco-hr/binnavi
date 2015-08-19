@@ -1,0 +1,13 @@
+{
+  try {
+    if (parent == null) {
+      return ObjectFinders.getObject(m_manager.insertTag(m_root.getNative(),name),m_allTags.values());
+    }
+ else {
+      return ObjectFinders.getObject(m_manager.insertTag(parent.getNative(),name),m_allTags.values());
+    }
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

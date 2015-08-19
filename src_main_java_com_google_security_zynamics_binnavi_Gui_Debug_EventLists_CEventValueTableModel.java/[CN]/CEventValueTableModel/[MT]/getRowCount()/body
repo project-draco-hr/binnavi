@@ -1,0 +1,6 @@
+{
+  if (event == null) {
+    return 0;
+  }
+  return event.getRegisterValues().size();
+}

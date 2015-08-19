@@ -1,0 +1,5 @@
+{
+  this(leftText,rightText,min,max);
+  m_slider.setPaintTrack(trackbar);
+  setBorder(border);
+}

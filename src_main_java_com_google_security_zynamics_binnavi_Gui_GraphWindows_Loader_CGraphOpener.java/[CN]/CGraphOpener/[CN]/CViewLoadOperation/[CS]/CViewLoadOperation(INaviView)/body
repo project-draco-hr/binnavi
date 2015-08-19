@@ -1,0 +1,6 @@
+{
+  m_view=view;
+  m_progressBar=new CProgressPanel(String.format("Loading view '%s'",view.getName()),true,false);
+  m_progressBar.start();
+  CGlobalProgressManager.instance().add(this);
+}

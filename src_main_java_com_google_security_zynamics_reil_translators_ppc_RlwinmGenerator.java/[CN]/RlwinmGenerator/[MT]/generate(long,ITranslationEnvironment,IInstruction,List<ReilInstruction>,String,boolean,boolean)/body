@@ -1,0 +1,88 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,mnemonic);
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode integerOperand1=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  final IOperandTreeNode integerOperand2=(instruction.getOperands().size() >= 4) ? instruction.getOperands().get(3).getRootNode().getChildren().get(0) : null;
+  final IOperandTreeNode integerOperand3=(instruction.getOperands().size() == 5) ? instruction.getOperands().get(4).getRootNode().getChildren().get(0) : null;
+  final String targetRegister=registerOperand1.getValue();
+  final String sourceRegister=registerOperand2.getValue();
+  String SH="";
+  String MB="";
+  String ME="";
+  final String crTemp=environment.getNextVariableString();
+  final String rotateVar1=environment.getNextVariableString();
+  final String rotateVar2=environment.getNextVariableString();
+  final String rotateVar3=environment.getNextVariableString();
+  final String rotateVar4=environment.getNextVariableString();
+  if (isSimplified) {
+    if (instruction.getMnemonic().equals("extlwi") || instruction.getMnemonic().equals("extlwi.")) {
+      SH=integerOperand2.getValue();
+      MB=String.valueOf(0L);
+      ME=String.valueOf(Integer.decode(integerOperand1.getValue()) - 1);
+    }
+ else     if (instruction.getMnemonic().equals("extrwi") || instruction.getMnemonic().equals("extrwi.")) {
+      SH=String.valueOf(Integer.decode(integerOperand2.getValue()) + Integer.decode(integerOperand1.getValue()));
+      MB=String.valueOf(32 - Integer.decode(integerOperand1.getValue()));
+      ME=String.valueOf(31L);
+    }
+ else     if (instruction.getMnemonic().equals("rotlwi") || instruction.getMnemonic().equals("rotlwi.")) {
+      SH=integerOperand1.getValue();
+      MB=String.valueOf(0L);
+      ME=String.valueOf(31L);
+    }
+ else     if (instruction.getMnemonic().equals("rotrwi") || instruction.getMnemonic().equals("rotrwi.")) {
+      SH=String.valueOf(32 - Integer.decode(integerOperand1.getValue()));
+      MB=String.valueOf(0L);
+      ME=String.valueOf(31L);
+    }
+ else     if (instruction.getMnemonic().equals("slwi") || instruction.getMnemonic().equals("slwi.")) {
+      SH=integerOperand1.getValue();
+      MB=String.valueOf(0L);
+      ME=String.valueOf(31 - Integer.decode(integerOperand1.getValue()));
+    }
+ else     if (instruction.getMnemonic().equals("srwi") || instruction.getMnemonic().equals("srwi.")) {
+      SH=String.valueOf(32 - Integer.decode(integerOperand1.getValue()));
+      MB=integerOperand1.getValue();
+      ME=String.valueOf(31L);
+    }
+ else     if (instruction.getMnemonic().equals("clrlwi") || instruction.getMnemonic().equals("clrlwi.")) {
+      SH=String.valueOf(0L);
+      MB=integerOperand1.getValue();
+      ME=String.valueOf(31L);
+    }
+ else     if (instruction.getMnemonic().equals("clrrwi") || instruction.getMnemonic().equals("clrrwi.")) {
+      SH=String.valueOf(0L);
+      MB=String.valueOf(0L);
+      ME=String.valueOf(31 - Integer.decode(integerOperand1.getValue()));
+    }
+ else     if (instruction.getMnemonic().equals("clrlslwi") || instruction.getMnemonic().equals("clrlslwi.")) {
+      SH=integerOperand2.getValue();
+      MB=String.valueOf(Integer.decode(integerOperand1.getValue()) - Integer.decode(integerOperand2.getValue()));
+      ME=String.valueOf(31 - Integer.decode(integerOperand2.getValue()));
+    }
+ else {
+      SH=integerOperand1.getValue();
+      MB=integerOperand2.getValue();
+    }
+  }
+ else {
+    SH=integerOperand1.getValue();
+    MB=integerOperand2.getValue();
+    ME=integerOperand3.getValue();
+  }
+  final String normalMask=(instruction.getOperands().size() == 4) && !isSimplified ? integerOperand2.getValue() : Helpers.getRotateMask(MB,ME);
+  final OperandSize dw=OperandSize.DWORD;
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,SH,dw,rotateVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,String.valueOf(-(32 - Integer.decode(SH))),dw,rotateVar2));
+  instructions.add(ReilHelpers.createOr(baseOffset++,dw,rotateVar1,dw,rotateVar2,dw,rotateVar3));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,rotateVar3,dw,String.valueOf(0xFFFFFFFFL),dw,rotateVar4));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dw,rotateVar4,dw,normalMask,dw,targetRegister));
+  if (setCr) {
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.BYTE,Helpers.CR0_EQUAL));
+    instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,targetRegister,OperandSize.WORD,"-31",OperandSize.BYTE,Helpers.CR0_LESS_THEN));
+    instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,Helpers.CR0_EQUAL,OperandSize.BYTE,Helpers.CR0_LESS_THEN,OperandSize.BYTE,crTemp));
+    instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.BYTE,crTemp,OperandSize.BYTE,Helpers.CR0_GREATER_THEN));
+    instructions.add(ReilHelpers.createStr(baseOffset,OperandSize.BYTE,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.BYTE,Helpers.CRO_SUMMARY_OVERFLOW));
+  }
+}

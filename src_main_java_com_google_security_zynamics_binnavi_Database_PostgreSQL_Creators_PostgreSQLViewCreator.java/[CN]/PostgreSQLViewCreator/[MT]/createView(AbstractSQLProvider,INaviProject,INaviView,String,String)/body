@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(project,"Error: Project argument can not be null");
+  Preconditions.checkNotNull(view,"IE02273: View argument can not be null");
+  Preconditions.checkNotNull(name,"IE02274: Name argument can not be null");
+  Preconditions.checkState(view.inSameDatabase(provider),"Error: View is not part of this database");
+  return createView(provider,project.getConfiguration().getId(),view,name,description,CTableNames.PROJECTS_TABLE,CTableNames.PROJECT_VIEWS_TABLE,new CProjectViewGenerator(provider,project));
+}

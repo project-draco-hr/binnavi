@@ -1,0 +1,6 @@
+{
+  Assert.assertTrue(memberOffset0Id0.compareTo(memberOffset1Id0) < 0);
+  Assert.assertFalse(memberOffset1Id0.compareTo(memberOffset0Id0) < 0);
+  Assert.assertTrue(memberOffset0Id0.compareTo(memberOffset0Id1) < 0);
+  Assert.assertFalse(memberOffset0Id1.compareTo(memberOffset0Id0) < 0);
+}

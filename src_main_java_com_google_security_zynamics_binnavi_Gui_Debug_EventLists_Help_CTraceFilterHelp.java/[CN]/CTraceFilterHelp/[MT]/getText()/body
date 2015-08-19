@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible traces.\n\nFilter by trace name: Enter the trace name\nFilter by trace description: Enter the trace description\nFilter by event count: events ==/!=/</>/<=/>= value";
+}

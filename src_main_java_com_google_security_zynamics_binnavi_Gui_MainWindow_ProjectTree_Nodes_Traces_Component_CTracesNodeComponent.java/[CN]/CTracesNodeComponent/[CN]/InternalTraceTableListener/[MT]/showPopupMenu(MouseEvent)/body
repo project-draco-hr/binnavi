@@ -1,0 +1,15 @@
+{
+  final JTable traceTable=m_tracesPanel.getTracesTable();
+  final int mouseRow=traceTable.rowAtPoint(event.getPoint());
+  if (mouseRow != -1) {
+    final int[] rows=traceTable.getSelectedRows();
+    if (Ints.asList(rows).indexOf(mouseRow) != -1) {
+      traceTable.setRowSelectionInterval(mouseRow,mouseRow);
+    }
+  }
+  final int minIndex=m_tracesPanel.getTracesTable().getSelectionModel().getMinSelectionIndex();
+  if (minIndex != -1) {
+    final JPopupMenu popupMenu=new CEventListTableMenu((JFrame)SwingUtilities.getWindowAncestor(CTracesNodeComponent.this),m_tracesPanel.getTracesTable(),m_container.getTraceProvider());
+    popupMenu.show(m_tracesPanel.getTracesTable(),event.getX(),event.getY());
+  }
+}

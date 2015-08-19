@@ -1,0 +1,6 @@
+{
+  rowIndex=coordinate.getRow();
+  lineIndex=coordinate.getLine();
+  columnIndex=coordinate.getColumn();
+  fieldIndex=coordinate.getFieldIndex();
+}

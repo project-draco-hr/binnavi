@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(parentType,"Error: parent type can not be null.");
+  Preconditions.checkNotNull(members,"Error: members can not be null.");
+  Preconditions.checkArgument(delta != 0,"Move delta can not be zero.");
+  final MemberMoveResult result=parentType.moveMembers(Sets.newTreeSet(members),delta);
+  final Set<BaseType> affectedTypes=typesContainer.getAffectedTypes(parentType);
+  backend.updateMemberOffsets(membersToIds(members),delta,membersToIds(result.getImplicitlyMoved()),result.getImplicitlyMovedDelta());
+  notifyMembersMoved(affectedTypes);
+}

@@ -1,0 +1,5 @@
+{
+  if (state.getGraph().getEditMode().getLabelEventHandler().isActive()) {
+    CEditNodeHelper.removeCaret(state.getGraph());
+  }
+}

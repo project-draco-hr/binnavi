@@ -1,0 +1,9 @@
+{
+  final int currentRow=getCurrentRow() - m_firstRow;
+  final int currentColumn=getCurrentColumn();
+  final int currentCharacter=currentColumn / 2;
+  final int startLeft=9 + m_offsetViewWidth + m_hexViewWidth;
+  final int x=(-m_firstColumn * m_charWidth) + startLeft + (currentCharacter * characterWidth);
+  final int y=((3 + m_paddingTop) - characterHeight) + (characterHeight * currentRow);
+  m_caret.draw(g,x,y,characterHeight);
+}

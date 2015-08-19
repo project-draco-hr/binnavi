@@ -1,0 +1,14 @@
+{
+  final boolean registerFirst=inputOperandsAreRegisterLiteral(instruction);
+  final ReilOperand registerOperand=registerFirst ? instruction.getFirstOperand() : instruction.getSecondOperand();
+  final ReilOperand literalOperand=registerFirst ? instruction.getSecondOperand() : instruction.getFirstOperand();
+  final ReilOperand outputOperand=instruction.getThirdOperand();
+  final IValueElement previousState=incomingState.getState(registerOperand.getValue());
+  final IValueElement result=getOutputValue(registerOperand,previousState,literalOperand,null,generator);
+  if (previousState instanceof BitwiseAnd) {
+    return AndSimplifier.simplifyAnd(instruction,registerOperand,literalOperand,(BitwiseAnd)previousState,incomingState,generator);
+  }
+ else {
+    return incomingState.update(instruction,new Register(outputOperand.getValue()),result);
+  }
+}

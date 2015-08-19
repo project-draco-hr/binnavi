@@ -1,0 +1,28 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmpxchg8b");
+  Preconditions.checkArgument(instruction.getOperands().size() == 1,"Error: Argument instruction is not a cmpxchg8b instruction (invalid number of operands)");
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree targetOperand=operands.get(0);
+  final TranslationResult firstResult=Helpers.translateOperand(environment,offset,targetOperand,false);
+  instructions.addAll(firstResult.getInstructions());
+  final String loadResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createLdm(baseOffset + instructions.size(),OperandSize.DWORD,firstResult.getAddress(),OperandSize.QWORD,loadResult));
+  final String combinedEdxEax=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createBsh(baseOffset + instructions.size(),OperandSize.DWORD,"edx",OperandSize.DWORD,"32",OperandSize.QWORD,combinedEdxEax));
+  instructions.add(ReilHelpers.createOr(baseOffset + instructions.size(),OperandSize.QWORD,"eax",OperandSize.QWORD,combinedEdxEax,OperandSize.QWORD,combinedEdxEax));
+  final String comparisonResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createSub(baseOffset + instructions.size(),OperandSize.QWORD,combinedEdxEax,OperandSize.QWORD,loadResult,OperandSize.QWORD,comparisonResult));
+  instructions.add(ReilHelpers.createBisz(baseOffset + instructions.size(),OperandSize.QWORD,comparisonResult,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  final String jmpGoal=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 4);
+  instructions.add(ReilHelpers.createJcc(baseOffset + instructions.size(),OperandSize.BYTE,Helpers.ZERO_FLAG,OperandSize.ADDRESS,jmpGoal));
+  instructions.add(ReilHelpers.createAnd(baseOffset + instructions.size(),OperandSize.QWORD,loadResult,OperandSize.QWORD,String.valueOf(TranslationHelpers.getAllBitsMask(OperandSize.DWORD)),OperandSize.DWORD,"eax"));
+  instructions.add(ReilHelpers.createBsh(baseOffset + instructions.size(),OperandSize.QWORD,loadResult,OperandSize.DWORD,"-32",OperandSize.DWORD,"edx"));
+  final String jmpGoal2=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 4);
+  instructions.add(ReilHelpers.createJcc(baseOffset + instructions.size(),OperandSize.BYTE,"1",OperandSize.ADDRESS,jmpGoal2));
+  instructions.add(ReilHelpers.createBsh(baseOffset + instructions.size(),OperandSize.DWORD,"ecx",OperandSize.DWORD,"32",OperandSize.QWORD,combinedEdxEax));
+  instructions.add(ReilHelpers.createOr(baseOffset + instructions.size(),OperandSize.QWORD,"ebx",OperandSize.QWORD,combinedEdxEax,OperandSize.QWORD,combinedEdxEax));
+  instructions.add(ReilHelpers.createStm(baseOffset + instructions.size(),OperandSize.QWORD,combinedEdxEax,OperandSize.DWORD,firstResult.getAddress()));
+  instructions.add(ReilHelpers.createNop(baseOffset + instructions.size()));
+}

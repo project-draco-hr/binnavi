@@ -1,0 +1,4 @@
+AbstractZyGraph<NodeType,?> graph
+NodeType node
+int line
+boolean animate

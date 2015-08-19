@@ -1,0 +1,13 @@
+{
+  final File directory=new File(ConfigManager.instance().getGeneralSettings().getIdaDirectory());
+  if ((directory == null) || !directory.exists()) {
+    CMessageBox.showError(parent,"The selected exporter is not installed properly. Please configure the exporter in the IDA Pro configuration dialog.");
+    return false;
+  }
+  final InstallationState cppState=CBinExportInstallationChecker.getState(directory);
+  if (cppState != InstallationState.Installed) {
+    CMessageBox.showError(parent,"The selected exporter is not installed properly. Please configure the exporter in the IDA Pro configuration dialog.");
+    return false;
+  }
+  return true;
+}

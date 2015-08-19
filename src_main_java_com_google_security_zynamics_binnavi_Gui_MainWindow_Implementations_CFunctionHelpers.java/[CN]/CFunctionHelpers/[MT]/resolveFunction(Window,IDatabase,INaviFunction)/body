@@ -1,0 +1,14 @@
+{
+  final CFunctionSelectionDialog dlg=new CFunctionSelectionDialog(parent,database);
+  GuiHelper.centerChildToParent(parent,dlg,true);
+  dlg.setVisible(true);
+  final INaviFunction selectedFunction=dlg.getSelectedFunction();
+  if (selectedFunction != null) {
+    try {
+      function.setForwardedFunction(selectedFunction);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

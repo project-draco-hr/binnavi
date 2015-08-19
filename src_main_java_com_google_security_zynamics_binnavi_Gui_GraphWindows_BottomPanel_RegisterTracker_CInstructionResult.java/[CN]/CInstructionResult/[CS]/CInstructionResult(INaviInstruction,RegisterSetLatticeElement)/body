@@ -1,0 +1,4 @@
+{
+  m_instruction=Preconditions.checkNotNull(instruction,"IE01666: Instruction argument can not be null");
+  m_registerSet=Preconditions.checkNotNull(registerSetLatticeElement,"IE01667: RegisterSetLatticeElement can not be null");
+}

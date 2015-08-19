@@ -1,0 +1,4 @@
+{
+  m_textArea.append(message);
+  m_textArea.setCaretPosition(m_textArea.getText().length());
+}

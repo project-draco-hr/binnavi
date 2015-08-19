@@ -1,0 +1,11 @@
+{
+  if (!function.isLoaded()) {
+    function.load();
+  }
+  for (  final BasicBlock block : function.getGraph().getNodes()) {
+    if (block.getAddress().toLong() == offset) {
+      return block;
+    }
+  }
+  return null;
+}

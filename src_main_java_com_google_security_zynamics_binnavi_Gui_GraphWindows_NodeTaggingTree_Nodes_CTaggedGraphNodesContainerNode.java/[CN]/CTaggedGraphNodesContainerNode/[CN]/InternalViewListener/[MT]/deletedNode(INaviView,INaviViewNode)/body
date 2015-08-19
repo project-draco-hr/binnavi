@@ -1,0 +1,4 @@
+{
+  deleteNode(node);
+  m_model.nodeStructureChanged(m_model.getRoot());
+}

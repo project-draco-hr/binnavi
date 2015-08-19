@@ -1,0 +1,7 @@
+{
+  if (m_graph.getHierarchyManager() == null) {
+    final HierarchyManager hierarchyManager=new HierarchyManager(m_graph);
+    m_graph.setHierarchyManager(hierarchyManager);
+    hierarchyManager.addHierarchyListener(new GroupNodeRealizer.StateChangeListener());
+  }
+}

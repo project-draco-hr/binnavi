@@ -1,0 +1,11 @@
+{
+  Preconditions.checkNotNull(nodes,"Error: Nodes argument can't be null");
+  Preconditions.checkNotNull(filter,"Error: Filter argument can't be null");
+  final Collection<NodeType> filteredNodes=new ArrayList<NodeType>();
+  for (  final NodeType child : nodes) {
+    if (filter.qualifies(child)) {
+      filteredNodes.add(child);
+    }
+  }
+  return filteredNodes;
+}

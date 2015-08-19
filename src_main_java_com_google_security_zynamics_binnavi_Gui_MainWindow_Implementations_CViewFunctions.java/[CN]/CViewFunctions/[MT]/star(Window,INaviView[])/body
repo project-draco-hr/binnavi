@@ -1,0 +1,13 @@
+{
+  for (  final INaviView view : views) {
+    try {
+      view.getConfiguration().setStared(true);
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00090: " + "View could not be stared";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be stared.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view star was not updated."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

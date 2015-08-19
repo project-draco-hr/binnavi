@@ -1,0 +1,3 @@
+INaviView view
+INaviInstruction instruction
+ArrayList<IComment> comments

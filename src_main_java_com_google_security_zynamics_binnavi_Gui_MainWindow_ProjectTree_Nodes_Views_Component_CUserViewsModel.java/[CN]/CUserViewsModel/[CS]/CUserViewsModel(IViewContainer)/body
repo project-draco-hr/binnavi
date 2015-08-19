@@ -1,0 +1,4 @@
+{
+  m_originContainer=originContainer;
+  m_listener=new CViewTableListener();
+}

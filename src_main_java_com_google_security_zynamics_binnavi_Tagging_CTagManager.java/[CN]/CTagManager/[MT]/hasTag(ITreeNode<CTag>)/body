@@ -1,0 +1,3 @@
+{
+  return (tag == getRootTag()) || BreadthFirstSorter.getSortedList(getRootTag()).contains(tag);
+}

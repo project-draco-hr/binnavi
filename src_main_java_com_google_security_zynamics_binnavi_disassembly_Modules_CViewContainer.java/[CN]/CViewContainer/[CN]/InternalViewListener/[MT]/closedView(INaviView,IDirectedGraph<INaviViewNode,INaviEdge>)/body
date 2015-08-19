@@ -1,0 +1,6 @@
+{
+  if (view.getConfiguration().getId() == -1) {
+    m_customViews.remove(view);
+    view.removeListener(this);
+  }
+}

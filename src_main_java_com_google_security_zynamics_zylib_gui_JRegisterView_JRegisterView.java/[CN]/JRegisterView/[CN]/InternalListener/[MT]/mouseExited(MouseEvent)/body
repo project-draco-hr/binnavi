@@ -1,0 +1,6 @@
+{
+  if (m_editedRegister == -1) {
+    m_highlightedRegister=-1;
+    repaint();
+  }
+}

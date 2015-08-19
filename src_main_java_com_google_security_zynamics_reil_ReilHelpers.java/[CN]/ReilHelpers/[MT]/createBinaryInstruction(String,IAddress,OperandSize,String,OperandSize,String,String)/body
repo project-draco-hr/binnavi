@@ -1,0 +1,11 @@
+{
+  Preconditions.checkArgument((meta.length % 2) == 0,"Error: Invalid number of arguments in metadata array.");
+  final ReilOperand firstOperand=createOperand(firstSize,firstValue);
+  final ReilOperand secondOperand=createOperand(OperandSize.EMPTY,"");
+  final ReilOperand thirdOperand=createOperand(thirdSize,thirdValue);
+  final ReilInstruction instruction=new ReilInstruction(offset,opcode,firstOperand,secondOperand,thirdOperand);
+  for (int i=0; i < meta.length; i+=2) {
+    instruction.setMetaData(meta[i],meta[i + 1]);
+  }
+  return instruction;
+}

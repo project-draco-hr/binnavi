@@ -1,0 +1,4 @@
+CMemoryRefreshButton refreshButton
+CDebugPerspectiveModel debugPerspectiveModel
+Action defaultAction
+Action askAction

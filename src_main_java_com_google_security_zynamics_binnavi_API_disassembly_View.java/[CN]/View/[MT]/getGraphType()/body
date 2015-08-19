@@ -1,0 +1,3 @@
+{
+  return GraphType.convert(naviView.getGraphType());
+}

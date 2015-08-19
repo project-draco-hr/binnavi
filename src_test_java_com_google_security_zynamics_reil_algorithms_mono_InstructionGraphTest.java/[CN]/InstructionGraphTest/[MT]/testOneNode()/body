@@ -1,0 +1,8 @@
+{
+  final ReilBlock block1=new ReilBlock(Lists.newArrayList(ReilHelpers.createNop(0),ReilHelpers.createNop(0),ReilHelpers.createNop(0),ReilHelpers.createNop(0),ReilHelpers.createNop(0)));
+  final List<ReilBlock> blocks=Lists.<ReilBlock>newArrayList(block1);
+  final ReilGraph rg=new ReilGraph(blocks,new ArrayList<ReilEdge>());
+  final InstructionGraph g=InstructionGraph.create(rg);
+  assertEquals(5,g.nodeCount());
+  assertEquals(4,g.edgeCount());
+}

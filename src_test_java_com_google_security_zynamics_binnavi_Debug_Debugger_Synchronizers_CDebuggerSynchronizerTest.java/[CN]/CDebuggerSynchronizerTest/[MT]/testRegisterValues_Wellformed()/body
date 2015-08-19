@@ -1,0 +1,7 @@
+{
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(123,ThreadState.RUNNING));
+  debuggerSynchronizer.receivedEvent(new RegistersReply(0,0,RegisterValuesParser.parse(("<Registers><Thread id=\"123\"><Register name=\"EAX\" " + "value=\"123\" memory=\"\" /><Register name=\"EBX\" value=\"456\" memory=\"\" " + "/><Register name=\"EIP\" value=\"999\" memory=\"\" pc=\"true\" /></Thread>"+ "</Registers>").getBytes())));
+  assertEquals(0,listener.exception);
+  assertEquals(0x456,mockDebugger.getProcessManager().getThread(123).getRegisterValues().get(1).getValue().longValue());
+  assertEquals(0x999,mockDebugger.getProcessManager().getThread(123).getCurrentAddress().getAddress().toLong());
+}

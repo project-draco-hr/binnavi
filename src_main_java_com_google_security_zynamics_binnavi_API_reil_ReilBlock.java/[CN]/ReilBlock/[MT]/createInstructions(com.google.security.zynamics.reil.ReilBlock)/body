@@ -1,0 +1,7 @@
+{
+  final List<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  for (  final com.google.security.zynamics.reil.ReilInstruction reilInstruction : block.getInstructions()) {
+    instructions.add(new ReilInstruction(reilInstruction));
+  }
+  return instructions;
+}

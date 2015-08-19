@@ -1,0 +1,4 @@
+{
+  m_titledBorder.setTitle(getBorderText());
+  m_component.updateUI();
+}

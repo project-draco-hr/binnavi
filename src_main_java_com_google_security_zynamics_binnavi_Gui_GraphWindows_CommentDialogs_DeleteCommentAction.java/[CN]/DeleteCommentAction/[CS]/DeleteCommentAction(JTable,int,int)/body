@@ -1,0 +1,6 @@
+{
+  super("Delete Comment");
+  this.table=Preconditions.checkNotNull(table,"IE02635: table argument can not be null");
+  this.row=Preconditions.checkPositionIndex(row,this.table.getModel().getRowCount());
+  this.column=Preconditions.checkPositionIndex(column,this.table.getModel().getColumnCount());
+}

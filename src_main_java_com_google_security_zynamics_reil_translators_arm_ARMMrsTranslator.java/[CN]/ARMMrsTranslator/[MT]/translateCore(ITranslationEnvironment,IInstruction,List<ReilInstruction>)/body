@@ -1,0 +1,34 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String tmpVar1=environment.getNextVariableString();
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,"N",dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"Z",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"C",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"V",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"Q",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(3L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"J",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(8L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"CPSR_GE",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(7L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"E",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"A",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"I",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"F",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(1L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"T",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(5L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,"CPSR_M",dw,tmpVar1,dw,tmpVar1));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpVar1,dw,String.valueOf(5L),dw,tmpVar1));
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,tmpVar1,dw,targetRegister));
+}

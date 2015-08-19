@@ -1,0 +1,7 @@
+{
+  m_instruction=Preconditions.checkNotNull(instruction,"Error: Instruction argument can't be null");
+  for (  final COperandTree operand : m_instruction.getOperands()) {
+    m_operands.add(new Operand(operand));
+  }
+  instruction.addListener(m_listener);
+}

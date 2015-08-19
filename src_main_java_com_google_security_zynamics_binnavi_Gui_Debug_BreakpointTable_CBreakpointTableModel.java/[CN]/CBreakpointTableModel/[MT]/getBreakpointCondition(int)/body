@@ -1,0 +1,7 @@
+{
+  final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(m_debuggerProvider,row);
+  final BreakpointManager manager=breakpoint.first().getBreakpointManager();
+  final int breakpointIndex=breakpoint.second();
+  final Condition condition=manager.getBreakpoint(BreakpointType.REGULAR,breakpointIndex).getCondition();
+  return condition == null ? "" : condition.toString();
+}

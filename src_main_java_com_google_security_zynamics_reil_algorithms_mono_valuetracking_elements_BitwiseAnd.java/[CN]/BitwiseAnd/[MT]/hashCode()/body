@@ -1,0 +1,3 @@
+{
+  return 7 * m_lhs.hashCode() * m_rhs.hashCode();
+}

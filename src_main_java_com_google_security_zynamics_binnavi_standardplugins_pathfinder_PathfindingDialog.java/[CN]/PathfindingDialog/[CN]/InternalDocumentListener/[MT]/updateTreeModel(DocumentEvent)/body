@@ -1,0 +1,10 @@
+{
+  try {
+    final String s=e.getDocument().getText(0,e.getDocument().getLength());
+    final FilteredTreeModel treeModel=(FilteredTreeModel)m_tree.getModel();
+    treeModel.setFilter(new TextPatternFilter(s));
+  }
+ catch (  final BadLocationException e1) {
+    Logger.logException(e1);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (m_module == null) {
+    return false;
+  }
+  final INaviFunction function=m_module.getFunction(view);
+  if (function == null) {
+    return false;
+  }
+  return function.getAddress().toString().toLowerCase().contains(m_text.toLowerCase());
+}

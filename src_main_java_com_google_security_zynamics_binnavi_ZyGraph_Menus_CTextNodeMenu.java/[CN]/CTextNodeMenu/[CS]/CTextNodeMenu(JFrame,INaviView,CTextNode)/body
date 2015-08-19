@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(parent,"IE02151: Parent argument can not be null");
+  Preconditions.checkNotNull(view,"IE02152: View argument can not be null");
+  Preconditions.checkNotNull(node,"IE00975: Node argument can't be null");
+  add(new JMenuItem(CActionProxy.proxy(new CEditTextAction(parent,node))));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionDeleteNode(view,node)));
+}

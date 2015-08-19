@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(object,"IE00250: Object argument can't be null");
+  return object.inSameDatabase(m_provider);
+}

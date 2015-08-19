@@ -1,0 +1,5 @@
+{
+  final Map<Section,Integer> sections=getProvider().loadSections(getKernel32Module());
+  Assert.assertNotNull(sections);
+  Assert.assertFalse(sections.isEmpty());
+}

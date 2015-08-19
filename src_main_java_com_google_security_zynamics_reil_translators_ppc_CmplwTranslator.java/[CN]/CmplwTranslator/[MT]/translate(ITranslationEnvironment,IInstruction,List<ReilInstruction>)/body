@@ -1,0 +1,12 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cmplw");
+  final IOperandTreeNode conditionRegister=(instruction.getOperands().size() == 2) ? null : instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand1=(instruction.getOperands().size() == 2) ? instruction.getOperands().get(0).getRootNode().getChildren().get(0) : instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=(instruction.getOperands().size() == 2) ? instruction.getOperands().get(1).getRootNode().getChildren().get(0) : instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  if (instruction.getOperands().size() == 2) {
+    CmpGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"cmplw","CR0",registerOperand1.getValue(),registerOperand2.getValue(),true);
+  }
+ else {
+    CmpGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"cmplw",conditionRegister.getValue(),registerOperand1.getValue(),registerOperand2.getValue(),true);
+  }
+}

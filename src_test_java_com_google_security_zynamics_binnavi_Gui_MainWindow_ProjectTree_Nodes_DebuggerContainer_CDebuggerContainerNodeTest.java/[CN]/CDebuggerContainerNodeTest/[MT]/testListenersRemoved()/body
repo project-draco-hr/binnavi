@@ -1,0 +1,6 @@
+{
+  final CDebuggerContainerNode node=new CDebuggerContainerNode(m_tree,m_database);
+  node.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database.getContent().getDebuggerTemplateManager(),"listeners"),"m_listeners")).isEmpty());
+}

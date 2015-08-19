@@ -1,0 +1,28 @@
+{
+  final String queryPrefix="INSERT INTO " + CTableNames.TRACE_EVENT_TABLE + "(trace_id, position, tid, module_id, address, type) VALUES";
+  final StringBuilder stringBuilder=new StringBuilder(queryPrefix);
+  int position=0;
+  for (  final ITraceEvent traceEvent : trace) {
+    final String moduleString=traceEvent.getOffset().getModule() == null ? "null" : String.valueOf(traceEvent.getOffset().getModule().getConfiguration().getId());
+    stringBuilder.append(String.format(Locale.ENGLISH,"(%d, %d, %d, %s, %s, %d)",trace.getId(),position,traceEvent.getThreadId(),moduleString,traceEvent.getOffset().getAddress().getAddress().toBigInteger().toString(),1));
+    ++position;
+    if (trace.getEventCount() > position) {
+      stringBuilder.append(", ");
+    }
+  }
+  try {
+    final PreparedStatement prep=connection.getConnection().prepareStatement(stringBuilder.toString());
+    try {
+      prep.execute();
+    }
+ catch (    final SQLException exception) {
+      throw new CouldntSaveDataException(exception);
+    }
+ finally {
+      prep.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

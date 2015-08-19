@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Terminate\" message to the debug client");
+  return sendPacket(new TerminateCommand(getMessageId()));
+}

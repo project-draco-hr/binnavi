@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= 0,"IE00893: Threshold argument must not be negative");
+  if (value == getVisibilityWarningTreshold()) {
+    return;
+  }
+  if (m_type == null) {
+    m_visibilityWarningThreshold=value;
+  }
+ else {
+    m_type.setVisibilityWarningThreshold(value);
+  }
+}

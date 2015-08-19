@@ -1,0 +1,13 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String mnemonic
+String BIOperand
+String addressOperand
+boolean setLinkRegister
+boolean isUnconditional
+boolean ctrDecrement
+boolean ctrZero
+boolean crCheck
+boolean crZero

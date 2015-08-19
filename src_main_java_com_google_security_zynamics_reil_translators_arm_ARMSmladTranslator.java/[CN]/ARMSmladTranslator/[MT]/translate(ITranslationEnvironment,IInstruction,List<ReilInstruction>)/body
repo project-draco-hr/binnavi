@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SMLAD");
+  translateAll(environment,instruction,"SMLAD",instructions);
+}

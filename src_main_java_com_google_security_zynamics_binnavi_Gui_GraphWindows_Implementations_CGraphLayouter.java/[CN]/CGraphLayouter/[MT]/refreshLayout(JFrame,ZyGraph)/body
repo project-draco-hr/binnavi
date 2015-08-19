@@ -1,0 +1,7 @@
+{
+  checkArguments(parent,graph);
+  final LayoutWaiter waiter=new LayoutWaiter(graph);
+  final CEndlessProgressDialog dlg=new CEndlessProgressDialog(parent,Constants.DEFAULT_WINDOW_TITLE,"Calculating the new graph layout" + "...",waiter);
+  waiter.start();
+  dlg.setVisible(true);
+}

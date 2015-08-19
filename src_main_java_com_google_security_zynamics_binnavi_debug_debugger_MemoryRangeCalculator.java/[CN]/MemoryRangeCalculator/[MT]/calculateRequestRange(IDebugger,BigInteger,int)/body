@@ -1,0 +1,10 @@
+{
+  final MemoryMap mmap=debugger.getProcessManager().getMemoryMap();
+  final MemorySection section=mmap.findOffset(offset);
+  if (section == null) {
+    return new Pair<IAddress,Integer>(new CAddress(offset),size);
+  }
+ else {
+    return calculateRequestRange(offset,size,section.getStart(),section.getEnd());
+  }
+}

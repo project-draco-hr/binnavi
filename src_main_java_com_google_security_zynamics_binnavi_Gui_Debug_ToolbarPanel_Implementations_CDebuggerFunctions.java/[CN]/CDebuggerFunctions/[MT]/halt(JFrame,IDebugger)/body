@@ -1,0 +1,15 @@
+{
+  checkArguments(parent,debugger);
+  if (!debugger.isConnected()) {
+    return;
+  }
+  try {
+    debugger.halt();
+  }
+ catch (  final DebugExceptionWrapper e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00083: " + "Could not send halt command";
+    final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the halt command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The state of the debugged process remains unchanged."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+  }
+}

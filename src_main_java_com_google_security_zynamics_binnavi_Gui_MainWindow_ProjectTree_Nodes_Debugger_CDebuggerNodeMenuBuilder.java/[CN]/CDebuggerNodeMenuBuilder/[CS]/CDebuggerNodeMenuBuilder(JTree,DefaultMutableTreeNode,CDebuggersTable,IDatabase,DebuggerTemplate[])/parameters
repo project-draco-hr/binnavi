@@ -1,0 +1,5 @@
+JTree projectTree
+DefaultMutableTreeNode parentNode
+CDebuggersTable table
+IDatabase database
+DebuggerTemplate debuggers[]

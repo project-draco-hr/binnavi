@@ -1,0 +1,13 @@
+{
+  int totalSize=0;
+  for (  final byte[] dataPart : dataChunks) {
+    totalSize+=dataPart.length;
+  }
+  final byte[] data=new byte[totalSize];
+  int index=0;
+  for (  final byte[] dataPart : dataChunks) {
+    System.arraycopy(dataPart,0,data,index,dataPart.length);
+    index+=dataPart.length;
+  }
+  return data;
+}

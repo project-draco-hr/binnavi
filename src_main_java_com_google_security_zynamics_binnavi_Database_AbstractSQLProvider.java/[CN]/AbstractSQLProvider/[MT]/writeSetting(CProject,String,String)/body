@@ -1,0 +1,3 @@
+{
+  PostgreSQLSettingsFunctions.writeSetting(this,project,key,value);
+}

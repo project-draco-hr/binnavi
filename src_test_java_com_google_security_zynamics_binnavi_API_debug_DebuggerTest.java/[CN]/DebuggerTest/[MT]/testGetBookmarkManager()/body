@@ -1,0 +1,6 @@
+{
+  final BookmarkManager bm1=debugger.getBookmarkManager();
+  final BookmarkManager bm2=debugger.getBookmarkManager();
+  assertNotNull(bm1);
+  assertEquals(bm1,bm2);
+}

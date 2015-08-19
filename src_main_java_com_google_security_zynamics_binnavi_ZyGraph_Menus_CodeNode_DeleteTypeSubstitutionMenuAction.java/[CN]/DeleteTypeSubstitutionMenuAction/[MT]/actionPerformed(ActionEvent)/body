@@ -1,0 +1,8 @@
+{
+  try {
+    typeManager.deleteTypeSubstitution(selectedNode);
+  }
+ catch (  final CouldntDeleteException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

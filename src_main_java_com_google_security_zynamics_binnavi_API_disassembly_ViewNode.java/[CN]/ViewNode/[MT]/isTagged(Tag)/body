@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(tag,"Error: Tag argument can not be null");
+  return m_node.isTagged(tag.getNative().getObject());
+}

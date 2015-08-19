@@ -1,0 +1,6 @@
+{
+  if (index >= lines.length) {
+    return null;
+  }
+  return lines[index];
+}

@@ -1,0 +1,16 @@
+{
+  this.view=view;
+  this.listeners=listeners;
+  this.provider=provider;
+  this.id=viewId;
+  this.viewDescription=description;
+  this.viewName=name;
+  this.type=type;
+  this.creationDate=new Date(creationDate.getTime());
+  this.modificationDate=new Date(modificationDate.getTime());
+  this.viewTags=new HashSet<CTag>(tags);
+  this.isStarred=isStared;
+  for (  final CTag tag : tags) {
+    tag.addListener(tagListener);
+  }
+}

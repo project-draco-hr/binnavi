@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01706: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(functionNode,"IE01707: Function node argument can not be null");
+  return debuggerProvider.getDebugger(functionNode.getFunction().getModule());
+}

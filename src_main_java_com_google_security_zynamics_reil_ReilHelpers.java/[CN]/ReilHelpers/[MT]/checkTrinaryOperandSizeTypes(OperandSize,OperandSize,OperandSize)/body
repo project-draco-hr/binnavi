@@ -1,0 +1,5 @@
+{
+  checkBinaryOperandSizeTypes(first,second);
+  Preconditions.checkNotNull(third,"Error: First size argument can not be null.");
+  Preconditions.checkArgument(third != OperandSize.ADDRESS,"Error: The size for the third argument can not be of type ADDRESS.");
+}

@@ -1,0 +1,19 @@
+{
+  ConfigManager.instance().read();
+  final ZyGraphViewSettings settings=ConfigManager.instance().getDefaultFlowGraphSettings();
+  settings.getProximitySettings().setProximityBrowsingActivationThreshold(50);
+  settings.getProximitySettings().setProximityBrowsingChildren(2);
+  settings.getProximitySettings().setProximityBrowsingParents(2);
+  ConfigManager.instance().updateFlowgraphSettings(settings);
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  m_database=new CDatabase("None",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  m_database2=new CDatabase("None",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  m_database.connect();
+  m_database.load();
+  m_module=m_database.getContent().getModules().get(0);
+  m_module.load();
+  final INaviFunction function=m_module.getContent().getFunctionContainer().getFunction("sub_1002B87");
+  m_view=(IFlowgraphView)m_module.getContent().getViewContainer().getView(function);
+  m_view.load();
+  m_graph=CGraphBuilder.buildGraph(m_view);
+}

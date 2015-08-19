@@ -1,0 +1,3 @@
+JFrame parent
+ITraceListProvider traceListProvider
+int[] traces

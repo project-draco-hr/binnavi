@@ -1,0 +1,7 @@
+{
+  if (m_database.isLoaded()) {
+    for (    final INaviProject project : m_database.getContent().getProjects()) {
+      add(new CProjectNode(getProjectTree(),this,m_database,project,new CProjectContainer(m_database,project)));
+    }
+  }
+}

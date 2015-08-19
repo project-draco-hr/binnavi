@@ -1,0 +1,13 @@
+{
+  final int index=bendPos(bend);
+  final Bend rbend=super.removeBend(bend);
+  for (  final IZyEdgeRealizerListener<EdgeType> listener : m_listeners) {
+    try {
+      listener.removedBend(this,index);
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+  return rbend;
+}

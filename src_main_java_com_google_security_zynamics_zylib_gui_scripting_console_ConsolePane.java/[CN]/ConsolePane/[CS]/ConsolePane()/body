@@ -1,0 +1,9 @@
+{
+  super(new BorderLayout());
+  updateDocument();
+  candidates=new TreeSet<String>(getDocument().getTabCompletionWords());
+  getInputPane().addKeyListener(m_KeyListener);
+  getDocument().setInputKeyListener(m_KeyListener);
+  getOutputPane().setFont(new Font(GuiHelper.getMonospaceFont(),0,12));
+  setBorder(new EmptyBorder(5,5,5,5));
+}

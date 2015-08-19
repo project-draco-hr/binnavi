@@ -1,0 +1,6 @@
+{
+  final CAddressSpaceNode node=new CAddressSpaceNode(m_tree,new DefaultMutableTreeNode(),m_database,m_project,m_addressSpace,m_container);
+  assertEquals("Address Space (?)",node.toString());
+  m_addressSpace.getConfiguration().setName("Hannes");
+  assertEquals("Hannes (?)",node.toString());
+}

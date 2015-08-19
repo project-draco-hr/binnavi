@@ -1,0 +1,6 @@
+{
+  m_factory=factory;
+  m_graph=graph;
+  m_node=node;
+  m_event=event;
+}

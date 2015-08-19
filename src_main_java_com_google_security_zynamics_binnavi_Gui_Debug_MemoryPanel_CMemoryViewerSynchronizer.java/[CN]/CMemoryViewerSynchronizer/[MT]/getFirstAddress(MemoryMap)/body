@@ -1,0 +1,6 @@
+{
+  for (  final MemorySection memorySection : memoryMap) {
+    return memorySection.getStart();
+  }
+  return new CAddress(0);
+}

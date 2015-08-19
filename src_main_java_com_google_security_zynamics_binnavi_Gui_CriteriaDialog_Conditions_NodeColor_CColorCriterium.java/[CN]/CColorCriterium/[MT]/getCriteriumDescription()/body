@@ -1,0 +1,3 @@
+{
+  return String.format("Nodes with Color %06X",getColor().getRGB() & 0xFFFFFF);
+}

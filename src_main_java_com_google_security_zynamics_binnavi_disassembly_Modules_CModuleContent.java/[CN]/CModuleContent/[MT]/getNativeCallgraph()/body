@@ -1,0 +1,4 @@
+{
+  Preconditions.checkState(!m_closed,"IE00261: Module content was closed before.");
+  return m_callgraph;
+}

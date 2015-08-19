@@ -1,0 +1,14 @@
+{
+  final JMenu menu=new JMenu("Help");
+  final JFrame parent=getParent();
+  menu.setMnemonic('H');
+  menu.add(new JMenuItem(new CActionHelp(parent)));
+  menu.add(new JMenuItem(new CActionContextHelp(parent)));
+  menu.addSeparator();
+  menu.add(new JMenuItem(new CStartTutorialAction(parent)));
+  menu.addSeparator();
+  menu.add(new JMenuItem(new CActionReportBug(parent)));
+  menu.add(new JMenuItem(new CCheckForUpdatesAction(parent)));
+  menu.add(new JMenuItem(new CActionAbout(parent)));
+  return menu;
+}

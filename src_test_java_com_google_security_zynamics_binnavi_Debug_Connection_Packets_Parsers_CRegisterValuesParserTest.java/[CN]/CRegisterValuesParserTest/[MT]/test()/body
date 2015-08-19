@@ -1,0 +1,4 @@
+{
+  final RegisterValues information=RegisterValuesParser.parse("<Registers><Thread id=\"5\"><Register name=\"eax\" value=\"123\" memory=\"\"/></Thread></Registers>".getBytes());
+  assertEquals("eax",information.getThreads().get(0).getRegisters().get(0).getName());
+}

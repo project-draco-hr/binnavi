@@ -1,0 +1,6 @@
+{
+  currentSection=section;
+  hexViewData.setActiveSection(section);
+  typeDataModel.setSection(section);
+  initializeHighlighting(hexView,virtualAddresses.isSelected(),module.getContent().getTypeInstanceContainer().getTypeInstances(section));
+}

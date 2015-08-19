@@ -1,0 +1,5 @@
+{
+  mockDebugger.getProcessManager().addThread(new TargetProcessThread(123,ThreadState.SUSPENDED));
+  debuggerSynchronizer.receivedEvent(DebuggerMessageBuilder.buildRegularBreakpointHit(CommonTestObjects.BP_ADDRESS_456_RELOC));
+  assertEquals(0,listener.exception);
+}

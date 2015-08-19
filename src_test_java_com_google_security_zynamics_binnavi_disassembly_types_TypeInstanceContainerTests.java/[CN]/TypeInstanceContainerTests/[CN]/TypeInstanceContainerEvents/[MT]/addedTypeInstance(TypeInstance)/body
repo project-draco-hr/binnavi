@@ -1,0 +1,3 @@
+{
+  appendInstanceEventString(ADDED_INSTANCE,instance);
+}

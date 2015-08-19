@@ -1,0 +1,11 @@
+{
+  checkArguments(parent,debugger,logger);
+  if (!debugger.isConnected()) {
+    return;
+  }
+  if (!logger.hasEchoBreakpoints()) {
+    return;
+  }
+  final CStopTraceListener bpl=new CStopTraceListener(debugger,logger);
+  CProgressDialog.showEndless(parent,"Removing echo breakpoints",bpl);
+}

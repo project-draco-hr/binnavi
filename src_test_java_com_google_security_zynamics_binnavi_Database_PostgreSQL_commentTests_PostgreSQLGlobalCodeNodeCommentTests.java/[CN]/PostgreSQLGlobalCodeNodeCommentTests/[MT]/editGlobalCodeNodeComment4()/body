@@ -1,0 +1,3 @@
+{
+  getProvider().editGlobalCodeNodeComment(codeNode,1,1,null);
+}

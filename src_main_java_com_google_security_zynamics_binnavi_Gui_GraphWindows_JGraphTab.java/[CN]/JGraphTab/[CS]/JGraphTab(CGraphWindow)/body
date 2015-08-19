@@ -1,0 +1,4 @@
+{
+  super(JTabbedPane.TOP,JTabbedPane.SCROLL_TAB_LAYOUT);
+  m_parent=Preconditions.checkNotNull(parent,"IE01638: Parent argument can not be null");
+}

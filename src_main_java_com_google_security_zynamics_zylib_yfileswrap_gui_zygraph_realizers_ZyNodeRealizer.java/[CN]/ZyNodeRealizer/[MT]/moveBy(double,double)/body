@@ -1,0 +1,4 @@
+{
+  super.moveBy(x,y);
+  notifyLocationChanged(getX(),getY());
+}

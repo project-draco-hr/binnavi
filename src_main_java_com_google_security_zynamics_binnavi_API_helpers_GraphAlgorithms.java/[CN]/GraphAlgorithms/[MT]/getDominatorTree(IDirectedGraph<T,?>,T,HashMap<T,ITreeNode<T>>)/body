@@ -1,0 +1,14 @@
+{
+  try {
+    final Pair<com.google.security.zynamics.zylib.types.trees.Tree<T>,HashMap<T,com.google.security.zynamics.zylib.types.trees.ITreeNode<T>>> resultPair=LengauerTarjan.calculate(graph,rootNode);
+    if (mapping != null) {
+      for (      final T t : resultPair.second().keySet()) {
+        mapping.put(t,(ITreeNode<T>)resultPair.second().get(t));
+      }
+    }
+    return new Tree<T>(resultPair.first());
+  }
+ catch (  final com.google.security.zynamics.zylib.types.graphs.algorithms.MalformedGraphException e) {
+    throw new MalformedGraphException(e);
+  }
+}

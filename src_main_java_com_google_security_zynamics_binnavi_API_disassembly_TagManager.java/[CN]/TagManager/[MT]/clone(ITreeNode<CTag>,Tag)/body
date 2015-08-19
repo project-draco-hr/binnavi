@@ -1,0 +1,11 @@
+{
+  final Tag childExpression=new Tag(currentNode);
+  m_allTags.put(currentNode,childExpression);
+  if (parentExpression != null) {
+    Tag.link(parentExpression,childExpression);
+  }
+  for (  final ITreeNode<CTag> child : currentNode.getChildren()) {
+    clone(child,childExpression);
+  }
+  return childExpression;
+}

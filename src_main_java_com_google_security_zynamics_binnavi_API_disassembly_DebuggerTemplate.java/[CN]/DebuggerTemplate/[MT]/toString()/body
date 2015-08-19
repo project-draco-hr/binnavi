@@ -1,0 +1,3 @@
+{
+  return String.format("Debugger Template '%s' (%s:%d)",getName(),getHost(),getPort());
+}

@@ -1,0 +1,4 @@
+{
+  assertEquals(null,TEST_COMMENT_1.getParent());
+  assertEquals(TEST_COMMENT_1,TEST_COMMENT_2.getParent());
+}

@@ -1,0 +1,5 @@
+{
+  m_rowHeight=getRowHeight(g);
+  m_charHeight=getCharHeight(g);
+  m_charWidth=getCharacterWidth(g);
+}

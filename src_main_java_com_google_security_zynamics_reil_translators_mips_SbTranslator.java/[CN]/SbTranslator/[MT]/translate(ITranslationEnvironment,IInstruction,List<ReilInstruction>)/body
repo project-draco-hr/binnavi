@@ -1,0 +1,13 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"sb");
+  final String rt=instruction.getOperands().get(0).getRootNode().getChildren().get(0).getValue();
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  long offset=baseOffset;
+  final String address=SignExtendGenerator.extendAndAdd(offset,environment,instruction.getOperands().get(1),instructions);
+  offset=baseOffset + instructions.size();
+  final OperandSize dw=OperandSize.DWORD;
+  final OperandSize bt=OperandSize.BYTE;
+  final String isolatedByte=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset++,dw,rt,bt,String.valueOf(255L),bt,isolatedByte));
+  instructions.add(ReilHelpers.createStm(offset++,bt,isolatedByte,dw,address));
+}

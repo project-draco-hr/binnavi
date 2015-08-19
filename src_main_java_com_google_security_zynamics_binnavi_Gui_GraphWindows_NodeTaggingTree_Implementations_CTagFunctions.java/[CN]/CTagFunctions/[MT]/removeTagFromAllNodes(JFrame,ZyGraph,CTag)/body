@@ -1,0 +1,14 @@
+{
+  final Collection<NaviNode> nodes=GraphHelpers.getNodes(graph);
+  try {
+    for (    final NaviNode n : nodes) {
+      n.getRawNode().removeTag(tag);
+    }
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00129: " + "Could not remove tag from nodes";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The tag '%s' could not be appended from all nodes.",tag.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag was removed from some nodes but not from all."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+  }
+}

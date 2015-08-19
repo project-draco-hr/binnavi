@@ -1,0 +1,3 @@
+{
+  return getInputRegisters().size() != 0;
+}

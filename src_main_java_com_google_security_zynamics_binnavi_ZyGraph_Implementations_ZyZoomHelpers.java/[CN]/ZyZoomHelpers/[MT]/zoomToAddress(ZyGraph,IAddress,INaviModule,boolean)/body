@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(graph,"IE02105: Graph argument can not be null");
+  Preconditions.checkNotNull(address,"IE02106: Address argument can not be null");
+  final InternalNodeCallBack callBack=new InternalNodeCallBack(module,graph,address,animate);
+  graph.iterate(callBack);
+  return callBack.nodeFound();
+}

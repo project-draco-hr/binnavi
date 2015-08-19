@@ -1,0 +1,12 @@
+{
+  checkArguments(provider,view);
+  Preconditions.checkNotNull(tag,"IE00617: Tag argument can not be null");
+  Preconditions.checkArgument(tag.inSameDatabase(provider),"IE00618: Tag is not part of this database");
+  final String query=String.format("delete from %s where view_id = %d and tag_id = %d",CTableNames.TAGGED_VIEWS_TABLE,view.getConfiguration().getId(),tag.getId());
+  try {
+    provider.getConnection().executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  final SortedSet<IAddress> moduleAddressesHeadSet=moduleAddresses.headSet(address.getAddress(),true);
+  if (moduleAddressesHeadSet.isEmpty()) {
+    return null;
+  }
+ else {
+    final MemoryModule module=moduleByAddress.get(moduleAddressesHeadSet.last());
+    final BigInteger endAddress=module.getBaseAddress().getAddress().toBigInteger().add(BigInteger.valueOf(module.getSize()));
+    return address.getAddress().toBigInteger().compareTo(endAddress) <= 0 ? module : null;
+  }
+}

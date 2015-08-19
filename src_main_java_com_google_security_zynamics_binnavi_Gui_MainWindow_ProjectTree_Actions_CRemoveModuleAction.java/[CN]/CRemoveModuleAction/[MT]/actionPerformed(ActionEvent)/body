@@ -1,0 +1,3 @@
+{
+  CAddressSpaceFunctions.removeModules(m_parent,m_addressSpace,m_modules);
+}

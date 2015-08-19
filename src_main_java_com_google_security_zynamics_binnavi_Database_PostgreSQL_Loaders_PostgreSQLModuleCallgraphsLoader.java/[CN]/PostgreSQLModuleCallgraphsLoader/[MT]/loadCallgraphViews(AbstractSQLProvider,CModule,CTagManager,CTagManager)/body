@@ -1,0 +1,3 @@
+{
+  return loadModuleCallgraphs(provider,module,viewTagManager,nodeTagManager,ViewType.NonNative);
+}

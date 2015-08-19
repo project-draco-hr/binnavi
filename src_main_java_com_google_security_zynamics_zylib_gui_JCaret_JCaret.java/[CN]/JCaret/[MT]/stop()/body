@@ -1,0 +1,5 @@
+{
+  m_caretTimer.stop();
+  m_caretTimer.removeActionListener(m_listener);
+  setVisible(false);
+}

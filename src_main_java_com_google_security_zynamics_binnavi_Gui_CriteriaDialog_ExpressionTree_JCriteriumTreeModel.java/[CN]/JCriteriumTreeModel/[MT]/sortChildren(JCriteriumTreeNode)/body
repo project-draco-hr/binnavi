@@ -1,0 +1,29 @@
+{
+  final List<JCriteriumTreeNode> operators=new ArrayList<JCriteriumTreeNode>();
+  final List<JCriteriumTreeNode> conditions=new ArrayList<JCriteriumTreeNode>();
+  final List<JCriteriumTreeNode> minus=new ArrayList<JCriteriumTreeNode>();
+  final Enumeration<?> children=parentNode.children();
+  while (children.hasMoreElements()) {
+    final JCriteriumTreeNode child=(JCriteriumTreeNode)children.nextElement();
+    final ICriterium type=child.getCriterium();
+    if (type instanceof CConditionCriterium) {
+      conditions.add(child);
+    }
+ else {
+      operators.add(child);
+    }
+  }
+  parentNode.removeAllChildren();
+  for (  final JCriteriumTreeNode child : operators) {
+    parentNode.add(child);
+    child.setParent(parentNode);
+  }
+  for (  final JCriteriumTreeNode child : conditions) {
+    parentNode.add(child);
+    child.setParent(parentNode);
+  }
+  for (  final JCriteriumTreeNode child : minus) {
+    parentNode.add(child);
+    child.setParent(parentNode);
+  }
+}

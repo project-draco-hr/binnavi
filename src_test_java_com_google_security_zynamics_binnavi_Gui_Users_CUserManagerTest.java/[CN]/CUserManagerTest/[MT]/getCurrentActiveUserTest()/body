@@ -1,0 +1,6 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  final IUser activeUser=manager.addUser(" ACTIVE USER ");
+  manager.setCurrentActiveUser(activeUser);
+  assertEquals(activeUser,manager.getCurrentActiveUser());
+}

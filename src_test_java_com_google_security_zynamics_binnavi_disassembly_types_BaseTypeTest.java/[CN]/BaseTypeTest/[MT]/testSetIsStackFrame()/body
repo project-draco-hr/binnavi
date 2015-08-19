@@ -1,0 +1,6 @@
+{
+  typeSystem.uintType.setIsStackFrame(true);
+  assertEquals(true,typeSystem.uintType.isStackFrame());
+  typeSystem.uintType.setIsStackFrame(false);
+  assertEquals(false,typeSystem.uintType.isStackFrame());
+}

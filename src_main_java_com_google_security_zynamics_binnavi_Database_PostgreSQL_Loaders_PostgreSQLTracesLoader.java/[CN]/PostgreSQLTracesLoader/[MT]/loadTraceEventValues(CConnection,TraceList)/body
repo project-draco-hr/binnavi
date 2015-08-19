@@ -1,0 +1,30 @@
+{
+  final List<List<TraceRegister>> values=new ArrayList<>();
+  final String query="select position, register_name, register_value, memory_value from " + CTableNames.TRACE_EVENT_VALUES_TABLE + " where trace_id = "+ traceList.getId()+ " order by position asc";
+  final ResultSet resultSet=connection.executeQuery(query,true);
+  int currentPosition=-1;
+  try {
+    List<TraceRegister> registers=new ArrayList<TraceRegister>();
+    while (resultSet.next()) {
+      final int position=resultSet.getInt("position");
+      if (position != currentPosition) {
+        if (!registers.isEmpty()) {
+          values.add(Lists.newArrayList(registers));
+          registers=new FilledList<TraceRegister>();
+        }
+        currentPosition=position;
+      }
+      final String name=PostgreSQLHelpers.readString(resultSet,"register_name");
+      final long value=resultSet.getLong("register_value");
+      final byte[] memory=resultSet.getBytes("memory_value");
+      registers.add(new TraceRegister(name,new CAddress(value),memory));
+    }
+    if (!registers.isEmpty()) {
+      values.add(Lists.newArrayList(registers));
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  return values;
+}

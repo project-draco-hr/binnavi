@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(APPENDED_GLOBAL_FUNCTION_COMMENT);
+}

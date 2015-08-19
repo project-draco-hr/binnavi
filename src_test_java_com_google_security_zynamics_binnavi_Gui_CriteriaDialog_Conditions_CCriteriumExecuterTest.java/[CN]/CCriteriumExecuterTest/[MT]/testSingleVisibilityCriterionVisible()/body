@@ -1,0 +1,8 @@
+{
+  final CCachedVisibilityCriterium criterium=new CCachedVisibilityCriterium(VisibilityState.VISIBLE);
+  final CCachedExpressionTreeNode node=new CCachedExpressionTreeNode(criterium);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node);
+  assertEquals(0,m_graph.getSelectedNodes().size());
+  CCriteriumExecuter.execute(m_tree,m_graph);
+  assertEquals(m_graph.getNodes().size() - 1,m_graph.getSelectedNodes().size());
+}

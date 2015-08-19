@@ -1,0 +1,5 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"addzeo.");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  AddGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"addzeo.",registerOperand1.getValue(),String.valueOf(0x0L),true,true,true,true);
+}

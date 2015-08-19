@@ -1,0 +1,6 @@
+{
+  final byte[] mdata=m_messages[m_msgcounter];
+  System.arraycopy(mdata,m_bytecounter,data,i,length);
+  m_bytecounter+=length;
+  return length;
+}

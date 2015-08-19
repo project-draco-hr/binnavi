@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"USUB8");
+  translateAll(environment,instruction,"USUB8",instructions);
+}

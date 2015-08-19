@@ -1,0 +1,13 @@
+{
+  final int caretPosition=getInputPane().getCaretPosition();
+  String currentLine=null;
+  final int skip=m_CurrentPrompt.length();
+  currentLine=getDocument().getCurrentLine(caretPosition).trim();
+  if (skip < currentLine.length()) {
+    currentLine=currentLine.substring(skip,currentLine.length());
+  }
+ else {
+    currentLine="";
+  }
+  return currentLine;
+}

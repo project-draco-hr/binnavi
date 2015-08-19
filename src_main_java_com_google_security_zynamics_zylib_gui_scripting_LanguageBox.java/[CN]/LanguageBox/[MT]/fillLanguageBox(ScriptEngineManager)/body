@@ -1,0 +1,13 @@
+{
+  final List<ScriptEngineFactory> factories=manager.getEngineFactories();
+  final List<ScriptingLanguage> languages=new ArrayList<ScriptingLanguage>();
+  for (  final ScriptEngineFactory factory : factories) {
+    if (factory.getLanguageName().equals("python")) {
+      languages.add(new ScriptingLanguage(factory.getLanguageName(),factory.getLanguageVersion()));
+    }
+  }
+  Collections.sort(languages);
+  for (  final ScriptingLanguage language : languages) {
+    addItem(language);
+  }
+}

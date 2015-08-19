@@ -1,0 +1,19 @@
+{
+  if (m_activeDebugger == debugger) {
+    return;
+  }
+  if ((debugger != null) && !m_eventLoggerMap.containsKey(debugger)) {
+    m_notifierMap.put(debugger,new CDebugEventNotifier(m_model.getParent(),debugger,m_model.getDebuggerProvider().getDebugTarget(),m_model.getViewContainer()));
+    m_eventLoggerMap.put(debugger,new TraceLogger(m_model.getViewContainer().getTraceProvider(),debugger));
+  }
+  final IDebugger oldDebugger=m_activeDebugger;
+  m_activeDebugger=debugger;
+  for (  final IDebugPerspectiveModelListener listener : m_listeners) {
+    try {
+      listener.changedActiveDebugger(oldDebugger,m_activeDebugger);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

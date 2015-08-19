@@ -1,0 +1,10 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01807: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01808: Debug perspective model argument can not be null");
+  m_debuggerSelectionPanel=new CDebuggerSelectionPanel(provider,debugPerspectiveModel);
+  m_debuggerSelectionPanel.setBorder(new TitledBorder("Active Debugger"));
+  m_registerPanel=new CRegisterView(parent,debugPerspectiveModel);
+  add(m_debuggerSelectionPanel,BorderLayout.NORTH);
+  add(m_registerPanel);
+}

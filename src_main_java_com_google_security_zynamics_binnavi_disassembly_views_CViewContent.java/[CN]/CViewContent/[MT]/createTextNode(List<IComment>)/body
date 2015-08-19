@@ -1,0 +1,6 @@
+{
+  final CTextNode textNode=new CTextNode(-1,0,0,0,0,TEXTNODE_COLOR,false,true,new HashSet<CTag>(),comments,provider);
+  addNode(textNode);
+  textNode.addListener(m_internalNodeListener);
+  return textNode;
+}

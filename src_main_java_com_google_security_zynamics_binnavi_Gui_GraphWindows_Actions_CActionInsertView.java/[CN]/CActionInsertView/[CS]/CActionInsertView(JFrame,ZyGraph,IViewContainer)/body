@@ -1,0 +1,6 @@
+{
+  super("Insert View");
+  m_parent=parent;
+  m_graph=graph;
+  m_viewContainer=viewContainer;
+}

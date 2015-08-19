@@ -1,0 +1,33 @@
+{
+  final ITraceListProvider provider=new MockTraceListProvider();
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(module));
+  debugger.connect();
+  final MockModule module=new MockModule();
+  debugger.setAddressTranslator(module,new CAddress(0),new CAddress(0x1000));
+  final Set<BreakpointAddress> addresses=new HashSet<BreakpointAddress>();
+  for (int i=0; i < 1000; i++) {
+    addresses.add(new BreakpointAddress(module,new UnrelocatedAddress(new CAddress(i))));
+  }
+  final TraceLogger logger=new TraceLogger(provider,debugger);
+  final MockTraceLoggerListener listener=new MockTraceLoggerListener();
+  logger.addListener(listener);
+  final MockSqlProvider sqlProvider=new MockSqlProvider();
+  final TraceList trace=new TraceList(1,"Foo","Bar",sqlProvider);
+  logger.start(trace,addresses,1);
+  final Breakpoint breakpoint=debugger.getBreakpointManager().getBreakpoint(BreakpointType.ECHO,new BreakpointAddress(module,new UnrelocatedAddress(new CAddress(999))));
+  new Thread(){
+    @Override public void run(){
+      logger.stop();
+    }
+  }
+.start();
+  new Thread(){
+    @Override public void run(){
+      debugger.getBreakpointManager().setBreakpointStatus(Sets.newHashSet(breakpoint.getAddress()),breakpoint.getType(),BreakpointStatus.BREAKPOINT_HIT);
+    }
+  }
+.start();
+  while (logger.activeEchoBreakpointCount() != 0) {
+    Thread.sleep(100);
+  }
+}

@@ -1,0 +1,2 @@
+def getDescription(self):
+    return 'Skeleton for monotone framework plugins (shows what registers are written by a function)'

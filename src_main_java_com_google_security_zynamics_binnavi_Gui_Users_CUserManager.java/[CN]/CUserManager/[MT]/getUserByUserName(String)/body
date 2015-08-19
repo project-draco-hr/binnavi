@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(userName,"IE02728: userName argument can not be null");
+  for (  final IUser storedUser : users) {
+    if (storedUser.getUserName().equalsIgnoreCase(userName)) {
+      return storedUser;
+    }
+  }
+  syncUsers();
+  for (  final IUser storedUser : users) {
+    if (storedUser.getUserName().equalsIgnoreCase(userName)) {
+      return storedUser;
+    }
+  }
+  return null;
+}

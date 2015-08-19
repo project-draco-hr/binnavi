@@ -1,0 +1,13 @@
+{
+  NaviLogger.info("Loading class file %s",file.getAbsolutePath());
+  final FileClassLoader loader=new FileClassLoader(file.getParentFile().getPath() + System.getProperty("file.separator"));
+  final String relativePath=pluginDirectory.length() == file.getParentFile().getPath().length() ? "" : file.getParentFile().getPath().substring(pluginDirectory.length());
+  final String classPrefix=relativePath.replaceAll("[/\\\\]",".");
+  final Class<?> cls=loader.loadClass(("".equals(classPrefix) ? "" : classPrefix + ".") + FileUtils.getFileBasename(file));
+  if (com.google.security.zynamics.binnavi.api2.plugins.IPlugin.class.isAssignableFrom(cls)) {
+    return (com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>)cls.newInstance();
+  }
+ else {
+    return null;
+  }
+}

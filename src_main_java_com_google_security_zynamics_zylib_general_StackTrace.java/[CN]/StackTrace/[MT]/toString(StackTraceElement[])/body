@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(stackTrace,"Invalid stack trace");
+  final StringBuilder sb=new StringBuilder();
+  for (  final StackTraceElement stackTraceElement : stackTrace) {
+    sb.append(stackTraceElement.toString());
+    sb.append(System.getProperty("line.separator"));
+  }
+  return sb.toString();
+}

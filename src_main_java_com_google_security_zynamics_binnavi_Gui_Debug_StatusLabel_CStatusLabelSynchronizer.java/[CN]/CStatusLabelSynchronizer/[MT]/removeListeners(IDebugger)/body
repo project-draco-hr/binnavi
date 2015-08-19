@@ -1,0 +1,5 @@
+{
+  debugger.getProcessManager().removeListener(m_processListener);
+  debugger.getBreakpointManager().removeListener(m_breakpointManagerListener);
+  debugger.removeListener(m_debugEventListener);
+}

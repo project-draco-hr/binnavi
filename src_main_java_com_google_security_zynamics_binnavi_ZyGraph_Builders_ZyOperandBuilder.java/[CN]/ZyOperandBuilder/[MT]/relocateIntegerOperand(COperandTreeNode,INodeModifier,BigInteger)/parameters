@@ -1,0 +1,3 @@
+COperandTreeNode operandTreeNode
+INodeModifier nodeModifier
+BigInteger treeNodeValue

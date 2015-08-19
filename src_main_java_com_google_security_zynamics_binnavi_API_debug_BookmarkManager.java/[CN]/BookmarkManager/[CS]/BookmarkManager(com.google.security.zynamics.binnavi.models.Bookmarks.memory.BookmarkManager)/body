@@ -1,0 +1,7 @@
+{
+  m_bookmarkManager=bookmarkManager;
+  for (  final CBookmark bookmark : m_bookmarkManager) {
+    m_bookmarks.add(new Bookmark(bookmark));
+  }
+  m_bookmarkManager.addListener(m_internalBookmarkListener);
+}

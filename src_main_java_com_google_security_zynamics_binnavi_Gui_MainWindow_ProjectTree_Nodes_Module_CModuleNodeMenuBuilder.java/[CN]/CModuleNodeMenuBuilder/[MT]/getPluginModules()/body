@@ -1,0 +1,14 @@
+{
+  final DatabaseManager manager=PluginInterface.instance().getDatabaseManager();
+  for (  final Database database : manager) {
+    if (database.getNative() == m_database) {
+      final List<Module> allModules=database.getModules();
+      final List<Module> menuModules=new ArrayList<Module>();
+      for (      final INaviModule module : m_modules) {
+        menuModules.add(ObjectFinders.getObject(module,allModules));
+      }
+      return menuModules;
+    }
+  }
+  throw new IllegalStateException("IE01165: Unknown database");
+}

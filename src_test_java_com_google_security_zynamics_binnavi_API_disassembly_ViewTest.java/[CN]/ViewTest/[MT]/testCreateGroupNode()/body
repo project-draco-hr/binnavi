@@ -1,0 +1,13 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  m_view.addListener(listener);
+  final Function function=module.getFunctions().get(0);
+  m_view.load();
+  final ViewNode node=m_view.createFunctionNode(function);
+  final GroupNode groupNode=m_view.createGroupNode("Word",Lists.newArrayList(node));
+  assertEquals(groupNode,m_view.getGraph().getNodes().get(1));
+  assertEquals(listener.events,"addedNode;changedGraphType;addedNode;");
+  assertEquals(com.google.security.zynamics.binnavi.API.disassembly.GraphType.Callgraph,m_view.getGraphType());
+  assertEquals(groupNode,node.getParentGroup());
+  m_view.removeListener(listener);
+}

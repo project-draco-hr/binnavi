@@ -1,0 +1,9 @@
+{
+  final String starModuleQuery="UPDATE " + CTableNames.MODULES_TABLE + " SET stared = "+ isStared+ " WHERE id = "+ module.getConfiguration().getId();
+  try {
+    provider.getConnection().executeUpdate(starModuleQuery,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

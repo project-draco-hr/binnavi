@@ -1,0 +1,8 @@
+{
+  if (offset >= 0 && offset < arrayType.getBitSize()) {
+    return new WalkResult(arrayType.getLastMember(),Lists.newArrayList(arrayType.getLastMember()),buildArrayName(arrayType,offset / getArrayElementType(arrayType).getBitSize()));
+  }
+  final long byteOffset=(offset < 0) ? (offset - 7) / 8 : (offset + 7) / 8;
+  final String arrayString=(offset < 0) ? String.format("%s%d",buildArrayName(arrayType,0),byteOffset) : String.format("%s+%d",arrayType.getName(),byteOffset - arrayType.getByteSize());
+  return new WalkResult(arrayType.getLastMember(),Lists.newArrayList(arrayType.getLastMember()),arrayString);
+}

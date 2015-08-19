@@ -1,0 +1,7 @@
+{
+  bend.addListener(m_listener);
+  if (m_realizer.bendCount() == edge.getBendCount()) {
+    return;
+  }
+  m_realizer.appendBend(bend.getX(),bend.getY());
+}

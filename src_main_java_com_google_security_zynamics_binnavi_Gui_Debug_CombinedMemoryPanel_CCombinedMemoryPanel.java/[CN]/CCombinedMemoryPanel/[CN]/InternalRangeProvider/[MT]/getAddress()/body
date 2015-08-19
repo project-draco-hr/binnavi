@@ -1,0 +1,3 @@
+{
+  return new CAddress(m_memorySelectionPanel.getMemoryPanel().getHexView().getHexView().getFirstVisibleOffset());
+}

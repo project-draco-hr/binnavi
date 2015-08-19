@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  Preconditions.checkNotNull(root,"Error: Root argument can not be null");
+  final COperandTree opTree=module.getNative().createOperand((COperandTreeNode)root.getNative());
+  return new Operand(opTree);
+}

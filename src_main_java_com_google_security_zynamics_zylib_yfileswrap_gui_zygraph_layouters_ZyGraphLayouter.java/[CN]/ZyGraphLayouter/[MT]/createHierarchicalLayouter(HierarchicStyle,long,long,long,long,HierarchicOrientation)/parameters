@@ -1,0 +1,6 @@
+HierarchicStyle style
+long minLayerDist
+long minNodeDist
+long minEdgeDist
+long minNodeEdgeDist
+HierarchicOrientation orientation

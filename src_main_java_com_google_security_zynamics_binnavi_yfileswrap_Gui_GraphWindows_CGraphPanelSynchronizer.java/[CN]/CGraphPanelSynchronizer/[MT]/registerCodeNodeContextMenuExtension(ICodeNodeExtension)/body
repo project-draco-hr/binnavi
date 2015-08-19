@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(extension,"IE01621: Extension argument can not be null");
+  m_codeNodeExtensions.add(extension);
+}

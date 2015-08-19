@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(parent,"IE01933: Parent argument can't be null");
+  Preconditions.checkNotNull(debuggerProvider,"IE02251: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(view,"IE01956: View argument can't be null");
+  if (JOptionPane.YES_OPTION == CMessageBox.showYesNoCancelQuestion(parent,"Do you really want to remove all breakpoints from this view?")) {
+    for (    final IDebugger debugger : debuggerProvider) {
+      removeAllView(debugger.getBreakpointManager(),view);
+    }
+  }
+}

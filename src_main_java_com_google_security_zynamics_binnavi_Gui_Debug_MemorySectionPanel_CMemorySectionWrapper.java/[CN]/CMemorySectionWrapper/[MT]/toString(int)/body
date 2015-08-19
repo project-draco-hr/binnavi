@@ -1,0 +1,11 @@
+{
+  if (size < 1024) {
+    return String.format("%d bytes",size);
+  }
+ else   if (size < 1024 * 1024) {
+    return String.format(Locale.ENGLISH,"%.02f KB",1.0 * size / 1024);
+  }
+ else {
+    return String.format(Locale.ENGLISH,"%.02f MB",1.0 * size / 1024 / 1024);
+  }
+}

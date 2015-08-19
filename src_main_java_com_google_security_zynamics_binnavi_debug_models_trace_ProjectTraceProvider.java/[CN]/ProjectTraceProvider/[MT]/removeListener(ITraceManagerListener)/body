@@ -1,0 +1,8 @@
+{
+  for (  final ListenerWrapper wrapper : new ArrayList<ListenerWrapper>(listenerWrappers)) {
+    if (wrapper.getListener() == listener) {
+      project.removeListener(wrapper);
+      listenerWrappers.remove(wrapper);
+    }
+  }
+}

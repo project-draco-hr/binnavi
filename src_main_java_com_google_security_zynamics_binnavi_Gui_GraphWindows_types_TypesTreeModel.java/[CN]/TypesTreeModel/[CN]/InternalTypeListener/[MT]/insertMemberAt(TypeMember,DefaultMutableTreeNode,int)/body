@@ -1,0 +1,7 @@
+{
+  final TypeMemberTreeNode memberNode=new TypeMemberTreeNode(member);
+  parentNode.insert(memberNode,index);
+  createTypeNodes(memberNode,member.getBaseType());
+  nestedStructNodes.put(member.getBaseType(),memberNode);
+  memberNodes.put(member,memberNode);
+}

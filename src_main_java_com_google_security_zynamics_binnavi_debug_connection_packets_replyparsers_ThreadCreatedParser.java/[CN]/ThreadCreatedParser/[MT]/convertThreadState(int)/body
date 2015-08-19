@@ -1,0 +1,10 @@
+{
+switch (value) {
+case 0:
+    return ThreadState.RUNNING;
+case 1:
+  return ThreadState.SUSPENDED;
+default :
+throw new IllegalArgumentException(String.format("Received invalid thread state %d",value));
+}
+}

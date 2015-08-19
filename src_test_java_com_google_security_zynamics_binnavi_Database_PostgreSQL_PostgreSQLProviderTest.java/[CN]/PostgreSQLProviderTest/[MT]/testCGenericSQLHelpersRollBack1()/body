@@ -1,0 +1,6 @@
+{
+  final AbstractSQLProvider connectionProvider=(AbstractSQLProvider)getProvider();
+  final CConnection connection=connectionProvider.getConnection();
+  PostgreSQLHelpers.beginTransaction(connection);
+  PostgreSQLHelpers.rollback(connection);
+}

@@ -1,0 +1,28 @@
+{
+  if (graph == null) {
+    throw new IllegalArgumentException("Error: Graph argument can not be null");
+  }
+  if (lattice == null) {
+    throw new IllegalArgumentException("Error: Lattice argument can not be null");
+  }
+  if (startVector == null) {
+    throw new IllegalArgumentException("Error: Start vector argument can not be null");
+  }
+  if (transformationProvider == null) {
+    throw new IllegalArgumentException("Error: Transformation list argument can not be null");
+  }
+  final List<GraphNode> nodes=graph.getNodes();
+  if (nodes.size() != startVector.size()) {
+    throw new IllegalArgumentException(String.format("Error: Invalid start vector (%d states for %d nodes)",startVector.size(),nodes.size()));
+  }
+  for (  final GraphNode node : nodes) {
+    if (!startVector.hasState(node)) {
+      throw new IllegalArgumentException("Error: Node " + node + " does not have a state in the initial state vector");
+    }
+  }
+  this.graph=graph;
+  this.lattice=lattice;
+  this.state=startVector;
+  this.transformationList=transformationProvider;
+  this.walker=walker;
+}

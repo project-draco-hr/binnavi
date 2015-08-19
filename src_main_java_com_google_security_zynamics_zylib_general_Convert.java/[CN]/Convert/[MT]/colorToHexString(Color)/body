@@ -1,0 +1,4 @@
+{
+  final String cs=Integer.toHexString(c.getRGB());
+  return cs.substring(2);
+}

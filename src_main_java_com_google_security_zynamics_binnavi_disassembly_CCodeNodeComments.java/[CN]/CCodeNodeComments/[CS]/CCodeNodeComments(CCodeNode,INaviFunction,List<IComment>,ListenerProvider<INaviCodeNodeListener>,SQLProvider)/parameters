@@ -1,0 +1,5 @@
+CCodeNode codeNode
+INaviFunction parentFunction
+List<IComment> localComments
+ListenerProvider<INaviCodeNodeListener> listeners
+SQLProvider provider

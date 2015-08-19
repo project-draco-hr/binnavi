@@ -1,0 +1,15 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.load();
+  final View view=m_project.createView("N A","D A");
+  final View view2=m_project.createView(view,"N B","D B");
+  m_project.addListener(listener);
+  m_project.deleteView(view);
+  assertEquals(1,m_project.getViews().size());
+  assertEquals(view2,m_project.getViews().get(0));
+  assertEquals("deletedView;changedModificationDate;",listener.events);
+  m_project.deleteView(view2);
+  assertEquals(0,m_project.getViews().size());
+  assertEquals("deletedView;changedModificationDate;deletedView;changedModificationDate;",listener.events);
+  m_project.removeListener(listener);
+}

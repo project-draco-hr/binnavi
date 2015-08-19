@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(provider,"IE01309: provider argument can not be null");
+  Preconditions.checkNotNull(node,"IE01663: node argument can not be null");
+  final CConnection connection=provider.getConnection();
+  untagNode(provider,node,tagId);
+  final String tagQuery=String.format("INSERT INTO %s " + "(node_id, tag_id) " + "VALUES (%d, %d)",CTableNames.TAGGED_NODES_TABLE,node.getId(),tagId);
+  try {
+    connection.executeUpdate(tagQuery,true);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

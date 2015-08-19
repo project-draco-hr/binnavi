@@ -1,0 +1,17 @@
+{
+  final String[] naviSplit=m_version.split("\\.");
+  final String[] dbSplit=version.getString().split("\\.");
+  final int mainVersionNavi=Integer.parseInt(naviSplit[0]);
+  final int mainVersionDB=Integer.parseInt(dbSplit[0]);
+  if (mainVersionNavi != mainVersionDB) {
+    return mainVersionNavi - mainVersionDB;
+  }
+  final int subVersionNavi=Integer.parseInt(naviSplit[1]);
+  final int subVersionDB=Integer.parseInt(dbSplit[1]);
+  if (subVersionNavi != subVersionDB) {
+    return subVersionNavi - subVersionDB;
+  }
+  final int buildVersionNavi=Integer.parseInt(naviSplit[2]);
+  final int buildVersionDB=Integer.parseInt(dbSplit[2]);
+  return buildVersionNavi - buildVersionDB;
+}

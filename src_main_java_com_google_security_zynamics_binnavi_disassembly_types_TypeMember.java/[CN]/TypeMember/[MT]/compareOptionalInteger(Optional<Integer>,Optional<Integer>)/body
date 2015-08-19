@@ -1,0 +1,14 @@
+{
+  if (!lhs.isPresent() && !rhs.isPresent()) {
+    return 0;
+  }
+ else   if (!lhs.isPresent()) {
+    return -1;
+  }
+ else   if (!rhs.isPresent()) {
+    return 1;
+  }
+ else {
+    return lhs.get().compareTo(rhs.get());
+  }
+}

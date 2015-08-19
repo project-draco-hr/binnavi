@@ -1,0 +1,7 @@
+{
+  final List<TypeMember> members=Lists.newArrayList();
+  for (  final int id : memberIds) {
+    members.add(typesContainer.getTypeMemberById(id));
+  }
+  return members;
+}

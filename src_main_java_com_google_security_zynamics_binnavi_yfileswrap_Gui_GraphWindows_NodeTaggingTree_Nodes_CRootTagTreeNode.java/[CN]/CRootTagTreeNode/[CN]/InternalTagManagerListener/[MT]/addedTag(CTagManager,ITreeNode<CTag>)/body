@@ -1,0 +1,6 @@
+{
+  if (m_rootTag.getObject().getId() == tag.getParent().getObject().getId()) {
+    refreshTree(tag);
+    m_tagsTree.getModel().nodeStructureChanged(CRootTagTreeNode.this);
+  }
+}

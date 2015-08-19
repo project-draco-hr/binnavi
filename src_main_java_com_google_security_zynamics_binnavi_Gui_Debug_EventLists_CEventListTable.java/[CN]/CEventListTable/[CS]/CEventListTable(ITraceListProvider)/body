@@ -1,0 +1,10 @@
+{
+  super(new CEventListTableModel(traceProvider),new CEventListTableHelp());
+  m_traceProvider=Preconditions.checkNotNull(traceProvider,"IE01370: Trace list provider can't be null");
+  getSelectionModel().setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+  final InputMap windowImap=getInputMap(JComponent.WHEN_FOCUSED);
+  windowImap.put(HotKeys.SEARCH_HK.getKeyStroke(),"SEARCH");
+  getActionMap().put("SEARCH",CActionProxy.proxy(new SearchAction()));
+  windowImap.put(HotKeys.DELETE_HK.getKeyStroke(),"DELETE");
+  getActionMap().put("DELETE",CActionProxy.proxy(new DeleteAction()));
+}

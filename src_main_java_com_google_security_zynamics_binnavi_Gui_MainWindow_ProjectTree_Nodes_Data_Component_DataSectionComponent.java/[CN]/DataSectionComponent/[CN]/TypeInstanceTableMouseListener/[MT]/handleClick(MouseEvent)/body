@@ -1,0 +1,6 @@
+{
+  final int row=typeDisplay.rowAtPoint(event.getPoint());
+  if (event.isPopupTrigger()) {
+    showPopupMenu(row,event);
+  }
+}

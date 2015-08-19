@@ -1,0 +1,7 @@
+{
+  final INaviViewNode source=m_view.getGraph().getNodes().get(0);
+  final INaviViewNode target=m_view.getGraph().getNodes().get(1);
+  final CNaviViewEdge edge=m_graph.getRawView().getContent().createEdge(source,target,EdgeType.ENTER_INLINED_FUNCTION);
+  final com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge cnn=searchEdge(getEdges(m_graph),edge);
+  return new Pair<CNaviViewEdge,com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge>(edge,cnn);
+}

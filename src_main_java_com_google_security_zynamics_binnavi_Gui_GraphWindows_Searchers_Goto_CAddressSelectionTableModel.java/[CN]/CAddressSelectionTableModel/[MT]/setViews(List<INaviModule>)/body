@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(modules,"IE01395: List of flow graphs can't be null");
+  m_modules=new ArrayList<INaviModule>(modules);
+  fireTableDataChanged();
+}

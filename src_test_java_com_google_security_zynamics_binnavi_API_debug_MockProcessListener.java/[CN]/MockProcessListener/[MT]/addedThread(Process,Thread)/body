@@ -1,0 +1,3 @@
+{
+  events+=String.format("addedThread/%d;",thread.getThreadId());
+}

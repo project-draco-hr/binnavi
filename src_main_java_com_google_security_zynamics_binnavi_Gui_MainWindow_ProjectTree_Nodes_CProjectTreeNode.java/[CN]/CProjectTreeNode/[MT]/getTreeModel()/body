@@ -1,0 +1,3 @@
+{
+  return (CProjectTreeModel)m_tree.getModel();
+}

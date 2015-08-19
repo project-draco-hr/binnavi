@@ -1,0 +1,12 @@
+{
+  final MockProject project=new MockProject();
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.addedProject(m_database,project);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return project;
+}

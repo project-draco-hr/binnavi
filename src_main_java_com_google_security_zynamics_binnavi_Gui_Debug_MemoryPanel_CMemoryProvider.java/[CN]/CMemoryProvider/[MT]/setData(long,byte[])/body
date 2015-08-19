@@ -1,0 +1,11 @@
+{
+  if (m_debugger != null) {
+    try {
+      m_debugger.writeMemory(new CAddress(offset),data);
+      m_debugger.getProcessManager().getMemory().store(offset,data);
+    }
+ catch (    final DebugExceptionWrapper exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

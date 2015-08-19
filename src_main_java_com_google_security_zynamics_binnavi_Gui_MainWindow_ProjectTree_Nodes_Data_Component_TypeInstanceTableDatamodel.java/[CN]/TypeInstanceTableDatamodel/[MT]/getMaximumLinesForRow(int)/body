@@ -1,0 +1,4 @@
+{
+  FormattedCharacterBuffer typeRendering=BaseTypeTableCellRenderer.renderType(typesToDisplay.get(rowIndex),STANDARD_FONT,columns[TYPE_INDEX].getWidth(),false);
+  return Math.max(typeRendering.getNumberOfLines(),typeContainer.getReferenceCount(typesToDisplay.get(rowIndex)));
+}

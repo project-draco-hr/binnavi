@@ -1,0 +1,3 @@
+{
+  return TagType.convert(m_tag.getObject().getType());
+}

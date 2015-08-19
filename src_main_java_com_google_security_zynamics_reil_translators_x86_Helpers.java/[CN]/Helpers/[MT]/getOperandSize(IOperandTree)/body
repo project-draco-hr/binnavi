@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(operand,"Error: Argument operand can't be null");
+  final String sizeString=operand.getRootNode().getValue();
+  return OperandSize.sizeStringToValue(sizeString);
+}

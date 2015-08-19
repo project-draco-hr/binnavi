@@ -1,0 +1,5 @@
+{
+  debugger.connect();
+  debugger.singleStep();
+  assertEquals("CONNECT;STEP;",mockDebugger.requests);
+}

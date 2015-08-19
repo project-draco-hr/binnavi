@@ -1,0 +1,6 @@
+{
+  m_description=comment;
+  for (  final IFunctionListener<IComment> listener : m_listeners) {
+    listener.changedDescription(this,comment);
+  }
+}

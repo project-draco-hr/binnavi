@@ -1,0 +1,20 @@
+{
+  super(owner,"Scripting",false);
+  this.defaultLanguage=defaultLanguage;
+  scriptsDirectory=PluginInterface.instance().getProgramPath() + File.separator + "scripts";
+  addBinding("navi",pluginInterface);
+  addBinding("dbs",pluginInterface.getDatabaseManager());
+  for (  final Entry<String,Object> binding : bindings.entrySet()) {
+    addBinding(binding.getKey(),binding.getValue());
+  }
+  setLayout(new BorderLayout());
+  menuBar=new MenuBar();
+  setJMenuBar(menuBar);
+  scriptTab.addChangeListener(new InternalChangeListener());
+  final ConsolePane initialPanel=new ConsolePane();
+  initPanel(initialPanel);
+  scriptTab.addTab("Console",initialPanel);
+  add(scriptTab,BorderLayout.CENTER);
+  setResizable(true);
+  pack();
+}

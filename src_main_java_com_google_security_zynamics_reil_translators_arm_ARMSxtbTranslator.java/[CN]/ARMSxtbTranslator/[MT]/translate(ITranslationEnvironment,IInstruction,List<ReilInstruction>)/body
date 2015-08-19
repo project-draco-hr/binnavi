@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SXTB");
+  translateAll(environment,instruction,"SXTB",instructions);
+}

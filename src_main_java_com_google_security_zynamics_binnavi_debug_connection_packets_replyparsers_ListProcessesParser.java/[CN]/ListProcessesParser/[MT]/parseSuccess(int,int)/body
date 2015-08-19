@@ -1,0 +1,10 @@
+{
+  try {
+    final ProcessList processes=ProcessList.parse(parseData());
+    return new ListProcessesReply(packetId,0,processes);
+  }
+ catch (  final Exception exception) {
+    CUtilityFunctions.logException(exception);
+    return new ListProcessesReply(packetId,PARSER_ERROR,null);
+  }
+}

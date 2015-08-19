@@ -1,0 +1,6 @@
+{
+  this.type=Preconditions.checkNotNull(type,"IE02017: Type argument can't be null");
+  if (type instanceof CallGraphSettingsConfigItem) {
+    setDisplayMultipleEdgesAsOne(type.isMultipleEdgesAsOne());
+  }
+}

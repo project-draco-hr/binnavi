@@ -1,0 +1,60 @@
+{
+  final MockSqlProvider sql=new MockSqlProvider();
+  final CModule module=MockCreator.createModule(sql);
+  final Date creationDate=new Date();
+  Date modificationDate=new Date();
+  final int viewId=new BigInteger(31,random).intValue();
+  final Calendar cal=Calendar.getInstance();
+  cal.setTime(modificationDate);
+  cal.add(Calendar.DATE,1);
+  modificationDate=cal.getTime();
+  final CView view=new CView(viewId,module,"New View","New View Description",ViewType.Native,GraphType.FLOWGRAPH,creationDate,modificationDate,33,44,new HashSet<CTag>(),new HashSet<CTag>(),false,sql);
+  assertEquals(viewId,view.getConfiguration().getId());
+  assertEquals("New View",view.getName());
+  assertEquals("New View Description",view.getConfiguration().getDescription());
+  assertEquals(ViewType.Native,view.getType());
+  assertEquals(GraphType.FLOWGRAPH,view.getGraphType());
+  assertEquals(33,view.getNodeCount());
+  assertEquals(44,view.getEdgeCount());
+  assertEquals(creationDate,view.getConfiguration().getCreationDate());
+  assertEquals(modificationDate,view.getConfiguration().getModificationDate());
+  final Set<CTag> tags=new HashSet<CTag>();
+  final CTag tag1=new CTag(1,"Tag1","Tag1 Tag1",TagType.VIEW_TAG,sql);
+  final CTag tag2=new CTag(2,"Tag2","Tag2 Tag2",TagType.VIEW_TAG,sql);
+  final CTag tag3=new CTag(3,"Tag3","Tag3 Tag3",TagType.VIEW_TAG,sql);
+  final CTag tag4=new CTag(4,"Tag4","Tag4 Tag4",TagType.VIEW_TAG,sql);
+  tags.add(tag1);
+  tags.add(tag2);
+  tags.add(tag3);
+  tags.add(tag4);
+  new CView(1,module,"New View","New View Description",ViewType.Native,GraphType.FLOWGRAPH,creationDate,modificationDate,33,44,new HashSet<CTag>(),tags,false,sql);
+  tags.add(null);
+  try {
+    new CView(1,module,"New View","New View Description",ViewType.Native,GraphType.FLOWGRAPH,creationDate,modificationDate,33,44,tags,new HashSet<CTag>(),false,sql);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  tags.clear();
+  tags.add(tag1);
+  tags.add(tag2);
+  tags.add(tag3);
+  tags.add(tag4);
+  final CTag tag5=new CTag(5,"Tag1","Tag1 Tag1",TagType.NODE_TAG,sql);
+  tags.add(tag5);
+  try {
+    new CView(1,module,"New View","New View Description",ViewType.Native,GraphType.FLOWGRAPH,creationDate,modificationDate,33,44,tags,new HashSet<CTag>(),false,sql);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+  tags.clear();
+  final CTag tagWrongDB=new CTag(4,"Tag4","Tag4 Tag4",TagType.VIEW_TAG,new MockSqlProvider());
+  tags.add(tagWrongDB);
+  try {
+    new CView(1,module,"New View","New View Description",ViewType.Native,GraphType.FLOWGRAPH,creationDate,modificationDate,33,44,tags,new HashSet<CTag>(),false,sql);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+}

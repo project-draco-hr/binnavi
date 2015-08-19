@@ -1,0 +1,20 @@
+{
+  ArrayList<String> field=data.get(rowIndex).get(columnIndex);
+  String data;
+  if (lineIndex >= field.size()) {
+    data=padRight("",getColumnWidthInCharacters(columnIndex));
+  }
+ else {
+    data=padRight(field.get(lineIndex),getColumnWidthInCharacters(columnIndex));
+  }
+  data=data.substring(0,Math.min(data.length(),getColumnWidthInCharacters(columnIndex)));
+switch (columnIndex) {
+case 0:
+    return new FormattedCharacterBuffer(data,fontColumnA,Color.BLACK,Color.LIGHT_GRAY);
+case 1:
+  return new FormattedCharacterBuffer(data,fontColumnB,Color.WHITE,Color.DARK_GRAY);
+case 2:
+return new FormattedCharacterBuffer(data,fontColumnC,Color.LIGHT_GRAY,Color.BLACK);
+}
+return null;
+}

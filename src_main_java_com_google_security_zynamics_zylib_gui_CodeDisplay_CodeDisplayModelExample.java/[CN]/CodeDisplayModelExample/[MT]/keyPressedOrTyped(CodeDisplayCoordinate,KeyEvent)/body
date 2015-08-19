@@ -1,0 +1,31 @@
+{
+  if (!event.isActionKey()) {
+switch (event.getKeyCode()) {
+case KeyEvent.VK_ENTER:
+      break;
+default :
+    String stringToEdit=data.get(coordinate.getRow()).get(coordinate.getColumn()).get(coordinate.getLine());
+  if (stringToEdit.length() < coordinate.getFieldIndex()) {
+    stringToEdit=padRight(stringToEdit,coordinate.getFieldIndex());
+  }
+String newString=stringToEdit.substring(0,coordinate.getFieldIndex()) + event.getKeyChar() + stringToEdit.substring(coordinate.getFieldIndex());
+data.get(coordinate.getRow()).get(coordinate.getColumn()).set(coordinate.getLine(),newString);
+coordinate.setFieldIndex(coordinate.getFieldIndex() + 1);
+break;
+}
+}
+ else {
+switch (event.getKeyCode()) {
+case KeyEvent.VK_DOWN:
+break;
+case KeyEvent.VK_UP:
+break;
+case KeyEvent.VK_LEFT:
+coordinate.setFieldIndex(coordinate.getFieldIndex() - 1);
+break;
+case KeyEvent.VK_RIGHT:
+coordinate.setFieldIndex(coordinate.getFieldIndex() + 1);
+break;
+}
+}
+}

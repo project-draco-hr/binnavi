@@ -1,0 +1,3 @@
+{
+  CShowViewFunctions.showViews(parentWindow,viewContainer,views,graphWindow);
+}

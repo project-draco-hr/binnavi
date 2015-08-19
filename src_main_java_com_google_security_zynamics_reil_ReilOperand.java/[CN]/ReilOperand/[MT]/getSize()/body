@@ -1,0 +1,3 @@
+{
+  return OperandSize.sizeStringToValue(m_root.getValue());
+}

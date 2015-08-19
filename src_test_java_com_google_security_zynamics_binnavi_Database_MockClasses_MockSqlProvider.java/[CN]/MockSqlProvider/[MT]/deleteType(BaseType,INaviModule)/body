@@ -1,0 +1,4 @@
+{
+  final RawBaseType rawBaseType=new RawBaseType(baseType.getId(),baseType.getName(),baseType.getBitSize(),baseType.pointsTo() != null ? baseType.pointsTo().getId() : null,baseType.isSigned(),baseType.getCategory());
+  types.remove(module.getConfiguration().getId(),rawBaseType);
+}

@@ -1,0 +1,11 @@
+{
+  final Address newAddress=new Address(imageBase.toBigInteger());
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedImagebase(Module.this,newAddress);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

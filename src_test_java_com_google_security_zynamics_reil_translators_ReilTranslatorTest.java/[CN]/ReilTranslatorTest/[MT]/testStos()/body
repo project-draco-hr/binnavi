@@ -1,0 +1,10 @@
+{
+  final ReilGraph g=m_translator.translate(new StandardEnvironment(),new MockInstruction("stosb",new ArrayList<MockOperandTree>()));
+  System.out.println(g.getNodes().get(0).getInstructions());
+  System.out.println(g.getNodes().get(1).getInstructions());
+  System.out.println(g.getNodes().get(2).getInstructions());
+  System.out.println(g.getNodes().get(3).getInstructions());
+  System.out.println(g.getEdges());
+  assertEquals(4,g.nodeCount());
+  assertEquals(4,g.edgeCount());
+}

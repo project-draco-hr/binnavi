@@ -1,0 +1,4 @@
+{
+  setupTextNode();
+  getProvider().appendTextNodeComment(null,"",1);
+}

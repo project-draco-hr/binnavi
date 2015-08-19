@@ -1,0 +1,16 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  final List<IComment> storedComments=functionNode.getLocalFunctionComment() == null ? new ArrayList<IComment>() : functionNode.getLocalFunctionComment();
+  final IComment lastComment=storedComments.isEmpty() ? null : Iterables.getLast(storedComments);
+  final String firstCommentString=" PASS LOCAL FUNCTION NODE COMMENT 1 ";
+  final int firstCommentId=getProvider().appendFunctionNodeComment(functionNode,firstCommentString,user.getUserId());
+  final IComment firstComment=new CComment(firstCommentId,user,lastComment,firstCommentString);
+  final String secondCommentString=" PASS LOCAL FUNCTION NODE COMMENT 2 ";
+  final int secondCommentId=getProvider().appendFunctionNodeComment(functionNode,secondCommentString,user.getUserId());
+  final IComment secondComment=new CComment(secondCommentId,user,firstComment,secondCommentString);
+  final ArrayList<IComment> commentsFromDatabase=getProvider().loadCommentById(secondCommentId);
+  assertNotNull(commentsFromDatabase);
+  assertEquals(storedComments.size() + 2,commentsFromDatabase.size());
+  assertTrue(commentsFromDatabase.contains(firstComment));
+  assertTrue(commentsFromDatabase.contains(secondComment));
+}

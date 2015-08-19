@@ -1,0 +1,8 @@
+{
+  for (  final ColoredRange range : ranges) {
+    if (range.getStart() >= offset) {
+      return range;
+    }
+  }
+  return null;
+}

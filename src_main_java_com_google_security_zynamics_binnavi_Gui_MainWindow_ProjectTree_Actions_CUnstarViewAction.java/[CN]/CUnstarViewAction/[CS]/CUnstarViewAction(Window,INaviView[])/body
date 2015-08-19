@@ -1,0 +1,5 @@
+{
+  super("Unstar view");
+  m_parent=parent;
+  m_views=views.clone();
+}

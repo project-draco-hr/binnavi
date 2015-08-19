@@ -1,0 +1,6 @@
+{
+  commentableToComment.put(commentable,comments);
+  for (  final CommentType commentType : comments) {
+    commentToCommentable.put(commentType,commentable);
+  }
+}

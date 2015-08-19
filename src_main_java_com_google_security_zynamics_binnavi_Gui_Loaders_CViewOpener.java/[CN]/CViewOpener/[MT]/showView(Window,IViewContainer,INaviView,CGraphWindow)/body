@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(parent,"IE00015: Parent argument can not be null");
+  Preconditions.checkNotNull(viewContainer,"IE00016: View container argument can not be null");
+  Preconditions.checkNotNull(view,"IE00018: View argument can not be null");
+  Preconditions.checkState(viewContainer.isLoaded(),"IE00017: View container must be loaded");
+  Preconditions.checkState(viewContainer.getViews().contains(view),"IE00019: View is not part of the given view container");
+  final INaviFunction function=viewContainer.getFunction(view);
+  if (isPureImportedFunction(function)) {
+    CMessageBox.showInformation(parent,"Imported functions are not part of a module and can not be opened.\n" + "Note that it is possible to open imported functions once they " + "are forwarded to real functions in other modules.");
+    return;
+  }
+ else   if (isForwardedImportedFunction(function)) {
+    showForwardedFunction(parent,viewContainer,view,function,window);
+  }
+ else {
+    CGraphOpener.showGraph(viewContainer,view,window,parent);
+  }
+}

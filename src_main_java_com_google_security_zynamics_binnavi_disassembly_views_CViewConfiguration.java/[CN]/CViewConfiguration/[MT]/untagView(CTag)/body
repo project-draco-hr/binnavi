@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(tag,"IE00322: Tag argument can not be null");
+  Preconditions.checkArgument(viewTags.contains(tag),"IE00323: View is not tagged by the given tag");
+  if (isStored()) {
+    provider.removeTag(view,tag);
+  }
+  tag.removeListener(tagListener);
+  viewTags.remove(tag);
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.untaggedView(view,tag);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

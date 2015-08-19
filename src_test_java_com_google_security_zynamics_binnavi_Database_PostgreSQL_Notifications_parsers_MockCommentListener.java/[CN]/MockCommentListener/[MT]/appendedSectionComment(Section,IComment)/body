@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(APPENDED_SECTION_COMMENT);
+}

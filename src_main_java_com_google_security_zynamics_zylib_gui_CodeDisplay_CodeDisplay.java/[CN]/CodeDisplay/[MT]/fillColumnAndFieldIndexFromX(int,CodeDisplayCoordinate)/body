@@ -1,0 +1,17 @@
+{
+  x=x + currentFirstCharColumn * fontCharWidth;
+  int columnstart=0;
+  int characterIndex=0;
+  for (int index=0; index < codeModel.getNumberOfColumns(); index++) {
+    int columnend=columnstart + codeModel.getColumnWidthInCharacters(index) * fontCharWidth;
+    if ((x >= columnstart) && (x < columnend)) {
+      x=x - columnstart;
+      characterIndex=x / fontCharWidth;
+      coordinate.setColumn(index);
+      coordinate.setFieldIndex(characterIndex);
+      return true;
+    }
+    columnstart=columnend;
+  }
+  return false;
+}

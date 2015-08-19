@@ -1,0 +1,3 @@
+{
+  return CSelectionEvaluator.evaluate(node,m_selectionState);
+}

@@ -1,0 +1,3 @@
+{
+  return backend.editComment(instance,comment,newCommentText);
+}

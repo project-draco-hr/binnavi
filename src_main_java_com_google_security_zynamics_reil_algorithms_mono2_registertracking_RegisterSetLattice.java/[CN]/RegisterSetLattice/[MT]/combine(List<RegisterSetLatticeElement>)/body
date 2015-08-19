@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(inputs,"Error: inputs argument can not be null");
+  final RegisterSetLatticeElement latticeElement=new RegisterSetLatticeElement();
+  latticeElement.addAll(inputs);
+  return latticeElement;
+}

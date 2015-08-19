@@ -1,0 +1,3 @@
+{
+  testParser("bn_view","INSERT",String.valueOf(view.getConfiguration().getId()),null);
+}

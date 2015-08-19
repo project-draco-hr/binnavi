@@ -1,0 +1,4 @@
+{
+  provider=mockSqlProvider;
+  content=new MockDatabaseContent(this,new DebuggerTemplateManager(mockSqlProvider),listeners);
+}

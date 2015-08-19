@@ -1,0 +1,24 @@
+{
+  Preconditions.checkNotNull(node,"IE00976: Node argument can't be null");
+  if (contentSelectionActive) {
+    return new CContentSelectionMenu(model,node);
+  }
+ else {
+    final IViewNode<?> rawNode=node.getRawNode();
+    if (rawNode instanceof CFunctionNode) {
+      return new CFunctionNodeMenu(model,node,y);
+    }
+ else     if (rawNode instanceof CCodeNode) {
+      return new CCodeNodeMenu(model,node,clickedObject,y,extensions);
+    }
+ else     if (rawNode instanceof CTextNode) {
+      return new CTextNodeMenu(model.getParent(),model.getGraph().getRawView(),(CTextNode)rawNode);
+    }
+ else     if (rawNode instanceof CGroupNode) {
+      return new CGroupNodeMenu(model.getParent(),model.getGraph().getRawView(),(CGroupNode)rawNode);
+    }
+ else {
+      throw new IllegalStateException("IE00977: Unknown node type");
+    }
+  }
+}

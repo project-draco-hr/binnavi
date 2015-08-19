@@ -1,0 +1,4 @@
+INaviOperandTreeNode node
+int baseTypeId
+Integer[] memberPathIds
+int offset

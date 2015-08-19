@@ -1,0 +1,7 @@
+{
+  displayMultipleEdgesAsOne=settings.getDisplayMultipleEdgesAsOne();
+  edgeHidingMode=settings.getEdgeHidingMode();
+  edgeHidingThreshold=settings.getEdgeHidingThreshold();
+  drawSelectedBends=settings.getDrawSelectedBends();
+  type=null;
+}

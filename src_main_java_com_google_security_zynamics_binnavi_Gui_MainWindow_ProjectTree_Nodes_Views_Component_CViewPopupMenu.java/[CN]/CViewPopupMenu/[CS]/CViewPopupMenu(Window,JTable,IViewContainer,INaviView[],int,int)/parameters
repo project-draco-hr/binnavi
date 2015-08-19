@@ -1,0 +1,6 @@
+Window parent
+JTable table
+IViewContainer container
+INaviView[] views
+int x
+int y

@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(resultSize,"Error: Argument resultSize can't be null");
+  Preconditions.checkNotNull(result,"Error: Argument result can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final String tempReg=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(offset,resultSize,result,resultSize,tempReg));
+  instructions.add(ReilHelpers.createBsh(offset + 1,resultSize,tempReg,OperandSize.BYTE,"-4",resultSize,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createXor(offset + 2,resultSize,tempReg,resultSize,Helpers.PARITY_FLAG,resultSize,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createAnd(offset + 3,resultSize,Helpers.PARITY_FLAG,resultSize,String.valueOf(0xFFL),OperandSize.WORD,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 4,OperandSize.WORD,String.valueOf(0x9669L),OperandSize.WORD,Helpers.PARITY_FLAG,OperandSize.WORD,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createAnd(offset + 5,OperandSize.WORD,Helpers.PARITY_FLAG,OperandSize.WORD,String.valueOf(0x8000L),OperandSize.WORD,Helpers.PARITY_FLAG));
+  instructions.add(ReilHelpers.createBsh(offset + 6,OperandSize.WORD,Helpers.PARITY_FLAG,OperandSize.BYTE,"-15",OperandSize.BYTE,Helpers.PARITY_FLAG));
+}

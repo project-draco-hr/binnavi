@@ -1,0 +1,27 @@
+{
+  Preconditions.checkNotNull(provider,"IE01267: Provider argument can not be null");
+  Preconditions.checkNotNull(module,"IE01268: Module argument can not be null");
+  Preconditions.checkNotNull(data,"IE01269: Data argument can not be null");
+  final CConnection connection=provider.getConnection();
+  try {
+    connection.executeUpdate("DELETE FROM " + CTableNames.DATA_PARTS_TABLE + " WHERE module_id = "+ module.getConfiguration().getId(),true);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  try {
+    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement("insert into " + CTableNames.DATA_PARTS_TABLE + "(module_id, part_id, data) values(?, ?, ?)");
+    try {
+      statement.setInt(1,module.getConfiguration().getId());
+      statement.setInt(2,0);
+      statement.setBinaryStream(3,new ByteArrayInputStream(data,0,data.length),data.length);
+      statement.execute();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+}

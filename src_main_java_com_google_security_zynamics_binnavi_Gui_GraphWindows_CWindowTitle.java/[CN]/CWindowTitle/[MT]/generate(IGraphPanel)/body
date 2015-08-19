@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(panel,"IE01637: Panel argument can not be null");
+  final INaviView view=panel.getModel().getGraph().getRawView();
+  final String containerName=panel.getModel().getViewContainer().getName();
+  final String viewName=view.getName();
+  final String viewDescription=view.getConfiguration().getDescription();
+  if ("".equals(viewDescription)) {
+    return String.format("%s - %s - %s",viewName,containerName,Constants.DEFAULT_WINDOW_TITLE);
+  }
+ else {
+    return String.format("%s - %s - %s - %s",viewName,containerName,viewDescription,Constants.DEFAULT_WINDOW_TITLE);
+  }
+}

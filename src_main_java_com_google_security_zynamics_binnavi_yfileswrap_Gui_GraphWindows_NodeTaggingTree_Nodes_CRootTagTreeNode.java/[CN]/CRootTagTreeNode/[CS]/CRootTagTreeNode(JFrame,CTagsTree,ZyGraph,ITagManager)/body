@@ -1,0 +1,9 @@
+{
+  super(0,graph);
+  m_parent=Preconditions.checkNotNull(parent,"IE02325: Parent argument can not be null");
+  m_tagsTree=Preconditions.checkNotNull(tagsTree,"IE02326: Tags tree argument can not be null");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE01796: Tag manager can not be null");
+  m_rootTag=tagManager.getRootTag();
+  m_tagManager.addListener(m_tagManagerListener);
+  createChildren();
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(pluginFiles,"IE00832: Plugin files can't be null");
+  descriptionUpdater.reset();
+  descriptionUpdater.setMaximum(pluginFiles.size());
+  final LoadResult<T> loadResult=loadPluginFiles(pluginPath,pluginFiles,descriptionUpdater);
+  return validateLoadedPlugins(loadResult);
+}

@@ -1,0 +1,3 @@
+{
+  getProvider().editLocalEdgeComment(null,null,null,null);
+}

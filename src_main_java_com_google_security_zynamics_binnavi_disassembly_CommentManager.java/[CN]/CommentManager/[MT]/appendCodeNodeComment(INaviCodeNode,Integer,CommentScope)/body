@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(node,"IE02549: node argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE02550: commentId argument can not be null");
+  Preconditions.checkNotNull(scope,"IE02551: scope argument can not be null");
+  appendComment(new CodeNodeCommentingStrategy(node,scope),commentId);
+}

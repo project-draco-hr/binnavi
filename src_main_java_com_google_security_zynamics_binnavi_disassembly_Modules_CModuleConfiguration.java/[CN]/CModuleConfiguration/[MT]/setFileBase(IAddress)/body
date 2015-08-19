@@ -1,0 +1,17 @@
+{
+  Preconditions.checkNotNull(fileBase,"IE00200: File base argument can not be null");
+  if (fileBase.equals(m_fileBase)) {
+    return;
+  }
+  m_provider.setFileBase(m_module,fileBase);
+  m_fileBase=fileBase;
+  for (  final IModuleListener listener : m_listeners) {
+    try {
+      listener.changedFileBase(m_module,fileBase);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  updateModificationDate();
+}

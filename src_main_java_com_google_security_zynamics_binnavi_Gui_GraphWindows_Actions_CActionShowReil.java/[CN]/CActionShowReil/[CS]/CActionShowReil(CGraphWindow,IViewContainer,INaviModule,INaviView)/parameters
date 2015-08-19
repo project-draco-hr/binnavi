@@ -1,0 +1,4 @@
+CGraphWindow parent
+IViewContainer container
+INaviModule module
+INaviView view

@@ -1,0 +1,37 @@
+{
+  checkArguments(provider,project);
+  Preconditions.checkNotNull(name,"IE00521: Address space names can not be null");
+  Preconditions.checkArgument(!("".equals(name)),"IE00522: Address space names can not be empty");
+  final CConnection connection=provider.getConnection();
+  final int projectId=project.getConfiguration().getId();
+  NaviLogger.info("Creating a new address space with name %s in project %s (%d)",name,project.getConfiguration().getName(),projectId);
+  try {
+    final String query="insert into " + CTableNames.ADDRESS_SPACES_TABLE + "(project_id, name, description, creation_date, modification_date) values(?, ?, '', NOW(), NOW()) returning id";
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+    try {
+      statement.setInt(1,projectId);
+      statement.setString(2,name);
+      Integer addressSpaceId=null;
+      final ResultSet resultSet=statement.executeQuery();
+      try {
+        while (resultSet.next()) {
+          if (resultSet.isFirst()) {
+            addressSpaceId=resultSet.getInt(1);
+            break;
+          }
+        }
+      }
+  finally {
+        resultSet.close();
+      }
+      Preconditions.checkNotNull(addressSpaceId,"IE02130: Error address space id may not be null after project creation");
+      return PostgreSQLProjectFunctions.readAddressSpace(provider,addressSpaceId,project);
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

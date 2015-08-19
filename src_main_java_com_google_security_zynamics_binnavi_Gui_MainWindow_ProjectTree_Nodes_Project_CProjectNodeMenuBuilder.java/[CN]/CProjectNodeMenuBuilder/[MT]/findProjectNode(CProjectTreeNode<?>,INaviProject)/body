@@ -1,0 +1,18 @@
+{
+  final List<CProjectTreeNode<?>> nodes=new ArrayList<CProjectTreeNode<?>>();
+  nodes.add(databaseNode);
+  while (!nodes.isEmpty()) {
+    final CProjectTreeNode<?> current=nodes.get(0);
+    nodes.remove(0);
+    if ((current instanceof CProjectNode) && (((CProjectNode)current).getObject() == project)) {
+      return current;
+    }
+    for (final Enumeration<?> e=current.children(); e.hasMoreElements(); ) {
+      final CProjectTreeNode<?> element=(CProjectTreeNode<?>)e.nextElement();
+      if ((element instanceof CProjectContainerNode) || (element instanceof CProjectNode)) {
+        nodes.add(element);
+      }
+    }
+  }
+  throw new IllegalStateException("IE01202: Project node not found");
+}

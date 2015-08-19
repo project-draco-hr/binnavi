@@ -1,0 +1,12 @@
+{
+  currentOffset=currentOffset - m_baseAddress;
+  if (getSelectionLength() == 0) {
+    return false;
+  }
+ else   if (getSelectionLength() > 0) {
+    return (currentOffset >= (getSelectionStart() / 2)) && ((2 * currentOffset) < (getSelectionStart() + getSelectionLength()));
+  }
+ else {
+    return (currentOffset >= ((getSelectionStart() + getSelectionLength()) / 2)) && ((2 * currentOffset) < getSelectionStart());
+  }
+}

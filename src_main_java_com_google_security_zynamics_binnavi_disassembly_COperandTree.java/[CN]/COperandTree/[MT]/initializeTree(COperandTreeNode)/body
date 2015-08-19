@@ -1,0 +1,6 @@
+{
+  node.setOperand(this);
+  for (  final IOperandTreeNode child : node.getChildren()) {
+    initializeTree((COperandTreeNode)child);
+  }
+}

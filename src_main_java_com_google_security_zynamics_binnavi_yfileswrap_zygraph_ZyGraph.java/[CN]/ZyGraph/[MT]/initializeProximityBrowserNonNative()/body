@@ -1,0 +1,12 @@
+{
+  m_disableLayoutingInternally=true;
+  final boolean previousSetting=m_settings.getLayoutSettings().getAutomaticLayouting();
+  m_settings.getLayoutSettings().setAutomaticLayouting(false);
+  final Collection<NaviNode> nodes=GraphHelpers.getVisibleNodes(ViewableGraph.wrap(this));
+  showNodes(nodes,false);
+  m_settings.getLayoutSettings().setAutomaticLayouting(previousSetting);
+  m_disableLayoutingInternally=false;
+  if (m_rawView.getConfiguration().getId() == -1) {
+    doLayout();
+  }
+}

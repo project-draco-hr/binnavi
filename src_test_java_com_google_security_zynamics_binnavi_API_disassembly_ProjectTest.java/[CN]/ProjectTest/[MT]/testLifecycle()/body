@@ -1,0 +1,14 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.addListener(listener);
+  m_project.load();
+  assertTrue(m_project.isLoaded());
+  assertTrue(m_internalProject.isLoaded());
+  assertEquals("loadedProject;",listener.events);
+  assertEquals("Project 'Project Name' ['']",m_project.toString());
+  assertTrue(m_project.close());
+  assertFalse(m_project.isLoaded());
+  assertFalse(m_internalProject.isLoaded());
+  assertEquals("loadedProject;closingProject;closedProject;",listener.events);
+  m_project.removeListener(listener);
+}

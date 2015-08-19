@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(settings,"IE00896: Settings argument can not be null");
+  final OrthogonalStyle style=settings.getOrthogonalSettings().getStyle();
+  final long gridSize=settings.getOrthogonalSettings().getMinimumNodeDistance();
+  return ZyGraphLayouter.createOrthoLayouter(style,gridSize,true);
+}

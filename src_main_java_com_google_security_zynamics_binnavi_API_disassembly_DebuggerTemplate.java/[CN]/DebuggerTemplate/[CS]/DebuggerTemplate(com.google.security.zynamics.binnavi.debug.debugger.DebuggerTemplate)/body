@@ -1,0 +1,4 @@
+{
+  m_template=template;
+  m_template.addListener(m_internalListener);
+}

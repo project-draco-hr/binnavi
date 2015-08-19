@@ -1,0 +1,6 @@
+{
+  m_thread.stop();
+  for (  final IEndlessProgressListener listener : listeners) {
+    listener.finished();
+  }
+}

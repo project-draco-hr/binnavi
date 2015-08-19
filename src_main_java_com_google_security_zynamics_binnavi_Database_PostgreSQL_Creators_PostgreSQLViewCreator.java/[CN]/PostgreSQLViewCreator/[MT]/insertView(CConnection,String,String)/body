@@ -1,0 +1,34 @@
+{
+  final String query="INSERT INTO " + CTableNames.VIEWS_TABLE + "(type, name, description, creation_date, modification_date) "+ " VALUES(?::view_type, ?, ?, NOW(), NOW()) RETURNING id";
+  final PreparedStatement statement=connection.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+  try {
+    statement.setString(1,"non-native");
+    statement.setString(2,name);
+    if (description == null) {
+      statement.setNull(3,Types.VARCHAR);
+    }
+ else {
+      statement.setString(3,description);
+    }
+    int lastId=0;
+    final ResultSet resultSet=statement.executeQuery();
+    try {
+      while (resultSet.next()) {
+        if (resultSet.isFirst()) {
+          lastId=resultSet.getInt(1);
+          break;
+        }
+      }
+      if (!resultSet.isFirst()) {
+        throw new IllegalStateException("IE02071: Unable to determine last id after SQL insertion.");
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+    return lastId;
+  }
+  finally {
+    statement.close();
+  }
+}

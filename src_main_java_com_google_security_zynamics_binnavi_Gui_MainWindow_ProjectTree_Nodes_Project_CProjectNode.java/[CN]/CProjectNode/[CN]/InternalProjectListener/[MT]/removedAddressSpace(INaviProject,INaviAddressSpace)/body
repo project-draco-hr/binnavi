@@ -1,0 +1,18 @@
+{
+  new SwingInvoker(){
+    @Override protected void operation(){
+      for (int i=0; i < getChildCount(); i++) {
+        if (getChildAt(i) instanceof CAddressSpaceNode) {
+          final CAddressSpaceNode node=(CAddressSpaceNode)getChildAt(i);
+          if (node.getObject() == addressSpace) {
+            node.dispose();
+            remove(node);
+            break;
+          }
+        }
+      }
+      getTreeModel().nodeStructureChanged(CProjectNode.this);
+    }
+  }
+.invokeAndWait();
+}

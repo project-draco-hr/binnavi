@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(tree,"IE01195: Tree argument can not be null");
+  Preconditions.checkNotNull(module,"IE01196: Module argument can not be null");
+  loadModuleThreaded(SwingUtilities.getWindowAncestor(tree),module,tree);
+}

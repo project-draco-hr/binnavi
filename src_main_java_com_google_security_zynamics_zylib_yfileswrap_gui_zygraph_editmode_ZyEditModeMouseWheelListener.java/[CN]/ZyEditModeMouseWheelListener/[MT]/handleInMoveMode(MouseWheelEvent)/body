@@ -1,0 +1,9 @@
+{
+  final boolean scrollDirection=event.getUnitsToScroll() > 0;
+  if (event.isAltDown()) {
+    moveVertical(scrollDirection);
+  }
+ else {
+    moveHorizontal(scrollDirection);
+  }
+}

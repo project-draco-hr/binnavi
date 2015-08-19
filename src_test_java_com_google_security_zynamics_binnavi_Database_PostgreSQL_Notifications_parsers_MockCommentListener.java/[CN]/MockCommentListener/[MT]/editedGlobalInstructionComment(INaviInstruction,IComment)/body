@@ -1,0 +1,3 @@
+{
+  listenerMessages.add(EDITED_GLOBAL_INSTRUCTION_COMMENT);
+}

@@ -1,0 +1,8 @@
+{
+  final List<NaviNode> allNodes=GraphHelpers.getNodes(this);
+  if (!allNodes.isEmpty()) {
+    final NaviNode firstNode=getMappings().getNode(getRawView().getGraph().getNodes().get(0));
+    allNodes.remove(firstNode);
+    showNodes(Lists.newArrayList(firstNode),allNodes);
+  }
+}

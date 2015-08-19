@@ -1,0 +1,3 @@
+{
+  return CTooltipUpdater.updateEdgeTooltip(m_graph,edge);
+}

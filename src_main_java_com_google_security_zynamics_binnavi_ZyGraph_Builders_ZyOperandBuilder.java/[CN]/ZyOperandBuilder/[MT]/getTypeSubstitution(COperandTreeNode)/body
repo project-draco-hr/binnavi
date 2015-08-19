@@ -1,0 +1,10 @@
+{
+switch (treeNode.getType()) {
+case IMMEDIATE_INTEGER:
+    return getImmediateSubstitution(treeNode);
+case REGISTER:
+  return getRegisterSubstitution(treeNode);
+default :
+return "";
+}
+}

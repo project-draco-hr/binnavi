@@ -1,0 +1,20 @@
+{
+  final IOperandTreeNode sourceOperand=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final String sourceRegister=(sourceOperand.getValue());
+  final OperandSize bt=OperandSize.BYTE;
+  final OperandSize dw=OperandSize.DWORD;
+  final String tmpZ=environment.getNextVariableString();
+  final String tmpC=environment.getNextVariableString();
+  final String tmpV=environment.getNextVariableString();
+  final String tmpQ=environment.getNextVariableString();
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,String.valueOf(-31),bt,"N"));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,String.valueOf(-30),bt,tmpZ));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpZ,bt,String.valueOf(1L),bt,"Z"));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,String.valueOf(-29),bt,tmpC));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpC,bt,String.valueOf(1L),bt,"C"));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,String.valueOf(-28),bt,tmpV));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpV,bt,String.valueOf(1L),bt,"C"));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,sourceRegister,dw,String.valueOf(-29),bt,tmpQ));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpQ,bt,String.valueOf(1L),bt,"C"));
+}

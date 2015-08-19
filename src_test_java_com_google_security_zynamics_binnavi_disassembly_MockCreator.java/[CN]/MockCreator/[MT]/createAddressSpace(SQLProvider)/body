@@ -1,0 +1,3 @@
+{
+  return new CAddressSpace(1,"AS Name","AS Description",new Date(),new Date(),new HashMap<INaviModule,IAddress>(),null,sql,new MockProject());
+}

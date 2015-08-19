@@ -1,0 +1,8 @@
+{
+  final Pattern pattern=Pattern.compile(RULE_REGEX);
+  final Matcher matcher=pattern.matcher(text);
+  matcher.matches();
+  final FilterRelation predicate=FilterRelation.parse(matcher.group(1));
+  final String value=matcher.group(2);
+  return new CEdgeFilterExpression(predicate,Long.valueOf(value));
+}

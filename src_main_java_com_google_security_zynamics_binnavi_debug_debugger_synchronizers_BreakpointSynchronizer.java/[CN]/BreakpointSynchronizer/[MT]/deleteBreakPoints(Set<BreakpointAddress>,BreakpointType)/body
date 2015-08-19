@@ -1,0 +1,12 @@
+{
+  if (addresses.size() == 0) {
+    return;
+  }
+  try {
+    debugger.removeBreakpoints(addresses,type);
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    manager.removeBreakpointsPassive(BreakpointType.REGULAR,Sets.newHashSet(addresses));
+    NaviLogger.severe("Error: Debugger could not remove " + type.toString() + " breakpoints. Exception %s",exception);
+  }
+}

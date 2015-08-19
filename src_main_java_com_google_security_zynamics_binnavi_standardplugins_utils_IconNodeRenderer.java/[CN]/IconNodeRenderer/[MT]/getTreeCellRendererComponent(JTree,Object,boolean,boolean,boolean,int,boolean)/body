@@ -1,0 +1,18 @@
+{
+  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,hasFocus);
+  Icon icon=((IconNode)value).getIcon();
+  if (icon == null) {
+    @SuppressWarnings("unchecked") final Hashtable<String,Icon> icons=(Hashtable<String,Icon>)tree.getClientProperty("JTree.icons");
+    final String name=((IconNode)value).getIconName();
+    if ((icons != null) && (name != null)) {
+      icon=icons.get(name);
+      if (icon != null) {
+        setIcon(icon);
+      }
+    }
+  }
+ else {
+    setIcon(icon);
+  }
+  return this;
+}

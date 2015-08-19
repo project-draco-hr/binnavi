@@ -1,0 +1,39 @@
+{
+  Preconditions.checkNotNull(provider,"IE02513: provider argument can not be null");
+  Preconditions.checkNotNull(view,"IE02514: view argument can not be null");
+  Preconditions.checkNotNull(nodes,"IE02515: nodes argument can not be null");
+  final Map<Integer,INaviGroupNode> commentIdToGroupNode=new HashMap<Integer,INaviGroupNode>();
+  final String query="SELECT id, comment_id , collapsed, x, y, width, height, color, selected, visible " + " FROM " + CTableNames.NODES_TABLE + " JOIN "+ CTableNames.GROUP_NODES_TABLE+ " ON id = node_id WHERE view_id = "+ view.getConfiguration().getId();
+  final ResultSet resultSet=provider.getConnection().executeQuery(query,true);
+  try {
+    while (resultSet.next()) {
+      final int nodeId=resultSet.getInt("id");
+      Integer commentId=resultSet.getInt("comment_id");
+      if (resultSet.wasNull()) {
+        commentId=null;
+      }
+      final boolean collapsed=resultSet.getBoolean("collapsed");
+      final double posX=resultSet.getDouble("x");
+      final double posY=resultSet.getDouble("y");
+      final double width=resultSet.getDouble("width");
+      final double height=resultSet.getDouble("height");
+      final Color color=new Color(resultSet.getInt("color"));
+      final boolean selected=resultSet.getBoolean("selected");
+      final boolean visible=resultSet.getBoolean("visible");
+      final INaviGroupNode groupNode=new CGroupNode(nodeId,posX,posY,width,height,color,selected,visible,new HashSet<CTag>(),null,collapsed,provider);
+      if (commentId != null) {
+        commentIdToGroupNode.put(commentId,groupNode);
+      }
+      nodes.add(groupNode);
+    }
+    if (!commentIdToGroupNode.isEmpty()) {
+      final HashMap<Integer,ArrayList<IComment>> commentIdsToComments=PostgreSQLCommentFunctions.loadMultipleCommentsById(provider,commentIdToGroupNode.keySet());
+      for (      final Entry<Integer,ArrayList<IComment>> commentIdToComment : commentIdsToComments.entrySet()) {
+        commentIdToGroupNode.get(commentIdToComment.getKey()).initializeComment(commentIdToComment.getValue());
+      }
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+}

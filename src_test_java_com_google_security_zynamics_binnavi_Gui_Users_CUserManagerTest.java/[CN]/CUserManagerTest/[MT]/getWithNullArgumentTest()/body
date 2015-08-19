@@ -1,0 +1,3 @@
+{
+  CUserManager.get(null);
+}

@@ -1,0 +1,17 @@
+{
+  if (!support.isDrop() || !(support.getComponent() instanceof TypesTree)) {
+    return true;
+  }
+  final JTree.DropLocation location=(JTree.DropLocation)support.getDropLocation();
+  final BaseTypeTreeNode destinationNode=determineParentNode(location);
+  if (destinationNode != null && location.getChildIndex() != -1) {
+    final BaseType parentType=destinationNode.getBaseType();
+    for (    final TypeMemberTreeNode memberNode : selectedNodes) {
+      if (memberNode.getTypeMember().getParentType() != parentType) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return true;
+}

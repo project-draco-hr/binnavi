@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(typeSubstitution,"Error: typeSubstitution argument can not be null");
+  substitutionsByType.remove(typeSubstitution.getBaseType(),typeSubstitution);
+}

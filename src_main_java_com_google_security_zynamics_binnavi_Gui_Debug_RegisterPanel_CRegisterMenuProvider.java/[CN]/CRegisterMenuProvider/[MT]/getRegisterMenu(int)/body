@@ -1,0 +1,20 @@
+{
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    return null;
+  }
+  final JPopupMenu menu=new JPopupMenu();
+  final BigInteger value=m_dataProvider.getRegisterInformation(registerNumber).getValue();
+  menu.add(CActionProxy.proxy(new CCopyRegisterValueAction(value.toString(16).toUpperCase())));
+  final MemorySection section=ProcessHelpers.getSectionWith(debugger.getProcessManager().getMemoryMap(),new CAddress(value));
+  final JMenuItem gotoAddress=menu.add(CActionProxy.proxy(new CGotoOffsetAction(m_debugPerspectiveModel,new CAddress(value))));
+  gotoAddress.setEnabled(section != null);
+  if (containsAddress(m_debugPerspectiveModel.getGraphModel().getGraph().getRawView(),value.longValue())) {
+    menu.add(CActionProxy.proxy(new CZoomToAddressAction(m_debugPerspectiveModel.getGraphModel().getGraph(),new CAddress(value),debugger.getModule(new RelocatedAddress(new CAddress(value))))));
+  }
+ else {
+    final IViewContainer container=m_debugPerspectiveModel.getGraphModel().getViewContainer();
+    menu.add(CActionProxy.proxy(new CSearchAction(m_debugPerspectiveModel.getGraphModel().getParent(),container,new CAddress(value))));
+  }
+  return menu;
+}

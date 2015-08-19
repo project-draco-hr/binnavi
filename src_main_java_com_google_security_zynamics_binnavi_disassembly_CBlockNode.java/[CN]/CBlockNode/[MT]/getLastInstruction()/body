@@ -1,0 +1,4 @@
+{
+  final List<INaviInstruction> instructions=m_block.getInstructions();
+  return instructions.isEmpty() ? null : instructions.get(instructions.size() - 1);
+}

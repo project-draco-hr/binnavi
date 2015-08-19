@@ -1,0 +1,6 @@
+{
+  if (panel != null) {
+    tabbedPane.add(panel,caption);
+    panels.add(panel);
+  }
+}

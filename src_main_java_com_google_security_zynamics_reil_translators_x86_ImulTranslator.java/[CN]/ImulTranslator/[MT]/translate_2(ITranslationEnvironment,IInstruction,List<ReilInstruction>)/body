@@ -1,0 +1,14 @@
+{
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final TranslationResult firstResult=Helpers.translateOperand(environment,offset,operands.get(0),true);
+  instructions.addAll(firstResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult secondResult=Helpers.translateOperand(environment,offset,operands.get(1),true);
+  instructions.addAll(secondResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final OperandSize resultSize=OperandSize.sizeStringToValue(operands.get(0).getRootNode().getValue());
+  final String resultRegister=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  generateImul3(environment,offset,resultSize,resultRegister,firstResult.getSize(),firstResult.getRegister(),secondResult.getSize(),secondResult.getRegister(),instructions);
+}

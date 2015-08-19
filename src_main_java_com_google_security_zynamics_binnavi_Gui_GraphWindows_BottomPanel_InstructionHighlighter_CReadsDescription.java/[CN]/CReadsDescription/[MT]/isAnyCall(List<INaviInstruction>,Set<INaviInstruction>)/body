@@ -1,0 +1,8 @@
+{
+  for (  final INaviInstruction naviInstruction : instructions) {
+    if (calls.contains(naviInstruction)) {
+      return true;
+    }
+  }
+  return false;
+}

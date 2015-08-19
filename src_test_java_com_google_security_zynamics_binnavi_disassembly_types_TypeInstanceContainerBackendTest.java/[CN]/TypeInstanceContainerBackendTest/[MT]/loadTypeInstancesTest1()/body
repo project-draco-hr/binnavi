@@ -1,0 +1,37 @@
+{
+  final int typeInstancesSize=typeInstancContainerBackend.loadTypeInstances().size();
+  final BaseType baseType1=typeManager.createAtomicType("uint_32",32,false);
+  final BaseType baseType2=typeManager.createAtomicType("uint_64",64,false);
+  final BaseType baseType3=typeManager.createAtomicType("sint_32",32,true);
+  final BaseType baseType4=typeManager.createAtomicType("sint_64",64,true);
+  typeInstancContainerBackend.createTypeInstance("INSTANCE 1",null,baseType1,section,1);
+  typeInstancContainerBackend.createTypeInstance("INSTANCE 2",null,baseType2,section,2);
+  typeInstancContainerBackend.createTypeInstance("INSTANCE 3",null,baseType3,section,3);
+  typeInstancContainerBackend.createTypeInstance("INSTANCE 4",null,baseType4,section,4);
+  final Set<TypeInstance> typeInstances=typeInstancContainerBackend.loadTypeInstances();
+  Assert.assertEquals(typeInstancesSize + 4,typeInstances.size());
+  Assert.assertNotNull(Iterables.find(typeInstances,new Predicate<TypeInstance>(){
+    @Override public boolean apply(    final TypeInstance instance){
+      return instance.getName().equals("INSTANCE 1");
+    }
+  }
+));
+  Assert.assertNotNull(Iterables.find(typeInstances,new Predicate<TypeInstance>(){
+    @Override public boolean apply(    final TypeInstance instance){
+      return instance.getName().equals("INSTANCE 2");
+    }
+  }
+));
+  Assert.assertNotNull(Iterables.find(typeInstances,new Predicate<TypeInstance>(){
+    @Override public boolean apply(    final TypeInstance instance){
+      return instance.getName().equals("INSTANCE 3");
+    }
+  }
+));
+  Assert.assertNotNull(Iterables.find(typeInstances,new Predicate<TypeInstance>(){
+    @Override public boolean apply(    final TypeInstance instance){
+      return instance.getName().equals("INSTANCE 4");
+    }
+  }
+));
+}

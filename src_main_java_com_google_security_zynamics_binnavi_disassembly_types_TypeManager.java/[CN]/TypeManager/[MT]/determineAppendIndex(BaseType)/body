@@ -1,0 +1,10 @@
+{
+  Preconditions.checkArgument(baseType.getCategory() == BaseTypeCategory.FUNCTION_PROTOTYPE,"Error: Can only determine append index if base type is of index category.");
+  if (baseType.hasMembers()) {
+    final TypeMember lastMember=baseType.getLastMember();
+    return lastMember.getArgumentIndex().get() + 1;
+  }
+ else {
+    return 0;
+  }
+}

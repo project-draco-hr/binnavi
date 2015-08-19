@@ -1,0 +1,10 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"addic.");
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode literalOperand1=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  BigInteger literalValue=BigInteger.valueOf(Long.valueOf(literalOperand1.getValue()));
+  if (literalValue.testBit(15)) {
+    literalValue=literalValue.or(BigInteger.valueOf(0xFFFF0000L));
+  }
+  AddGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"addic.",registerOperand1.getValue(),String.valueOf(literalValue),true,false,true,false);
+}

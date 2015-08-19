@@ -1,0 +1,18 @@
+{
+  if (environment == null) {
+    throw new InternalTranslationException("Error: Argument environment cannot be null");
+  }
+  if (instructions == null) {
+    throw new InternalTranslationException("Error: Argument instructions cannot be null");
+  }
+  if (offset < 0) {
+    throw new InternalTranslationException("Error: Argument offset cannot be less than 0");
+  }
+  final String connected=environment.getNextVariableString();
+  final String ored=environment.getNextVariableString();
+  final String negated=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createXor(offset,OperandSize.BYTE,Helpers.SIGN_FLAG,OperandSize.BYTE,Helpers.OVERFLOW_FLAG,OperandSize.BYTE,connected));
+  instructions.add(ReilHelpers.createOr(offset + 1,OperandSize.BYTE,connected,OperandSize.BYTE,Helpers.ZERO_FLAG,OperandSize.BYTE,ored));
+  instructions.add(ReilHelpers.createXor(offset + 2,OperandSize.BYTE,ored,OperandSize.BYTE,"1",OperandSize.BYTE,negated));
+  return new Pair<OperandSize,String>(OperandSize.BYTE,negated);
+}

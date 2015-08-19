@@ -1,0 +1,25 @@
+{
+  if (PostgreSQLHelpers.hasTable(m_connection,CTableNames.SECTIONS_TABLE)) {
+    return new DatabaseVersion("6.0.0");
+  }
+  if (PostgreSQLHelpers.hasTable(m_connection,CTableNames.USER_TABLE)) {
+    return new DatabaseVersion("5.0.0");
+  }
+  if (PostgreSQLHelpers.hasTable(m_connection,CTableNames.RAW_MODULES_TABLE) && PostgreSQLHelpers.hasTable(m_connection,CTableNames.MODULES_TABLE)) {
+    final ArrayList<Integer> rawModuleIds=getRawModuleIDs(m_connection);
+    if (rawModuleIds.isEmpty()) {
+      return new DatabaseVersion("3.0.0");
+    }
+ else {
+      if (PostgreSQLHelpers.hasTable(m_connection,"ex_" + rawModuleIds.get(0) + "_type_structs")) {
+        return new DatabaseVersion("4.0.0");
+      }
+ else {
+        return new DatabaseVersion("3.0.0");
+      }
+    }
+  }
+ else {
+    return new DatabaseVersion("6.0.0");
+  }
+}

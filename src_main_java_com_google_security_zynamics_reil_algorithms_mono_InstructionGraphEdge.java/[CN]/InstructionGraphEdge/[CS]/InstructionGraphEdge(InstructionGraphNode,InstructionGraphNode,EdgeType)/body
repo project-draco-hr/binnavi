@@ -1,0 +1,4 @@
+{
+  super(source,target);
+  this.edgeType=Preconditions.checkNotNull(edgeType,"Error: edgeType argument can not be null");
+}

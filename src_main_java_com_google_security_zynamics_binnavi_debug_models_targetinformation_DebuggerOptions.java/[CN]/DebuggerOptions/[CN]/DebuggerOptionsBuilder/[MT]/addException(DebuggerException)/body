@@ -1,0 +1,4 @@
+{
+  this.exceptions.add(value);
+  return this;
+}

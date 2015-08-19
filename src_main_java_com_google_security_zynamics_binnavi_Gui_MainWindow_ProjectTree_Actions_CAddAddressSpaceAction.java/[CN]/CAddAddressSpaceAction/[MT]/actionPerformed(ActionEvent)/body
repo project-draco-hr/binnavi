@@ -1,0 +1,3 @@
+{
+  CProjectFunctions.addAddressSpace(SwingUtilities.getWindowAncestor(m_parent),m_project,m_updater);
+}

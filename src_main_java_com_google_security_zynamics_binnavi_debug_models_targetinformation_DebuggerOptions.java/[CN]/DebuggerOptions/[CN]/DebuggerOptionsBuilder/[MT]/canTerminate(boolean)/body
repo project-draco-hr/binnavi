@@ -1,0 +1,4 @@
+{
+  this.canTerminate=value;
+  return this;
+}

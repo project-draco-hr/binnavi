@@ -1,0 +1,12 @@
+{
+  m_caretX=getCaretEndPosX();
+  m_caretY=getCaretMouseReleasedY();
+  if (!m_wasSelection) {
+    if (isComment(m_caretX,m_caretY)) {
+      handleLineComments();
+    }
+ else     if (getLineContent(m_caretY).getLineFragmentObjectAt(m_caretX) != null) {
+      handleTextFragment();
+    }
+  }
+}

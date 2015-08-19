@@ -1,0 +1,3 @@
+{
+  return address.toHexString() + ": " + ReilHelpers.MnemonicCodeToMnemonic(mnemonic)+ " ["+ firstOperand.getSize()+ " "+ firstOperand+ ", "+ secondOperand.getSize()+ " "+ secondOperand+ ", "+ thirdOperand.getSize()+ " "+ thirdOperand+ "]";
+}

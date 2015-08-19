@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(name,"IE00661: Project name can not be null");
+  Preconditions.checkArgument(m_database.isConnected(),"IE00662: Database must be connected before a project can be added");
+  Preconditions.checkArgument(m_database.isLoaded(),"IE00663: Database must be loaded before a project can be added");
+  final CProject newProject=m_provider.createProject(name);
+  m_projects.add(newProject);
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.addedProject(m_database,newProject);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return newProject;
+}

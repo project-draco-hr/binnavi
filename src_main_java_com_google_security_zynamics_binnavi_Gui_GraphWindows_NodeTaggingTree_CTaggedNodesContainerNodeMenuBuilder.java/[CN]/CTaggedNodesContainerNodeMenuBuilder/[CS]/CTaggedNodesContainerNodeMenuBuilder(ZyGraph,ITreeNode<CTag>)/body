@@ -1,0 +1,11 @@
+{
+  m_popupMenu=new JPopupMenu();
+  m_popupMenu.add(CActionProxy.proxy(new CSelectNodesAction(graph,tag.getObject())));
+  m_popupMenu.add(CActionProxy.proxy(new CSelectVisibleNodesAction(graph,tag.getObject())));
+  m_popupMenu.add(new JSeparator());
+  m_popupMenu.add(CActionProxy.proxy(new CSelectSubtreeNodesAction(graph,tag)));
+  m_popupMenu.add(CActionProxy.proxy(new CSelectVisibleSubtreeNodesAction(graph,tag)));
+  m_popupMenu.add(new JSeparator());
+  m_popupMenu.add(CActionProxy.proxy(new CUnselectNodesAction(graph,tag.getObject())));
+  m_popupMenu.add(CActionProxy.proxy(new CUnselectSubtreeNodesAction(graph,tag)));
+}

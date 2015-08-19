@@ -1,0 +1,7 @@
+ITranslationEnvironment environment
+long offset
+int shiftDelta
+String[] results
+String targetRegister
+int size
+List<ReilInstruction> instructions

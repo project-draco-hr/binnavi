@@ -1,0 +1,17 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(start,"IE01057: Start argument can not be null");
+    Preconditions.checkNotNull(end,"IE01077: End argument can not be null");
+  }
+ else {
+    if (start != null) {
+      throw new IllegalArgumentException("IE01078: Start argument must be null");
+    }
+    if (end != null) {
+      throw new IllegalArgumentException("IE01079: End argument must be null");
+    }
+  }
+  memoryRangeStart=start;
+  memoryRangeEnd=end;
+}

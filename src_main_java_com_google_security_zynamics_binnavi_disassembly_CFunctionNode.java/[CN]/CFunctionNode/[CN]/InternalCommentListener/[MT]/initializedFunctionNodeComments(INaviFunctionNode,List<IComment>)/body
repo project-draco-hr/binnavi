@@ -1,0 +1,14 @@
+{
+  if (CFunctionNode.this.equals(functionNode)) {
+    for (    final IViewNodeListener listener : getListeners()) {
+      if (listener instanceof INaviFunctionNodeListener) {
+        try {
+          ((INaviFunctionNodeListener)listener).initializedFunctionNodeComment(functionNode,comments);
+        }
+ catch (        final Exception exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+    }
+  }
+}

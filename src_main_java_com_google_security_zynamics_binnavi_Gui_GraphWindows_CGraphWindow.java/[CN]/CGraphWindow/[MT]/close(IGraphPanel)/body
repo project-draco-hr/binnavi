@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(panel,"IE01625: Panel argument can't be null");
+  if (m_tabbedPane.indexOfComponent(panel.getPanel()) == -1) {
+    throw new IllegalStateException("IE01146: Panel argument does not belong to the tab");
+  }
+  m_tabbedPane.remove(panel.getPanel());
+}

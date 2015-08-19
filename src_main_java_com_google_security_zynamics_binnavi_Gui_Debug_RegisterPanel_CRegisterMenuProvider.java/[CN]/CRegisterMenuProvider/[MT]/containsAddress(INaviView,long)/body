@@ -1,0 +1,19 @@
+{
+  for (  final INaviViewNode node : rawView.getGraph()) {
+    if (node instanceof INaviFunctionNode) {
+      final INaviFunctionNode fnode=(INaviFunctionNode)node;
+      if (fnode.getAddress().toLong() == address) {
+        return true;
+      }
+    }
+ else     if (node instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)node;
+      for (      final INaviInstruction instruction : cnode.getInstructions()) {
+        if (instruction.getAddress().toLong() == address) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}

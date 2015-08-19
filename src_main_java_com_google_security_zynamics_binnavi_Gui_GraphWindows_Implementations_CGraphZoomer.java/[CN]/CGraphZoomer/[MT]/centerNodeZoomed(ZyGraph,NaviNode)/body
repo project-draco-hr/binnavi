@@ -1,0 +1,5 @@
+{
+  checkArguments(graph);
+  MoveFunctions.centerNode(graph,node);
+  ZoomFunctions.zoomToNode(graph,node);
+}

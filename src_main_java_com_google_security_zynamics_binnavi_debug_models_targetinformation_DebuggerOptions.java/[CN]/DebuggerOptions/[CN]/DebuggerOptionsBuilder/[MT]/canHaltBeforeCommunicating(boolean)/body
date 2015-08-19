@@ -1,0 +1,4 @@
+{
+  this.canHaltBeforeCommunicating=value;
+  return this;
+}

@@ -1,0 +1,4 @@
+{
+  className=formatClassName(className);
+  return jarResources.getResource(className);
+}

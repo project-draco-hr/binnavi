@@ -1,0 +1,29 @@
+{
+  Preconditions.checkNotNull(graph,"IE02187: Graph argument can not be null");
+  Preconditions.checkNotNull(address,"IE02188: Address argument can not be null");
+  graph.iterate(new INodeCallback<NaviNode>(){
+    @Override public IterationMode next(    final NaviNode node){
+      final INaviViewNode rawNode=node.getRawNode();
+      if (rawNode instanceof ICodeNode) {
+        final INaviCodeNode codeNode=(INaviCodeNode)rawNode;
+        try {
+          if (module.equals(codeNode.getParentFunction().getModule())) {
+            updateDebuggerHighlighting(graph,address,node,codeNode);
+          }
+        }
+ catch (        final MaybeNullException exception) {
+          CUtilityFunctions.logException(exception);
+        }
+      }
+ else       if (rawNode instanceof INaviFunctionNode) {
+        final INaviFunctionNode functionNode=(INaviFunctionNode)rawNode;
+        if (module.equals(functionNode.getFunction().getModule())) {
+          updateDebuggerHighlighting(address,node,functionNode);
+        }
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  ZyZoomHelpers.zoomToAddress(graph,address.getAddress(),module,false);
+}

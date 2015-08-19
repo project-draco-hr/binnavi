@@ -1,0 +1,28 @@
+{
+  Preconditions.checkNotNull(textField,"Error: textField argument can not be null");
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  if (textField.getText().isEmpty()) {
+    return false;
+  }
+  try {
+    String textFieldString=textField.getText().toLowerCase();
+    boolean hex=false;
+    if (textFieldString.startsWith("0x")) {
+      textFieldString=textFieldString.substring(2);
+      hex=true;
+    }
+    final Long offset=textFieldString.matches("^[0-9A-Fa-f]+$") && hex == true ? Long.parseLong(textFieldString,16) : Long.parseLong(textFieldString,10);
+    if (section.isValidOffset(offset)) {
+      sanitizedOffset=offset;
+      return true;
+    }
+    if (section.isValidAddress(offset)) {
+      sanitizedOffset=offset - section.getStartAddress().toLong();
+      return true;
+    }
+    return false;
+  }
+ catch (  final NumberFormatException exception) {
+    return false;
+  }
+}

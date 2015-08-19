@@ -1,0 +1,8 @@
+{
+  final INaviModule module=node.getFunction().getModule();
+  if (!m_cachedModuleListeners.containsKey(module)) {
+    m_cachedModuleListeners.put(module,0);
+    module.addListener(m_internalModuleListener);
+  }
+  m_cachedModuleListeners.put(module,m_cachedModuleListeners.get(module) + 1);
+}

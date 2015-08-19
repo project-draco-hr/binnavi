@@ -1,0 +1,3 @@
+{
+  this(blinkPeriod,DEFAULT_CARET_COLOR);
+}

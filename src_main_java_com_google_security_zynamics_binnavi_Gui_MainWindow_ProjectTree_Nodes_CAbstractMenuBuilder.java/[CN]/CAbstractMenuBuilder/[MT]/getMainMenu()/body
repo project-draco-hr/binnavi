@@ -1,0 +1,4 @@
+{
+  createMenus();
+  return m_mainMenu;
+}

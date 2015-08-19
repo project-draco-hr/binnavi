@@ -1,0 +1,17 @@
+{
+  final List<ICriteriumCreator> conditions=new ArrayList<ICriteriumCreator>();
+  conditions.add(new CTextCriteriumCreator());
+  conditions.add(new CTagCriteriumCreator(m_tagManager));
+  conditions.add(new CColorCriteriumCreator(m_graph));
+  conditions.add(new CIndegreeCriteriumCreator());
+  conditions.add(new COutdegreeCriteriumCreator());
+  conditions.add(new CVisibilityCriteriumCreator());
+  conditions.add(new CSelectionCriteriumCreator());
+  for (  @SuppressWarnings("rawtypes") final IPlugin plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof ICriteriaSelectionPlugin) {
+      final ICriteriaSelectionPlugin cplugin=(ICriteriaSelectionPlugin)plugin;
+      conditions.add(new CPluginCriteriumCreator(m_view2D,cplugin));
+    }
+  }
+  return conditions;
+}

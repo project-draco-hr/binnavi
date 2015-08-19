@@ -1,0 +1,4 @@
+int countAll
+int selected
+int unselected
+int invisible

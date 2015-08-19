@@ -1,0 +1,11 @@
+{
+  final MockTagManagerListener listener=new MockTagManagerListener();
+  final Tag firstTag=tagManager.insertTag(null,"Hannes");
+  final Tag secondTag=tagManager.insertTag(firstTag,"Fork");
+  @SuppressWarnings("unused") final Tag thirdTag=tagManager.insertTag(secondTag,"FooBar");
+  tagManager.addListener(listener);
+  manager.deleteTagSubTree(manager.getRootTag().getChildren().get(0));
+  assertEquals(0,tagManager.getRootTags().size());
+  assertEquals("deletedTagTree;",listener.events);
+  tagManager.removeListener(listener);
+}

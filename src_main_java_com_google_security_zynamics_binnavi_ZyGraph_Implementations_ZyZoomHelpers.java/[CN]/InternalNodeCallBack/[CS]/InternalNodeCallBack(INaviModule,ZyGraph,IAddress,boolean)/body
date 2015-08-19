@@ -1,0 +1,6 @@
+{
+  this.module=module;
+  this.graph=graph;
+  this.address=address;
+  this.animate=animate;
+}

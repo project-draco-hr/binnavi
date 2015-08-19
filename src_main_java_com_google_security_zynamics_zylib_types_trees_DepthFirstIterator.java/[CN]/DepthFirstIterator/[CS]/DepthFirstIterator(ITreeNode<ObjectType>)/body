@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(rootNode,"Error: Root node argument can not be null");
+  for (  final ITreeNode<ObjectType> treeNode : rootNode.getChildren()) {
+    m_path.add(treeNode);
+  }
+}

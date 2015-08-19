@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+CModule module
+int callgraphId
+List<INaviFunction> functions

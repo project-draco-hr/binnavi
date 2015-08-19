@@ -1,0 +1,5 @@
+{
+  super(DebugArgumentType.ADDRESS);
+  this.address=Preconditions.checkNotNull(address,"IE01051: Address argument can not be null");
+  appendLong(this.address.toBigInteger());
+}

@@ -1,0 +1,13 @@
+{
+  final Graph2DView originalView=replaceCurrentWithExportView(graph,exportView);
+  configureExportView((Graph2DView)graph.getCurrentView());
+  try {
+    writeGraphToFile(graph,ioh,outFile);
+  }
+ catch (  final IOException e) {
+    throw e;
+  }
+ finally {
+    restoreOriginalView(graph,originalView);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return loadCallGraphView(module).getGraph().getEdges().get(0);
+}

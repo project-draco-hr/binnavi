@@ -1,0 +1,9 @@
+{
+  super("Delete Selected Nodes");
+  m_graph=Preconditions.checkNotNull(graph,"IE02816: graph argument can not be null");
+  if (showIcon) {
+    putValue(SMALL_ICON,new ImageIcon(CMain.class.getResource("data/deleteselectednodes_up.png")));
+  }
+  putValue(SHORT_DESCRIPTION,HotKeys.GRAPH_DELETE_SELECTED_NODES_HK.getDescription());
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_DELETE_SELECTED_NODES_HK.getKeyStroke());
+}

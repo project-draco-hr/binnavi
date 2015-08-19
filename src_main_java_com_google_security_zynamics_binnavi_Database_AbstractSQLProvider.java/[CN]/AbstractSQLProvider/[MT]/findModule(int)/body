@@ -1,0 +1,8 @@
+{
+  return Iterables.find(modules,new Predicate<INaviModule>(){
+    @Override public boolean apply(    final INaviModule module){
+      return module.getConfiguration().getId() == moduleId;
+    }
+  }
+);
+}

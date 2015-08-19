@@ -1,0 +1,8 @@
+ITranslationEnvironment environment
+long offset
+IOperandTree targetOperand
+String sourceValue
+OperandSize size
+String address
+TranslationResultType targetType
+List<ReilInstruction> instructions

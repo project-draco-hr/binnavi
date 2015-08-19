@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(reference,"Error: reference argument can not be null");
+  if (reference.getTreeNode().isPresent()) {
+    provider.deleteTypeInstanceReference(reference.getTypeInstance().getModule().getConfiguration().getId(),reference.getAddress().toBigInteger(),reference.getPosition(),reference.getTreeNode().get().getId());
+    referenceLookup.remove(new InstanceReferenceLookup(reference.getAddress(),reference.getPosition(),reference.getTreeNode().get().getId()));
+  }
+ else {
+    throw new IllegalStateException("Error: reference must be associated to a node.");
+  }
+}

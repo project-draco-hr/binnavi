@@ -1,0 +1,96 @@
+{
+synchronized (m_loadReporter) {
+    if (isLoaded()) {
+      return;
+    }
+    if (!isInitialized()) {
+      throw new IllegalStateException("IE02617: The module is not initialized yet");
+    }
+    m_isLoading=true;
+    try {
+      if (!m_loadReporter.report(ModuleLoadEvents.Starting)) {
+        throw new LoadCancelledException();
+      }
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingCallgraphView)) {
+        throw new LoadCancelledException();
+      }
+      final ICallgraphView nativeCallgraph=m_provider.loadNativeCallgraph(this);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingFlowgraphs)) {
+        throw new LoadCancelledException();
+      }
+      final ImmutableList<IFlowgraphView> nativeFlowgraphs=nativeCallgraph.getNodeCount() == 0 ? new ImmutableList.Builder<IFlowgraphView>().build() : m_provider.loadNativeFlowgraphs(this);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingCallgraphViews)) {
+        throw new LoadCancelledException();
+      }
+      final List<ICallgraphView> userCallgraphs=m_provider.loadCallgraphViews(this);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingFlowgraphViews)) {
+        throw new LoadCancelledException();
+      }
+      final ImmutableList<IFlowgraphView> userFlowgraphs=m_provider.loadFlowgraphs(this);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingMixedViews)) {
+        throw new LoadCancelledException();
+      }
+      final List<INaviView> userMixedGraphs=m_provider.loadMixedgraphs(this);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingCallgraph)) {
+        throw new LoadCancelledException();
+      }
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingFunctions)) {
+        throw new LoadCancelledException();
+      }
+      typeManager=new TypeManager(new TypeManagerDatabaseBackend(m_provider,this));
+      final List<INaviFunction> functions=m_provider.loadFunctions(this,nativeFlowgraphs);
+      final ImmutableBiMap<INaviView,INaviFunction> viewFunctionMap=m_provider.loadViewFunctionMapping(nativeFlowgraphs,functions,this);
+      final CCallgraph callgraph=m_provider.loadCallgraph(this,nativeCallgraph.getConfiguration().getId(),functions);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingTraces)) {
+        throw new LoadCancelledException();
+      }
+      final List<TraceList> traces=m_provider.loadTraces(this);
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingGlobalVariables)) {
+        throw new LoadCancelledException();
+      }
+      final List<INaviView> customViews=new ArrayList<INaviView>();
+      customViews.addAll(userCallgraphs);
+      customViews.addAll(userFlowgraphs);
+      customViews.addAll(userMixedGraphs);
+      final List<INaviView> currentViews=new ArrayList<INaviView>(nativeFlowgraphs);
+      currentViews.addAll(customViews);
+      Collections.sort(currentViews,new Comparator<INaviView>(){
+        @Override public int compare(        final INaviView lhs,        final INaviView rhs){
+          return lhs.getConfiguration().getId() - rhs.getConfiguration().getId();
+        }
+      }
+);
+      final Map<Integer,Integer> viewIdToIndex=new HashMap<Integer,Integer>();
+      for (int i=0; i < currentViews.size(); ++i) {
+        viewIdToIndex.put(currentViews.get(i).getConfiguration().getId(),i);
+      }
+      if (!m_loadReporter.report(ModuleLoadEvents.LoadingTypes)) {
+        throw new LoadCancelledException();
+      }
+      final SectionContainer sections=new SectionContainer(new SectionContainerBackend(m_provider,this));
+      final TypeInstanceContainer typeInstances=new TypeInstanceContainer(new TypeInstanceContainerBackend(m_provider,this,typeManager,sections),m_provider);
+      m_content=new CModuleContent(this,m_provider,m_listeners,callgraph,functions,nativeCallgraph,nativeFlowgraphs,customViews,viewFunctionMap,traces,sections,typeInstances);
+      typeInstances.initialize();
+    }
+ catch (    final CouldntLoadDataException e) {
+      m_isLoading=false;
+      throw e;
+    }
+catch (    final LoadCancelledException e) {
+      m_isLoading=false;
+      throw e;
+    }
+ finally {
+      m_loadReporter.report(ModuleLoadEvents.Finished);
+    }
+    for (    final IModuleListener listener : m_listeners) {
+      try {
+        listener.loadedModule(this);
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+    m_isLoading=false;
+  }
+}

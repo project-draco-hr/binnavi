@@ -1,0 +1,9 @@
+{
+  for (  final ColoredRangeManager element : m_coloredRanges) {
+    final ColoredRange range=element.findRangeWith(currentOffset);
+    if (range != null) {
+      return range;
+    }
+  }
+  return null;
+}

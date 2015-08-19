@@ -1,0 +1,6 @@
+{
+  final byte[] newdata=new byte[data1.length + data2.length];
+  System.arraycopy(data1,0,newdata,0,data1.length);
+  System.arraycopy(data2,0,newdata,data1.length,data2.length);
+  return newdata;
+}

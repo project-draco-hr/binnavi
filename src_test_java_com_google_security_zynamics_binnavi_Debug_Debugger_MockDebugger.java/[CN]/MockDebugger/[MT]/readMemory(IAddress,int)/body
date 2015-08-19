@@ -1,0 +1,6 @@
+{
+  super.readMemory(address,size);
+  processCounter();
+  requests+="READMEM/" + address.toString() + "/"+ size+ ";";
+  return 0;
+}

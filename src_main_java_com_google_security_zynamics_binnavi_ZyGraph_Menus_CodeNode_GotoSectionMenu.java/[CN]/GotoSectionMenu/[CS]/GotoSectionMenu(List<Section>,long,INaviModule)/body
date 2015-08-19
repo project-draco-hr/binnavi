@@ -1,0 +1,6 @@
+{
+  setText("Jump to section");
+  for (  final Section section : sections) {
+    add(new GotoSectionAction(section,address,module));
+  }
+}

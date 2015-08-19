@@ -1,0 +1,24 @@
+{
+  if (!node.isVisible() || (node.getRawNode() instanceof IGroupNode<?,?>)) {
+    return;
+  }
+  final HashSet<Object> targets=new HashSet<Object>();
+  for (  final IViewEdge<?> edge : ((IViewNode<?>)node.getRawNode()).getOutgoingEdges()) {
+    final Object target=edge.getTarget();
+    if (targets.contains(target)) {
+      edge.setVisible(false);
+    }
+ else {
+      targets.add(target);
+    }
+  }
+  final HashSet<Object> sources=new HashSet<Object>();
+  for (  final IViewEdge<?> edge : ((IViewNode<?>)node.getRawNode()).getIncomingEdges()) {
+    if (sources.contains(edge.getSource())) {
+      edge.setVisible(false);
+    }
+ else {
+      sources.add(edge.getSource());
+    }
+  }
+}

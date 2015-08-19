@@ -1,0 +1,22 @@
+{
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123_SET);
+  breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_456_SET);
+  breakpointManager.setBreakpointStatus(CommonTestObjects.BP_ADDRESS_456_SET,BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED);
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,breakpointManager.getBreakpointStatus(BreakpointType.REGULAR,0));
+  mockDebugger.connect();
+  debuggerSynchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(CommonTestObjects.MEMORY_MODULE));
+  assertEquals(0,listener.exception);
+  assertNotNull(mockDebugger.getProcessManager().getThread(CommonTestObjects.THREAD_ID));
+  assertEquals(ThreadState.RUNNING,mockDebugger.getProcessManager().getThread(CommonTestObjects.THREAD_ID).getState());
+  debuggerSynchronizer.receivedEvent(new ThreadClosedReply(0,0,CommonTestObjects.THREAD_ID));
+  try {
+    mockDebugger.getProcessManager().getThread(CommonTestObjects.THREAD_ID);
+    fail();
+  }
+ catch (  final MaybeNullException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+  assertEquals("CONNECT;READREGS;SET_BREAKPOINTS/" + String.format("%08d",CommonTestObjects.THREAD_ID) + "/REGULAR;RESUME;",mockDebugger.requests);
+  assertEquals(BreakpointStatus.BREAKPOINT_ENABLED,breakpointManager.getBreakpointStatus(BreakpointType.REGULAR,0));
+  assertEquals(BreakpointStatus.BREAKPOINT_DISABLED,breakpointManager.getBreakpointStatus(BreakpointType.REGULAR,1));
+}

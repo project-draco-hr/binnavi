@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(childNode,"Error: endNode argument can not be null");
+  Preconditions.checkNotNull(maximumParentNode,"Error: startNode argument can not be null");
+  final HashSet<NodeType> predecessors=Sets.newHashSet();
+  final HashSet<NodeType> visited=Sets.newHashSet();
+  visited.add((NodeType)maximumParentNode);
+  getPredecessors(childNode,predecessors,visited);
+  return predecessors;
+}

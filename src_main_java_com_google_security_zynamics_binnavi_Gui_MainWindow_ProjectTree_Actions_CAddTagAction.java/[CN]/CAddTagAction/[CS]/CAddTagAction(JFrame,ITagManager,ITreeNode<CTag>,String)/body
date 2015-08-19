@@ -1,0 +1,8 @@
+{
+  super(tag.getObject().getId() == 0 ? "Create Root Tag" : "Append Tag");
+  m_parent=Preconditions.checkNotNull(parent,"IE01852: Parent argument can not be null");
+  m_tagManager=Preconditions.checkNotNull(tagManager,"IE01853: Tag manager argument can not be null");
+  m_name=Preconditions.checkNotNull(name,"IE01854: Name argument can not be null");
+  m_parentTag=Preconditions.checkNotNull(tag,"IE02336: Parent Tag argument can not be null");
+  putValue(MNEMONIC_KEY,tag.getObject().getId() == 0 ? (int)"HK_MENU_CREATE_TAG".charAt(0) : (int)"HK_MENU_APPEND_TAG".charAt(0));
+}

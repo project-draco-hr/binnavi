@@ -1,0 +1,6 @@
+{
+  if ((m_realizer.getWidth() != width) && (width != 0)) {
+    m_realizer.setWidth(width);
+    updateViews();
+  }
+}

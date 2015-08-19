@@ -1,0 +1,6 @@
+{
+  Preconditions.checkArgument(rawNode.getClass().equals(m_rawNode.getClass()),"Error: Old node and new node have different types");
+  m_rawNode.removeListener(m_listener);
+  m_rawNode=rawNode;
+  m_rawNode.addListener(m_listener);
+}

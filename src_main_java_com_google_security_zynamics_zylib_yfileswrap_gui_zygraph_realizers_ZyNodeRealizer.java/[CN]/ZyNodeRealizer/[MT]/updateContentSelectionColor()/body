@@ -1,0 +1,6 @@
+{
+  final ZyLabelContent content=getNodeContent();
+  if (content.isSelectable()) {
+    content.updateContentSelectionColor(getFillColor(),isSelected());
+  }
+}

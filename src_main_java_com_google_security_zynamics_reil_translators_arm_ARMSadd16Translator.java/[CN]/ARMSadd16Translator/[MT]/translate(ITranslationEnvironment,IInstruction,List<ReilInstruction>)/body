@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SADD16");
+  translateAll(environment,instruction,"SADD16",instructions);
+}

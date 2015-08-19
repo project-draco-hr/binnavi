@@ -1,0 +1,5 @@
+{
+  for (  final IBookmarkListener listener : m_listeners) {
+    listener.changedDescription(Bookmark.this,description);
+  }
+}

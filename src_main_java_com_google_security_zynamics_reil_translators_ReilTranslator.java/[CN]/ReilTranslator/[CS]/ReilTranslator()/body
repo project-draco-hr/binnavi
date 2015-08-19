@@ -1,0 +1,7 @@
+{
+  m_translators.put("X86-32",new TranslatorX86<InstructionType>());
+  m_translators.put("ARM-32",new TranslatorARM<InstructionType>());
+  m_translators.put("POWERPC-32",new TranslatorPPC<InstructionType>());
+  m_translators.put("REIL",new TranslatorREIL<InstructionType>());
+  m_translators.put("MIPS-32",new TranslatorMIPS<InstructionType>());
+}

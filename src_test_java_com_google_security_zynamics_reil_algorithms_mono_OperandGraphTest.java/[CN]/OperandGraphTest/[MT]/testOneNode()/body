@@ -1,0 +1,11 @@
+{
+  final Collection<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  instructions.add(ReilHelpers.createAdd(0,OperandSize.DWORD,"eax",OperandSize.DWORD,"123",OperandSize.QWORD,"t0"));
+  instructions.add(ReilHelpers.createAnd(1,OperandSize.QWORD,"t0",OperandSize.DWORD,String.valueOf(0xFFFFFFFF),OperandSize.DWORD,"t1"));
+  final ReilBlock block1=new ReilBlock(instructions);
+  final List<ReilBlock> blocks=Lists.<ReilBlock>newArrayList(block1);
+  final ReilGraph rg=new ReilGraph(blocks,new ArrayList<ReilEdge>());
+  final OperandGraph g=OperandGraph.create(rg);
+  assertEquals(6,g.nodeCount());
+  assertEquals(5,g.edgeCount());
+}

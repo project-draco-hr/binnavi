@@ -1,0 +1,8 @@
+{
+  m_longestRegisterName=Integer.MIN_VALUE;
+  for (  final RegisterInformation register : m_registerModel.getRegisterInformation()) {
+    if (register.getRegisterName().length() > m_longestRegisterName) {
+      m_longestRegisterName=register.getRegisterName().length();
+    }
+  }
+}

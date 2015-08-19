@@ -1,0 +1,10 @@
+{
+  final List<RelocatedAddress> validAddresses=PairHelpers.projectFirst(CollectionHelpers.filter(addresses,filter));
+  final Iterable<String> addressStrings=CollectionHelpers.map(validAddresses,new ICollectionMapper<RelocatedAddress,String>(){
+    @Override public String map(    final RelocatedAddress item){
+      return item.getAddress().toHexString();
+    }
+  }
+);
+  return Commafier.commafy(addressStrings);
+}

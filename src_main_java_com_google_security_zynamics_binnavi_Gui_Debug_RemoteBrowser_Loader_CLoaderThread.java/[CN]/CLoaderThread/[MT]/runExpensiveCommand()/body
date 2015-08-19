@@ -1,0 +1,16 @@
+{
+  try {
+    if (m_path == null) {
+      m_debugger.requestFileSystem();
+    }
+ else {
+      m_debugger.requestFileSystem(m_path);
+    }
+    while (!m_finished) {
+      Thread.sleep(100);
+    }
+  }
+  finally {
+    m_debugger.removeListener(m_listener);
+  }
+}

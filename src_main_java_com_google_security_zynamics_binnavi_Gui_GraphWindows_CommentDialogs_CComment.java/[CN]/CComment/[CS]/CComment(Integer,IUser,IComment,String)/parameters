@@ -1,0 +1,4 @@
+Integer id
+IUser user
+IComment parent
+String comment

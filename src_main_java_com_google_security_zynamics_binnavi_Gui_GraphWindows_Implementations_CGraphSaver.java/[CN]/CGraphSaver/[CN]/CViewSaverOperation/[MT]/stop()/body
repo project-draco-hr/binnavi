@@ -1,0 +1,3 @@
+{
+  CGlobalProgressManager.instance().remove(this);
+}

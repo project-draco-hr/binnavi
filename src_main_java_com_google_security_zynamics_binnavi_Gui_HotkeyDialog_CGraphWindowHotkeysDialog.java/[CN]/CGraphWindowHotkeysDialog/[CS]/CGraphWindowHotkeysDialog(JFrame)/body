@@ -1,0 +1,9 @@
+{
+  super(parent,"Available Hotkeys",ModalityType.MODELESS);
+  setLayout(new BorderLayout());
+  add(new JScrollPane(new CGraphWindowHotkeyTable()));
+  final OKButtonPanel okButtonPanel=new OKButtonPanel(this);
+  add(okButtonPanel,BorderLayout.SOUTH);
+  new CDialogEscaper(this);
+  setSize(700,600);
+}

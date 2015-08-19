@@ -1,0 +1,18 @@
+{
+  if (m_channels.equals(m_currentListenedChannels)) {
+    return;
+  }
+  final Set<NotificationChannel> channels=Sets.newHashSet(m_channels);
+  final SetView<NotificationChannel> toUnlisten=Sets.difference(m_currentListenedChannels,channels);
+  final SetView<NotificationChannel> toListen=Sets.difference(channels,m_currentListenedChannels);
+  if (!toUnlisten.isEmpty()) {
+    sendUnlistens(toUnlisten);
+  }
+  if (!toListen.isEmpty()) {
+    sendListens(toListen);
+  }
+  if (!toUnlisten.isEmpty() || !toListen.isEmpty()) {
+    m_currentListenedChannels.clear();
+    m_currentListenedChannels.addAll(channels);
+  }
+}

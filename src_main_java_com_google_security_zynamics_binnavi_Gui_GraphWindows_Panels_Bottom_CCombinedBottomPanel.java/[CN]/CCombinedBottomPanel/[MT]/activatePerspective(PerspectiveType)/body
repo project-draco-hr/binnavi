@@ -1,0 +1,5 @@
+{
+  removeAll();
+  add(perspective == PerspectiveType.StandardPerspective ? m_standardBottomPanel : m_debugBottomPanel);
+  updateUI();
+}

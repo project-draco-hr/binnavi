@@ -1,0 +1,17 @@
+{
+  super(new BorderLayout());
+  m_hexView=hexView;
+  setBorder(new TitledBorder("Goto Offset"));
+  add(m_addressField);
+  m_addressField.addActionListener(new InternalActionListener());
+  final InputMap inputMap=getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  inputMap.put(HotKeys.GOTO_HK.getKeyStroke(),"focusAction");
+  final ActionMap actionMap=getActionMap();
+  actionMap.put("focusAction",new AbstractAction(){
+    private static final long serialVersionUID=-5995494363263076534L;
+    @Override public void actionPerformed(    final ActionEvent event){
+      m_addressField.requestFocusInWindow();
+    }
+  }
+);
+}

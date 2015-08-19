@@ -1,0 +1,3 @@
+{
+  CViewContainerFunctions.deleteViews(getParentWindow(),m_contextContainer,getViews(getSortSelectedRows()));
+}

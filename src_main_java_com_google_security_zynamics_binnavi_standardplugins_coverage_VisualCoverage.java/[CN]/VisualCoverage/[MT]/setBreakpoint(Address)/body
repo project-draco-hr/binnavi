@@ -1,0 +1,6 @@
+{
+  final BreakpointManager breakpointManager=debugger.getBreakpointManager();
+  if (!breakpointManager.hasBreakpoint(null,address)) {
+    breakpointManager.setBreakpoint(null,address);
+  }
+}

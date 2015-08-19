@@ -1,0 +1,5 @@
+{
+  final CStandardProgressDialog dlg=new CStandardProgressDialog(parent,title,description,thread);
+  thread.start();
+  dlg.setVisible(true);
+}

@@ -1,0 +1,17 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01477: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01478: Debug perspective model argument can not be null");
+  m_parent=parent;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  setBorder(new TitledBorder("Register Values"));
+  m_dataProvider.addListener(m_enteredDataListener);
+  m_registerView=new JRegisterView(m_dataProvider);
+  m_registerView.setVisible(true);
+  m_registerView.setMenuProvider(new CRegisterMenuProvider(debugPerspectiveModel,m_dataProvider));
+  final JScrollPane regScroller=new JScrollPane(m_registerView);
+  regScroller.getViewport().setBackground(m_registerView.getBackground());
+  regScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+  add(regScroller);
+  m_synchronizer=new CRegisterViewSynchronizer(m_registerView,m_dataProvider,debugPerspectiveModel);
+}

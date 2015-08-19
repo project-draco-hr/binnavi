@@ -1,0 +1,55 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"xadd");
+  if (instruction.getOperands().size() != 2) {
+    throw new InternalTranslationException("Error: Argument instruction is not a add instruction (invalid number of operands)");
+  }
+  final long baseOffset=instruction.getAddress().toLong() * 0x100;
+  long offset=baseOffset;
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTree targetOperand=operands.get(0);
+  final IOperandTree sourceOperand=operands.get(1);
+  final TranslationResult sourceResult=Helpers.translateOperand(environment,offset,sourceOperand,true);
+  instructions.addAll(sourceResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  final TranslationResult targetResult=Helpers.translateOperand(environment,offset,targetOperand,true);
+  instructions.addAll(targetResult.getInstructions());
+  offset=baseOffset + instructions.size();
+  if (sourceResult.getSize() != targetResult.getSize()) {
+    throw new InternalTranslationException("Error: The operands of ADD instructions must have equal size");
+  }
+  final OperandSize size=sourceResult.getSize();
+  final String sourceRegister=sourceResult.getRegister();
+  final String targetRegister=targetResult.getRegister();
+  final String msbMask=String.valueOf(TranslationHelpers.getMsbMask(size));
+  final String carryMask=String.valueOf(Helpers.getCarryMask(size));
+  final String truncateMask=String.valueOf(TranslationHelpers.getAllBitsMask(size));
+  final String shiftValue=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(size));
+  final String shiftCarry=String.valueOf(-size.getBitSize());
+  final OperandSize resultSize=TranslationHelpers.getNextSize(size);
+  final String msb1=environment.getNextVariableString();
+  final String msb2=environment.getNextVariableString();
+  final String addResult=environment.getNextVariableString();
+  final String msbResult=environment.getNextVariableString();
+  final String msbSameBefore=environment.getNextVariableString();
+  final String msbSameBeforeNeg=environment.getNextVariableString();
+  final String msbChanged=environment.getNextVariableString();
+  final String tempOf=environment.getNextVariableString();
+  final String tempCf=environment.getNextVariableString();
+  final String truncatedResult=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createAnd(offset,size,sourceRegister,size,msbMask,size,msb1));
+  instructions.add(ReilHelpers.createAnd(offset + 1,size,targetRegister,size,msbMask,size,msb2));
+  instructions.add(ReilHelpers.createAdd(offset + 2,size,sourceRegister,size,targetRegister,resultSize,addResult));
+  instructions.add(ReilHelpers.createAnd(offset + 3,resultSize,addResult,resultSize,msbMask,size,msbResult));
+  instructions.add(ReilHelpers.createBsh(offset + 4,size,msbResult,size,shiftValue,OperandSize.BYTE,Helpers.SIGN_FLAG));
+  instructions.add(ReilHelpers.createXor(offset + 5,size,msb1,size,msb2,size,msbSameBefore));
+  instructions.add(ReilHelpers.createXor(offset + 6,size,msbSameBefore,size,msbMask,size,msbSameBeforeNeg));
+  instructions.add(ReilHelpers.createXor(offset + 7,size,msb1,size,msbResult,size,msbChanged));
+  instructions.add(ReilHelpers.createAnd(offset + 8,size,msbSameBeforeNeg,size,msbChanged,size,tempOf));
+  instructions.add(ReilHelpers.createBsh(offset + 9,size,tempOf,size,shiftValue,size,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createAnd(offset + 10,resultSize,addResult,resultSize,carryMask,resultSize,tempCf));
+  instructions.add(ReilHelpers.createBsh(offset + 11,resultSize,tempCf,resultSize,shiftCarry,OperandSize.BYTE,Helpers.CARRY_FLAG));
+  instructions.add(ReilHelpers.createAnd(offset + 12,resultSize,addResult,resultSize,truncateMask,size,truncatedResult));
+  instructions.add(ReilHelpers.createBisz(offset + 13,size,truncatedResult,OperandSize.BYTE,Helpers.ZERO_FLAG));
+  Helpers.writeBack(environment,offset + 14,sourceOperand,targetRegister,size,sourceResult.getAddress(),sourceResult.getType(),instructions);
+  Helpers.writeBack(environment,offset + instructions.size(),targetOperand,truncatedResult,size,targetResult.getAddress(),targetResult.getType(),instructions);
+}

@@ -1,0 +1,10 @@
+int operandId
+int type
+String value
+Integer parentId
+INaviReplacement replacement
+List<CReference> references
+RawTypeSubstitution substitution
+Integer instanceId
+int operandPosition
+IAddress address

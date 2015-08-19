@@ -1,0 +1,4 @@
+{
+  final INaviProject project=getProvider().loadProjects().get(0);
+  PostgreSQLSettingsFunctions.writeSetting((AbstractSQLProvider)getProvider(),project,"key",null);
+}

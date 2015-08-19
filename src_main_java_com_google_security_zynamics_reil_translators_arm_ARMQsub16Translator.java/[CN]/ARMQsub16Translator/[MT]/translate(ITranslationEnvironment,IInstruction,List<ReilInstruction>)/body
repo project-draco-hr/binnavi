@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"QSUB16");
+  translateAll(environment,instruction,"QSUB16",instructions);
+}

@@ -1,0 +1,17 @@
+{
+  final StringBuilder moduleString=new StringBuilder();
+  if (isLoaded()) {
+    boolean addComma=false;
+    for (    final Module module : getModules()) {
+      if (addComma) {
+        moduleString.append(", ");
+      }
+      addComma=true;
+      moduleString.append(module.getName());
+    }
+  }
+ else {
+    moduleString.append(String.format("unloaded, %d modules",m_addressSpace.getModuleCount()));
+  }
+  return String.format("Address space %s [%s]",getName(),moduleString);
+}

@@ -1,0 +1,19 @@
+{
+  currentLanguage=getSelectedLanguage();
+  console=new ConsoleWriter(new StringWriter());
+  buffered=InitStringFactory.getInitString(currentLanguage,consoleName,m_libraryPath);
+  realBindings=getBindings();
+  if (consoleName != null) {
+    realBindings.add(new Pair<String,Object>(consoleName,console));
+  }
+  if (currentLanguage == null) {
+    return;
+  }
+  engine=getManager().getEngineByName(currentLanguage);
+  Preconditions.checkNotNull(engine,"Error: Unknown scripting language");
+  engine.getContext().setWriter(console.getWriter());
+  for (  final Pair<String,Object> pair : realBindings) {
+    engine.put(pair.first(),pair.second());
+  }
+  executeInitializer();
+}

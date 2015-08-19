@@ -1,0 +1,5 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bca");
+  final IOperandTreeNode addressOperand=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  GenericBranchGenerator.generate(instruction.getAddress().toLong() * 0x100,environment,instruction,instructions,"bca",addressOperand.getValue(),false,false);
+}

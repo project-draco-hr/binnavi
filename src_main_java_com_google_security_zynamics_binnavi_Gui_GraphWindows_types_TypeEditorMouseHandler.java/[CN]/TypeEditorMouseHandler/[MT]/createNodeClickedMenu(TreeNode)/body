@@ -1,0 +1,34 @@
+{
+  final JPopupMenu popupMenu=new JPopupMenu();
+  if (clickedNode instanceof TypeMemberTreeNode) {
+    final TypeMember selectedMember=((TypeMemberTreeNode)clickedNode).getTypeMember();
+    final AbstractAction editMemberAction=new EditMemberAction(owner,typeManager,selectedMember);
+    final AbstractAction insertAction=new InsertMemberAction(owner,typeManager,selectedMember);
+    if (tree.getSelectionCount() > 1) {
+      editMemberAction.setEnabled(false);
+      insertAction.setEnabled(false);
+    }
+    if (selectedMember.getParentType() != null && selectedMember.getParentType().getCategory() == BaseTypeCategory.STRUCT) {
+      popupMenu.add(new AppendMemberAction(owner,typeManager,selectedMember.getParentType()));
+      popupMenu.add(insertAction);
+    }
+    popupMenu.add(editMemberAction);
+    popupMenu.add(new DeleteMemberAction(owner,typeManager,typeEditor));
+  }
+ else   if (clickedNode instanceof BaseTypeTreeNode) {
+    final BaseType selectedType=((BaseTypeTreeNode)clickedNode).getBaseType();
+    final AbstractAction editAction=new EditTypeAction(owner,typeManager,selectedType);
+    final AbstractAction appendAction=new AppendMemberAction(owner,typeManager,selectedType);
+    if (tree.getSelectionCount() > 1) {
+      editAction.setEnabled(false);
+      appendAction.setEnabled(false);
+    }
+ else     if (selectedType.getCategory() != BaseTypeCategory.STRUCT) {
+      appendAction.setEnabled(false);
+    }
+    popupMenu.add(editAction);
+    popupMenu.add(appendAction);
+    popupMenu.add(new DeleteTypeAction(owner,typeManager,typeEditor));
+  }
+  return popupMenu;
+}

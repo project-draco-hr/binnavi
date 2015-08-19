@@ -1,0 +1,6 @@
+{
+  final Color col=CColorChooser.showDialog(m_model.getParent(),"Color Nodes",Color.WHITE,CNodeColorCollector.getNodeColors(m_model.getGraph()).toArray(new Color[0]));
+  if (col != null) {
+    CNodeColorizer.colorizeSelectedNodes(m_model.getGraph(),col);
+  }
+}

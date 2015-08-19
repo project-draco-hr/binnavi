@@ -1,0 +1,13 @@
+{
+  for (  final CAddressSpace addressSpace : m_addressSpaces) {
+    if (addressSpace.isLoaded() && !addressSpace.close()) {
+      return false;
+    }
+  }
+  for (  final INaviView view : m_views) {
+    if (view.isLoaded() && !view.close()) {
+      return false;
+    }
+  }
+  return true;
+}

@@ -1,0 +1,7 @@
+{
+  Preconditions.checkArgument(size > 0,"Error: Font size must be positive");
+  m_font=new Font(GuiHelper.getMonospaceFont(),0,size);
+  setFont(m_font);
+  m_firstDraw=true;
+  repaint();
+}

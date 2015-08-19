@@ -1,0 +1,3 @@
+{
+  return String.format("Graph frame of view '%s'",m_view2d.toString());
+}

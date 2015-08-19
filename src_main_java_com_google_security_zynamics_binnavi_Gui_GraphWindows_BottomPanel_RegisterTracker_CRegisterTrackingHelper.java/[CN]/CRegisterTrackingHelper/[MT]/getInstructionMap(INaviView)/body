@@ -1,0 +1,13 @@
+{
+  final Map<IAddress,INaviInstruction> instructionMap=new HashMap<IAddress,INaviInstruction>();
+  final List<INaviViewNode> nodes=view.getGraph().getNodes();
+  for (  final INaviViewNode node : nodes) {
+    if (node instanceof INaviCodeNode) {
+      final INaviCodeNode cnode=(INaviCodeNode)node;
+      for (      final INaviInstruction instruction : cnode.getInstructions()) {
+        instructionMap.put(instruction.getAddress(),instruction);
+      }
+    }
+  }
+  return instructionMap;
+}

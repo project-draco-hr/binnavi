@@ -1,0 +1,21 @@
+{
+  final ZyLineContent lineContent=getLineContent(lineYPos);
+  if (lineContent != null) {
+    final int firstModelLine=getFirstLineIndexOfModelAt(lineYPos);
+    final int lastModelLine=getLastLineIndexOfModelAt(lineYPos);
+    for (int index=firstModelLine; index <= lastModelLine; index++) {
+      final ZyLineContent curLineContent=getLineContent(index);
+      final List<IZyEditableObject> lineObjects=curLineContent.getLineFragmentObjectList();
+      if ((curLineContent.getLineObject() != null) && curLineContent.getLineObject().isPlaceholder()) {
+        continue;
+      }
+      if (lineObjects.size() == 0) {
+        return index;
+      }
+      if (lineObjects.get(0).isCommentDelimiter() && (lineObjects.get(0).getStart() > 0)) {
+        return index;
+      }
+    }
+  }
+  return -1;
+}

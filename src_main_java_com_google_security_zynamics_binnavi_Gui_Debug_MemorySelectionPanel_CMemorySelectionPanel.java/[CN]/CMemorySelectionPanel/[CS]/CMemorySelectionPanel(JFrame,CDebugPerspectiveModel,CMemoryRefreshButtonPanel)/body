@@ -1,0 +1,14 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01456: Parent argument can not be null");
+  Preconditions.checkNotNull(debugPerspectiveModel,"IE01457: Debugger argument can not be null");
+  m_memorySectionPanel=new CMemorySectionPanel(debugPerspectiveModel);
+  m_refreshPanel=refreshPanel;
+  m_memoryPanel=new CMemoryPanel(parent,debugPerspectiveModel);
+  setBorder(new TitledBorder("Target Memory"));
+  final JPanel headerPanel=new JPanel(new BorderLayout());
+  headerPanel.add(m_memorySectionPanel,BorderLayout.CENTER);
+  headerPanel.add(m_refreshPanel,BorderLayout.EAST);
+  add(headerPanel,BorderLayout.NORTH);
+  add(m_memoryPanel,BorderLayout.CENTER);
+}

@@ -1,0 +1,15 @@
+{
+  if (m_graphType.equals(graphType)) {
+    return;
+  }
+  final GraphType oldType=m_graphType;
+  m_graphType=graphType;
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedGraphType(view,m_graphType,oldType);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

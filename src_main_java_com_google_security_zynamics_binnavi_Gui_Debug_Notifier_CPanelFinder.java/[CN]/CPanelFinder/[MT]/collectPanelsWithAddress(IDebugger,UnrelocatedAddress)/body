@@ -1,0 +1,14 @@
+{
+  final List<IGraphPanel> panels=new ArrayList<IGraphPanel>();
+  for (  final IGraphContainerWindow window : CWindowManager.instance().getOpenWindows()) {
+    for (    final IGraphPanel graphPanel : window) {
+      final BackEndDebuggerProvider debuggerProvider=graphPanel.getModel().getDebuggerProvider();
+      for (      final IDebugger d : debuggerProvider) {
+        if (d == debugger && CViewHelpers.containsAddress(graphPanel.getModel().getGraph().getRawView(),address)) {
+          panels.add(graphPanel);
+        }
+      }
+    }
+  }
+  return panels;
+}

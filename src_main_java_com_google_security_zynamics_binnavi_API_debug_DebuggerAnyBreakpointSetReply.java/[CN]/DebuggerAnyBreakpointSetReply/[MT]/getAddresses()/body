@@ -1,0 +1,7 @@
+{
+  final List<Pair<Address,Integer>> addresses=Lists.newArrayList();
+  for (  final Pair<RelocatedAddress,Integer> address : ((AnyBreakpointRemovedReply)reply).getAddresses()) {
+    addresses.add(new Pair<Address,Integer>(new Address(address.first().getAddress().toBigInteger()),address.second()));
+  }
+  return addresses;
+}

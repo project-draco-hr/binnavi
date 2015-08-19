@@ -1,0 +1,19 @@
+{
+  if (value == getSearchSelectedNodesOnly()) {
+    return;
+  }
+  if (m_type == null) {
+    m_searchSelectedNodesOnly=value;
+  }
+ else {
+    m_type.setSearchSelectedNodesOnly(value);
+  }
+  for (  final IZyGraphSearchSettingsListener listener : m_listeners) {
+    try {
+      listener.changedSearchSelectionNodesOnly(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

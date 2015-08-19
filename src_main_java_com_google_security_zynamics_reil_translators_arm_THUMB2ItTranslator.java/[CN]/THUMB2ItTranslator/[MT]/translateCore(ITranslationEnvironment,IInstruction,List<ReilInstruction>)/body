@@ -1,0 +1,4 @@
+{
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  instructions.add(ReilHelpers.createNop(baseOffset++));
+}

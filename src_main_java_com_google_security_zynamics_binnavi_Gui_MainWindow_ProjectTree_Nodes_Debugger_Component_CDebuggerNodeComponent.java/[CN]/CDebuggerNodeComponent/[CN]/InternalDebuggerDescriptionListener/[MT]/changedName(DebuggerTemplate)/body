@@ -1,0 +1,4 @@
+{
+  m_nameTextField.setText(debugger.getName());
+  updateGui();
+}

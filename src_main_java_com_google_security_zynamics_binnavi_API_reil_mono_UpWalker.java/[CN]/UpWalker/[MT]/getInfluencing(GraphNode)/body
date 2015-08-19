@@ -1,0 +1,10 @@
+{
+  if (node == null) {
+    throw new IllegalArgumentException("Error: Node argument can not be null");
+  }
+  final List<IInfluencingNode<GraphNode,Object>> nodes=new ArrayList<IInfluencingNode<GraphNode,Object>>();
+  for (  final GraphNode child : node.getChildren()) {
+    nodes.add(new DefaultInfluencingNode<GraphNode,Object>(child));
+  }
+  return nodes;
+}

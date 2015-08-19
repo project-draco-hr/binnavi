@@ -1,0 +1,9 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final CProject project=PostgreSQLProjectCreator.createProject((AbstractSQLProvider)getProvider(),"new project 010");
+  project.load();
+  assertNotNull(project.getConfiguration().getId());
+  module.close();
+  project.close();
+}

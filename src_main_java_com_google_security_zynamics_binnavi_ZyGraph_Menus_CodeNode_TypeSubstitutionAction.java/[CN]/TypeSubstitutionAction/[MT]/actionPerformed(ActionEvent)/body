@@ -1,0 +1,5 @@
+{
+  final TypeSubstitutionDialog dlg=new TypeSubstitutionDialog(owner,selectedNode,typeManager,stackFrame);
+  GuiHelper.centerChildToParent(owner,dlg,true);
+  dlg.setVisible(true);
+}

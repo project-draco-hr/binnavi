@@ -1,0 +1,20 @@
+{
+  if (architecture.equalsIgnoreCase("x86-32")) {
+    return new TranslatorX86<INaviInstruction>();
+  }
+ else   if (architecture.equalsIgnoreCase("PowerPC-32")) {
+    return new TranslatorPPC<INaviInstruction>();
+  }
+ else   if (architecture.equalsIgnoreCase("ARM-32")) {
+    return new TranslatorARM<INaviInstruction>();
+  }
+ else   if (architecture.equalsIgnoreCase("REIL")) {
+    return new TranslatorREIL<INaviInstruction>();
+  }
+ else   if (architecture.equalsIgnoreCase("MIPS-32")) {
+    return new TranslatorREIL<INaviInstruction>();
+  }
+ else {
+    return null;
+  }
+}

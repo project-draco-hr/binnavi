@@ -1,0 +1,3 @@
+{
+  return createTrinaryInstruction(ReilHelpers.OPCODE_MUL,new CAddress(offset),firstSize,firstValue,secondSize,secondValue,thirdSize,thirdValue);
+}

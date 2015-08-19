@@ -1,0 +1,13 @@
+{
+  if (m_HistoryPosition > 0) {
+    if (m_HistoryPosition == m_LineHistory.size()) {
+      goToLastLine();
+      m_SavedTypedLine=getCurrentLine();
+    }
+    setCurrentLine(m_LineHistory.get(--m_HistoryPosition));
+  }
+ else {
+    m_HistoryPosition=0;
+  }
+  e.consume();
+}

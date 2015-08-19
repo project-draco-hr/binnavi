@@ -1,0 +1,6 @@
+{
+  final Process p1=debugger.getProcess();
+  final Process p2=debugger.getProcess();
+  assertNotNull(p1);
+  assertEquals(p1,p2);
+}

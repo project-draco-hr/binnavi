@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"IE02577: textnode argument can not be null");
+  deleteComment(new TextNodeCommentingStrategy(node),comment);
+}

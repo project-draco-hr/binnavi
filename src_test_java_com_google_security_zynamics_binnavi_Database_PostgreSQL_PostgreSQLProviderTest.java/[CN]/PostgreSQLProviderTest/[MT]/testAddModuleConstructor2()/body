@@ -1,0 +1,6 @@
+{
+  final CProject project=getProvider().createProject("TEST ADD MOUDLE CONSTRUCTOR 2");
+  getProvider().createAddressSpace(project,"FOOBAR_ADDRESS_SPACE");
+  getProvider().loadAddressSpaces(project).get(0);
+  getProvider().addModule(getProvider().loadAddressSpaces(project).get(0),null);
+}

@@ -1,0 +1,19 @@
+{
+  if (event.getActionCommand().equals("OK")) {
+    try {
+      m_maximumHits=Integer.valueOf(m_maximumHitsField.getText());
+      if (m_maximumHits > 1000) {
+        CMessageBox.showInformation(CTraceOptionsDialog.this,"Maximum hit count can not be higher than 1000.");
+        return;
+      }
+    }
+ catch (    final NumberFormatException exception) {
+      CMessageBox.showInformation(CTraceOptionsDialog.this,String.format("Invalid maximum hit count string '%s'",m_maximumHitsField.getText()));
+      return;
+    }
+  }
+ else {
+    m_wasCancelled=true;
+  }
+  dispose();
+}

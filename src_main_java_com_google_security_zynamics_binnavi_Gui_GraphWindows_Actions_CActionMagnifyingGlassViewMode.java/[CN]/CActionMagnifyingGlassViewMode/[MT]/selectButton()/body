@@ -1,0 +1,8 @@
+{
+  m_button.setSelected(true);
+  putValue(Action.NAME,"Magnifying Glass");
+  putValue(Action.SHORT_DESCRIPTION,"Disables Magnifying Glass.");
+  m_button.setSelectedIcon(new ImageIcon(CMain.class.getResource("data/magnifieingglass_up.jpg")));
+  m_button.setRolloverSelectedIcon(new ImageIcon(CMain.class.getResource("data/magnifieingglass_hover.jpg")));
+  m_button.setPressedIcon(new ImageIcon(CMain.class.getResource("data/magnifieingglass_down.jpg")));
+}

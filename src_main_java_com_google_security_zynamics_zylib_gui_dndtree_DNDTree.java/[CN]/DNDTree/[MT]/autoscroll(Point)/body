@@ -1,0 +1,9 @@
+{
+  final Insets insets=getAutoscrollInsets();
+  final Rectangle outer=getVisibleRect();
+  final Rectangle inner=new Rectangle(outer.x + insets.left,outer.y + insets.top,outer.width - (insets.left + insets.right),outer.height - (insets.top + insets.bottom));
+  if (!inner.contains(cursorLocation)) {
+    final Rectangle scrollRect=new Rectangle(cursorLocation.x - insets.left,cursorLocation.y - insets.top,insets.left + insets.right,insets.top + insets.bottom);
+    scrollRectToVisible(scrollRect);
+  }
+}

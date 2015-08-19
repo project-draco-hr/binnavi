@@ -1,0 +1,14 @@
+{
+  final Graph2D g=(Graph2D)node.getGraph();
+  final NodeRealizer r=g.getRealizer(node);
+  if (r.isSelected()) {
+    for (final NodeCursor nc=g.selectedNodes(); nc.ok(); nc.next()) {
+      m_nodesInDrawingOrder.remove(nc.node());
+      m_nodesInDrawingOrder.add(nc.node());
+    }
+  }
+ else {
+    m_nodesInDrawingOrder.remove(node);
+    m_nodesInDrawingOrder.add(node);
+  }
+}

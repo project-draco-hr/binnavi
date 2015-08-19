@@ -1,0 +1,20 @@
+{
+  String result;
+  if (isRunningWindows()) {
+    result=System.getenv("ProgramData");
+    if (result == null) {
+      final String appData=System.getenv("APPDATA");
+      result=System.getenv("ALLUSERSPROFILE") + (appData != null ? appData.substring(appData.lastIndexOf('\\')) : "\\Application Data");
+    }
+  }
+ else   if (isRunningLinux()) {
+    result="/etc/opt";
+  }
+ else   if (isRunningMacOSX()) {
+    result="/etc/opt";
+  }
+ else {
+    result=System.getProperty("user.home");
+  }
+  return FileUtils.ensureTrailingSlash(result);
+}

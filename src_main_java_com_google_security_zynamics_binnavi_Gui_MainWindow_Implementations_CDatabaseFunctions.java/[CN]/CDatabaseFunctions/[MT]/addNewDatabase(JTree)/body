@@ -1,0 +1,5 @@
+{
+  final CDatabase newDatabase=new CDatabase("New Database",CJdbcDriverNames.jdbcPostgreSQLDriverName,"localhost","new_database","user","password","identity",false,false);
+  CDatabaseManager.instance().addDatabase(newDatabase);
+  CNodeExpander.setSelectionPath(projectTree,newDatabase);
+}

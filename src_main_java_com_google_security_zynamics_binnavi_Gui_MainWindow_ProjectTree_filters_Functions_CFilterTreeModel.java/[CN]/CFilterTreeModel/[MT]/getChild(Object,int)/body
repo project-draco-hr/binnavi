@@ -1,0 +1,4 @@
+{
+  final CTagFilterNode p=(CTagFilterNode)parent;
+  return tree.get(p.getTag().getChildren().get(index));
+}

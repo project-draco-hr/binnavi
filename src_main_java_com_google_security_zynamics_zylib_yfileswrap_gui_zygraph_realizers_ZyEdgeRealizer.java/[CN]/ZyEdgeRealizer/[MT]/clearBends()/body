@@ -1,0 +1,11 @@
+{
+  super.clearBends();
+  for (  final IZyEdgeRealizerListener<EdgeType> listener : m_listeners) {
+    try {
+      listener.clearedBends();
+    }
+ catch (    final Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+}

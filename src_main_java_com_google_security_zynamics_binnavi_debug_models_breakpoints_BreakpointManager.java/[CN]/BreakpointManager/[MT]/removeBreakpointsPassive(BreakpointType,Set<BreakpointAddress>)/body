@@ -1,0 +1,18 @@
+{
+  if (addresses.size() == 0) {
+    return;
+  }
+switch (type) {
+case REGULAR:
+    indexedBreakpointStorage.removeBreakpoints(addresses);
+  break;
+case ECHO:
+echoBreakpointStorage.removeBreakpoints(addresses);
+break;
+case STEP:
+stepBreakpointStorage.removeBreakpoints(addresses);
+break;
+default :
+throw new IllegalStateException(String.format("IE01008: Invalid breakpoint type '%s'",type));
+}
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    if (m_isCancelable) {
+      setDescription("Canceling...");
+      ((ICancelableCommand)m_command).cancel();
+    }
+  }
+ catch (  final Exception e) {
+    setException(e);
+  }
+}

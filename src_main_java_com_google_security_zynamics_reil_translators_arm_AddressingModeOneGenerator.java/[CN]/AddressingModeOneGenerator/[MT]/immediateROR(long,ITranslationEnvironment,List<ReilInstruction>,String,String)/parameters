@@ -1,0 +1,5 @@
+long offset
+ITranslationEnvironment environment
+List<ReilInstruction> instructions
+String immediateNodeValue1
+String immediateNodeValue2

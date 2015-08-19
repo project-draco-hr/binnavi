@@ -1,0 +1,3 @@
+{
+  CMemorySelectionFunctions.askMemoryRange(m_dialog,m_debugPerspectiveModel);
+}

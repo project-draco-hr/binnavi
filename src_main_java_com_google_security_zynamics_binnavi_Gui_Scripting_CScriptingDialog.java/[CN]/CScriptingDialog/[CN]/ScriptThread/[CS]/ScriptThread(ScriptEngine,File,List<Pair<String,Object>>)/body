@@ -1,0 +1,5 @@
+{
+  m_engine=engine;
+  m_selectedFile=selectedFile;
+  m_pairList=bindings;
+}

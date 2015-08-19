@@ -1,0 +1,14 @@
+{
+  try {
+    final Array array=m_resultSet.getArray("expression_types_path");
+    if (m_resultSet.wasNull()) {
+      return new Integer[0];
+    }
+ else {
+      return (Integer[])array.getArray();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new ParserException(exception);
+  }
+}

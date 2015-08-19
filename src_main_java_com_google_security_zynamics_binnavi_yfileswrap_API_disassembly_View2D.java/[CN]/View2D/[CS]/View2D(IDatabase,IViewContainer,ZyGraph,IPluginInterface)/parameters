@@ -1,0 +1,4 @@
+IDatabase database
+IViewContainer container
+ZyGraph graph
+IPluginInterface pluginInterface

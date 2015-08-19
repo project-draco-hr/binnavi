@@ -1,0 +1,4 @@
+{
+  super("Save to file");
+  putValue(MNEMONIC_KEY,(int)"SaveLogToFileMnemonic".charAt(0));
+}

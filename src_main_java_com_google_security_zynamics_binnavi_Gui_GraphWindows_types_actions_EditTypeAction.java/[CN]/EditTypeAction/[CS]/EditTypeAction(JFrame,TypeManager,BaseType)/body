@@ -1,0 +1,6 @@
+{
+  super("Edit type");
+  this.owner=owner;
+  this.typeManager=typeManager;
+  this.selectedType=selectedType;
+}

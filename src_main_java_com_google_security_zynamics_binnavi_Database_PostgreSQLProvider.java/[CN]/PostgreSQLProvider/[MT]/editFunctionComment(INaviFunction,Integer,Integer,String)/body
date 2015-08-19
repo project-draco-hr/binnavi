@@ -1,0 +1,3 @@
+{
+  PostgreSQLFunctionFunctions.editGlobalFunctionComment(this,function,commentId,userId,newCommentText);
+}

@@ -1,0 +1,3 @@
+{
+  return InstructionGraph.create(reilFunction.getGraph());
+}

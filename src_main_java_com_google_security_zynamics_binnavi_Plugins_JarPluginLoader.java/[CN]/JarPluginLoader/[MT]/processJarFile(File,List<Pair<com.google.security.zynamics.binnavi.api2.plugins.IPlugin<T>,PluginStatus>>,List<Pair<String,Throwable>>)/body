@@ -1,0 +1,13 @@
+{
+  try {
+    final Collection<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>> plugins=loadPluginJar(pluginFile);
+    if (plugins != null) {
+      for (      final com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T> plugin : plugins) {
+        loadedPlugins.add(new Pair<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>,PluginStatus>(plugin,PluginStatus.Valid));
+      }
+    }
+  }
+ catch (  final Exception e) {
+    failedPlugins.add(new Pair<String,Throwable>(pluginFile.getAbsolutePath(),e));
+  }
+}

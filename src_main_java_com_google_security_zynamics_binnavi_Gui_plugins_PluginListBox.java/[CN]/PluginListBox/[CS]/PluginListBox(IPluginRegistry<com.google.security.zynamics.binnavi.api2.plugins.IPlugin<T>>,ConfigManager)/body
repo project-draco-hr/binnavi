@@ -1,0 +1,5 @@
+{
+  super(createPluginListModel(registry,configFile));
+  model=(DefaultListModel<PluginItem<T>>)getModel();
+  checkLoadedPlugins(configFile);
+}

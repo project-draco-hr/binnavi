@@ -1,0 +1,14 @@
+{
+  unhighlightEdges(state.getLabel().getOwner());
+  if (state.getLabel() != null) {
+    unhighlightEdges(state.getLabel().getOwner());
+    for (    final IZyEditModeListener<NodeType,EdgeType> listener : state.getStateFactory().getListeners()) {
+      try {
+        listener.edgeLabelLeft(state.getLabel());
+      }
+ catch (      final Exception exception) {
+      }
+    }
+  }
+  state.getGraph().updateViews();
+}

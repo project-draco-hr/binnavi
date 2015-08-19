@@ -1,0 +1,37 @@
+{
+  final String shifterOperand=environment.getNextVariableString();
+  final String shifterCarryOut=environment.getNextVariableString();
+  final String tmpVar1=environment.getNextVariableString();
+  final String tmpVar11=environment.getNextVariableString();
+  final String tmpVar2=environment.getNextVariableString();
+  final String tmpVar3=environment.getNextVariableString();
+  final String tmpVar4=environment.getNextVariableString();
+  final String tmpVar5=environment.getNextVariableString();
+  final String tmpVar6=environment.getNextVariableString();
+  final String tmpVar7=environment.getNextVariableString();
+  final String isZeroCondition=environment.getNextVariableString();
+  final String shifterCarryOutTmp1=environment.getNextVariableString();
+  final String shifterCarryOutTmp2=environment.getNextVariableString();
+  final String shifterCarryOutTmp3=environment.getNextVariableString();
+  final String shifterCarryOutTmp4=environment.getNextVariableString();
+  long baseOffset=offset;
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dWordSize,registerNodeValue2,dWordSize,String.valueOf(0x000000FFL),dWordSize,tmpVar1));
+  instructions.add(ReilHelpers.createSub(baseOffset++,dWordSize,String.valueOf(0),dWordSize,tmpVar1,dWordSize,tmpVar11));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue1,dWordSize,tmpVar11,dWordSize,tmpVar2));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dWordSize,tmpVar2,dWordSize,bitMaskAllBitsSet,dWordSize,shifterOperand));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,dWordSize,tmpVar11,byteSize,isZeroCondition));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,byteSize,isZeroCondition,byteSize,"C",byteSize,shifterCarryOutTmp1));
+  instructions.add(ReilHelpers.createXor(baseOffset++,dWordSize,tmpVar11,wordSize,String.valueOf(0x20L),dWordSize,tmpVar3));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,dWordSize,tmpVar3,byteSize,isZeroCondition));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue1,dWordSize,thirtyOneSet,byteSize,tmpVar4));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,byteSize,isZeroCondition,byteSize,tmpVar4,byteSize,shifterCarryOutTmp2));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,dWordSize,tmpVar11,dWordSize,notThirtyOneSet,dWordSize,tmpVar5));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,dWordSize,tmpVar5,byteSize,isZeroCondition));
+  instructions.add(ReilHelpers.createSub(baseOffset++,dWordSize,tmpVar11,dWordSize,oneSet,dWordSize,tmpVar6));
+  instructions.add(ReilHelpers.createSub(baseOffset++,dWordSize,zeroSet,dWordSize,tmpVar6,dWordSize,tmpVar6));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dWordSize,registerNodeValue1,dWordSize,tmpVar6,byteSize,tmpVar7));
+  instructions.add(ReilHelpers.createAnd(baseOffset++,byteSize,isZeroCondition,byteSize,tmpVar7,byteSize,shifterCarryOutTmp3));
+  instructions.add(ReilHelpers.createOr(baseOffset++,byteSize,shifterCarryOutTmp1,byteSize,shifterCarryOutTmp2,byteSize,shifterCarryOutTmp4));
+  instructions.add(ReilHelpers.createOr(baseOffset++,byteSize,shifterCarryOutTmp3,byteSize,shifterCarryOutTmp4,byteSize,shifterCarryOut));
+  return new Pair<String,String>(shifterOperand,shifterCarryOut);
+}

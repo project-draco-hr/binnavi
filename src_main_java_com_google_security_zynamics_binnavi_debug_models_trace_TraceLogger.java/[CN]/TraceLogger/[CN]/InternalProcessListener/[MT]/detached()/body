@@ -1,0 +1,7 @@
+{
+  removeListeners();
+  activeEchoBreakpoints.clear();
+  for (  final ITraceLoggerListener listener : listeners) {
+    listener.finished(eventList);
+  }
+}

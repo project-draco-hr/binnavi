@@ -1,0 +1,20 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(parent,"IE01361: Parent argument can not be null");
+  m_debugPerspectiveModel=Preconditions.checkNotNull(debugPerspectiveModel,"IE01362: Debug perspective model argument can not be null");
+  m_debugPerspectiveModel.addListener(m_internalListener);
+  final JideSplitPane pane=new JideSplitPane(JideSplitPane.HORIZONTAL_SPLIT){
+    private static final long serialVersionUID=-1326165812499630343L;
+    @Override public void updateUI(){
+    }
+  }
+;
+  pane.setDividerSize(3);
+  pane.setProportionalLayout(true);
+  final CMemoryRefreshButtonPanel refreshPanel=new CMemoryRefreshButtonPanel(parent,debugPerspectiveModel,new InternalRangeProvider(),new InternalStackRangeProvider());
+  m_memorySelectionPanel=new CMemorySelectionPanel(parent,debugPerspectiveModel,refreshPanel);
+  pane.addPane(m_memorySelectionPanel);
+  m_stackPanel=new CStackView(debugPerspectiveModel);
+  pane.addPane(m_stackPanel);
+  add(pane);
+}

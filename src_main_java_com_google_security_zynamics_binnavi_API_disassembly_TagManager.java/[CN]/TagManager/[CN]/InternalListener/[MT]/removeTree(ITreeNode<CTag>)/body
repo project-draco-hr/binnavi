@@ -1,0 +1,6 @@
+{
+  m_allTags.remove(tag);
+  for (  final ITreeNode<CTag> child : tag.getChildren()) {
+    removeTree(child);
+  }
+}

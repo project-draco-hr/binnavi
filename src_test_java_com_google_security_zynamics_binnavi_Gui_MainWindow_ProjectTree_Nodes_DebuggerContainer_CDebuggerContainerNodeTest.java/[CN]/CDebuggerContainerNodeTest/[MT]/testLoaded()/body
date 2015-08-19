@@ -1,0 +1,14 @@
+{
+  final DebuggerTemplate debugger1=new DebuggerTemplate(1,"Debugger 1","",0,m_provider);
+  final DebuggerTemplate debugger2=new DebuggerTemplate(2,"Debugger 2","",0,m_provider);
+  m_database.getContent().getDebuggerTemplateManager().addDebugger(debugger1);
+  m_database.getContent().getDebuggerTemplateManager().addDebugger(debugger2);
+  final CDebuggerContainerNode node=new CDebuggerContainerNode(m_tree,m_database);
+  assertEquals("Debuggers (2)",node.toString());
+  assertEquals(2,node.getChildCount());
+  assertEquals("Debugger 1",node.getChildAt(0).toString());
+  assertEquals("Debugger 2",node.getChildAt(1).toString());
+  node.dispose();
+  assertTrue(((Collection<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database,"listeners"),"m_listeners")) == null);
+  assertTrue(((LinkedHashSet<?>)ReflectionHelpers.getField(ReflectionHelpers.getField(m_database.getContent().getDebuggerTemplateManager(),"listeners"),"m_listeners")).isEmpty());
+}

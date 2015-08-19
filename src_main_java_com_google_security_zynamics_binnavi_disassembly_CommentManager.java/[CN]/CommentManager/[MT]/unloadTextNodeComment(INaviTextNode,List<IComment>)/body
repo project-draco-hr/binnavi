@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(textnode,"Error: textnode argument can not be null");
+  unloadComment(new TextNodeCommentingStrategy(textnode),comments);
+}

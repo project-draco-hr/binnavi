@@ -1,0 +1,12 @@
+{
+  assertEquals(0,m_graph.getSelectedNodes().size());
+  m_graph.getRawView().getGraph().getNodes().get(1).setSelected(true);
+  assertEquals(1,m_graph.getSelectedNodes().size());
+  final CCachedSelectionCriterium criterium=new CCachedSelectionCriterium(SelectionState.UNSELECTED);
+  final CCachedExpressionTreeNode node=new CCachedExpressionTreeNode(criterium);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node);
+  assertEquals(1,m_graph.getSelectedNodes().size());
+  CCriteriumExecuter.execute(m_tree,m_graph);
+  assertEquals(m_graph.getNodes().size() - 1,m_graph.getSelectedNodes().size());
+  assertFalse(m_graph.getRawView().getGraph().getNodes().get(1).isSelected());
+}

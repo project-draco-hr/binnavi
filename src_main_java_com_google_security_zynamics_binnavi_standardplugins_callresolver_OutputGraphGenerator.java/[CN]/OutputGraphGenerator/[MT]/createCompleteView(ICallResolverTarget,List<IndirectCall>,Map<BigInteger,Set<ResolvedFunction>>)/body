@@ -1,0 +1,33 @@
+{
+  final View view=target.createView();
+  final Map<Function,FunctionNode> nodes=new HashMap<Function,FunctionNode>();
+  for (  final Module module : target.getModules()) {
+    for (    final Function function : module.getFunctions()) {
+      final FunctionNode node=view.createFunctionNode(function);
+      nodes.put(function,node);
+    }
+    final Callgraph callgraph=module.getCallgraph();
+    for (    final FunctionEdge edge : callgraph.getEdges()) {
+      final FunctionNode sourceNode=nodes.get(edge.getSource().getFunction());
+      final FunctionNode targetNode=nodes.get(edge.getTarget().getFunction());
+      view.createEdge(sourceNode,targetNode,EdgeType.JumpUnconditional);
+    }
+  }
+  for (  final Entry<BigInteger,Set<ResolvedFunction>> element : resolvedAddresses.entrySet()) {
+    final BigInteger start=element.getKey();
+    final Set<ResolvedFunction> targets=element.getValue();
+    final IndirectCall call=IndirectCallResolver.findIndirectCall(target.getDebugger(),indirectCallAddresses,start);
+    final FunctionNode sourceNode=nodes.get(call.getFunction());
+    if (sourceNode != null) {
+      for (      final ResolvedFunction targetFunction : targets) {
+        final Function function=targetFunction.getFunction();
+        if (function != null) {
+          final FunctionNode targetNode=nodes.get(function);
+          final ViewEdge edge=view.createEdge(sourceNode,targetNode,EdgeType.JumpUnconditional);
+          edge.setColor(Color.RED);
+        }
+      }
+    }
+  }
+  return view;
+}

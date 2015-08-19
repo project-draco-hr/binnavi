@@ -1,0 +1,6 @@
+{
+  final int[] rows=m_eventTable.getConvertedSelectedRows();
+  final List<ITraceEvent> traces=getTraces(rows);
+  final CEventTableMenu menu=new CEventTableMenu(m_eventTable,m_model,traces);
+  menu.show(m_eventTable,event.getX(),event.getY());
+}

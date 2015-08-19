@@ -1,0 +1,8 @@
+{
+  if (!m_graph.getSettings().getProximitySettings().getProximityBrowsing()) {
+    disableProximityBrowsing();
+  }
+ else {
+    restartProximityBrowsing();
+  }
+}

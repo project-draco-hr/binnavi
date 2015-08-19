@@ -1,0 +1,9 @@
+{
+  final IComment comment=manager.getCommentById(getCommentId());
+  if (operation == CommentOperation.DELETE && comment != null) {
+    informDelete(manager,comment);
+  }
+ else   if (operation == CommentOperation.APPEND) {
+    informAppend(manager);
+  }
+}

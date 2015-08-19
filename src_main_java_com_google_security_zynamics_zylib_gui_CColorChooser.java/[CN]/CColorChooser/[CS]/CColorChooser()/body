@@ -1,0 +1,3 @@
+{
+  this(new DefaultColorSelectionModel(Color.WHITE),null);
+}

@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(baseType,"Error: baseType argument can not be null");
+  types.remove(baseType);
+  typesById.remove(baseType.getId());
+  typesByName.remove(baseType.getName());
+  substitutionsByType.removeAll(baseType);
+  stableTypeList.clear();
+  return dependenceGraph.deleteType(baseType);
+}

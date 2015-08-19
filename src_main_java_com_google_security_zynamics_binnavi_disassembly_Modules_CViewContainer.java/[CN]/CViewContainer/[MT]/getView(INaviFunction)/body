@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(function,"IE00186: Function argument can not be null");
+  Preconditions.checkArgument(function.inSameDatabase(m_provider),"IE00188: Function and module are not in the same database");
+  return m_viewFunctionBiMap.inverse().get(function);
+}

@@ -1,0 +1,25 @@
+{
+  if (node.getRawNode() instanceof CGroupNode) {
+    return;
+  }
+  final double yPos=y - node.getY();
+  final IZyNodeRealizer realizer=node.getRealizer();
+  final int row=node.positionToRow(yPos);
+  if (row == -1) {
+    if (m_lastHoveredLine != null) {
+      m_lastHoveredLine.clearHighlighting(1);
+      m_lastHoveredLine=null;
+    }
+    return;
+  }
+  final ZyLabelContent content=realizer.getNodeContent();
+  final ZyLineContent hoveredLine=content.getLineContent(row);
+  if (hoveredLine.equals(m_lastHoveredLine)) {
+    return;
+  }
+  setHoveredLine(content,hoveredLine,realizer.isSelected() ? realizer.getFillColor().darker().darker() : realizer.getFillColor().darker());
+  if (m_lastHoveredLine != null) {
+    m_lastHoveredLine.clearHighlighting(1);
+  }
+  m_lastHoveredLine=hoveredLine;
+}

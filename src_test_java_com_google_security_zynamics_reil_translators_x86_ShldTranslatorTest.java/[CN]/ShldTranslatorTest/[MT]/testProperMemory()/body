@@ -1,0 +1,32 @@
+{
+  interpreter.setRegister("ebx",BigInteger.valueOf(0x80000000L),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setMemory(100,0xF0,4);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.MEMDEREF,"["));
+  operandTree1.root.m_children.get(0).m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"100"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"ebx"));
+  final MockOperandTree operandTree3=new MockOperandTree();
+  operandTree3.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree3.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"2"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2,operandTree3);
+  final IInstruction instruction=new MockInstruction("shld",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
+  System.out.println(instructions);
+  long counter=0x10000;
+  for (  final ReilInstruction inst : instructions) {
+    assertEquals(counter,inst.getAddress().toLong());
+    counter++;
+  }
+  assertEquals(5,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(0x3C2,interpreter.getMemory().load(100,4));
+  assertEquals(BigInteger.valueOf(0x80000000L),interpreter.getVariableValue("ebx"));
+  assertEquals(BigInteger.valueOf(0L),interpreter.getVariableValue(Helpers.ZERO_FLAG));
+  assertEquals(BigInteger.valueOf(0L),interpreter.getVariableValue(Helpers.CARRY_FLAG));
+  assertEquals(BigInteger.valueOf(0L),interpreter.getVariableValue(Helpers.SIGN_FLAG));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(BigInteger.valueOf(4L),BigInteger.valueOf(interpreter.getMemorySize()));
+}

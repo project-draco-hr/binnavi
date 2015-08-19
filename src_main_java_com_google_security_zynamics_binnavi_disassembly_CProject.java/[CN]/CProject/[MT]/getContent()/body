@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(m_content,"IE02198: Project is not loaded");
+  return m_content;
+}

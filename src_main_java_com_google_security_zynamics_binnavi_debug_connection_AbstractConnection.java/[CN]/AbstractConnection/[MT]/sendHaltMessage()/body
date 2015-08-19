@@ -1,0 +1,4 @@
+{
+  NaviLogger.info("Sending \"Halt\" message to the debug client");
+  return sendPacket(new HaltCommand(getMessageId()));
+}

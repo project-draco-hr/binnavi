@@ -1,0 +1,17 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.load();
+  m_project.addListener(listener);
+  final AddressSpace space=m_project.createAddressSpace("Hannes Space");
+  space.load();
+  final INaviModule nativeModule=new MockModule(provider);
+  internalDatabase.getContent().addModule(nativeModule);
+  final Module module=ModuleFactory.get(nativeModule,provider);
+  module.load();
+  space.addModule(module);
+  assertEquals(space,m_project.getAddressSpaces().get(1));
+  assertEquals("Hannes Space",m_internalProject.getContent().getAddressSpaces().get(1).getConfiguration().getName());
+  assertEquals("addedAddressSpace;changedModificationDate;",listener.events);
+  assertEquals(0,m_project.getFunctions().size());
+  m_project.removeListener(listener);
+}

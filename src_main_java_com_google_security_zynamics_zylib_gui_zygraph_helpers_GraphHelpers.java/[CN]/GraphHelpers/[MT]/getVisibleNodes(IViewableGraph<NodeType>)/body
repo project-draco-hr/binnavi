@@ -1,0 +1,11 @@
+{
+  final Set<NodeType> nodes=new HashSet<NodeType>();
+  graph.iterateVisible(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      nodes.add(node);
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return nodes;
+}

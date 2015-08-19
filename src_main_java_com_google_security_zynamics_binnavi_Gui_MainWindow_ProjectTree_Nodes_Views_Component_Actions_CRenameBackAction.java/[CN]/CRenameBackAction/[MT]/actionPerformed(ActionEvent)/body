@@ -1,0 +1,3 @@
+{
+  CViewFunctions.renameBack(m_parent,m_view,m_originalName);
+}

@@ -1,0 +1,14 @@
+{
+switch (data.length) {
+case 1:
+    return data[0] & 0xFF;
+case 2:
+  return (data[0] & 0xFF) + ((data[1] & 0xFF) * 0x100);
+case 3:
+return (data[0] & 0xFF) + ((data[1] & 0xFF) * 0x100) + ((data[2] & 0xFF) * 0x100 * 0x100);
+case 4:
+return (data[0] & 0xFF) + ((data[1] & 0xFF) * 0x100) + ((data[2] & 0xFF) * 0x100 * 0x100)+ ((data[3] & 0xFF) * 0x100 * 0x100* 0x100);
+default :
+throw new IllegalArgumentException("Not yet implemented");
+}
+}

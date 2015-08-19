@@ -1,0 +1,5 @@
+{
+  super("Add type");
+  this.owner=owner;
+  this.manager=manager;
+}

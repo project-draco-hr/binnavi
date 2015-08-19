@@ -1,0 +1,7 @@
+{
+  final List<IAbstractNode> children=new ArrayList<IAbstractNode>();
+  for (  final Object childObject : ast.getChildren()) {
+    children.add(convert((CommonTree)childObject));
+  }
+  return new CAbstractAndExpression(children);
+}

@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(provider,"IE00473: Provider argument can not be null");
+  Preconditions.checkNotNull(node,"IE00474: Node argument can not be null");
+  Preconditions.checkNotNull(targetAddress,"IE01548: Address argument can not be null");
+  Preconditions.checkNotNull(type,"IE00475: Type argument can not be null");
+  final CConnection connection=provider.getConnection();
+  final int moduleId=node.getOperand().getInstruction().getModule().getConfiguration().getId();
+  final BigInteger address=node.getInstructionAddress().toBigInteger();
+  final int position=node.getOperandPosition();
+  final int expressionId=node.getId();
+  final String query=String.format("INSERT INTO " + CTableNames.ADDRESS_REFERENCES_TABLE + "(module_id, address, position, expression_id, type, target) "+ "VALUES(%d, %d, %d, %d, '%s', %s)",moduleId,address,position,expressionId,type.toString().toLowerCase(),targetAddress.toBigInteger().toString());
+  try {
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

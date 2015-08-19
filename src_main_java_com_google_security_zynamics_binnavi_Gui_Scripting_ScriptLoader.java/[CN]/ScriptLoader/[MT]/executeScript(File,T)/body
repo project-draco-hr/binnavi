@@ -1,0 +1,20 @@
+{
+  final List<Pair<String,Object>> bindings=new ArrayList<>();
+  final ConsoleWriter consoleWriter=new ConsoleWriter(new StringWriter());
+  bindings.add(new Pair<String,Object>("navi",pluginInterface));
+  bindings.add(new Pair<String,Object>("SCRIPT_CONSOLE",consoleWriter));
+  try {
+    ScriptRunner.runScript(file,bindings);
+    if (consoleWriter.getOutput() != null) {
+      NaviLogger.info(consoleWriter.getOutput());
+    }
+  }
+ catch (  final Exception exception) {
+    final String message="E00061: " + "Script caused an error while loading";
+    final String description=CUtilityFunctions.createDescription(String.format("The script file '%s' could not be loaded because it caused an exception. " + "You should check the stdout console to see errors in the " + "script which were not passed to BinNavi.",file.getAbsoluteFile()),new String[]{"The script contains a bug that caused the exception"},new String[]{"The script was not loaded and the functionality of the " + "script will not be available in BinNavi"});
+    NaviLogger.severe(message);
+    CUtilityFunctions.logException(exception);
+    NaviLogger.severe(consoleWriter.getOutput());
+    CNaviErrorDialog.show(null,message,description,exception);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  m_hexPanel.setBorder(new TitledBorder(String.format("Binary data of '%s'",m_module.getConfiguration().getName())));
+}

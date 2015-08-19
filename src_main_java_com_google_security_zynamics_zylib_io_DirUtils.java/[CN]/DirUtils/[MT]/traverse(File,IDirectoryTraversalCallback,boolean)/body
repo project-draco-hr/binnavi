@@ -1,0 +1,20 @@
+{
+  final File[] files=directory.listFiles();
+  if (files == null) {
+    return;
+  }
+  callback.entering(directory);
+  for (  final File file : files) {
+    if (!file.isDirectory()) {
+      callback.nextFile(file);
+    }
+  }
+  if (recurse) {
+    for (    final File file : files) {
+      if (file.isDirectory()) {
+        traverse(file,callback);
+      }
+    }
+  }
+  callback.leaving(directory);
+}

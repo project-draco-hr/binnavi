@@ -1,0 +1,30 @@
+{
+  Preconditions.checkNotNull(codeNode,"IE02432: codeNode argument can not be null");
+  Preconditions.checkNotNull(provider,"IE02433: provider argument can not be null");
+  Preconditions.checkNotNull(instruction,"IE02434: instruction argument can not be null");
+  Preconditions.checkNotNull(commentId,"IE02435: comment argument can not be null");
+  Preconditions.checkNotNull(userId,"IE02436: userId argument can not be null");
+  final String function=" { ? = call delete_local_instruction_comment(?, ?, ?, ?, ?) } ";
+  try {
+    final CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(function);
+    try {
+      deleteCommentStatement.registerOutParameter(1,Types.INTEGER);
+      deleteCommentStatement.setInt(2,instruction.getModule().getConfiguration().getId());
+      deleteCommentStatement.setInt(3,codeNode.getId());
+      deleteCommentStatement.setObject(4,instruction.getAddress().toBigInteger(),Types.BIGINT);
+      deleteCommentStatement.setInt(5,commentId);
+      deleteCommentStatement.setInt(6,userId);
+      deleteCommentStatement.execute();
+      deleteCommentStatement.getInt(1);
+      if (deleteCommentStatement.wasNull()) {
+        throw new IllegalArgumentException("Error: the comment id returned from the database was null");
+      }
+    }
+  finally {
+      deleteCommentStatement.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntDeleteException(exception);
+  }
+}

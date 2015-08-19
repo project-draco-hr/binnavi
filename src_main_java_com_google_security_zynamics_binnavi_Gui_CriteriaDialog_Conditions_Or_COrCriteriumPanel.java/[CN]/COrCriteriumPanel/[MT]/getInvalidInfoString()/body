@@ -1,0 +1,3 @@
+{
+  return "OR operator needs at least two child conditions or operators.";
+}

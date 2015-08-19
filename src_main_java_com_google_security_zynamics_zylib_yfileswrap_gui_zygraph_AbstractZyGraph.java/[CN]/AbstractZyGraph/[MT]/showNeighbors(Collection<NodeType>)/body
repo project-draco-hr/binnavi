@@ -1,0 +1,4 @@
+{
+  final Set<NodeType> all=ProximityRangeCalculator.getNeighbors(this,toShow,getSettings().getProximitySettings().getProximityBrowsingChildren(),getSettings().getProximitySettings().getProximityBrowsingParents());
+  showNodesInternal(all);
+}

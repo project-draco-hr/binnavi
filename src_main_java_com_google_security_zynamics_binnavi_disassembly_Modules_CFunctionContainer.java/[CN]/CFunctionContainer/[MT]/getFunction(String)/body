@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(name,"IE00176: Name argument can not be null");
+  for (  final INaviFunction function : m_functions) {
+    if (function.getName().equals(name)) {
+      return function;
+    }
+  }
+  throw new MaybeNullException();
+}

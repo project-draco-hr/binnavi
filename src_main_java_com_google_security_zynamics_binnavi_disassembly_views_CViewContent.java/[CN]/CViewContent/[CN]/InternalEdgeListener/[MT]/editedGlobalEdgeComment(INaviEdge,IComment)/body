@@ -1,0 +1,10 @@
+{
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.editedGlobalEdgeComment(view,naviEdge);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

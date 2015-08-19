@@ -1,0 +1,8 @@
+{
+  for (  final ObjectWrapper wrapper : m_objects) {
+    if ((position >= wrapper.getStart()) && (position < (wrapper.getStart() + wrapper.getLength()))) {
+      return wrapper;
+    }
+  }
+  return null;
+}

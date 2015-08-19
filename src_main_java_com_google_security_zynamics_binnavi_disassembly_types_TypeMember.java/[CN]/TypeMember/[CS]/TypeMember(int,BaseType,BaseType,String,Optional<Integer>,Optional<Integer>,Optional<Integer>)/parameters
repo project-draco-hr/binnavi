@@ -1,0 +1,7 @@
+int id
+BaseType parentType
+BaseType baseType
+String name
+Optional<Integer> offset
+Optional<Integer> numberOfElements
+Optional<Integer> argumentIndex

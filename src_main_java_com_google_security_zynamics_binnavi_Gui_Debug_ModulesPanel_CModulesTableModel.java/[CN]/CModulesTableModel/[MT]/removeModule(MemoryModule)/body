@@ -1,0 +1,7 @@
+{
+  m_cachedValuesSemaphore.acquireUninterruptibly();
+  m_modules.remove(module);
+  m_cachedValues=null;
+  m_cachedValuesSemaphore.release();
+  fireTableDataChanged();
+}

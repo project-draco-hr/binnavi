@@ -1,0 +1,6 @@
+{
+  this.m_image=image;
+  setSize(image.getWidth(null),image.getHeight(null));
+  setPreferredSize(getSize());
+  setBackground(Color.RED);
+}

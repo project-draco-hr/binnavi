@@ -1,0 +1,5 @@
+{
+  removeListeners(m_oldView);
+  initializeListeners();
+  m_oldView=m_graph.getRawView();
+}

@@ -1,0 +1,4 @@
+def __init__(self, pi, window, view):
+    self.pi = pi
+    self.window = window
+    self.view = view

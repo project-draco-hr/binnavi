@@ -1,0 +1,5 @@
+{
+  final CBackgroundDraggedRightState state=new CBackgroundDraggedRightState(this,m_graph);
+  m_factory.createBackgroundDraggedRightAction().execute(state,event);
+  return state;
+}

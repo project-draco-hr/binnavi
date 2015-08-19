@@ -1,0 +1,5 @@
+{
+  final ListenerWrapper newListener=new ListenerWrapper(listener);
+  listenerWrappers.add(newListener);
+  project.addListener(newListener);
+}

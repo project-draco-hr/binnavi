@@ -1,0 +1,7 @@
+{
+  final HashSet<GraphNode> nodesToUpdate=new LinkedHashSet<GraphNode>(graph.getNodes());
+  while (!nodesToUpdate.isEmpty()) {
+    transformState(nodesToUpdate);
+  }
+  return state;
+}

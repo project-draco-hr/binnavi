@@ -1,0 +1,3 @@
+{
+  getProvider().setImageBase(null,new CAddress(BigInteger.valueOf(0)));
+}

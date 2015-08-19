@@ -1,0 +1,16 @@
+{
+  checkArguments(provider,addressSpace);
+  if ((debugger != null) && !debugger.inSameDatabase(provider)) {
+    throw new IllegalArgumentException("IE00392: Debugger is not part of this database");
+  }
+  final CConnection connection=provider.getConnection();
+  try {
+    final String debuggerValue=debugger == null ? "NULL" : String.valueOf(debugger.getId());
+    final String query=String.format("UPDATE %s SET debugger_id = %s WHERE id= %d",CTableNames.ADDRESS_SPACES_TABLE,debuggerValue,addressSpace.getConfiguration().getId());
+    connection.executeUpdate(query,true);
+  }
+ catch (  final SQLException exception) {
+    throw new CouldntSaveDataException(exception);
+  }
+  PostgreSQLHelpers.updateModificationDate(connection,CTableNames.ADDRESS_SPACES_TABLE,addressSpace.getConfiguration().getId());
+}

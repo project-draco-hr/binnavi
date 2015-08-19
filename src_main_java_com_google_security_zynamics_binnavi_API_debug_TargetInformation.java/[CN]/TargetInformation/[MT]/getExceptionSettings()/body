@@ -1,0 +1,7 @@
+{
+  final Collection<DebuggerDebugException> exceptions=Collections.emptyList();
+  for (  final DebuggerException exception : targetInformation.getDebuggerOptions().getExceptions()) {
+    exceptions.add(new DebuggerDebugException(exception));
+  }
+  return exceptions;
+}

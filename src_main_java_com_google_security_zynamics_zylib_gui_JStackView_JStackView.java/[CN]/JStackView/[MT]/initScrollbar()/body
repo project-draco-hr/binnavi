@@ -1,0 +1,6 @@
+{
+  m_scrollbar.addAdjustmentListener(m_listener);
+  m_bottomScrollbar.addAdjustmentListener(m_listener);
+  add(m_scrollbar,BorderLayout.EAST);
+  add(m_bottomScrollbar,BorderLayout.SOUTH);
+}

@@ -1,0 +1,8 @@
+{
+  m_traceProvider.removeListener(m_listener);
+  if (m_traceProvider.isLoaded()) {
+    for (    final TraceList traceList : m_traceProvider) {
+      traceList.removeListener(m_listener);
+    }
+  }
+}

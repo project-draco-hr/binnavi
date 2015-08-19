@@ -1,0 +1,13 @@
+{
+  super(nodes,edges);
+  for (  final Object block : nodes) {
+    if (!(block instanceof FunctionBlock)) {
+      throw new IllegalArgumentException("Error: Block list contains objects that are not FunctionBlock objects");
+    }
+  }
+  for (  final Object block : edges) {
+    if (!(block instanceof FunctionEdge)) {
+      throw new IllegalArgumentException("Error: Edge list contains objects that are not FunctionEdge objects");
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  if (value == getAnimateLayout()) {
+    return;
+  }
+  if (m_type == null) {
+    m_layoutAnimation=value;
+  }
+ else {
+    m_type.setLayoutAnimation(value);
+  }
+}

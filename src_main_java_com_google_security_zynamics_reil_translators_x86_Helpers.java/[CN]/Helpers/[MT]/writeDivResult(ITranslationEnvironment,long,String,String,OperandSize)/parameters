@@ -1,0 +1,5 @@
+ITranslationEnvironment environment
+long offset
+String realDivResult
+String realModResult
+OperandSize size

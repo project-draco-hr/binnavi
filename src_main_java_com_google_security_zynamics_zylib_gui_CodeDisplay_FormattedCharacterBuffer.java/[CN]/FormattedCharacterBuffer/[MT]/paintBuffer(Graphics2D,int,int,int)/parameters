@@ -1,0 +1,4 @@
+Graphics2D context
+int x
+int y
+int skipColumns

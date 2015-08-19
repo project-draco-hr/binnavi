@@ -1,0 +1,5 @@
+{
+  this(new MutableDirectedGraph<INaviViewNode,INaviEdge>(nodes,edges),provider,ViewType.Native,new BigInteger(31,new SecureRandom()).intValue());
+  m_configuration=new CViewConfiguration(this,m_listeners,provider,new BigInteger(31,random).intValue(),"Mock View Description","Mock View",ViewType.Native,new Date(),new Date(),new LinkedHashSet<CTag>(),false);
+  m_provider=provider;
+}

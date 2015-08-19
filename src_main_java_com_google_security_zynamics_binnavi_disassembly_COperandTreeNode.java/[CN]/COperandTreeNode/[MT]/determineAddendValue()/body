@@ -1,0 +1,7 @@
+{
+  final INaviOperandTreeNode sibling=Preconditions.checkNotNull(determineAddendSibling(this),"Error: operand expression is not a two component sum.");
+  if (sibling.getOperand().getInstruction().getArchitecture().equalsIgnoreCase("x86-64")) {
+    return new BigInteger(sibling.getValue()).longValue();
+  }
+  return (int)Long.parseLong(sibling.getValue());
+}

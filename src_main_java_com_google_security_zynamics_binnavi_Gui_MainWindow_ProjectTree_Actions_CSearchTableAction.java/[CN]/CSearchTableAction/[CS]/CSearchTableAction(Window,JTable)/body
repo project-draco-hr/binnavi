@@ -1,0 +1,6 @@
+{
+  super("Search");
+  m_parent=Preconditions.checkNotNull(parent,"IE01922: Parent argument can't be null");
+  m_table=Preconditions.checkNotNull(table,"IE01923: Table argument can't be null");
+  putValue(ACCELERATOR_KEY,HotKeys.SEARCH_HK.getKeyStroke());
+}

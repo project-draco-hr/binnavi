@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewFunctions.tagView(this,view,tag);
+}

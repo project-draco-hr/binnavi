@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(provider,"IE01329: Provider argument can not be null");
+  Preconditions.checkNotNull(rows,"IE01330: Rows argument can not be null");
+  final ArrayList<Pair<BookmarkManager,CBookmark>> bookmarks=new ArrayList<Pair<BookmarkManager,CBookmark>>();
+  for (  final int row : rows) {
+    final Triple<IDebugger,BookmarkManager,Integer> bookmarkTriple=CBookmarkTableHelpers.findBookmark(provider,row);
+    final BookmarkManager manager=bookmarkTriple.second();
+    final int index=bookmarkTriple.third();
+    bookmarks.add(Pair.make(manager,manager.getBookmark(index)));
+  }
+  for (  final Pair<BookmarkManager,CBookmark> p : bookmarks) {
+    p.first().removeBookmark(p.second());
+  }
+}

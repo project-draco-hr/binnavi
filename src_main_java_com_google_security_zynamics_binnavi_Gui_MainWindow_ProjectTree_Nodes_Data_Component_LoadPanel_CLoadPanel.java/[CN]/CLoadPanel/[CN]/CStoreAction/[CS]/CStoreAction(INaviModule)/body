@@ -1,0 +1,5 @@
+{
+  super("Store");
+  m_module=module;
+  putValue(Action.SMALL_ICON,new ImageIcon(CMain.class.getResource("data/save_to_database.png")));
+}

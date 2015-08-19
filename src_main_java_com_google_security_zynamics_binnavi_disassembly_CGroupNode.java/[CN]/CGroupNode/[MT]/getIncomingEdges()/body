@@ -1,0 +1,13 @@
+{
+  final List<INaviEdge> edges=new ArrayList<INaviEdge>();
+  for (  final INaviViewNode member : m_elements) {
+    final List<INaviEdge> outsideEdges=CollectionHelpers.filter(member.getIncomingEdges(),new ICollectionFilter<INaviEdge>(){
+      @Override public boolean qualifies(      final INaviEdge edge){
+        return edge.getSource().getParentGroup() != CGroupNode.this;
+      }
+    }
+);
+    edges.addAll(outsideEdges);
+  }
+  return edges;
+}

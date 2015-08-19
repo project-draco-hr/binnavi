@@ -1,0 +1,7 @@
+String databaseOperation
+int moduleId
+Optional<Integer> baseTypeId
+Optional<Integer> typeMemberId
+Optional<BigInteger> typeSubstitutionAddress
+Optional<Integer> typeSubstitutionPosition
+Optional<Integer> typeSubstitutionExpressionId

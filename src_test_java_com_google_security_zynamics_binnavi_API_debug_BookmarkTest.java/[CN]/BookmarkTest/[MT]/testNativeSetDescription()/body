@@ -1,0 +1,9 @@
+{
+  m_apiBookmark.addListener(m_mockListener);
+  assertEquals("",m_mockListener.events);
+  m_nativeBookmark.setDescription("FooBert");
+  assertEquals("FooBert",m_nativeBookmark.getDescription());
+  assertEquals("FooBert",m_apiBookmark.getDescription());
+  assertEquals("changedDescription/123/FooBert;",m_mockListener.events);
+  m_apiBookmark.removeListener(m_mockListener);
+}

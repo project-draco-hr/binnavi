@@ -1,0 +1,28 @@
+{
+  goToLastLine();
+  final String line=getCurrentLine();
+  buffered+=line + "\n";
+  m_SavedTypedLine="";
+  if (e.isControlDown()) {
+    execute();
+    buffered=InitStringFactory.getInitString(currentLanguage,consoleName,m_libraryPath);
+    getOutputDocument().flip();
+    if (line.trim().length() > 0) {
+      m_LineHistory.add(line);
+    }
+    m_HistoryPosition=m_LineHistory.size();
+    interpreterNewLine(false);
+  }
+ else {
+    if (line.trim().length() > 0) {
+      m_LineHistory.add(line);
+    }
+    m_HistoryPosition=m_LineHistory.size();
+    interpreterNewLine(true);
+    if (!m_IsMultilineInput) {
+      getOutputDocument().flip();
+    }
+  }
+  getDocument().flushRemainingText(getInputPane().getText().length());
+  e.consume();
+}

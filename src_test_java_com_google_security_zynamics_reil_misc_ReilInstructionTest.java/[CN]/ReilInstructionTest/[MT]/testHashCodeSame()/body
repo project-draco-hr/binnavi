@@ -1,0 +1,5 @@
+{
+  final ReilInstruction instr0=createReilInstruction();
+  final ReilInstruction instr1=createReilInstruction();
+  assertTrue(instr0.hashCode() == instr1.hashCode());
+}

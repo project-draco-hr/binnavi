@@ -1,0 +1,3 @@
+{
+  CProximitySettingsDialog.showDialog(m_parent,m_settings);
+}

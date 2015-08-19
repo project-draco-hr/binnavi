@@ -1,0 +1,15 @@
+{
+  final ZyLabelContent content=ZyEdgeBuilder.buildContent(edge);
+  final ZyEdgeRealizer<NaviEdge> realizer=new ZyEdgeRealizer<NaviEdge>(content,new CEdgeUpdater(edge));
+  final Edge g2dEdge=graph2D.createEdge(sourceNode.getNode(),targetNode.getNode(),realizer);
+  if (adjustColors) {
+    EdgeInitializer.adjustColor(edge);
+  }
+  EdgeInitializer.initializeEdgeType(edge,realizer);
+  graph2D.getRealizer(g2dEdge).setLineColor(edge.getColor());
+  final NaviEdge zyEdge=new NaviEdge(sourceNode,targetNode,g2dEdge,realizer,edge);
+  NaviNode.link(sourceNode,targetNode);
+  final ZyEdgeData<NaviEdge> data=new ZyEdgeData<NaviEdge>(zyEdge);
+  realizer.setUserData(data);
+  return new Pair<Edge,NaviEdge>(g2dEdge,zyEdge);
+}

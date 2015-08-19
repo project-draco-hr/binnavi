@@ -1,0 +1,3 @@
+{
+  return options.getAnalysisDirection() == AnalysisDirection.DOWN ? "Track Operand Forward" : "Track Operand Backward";
+}

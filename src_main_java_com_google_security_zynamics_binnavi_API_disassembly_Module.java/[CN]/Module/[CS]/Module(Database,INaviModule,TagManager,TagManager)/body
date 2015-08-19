@@ -1,0 +1,13 @@
+{
+  m_database=Preconditions.checkNotNull(database,"Error: Database argument can't be null");
+  m_module=Preconditions.checkNotNull(module,"Error: Module argument can't be null");
+  m_nodeTagManager=Preconditions.checkNotNull(nodeTagManager,"Error: Node tag manager argument can't be null");
+  m_viewTagManager=Preconditions.checkNotNull(viewTagManager,"Error: View tag manager argument can't be null");
+  if (m_module.getConfiguration().getDebugger() != null) {
+    m_debugger=new Debugger(m_module.getConfiguration().getDebugger());
+  }
+  if (module.isLoaded()) {
+    convertData();
+  }
+  module.addListener(m_listener);
+}

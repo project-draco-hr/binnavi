@@ -1,0 +1,3 @@
+{
+  setEdgeDrawing(CEdgeDrawingFunctions.calcDrawSloppyEdges(m_graph));
+}

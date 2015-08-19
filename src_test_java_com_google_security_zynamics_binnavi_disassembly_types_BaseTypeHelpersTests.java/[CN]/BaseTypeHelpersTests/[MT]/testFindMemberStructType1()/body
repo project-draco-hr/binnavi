@@ -1,0 +1,8 @@
+{
+  final WalkResult result=BaseTypeHelpers.findMember(typeSystem.simpleStruct,0);
+  assertNotNull(result);
+  assertTrue(result.isValid());
+  assertEquals(typeSystem.ssIntMember,result.getMember());
+  assertEquals(Lists.newArrayList(typeSystem.ssIntMember),result.getPath());
+  assertEquals("SimpleStruct.ss_int_member",result.getPathString());
+}

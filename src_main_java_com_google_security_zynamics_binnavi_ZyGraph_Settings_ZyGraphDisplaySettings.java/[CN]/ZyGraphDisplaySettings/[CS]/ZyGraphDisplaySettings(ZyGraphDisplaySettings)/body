@@ -1,0 +1,7 @@
+{
+  m_type=null;
+  m_animationSpeed=settings.getAnimationSpeed();
+  m_gradientBackground=settings.getGradientBackground();
+  m_showFunctionNodeInformation=settings.getFunctionNodeInformation();
+  m_simplifiedVariableAccess=settings.getSimplifiedVariableAccess();
+}

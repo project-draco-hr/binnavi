@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    provider.deleteGlobalEdgeComment(edge,commentId,userId);
+  }
+ else {
+    provider.deleteLocalEdgeComment(edge,commentId,userId);
+  }
+}

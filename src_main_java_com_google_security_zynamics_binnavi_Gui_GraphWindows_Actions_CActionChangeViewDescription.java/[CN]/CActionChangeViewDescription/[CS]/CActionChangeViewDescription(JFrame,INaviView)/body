@@ -1,0 +1,6 @@
+{
+  super("Change View Description");
+  m_parent=Preconditions.checkNotNull(parent,"IE02810: parent argument can not be null");
+  m_view=Preconditions.checkNotNull(view,"IE02811: view argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_CHANGE_VIEW_DESCRIPTION_HK.getKeyStroke());
+}

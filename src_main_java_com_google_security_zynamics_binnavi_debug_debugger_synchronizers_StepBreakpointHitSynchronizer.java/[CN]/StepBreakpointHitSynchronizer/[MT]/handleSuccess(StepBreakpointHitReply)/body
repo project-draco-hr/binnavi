@@ -1,0 +1,32 @@
+{
+  final BreakpointManager manager=getDebugger().getBreakpointManager();
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  RelocatedAddress breakpointAddress=null;
+  final RegisterValues registerValues=reply.getRegisterValues();
+  final long tid=reply.getThreadId();
+  for (  final ThreadRegisters threadRegisters : registerValues) {
+    if (tid == threadRegisters.getTid()) {
+      for (      final RegisterValue registerValue : threadRegisters) {
+        if (registerValue.isPc()) {
+          breakpointAddress=new RelocatedAddress(new CAddress(registerValue.getValue()));
+          break;
+        }
+      }
+    }
+  }
+  manager.clearBreakpointsPassive(BreakpointType.STEP);
+  try {
+    final TargetProcessThread thread=processManager.getThread(tid);
+    for (    final ThreadRegisters threadRegisters : registerValues) {
+      if (tid == threadRegisters.getTid()) {
+        thread.setRegisterValues(threadRegisters.getRegisters());
+      }
+    }
+    processManager.setActiveThread(thread);
+    thread.setCurrentAddress(breakpointAddress);
+  }
+ catch (  final MaybeNullException exception) {
+    NaviLogger.info("Error: Process manager could not get thread. Exception %s",exception);
+    return;
+  }
+}

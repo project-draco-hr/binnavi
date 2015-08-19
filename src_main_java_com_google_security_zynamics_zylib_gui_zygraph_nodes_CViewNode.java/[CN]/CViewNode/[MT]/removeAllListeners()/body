@@ -1,0 +1,9 @@
+{
+  final List<IViewNodeListener> listeners=new ArrayList<IViewNodeListener>();
+  for (  final IViewNodeListener listener : m_listeners) {
+    listeners.add(listener);
+  }
+  for (  final IViewNodeListener listener : listeners) {
+    m_listeners.removeListener(listener);
+  }
+}

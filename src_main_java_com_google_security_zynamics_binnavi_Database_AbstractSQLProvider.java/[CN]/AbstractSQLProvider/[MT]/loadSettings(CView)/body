@@ -1,0 +1,3 @@
+{
+  return PostgreSQLViewFunctions.loadSettings(this,view);
+}

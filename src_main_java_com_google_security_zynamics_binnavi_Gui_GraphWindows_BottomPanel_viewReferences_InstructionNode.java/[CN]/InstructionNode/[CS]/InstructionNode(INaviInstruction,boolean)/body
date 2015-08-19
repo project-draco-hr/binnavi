@@ -1,0 +1,4 @@
+{
+  this.instruction=Preconditions.checkNotNull(instruction,"Error: instruction argument can not be null.");
+  setIcon(determineIcon(isLocal));
+}

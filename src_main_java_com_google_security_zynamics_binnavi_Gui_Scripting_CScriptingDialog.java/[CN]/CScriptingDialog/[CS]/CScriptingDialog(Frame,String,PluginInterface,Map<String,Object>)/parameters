@@ -1,0 +1,4 @@
+Frame owner
+String defaultLanguage
+PluginInterface pluginInterface
+Map<String,Object> bindings

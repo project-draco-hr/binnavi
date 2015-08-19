@@ -1,0 +1,28 @@
+{
+  final MockProcessListener listener=new MockProcessListener();
+  final ProcessManager manager=new ProcessManager();
+  final Process process=new Process(manager);
+  process.addListener(listener);
+  manager.setAttached(true);
+  assertEquals("attached;",listener.events);
+  process.removeListener(listener);
+  manager.setTargetInformation(new com.google.security.zynamics.binnavi.debug.models.targetinformation.TargetInformation(5,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  manager.addThread(new TargetProcessThread(0,ThreadState.RUNNING));
+  manager.addModule(new MemoryModule("Hannes","C:\\Hannes.dll",new RelocatedAddress(new CAddress(0x100)),0x100));
+  manager.setMemoryMap(new com.google.security.zynamics.binnavi.debug.models.processmanager.MemoryMap(Lists.newArrayList(new com.google.security.zynamics.binnavi.debug.models.processmanager.MemorySection(new CAddress(0),new CAddress(0x100)))));
+  manager.getMemory().store(0,new byte[]{0,1,2,3});
+  process.addListener(listener);
+  manager.setTargetInformation(new com.google.security.zynamics.binnavi.debug.models.targetinformation.TargetInformation(5,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,12,0,new ArrayList<DebuggerException>(),false,false,false)));
+  assertEquals(0,process.getThreads().size());
+  assertEquals(0,process.getModules().size());
+  assertEquals(0,process.getMemoryMap().getSections().size());
+  assertEquals(false,process.getMemory().hasData(0,4));
+  manager.setAttached(false);
+  assertEquals("attached;changedTargetInformation;detached;",listener.events);
+  assertEquals(0,process.getThreads().size());
+  assertEquals(0,process.getModules().size());
+  assertEquals(null,process.getTargetInformation());
+  assertEquals(0,process.getMemoryMap().getSections().size());
+  assertEquals(false,process.getMemory().hasData(0,4));
+  process.removeListener(listener);
+}

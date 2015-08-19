@@ -1,0 +1,4 @@
+{
+  this(start,length,color,null);
+  m_object=object;
+}

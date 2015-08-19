@@ -1,0 +1,142 @@
+{
+  final MemoryExpressionParser.primaryExpression_return retval=new MemoryExpressionParser.primaryExpression_return();
+  retval.start=input.LT(1);
+  Object root_0=null;
+  Token REGISTER11=null;
+  Token NUMBER12=null;
+  Token HEX_NUMBER13=null;
+  Token char_literal14=null;
+  Token char_literal16=null;
+  Token char_literal17=null;
+  Token char_literal19=null;
+  MemoryExpressionParser.expression_return expression15=null;
+  MemoryExpressionParser.expression_return expression18=null;
+  Object REGISTER11_tree=null;
+  Object NUMBER12_tree=null;
+  Object HEX_NUMBER13_tree=null;
+  final Object char_literal14_tree=null;
+  final Object char_literal16_tree=null;
+  final Object char_literal17_tree=null;
+  final Object char_literal19_tree=null;
+  final RewriteRuleTokenStream stream_21=new RewriteRuleTokenStream(adaptor,"token 21");
+  final RewriteRuleTokenStream stream_20=new RewriteRuleTokenStream(adaptor,"token 20");
+  final RewriteRuleTokenStream stream_19=new RewriteRuleTokenStream(adaptor,"token 19");
+  final RewriteRuleTokenStream stream_18=new RewriteRuleTokenStream(adaptor,"token 18");
+  final RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
+  try {
+    int alt4=5;
+switch (input.LA(1)) {
+case REGISTER:
+{
+        alt4=1;
+      }
+    break;
+case NUMBER:
+{
+    alt4=2;
+  }
+break;
+case HEX_NUMBER:
+{
+alt4=3;
+}
+break;
+case 18:
+{
+alt4=4;
+}
+break;
+case 20:
+{
+alt4=5;
+}
+break;
+default :
+final NoViableAltException nvae=new NoViableAltException("",4,0,input);
+throw nvae;
+}
+switch (alt4) {
+case 1:
+{
+root_0=(Object)adaptor.nil();
+REGISTER11=(Token)match(input,REGISTER,FOLLOW_REGISTER_in_primaryExpression260);
+REGISTER11_tree=(Object)adaptor.create(REGISTER11);
+adaptor.addChild(root_0,REGISTER11_tree);
+}
+break;
+case 2:
+{
+root_0=(Object)adaptor.nil();
+NUMBER12=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_primaryExpression266);
+NUMBER12_tree=(Object)adaptor.create(NUMBER12);
+adaptor.addChild(root_0,NUMBER12_tree);
+}
+break;
+case 3:
+{
+root_0=(Object)adaptor.nil();
+HEX_NUMBER13=(Token)match(input,HEX_NUMBER,FOLLOW_HEX_NUMBER_in_primaryExpression272);
+HEX_NUMBER13_tree=(Object)adaptor.create(HEX_NUMBER13);
+adaptor.addChild(root_0,HEX_NUMBER13_tree);
+}
+break;
+case 4:
+{
+char_literal14=(Token)match(input,18,FOLLOW_18_in_primaryExpression278);
+stream_18.add(char_literal14);
+pushFollow(FOLLOW_expression_in_primaryExpression280);
+expression15=expression();
+state._fsp--;
+stream_expression.add(expression15.getTree());
+char_literal16=(Token)match(input,19,FOLLOW_19_in_primaryExpression282);
+stream_19.add(char_literal16);
+retval.tree=root_0;
+final RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval != null ? retval.tree : null);
+root_0=(Object)adaptor.nil();
+{
+{
+Object root_1=(Object)adaptor.nil();
+root_1=(Object)adaptor.becomeRoot((Object)adaptor.create(MEM_EXPRESSION,"MEM_EXPRESSION"),root_1);
+adaptor.addChild(root_1,stream_expression.nextTree());
+adaptor.addChild(root_0,root_1);
+}
+}
+retval.tree=root_0;
+}
+break;
+case 5:
+{
+char_literal17=(Token)match(input,20,FOLLOW_20_in_primaryExpression296);
+stream_20.add(char_literal17);
+pushFollow(FOLLOW_expression_in_primaryExpression298);
+expression18=expression();
+state._fsp--;
+stream_expression.add(expression18.getTree());
+char_literal19=(Token)match(input,21,FOLLOW_21_in_primaryExpression300);
+stream_21.add(char_literal19);
+retval.tree=root_0;
+final RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval != null ? retval.tree : null);
+root_0=(Object)adaptor.nil();
+{
+{
+Object root_1=(Object)adaptor.nil();
+root_1=(Object)adaptor.becomeRoot((Object)adaptor.create(SUB_EXPRESSION,"SUB_EXPRESSION"),root_1);
+adaptor.addChild(root_1,stream_expression.nextTree());
+adaptor.addChild(root_0,root_1);
+}
+}
+retval.tree=root_0;
+}
+break;
+}
+retval.stop=input.LT(-1);
+retval.tree=(Object)adaptor.rulePostProcessing(root_0);
+adaptor.setTokenBoundaries(retval.tree,retval.start,retval.stop);
+}
+ catch (final RecognitionException e) {
+throw e;
+}
+ finally {
+}
+return retval;
+}

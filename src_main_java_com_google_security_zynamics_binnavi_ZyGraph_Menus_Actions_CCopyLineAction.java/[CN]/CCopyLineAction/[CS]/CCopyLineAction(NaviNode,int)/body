@@ -1,0 +1,6 @@
+{
+  super("Copy line to clipboard");
+  m_node=Preconditions.checkNotNull(node,"IE02153: Node argument can not be null");
+  Preconditions.checkPositionIndex(line,node.getRealizer().getNodeContent().getLineCount(),"IE02154: Line argument is out of bounds");
+  m_line=line;
+}

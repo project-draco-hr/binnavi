@@ -1,0 +1,8 @@
+{
+  super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+  final Section section=(Section)value;
+  if (section != null) {
+    setText(String.format("%s [0x%X-0x%X]",section.getName(),section.getStartAddress().toLong(),section.getEndAddress().toLong()));
+  }
+  return this;
+}

@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(instruction,"IE01246: Instruction argument can not be null");
+  Preconditions.checkNotNull(node,"IE02560: node argument can not be null");
+  Preconditions.checkArgument(Iterables.contains(node.getInstructions(),instruction),"Error: instruction does not belong to the specified node");
+  return appendComment(new InstructionCommentingStrategy(instruction,node,CommentScope.LOCAL),commentText);
+}

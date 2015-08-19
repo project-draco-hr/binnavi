@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(module,"IE00034: Module argument can not be null");
+  Preconditions.checkArgument(m_modules.contains(module),"IE00037: Module is not part of the address space");
+  return m_imageBases.containsKey(module) ? m_imageBases.get(module) : module.getConfiguration().getFileBase();
+}

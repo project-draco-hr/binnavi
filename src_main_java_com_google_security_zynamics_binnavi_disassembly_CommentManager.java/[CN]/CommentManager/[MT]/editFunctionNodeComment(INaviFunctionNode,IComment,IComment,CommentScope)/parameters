@@ -1,0 +1,4 @@
+INaviFunctionNode node
+IComment comment
+IComment newComment
+CommentScope scope

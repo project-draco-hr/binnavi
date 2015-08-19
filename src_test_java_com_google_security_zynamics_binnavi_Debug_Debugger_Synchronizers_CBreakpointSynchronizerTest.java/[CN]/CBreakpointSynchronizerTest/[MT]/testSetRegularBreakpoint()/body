@@ -1,0 +1,6 @@
+{
+  m_debugger.connect();
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(mockMemoryModule));
+  m_breakpointManager.addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_123_SET);
+  assertEquals("CONNECT;READREGS;RESUME;SET_BREAKPOINTS/00000123/REGULAR;",m_debugger.requests);
+}

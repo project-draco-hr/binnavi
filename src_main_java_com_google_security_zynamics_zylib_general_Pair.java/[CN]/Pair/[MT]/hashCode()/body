@@ -1,0 +1,3 @@
+{
+  return (first == null ? 1 : first.hashCode()) * (second == null ? 1 : second.hashCode());
+}

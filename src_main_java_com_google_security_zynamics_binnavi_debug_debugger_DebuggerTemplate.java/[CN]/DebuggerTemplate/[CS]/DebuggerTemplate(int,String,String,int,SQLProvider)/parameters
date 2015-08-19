@@ -1,0 +1,5 @@
+int debuggerId
+String name
+String host
+int port
+SQLProvider sqlProvider

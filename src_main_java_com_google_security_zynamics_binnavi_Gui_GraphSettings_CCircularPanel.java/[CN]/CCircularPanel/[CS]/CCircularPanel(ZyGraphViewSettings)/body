@@ -1,0 +1,7 @@
+{
+  super(new GridLayout(2,1));
+  setBorder(new TitledBorder("Circular Layout"));
+  Preconditions.checkNotNull(settings,"IE01584: Settings argument can not be null");
+  CSettingsPanelBuilder.addComboBox(this,m_cbCircularLayoutStyle,"Layout Style" + ":","Exact layouting style used when doing circular layouts.",new String[]{"Compact","Isolated","Single Cycle"},settings.getLayoutSettings().getCircularSettings().getStyle().ordinal());
+  CSettingsPanelBuilder.addTextField(this,m_tfCircularMinNodeDistance,"Minimum Node Distance" + ":","Minimum distance between nodes in pixels.",String.valueOf(settings.getLayoutSettings().getCircularSettings().getMinimumNodeDistance()));
+}

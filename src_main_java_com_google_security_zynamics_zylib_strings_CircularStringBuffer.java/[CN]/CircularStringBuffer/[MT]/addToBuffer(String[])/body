@@ -1,0 +1,9 @@
+{
+  final int index=0;
+  for (int i=0; i < lines.length; ++i) {
+    while ((m_maxSize - m_buffer.size()) <= 0) {
+      m_buffer.remove();
+    }
+    m_buffer.add(lines[index]);
+  }
+}

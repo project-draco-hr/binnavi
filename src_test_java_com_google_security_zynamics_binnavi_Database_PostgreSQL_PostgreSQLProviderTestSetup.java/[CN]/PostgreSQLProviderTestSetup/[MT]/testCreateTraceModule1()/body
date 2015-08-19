@@ -1,0 +1,3 @@
+{
+  getProvider().createTrace((CModule)null,"Trace Name","Trace Description");
+}

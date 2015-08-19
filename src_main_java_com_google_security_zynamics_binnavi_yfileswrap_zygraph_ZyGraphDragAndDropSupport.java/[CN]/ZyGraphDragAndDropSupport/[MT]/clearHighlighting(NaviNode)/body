@@ -1,0 +1,6 @@
+{
+  if (lastNode != null) {
+    lastNode.clearHighlighting(HIGHLIGHTING_LEVEL,lastRow);
+  }
+  lastNode=cursorNode;
+}

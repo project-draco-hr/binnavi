@@ -1,0 +1,5 @@
+{
+  super(CViewTransferable.VIEW_FLAVOR);
+  Preconditions.checkNotNull(parent,"IE01936: Parent argument can not be null");
+  m_parent=parent;
+}

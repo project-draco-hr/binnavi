@@ -1,0 +1,5 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  final IUser user=new CUser(2123,"TEST USER 12412");
+  manager.editUserName(user,"FOOBAR");
+}

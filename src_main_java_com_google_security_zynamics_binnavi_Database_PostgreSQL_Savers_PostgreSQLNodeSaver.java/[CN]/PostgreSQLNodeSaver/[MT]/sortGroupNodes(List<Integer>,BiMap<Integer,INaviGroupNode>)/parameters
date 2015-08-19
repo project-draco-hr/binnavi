@@ -1,0 +1,2 @@
+List<Integer> groupNodeIndices
+BiMap<Integer,INaviGroupNode> groupNodeMap

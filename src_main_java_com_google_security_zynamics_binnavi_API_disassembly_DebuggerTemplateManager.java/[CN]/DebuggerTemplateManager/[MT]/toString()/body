@@ -1,0 +1,3 @@
+{
+  return String.format("Debugger Template Manager (%d templates)",m_debuggerTemplates.size());
+}

@@ -1,0 +1,25 @@
+{
+  final CHistoryStringBuilder builder=new CHistoryStringBuilder();
+  builder.setDebugger(m_debugger);
+  m_debugger.connect();
+  m_synchronizer.receivedEvent(DebuggerMessageBuilder.buildProcessStartReply(mockMemoryModule));
+  m_debugger.getProcessManager().addThread(new TargetProcessThread(1,ThreadState.RUNNING));
+  m_synchronizer.receivedEvent(new BreakpointConditionSetReply(0,0));
+  m_synchronizer.receivedEvent(new BreakpointConditionSetReply(0,1));
+  try {
+    m_synchronizer.receivedEvent(new BreakpointHitReply(0,0,1,new RegisterValues(Lists.<ThreadRegisters>newArrayList(new ThreadRegisters(1,Lists.newArrayList(new RegisterValue("eip",BigInteger.ONE,new byte[0],false,false)))))));
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+  m_synchronizer.receivedEvent(new BreakpointHitReply(0,0,1,new RegisterValues(Lists.<ThreadRegisters>newArrayList(new ThreadRegisters(1,Lists.newArrayList(new RegisterValue("eip",BigInteger.ONE,new byte[0],true,false)))))));
+  m_breakpointManager.addBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS);
+  m_synchronizer.receivedEvent(new BreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(BREAKPOINT_ADDRESS_RELOC,0))));
+  m_synchronizer.receivedEvent(new BreakpointSetReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(BREAKPOINT_ADDRESS_RELOC,1))));
+  m_synchronizer.receivedEvent(new BreakpointsRemovedReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(BREAKPOINT_ADDRESS_RELOC,0))));
+  m_synchronizer.receivedEvent(new BreakpointsRemovedReply(0,0,Lists.newArrayList(new Pair<RelocatedAddress,Integer>(BREAKPOINT_ADDRESS_RELOC,1))));
+  m_breakpointManager.removeBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS);
+  m_synchronizer.receivedEvent(new DebuggerClosedUnexpectedlyReply());
+  m_synchronizer.receivedEvent(new DetachReply(0,0));
+  m_synchronizer.receivedEvent(new DetachReply(0,1));
+}

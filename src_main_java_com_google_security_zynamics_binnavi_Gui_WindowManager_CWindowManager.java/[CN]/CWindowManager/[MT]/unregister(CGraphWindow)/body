@@ -1,0 +1,14 @@
+{
+  if (!m_graphs.remove(window)) {
+    throw new IllegalStateException("IE01206: Graph window wasn't registered");
+  }
+  for (  final IWindowManagerListener listener : m_listeners) {
+    try {
+      listener.windowClosed(this,window);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+      NaviLogger.severe("Internal Error: Listener caused an unknown exception");
+    }
+  }
+}

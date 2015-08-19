@@ -1,0 +1,3 @@
+{
+  throw new IllegalStateException("IE01080: Received invalid reply from the debug client");
+}

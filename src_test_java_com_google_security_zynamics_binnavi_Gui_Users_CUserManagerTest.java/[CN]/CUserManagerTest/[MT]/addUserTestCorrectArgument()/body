@@ -1,0 +1,7 @@
+{
+  final CUserManager manager=CUserManager.get(m_sql);
+  final MockUserManagerListener listener=new MockUserManagerListener();
+  manager.addListener(listener);
+  manager.addUser(" ADD USER CORRECT ARGUMENTS ");
+  assertEquals("addedUser;",listener.m_events.get(0));
+}

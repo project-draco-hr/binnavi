@@ -1,0 +1,32 @@
+{
+  Preconditions.checkNotNull(node,"IE00897: Node argument can not be null");
+  final ZyLabelContent content=new ZyLabelContent(new IZyEditableObject(){
+    @Override public int getEnd(){
+      throw new IllegalStateException();
+    }
+    @Override public int getLength(){
+      throw new IllegalStateException();
+    }
+    @Override public Object getPersistentModel(){
+      throw new IllegalStateException();
+    }
+    @Override public int getStart(){
+      throw new IllegalStateException();
+    }
+    @Override public boolean isCommentDelimiter(){
+      throw new IllegalStateException();
+    }
+    @Override public boolean isPlaceholder(){
+      throw new IllegalStateException();
+    }
+    @Override public boolean update(    final String newContent){
+      throw new IllegalStateException();
+    }
+    @Override public boolean updateComment(    final String newContent,    final ECommentPlacement placement){
+      throw new IllegalStateException();
+    }
+  }
+,true,false);
+  buildContent(content,node,graphSettings,modifier);
+  return content;
+}

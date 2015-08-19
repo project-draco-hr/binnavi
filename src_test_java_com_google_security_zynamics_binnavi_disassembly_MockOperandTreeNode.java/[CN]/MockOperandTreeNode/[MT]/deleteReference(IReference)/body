@@ -1,0 +1,6 @@
+{
+  m_references.remove(reference);
+  for (  final INaviOperandTreeNodeListener listener : m_listeners) {
+    listener.removedReference(this,reference);
+  }
+}

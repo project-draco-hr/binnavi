@@ -1,0 +1,10 @@
+{
+  final Section section=new Section(1,"SECTION1",commentManager,module,new CAddress("100",16),new CAddress("200",16),SectionPermission.READ,null);
+  Assert.assertNotNull(section);
+  Assert.assertEquals("SECTION1",section.getName());
+  Assert.assertEquals(module,section.getModule());
+  Assert.assertEquals(new CAddress("100",16),section.getStartAddress());
+  Assert.assertEquals(new CAddress("200",16),section.getEndAddress());
+  Assert.assertEquals(SectionPermission.READ,section.getSectionPermission());
+  Assert.assertNull(section.getData());
+}

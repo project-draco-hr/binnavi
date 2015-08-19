@@ -1,0 +1,33 @@
+{
+  Preconditions.checkNotNull(view,"IE00119: View argument can not be null");
+  Preconditions.checkNotNull(node,"IE00120: Node argument can not be null");
+  Preconditions.checkArgument(view.isLoaded(),"IE00122: View must be loaded before it can be inlined");
+  Preconditions.checkArgument(view.getGraph().getNodes().contains(node),"IE00123: Code node does not belong to the view");
+  Preconditions.checkArgument(node.getFunction().isLoaded(),"IE00124: Function must be loaded before it can be inlined");
+  Preconditions.checkArgument(node.getFunction().getBasicBlockCount() != 0,"IE00125: Functions with 0 blocks can not be inlined");
+  GroupHelpers.expandParents(node);
+  final INaviGroupNode parentGroup=node.getParentGroup();
+  final List<INaviEdge> oldIncomingEdges=node.getIncomingEdges();
+  view.getContent().deleteNode(node);
+  final Triple<CCodeNode,List<CCodeNode>,ArrayList<CCodeNode>> nodes=CInliningHelper.insertNodes(view,node.getFunction(),parentGroup);
+  final INaviCodeNode entryNode=nodes.first();
+  final ArrayList<CCodeNode> returnNodes=nodes.third();
+  for (  final INaviEdge incomingEdge : oldIncomingEdges) {
+    final EdgeType edgeType=incomingEdge.getType();
+    view.getContent().createEdge(incomingEdge.getSource(),entryNode,edgeType);
+  }
+  final List<INaviViewNode> graphNodes=view.getGraph().getNodes();
+  for (  final INaviCodeNode newNode : returnNodes) {
+    newNode.setX(node.getX());
+    newNode.setY(node.getY());
+    for (    final INaviInstruction instruction : newNode.getInstructions()) {
+      final List<IReference> references=getCodeReferences(instruction);
+      for (      final IReference reference : references) {
+        final List<INaviViewNode> targetNodes=getTargetNode(reference,graphNodes);
+        for (        final INaviViewNode targetNode : targetNodes) {
+          view.getContent().createEdge(newNode,targetNode,EdgeType.JUMP_UNCONDITIONAL);
+        }
+      }
+    }
+  }
+}

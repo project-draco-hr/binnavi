@@ -1,0 +1,29 @@
+{
+  final FileDialog result=new FileDialog((Frame)chooser.getParent());
+  result.setDirectory(chooser.getCurrentDirectory().getPath());
+  final File selected=chooser.getSelectedFile();
+  result.setFile(selected == null ? "" : selected.getPath());
+  result.setFilenameFilter(new FilenameFilter(){
+    @Override public boolean accept(    final File dir,    final String name){
+      return chooser.getFileFilter().accept(new File(dir.getPath() + File.pathSeparator + name));
+    }
+  }
+);
+  if (chooser.getDialogType() == SAVE_DIALOG) {
+    result.setMode(FileDialog.SAVE);
+  }
+ else {
+    result.setMode(FileDialog.LOAD);
+  }
+  if (chooser.getFileSelectionMode() == DIRECTORIES_ONLY) {
+    System.setProperty("apple.awt.fileDialogForDirectories","true");
+  }
+  result.setVisible(true);
+  System.setProperty("apple.awt.fileDialogForDirectories","false");
+  if (result.getFile() == null) {
+    return CANCEL_OPTION;
+  }
+  final String selectedDir=result.getDirectory();
+  chooser.setSelectedFile(new File(FileUtils.ensureTrailingSlash(selectedDir) + result.getFile()));
+  return APPROVE_OPTION;
+}

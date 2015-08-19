@@ -1,0 +1,10 @@
+{
+  int counter=0;
+  for (  final INaviInstruction instruction : codeNode.getInstructions()) {
+    if (instruction.getAddress().equals(address)) {
+      return counter;
+    }
+    ++counter;
+  }
+  return -1;
+}

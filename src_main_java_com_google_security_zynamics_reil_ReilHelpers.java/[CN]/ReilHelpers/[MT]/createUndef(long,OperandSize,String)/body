@@ -1,0 +1,6 @@
+{
+  final ReilOperand firstOperand=createOperand(OperandSize.EMPTY,"");
+  final ReilOperand secondOperand=createOperand(OperandSize.EMPTY,"");
+  final ReilOperand thirdOperand=createOperand(size,value);
+  return new ReilInstruction(new CAddress(offset),ReilHelpers.OPCODE_UNDEF,firstOperand,secondOperand,thirdOperand);
+}

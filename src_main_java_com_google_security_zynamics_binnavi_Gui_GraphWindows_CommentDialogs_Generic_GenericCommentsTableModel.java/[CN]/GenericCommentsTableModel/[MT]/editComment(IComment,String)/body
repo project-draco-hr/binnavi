@@ -1,0 +1,16 @@
+{
+  IComment newlySetComment=null;
+  try {
+    if (newComment.isEmpty()) {
+      commentAccessor.deleteComment(comment);
+    }
+ else {
+      newlySetComment=commentAccessor.editComment(comment,newComment);
+    }
+  }
+ catch (  CouldntSaveDataException|CouldntDeleteException e) {
+    CUtilityFunctions.logException(e);
+  }
+  resetCachedComments();
+  return newlySetComment;
+}

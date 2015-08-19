@@ -1,0 +1,12 @@
+{
+  Preconditions.checkNotNull(value,"IE00887: Style argument must not be negative");
+  if (value == getStyle()) {
+    return;
+  }
+  if (m_type == null) {
+    m_style=value;
+  }
+ else {
+    m_type.setOrthogonalLayoutStyle(value.ordinal());
+  }
+}

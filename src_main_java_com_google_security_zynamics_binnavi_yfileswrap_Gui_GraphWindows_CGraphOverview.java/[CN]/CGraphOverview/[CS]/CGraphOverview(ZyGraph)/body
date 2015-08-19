@@ -1,0 +1,21 @@
+{
+  super(new BorderLayout());
+  Graph2DView view=zygraph.getView();
+  Preconditions.checkNotNull(view,"IE01616: View argument can not be null");
+  setBorder(new TitledBorder(new LineBorder(Color.LIGHT_GRAY,1,true),"Overview"));
+  final ZyOverview overview=new ZyOverview(view);
+  overview.setGraph2DRenderer(new ZyGraphLayeredRenderer<ZyOverview>(overview));
+  overview.putClientProperty("Overview.AnimateScrollTo",Boolean.TRUE);
+  overview.putClientProperty("Overview.PaintStyle","Funky");
+  overview.putClientProperty("Overview.AllowZooming",Boolean.TRUE);
+  overview.putClientProperty("Overview.AllowKeyboardNavigation",Boolean.TRUE);
+  overview.putClientProperty("Overview.Inverse",Boolean.TRUE);
+  overview.putClientProperty("Overview.BorderColor",Color.lightGray);
+  overview.putClientProperty("Overview.funkyTheta",new Double(0.9));
+  overview.putClientProperty("Overview.FogColor",new Color(DEFAULT_FOG_COLOR,DEFAULT_FOG_COLOR,DEFAULT_FOG_COLOR,0.5f));
+  overview.setAntialiasedPainting(true);
+  overview.setDoubleBuffered(true);
+  overview.setPreferredSize(new Dimension(DEFAULT_SIZE,DEFAULT_SIZE));
+  overview.setMinimumSize(new Dimension(0,0));
+  add(overview,BorderLayout.CENTER);
+}

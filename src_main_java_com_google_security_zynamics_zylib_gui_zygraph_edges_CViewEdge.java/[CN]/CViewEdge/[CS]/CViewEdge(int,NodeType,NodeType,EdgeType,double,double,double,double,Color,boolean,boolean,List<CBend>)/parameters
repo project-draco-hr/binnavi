@@ -1,0 +1,12 @@
+int id
+NodeType sourceNode
+NodeType targetNode
+EdgeType type
+double x1
+double y1
+double x2
+double y2
+Color color
+boolean selected
+boolean visible
+List<CBend> edgePaths

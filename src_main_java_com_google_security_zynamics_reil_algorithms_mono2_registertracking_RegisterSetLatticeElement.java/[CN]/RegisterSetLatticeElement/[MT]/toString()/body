@@ -1,0 +1,13 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  builder.append("Preserved added registers: " + m_nativeNewlyTaintedRegs + "\n");
+  builder.append("Preserved untainted registers: " + m_nativeUntaintedRegs + "\n");
+  builder.append("Preserved read registers: " + m_nativeReadRegs + "\n");
+  builder.append("Preserved updated registers: " + m_nativeUpdatedRegs + "\n");
+  builder.append("Tainted registers: " + m_taintedRegs + "\n");
+  builder.append("Added registers: " + m_newlyTaintedRegs + "\n");
+  builder.append("Untainted registers: " + m_untaintedRegs + "\n");
+  builder.append("Read registers: " + m_readRegs + "\n");
+  builder.append("Updated registers: " + m_updatedRegs + "\n");
+  return builder.toString();
+}

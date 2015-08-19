@@ -1,0 +1,4 @@
+{
+  final TypeInstance instance=new TypeInstance(500,"FOO",baseType,section,0,module);
+  typeInstancContainerBackend.deleteInstance(instance);
+}

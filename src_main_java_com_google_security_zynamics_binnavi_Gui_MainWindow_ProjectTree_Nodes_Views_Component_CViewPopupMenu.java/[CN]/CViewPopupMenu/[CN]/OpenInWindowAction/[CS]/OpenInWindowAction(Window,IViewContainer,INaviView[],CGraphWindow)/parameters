@@ -1,0 +1,4 @@
+Window parent
+IViewContainer container
+INaviView[] views
+CGraphWindow graphWindow

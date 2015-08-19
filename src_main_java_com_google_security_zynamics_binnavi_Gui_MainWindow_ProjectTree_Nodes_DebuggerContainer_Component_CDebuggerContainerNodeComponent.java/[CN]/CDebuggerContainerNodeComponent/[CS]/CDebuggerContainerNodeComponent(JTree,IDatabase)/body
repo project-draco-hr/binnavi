@@ -1,0 +1,7 @@
+{
+  super(new CDebuggersTable(projectTree,database),null,null);
+  m_database=database;
+  m_listener=new InternalDebuggerDescriptionManagerListener();
+  m_database.getContent().getDebuggerTemplateManager().addListener(m_listener);
+  updateBorderText(getBorderText());
+}

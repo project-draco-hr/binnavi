@@ -1,0 +1,18 @@
+{
+switch (size) {
+case BYTE:
+    return "b1";
+case WORD:
+  return "b2";
+case DWORD:
+return "b4";
+case QWORD:
+return "b8";
+case OWORD:
+return "b16";
+case ADDRESS:
+return "b4";
+default :
+throw new IllegalArgumentException(String.format("Error: Unknown operand size %s",size));
+}
+}

@@ -1,0 +1,4 @@
+{
+  m_debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,Sets.newHashSet(new BreakpointAddress(m_module,new UnrelocatedAddress(new CAddress(0x123)))));
+  assertEquals(BreakpointStatus.BREAKPOINT_INACTIVE,CGraphDebugger.getBreakpointStatus(m_debugger.getBreakpointManager(),m_module,new UnrelocatedAddress(new CAddress(0x123))));
+}

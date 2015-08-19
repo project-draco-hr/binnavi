@@ -1,0 +1,9 @@
+{
+  final ZyCaret caret=getActiveLabelContent().getCaret();
+  final int oldlr=caret.getYmouseReleased();
+  final int oldpr=caret.getXmouseReleased();
+  caret.setCaretEnd(labelParentX,labelParentY,mouseX,mouseY,zoomFactor);
+  if ((caret.getYmouseReleased() != oldlr) || (caret.getXmouseReleased() != oldpr)) {
+    m_activeRealizer.repaint();
+  }
+}

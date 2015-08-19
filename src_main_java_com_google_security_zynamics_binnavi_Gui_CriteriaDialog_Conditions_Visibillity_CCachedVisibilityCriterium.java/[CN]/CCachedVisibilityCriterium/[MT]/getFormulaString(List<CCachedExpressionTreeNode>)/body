@@ -1,0 +1,3 @@
+{
+  return m_visibilityState == VisibilityState.VISIBLE ? "VISIBLE" : "NOT VISIBLE";
+}

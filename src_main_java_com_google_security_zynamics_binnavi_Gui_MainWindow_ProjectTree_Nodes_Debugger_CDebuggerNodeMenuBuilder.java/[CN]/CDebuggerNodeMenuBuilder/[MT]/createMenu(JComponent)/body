@@ -1,0 +1,7 @@
+{
+  menu.add(new JMenuItem(CActionProxy.proxy(new CDeleteDebuggerDescriptionAction(getParent(),m_database,m_debuggers,getParentUpdater()))));
+  if (m_table != null) {
+    menu.add(new JSeparator());
+    menu.add(new JMenuItem(CActionProxy.proxy(new CopySelectionAction(m_table))));
+  }
+}

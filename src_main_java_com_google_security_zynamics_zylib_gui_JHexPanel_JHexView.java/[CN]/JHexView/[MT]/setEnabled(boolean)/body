@@ -1,0 +1,7 @@
+{
+  if (enabled == m_enabled) {
+    return;
+  }
+  m_enabled=enabled;
+  repaint();
+}

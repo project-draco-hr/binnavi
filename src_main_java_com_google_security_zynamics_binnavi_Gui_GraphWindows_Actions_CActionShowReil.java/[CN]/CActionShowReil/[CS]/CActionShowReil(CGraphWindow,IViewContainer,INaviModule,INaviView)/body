@@ -1,0 +1,7 @@
+{
+  super("Show REIL Code");
+  m_parent=Preconditions.checkNotNull(parent,"IE01650: Parent can't be null");
+  m_container=Preconditions.checkNotNull(container,"IE01652: Container argument can not be null");
+  m_module=Preconditions.checkNotNull(module,"IE02299: Module argument can not be null");
+  m_view=Preconditions.checkNotNull(view,"IE02300: View argument can not be null");
+}

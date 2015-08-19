@@ -1,0 +1,5 @@
+{
+  m_tagTree=Preconditions.checkNotNull(tagTree,"IE00853: Tag tree argument can't be null");
+  m_type=Preconditions.checkNotNull(type,"IE00854: Type argument can't be null");
+  m_provider=Preconditions.checkNotNull(provider,"IE00855: Provider argument can't be null");
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkState(isLoaded(),"IE00249: Project must be loaded first");
+  return new ArrayList<INaviView>(m_views);
+}

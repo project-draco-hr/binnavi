@@ -1,0 +1,3 @@
+{
+  super(Lists.newArrayList(new CViewGenerator(),new CNameDescriptionGenerator<CModuleWrapper>()));
+}

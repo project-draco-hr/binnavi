@@ -1,0 +1,18 @@
+{
+  for (  final NotificationChannel channel : channelNames) {
+    try {
+      m_connection.executeUpdate("UNLISTEN " + channel.name(),true);
+    }
+ catch (    final SQLException exception) {
+      NaviLogger.severe("Error: Could not send UNLISTEN command to database server: %s",exception);
+    }
+  }
+  for (  final PostgreSQLNotificationListener listener : m_listeners) {
+    try {
+      listener.listenedChannelsRemoved(m_provider,channelNames);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

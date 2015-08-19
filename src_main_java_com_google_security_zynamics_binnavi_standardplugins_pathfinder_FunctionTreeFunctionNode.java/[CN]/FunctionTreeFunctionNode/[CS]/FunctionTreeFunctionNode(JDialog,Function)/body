@@ -1,0 +1,7 @@
+{
+  m_function=Preconditions.checkNotNull(function);
+  m_parent=Preconditions.checkNotNull(parent);
+  createBlockNodes();
+  function.addListener(m_listener);
+  updateIcon();
+}

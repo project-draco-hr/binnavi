@@ -1,0 +1,4 @@
+{
+  super(packetId,errorCode);
+  this.addresses=Preconditions.checkNotNull(addresses,"IE01058: Addresses argument can not be null");
+}

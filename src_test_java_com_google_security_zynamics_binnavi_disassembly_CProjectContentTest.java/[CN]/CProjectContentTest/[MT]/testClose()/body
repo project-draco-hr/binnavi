@@ -1,0 +1,14 @@
+{
+  final CProjectContent projectContent=new CProjectContent(m_project,m_listeners,m_provider,m_addressSpaces,m_views,m_traces);
+  assertNotNull(projectContent);
+  final CAddressSpace spaceOne=projectContent.createAddressSpace("Address Space 1");
+  spaceOne.load();
+  final CAddressSpace spaceTwo=projectContent.createAddressSpace("Address Space 2");
+  spaceTwo.load();
+  final CAddressSpace spaceThree=projectContent.createAddressSpace("Address Space 3");
+  spaceThree.load();
+  final CAddressSpace spaceFour=projectContent.createAddressSpace("Address Space 4");
+  spaceFour.load();
+  @SuppressWarnings("unused") final INaviView viewOne=projectContent.createView(new MockView(m_provider),"View 1 Name","View 1 description");
+  projectContent.close();
+}

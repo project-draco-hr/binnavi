@@ -1,0 +1,8 @@
+{
+  return new DefaultFilter<INaviView,CViewWrapper>(convert,new IWrapperCreator<INaviView>(){
+    @Override public IFilterWrapper<INaviView> wrap(    final INaviView element){
+      return new CViewWrapper(element);
+    }
+  }
+);
+}

@@ -1,0 +1,7 @@
+Connection connection
+TypeSubstitution substitution
+BaseType baseType
+List<Integer> memberPath
+int position
+int offset
+INaviModule module

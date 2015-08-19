@@ -1,0 +1,5 @@
+{
+  checkArguments(provider,view);
+  Preconditions.checkNotNull(name,"IE00716: Name argument can not be null");
+  PostgreSQLHelpers.setName(provider.getConnection(),view.getConfiguration().getId(),name,CTableNames.VIEWS_TABLE);
+}

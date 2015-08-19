@@ -1,0 +1,8 @@
+{
+  return CollectionHelpers.map(nodes,new ICollectionMapper<INaviOperandTreeNode,String>(){
+    @Override public String map(    final INaviOperandTreeNode item){
+      return CFollowInDumpMenu.toString(item);
+    }
+  }
+);
+}

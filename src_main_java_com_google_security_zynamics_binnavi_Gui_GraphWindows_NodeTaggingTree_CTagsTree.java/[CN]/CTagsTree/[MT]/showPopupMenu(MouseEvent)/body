@@ -1,0 +1,14 @@
+{
+  final ITagTreeNode selectedNode=(ITagTreeNode)TreeHelpers.getNodeAt(this,event.getX(),event.getY());
+  if (selectedNode == null) {
+    final JPopupMenu popupMenu=new JPopupMenu();
+    popupMenu.add(CActionProxy.proxy(new CAddRootTagNodeAction(m_parent,m_tagManager,m_rootNode.getTag())));
+    popupMenu.show(this,event.getX(),event.getY());
+  }
+ else {
+    final JPopupMenu menu=selectedNode.getPopupMenu();
+    if (menu != null) {
+      menu.show(this,event.getX(),event.getY());
+    }
+  }
+}

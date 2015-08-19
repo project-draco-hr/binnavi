@@ -1,0 +1,4 @@
+{
+  m_resultsPanel.dispose();
+  m_resultsContainer.removeListener(m_internalListener);
+}

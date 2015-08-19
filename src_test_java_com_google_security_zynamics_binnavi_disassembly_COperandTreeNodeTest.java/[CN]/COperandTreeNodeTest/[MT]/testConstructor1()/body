@@ -1,0 +1,4 @@
+{
+  final COperandTreeNode node=new COperandTreeNode(1,1,"value",m_replacement,m_references,m_provider,module.getTypeManager(),module.getContent().getTypeInstanceContainer());
+  assertNotNull(node);
+}

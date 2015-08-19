@@ -1,0 +1,3 @@
+{
+  CGraphExporter.exportAsPng(m_parent,m_graph);
+}

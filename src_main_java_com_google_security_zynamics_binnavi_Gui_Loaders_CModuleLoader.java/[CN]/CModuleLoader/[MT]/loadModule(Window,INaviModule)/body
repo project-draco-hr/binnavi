@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(parent,"IE01197: Parent argument can not be null");
+  Preconditions.checkNotNull(module,"IE01278: Module argument can not be null");
+  loadModuleThreaded(parent,module,null);
+}

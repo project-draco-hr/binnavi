@@ -1,0 +1,16 @@
+{
+  final BreakpointManager manager=getDebugger().getBreakpointManager();
+  for (  final Pair<RelocatedAddress,Integer> resultPair : reply.getAddresses()) {
+    if (resultPair.second() == 0) {
+      final BreakpointAddress address=DebuggerHelpers.getBreakpointAddress(getDebugger(),resultPair.first());
+      try {
+        if (manager.hasBreakpoint(BreakpointType.ECHO,address)) {
+          manager.removeBreakpoints(BreakpointType.ECHO,Sets.newHashSet(address));
+        }
+      }
+ catch (      final IllegalArgumentException ex) {
+        NaviLogger.severe("Error: Manager could not remove breakpoint. Exception %s",ex);
+      }
+    }
+  }
+}

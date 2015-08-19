@@ -1,0 +1,3 @@
+{
+  PostgreSQLTypeFunctions.editTypeInstanceComment(this,moduleId,commentId,userId,commentText);
+}

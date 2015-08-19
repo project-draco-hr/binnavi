@@ -1,0 +1,11 @@
+{
+  double maxWidth=0;
+  double height=m_topPadding + m_bottomPadding;
+  for (  final ZyLineContent content : getContent()) {
+    if (content.getBounds().getWidth() > maxWidth) {
+      maxWidth=content.getBounds().getWidth();
+    }
+    height+=LINEHEIGHT;
+  }
+  return new Rectangle2D.Double(0,0,maxWidth + m_rightPadding + m_leftPadding,height);
+}

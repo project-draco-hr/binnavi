@@ -1,0 +1,10 @@
+{
+  final Pair<IAddress,Integer> realRange=MemoryRangeCalculator.calculateRequestRange(debugger,offset,size);
+  try {
+    memoryLoader.requestMemory(realRange.first(),realRange.second());
+  }
+ catch (  final DebugExceptionWrapper e) {
+    CUtilityFunctions.logException(e);
+  }
+  return memoryLoader.hasData(offset,size);
+}

@@ -1,0 +1,9 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"j");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final IOperandTreeNode target=operands.get(0).getRootNode().getChildren().get(0);
+  final long baseOffset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  final long offset=baseOffset;
+  final OperandSize dw=OperandSize.DWORD;
+  Helpers.generateDelayBranch(instructions,offset,dw,String.valueOf(1L),dw,target);
+}

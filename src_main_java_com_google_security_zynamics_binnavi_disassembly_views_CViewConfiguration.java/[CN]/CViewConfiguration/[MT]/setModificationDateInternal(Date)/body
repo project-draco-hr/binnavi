@@ -1,0 +1,11 @@
+{
+  this.modificationDate=Preconditions.checkNotNull(modificationDate,"Error: modificationDate argument can not be null");
+  for (  final INaviViewListener listener : listeners) {
+    try {
+      listener.changedModificationDate(view,this.modificationDate);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

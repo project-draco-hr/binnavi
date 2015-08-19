@@ -1,0 +1,13 @@
+{
+  if ((ins.getFirstOperand().getType() == OperandType.INTEGER_LITERAL) && ins.getFirstOperand().getValue().equalsIgnoreCase("0")) {
+    final RegisterSetLatticeElement newState=state.copy();
+    newState.untaint(ins.getThirdOperand().getValue());
+    return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newState,null);
+  }
+ else   if ((ins.getSecondOperand().getType() == OperandType.INTEGER_LITERAL) && ins.getSecondOperand().getValue().equalsIgnoreCase("0")) {
+    final RegisterSetLatticeElement newState=state.copy();
+    newState.untaint(ins.getThirdOperand().getValue());
+    return new Pair<RegisterSetLatticeElement,RegisterSetLatticeElement>(newState,null);
+  }
+  return transformNormalInstruction(ins,state);
+}

@@ -1,0 +1,4 @@
+Window parent
+String productName
+String currentVersion
+String currentChannel

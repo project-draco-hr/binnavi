@@ -1,0 +1,3 @@
+{
+  CEdgeClickHandler.handleEdgeClicks(state.getGraph(),state.getEdge(),event);
+}

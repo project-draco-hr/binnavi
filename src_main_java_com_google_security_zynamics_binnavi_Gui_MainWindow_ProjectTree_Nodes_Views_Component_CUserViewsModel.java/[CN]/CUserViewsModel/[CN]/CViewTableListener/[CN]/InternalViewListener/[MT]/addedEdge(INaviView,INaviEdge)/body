@@ -1,0 +1,4 @@
+{
+  m_cachedViews=null;
+  m_updateTimer.restart();
+}

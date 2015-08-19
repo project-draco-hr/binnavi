@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(graph,"IE01739: Graph argument can not be null");
+  graph.getSettings().getProximitySettings().setProximityBrowsingFrozen(!graph.getSettings().getProximitySettings().getProximityBrowsingFrozen());
+}

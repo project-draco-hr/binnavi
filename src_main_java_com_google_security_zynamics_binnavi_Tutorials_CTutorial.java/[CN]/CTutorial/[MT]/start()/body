@@ -1,0 +1,6 @@
+{
+  m_stepCounter=0;
+  for (  final ITutorialListener listener : m_listeners) {
+    listener.started(this);
+  }
+}

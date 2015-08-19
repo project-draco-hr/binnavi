@@ -1,0 +1,45 @@
+{
+  final ZyLabelContent labelContent=getLabelContent();
+  int caretStartPos_X=getCaretStartPosX();
+  final int mousePressed_X=getCaretMousePressedX();
+  final int mousePressed_Y=getCaretMousePressedY();
+  int caretEndPos_X=getCaretEndPosX();
+  int mouseReleased_X=getCaretMouseReleasedX();
+  int mouseReleased_Y=getCaretMouseReleasedY();
+  final int linecount=labelContent.getLineCount();
+  if ((xDelta != 0) || (yDelta != 0)) {
+    mouseReleased_Y+=yDelta;
+    if (mouseReleased_Y < 0) {
+      mouseReleased_Y=0;
+    }
+    if (mouseReleased_Y > (linecount - 1)) {
+      mouseReleased_Y=linecount - 1;
+    }
+    mouseReleased_X+=xDelta;
+    if (mouseReleased_X < 0) {
+      mouseReleased_X=0;
+    }
+    int lp=mousePressed_Y;
+    int lr=mouseReleased_Y;
+    if (lp > lr) {
+      lp=mouseReleased_Y;
+      lr=mousePressed_Y;
+    }
+    int maxlength=0;
+    for (int y=lp; y <= lr; ++y) {
+      maxlength=Math.max(maxlength,labelContent.getLineContent(y).getText().length());
+    }
+    if (mouseReleased_X > maxlength) {
+      mouseReleased_X=maxlength;
+    }
+    if (mouseReleased_X <= labelContent.getLineContent(mouseReleased_Y).getTextLayout().getCharacterCount()) {
+      caretEndPos_X=mouseReleased_X;
+    }
+ else {
+      caretEndPos_X=labelContent.getLineContent(mouseReleased_Y).getTextLayout().getCharacterCount();
+    }
+    caretStartPos_X=mousePressed_X;
+  }
+  mouseReleased_X=correctMouseReleasedX(mouseReleased_X,mouseReleased_Y,mousePressed_Y);
+  setCaret(caretStartPos_X,mousePressed_X,mousePressed_Y,caretEndPos_X,mouseReleased_X,mouseReleased_Y);
+}

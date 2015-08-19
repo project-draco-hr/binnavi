@@ -1,0 +1,4 @@
+{
+  m_reducedResults.clear();
+  m_currentSearchIndex=0;
+}

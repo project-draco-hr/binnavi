@@ -1,0 +1,4 @@
+{
+  super(new CModulesTableModel(),new CMemoryModulesTableHelp());
+  setDefaultRenderer(Object.class,m_renderer);
+}

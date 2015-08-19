@@ -1,0 +1,4 @@
+{
+  nodeRealizer.regenerate();
+  graph.updateViews();
+}

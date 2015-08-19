@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(debuggerProvider,"IE01704: Debugger provider argument can not be null");
+  Preconditions.checkNotNull(instruction,"IE01705: Instruction argument can not be null");
+  return debuggerProvider.getDebugger(instruction.getModule());
+}

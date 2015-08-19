@@ -1,0 +1,4 @@
+{
+  final long offset=Long.valueOf(m_offsetField.getText(),16);
+  search(offset);
+}

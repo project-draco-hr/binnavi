@@ -1,0 +1,5 @@
+{
+  m_hexView.removeHexListener(m_hexListener);
+  synchronizeDebugger(m_debugPerspectiveModel.getCurrentSelectedDebugger(),null);
+  m_debugPerspectiveModel.removeListener(m_debugListener);
+}

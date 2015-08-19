@@ -1,0 +1,9 @@
+{
+  assertEquals(66,m_module.getCustomViewCount());
+  assertEquals(55,m_module.getFunctionCount());
+  assertEquals(122,m_module.getViewCount());
+  m_module.load();
+  assertEquals(0,m_module.getCustomViewCount());
+  assertEquals(1,m_module.getFunctionCount());
+  assertEquals(2,m_module.getViewCount());
+}

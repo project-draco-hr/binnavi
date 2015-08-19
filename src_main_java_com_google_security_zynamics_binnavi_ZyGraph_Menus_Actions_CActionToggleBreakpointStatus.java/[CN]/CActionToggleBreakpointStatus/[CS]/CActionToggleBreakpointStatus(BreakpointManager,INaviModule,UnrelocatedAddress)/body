@@ -1,0 +1,6 @@
+{
+  super("Toggle Breakpoint Status");
+  m_manager=manager;
+  m_module=module;
+  m_address=address;
+}

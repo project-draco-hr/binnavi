@@ -1,0 +1,19 @@
+{
+  m_debuggerTemplates=new FilledList<DebuggerTemplate>();
+  final List<DebuggerTemplate> apiTemplates=m_database.getDebuggerTemplateManager().getDebuggerTemplates();
+  for (  final com.google.security.zynamics.binnavi.debug.debugger.DebuggerTemplate debuggerTemplate : m_project.getConfiguration().getDebuggers()) {
+    m_debuggerTemplates.add(ObjectFinders.getObject(debuggerTemplate,apiTemplates));
+  }
+  m_traces=new FilledList<Trace>();
+  for (  final TraceList trace : m_project.getContent().getTraces()) {
+    m_traces.add(new Trace(trace));
+  }
+  m_addressSpaces=new FilledList<AddressSpace>();
+  for (  final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+    m_addressSpaces.add(new AddressSpace(m_database,this,addressSpace));
+  }
+  m_views=new FilledList<View>();
+  for (  final INaviView view : m_project.getContent().getViews()) {
+    m_views.add(new View(this,view,m_nodeTagManager,m_viewTagManager));
+  }
+}

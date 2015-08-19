@@ -1,0 +1,6 @@
+{
+  super(new BorderLayout());
+  m_operatorBox=new CRelationBox(criterium);
+  m_inputField=new CTextInputField(criterium,new CDecFormatter(8));
+  initPanel();
+}

@@ -1,0 +1,18 @@
+{
+  final int nrOfColumns=m_Table.getModel().getColumnCount();
+  final int nrOfRows=m_Table.getRowCount();
+  for (int row=0; row < nrOfRows; ++row) {
+    for (int column=0; column < nrOfColumns; ++column) {
+      final Object cell=m_Table.getModel().getValueAt((row + m_StartRow) % nrOfRows,column);
+      final String text=cell != null ? cell.toString() : "";
+      if (text.toLowerCase().contains(searchText.toLowerCase())) {
+        m_StartRow=(row + m_StartRow) % nrOfRows;
+        m_Table.setRowSelectionInterval(m_StartRow,m_StartRow);
+        m_Table.scrollRectToVisible(m_Table.getCellRect(m_StartRow,0,true));
+        ++m_StartRow;
+        return true;
+      }
+    }
+  }
+  return false;
+}

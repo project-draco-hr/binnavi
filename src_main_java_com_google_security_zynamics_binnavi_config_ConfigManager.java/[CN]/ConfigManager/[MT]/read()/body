@@ -1,0 +1,33 @@
+{
+  boolean notFound=false;
+  try {
+    properties.getProperties().loadFromXML(new FileInputStream(filename));
+  }
+ catch (  final FileNotFoundException e) {
+    notFound=true;
+  }
+catch (  final InvalidPropertiesFormatException e) {
+    throw new FileReadException(e);
+  }
+catch (  final IOException e) {
+    throw new FileReadException(e);
+  }
+  generalSettings.load(properties);
+  for (int i=0; i < properties.getInteger(DATABASES_COUNT,DATABASES_COUNT_DEFAULT); i++) {
+    final DatabaseConfigItem database=new DatabaseConfigItem();
+    database.loadWithKeyPrefix(properties,DATABASES_PREFIX + i + ".");
+    databases.add(database);
+  }
+  callGraphSettings.loadWithKeyPrefix(properties,"CallGraphSettings.");
+  flowGraphSettings.loadWithKeyPrefix(properties,"FlowGraphSettings.");
+  colors.loadWithKeyPrefix(properties,"Colors.");
+  debuggerColors.loadWithKeyPrefix(properties,"Debugger.Colors.");
+  if (notFound) {
+    flowGraphSettings.setDefaultGraphLayout(1);
+    flowGraphSettings.setProximityBrowsingThreshold(50);
+    flowGraphSettings.setAutoLayoutDeactivationThreshold(70);
+    flowGraphSettings.setLayoutCalculationThreshold(250);
+    return false;
+  }
+  return true;
+}

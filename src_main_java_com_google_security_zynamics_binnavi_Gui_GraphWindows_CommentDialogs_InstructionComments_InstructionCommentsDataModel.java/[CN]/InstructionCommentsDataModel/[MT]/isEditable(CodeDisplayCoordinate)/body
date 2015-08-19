@@ -1,0 +1,12 @@
+{
+  if (coordinate.getColumn() == 2) {
+    IComment comment=getCommentAtCoordinate(coordinate);
+    if (comment.getNumberOfCommentLines() == 0) {
+      return true;
+    }
+    if (commentAccessor.isOwner(comment)) {
+      return true;
+    }
+  }
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  final INaviProject[] projects=new CProject[sortSelectedRows.length];
+  for (int i=0; i < projects.length; i++) {
+    projects[i]=getTreeTableModel().getProjects().get(sortSelectedRows[i]);
+  }
+  return projects;
+}

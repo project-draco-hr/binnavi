@@ -1,0 +1,7 @@
+{
+  try {
+    tagNode(parent,node,getSelectedTag(tagsTree));
+  }
+ catch (  final MaybeNullException exception) {
+  }
+}

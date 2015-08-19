@@ -1,0 +1,4 @@
+INaviInstruction instruction
+StringBuffer line
+List<CStyleRunData> styleRun
+INodeModifier modifier

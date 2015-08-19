@@ -1,0 +1,7 @@
+{
+  final CCriteriumTree cCriteriumTree=new CCriteriumTree();
+  final CCriteriumTreeNode child=new CCriteriumTreeNode(new CColorCriterium(m_graph));
+  cCriteriumTree.appendNode(cCriteriumTree.getRoot(),child);
+  CCriteriumFunctions.insertCriterium(cCriteriumTree,cCriteriumTree.getRoot(),new COrCriterium());
+  assertTrue(cCriteriumTree.getRoot().getChildren().get(0).getCriterium() instanceof COrCriterium);
+}

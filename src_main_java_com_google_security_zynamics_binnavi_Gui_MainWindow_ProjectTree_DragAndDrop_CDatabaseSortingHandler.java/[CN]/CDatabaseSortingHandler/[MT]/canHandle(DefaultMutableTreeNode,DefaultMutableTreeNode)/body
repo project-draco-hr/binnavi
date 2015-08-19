@@ -1,0 +1,3 @@
+{
+  return (parentNode instanceof CDatabaseNode) && (draggedNode instanceof CDatabaseNode) && (parentNode != draggedNode);
+}

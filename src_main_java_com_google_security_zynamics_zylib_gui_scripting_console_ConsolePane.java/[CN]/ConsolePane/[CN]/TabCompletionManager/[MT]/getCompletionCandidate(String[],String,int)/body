@@ -1,0 +1,17 @@
+{
+  boolean completionsExist=false;
+  for (  final String element : candidates) {
+    if (element.startsWith(str)) {
+      completionsExist=true;
+      if (completionIdx == 0) {
+        m_completionIndex++;
+        return element;
+      }
+      completionIdx--;
+    }
+  }
+  if (completionsExist) {
+    return getCompletionCandidate(candidates,str,completionIdx);
+  }
+  return null;
+}

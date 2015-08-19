@@ -1,0 +1,5 @@
+{
+  if (graph.getViewCursor() != DEFAULT_CURSOR) {
+    graph.setViewCursor(DEFAULT_CURSOR);
+  }
+}

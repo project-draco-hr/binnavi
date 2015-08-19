@@ -1,0 +1,9 @@
+{
+  final TraceList eventList=getTraces().get(row);
+  if (col == NAME_COLUMN) {
+    CTraceFunctions.setTraceName(null,eventList,(String)value);
+  }
+ else   if (col == DESCRIPTION_COLUMN) {
+    CTraceFunctions.setTraceDescription(null,eventList,(String)value);
+  }
+}

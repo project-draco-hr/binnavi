@@ -1,0 +1,5 @@
+{
+  for (int i=0; i < manager.getNumberOfBreakpoints(BreakpointType.REGULAR); i++) {
+    manager.setBreakpointStatus(BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_ENABLED,i);
+  }
+}

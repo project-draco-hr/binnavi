@@ -1,0 +1,8 @@
+{
+  if (clickCount == 1) {
+    MoveFunctions.centerNode(m_graph,node);
+  }
+ else   if (clickCount == 2) {
+    ZoomFunctions.zoomToNode(m_graph,node);
+  }
+}

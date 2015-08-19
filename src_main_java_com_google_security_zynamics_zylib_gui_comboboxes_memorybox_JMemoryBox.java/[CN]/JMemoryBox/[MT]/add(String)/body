@@ -1,0 +1,3 @@
+{
+  m_model.add(Preconditions.checkNotNull(text,"Error: Text argument can not be null"));
+}

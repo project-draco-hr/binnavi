@@ -1,0 +1,3 @@
+{
+  this.debugException=Preconditions.checkNotNull(debugException,"Error: debugException argument can not be null");
+}

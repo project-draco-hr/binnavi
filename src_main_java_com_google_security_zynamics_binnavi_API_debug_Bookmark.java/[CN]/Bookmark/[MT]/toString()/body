@@ -1,0 +1,3 @@
+{
+  return String.format("Bookmark %s/'%s'",getAddress().toHexString(),getDescription());
+}

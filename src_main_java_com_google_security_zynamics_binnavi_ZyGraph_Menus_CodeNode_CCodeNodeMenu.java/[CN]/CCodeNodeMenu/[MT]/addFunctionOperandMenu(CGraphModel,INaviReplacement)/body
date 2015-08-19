@@ -1,0 +1,6 @@
+{
+  final INaviFunction function=((CFunctionReplacement)replacement).getFunction();
+  final INaviView view=function.getModule().getContent().getViewContainer().getView(function);
+  add(new CChangeFunctionNameAction(model.getParent(),view));
+  addSeparator();
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkArgument(node instanceof IAddressNode,"IE00431: Node is not a code node or a function node");
+  return ((IAddressNode)node).getAddress();
+}

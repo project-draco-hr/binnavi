@@ -1,0 +1,7 @@
+{
+  Assert.assertEquals(rawType.getId(),baseType.getId());
+  Assert.assertEquals(rawType.getName(),baseType.getName());
+  Assert.assertEquals(rawType.getSize(),baseType.getBitSize());
+  final BaseType pointerType=baseType.pointedToBy();
+  Assert.assertEquals(rawType.getPointerId(),pointerType == null ? null : pointerType.getId());
+}

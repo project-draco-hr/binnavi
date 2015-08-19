@@ -1,0 +1,6 @@
+{
+  if (m_projects.length == 1) {
+    m_projects[0].removeListener(m_listener);
+    m_container.dispose();
+  }
+}

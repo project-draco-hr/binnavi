@@ -1,0 +1,10 @@
+{
+  GuiHelper.centerChildToParent(m_model.getParent(),m_criteriaDlg,true);
+  m_criteriaDlg.setVisible(true);
+  m_criteriaDlg.setVisible(false);
+  if (m_criteriaDlg.isClosedOk()) {
+    final CCriteriumTree tree=m_criteriaDlg.getCriteriumTree();
+    m_menuBar.getCriteriumCache().add(tree.createCachedTree());
+    CCriteriumExecuter.execute(tree,m_model.getGraph());
+  }
+}

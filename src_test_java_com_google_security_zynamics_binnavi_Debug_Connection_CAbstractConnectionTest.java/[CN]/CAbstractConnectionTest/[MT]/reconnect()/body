@@ -1,0 +1,17 @@
+{
+  final DebugCommand command=new DebugCommand(DebugCommandType.RESP_INFO,0);
+  command.addArgument(new DebugMessageRawArgument("<info><registers></registers><size>32</size><options></options></info>".getBytes()));
+  final MockDebugger debugger=new MockDebugger(new byte[][]{"NAVI".getBytes(),command.toByteArray()});
+  final MockEventListener listener=new MockEventListener();
+  debugger.addListener(listener);
+  debugger.connect();
+  debugger.connection.m_reader.next();
+  debugger.connection.m_reader.next();
+  debugger.close();
+  assertEquals("RECEIVED_TARGET_INFORMATION;",listener.events);
+  debugger.connect();
+  debugger.connection.m_reader.next();
+  debugger.connection.m_reader.next();
+  debugger.close();
+  assertEquals("RECEIVED_TARGET_INFORMATION;RECEIVED_TARGET_INFORMATION;",listener.events);
+}

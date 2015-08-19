@@ -1,0 +1,3 @@
+{
+  return m_content.getPaddingTop() + (line * m_content.getLineHeight());
+}

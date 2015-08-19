@@ -1,0 +1,4 @@
+{
+  autoConnectBox.setSelected(autoConnect);
+  updateSaveButton();
+}

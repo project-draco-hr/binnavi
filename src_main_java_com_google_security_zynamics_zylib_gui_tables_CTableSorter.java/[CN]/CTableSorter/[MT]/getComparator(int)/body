@@ -1,0 +1,18 @@
+{
+  final Class columnType=tableModel.getColumnClass(column);
+  Comparator<Object> comparator=primaryColumnComparator.get(column);
+  if (comparator != null) {
+    return comparator;
+  }
+  comparator=columnComparators.get(columnType);
+  if (comparator != null) {
+    return comparator;
+  }
+  if (columnType.equals(String.class)) {
+    return (Comparator)new LexicalComparator();
+  }
+  if (Comparable.class.isAssignableFrom(columnType)) {
+    return COMPARABLE_COMPARATOR;
+  }
+  return (Comparator)new LexicalComparator();
+}

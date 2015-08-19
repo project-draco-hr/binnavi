@@ -1,0 +1,7 @@
+INaviModule module
+ICallgraphView nativeCallgraph
+ImmutableList<IFlowgraphView> nativeFlowgraphs
+List<INaviView> customViews
+ImmutableBiMap<INaviView,INaviFunction> viewFunctionBiMap
+ListenerProvider<IModuleListener> listeners
+SQLProvider provider

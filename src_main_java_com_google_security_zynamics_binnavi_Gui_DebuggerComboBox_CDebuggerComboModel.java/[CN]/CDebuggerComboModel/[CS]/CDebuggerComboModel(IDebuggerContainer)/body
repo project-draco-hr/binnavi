@@ -1,0 +1,5 @@
+{
+  this.debuggerContainer=Preconditions.checkNotNull(debuggerContainer,"IE01570: Debugger container argument can not be null");
+  debuggerContainer.addListener(debuggerListener);
+  updateElements();
+}

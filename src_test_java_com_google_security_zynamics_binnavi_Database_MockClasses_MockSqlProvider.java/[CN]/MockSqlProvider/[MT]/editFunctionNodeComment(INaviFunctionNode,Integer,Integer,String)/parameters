@@ -1,0 +1,4 @@
+INaviFunctionNode functionNode
+Integer commentId
+Integer userId
+String newCommentText

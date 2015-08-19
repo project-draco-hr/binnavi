@@ -1,0 +1,29 @@
+{
+  final String idcFileString=idcPath.getAbsolutePath();
+  final String sArgument=getSArgument(idcFileString,SystemHelpers.isRunningWindows());
+  final ProcessBuilder processBuilder=new ProcessBuilder(idaExe,"-A","-OExporterModule:" + outputDirectory,sArgument,idbFileName);
+  try {
+    Process processInfo=null;
+    processBuilder.redirectErrorStream(true);
+    processInfo=processBuilder.start();
+    final BufferedReader reader=new BufferedReader(new InputStreamReader(processInfo.getInputStream()));
+    String line;
+    try {
+      while ((line=reader.readLine()) != null) {
+        System.out.println(line);
+      }
+    }
+ catch (    final IOException exception) {
+      reader.close();
+    }
+    reader.close();
+    return processInfo;
+  }
+ catch (  final Exception exception) {
+    try {
+    }
+ catch (    final UnknownFormatConversionException e) {
+    }
+    throw new IdaException("Failed attempting to launch the importer with IDA: " + exception,exception);
+  }
+}

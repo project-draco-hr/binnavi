@@ -1,0 +1,17 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  final Function function=module.getFunctions().get(0);
+  m_view.load();
+  final FunctionNode node1=m_view.createFunctionNode(function);
+  final FunctionNode node2=m_view.createFunctionNode(function);
+  m_view.addListener(listener);
+  final ViewEdge edge=m_view.createEdge(node1,node2,EdgeType.JumpUnconditional);
+  assertEquals(edge,m_view.getGraph().getEdges().get(0));
+  assertEquals(node1,edge.getSource());
+  assertEquals(node2,edge.getTarget());
+  assertEquals(node1,node2.getParents().get(0));
+  assertEquals(node2,node1.getChildren().get(0));
+  assertEquals(EdgeType.JumpUnconditional,edge.getType());
+  assertEquals(listener.events,"addedEdge;");
+  m_view.removeListener(listener);
+}

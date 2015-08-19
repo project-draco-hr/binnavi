@@ -1,0 +1,6 @@
+{
+  final TypeInstanceContainer typeInstanceContainer=new TypeInstanceContainer(typeInstanceContainerBackend,provider);
+  final TypeInstanceContainerEvents listener=new TypeInstanceContainerEvents();
+  typeInstanceContainer.addListener(listener);
+  typeInstanceContainer.deleteInstance((TypeInstance)null);
+}

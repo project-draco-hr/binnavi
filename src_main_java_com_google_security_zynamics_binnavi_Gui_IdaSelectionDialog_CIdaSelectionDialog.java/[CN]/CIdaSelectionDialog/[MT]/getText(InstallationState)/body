@@ -1,0 +1,12 @@
+{
+switch (state) {
+case Installed:
+    return "Installed";
+case InvalidIdaDirectory:
+  return "Invalid IDA Directory";
+case NotInstalled:
+return "Not Installed";
+default :
+throw new IllegalStateException("IE00683: Unknown state");
+}
+}

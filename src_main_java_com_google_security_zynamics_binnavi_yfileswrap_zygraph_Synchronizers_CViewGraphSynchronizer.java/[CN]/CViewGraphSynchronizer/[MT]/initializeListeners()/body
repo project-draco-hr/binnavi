@@ -1,0 +1,17 @@
+{
+  m_graph.getRawView().addListener(m_viewListener);
+  for (  final INaviViewNode node : m_graph.getRawView().getGraph().getNodes()) {
+    if (node instanceof INaviGroupNode) {
+      ((INaviGroupNode)node).addGroupListener(m_groupNodeListener);
+    }
+  }
+  for (  final INaviViewNode node : m_graph.getRawView().getGraph()) {
+    if (node instanceof INaviFunctionNode) {
+      addModuleListener((INaviFunctionNode)node);
+    }
+    final Iterator<CTag> it=node.getTagsIterator();
+    while (it.hasNext()) {
+      addTagListener(it.next());
+    }
+  }
+}

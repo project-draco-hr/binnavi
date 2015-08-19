@@ -1,0 +1,3 @@
+{
+  return Objects.hash(this.id,this.name,this.pointerId,this.size,this.isSigned);
+}

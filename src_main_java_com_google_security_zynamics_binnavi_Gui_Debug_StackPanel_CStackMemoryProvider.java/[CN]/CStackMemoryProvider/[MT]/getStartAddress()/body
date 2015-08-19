@@ -1,0 +1,21 @@
+{
+  if (m_activeThread == null || m_activeThread.getRegisterValues().size() == 0 || m_debugger == null) {
+    return -1;
+  }
+  final BigInteger stackValue=getStackValue(m_activeThread.getRegisterValues());
+  if (stackValue == null) {
+    return -1;
+  }
+  final MemorySection section=m_debugger.getProcessManager().getMemoryMap().findOffset(stackValue);
+  if (section == null) {
+    if (m_debugger.isConnected()) {
+      return stackValue.and(BigInteger.valueOf(~0xFFF)).longValue();
+    }
+ else {
+      return -1;
+    }
+  }
+ else {
+    return section.getStart().toLong();
+  }
+}

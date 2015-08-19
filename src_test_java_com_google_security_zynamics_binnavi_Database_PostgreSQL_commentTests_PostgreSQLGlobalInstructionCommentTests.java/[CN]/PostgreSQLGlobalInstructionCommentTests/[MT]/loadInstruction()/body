@@ -1,0 +1,3 @@
+{
+  instruction=loadInstruction(getNotepadModule(),"sub_1002B87");
+}

@@ -1,0 +1,3 @@
+{
+  return "INDEGREE" + m_operator + m_indegree;
+}

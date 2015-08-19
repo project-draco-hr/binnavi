@@ -1,0 +1,14 @@
+{
+  final List<byte[]> dataList=new ArrayList<byte[]>();
+  final String query="SELECT data FROM " + CTableNames.DATA_PARTS_TABLE + " WHERE module_id = "+ module.getConfiguration().getId()+ " ORDER BY part_id ASC";
+  final ResultSet resultSet=provider.executeQuery(query);
+  try {
+    while (resultSet.next()) {
+      dataList.add(resultSet.getBytes("data"));
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  return dataList;
+}

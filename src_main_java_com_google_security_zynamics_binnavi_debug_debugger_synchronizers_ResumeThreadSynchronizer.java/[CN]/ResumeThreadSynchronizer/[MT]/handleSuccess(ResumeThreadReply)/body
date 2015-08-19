@@ -1,0 +1,9 @@
+{
+  try {
+    final TargetProcessThread thread=getDebugger().getProcessManager().getThread(reply.getThreadId());
+    thread.setState(ThreadState.RUNNING);
+  }
+ catch (  final MaybeNullException exception) {
+    NaviLogger.severe("Error: Tried to resume unknown thread '%d'",reply.getThreadId());
+  }
+}

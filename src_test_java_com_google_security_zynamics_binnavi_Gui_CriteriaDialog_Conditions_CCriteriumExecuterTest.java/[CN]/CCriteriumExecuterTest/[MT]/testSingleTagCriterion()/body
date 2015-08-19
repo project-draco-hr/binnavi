@@ -1,0 +1,15 @@
+{
+  final Set<CTag> tags=new HashSet<CTag>();
+  for (  final NaviNode node : m_graph.getNodes()) {
+    if (node.getRawNode().isTagged()) {
+      tags.addAll(node.getRawNode().getTags());
+    }
+  }
+  assertEquals(1,tags.size());
+  final CCachedTagCriterium criterium=new CCachedTagCriterium(false,Iterables.getOnlyElement(tags));
+  final CCachedExpressionTreeNode node=new CCachedExpressionTreeNode(criterium);
+  CCachedExpressionTreeNode.append(m_tree.getRoot(),node);
+  assertEquals(0,m_graph.getSelectedNodes().size());
+  CCriteriumExecuter.execute(m_tree,m_graph);
+  assertEquals(1,m_graph.getSelectedNodes().size());
+}

@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(database,"Error: Database argument can not be null");
+  m_manager.removeDatabase(database.getNative());
+}

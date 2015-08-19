@@ -1,0 +1,22 @@
+{
+  if (conditionString.trim().isEmpty()) {
+    throw new MaybeNullException();
+  }
+  final CharStream charStream=new ANTLRStringStream(conditionString);
+  final ConditionLexer lexer=new ConditionLexer(charStream);
+  final CommonTokenStream tokens=new CommonTokenStream();
+  tokens.setTokenSource(lexer);
+  final ConditionParser parser=new ConditionParser(tokens);
+  parser.setTreeAdaptor(adaptor);
+  try {
+    final ConditionParser.prog_return parserResult=parser.prog();
+    final CommonTree ast=(CommonTree)parserResult.getTree();
+    if (parser.input.index() < parser.input.size()) {
+      throw new RecognitionException();
+    }
+    return convert(ast);
+  }
+ catch (  final IllegalArgumentException e) {
+    throw new RecognitionException();
+  }
+}

@@ -1,0 +1,10 @@
+{
+  for (int i=0; i < getChildCount(); i++) {
+    final CDatabaseNode child=(CDatabaseNode)getChildAt(i);
+    if (child.getObject() == database) {
+      throw new IllegalStateException("IE01177: Database should not be added twice");
+    }
+  }
+  add(new CDatabaseNode(getProjectTree(),CRootNode.this,database));
+  getTreeModel().nodeStructureChanged(CRootNode.this);
+}

@@ -1,0 +1,4 @@
+{
+  updateCurrentWindowTitle(view);
+  m_tabbedPane.updateRegisterHeaders();
+}

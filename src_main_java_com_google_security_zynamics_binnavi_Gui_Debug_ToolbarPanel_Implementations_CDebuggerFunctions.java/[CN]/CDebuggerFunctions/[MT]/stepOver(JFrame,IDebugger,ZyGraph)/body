@@ -1,0 +1,35 @@
+{
+  checkArguments(parent,debugger,graph);
+  if (!debugger.isConnected()) {
+    return;
+  }
+  final TargetProcessThread activeThread=debugger.getProcessManager().getActiveThread();
+  if (activeThread == null) {
+    return;
+  }
+  final RelocatedAddress currentAddress=activeThread.getCurrentAddress();
+  if (currentAddress == null) {
+    CMessageBox.showError(parent,"Could not step because the selected thread is not suspended");
+    return;
+  }
+  final UnrelocatedAddress oldAddress=debugger.memoryToFile(currentAddress);
+  final Set<BreakpointAddress> relocatedAddresses=CStepOverHelper.getNextInstructions(graph,oldAddress);
+  if (relocatedAddresses.isEmpty()) {
+    CMessageBox.showError(parent,"Couldn't step over the current instruction");
+    return;
+  }
+ else {
+    debugger.getProcessManager().setActiveThread(null);
+    debugger.getBreakpointManager().addBreakpoints(BreakpointType.STEP,relocatedAddresses);
+    try {
+      debugger.resume();
+    }
+ catch (    final DebugExceptionWrapper e) {
+      debugger.getProcessManager().setActiveThread(activeThread);
+      CUtilityFunctions.logException(e);
+      final String innerMessage="E00087: " + "Could not send step over command to the debug client";
+      final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the step over command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The state of the debugged process remains unchanged."});
+      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    }
+  }
+}

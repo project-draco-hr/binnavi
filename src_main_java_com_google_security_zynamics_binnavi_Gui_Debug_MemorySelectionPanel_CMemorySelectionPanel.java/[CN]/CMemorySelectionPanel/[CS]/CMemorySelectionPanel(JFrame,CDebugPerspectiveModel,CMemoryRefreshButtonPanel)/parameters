@@ -1,0 +1,3 @@
+JFrame parent
+CDebugPerspectiveModel debugPerspectiveModel
+CMemoryRefreshButtonPanel refreshPanel

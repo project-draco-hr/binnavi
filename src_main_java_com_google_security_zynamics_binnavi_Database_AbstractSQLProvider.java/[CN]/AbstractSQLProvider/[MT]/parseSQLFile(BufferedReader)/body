@@ -1,0 +1,13 @@
+{
+  final StringBuffer contents=new StringBuffer();
+  String line=null;
+  while ((line=input.readLine()) != null) {
+    if (line.length() > 0 && line.charAt(0) == '#') {
+      continue;
+    }
+    contents.append(line);
+    contents.append('\n');
+  }
+  input.close();
+  return contents.toString();
+}

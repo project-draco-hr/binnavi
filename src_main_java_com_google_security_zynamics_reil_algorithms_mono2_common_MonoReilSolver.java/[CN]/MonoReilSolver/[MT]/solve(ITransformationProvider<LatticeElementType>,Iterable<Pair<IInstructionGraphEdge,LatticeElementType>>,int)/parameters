@@ -1,0 +1,3 @@
+ITransformationProvider<LatticeElementType> transformationProvider
+Iterable<Pair<IInstructionGraphEdge,LatticeElementType>> initialStates
+int maximumIteration

@@ -1,0 +1,12 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode registerOperand2=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode shifter=instruction.getOperands().get(2).getRootNode();
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceImmediate=(registerOperand2.getValue());
+  long baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final Pair<String,String> shifterPair=AddressingModeOneGenerator.generate(baseOffset,environment,instruction,instructions,shifter);
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
+  final String shifterOperand=shifterPair.first();
+  Helpers.unsignedSat(baseOffset,environment,instruction,instructions,shifterOperand,shifterOperand,shifterOperand,"USAT",targetRegister,Integer.decode(sourceImmediate),"Q");
+}

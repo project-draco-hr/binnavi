@@ -1,0 +1,7 @@
+{
+  comboboxElements.clear();
+  comboboxElements.add(new CDebuggerTemplateWrapper(null));
+  for (  final DebuggerTemplate template : debuggerContainer.getDebuggers()) {
+    comboboxElements.add(new CDebuggerTemplateWrapper(template));
+  }
+}

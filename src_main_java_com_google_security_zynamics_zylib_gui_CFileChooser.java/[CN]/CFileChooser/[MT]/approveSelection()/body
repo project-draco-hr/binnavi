@@ -1,0 +1,8 @@
+{
+  if (m_askFileOverwrite && getSelectedFile().exists()) {
+    if (CMessageBox.showYesNoQuestion(this,Constants.ASK_FILE_OVERWRITE) == JOptionPane.NO_OPTION) {
+      return;
+    }
+  }
+  super.approveSelection();
+}

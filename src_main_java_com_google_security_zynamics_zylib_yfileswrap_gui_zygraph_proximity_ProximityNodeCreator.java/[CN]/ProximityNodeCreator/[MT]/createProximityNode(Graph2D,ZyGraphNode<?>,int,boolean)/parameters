@@ -1,0 +1,4 @@
+Graph2D graph
+ZyGraphNode<?> attachedNode
+int degree
+boolean isIncoming

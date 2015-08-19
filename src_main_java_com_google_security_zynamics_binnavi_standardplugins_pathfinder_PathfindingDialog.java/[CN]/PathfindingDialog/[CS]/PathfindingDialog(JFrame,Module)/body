@@ -1,0 +1,34 @@
+{
+  super(parent,"Pathfinding",true);
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  final JPanel topPanel=new JPanel(new BorderLayout());
+  startBlockTree=new FunctionTree(this,module);
+  endBlockTree=new FunctionTree(this,module);
+  final JTextArea startBlockAsmField=createAsmField();
+  final JTextArea endBlockAsmField=createAsmField();
+  final JTextArea searchFieldStart=new JTextArea(1,10);
+  final JTextArea searchFieldEnd=new JTextArea(1,10);
+  searchFieldStart.getDocument().addDocumentListener(new InternalDocumentListener(startBlockTree));
+  searchFieldEnd.getDocument().addDocumentListener(new InternalDocumentListener(endBlockTree));
+  startBlockTree.addTreeSelectionListener(new InternalTreeSelectionListener(startBlockAsmField));
+  endBlockTree.addTreeSelectionListener(new InternalTreeSelectionListener(endBlockAsmField));
+  final JSplitPane splitPaneSearch=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true,new JScrollPane(searchFieldStart),new JScrollPane(searchFieldEnd));
+  splitPaneSearch.setResizeWeight(0.5);
+  final JSplitPane splitPane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true,new JScrollPane(startBlockTree),new JScrollPane(endBlockTree));
+  splitPane.setResizeWeight(0.5);
+  final JPanel upperPanel=new JPanel(new BorderLayout());
+  upperPanel.add(splitPane);
+  upperPanel.add(splitPaneSearch,BorderLayout.NORTH);
+  final JPanel previewPanel=new JPanel(new BorderLayout());
+  final JSplitPane splitPane2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,true,new JScrollPane(startBlockAsmField),new JScrollPane(endBlockAsmField));
+  splitPane2.setResizeWeight(0.5);
+  previewPanel.add(splitPane2);
+  upperPanel.add(previewPanel,BorderLayout.SOUTH);
+  topPanel.add(upperPanel);
+  splitPane.setBorder(new EmptyBorder(5,5,5,5));
+  add(topPanel,BorderLayout.CENTER);
+  add(new CPanelTwoButtons(m_listener,"OK","Cancel"),BorderLayout.SOUTH);
+  setPreferredSize(new Dimension(800,500));
+  pack();
+}

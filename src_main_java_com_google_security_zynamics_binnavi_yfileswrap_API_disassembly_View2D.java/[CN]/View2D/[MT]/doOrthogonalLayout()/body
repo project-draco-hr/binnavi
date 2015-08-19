@@ -1,0 +1,4 @@
+{
+  m_graph.getSettings().getLayoutSettings().setDefaultGraphLayout(LayoutStyle.ORTHOGONAL);
+  m_graph.doLayout();
+}

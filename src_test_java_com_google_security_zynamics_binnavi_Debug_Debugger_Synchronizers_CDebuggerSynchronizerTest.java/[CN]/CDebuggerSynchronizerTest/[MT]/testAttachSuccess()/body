@@ -1,0 +1,6 @@
+{
+  mockDebugger.connect();
+  assertTrue(mockDebugger.isConnected());
+  debuggerSynchronizer.receivedEvent(new AttachReply(0,0));
+  assertTrue(mockDebugger.getProcessManager().isAttached());
+}

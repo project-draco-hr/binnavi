@@ -1,0 +1,3 @@
+{
+  CCriteriumFunctions.removeAll(m_tree);
+}

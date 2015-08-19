@@ -1,0 +1,34 @@
+{
+  final ArrayList<String> flattenedChildren=new ArrayList<String>();
+  for (  final IOperandTreeNode child : node.getChildren()) {
+    flattenedChildren.add(toString(child));
+  }
+  if (flattenedChildren.isEmpty()) {
+    return node.toString();
+  }
+ else   if (flattenedChildren.size() == 1) {
+    final ExpressionType type=node.getType();
+    if (type == ExpressionType.MEMDEREF) {
+      return "[" + flattenedChildren.get(0) + "]";
+    }
+ else     if (type == ExpressionType.EXPRESSION_LIST) {
+      return "{" + Commafier.commafy(flattenedChildren) + "}";
+    }
+ else {
+      return node.toString() + (node.toString().isEmpty() ? "" : " ") + flattenedChildren.get(0);
+    }
+  }
+ else {
+    final String value=node.toString();
+    final StringBuffer stringBuffer=new StringBuffer();
+    for (int i=0; i < flattenedChildren.size(); i++) {
+      stringBuffer.append(flattenedChildren.get(i));
+      if (i != (flattenedChildren.size() - 1)) {
+        stringBuffer.append(' ');
+        stringBuffer.append(value);
+        stringBuffer.append(' ');
+      }
+    }
+    return stringBuffer.toString();
+  }
+}

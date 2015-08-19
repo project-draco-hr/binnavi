@@ -1,0 +1,5 @@
+{
+  final BaseType baseType=backend.loadRawBaseType(baseTypeId);
+  typesContainer.addBaseType(baseType);
+  notifyTypeAdded(baseType);
+}

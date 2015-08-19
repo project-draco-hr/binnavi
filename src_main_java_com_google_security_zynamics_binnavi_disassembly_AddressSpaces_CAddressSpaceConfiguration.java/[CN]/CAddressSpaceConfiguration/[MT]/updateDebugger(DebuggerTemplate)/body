@@ -1,0 +1,13 @@
+{
+  if (m_addressSpace.isLoaded() && ((m_debugger == null) || !m_debugger.isConnected())) {
+    if (template == null) {
+      m_debugger=null;
+    }
+ else {
+      m_debugger=new TcpDebugger(template,new ProjectTargetSettings(m_addressSpace.getProject()));
+      for (      final INaviModule module : m_addressSpace.getContent().getModules()) {
+        m_debugger.setAddressTranslator(module,module.getConfiguration().getFileBase(),m_addressSpace.getContent().getImageBase(module));
+      }
+    }
+  }
+}

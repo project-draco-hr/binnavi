@@ -1,0 +1,7 @@
+{
+  final List<Pair<INaviView,List<INaviView>>> derivedViews=new ArrayList<Pair<INaviView,List<INaviView>>>();
+  for (  final INaviView view : views) {
+    derivedViews.add(new Pair<INaviView,List<INaviView>>(view,view.getDerivedViews()));
+  }
+  return derivedViews;
+}

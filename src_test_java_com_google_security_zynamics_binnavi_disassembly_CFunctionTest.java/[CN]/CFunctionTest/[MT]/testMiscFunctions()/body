@@ -1,0 +1,12 @@
+{
+  final CFunction function=new CFunction(module,view,address,"Name","Original Name","Description",0,0,1,0,FunctionType.NORMAL,"",1,null,null,null,provider);
+  final CFunction forwardFunction=new CFunction(module,view,address,"Name2","Original Name2","Description2",0,0,1,0,FunctionType.IMPORT,"",1,null,null,null,provider);
+  assertEquals(0,function.getIndegree());
+  function.getOriginalModulename();
+  function.getOriginalName();
+  assertEquals(0,function.getOutdegree());
+  function.getForwardedFunctionAddress();
+  function.getForwardedFunctionModuleId();
+  function.toString();
+  forwardFunction.setForwardedFunction(function);
+}

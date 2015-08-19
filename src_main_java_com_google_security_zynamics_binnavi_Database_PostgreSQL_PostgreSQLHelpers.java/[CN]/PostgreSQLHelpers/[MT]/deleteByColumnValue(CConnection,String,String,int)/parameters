@@ -1,0 +1,4 @@
+CConnection connection
+String tableName
+String columnName
+int columnValue

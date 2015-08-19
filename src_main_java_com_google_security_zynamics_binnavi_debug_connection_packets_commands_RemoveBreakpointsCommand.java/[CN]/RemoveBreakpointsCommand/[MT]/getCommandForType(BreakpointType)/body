@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(type,"IE01009: Type argument can not be null");
+switch (type) {
+case REGULAR:
+    return DebugCommandType.CMD_REMBP;
+case ECHO:
+  return DebugCommandType.CMD_REMBPE;
+case STEP:
+return DebugCommandType.CMD_REMBPS;
+default :
+throw new IllegalStateException(String.format("IE00741: Unknown breakpoint type '%s'",type));
+}
+}

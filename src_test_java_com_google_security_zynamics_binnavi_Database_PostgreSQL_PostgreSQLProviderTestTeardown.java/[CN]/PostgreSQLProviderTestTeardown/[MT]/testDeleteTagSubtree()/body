@@ -1,0 +1,5 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  getProvider().deleteTagSubtree(tagManager.getRootTag().getChildren().get(0));
+  getProvider().deleteTagSubtree(tagManager.getRootTag().getChildren().get(0));
+}

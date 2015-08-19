@@ -1,0 +1,8 @@
+{
+  if ((parentNode instanceof CAddressSpaceNode) && (draggedNode instanceof CModuleNode)) {
+    final CModuleNode draggedModule=(CModuleNode)draggedNode;
+    final CAddressSpaceNode targetAddressSpace=(CAddressSpaceNode)parentNode;
+    return targetAddressSpace.getObject().isLoaded() && !targetAddressSpace.getObject().getContent().getModules().contains(draggedModule.getObject()) && targetAddressSpace.getObject().inSameDatabase(draggedModule.getObject());
+  }
+  return false;
+}

@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(options,"IE00267: Debugger options can not be null");
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  final JPanel componentPanel=new JPanel(new GridLayout(options.getExceptions().size(),2));
+  for (  final DebuggerException exception : options.getExceptions()) {
+    final JComboBox<String> comboBox=buildRow(componentPanel,exception);
+    comboBox.addItemListener(new ComboboxItemListener());
+    m_comboboxMap.put(comboBox,exception);
+  }
+  innerPanel.add(new JScrollPane(componentPanel),BorderLayout.NORTH);
+  add(innerPanel);
+}

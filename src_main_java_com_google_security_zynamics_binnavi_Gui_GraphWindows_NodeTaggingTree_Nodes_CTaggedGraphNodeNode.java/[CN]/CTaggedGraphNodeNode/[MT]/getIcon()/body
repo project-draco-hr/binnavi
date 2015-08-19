@@ -1,0 +1,11 @@
+{
+  if (!m_node.getRawNode().isVisible()) {
+    return ICON_NODE_INVISIBLE;
+  }
+ else   if (m_node.getRawNode().isSelected()) {
+    return ICON_SELECTED_GRAPHNODE;
+  }
+ else {
+    return ICON_NO_SELECTED_GRAPHNODES;
+  }
+}

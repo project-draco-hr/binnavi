@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(node,"IE02131: Node argument can not be null");
+  final JDialog dialog=getCommentDialog(model,node,initialTab);
+  GuiHelper.centerChildToParent(model.getParent(),dialog,true);
+  dialog.setVisible(true);
+}

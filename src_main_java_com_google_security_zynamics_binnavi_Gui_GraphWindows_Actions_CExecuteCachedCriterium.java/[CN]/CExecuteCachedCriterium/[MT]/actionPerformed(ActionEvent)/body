@@ -1,0 +1,3 @@
+{
+  CCriteriumExecuter.execute(m_tree,m_graph);
+}

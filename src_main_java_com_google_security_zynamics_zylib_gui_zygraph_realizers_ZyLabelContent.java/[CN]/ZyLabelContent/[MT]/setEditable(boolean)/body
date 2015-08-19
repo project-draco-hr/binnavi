@@ -1,0 +1,9 @@
+{
+  if ((m_model == null) || (m_lineEditor == null)) {
+    return;
+  }
+  m_editable=editable;
+  if (m_editable) {
+    m_selectable=true;
+  }
+}

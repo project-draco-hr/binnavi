@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(connection,"IE00208: provider argument can not be null");
+  final String query="INSERT INTO " + CTableNames.EXPRESSION_TREE_MAPPING_TABLE + " (SELECT "+ moduleId+ ", expression_tree_id, expression_node_id "+ " FROM ex_"+ rawModuleId+ "_expression_tree_nodes)";
+  connection.executeUpdate(query,true);
+}

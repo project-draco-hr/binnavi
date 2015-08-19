@@ -1,0 +1,9 @@
+{
+  int index=inputLine.indexOf(source);
+  String ret=inputLine;
+  while (index != -1) {
+    ret=ret.substring(0,index) + target + ret.substring(index + source.length());
+    index=ret.indexOf(source);
+  }
+  return ret;
+}

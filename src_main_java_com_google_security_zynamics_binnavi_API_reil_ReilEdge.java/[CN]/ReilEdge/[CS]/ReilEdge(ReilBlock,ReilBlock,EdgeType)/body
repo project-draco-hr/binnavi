@@ -1,0 +1,5 @@
+{
+  super(source,target);
+  m_type=Preconditions.checkNotNull(type,"Error: Type argument can not be null");
+  ReilBlock.link(source,target);
+}

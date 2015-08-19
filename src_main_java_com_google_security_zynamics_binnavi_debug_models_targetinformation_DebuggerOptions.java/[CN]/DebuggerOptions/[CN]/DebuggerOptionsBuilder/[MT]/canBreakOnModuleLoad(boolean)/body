@@ -1,0 +1,4 @@
+{
+  this.canBreakOnModuleLoad=value;
+  return this;
+}

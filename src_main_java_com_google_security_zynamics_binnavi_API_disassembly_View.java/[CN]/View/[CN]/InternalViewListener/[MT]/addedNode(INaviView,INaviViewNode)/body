@@ -1,0 +1,22 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final ViewNode newNode=convert(node);
+  if (node instanceof INaviGroupNode) {
+    final INaviGroupNode gnode=(INaviGroupNode)node;
+    for (    final INaviViewNode element : gnode.getElements()) {
+      ((GroupNode)newNode).addNode(cachedNodes.get(element));
+    }
+  }
+  cachedNodes.put(node,newNode);
+  viewGraph.addNode(newNode);
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.addedNode(View.this,newNode);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

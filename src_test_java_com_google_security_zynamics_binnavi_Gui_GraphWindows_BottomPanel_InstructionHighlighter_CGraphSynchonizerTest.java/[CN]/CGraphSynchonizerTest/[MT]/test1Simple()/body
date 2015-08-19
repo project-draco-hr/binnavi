@@ -1,0 +1,19 @@
+{
+  final ZyGraph graph=ZyGraphFactory.generateTestGraph();
+  final CSpecialInstructionsModel model=new CSpecialInstructionsModel();
+  final List<CSpecialInstruction> instructions=new ArrayList<CSpecialInstruction>();
+  final ITypeDescription callsDescription=model.getDescriptions().get(0);
+  callsDescription.setEnabled(true);
+  final CSpecialInstruction instruction=new CSpecialInstruction(callsDescription,Iterables.getFirst(graph.getRawView().getBasicBlocks().get(2).getInstructions(),null));
+  final CCodeNode node=graph.getRawView().getBasicBlocks().get(2);
+  final NaviNode naviNode=graph.getNode(node);
+  final BackEndDebuggerProvider provider=new MockDebuggerProvider();
+  new CCodeNodeUpdater(graph,naviNode,node,provider);
+  instructions.add(instruction);
+  model.setInstructions(instructions);
+  assertFalse(naviNode.getRealizer().getNodeContent().getLineContent(0).hasHighlighting(CHighlightLayers.SPECIAL_INSTRUCTION_LAYER));
+  final CGraphSynchronizer synchronizer=new CGraphSynchronizer(graph,model);
+  CTypeResultsHighlighter.updateHighlighting(graph,Lists.newArrayList(instruction));
+  assertTrue(naviNode.getRealizer().getNodeContent().getLineContent(0).hasHighlighting(CHighlightLayers.SPECIAL_INSTRUCTION_LAYER));
+  synchronizer.dispose();
+}

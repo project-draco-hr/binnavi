@@ -1,0 +1,6 @@
+{
+  super("Print View");
+  m_parent=Preconditions.checkNotNull(parent,"IE02819: parent argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE02820: graph argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_PRINT_HK.getKeyStroke());
+}

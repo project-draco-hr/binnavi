@@ -1,0 +1,14 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"mr.");
+  final IOperandTreeNode targetRegister=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode sourceRegister=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  Long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize dw=OperandSize.DWORD;
+  final String crTemp=environment.getNextVariableString();
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,sourceRegister.getValue(),dw,targetRegister.getValue()));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.DWORD,targetRegister.getValue(),OperandSize.BYTE,Helpers.CR0_EQUAL));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,OperandSize.DWORD,targetRegister.getValue(),OperandSize.WORD,"-31",OperandSize.BYTE,Helpers.CR0_LESS_THEN));
+  instructions.add(ReilHelpers.createOr(baseOffset++,OperandSize.BYTE,Helpers.CR0_EQUAL,OperandSize.BYTE,Helpers.CR0_LESS_THEN,OperandSize.BYTE,crTemp));
+  instructions.add(ReilHelpers.createBisz(baseOffset++,OperandSize.BYTE,crTemp,OperandSize.BYTE,Helpers.CR0_GREATER_THEN));
+  instructions.add(ReilHelpers.createStr(baseOffset,OperandSize.BYTE,Helpers.XER_SUMMARY_OVERFLOW,OperandSize.BYTE,Helpers.CRO_SUMMARY_OVERFLOW));
+}

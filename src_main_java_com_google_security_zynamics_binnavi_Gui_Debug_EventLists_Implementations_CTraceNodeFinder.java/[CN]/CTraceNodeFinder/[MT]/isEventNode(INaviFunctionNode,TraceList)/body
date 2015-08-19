@@ -1,0 +1,8 @@
+{
+  for (  final ITraceEvent traceEvent : eventList) {
+    if (traceEvent.getOffset().getModule() == node.getFunction().getModule() && node.getFunction().getAddress().equals(traceEvent.getOffset().getAddress().getAddress())) {
+      return true;
+    }
+  }
+  return false;
+}

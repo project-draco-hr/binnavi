@@ -1,0 +1,20 @@
+{
+  Preconditions.checkNotNull(provider,"Error: provider argument can not be null");
+  Preconditions.checkNotNull(view,"Error: view argument can not be null");
+  Preconditions.checkNotNull(nodes,"Error: nodes argument can not be null");
+  Preconditions.checkNotNull(modules,"Error: modules argument can not be null");
+  final String query=" SELECT * FROM load_code_nodes(?) ";
+  final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+  statement.setInt(1,view.getConfiguration().getId());
+  final ResultSet resultSet=statement.executeQuery();
+  try {
+    final CCodeNodeParser parser=new CCodeNodeParser(new SqlCodeNodeProvider(resultSet),modules,provider);
+    nodes.addAll(parser.parse());
+  }
+ catch (  final ParserException e) {
+    CUtilityFunctions.logException(e);
+  }
+ finally {
+    resultSet.close();
+  }
+}

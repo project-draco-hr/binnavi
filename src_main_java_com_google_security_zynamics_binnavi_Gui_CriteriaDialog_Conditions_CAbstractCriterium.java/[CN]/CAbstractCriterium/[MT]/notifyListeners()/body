@@ -1,0 +1,10 @@
+{
+  for (  final ICriteriumListener listener : m_listeners) {
+    try {
+      listener.criteriumChanged();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

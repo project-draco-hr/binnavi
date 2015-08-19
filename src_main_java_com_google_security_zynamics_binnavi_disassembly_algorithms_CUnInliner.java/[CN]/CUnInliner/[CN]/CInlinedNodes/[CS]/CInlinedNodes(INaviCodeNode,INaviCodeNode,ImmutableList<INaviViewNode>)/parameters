@@ -1,0 +1,3 @@
+INaviCodeNode startNode
+INaviCodeNode endNode
+ImmutableList<INaviViewNode> inlinedNodes

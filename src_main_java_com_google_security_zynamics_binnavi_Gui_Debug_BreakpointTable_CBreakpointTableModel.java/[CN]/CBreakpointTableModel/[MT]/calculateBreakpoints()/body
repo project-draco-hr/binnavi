@@ -1,0 +1,7 @@
+{
+  int breakpoints=0;
+  for (  final IDebugger debugger : m_debuggerProvider.getDebuggers()) {
+    breakpoints+=debugger.getBreakpointManager().getNumberOfBreakpoints(BreakpointType.REGULAR);
+  }
+  return breakpoints;
+}

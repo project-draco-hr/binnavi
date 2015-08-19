@@ -1,0 +1,12 @@
+{
+  this.id=id;
+  this.name=Preconditions.checkNotNull(name,"Error: name can not be null");
+  this.baseTypeId=baseTypeId;
+  this.parentId=parentId;
+  Preconditions.checkArgument(offset == null || offset >= 0,"Error: offset must be positive.");
+  this.offset=Optional.fromNullable(offset);
+  this.argument=Optional.fromNullable(argument);
+  Preconditions.checkArgument(numberOfElements == null || numberOfElements >= 0,"Error: number of elements must be null or greater than zero.");
+  Preconditions.checkArgument(!Objects.equals(numberOfElements,offset) ^ this.argument.isPresent(),"Error: Either this is a struct member or a array member, or a prototype argument.");
+  this.numberOfElements=Optional.fromNullable(numberOfElements);
+}

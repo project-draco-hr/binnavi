@@ -1,0 +1,5 @@
+{
+  gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.66f));
+  super.paintFilledShape(gfx);
+  gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1.f));
+}

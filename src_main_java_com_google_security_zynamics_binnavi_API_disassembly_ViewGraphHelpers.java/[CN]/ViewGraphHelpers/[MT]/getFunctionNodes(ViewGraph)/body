@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  final List<FunctionNode> functionNodes=new ArrayList<FunctionNode>();
+  for (  final ViewNode node : graph) {
+    if (node instanceof FunctionNode) {
+      functionNodes.add((FunctionNode)node);
+    }
+  }
+  return functionNodes;
+}

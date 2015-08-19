@@ -1,0 +1,25 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,BREAKPOINT_ADDRESS_SET);
+  final Breakpoint breakPoint=debugger.getBreakpointManager().getBreakpoint(BreakpointType.REGULAR,BREAKPOINT_ADDRESS);
+  final CAddress address=new CAddress(0);
+  final BaseNode root=new BaseNode();
+  final BreakpointCondition bpCondition=new BreakpointCondition("foo",root);
+  breakPoint.setCondition(bpCondition);
+  breakPoint.setDescription("purzel");
+  debuggerProvider.addDebugger(debugger);
+  final CBreakpointTableModel tableModel=new CBreakpointTableModel(debuggerProvider);
+  assertEquals(com.google.security.zynamics.binnavi.debug.models.breakpoints.enums.BreakpointStatus.BREAKPOINT_INACTIVE,tableModel.getValueAt(0,0));
+  assertEquals(debugger.getPrintableString(),tableModel.getValueAt(0,1));
+  assertEquals(address,tableModel.getValueAt(0,2));
+  assertEquals("foo",tableModel.getValueAt(0,5));
+  assertEquals("purzel",tableModel.getValueAt(0,6));
+  try {
+    tableModel.getValueAt(0,7);
+    fail();
+  }
+ catch (  final IllegalArgumentException e) {
+  }
+}

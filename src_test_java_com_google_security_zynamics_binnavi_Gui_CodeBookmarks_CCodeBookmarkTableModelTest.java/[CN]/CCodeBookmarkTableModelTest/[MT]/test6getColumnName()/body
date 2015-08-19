@@ -1,0 +1,9 @@
+{
+  final CCodeBookmarkManager bookmarkManager=new CCodeBookmarkManager();
+  final CCodeBookmarkTableModel tableModel=new CCodeBookmarkTableModel(bookmarkManager);
+  final CCodeBookmark bookmark=new CCodeBookmark(new MockModule(),new MockAddress(),"burzel");
+  bookmarkManager.addBookmark(bookmark);
+  assertEquals("Module",tableModel.getColumnName(0));
+  assertEquals("Address",tableModel.getColumnName(1));
+  assertEquals("Description",tableModel.getColumnName(2));
+}

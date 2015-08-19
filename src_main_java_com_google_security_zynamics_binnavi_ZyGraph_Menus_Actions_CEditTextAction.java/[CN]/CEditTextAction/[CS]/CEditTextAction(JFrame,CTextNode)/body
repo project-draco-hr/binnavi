@@ -1,0 +1,5 @@
+{
+  super("Edit Text");
+  m_parent=Preconditions.checkNotNull(parent,"IE02156: Parent argument can not be null");
+  m_node=Preconditions.checkNotNull(node,"IE02157: Node argument can not be null");
+}

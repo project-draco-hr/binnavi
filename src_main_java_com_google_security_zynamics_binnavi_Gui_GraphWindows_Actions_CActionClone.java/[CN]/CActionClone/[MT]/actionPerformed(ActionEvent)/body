@@ -1,0 +1,3 @@
+{
+  CGraphSaver.clone(m_parent,m_view,m_container);
+}

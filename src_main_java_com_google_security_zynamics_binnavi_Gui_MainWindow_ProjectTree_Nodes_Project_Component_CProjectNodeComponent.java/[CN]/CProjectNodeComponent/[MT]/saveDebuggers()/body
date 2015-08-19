@@ -1,0 +1,21 @@
+{
+  try {
+    final ListModel<DebuggerTemplate> model=m_checkedList.getModel();
+    final List<DebuggerTemplate> oldDebuggers=m_project.getConfiguration().getDebuggers();
+    for (int i=0; i < model.getSize(); ++i) {
+      final DebuggerTemplate debugger=model.getElementAt(i);
+      if (m_checkedList.isChecked(i) && !oldDebuggers.contains(debugger)) {
+        m_project.getConfiguration().addDebugger(debugger);
+      }
+ else       if (!m_checkedList.isChecked(i) && oldDebuggers.contains(debugger)) {
+        m_project.getConfiguration().removeDebugger(model.getElementAt(i));
+      }
+    }
+  }
+ catch (  final CouldntSaveDataException e) {
+    CUtilityFunctions.logException(e);
+    final String innerMessage="E00173: " + "Could not save project debuggers";
+    final String innerDescription=CUtilityFunctions.createDescription(String.format("The new debuggers of the project '%s' could not be saved.",m_project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The project keeps its old debuggers."});
+    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(CProjectNodeComponent.this),innerMessage,innerDescription,e);
+  }
+}

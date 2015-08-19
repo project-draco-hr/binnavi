@@ -1,0 +1,3 @@
+{
+  CDataFunctions.loadFromDatabase(SwingUtilities.getWindowAncestor(CLoadPanel.this),m_module);
+}

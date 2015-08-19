@@ -1,0 +1,5 @@
+{
+  final JPanel prototypePanel=new JPanel(new BorderLayout());
+  prototypePanel.add(TypeEditorPanel.CreatePrototypeEditor(parent,typeManager,model.getViewContainer().getFunction(model.getGraph().getRawView())),BorderLayout.CENTER);
+  return prototypePanel;
+}

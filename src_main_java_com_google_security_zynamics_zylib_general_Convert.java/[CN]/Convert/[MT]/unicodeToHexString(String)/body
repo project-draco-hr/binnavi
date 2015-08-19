@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(unicodeString,"Error: Unicode string can't be null");
+  final StringBuffer sb=new StringBuffer();
+  for (  final byte b : unicodeString.getBytes()) {
+    sb.append(String.format("%X00",b));
+  }
+  return sb.toString();
+}

@@ -1,0 +1,5 @@
+{
+  m_jtree=jtree;
+  m_ctree=ctree;
+  m_selectionBox=conditionBox;
+}

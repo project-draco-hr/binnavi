@@ -1,0 +1,8 @@
+{
+  if (m_database.isLoaded()) {
+    return "Projects" + " (" + m_database.getContent().getProjects().size() + ")";
+  }
+ else {
+    return "";
+  }
+}

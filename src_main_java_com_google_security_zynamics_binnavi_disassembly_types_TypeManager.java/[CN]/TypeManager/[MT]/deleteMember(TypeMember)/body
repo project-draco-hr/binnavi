@@ -1,0 +1,14 @@
+{
+  Preconditions.checkNotNull(member,"IE02785: Member can not be null.");
+  backend.deleteMember(member);
+  final BaseType containingType=member.getParentType();
+  boolean sizeChanged=member == containingType.getLastMember();
+  final ImmutableMap<BaseType,Integer> originalTypeSizes=(sizeChanged) ? captureTypeSizesState(typesContainer.getAffectedTypes(containingType)) : ImmutableMap.<BaseType,Integer>of();
+  final ImmutableSet<BaseType> affectedTypes=typesContainer.deleteTypeMember(member);
+  notifySubstitutionsChanged(affectedTypes);
+  notifyTypesUpdated(affectedTypes);
+  notifyMemberDeleted(member);
+  if (sizeChanged) {
+    ensureConsistencyAfterTypeUpdate(affectedTypes,Sets.newHashSet(affectedTypes),originalTypeSizes);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(provider,"IE00639: Provider argument can not be null");
+  Preconditions.checkNotNull(viewTagManager,"IE00640: Tag manager argument can not be null");
+  Preconditions.checkArgument(viewTagManager.inSameDatabase(provider),"IE00641: Tag manager is not part of this database");
+}

@@ -1,0 +1,10 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  try {
+    final TargetProcessThread thread=processManager.getThread(reply.getTid());
+    processManager.setActiveThread(thread);
+  }
+ catch (  final MaybeNullException e) {
+    NaviLogger.severe("Error: Process manager could not set active threads. Exception %s",e);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final IZyNodeRealizer realizer=(IZyNodeRealizer)graph.getRealizer(node);
+  return (ZyProximityNode<?>)realizer.getUserData().getNode();
+}

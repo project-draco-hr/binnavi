@@ -1,0 +1,4 @@
+{
+  super("Search");
+  m_dialog=Preconditions.checkNotNull(dialog,"IE01295: Dialog argument can not be null");
+}

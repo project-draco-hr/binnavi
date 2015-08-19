@@ -1,0 +1,7 @@
+{
+  final Toolkit toolkit=Toolkit.getDefaultToolkit();
+  final Dimension scrnsize=toolkit.getScreenSize();
+  final int x=event.getXOnScreen();
+  final int y=event.getYOnScreen();
+  return new Point(normalize(x,m_helpDialog.getWidth(),scrnsize.width),normalize(y,m_helpDialog.getHeight(),scrnsize.height));
+}

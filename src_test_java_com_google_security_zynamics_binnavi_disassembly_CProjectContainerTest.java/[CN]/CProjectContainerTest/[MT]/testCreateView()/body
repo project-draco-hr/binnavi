@@ -1,0 +1,17 @@
+{
+  final CProjectContainer container=new CProjectContainer(m_database,m_project);
+  try {
+    container.createView(null,null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  try {
+    container.createView("seppel",null);
+    fail();
+  }
+ catch (  final NullPointerException e) {
+  }
+  final INaviView view=container.createView("foo","berT");
+  assertNotNull(view);
+}

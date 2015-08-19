@@ -1,0 +1,29 @@
+{
+  setLayout(new BorderLayout(5,5));
+  final JPanel p_1=new JPanel();
+  p_1.setLayout(new BorderLayout(5,5));
+  p_1.setBorder(new TitledBorder("View Depth"));
+  final JPanel p_1_1=new JPanel();
+  p_1_1.setLayout(new BorderLayout(5,5));
+  p_1_1.add(m_checkBoxParentDepth,BorderLayout.WEST);
+  p_1_1.add(m_parentLabel,BorderLayout.CENTER);
+  p_1_1.add(m_parentDepthSlider,BorderLayout.EAST);
+  final JPanel p_1_2=new JPanel();
+  p_1_2.setLayout(new BorderLayout(5,5));
+  p_1_2.add(m_checkBoxChildDepth,BorderLayout.WEST);
+  p_1_2.add(m_childLabel,BorderLayout.CENTER);
+  p_1_2.add(m_childDepthSlider,BorderLayout.EAST);
+  p_1.add(p_1_1,BorderLayout.NORTH);
+  p_1.add(p_1_2,BorderLayout.SOUTH);
+  final JPanel p_2=new JPanel();
+  p_2.setLayout(new BorderLayout(5,0));
+  final JPanel p_2_1=new JPanel();
+  final JPanel p_2_1_1=new JPanel();
+  p_2_1_1.setLayout(new GridLayout(1,2,5,5));
+  p_2_1_1.add(m_buttonOk);
+  p_2_1_1.add(m_buttonCancel);
+  p_2_1.add(p_2_1_1);
+  p_2.add(p_2_1,BorderLayout.EAST);
+  add(p_1,BorderLayout.NORTH);
+  add(p_2,BorderLayout.SOUTH);
+}

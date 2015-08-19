@@ -1,0 +1,11 @@
+{
+  try {
+    final String idaPath=CActionProvider.selectIDADirectory(CGeneralSettingsPanel.this,idaDirectoryPanel.getText());
+    if (idaPath != null) {
+      idaDirectoryPanel.setText(idaPath);
+    }
+  }
+ catch (  final Exception e) {
+    CUtilityFunctions.logException(e);
+  }
+}

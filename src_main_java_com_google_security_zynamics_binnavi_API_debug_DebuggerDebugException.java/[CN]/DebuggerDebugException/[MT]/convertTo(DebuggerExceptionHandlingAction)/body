@@ -1,0 +1,12 @@
+{
+switch (action) {
+case Continue:
+    return Continue;
+case Halt:
+  return Halt;
+case Ignore:
+return Ignore;
+default :
+return Continue;
+}
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    CReilInstructionDialog.show(parent,instruction);
+  }
+ catch (  final InternalTranslationException exception) {
+    CUtilityFunctions.logException(exception);
+    final String message="E00035: " + "Could not show REIL code";
+    final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not show the REIL code of instruction '%s'.",instruction.toString()),new String[]{"The instruction could not be converted to REIL code."},new String[]{"You can not fix this problem yourself. Please contact the " + "BinNavi support."});
+    CNaviErrorDialog.show(parent,message,description,exception);
+  }
+}

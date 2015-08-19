@@ -1,0 +1,3 @@
+{
+  CDatabaseConnectionFunctions.openDatabase(m_projectTree,m_database);
+}

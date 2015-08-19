@@ -1,0 +1,33 @@
+{
+  if (state) {
+    if (realizer.getLineType() == LineType.LINE_2) {
+      realizer.setLineType(LineType.LINE_5);
+    }
+ else     if (realizer.getLineType() == LineType.DOTTED_2) {
+      realizer.setLineType(LineType.DOTTED_5);
+    }
+ else     if (realizer.getLineType() == LineType.DASHED_2) {
+      realizer.setLineType(LineType.DASHED_5);
+    }
+ else     if (realizer.getLineType() == LineType.DASHED_DOTTED_2) {
+      realizer.setLineType(LineType.DASHED_DOTTED_5);
+    }
+  }
+ else {
+    if (realizer == null) {
+      return;
+    }
+    if (realizer.getLineType() == LineType.LINE_5) {
+      realizer.setLineType(LineType.LINE_2);
+    }
+ else     if (realizer.getLineType() == LineType.DOTTED_5) {
+      realizer.setLineType(LineType.DOTTED_2);
+    }
+ else     if (realizer.getLineType() == LineType.DASHED_5) {
+      realizer.setLineType(LineType.DASHED_2);
+    }
+ else     if (realizer.getLineType() == LineType.DASHED_DOTTED_5) {
+      realizer.setLineType(LineType.DASHED_DOTTED_2);
+    }
+  }
+}

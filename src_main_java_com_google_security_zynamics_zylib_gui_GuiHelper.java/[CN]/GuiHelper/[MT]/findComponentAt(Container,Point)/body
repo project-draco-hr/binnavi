@@ -1,0 +1,26 @@
+{
+  final Point cp=new Point(sp.x,sp.y);
+  SwingUtilities.convertPointFromScreen(cp,c);
+  if (!c.contains(cp.x,cp.y)) {
+    return c;
+  }
+  final int ncomponents=c.getComponentCount();
+  final Component component[]=c.getComponents();
+  for (int i=0; i < ncomponents; i++) {
+    final Component comp=component[i];
+    final Point loc=comp.getLocation();
+    if ((comp.contains(cp.x - loc.x,cp.y - loc.y)) && (comp.isVisible() == true)) {
+      if (comp instanceof Container) {
+        final Container child=(Container)comp;
+        final Component deeper=findComponentAt(child,sp);
+        if (deeper != null) {
+          return deeper;
+        }
+      }
+ else {
+        return comp;
+      }
+    }
+  }
+  return c;
+}

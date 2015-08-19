@@ -1,0 +1,8 @@
+{
+  for (  final ItemType item : collection) {
+    if (callback.qualifies(item)) {
+      return true;
+    }
+  }
+  return false;
+}

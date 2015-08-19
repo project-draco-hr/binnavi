@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(parent,"IE01289: Parent argument can not be null");
+  Preconditions.checkNotNull(table,"IE01290: Table argument can not be null");
+  Preconditions.checkNotNull(traceProvider,"IE01291: Trace provider argument can not be null");
+  final int[] selectedRows=table.getConvertedSelectedRows();
+  add(CActionProxy.proxy(new CActionDelete(parent,traceProvider,selectedRows)));
+  addSeparator();
+  add(CActionProxy.proxy(new CSearchTableAction(parent,table)));
+  new CTableSearcher(parent,"Search",table,0);
+  if (selectedRows.length >= 2) {
+    addCombineMenu(parent,traceProvider,selectedRows);
+  }
+}

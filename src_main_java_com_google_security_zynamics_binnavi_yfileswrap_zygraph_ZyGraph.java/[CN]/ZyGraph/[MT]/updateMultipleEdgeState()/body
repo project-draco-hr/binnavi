@@ -1,0 +1,8 @@
+{
+  if (m_settings.getEdgeSettings().getDisplayMultipleEdgesAsOne()) {
+    MultiEdgeHider.hideMultipleEdgesInternal(this);
+  }
+ else {
+    MultiEdgeHider.unhideMultipleEdgesInternal(this);
+  }
+}

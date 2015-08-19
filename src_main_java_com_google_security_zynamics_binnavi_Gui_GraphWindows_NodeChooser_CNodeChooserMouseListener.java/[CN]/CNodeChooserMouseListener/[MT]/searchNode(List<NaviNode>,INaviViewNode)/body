@@ -1,0 +1,8 @@
+{
+  for (  final NaviNode n : nodes) {
+    if (n.getRawNode() == node) {
+      return n;
+    }
+  }
+  return null;
+}

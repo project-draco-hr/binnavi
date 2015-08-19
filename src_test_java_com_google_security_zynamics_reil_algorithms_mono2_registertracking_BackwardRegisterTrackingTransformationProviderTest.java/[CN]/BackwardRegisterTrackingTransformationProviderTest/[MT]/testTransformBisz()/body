@@ -1,0 +1,6 @@
+{
+  final RegisterTrackingTransformationProvider transformationProvider=new RegisterTrackingTransformationProvider(new RegisterTrackingOptions(false,new TreeSet<String>(),false,AnalysisDirection.UP));
+  final ReilInstruction instruction=ReilHelpers.createBisz(0,OperandSize.DWORD,"ecx",OperandSize.DWORD,"eax");
+  final Pair<RegisterSetLatticeElement,RegisterSetLatticeElement> transformationResult=transformationProvider.transformBisz(instruction,createTaintedState("eax"));
+  Assert.assertTrue(transformationResult.first().getTaintedRegisters().contains("ecx"));
+}

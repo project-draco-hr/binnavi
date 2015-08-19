@@ -1,0 +1,4 @@
+{
+  super(node,realizer,rawNode);
+  m_realizer=realizer;
+}

@@ -1,0 +1,7 @@
+{
+  super("Search for selection");
+  Preconditions.checkNotNull(searchField,"IE00942: Search field argument can not be null");
+  Preconditions.checkNotNull(node,"IE00943: Node argument can not be null");
+  m_searchField=searchField;
+  m_node=node;
+}

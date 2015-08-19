@@ -1,0 +1,6 @@
+{
+  --counter;
+  if (counter == 0) {
+    throw new DebugExceptionWrapper(new Exception("No"));
+  }
+}

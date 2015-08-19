@@ -1,0 +1,5 @@
+{
+  super(new BorderLayout());
+  m_table=new CResultsTable(graph,model);
+  add(new JScrollPane(m_table));
+}

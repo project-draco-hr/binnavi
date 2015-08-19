@@ -1,0 +1,6 @@
+{
+  if (!m_addressSpace.isLoaded()) {
+    final Action action=CActionProxy.proxy(new CLoadAddressSpaceAction(getProjectTree(),new INaviAddressSpace[]{m_addressSpace}));
+    action.actionPerformed(new ActionEvent(this,0,""));
+  }
+}

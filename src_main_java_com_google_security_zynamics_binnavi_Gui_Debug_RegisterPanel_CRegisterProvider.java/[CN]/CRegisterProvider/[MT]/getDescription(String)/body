@@ -1,0 +1,8 @@
+{
+  for (  final RegisterDescription description : m_information) {
+    if (description.getName().equals(name)) {
+      return description;
+    }
+  }
+  return null;
+}

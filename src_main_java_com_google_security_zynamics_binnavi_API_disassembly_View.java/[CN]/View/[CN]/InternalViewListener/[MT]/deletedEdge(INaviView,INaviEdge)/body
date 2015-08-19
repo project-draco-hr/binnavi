@@ -1,0 +1,16 @@
+{
+  if (!isConverted()) {
+    return;
+  }
+  final ViewEdge oldEdge=cachedEdges.get(edge);
+  viewGraph.removeEdge(oldEdge);
+  cachedEdges.remove(oldEdge);
+  for (  final IViewListener listener : viewListeners) {
+    try {
+      listener.deletedEdge(View.this,oldEdge);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

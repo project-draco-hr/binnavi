@@ -1,0 +1,9 @@
+{
+  final List<RawBaseType> foundTypes=new ArrayList<RawBaseType>();
+  for (  final RawBaseType rawType : rawTypes) {
+    if (rawType.getName().equals(name)) {
+      foundTypes.add(rawType);
+    }
+  }
+  return foundTypes;
+}

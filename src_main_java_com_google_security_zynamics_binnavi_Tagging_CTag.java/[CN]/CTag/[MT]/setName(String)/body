@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(name,"IE00852: Name argument can't be null");
+  if (name.equals(m_name)) {
+    return;
+  }
+  m_sql.setName(this,name);
+  m_name=name;
+  for (  final ITagListener listener : m_listeners) {
+    try {
+      listener.changedName(this,name);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

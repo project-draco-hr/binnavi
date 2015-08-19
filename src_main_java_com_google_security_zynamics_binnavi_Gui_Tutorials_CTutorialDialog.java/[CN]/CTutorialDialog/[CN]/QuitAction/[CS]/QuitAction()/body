@@ -1,0 +1,3 @@
+{
+  super("Quit",new ImageIcon(CMain.class.getResource("data/cancel.png")));
+}

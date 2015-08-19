@@ -1,0 +1,10 @@
+{
+  Preconditions.checkArgument(argumentCount == 1,"IE00101: Unexpected number of argument while parsing process start packet");
+  try {
+    return new ProcessStartReply(packetId,0,ProcessStartParser.parse(parseData()));
+  }
+ catch (  final MessageParserException exception) {
+    CUtilityFunctions.logException(exception);
+    throw new IllegalStateException("IE00131: Unexpected error while parsing process start packet");
+  }
+}

@@ -1,0 +1,11 @@
+{
+  disposedLoadedObjects();
+  for (  final IDatabaseListener listener : m_listeners) {
+    try {
+      listener.closedDatabase(Database.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

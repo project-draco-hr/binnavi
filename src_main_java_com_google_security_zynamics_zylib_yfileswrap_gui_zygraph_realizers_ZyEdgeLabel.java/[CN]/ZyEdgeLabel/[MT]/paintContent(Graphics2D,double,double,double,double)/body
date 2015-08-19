@@ -1,0 +1,5 @@
+{
+  final int roundedX=(int)(x - (m_width / 2));
+  final int roundedY=(int)(y - (m_height / 2));
+  m_content.draw(gfx,roundedX,roundedY);
+}

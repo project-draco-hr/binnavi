@@ -1,0 +1,15 @@
+{
+  final MockViewListener listener=new MockViewListener();
+  final Function function=module.getFunctions().get(0);
+  m_view.load();
+  final FunctionNode node1=m_view.createFunctionNode(function);
+  final FunctionNode node2=m_view.createFunctionNode(function);
+  final ViewEdge edge=m_view.createEdge(node1,node2,EdgeType.JumpUnconditional);
+  m_view.addListener(listener);
+  assertEquals(edge,m_view.getGraph().getEdges().get(0));
+  m_view.deleteEdge(edge);
+  assertTrue(m_view.getGraph().getEdges().isEmpty());
+  assertEquals(0,m_view.getEdgeCount());
+  assertEquals("deletedEdge;",listener.events);
+  m_view.removeListener(listener);
+}

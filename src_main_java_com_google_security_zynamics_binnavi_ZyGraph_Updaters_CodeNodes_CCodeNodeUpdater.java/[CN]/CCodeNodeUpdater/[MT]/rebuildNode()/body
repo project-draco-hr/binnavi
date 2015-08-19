@@ -1,0 +1,4 @@
+{
+  realizer.regenerate();
+  graph.updateViews();
+}

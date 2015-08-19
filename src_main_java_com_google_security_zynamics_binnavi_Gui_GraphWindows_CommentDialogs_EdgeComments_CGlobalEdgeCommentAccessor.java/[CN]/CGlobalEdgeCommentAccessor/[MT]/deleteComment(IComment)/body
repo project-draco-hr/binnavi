@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02658: comment argument can not be null");
+  m_edge.deleteGlobalComment(comment);
+}

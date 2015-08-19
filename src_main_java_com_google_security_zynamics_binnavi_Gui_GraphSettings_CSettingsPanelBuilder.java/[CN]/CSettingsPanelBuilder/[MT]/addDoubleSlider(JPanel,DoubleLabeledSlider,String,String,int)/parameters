@@ -1,0 +1,5 @@
+JPanel panel
+DoubleLabeledSlider slider
+String description
+String hint
+int value

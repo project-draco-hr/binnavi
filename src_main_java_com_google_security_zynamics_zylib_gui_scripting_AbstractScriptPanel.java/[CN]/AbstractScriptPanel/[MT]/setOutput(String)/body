@@ -1,0 +1,3 @@
+{
+  m_OutputPane.setText(output);
+}

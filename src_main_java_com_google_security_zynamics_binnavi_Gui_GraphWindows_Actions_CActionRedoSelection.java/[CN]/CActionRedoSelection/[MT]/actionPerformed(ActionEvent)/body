@@ -1,0 +1,3 @@
+{
+  CUndoFunctions.redoLastSelection(m_history);
+}

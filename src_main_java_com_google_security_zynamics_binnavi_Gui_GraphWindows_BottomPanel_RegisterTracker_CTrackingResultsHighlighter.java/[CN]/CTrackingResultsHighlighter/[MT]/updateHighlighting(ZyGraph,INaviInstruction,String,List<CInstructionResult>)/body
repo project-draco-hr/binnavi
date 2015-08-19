@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(graph,"IE01529: Graph argument can not be null");
+  Preconditions.checkNotNull(startInstruction,"IE01687: Start instruction argument can not be null");
+  Preconditions.checkNotNull(trackedRegister,"IE01688: Tracked register argument can not be null");
+  Preconditions.checkNotNull(instructionResults,"IE01540: Instruction results argument can not be null");
+  clearHighlighting(graph);
+  highlightInstructions(graph,startInstruction,trackedRegister,instructionResults);
+}

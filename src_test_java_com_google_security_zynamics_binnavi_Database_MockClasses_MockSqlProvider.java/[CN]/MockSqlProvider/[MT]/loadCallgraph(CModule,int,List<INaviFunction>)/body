@@ -1,0 +1,3 @@
+{
+  return new CCallgraph(new ArrayList<ICallgraphNode>(),new ArrayList<ICallgraphEdge>());
+}

@@ -1,0 +1,5 @@
+{
+  final TypeSubstitution substitution=new TypeSubstitution(node,baseType,node.getId(),position,offset,address);
+  substitutions.add(substitution);
+  return substitution;
+}

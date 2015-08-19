@@ -1,0 +1,10 @@
+{
+  final Matcher matcher=typeInstanceNotificationPattern.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    throw new IllegalStateException("Error: compiled pattern: " + typeInstanceNotificationPattern.toString() + " did not match notification: "+ notification.getParameter());
+  }
+  final String databaseOperation=matcher.group(2);
+  final Integer moduleId=Integer.parseInt(matcher.group(3));
+  final Integer typeInstanceId=Integer.parseInt(matcher.group(4));
+  return new TypeInstancesNotificationContainer(databaseOperation,moduleId,typeInstanceId,Optional.<BigInteger>absent(),Optional.<Integer>absent(),Optional.<Integer>absent());
+}

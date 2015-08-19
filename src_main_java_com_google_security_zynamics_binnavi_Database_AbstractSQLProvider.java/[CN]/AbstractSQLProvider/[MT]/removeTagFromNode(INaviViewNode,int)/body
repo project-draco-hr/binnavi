@@ -1,0 +1,3 @@
+{
+  PostgreSQLNodeFunctions.untagNode(this,node,tagId);
+}

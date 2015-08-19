@@ -1,0 +1,5 @@
+{
+  final int id=++typeId;
+  members.put(module,new RawTypeMember(id,name,baseTypeId,containingTypeId,position.orNull(),null,numberelements.orNull()));
+  return id;
+}

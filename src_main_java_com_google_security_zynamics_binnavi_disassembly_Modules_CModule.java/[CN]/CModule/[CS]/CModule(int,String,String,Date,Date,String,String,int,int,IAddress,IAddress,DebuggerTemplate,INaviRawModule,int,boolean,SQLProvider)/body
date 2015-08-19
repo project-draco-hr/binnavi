@@ -1,0 +1,22 @@
+{
+  Preconditions.checkArgument(moduleId > 0,"IE00135: Module ID must be larger than 0");
+  Preconditions.checkNotNull(name,"IE00136: Module Name can not be null");
+  Preconditions.checkNotNull(comment,"IE00137: Module Comment can not be null");
+  Preconditions.checkNotNull(creationDate,"IE00139: Module Creation Date can not be null");
+  Preconditions.checkNotNull(modificationDate,"IE00140: Module Modification Date can not be null");
+  Preconditions.checkNotNull(md5,"IE00141: Module MD5 hash can not be null");
+  Preconditions.checkArgument(Convert.isMD5String(md5),"IE00142: Invalid MD5 string");
+  Preconditions.checkNotNull(sha1,"IE00143: Module SHA1 hash can not be null");
+  Preconditions.checkArgument(Convert.isSha1String(sha1),"IE00144: Invalid SHA1 string");
+  Preconditions.checkArgument(functionCount >= 0,"IE00145: Function count can not be negative");
+  Preconditions.checkArgument(customViewCount >= 0,"IE00146: Custom View Count argument can not be null");
+  Preconditions.checkNotNull(fileBase,"IE00147: File Base argument can not be null");
+  Preconditions.checkNotNull(imageBase,"IE00148: Image Base argument can not be null");
+  Preconditions.checkArgument(!((debuggerTemplate != null) && !debuggerTemplate.inSameDatabase(provider)),"IE00149: Module is not in same database as debugger template argument");
+  Preconditions.checkNotNull(provider,"IE00150: Invalid SQL provider");
+  m_configuration=new CModuleConfiguration(this,provider,m_listeners,moduleId,name,comment,creationDate,modificationDate,md5,sha1,fileBase,imageBase,debuggerTemplate,isStared,rawModule);
+  m_functionCount=functionCount;
+  m_customViewCount=customViewCount;
+  m_initializationState=initializationState;
+  m_provider=provider;
+}

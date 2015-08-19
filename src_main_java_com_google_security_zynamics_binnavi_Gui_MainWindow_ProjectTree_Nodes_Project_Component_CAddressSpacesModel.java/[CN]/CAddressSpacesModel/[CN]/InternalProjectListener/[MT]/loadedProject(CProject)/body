@@ -1,0 +1,8 @@
+{
+  m_cachedValues=null;
+  for (  final INaviAddressSpace addressSpace : project.getContent().getAddressSpaces()) {
+    addressSpace.addListener(m_addressSpaceListener);
+    addressSpace.getConfiguration().addListener(m_addressSpaceConfigurationListener);
+  }
+  fireTableDataChanged();
+}

@@ -1,0 +1,3 @@
+{
+  getProvider().deleteView(Iterables.getFirst(CViewFilter.getFlowgraphViews(getNotepadModule().getContent().getViewContainer().getUserViews()),null));
+}

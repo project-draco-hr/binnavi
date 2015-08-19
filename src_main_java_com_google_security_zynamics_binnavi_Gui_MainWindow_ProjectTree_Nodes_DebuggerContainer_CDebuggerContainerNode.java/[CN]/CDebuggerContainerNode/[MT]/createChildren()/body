@@ -1,0 +1,7 @@
+{
+  if (m_database.isLoaded()) {
+    for (    final DebuggerTemplate debugger : m_database.getContent().getDebuggerTemplateManager()) {
+      add(new CDebuggerNode(getProjectTree(),this,m_database,debugger));
+    }
+  }
+}

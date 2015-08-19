@@ -1,0 +1,37 @@
+{
+  final CConnection connection=provider.getConnection();
+  try {
+    PostgreSQLHelpers.beginTransaction(connection);
+    final int viewId=insertView(connection,name,description);
+    connection.executeUpdate("INSERT INTO " + viewContainerTable + " VALUES("+ containerId+ ", "+ viewId+ ")",true);
+    final List<INaviViewNode> nodes=view.getGraph().getNodes();
+    final List<INaviEdge> edges=view.getGraph().getEdges();
+    PostgreSQLNodeSaver.writeNodes(provider,viewId,nodes);
+    PostgreSQLEdgeSaver.writeEdges(provider,edges);
+    PostgreSQLHelpers.endTransaction(connection);
+    final String query="SELECT creation_date, modification_date FROM " + CTableNames.VIEWS_TABLE + " WHERE id = "+ viewId;
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final Timestamp creationDate=resultSet.getTimestamp("creation_date");
+        final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+        PostgreSQLHelpers.updateModificationDate(connection,containerTable,containerId);
+        return generator.generate(viewId,name,description,ViewType.NonNative,view.getGraphType(),creationDate,modificationDate,view.getNodeCount(),view.getEdgeCount(),new HashSet<CTag>(),new HashSet<CTag>(),false);
+      }
+      throw new CouldntSaveDataException("Error: Couldnt't load the created view");
+    }
+  finally {
+      resultSet.close();
+    }
+  }
+ catch (  final SQLException exception) {
+    CUtilityFunctions.logException(exception);
+    try {
+      PostgreSQLHelpers.rollback(connection);
+    }
+ catch (    final SQLException e) {
+      CUtilityFunctions.logException(e);
+    }
+    throw new CouldntSaveDataException(exception);
+  }
+}

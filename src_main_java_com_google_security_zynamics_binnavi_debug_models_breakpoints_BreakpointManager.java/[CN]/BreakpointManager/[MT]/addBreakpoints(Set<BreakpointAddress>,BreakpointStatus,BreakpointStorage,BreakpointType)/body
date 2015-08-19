@@ -1,0 +1,23 @@
+{
+  Preconditions.checkNotNull(addresses,"IE00718: addresses argument can not be null");
+  Preconditions.checkNotNull(status,"IE00719: status argument can not be null");
+  Preconditions.checkNotNull(storage,"IE00720: storage argument can not be null");
+  Preconditions.checkNotNull(type,"IE00721: type argument can not be null");
+  if (addresses.size() == 0) {
+    return;
+  }
+  final List<Breakpoint> breakpoints=new ArrayList<>();
+  for (  final BreakpointAddress address : addresses) {
+    final Breakpoint breakpoint=new Breakpoint(type,address);
+    storage.add(breakpoint,status);
+    breakpoints.add(breakpoint);
+  }
+  for (  final BreakpointManagerListener listener : listeners) {
+    try {
+      listener.breakpointsAdded(breakpoints);
+    }
+ catch (    final Exception e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

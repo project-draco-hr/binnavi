@@ -1,0 +1,9 @@
+{
+  panel.setLanguage(defaultLanguage);
+  panel.setProgressWindowTitle("Scripting");
+  for (  final Entry<String,Object> binding : m_bindings.entrySet()) {
+    panel.addBinding(binding.getKey(),binding.getValue());
+  }
+  panel.setConsoleName("SCRIPT_CONSOLE");
+  panel.setLibraryPath(scriptsDirectory + File.separator + "lib");
+}

@@ -1,0 +1,31 @@
+{
+  final MockSqlProvider provider=new MockSqlProvider();
+  final Database database=new Database(new MockDatabase());
+  final CModule internalModule=new CModule(1,"","",new Date(),new Date(),"00000000000000000000000000000000","0000000000000000000000000000000000000000",0,0,new CAddress(0),new CAddress(0),null,null,Integer.MAX_VALUE,false,provider);
+  internalModule.load();
+  final CFunction internalFunction=new CFunction(internalModule,new MockView(),new CAddress(0x123),"Mock Function","Mock Function","Mock Description",0,0,0,0,FunctionType.NORMAL,"",0,null,null,null,provider);
+  final CView internalView=internalModule.getContent().getViewContainer().createView("","");
+  @SuppressWarnings("unused") final CFunctionNode internalFunctionNode=internalView.getContent().createFunctionNode(internalFunction);
+  final TagManager nodeTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.NODE_TAG));
+  final TagManager viewTagManager=new TagManager(new MockTagManager(com.google.security.zynamics.binnavi.Tagging.TagType.VIEW_TAG));
+  final Function function=new Function(ModuleFactory.get(),internalFunction);
+  final Module module=new Module(database,internalModule,nodeTagManager,viewTagManager){
+    @Override public Function getFunction(    final INaviFunction internalFunction){
+      return function;
+    }
+    @Override public boolean isLoaded(){
+      return true;
+    }
+  }
+;
+  module.load();
+  final View view=module.getViews().get(2);
+  final FunctionNode node=(FunctionNode)view.getGraph().getNodes().get(0);
+  final MockFunctionNodeListener listener=new MockFunctionNodeListener();
+  node.addListener(listener);
+  final ArrayList<IComment> comment=Lists.<IComment>newArrayList(new CComment(null,CommonTestObjects.TEST_USER_1,null,"Fark"));
+  node.initializeComment(comment);
+  assertEquals("initializedComment;",listener.events);
+  assertEquals(comment,node.getComment());
+  node.removeListener(listener);
+}

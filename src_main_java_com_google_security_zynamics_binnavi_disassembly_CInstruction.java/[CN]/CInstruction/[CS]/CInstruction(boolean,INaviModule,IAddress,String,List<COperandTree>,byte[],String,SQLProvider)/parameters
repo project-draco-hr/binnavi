@@ -1,0 +1,8 @@
+boolean saved
+INaviModule module
+IAddress address
+String mnemonic
+List<COperandTree> operands
+byte[] data
+String architecture
+SQLProvider provider

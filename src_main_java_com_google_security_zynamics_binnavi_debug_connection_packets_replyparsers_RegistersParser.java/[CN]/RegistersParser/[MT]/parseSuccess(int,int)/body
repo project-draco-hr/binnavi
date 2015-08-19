@@ -1,0 +1,11 @@
+{
+  final byte[] data=parseData();
+  try {
+    final RegisterValues registerValues=RegisterValuesParser.parse(data);
+    return new RegistersReply(packetId,0,registerValues);
+  }
+ catch (  final MessageParserException exception) {
+    CUtilityFunctions.logException(exception);
+    return new RegistersReply(packetId,PARSER_ERROR,null);
+  }
+}

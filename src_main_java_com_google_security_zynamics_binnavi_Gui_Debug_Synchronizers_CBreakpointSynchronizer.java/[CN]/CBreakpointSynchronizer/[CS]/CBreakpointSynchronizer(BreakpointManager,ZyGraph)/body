@@ -1,0 +1,6 @@
+{
+  m_manager=Preconditions.checkNotNull(manager,"IE01509: Manager argument can not be null");
+  m_graph=Preconditions.checkNotNull(graph,"IE01510: Graph argument can not be null");
+  manager.addListener(m_breakpointManagerListener);
+  CBreakpointPainter.paintBreakpoints(manager,m_graph);
+}

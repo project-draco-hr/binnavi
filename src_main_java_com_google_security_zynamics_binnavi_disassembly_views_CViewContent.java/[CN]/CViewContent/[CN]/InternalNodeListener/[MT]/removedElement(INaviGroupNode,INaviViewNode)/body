@@ -1,0 +1,6 @@
+{
+  setModified(true);
+  if (groupNode.getNumberOfElements() == 0) {
+    deleteNode(groupNode);
+  }
+}

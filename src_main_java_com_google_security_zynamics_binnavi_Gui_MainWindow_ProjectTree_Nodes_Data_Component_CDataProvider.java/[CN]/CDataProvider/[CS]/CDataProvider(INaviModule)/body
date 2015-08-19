@@ -1,0 +1,5 @@
+{
+  m_module=module;
+  m_data=module.getData();
+  module.addListener(m_moduleListener);
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    super.insertString(lastPosition,output,outputErrAttr);
+    lastPosition+=output.length();
+  }
+ catch (  final Exception ex) {
+    ex.printStackTrace();
+  }
+}

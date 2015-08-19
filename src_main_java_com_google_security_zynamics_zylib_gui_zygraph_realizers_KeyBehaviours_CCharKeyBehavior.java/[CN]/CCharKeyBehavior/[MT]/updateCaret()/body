@@ -1,0 +1,4 @@
+{
+  final int y=getCaretMouseReleasedY();
+  setCaret(m_caretX,m_caretX,y,m_caretX,m_caretX,y);
+}

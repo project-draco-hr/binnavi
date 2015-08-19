@@ -1,0 +1,4 @@
+{
+  super(Lists.newArrayList(lhs,rhs));
+  this.operator=operator;
+}

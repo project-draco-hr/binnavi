@@ -1,0 +1,14 @@
+{
+  for (  final PluginConfigItem pt : xmlPluginOrder) {
+    processedPlugins.add(pt.getGUID());
+    final IPlugin<T> plugin=findPlugin(validatedPlugins,pt.getGUID());
+    if (plugin != null) {
+      if (pt.isLoad()) {
+        initializePlugin(plugin,pluginInterface,registry,initializedPlugins);
+      }
+ else {
+        registry.addDisabledPlugin(plugin,DisabledPluginReason.NotLoaded);
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(comment,"IE02674: comment argument can not be null");
+  Preconditions.checkNotNull(newCommentText,"IE02675: newCommentText argument can not be null");
+  return m_functionNode.editLocalFunctionComment(comment,newCommentText);
+}

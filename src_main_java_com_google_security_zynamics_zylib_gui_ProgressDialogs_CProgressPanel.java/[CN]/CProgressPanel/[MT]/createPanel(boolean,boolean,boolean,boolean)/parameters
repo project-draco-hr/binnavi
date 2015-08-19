@@ -1,0 +1,4 @@
+boolean indeterminate
+boolean showSeconds
+boolean showCancelButton
+boolean addBorder

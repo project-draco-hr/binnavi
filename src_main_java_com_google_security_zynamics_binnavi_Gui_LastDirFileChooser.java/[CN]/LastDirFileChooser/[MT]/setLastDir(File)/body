@@ -1,0 +1,6 @@
+{
+  final String absolutePath=lastDir.getAbsolutePath();
+  if (!absolutePath.isEmpty()) {
+    ConfigManager.instance().getGeneralSettings().setLastDirectory(absolutePath);
+  }
+}

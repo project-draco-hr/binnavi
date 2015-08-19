@@ -1,0 +1,19 @@
+{
+  if (value == getDisplayMultipleEdgesAsOne()) {
+    return;
+  }
+  if (type == null) {
+    displayMultipleEdgesAsOne=value;
+  }
+ else {
+    type.setMultipleEdgesAsOne(value);
+  }
+  for (  final IZyGraphEdgeSettingsListener listener : listeners) {
+    try {
+      listener.changedDisplayMultipleEdgesAsOne(value);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

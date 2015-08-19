@@ -1,0 +1,5 @@
+{
+  super(projectTree);
+  Preconditions.checkNotNull(database,"IE01975: Database argument can't be null");
+  m_database=database;
+}

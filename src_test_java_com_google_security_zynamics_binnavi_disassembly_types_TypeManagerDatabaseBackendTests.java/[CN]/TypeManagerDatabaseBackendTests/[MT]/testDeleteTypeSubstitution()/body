@@ -1,0 +1,12 @@
+{
+  final MockOperandTreeNode node=new MockOperandTreeNode();
+  final BaseType baseType=backend.createType("test_type",32,true,null,BaseTypeCategory.ATOMIC);
+  final CAddress address=new CAddress(0x1000);
+  final int position=0;
+  final TypeSubstitution substitution=backend.createTypeSubstitution(node,baseType,new ArrayList<Integer>(),position,32,address);
+  RawTypeSubstitution rawSubstitution=mockProvider.loadTypeSubstitution(mockModule,address.toBigInteger(),position,node.getId());
+  Assert.assertNotNull(rawSubstitution);
+  backend.deleteTypeSubstitution(substitution);
+  rawSubstitution=mockProvider.loadTypeSubstitution(mockModule,address.toBigInteger(),position,node.getId());
+  Assert.assertNull(rawSubstitution);
+}

@@ -1,0 +1,4 @@
+{
+  createChildren();
+  m_model.nodeStructureChanged(CAddressSpaceNode.this);
+}

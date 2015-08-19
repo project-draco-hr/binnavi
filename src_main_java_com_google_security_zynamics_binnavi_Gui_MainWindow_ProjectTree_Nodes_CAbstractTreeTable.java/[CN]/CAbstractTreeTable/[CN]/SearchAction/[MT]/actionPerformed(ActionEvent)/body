@@ -1,0 +1,3 @@
+{
+  CTableSearcherHelper.search(SwingUtilities.getWindowAncestor(CAbstractTreeTable.this),CAbstractTreeTable.this);
+}

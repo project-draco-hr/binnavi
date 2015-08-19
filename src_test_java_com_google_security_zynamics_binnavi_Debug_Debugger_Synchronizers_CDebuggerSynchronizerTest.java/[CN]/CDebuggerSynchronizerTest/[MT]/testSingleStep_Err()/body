@@ -1,0 +1,4 @@
+{
+  debuggerSynchronizer.receivedEvent(new SingleStepReply(0,5,0,new RelocatedAddress(CommonTestObjects.BP_ADDRESS_123.getAddress().getAddress()),null));
+  assertEquals("ERROR_SINGLE_STEP/5;",listener.events);
+}

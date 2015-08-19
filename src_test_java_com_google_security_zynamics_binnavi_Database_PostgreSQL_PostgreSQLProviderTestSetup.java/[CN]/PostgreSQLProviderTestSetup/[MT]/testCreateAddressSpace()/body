@@ -1,0 +1,4 @@
+{
+  final CAddressSpace addressSpace=getProvider().createAddressSpace(loadProject(),"Test Address Space");
+  assertNotNull(addressSpace);
+}

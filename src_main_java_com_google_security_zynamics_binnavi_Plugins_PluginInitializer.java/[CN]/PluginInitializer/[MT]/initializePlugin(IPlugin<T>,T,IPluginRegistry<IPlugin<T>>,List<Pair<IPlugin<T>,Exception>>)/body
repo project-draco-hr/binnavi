@@ -1,0 +1,10 @@
+{
+  registry.addPlugin(plugin);
+  try {
+    plugin.init(pluginInterface);
+  }
+ catch (  final Exception exception) {
+    registry.removePlugin(plugin,DisabledPluginReason.ThrewOnInit);
+    initializedPlugins.add(new Pair<IPlugin<T>,Exception>(plugin,exception));
+  }
+}

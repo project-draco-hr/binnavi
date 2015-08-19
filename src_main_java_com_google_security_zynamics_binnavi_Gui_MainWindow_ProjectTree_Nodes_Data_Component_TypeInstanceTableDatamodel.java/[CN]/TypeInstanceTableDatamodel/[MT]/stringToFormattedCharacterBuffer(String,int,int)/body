@@ -1,0 +1,3 @@
+{
+  return new FormattedCharacterBuffer(Strings.padEnd(string,columns[columnIndex].getWidth(),' '),STANDARD_FONT,columns[columnIndex].getDefaultFontColor(),getBackgroundColor(rowIndex,columnIndex));
+}

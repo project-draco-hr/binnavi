@@ -1,0 +1,12 @@
+{
+  final Map<Long,DebuggerException> exceptionsMap=getExceptionsMap(exceptions);
+  for (  final DebuggerException dbgException : exceptions) {
+    final String setting=target.readSetting(DebuggerException.getSettingKey(dbgException,debuggerId));
+    if (setting != null) {
+      final DebuggerExceptionHandlingAction handlingAction=DebuggerExceptionHandlingAction.convertToHandlingAction(Integer.valueOf(setting));
+      final DebuggerException newException=new DebuggerException(dbgException.getExceptionName(),dbgException.getExceptionCode(),handlingAction);
+      exceptionsMap.put(dbgException.getExceptionCode(),newException);
+    }
+  }
+  return exceptionsMap.values();
+}

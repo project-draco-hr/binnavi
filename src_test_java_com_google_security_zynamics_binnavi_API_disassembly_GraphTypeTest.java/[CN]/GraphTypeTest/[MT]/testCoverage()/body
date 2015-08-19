@@ -1,0 +1,8 @@
+{
+  for (  final GraphType graphType : GraphType.values()) {
+    assertEquals(graphType,GraphType.convert(graphType.getNative()));
+  }
+  for (  final com.google.security.zynamics.zylib.disassembly.GraphType graphType : com.google.security.zynamics.zylib.disassembly.GraphType.values()) {
+    assertEquals(graphType,GraphType.convert(graphType).getNative());
+  }
+}

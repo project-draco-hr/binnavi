@@ -1,0 +1,3 @@
+{
+  return (getLastInstruction(block).getAddress().toLong() & ~0xFF) == (getLastInstruction(node).getAddress().toLong() & ~0xFF);
+}

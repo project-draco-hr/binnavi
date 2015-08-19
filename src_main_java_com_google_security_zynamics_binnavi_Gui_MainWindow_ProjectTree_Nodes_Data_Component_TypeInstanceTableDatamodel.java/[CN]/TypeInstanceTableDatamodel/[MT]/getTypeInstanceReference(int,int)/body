@@ -1,0 +1,8 @@
+{
+  TypeInstance typeInstance=typesToDisplay.get(row);
+  List<TypeInstanceReference> references=typeContainer.getReferences(typeInstance);
+  if (line < references.size()) {
+    return references.get(line);
+  }
+  return null;
+}

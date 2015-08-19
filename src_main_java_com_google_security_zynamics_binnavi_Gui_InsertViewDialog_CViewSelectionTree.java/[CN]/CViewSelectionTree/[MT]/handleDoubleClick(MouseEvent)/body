@@ -1,0 +1,7 @@
+{
+  final IViewSelectionTreeNode selectedNode=(IViewSelectionTreeNode)TreeHelpers.getNodeAt(this,event.getX(),event.getY());
+  if (selectedNode == null) {
+    return;
+  }
+  selectedNode.doubleClicked();
+}

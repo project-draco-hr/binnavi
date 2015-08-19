@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(module,"IE02355: module argument can not be null");
+  m_database=Preconditions.checkNotNull(database,"IE02062: Database argument can't be null");
+  Preconditions.checkArgument(database.isLoaded(),"IE02063: Database must be loaded before functions can be redirected");
+  m_targetModules=loadModules(Lists.newArrayList(module));
+  m_sourceModules=loadModules(database.getContent().getModules());
+  final String message=String.format("Do you really want to resolve all functions in the module '%s'?",module.getConfiguration().getName());
+  resultDialog(questionDialog(owner,message));
+}

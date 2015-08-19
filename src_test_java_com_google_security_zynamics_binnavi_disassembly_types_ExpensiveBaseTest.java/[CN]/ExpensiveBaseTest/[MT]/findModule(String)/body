@@ -1,0 +1,10 @@
+{
+  for (  final INaviModule module : modules) {
+    if (module.getConfiguration().getName().equalsIgnoreCase(name)) {
+      if (!module.isLoaded()) {
+        return module;
+      }
+    }
+  }
+  return null;
+}

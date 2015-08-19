@@ -1,0 +1,13 @@
+{
+  NaviLogger.info("Checking the existence of the BinNavi database tables");
+  final int counter=PostgreSQLHelpers.getTableCount(getConnection(),Lists.newArrayList(TABLES));
+  if (counter == 0) {
+    return false;
+  }
+ else   if (counter == TABLES.length) {
+    return true;
+  }
+ else {
+    throw new InvalidDatabaseException(String.format("Invalid database state (%d of %d tables found)",counter,TABLES.length));
+  }
+}

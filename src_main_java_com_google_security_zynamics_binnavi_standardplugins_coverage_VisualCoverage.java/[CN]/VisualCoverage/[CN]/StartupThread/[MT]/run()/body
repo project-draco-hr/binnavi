@@ -1,0 +1,12 @@
+{
+  for (  final ViewNode node : view2d.getView().getGraph()) {
+    if ((node instanceof CodeNode) || (node instanceof FunctionNode)) {
+      node.setColor(Color.WHITE);
+      final Address address=getAddress(node);
+      setBreakpoint(address);
+      myBreakpoints.add(address);
+      breakpointCounter.put(address,0);
+      nodeMap.put(address,node);
+    }
+  }
+}

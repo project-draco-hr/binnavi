@@ -1,0 +1,4 @@
+{
+  final File dir=new File(ConfigHelper.getZynamicsDirectory(Constants.COMPANY_NAME));
+  return dir.exists() || dir.mkdir();
+}

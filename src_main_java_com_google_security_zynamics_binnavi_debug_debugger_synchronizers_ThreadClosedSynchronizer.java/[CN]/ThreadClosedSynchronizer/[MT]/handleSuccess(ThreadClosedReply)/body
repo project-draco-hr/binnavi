@@ -1,0 +1,10 @@
+{
+  final ProcessManager processManager=getDebugger().getProcessManager();
+  final long tid=reply.getThreadId();
+  try {
+    processManager.removeThread(processManager.getThread(tid));
+  }
+ catch (  final MaybeNullException e) {
+    CUtilityFunctions.logException(e);
+  }
+}

@@ -1,0 +1,54 @@
+{
+  Preconditions.checkArgument(address >= 0,"Error: Address can't be less than 0");
+  Preconditions.checkArgument(length > 0,"Error: Length must be positive");
+  try {
+    m_writeLock.lock();
+    final MemoryChunk chunk=findChunk(address);
+    if (chunk == null) {
+      final MemoryChunk nextChunk=findNextChunk(address);
+      if (nextChunk == null) {
+        return;
+      }
+ else       if (nextChunk.getAddress() < (address + length)) {
+        final int toRemove=(int)((address + length) - nextChunk.getAddress());
+        remove(nextChunk.getAddress(),toRemove);
+      }
+ else {
+        return;
+      }
+    }
+ else     if (chunk.getAddress() == address) {
+      if (chunk.getLength() <= length) {
+        removeChunk(chunk);
+        final int toDelete=length - chunk.getLength();
+        if (toDelete > 0) {
+          remove(address + chunk.getLength(),toDelete);
+        }
+      }
+ else {
+        splitChunk(chunk,address + length);
+        removeChunk(findChunk(address));
+      }
+    }
+ else {
+      if ((chunk.getAddress() + chunk.getLength()) <= (address + length)) {
+        splitChunk(chunk,address);
+        final MemoryChunk deleteChunk=findChunk(address);
+        removeChunk(deleteChunk);
+        final int toRemove=length - deleteChunk.getLength();
+        if (toRemove > 0) {
+          remove(address + deleteChunk.getLength(),toRemove);
+        }
+      }
+ else {
+        splitChunk(chunk,address);
+        final MemoryChunk secondChunk=findChunk(address);
+        splitChunk(secondChunk,address + length);
+        removeChunk(findChunk(address));
+      }
+    }
+  }
+  finally {
+    m_writeLock.unlock();
+  }
+}

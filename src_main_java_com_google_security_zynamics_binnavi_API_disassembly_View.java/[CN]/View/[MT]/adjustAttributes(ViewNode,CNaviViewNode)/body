@@ -1,0 +1,4 @@
+{
+  newNode.setBorderColor(node.getBorderColor());
+  newNode.setColor(node.getColor());
+}

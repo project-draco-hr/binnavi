@@ -1,0 +1,3 @@
+{
+  events+=String.format("removedModule/%s;",module.getName());
+}

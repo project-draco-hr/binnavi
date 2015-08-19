@@ -1,0 +1,4 @@
+{
+  updateGuiFromOptions(information.getDebuggerOptions());
+  updateGui();
+}

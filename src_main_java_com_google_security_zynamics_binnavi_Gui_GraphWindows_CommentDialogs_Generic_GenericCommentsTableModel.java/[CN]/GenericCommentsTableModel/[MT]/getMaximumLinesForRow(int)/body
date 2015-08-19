@@ -1,0 +1,10 @@
+{
+  if (rowIndex == cachedComments.size()) {
+    return 1;
+  }
+  if (rowIndex > cachedComments.size()) {
+    return 0;
+  }
+  IComment comment=cachedComments.get(rowIndex);
+  return comment.getNumberOfCommentLines();
+}

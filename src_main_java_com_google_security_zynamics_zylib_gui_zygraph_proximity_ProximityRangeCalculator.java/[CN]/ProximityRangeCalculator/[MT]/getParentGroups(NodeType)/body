@@ -1,0 +1,9 @@
+{
+  final Set<ViewNodeAdapter> parentGroups=new HashSet<ViewNodeAdapter>();
+  IGroupNode<?,?> parentGroup=((IViewNode<?>)node.getRawNode()).getParentGroup();
+  while (parentGroup != null) {
+    parentGroups.add(new ViewNodeAdapter(parentGroup));
+    parentGroup=parentGroup.getParentGroup();
+  }
+  return parentGroups;
+}

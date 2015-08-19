@@ -1,0 +1,19 @@
+{
+  final IDebugger debugger=debugPerspectiveModel.getCurrentSelectedDebugger();
+  if (debugger == null) {
+    return;
+  }
+  dlg.setVisible(true);
+  final IAddress start=dlg.getStart();
+  final IAddress numberOfBytes=dlg.getBytes();
+  if (start != null && numberOfBytes != null) {
+    debugPerspectiveModel.setActiveMemoryAddress(start,true);
+    final ProcessManager pmanager=debugger.getProcessManager();
+    pmanager.setMemoryMap(new MemoryMap(new FilledList<MemorySection>()));
+    pmanager.getMemory().clear();
+    final ArrayList<MemorySection> sections=new ArrayList<MemorySection>();
+    sections.add(new MemorySection(start,new CAddress(start.toBigInteger().add(numberOfBytes.toBigInteger()).subtract(BigInteger.ONE))));
+    final MemoryMap map=new MemoryMap(sections);
+    pmanager.setMemoryMap(map);
+  }
+}

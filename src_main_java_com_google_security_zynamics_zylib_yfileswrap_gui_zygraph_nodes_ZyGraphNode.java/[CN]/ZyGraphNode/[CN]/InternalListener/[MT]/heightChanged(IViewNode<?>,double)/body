@@ -1,0 +1,6 @@
+{
+  if ((m_realizer.getHeight() != height) && (height != 0)) {
+    m_realizer.setHeight(height);
+    updateViews();
+  }
+}

@@ -1,0 +1,11 @@
+{
+  if (getMagnifyingMode() == active) {
+    return;
+  }
+  if (active) {
+    m_graph.getView().addViewMode(m_magifierViewMode);
+  }
+ else {
+    m_graph.getView().removeViewMode(m_magifierViewMode);
+  }
+}

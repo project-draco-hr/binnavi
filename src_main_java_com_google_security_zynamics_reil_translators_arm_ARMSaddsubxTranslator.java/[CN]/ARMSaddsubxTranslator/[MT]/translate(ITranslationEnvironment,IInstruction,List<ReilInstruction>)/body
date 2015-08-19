@@ -1,0 +1,10 @@
+{
+  if (instruction.getMnemonic().startsWith("SASX")) {
+    TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SASX");
+    translateAll(environment,instruction,"SASX",instructions);
+  }
+ else {
+    TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"SADDSUBX");
+    translateAll(environment,instruction,"SADDSUBX",instructions);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  final MockProjectListener listener=new MockProjectListener();
+  m_project.load();
+  m_project.addListener(listener);
+  final View view=m_project.createView("N A","D A");
+  assertEquals(view,m_project.getViews().get(0));
+  assertEquals("N A",m_internalProject.getContent().getViews().get(0).getName());
+  assertEquals("addedView;",listener.events);
+  final View view2=m_project.createView(view,"N B","D B");
+  assertEquals(view2,m_project.getViews().get(1));
+  assertEquals("N B",m_internalProject.getContent().getViews().get(1).getName());
+  assertEquals("addedView;addedView;",listener.events);
+  m_project.removeListener(listener);
+}

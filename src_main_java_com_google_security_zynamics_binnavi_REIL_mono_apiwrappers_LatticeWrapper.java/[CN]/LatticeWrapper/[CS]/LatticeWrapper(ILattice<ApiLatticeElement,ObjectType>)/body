@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(lattice,"IE02085: Lattice argument can not be null");
+  m_lattice=lattice;
+}

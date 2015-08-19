@@ -1,0 +1,26 @@
+{
+  if (!isLoaded()) {
+    throw new IllegalStateException("IE00035: Address space is not loaded");
+  }
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      if (!listener.closing(this)) {
+        return false;
+      }
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  final CAddressSpaceContent oldContent=m_content;
+  m_content=null;
+  for (  final IAddressSpaceListener listener : m_listeners) {
+    try {
+      listener.closed(this,oldContent);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return true;
+}

@@ -1,0 +1,6 @@
+{
+  if (!m_project.isLoaded()) {
+    final Action action=CActionProxy.proxy(new CLoadProjectAction(getProjectTree(),new INaviProject[]{m_project}));
+    action.actionPerformed(new ActionEvent(this,0,""));
+  }
+}

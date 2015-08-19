@@ -1,0 +1,8 @@
+{
+  this.databaseOperation=Preconditions.checkNotNull(databaseOperation,"Error: databaseOperation argument can not be null.");
+  this.moduleId=Preconditions.checkNotNull(moduleId,"Error: moduleId argument can not be null.");
+  this.typeInstanceId=Preconditions.checkNotNull(typeInstanceId,"Error: typeInstanceId argument can not be null.");
+  this.address=Preconditions.checkNotNull(address,"Error: address argument can not be null.");
+  this.position=Preconditions.checkNotNull(position,"Error: position argument can not be null.");
+  this.expressionId=Preconditions.checkNotNull(expressionId,"Error: type argument can not be null.");
+}

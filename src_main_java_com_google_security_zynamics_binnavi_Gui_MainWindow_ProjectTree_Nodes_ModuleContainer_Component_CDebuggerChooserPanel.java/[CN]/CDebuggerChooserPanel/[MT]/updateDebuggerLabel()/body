@@ -1,0 +1,4 @@
+{
+  final DebuggerTemplate debugger=m_addressSpace.getConfiguration().getDebuggerTemplate();
+  m_debuggerName.setText(debugger == null ? "-" : debugger.getName());
+}

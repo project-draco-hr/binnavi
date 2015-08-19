@@ -1,0 +1,3 @@
+{
+  return getType().hashCode() * getValue().hashCode() * getSize().hashCode();
+}

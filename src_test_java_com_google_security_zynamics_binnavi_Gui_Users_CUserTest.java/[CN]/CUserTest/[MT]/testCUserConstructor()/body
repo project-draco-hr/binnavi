@@ -1,0 +1,6 @@
+{
+  final CUser user=new CUser(3,"TEST USER 3");
+  assertNotNull(user);
+  assertEquals(3,user.getUserId());
+  assertEquals("TEST USER 3",user.getUserName());
+}

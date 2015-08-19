@@ -1,0 +1,9 @@
+{
+  m_project.removeListener(m_projectListener);
+  if (m_project.isLoaded()) {
+    for (    final INaviAddressSpace addressSpace : m_project.getContent().getAddressSpaces()) {
+      addressSpace.removeListener(m_addressSpaceListener);
+      addressSpace.getConfiguration().removeListener(m_addressSpaceConfigurationListener);
+    }
+  }
+}

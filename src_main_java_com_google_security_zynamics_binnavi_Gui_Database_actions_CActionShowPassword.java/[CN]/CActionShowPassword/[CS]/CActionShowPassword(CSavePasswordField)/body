@@ -1,0 +1,5 @@
+{
+  super("Show Password");
+  m_passwordField=passwordField;
+  m_originalCharacter=m_passwordField.getEchoChar();
+}

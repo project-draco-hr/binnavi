@@ -1,0 +1,12 @@
+{
+  m_graph=null;
+  m_reilGraph=null;
+  for (  final IFunctionListener listener : m_listeners) {
+    try {
+      listener.closedFunction(Function.this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

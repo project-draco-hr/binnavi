@@ -1,0 +1,8 @@
+{
+  super(new GridLayout(3,1));
+  Preconditions.checkNotNull(settings,"IE01591: Settings argument can not be null");
+  setBorder(new TitledBorder("Orthogonal Layout"));
+  CSettingsPanelBuilder.addComboBox(this,m_cbOrthoOrientation,"Orientation" + ":","Specifies whether orthogonal graph orientation goes from left to right or from top to bottom.",new String[]{"Vertical","Horizontal"},settings.getLayoutSettings().getOrthogonalSettings().getOrientation().ordinal());
+  CSettingsPanelBuilder.addComboBox(this,m_cbOrthoLayoutStyle,"Layout Style" + ":","Exact layouting style used when doing orthogonal layouts.",new String[]{"Normal","Tree"},settings.getLayoutSettings().getOrthogonalSettings().getStyle().ordinal());
+  CSettingsPanelBuilder.addTextField(this,m_tfOrthogonalMinNodeDistance,"Minimum Node Distance" + ":","Minimum distance between nodes in pixels.",String.valueOf(settings.getLayoutSettings().getOrthogonalSettings().getMinimumNodeDistance()));
+}

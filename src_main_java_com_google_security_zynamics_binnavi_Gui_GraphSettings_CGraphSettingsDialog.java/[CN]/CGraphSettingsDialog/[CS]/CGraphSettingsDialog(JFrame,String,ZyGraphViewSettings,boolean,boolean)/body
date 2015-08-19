@@ -1,0 +1,13 @@
+{
+  super(parent,topic,true);
+  Preconditions.checkNotNull(parent,"IE01586: Parent argument can not be null");
+  Preconditions.checkNotNull(topic,"IE01587: Topic argument can not be null");
+  Preconditions.checkNotNull(settings,"IE01588: Settings argument can not be null");
+  m_settings=settings;
+  new CDialogEscaper(this);
+  setLayout(new BorderLayout());
+  add(createTabbedPane(isDefaultSettingsDialog,isCallgraph),BorderLayout.CENTER);
+  add(new CPanelTwoButtons(new InternalListener(),"OK","Cancel"),BorderLayout.SOUTH);
+  pack();
+  GuiHelper.centerChildToParent(parent,this,true);
+}

@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof Literal) && ((Literal)rhs).m_value.equals(m_value);
+}

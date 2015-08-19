@@ -1,0 +1,18 @@
+{
+  m_module=module;
+  m_provider=provider;
+  m_listeners=listeners;
+  m_id=moduleId;
+  m_name=name;
+  m_description=comment;
+  m_creationDate=new Date(creationDate.getTime());
+  m_modificationDate=new Date(modificationDate.getTime());
+  m_md5=md5;
+  m_sha1=sha1;
+  m_fileBase=fileBase;
+  m_imageBase=imageBase;
+  m_debuggerTemplate=debuggerTemplate;
+  m_isStared=isStared;
+  m_rawModule=rawModule;
+  updateDebugger(debuggerTemplate);
+}

@@ -1,0 +1,3 @@
+ZyGraph graph
+Set<CTag> tags
+boolean mustBeVisible

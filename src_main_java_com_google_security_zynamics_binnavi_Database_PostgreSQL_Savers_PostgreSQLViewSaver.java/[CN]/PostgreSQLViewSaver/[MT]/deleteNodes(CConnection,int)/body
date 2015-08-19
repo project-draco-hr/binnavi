@@ -1,0 +1,4 @@
+{
+  final String query="DELETE FROM " + CTableNames.NODES_TABLE + " WHERE view_id = "+ viewId;
+  connection.executeUpdate(query,true);
+}

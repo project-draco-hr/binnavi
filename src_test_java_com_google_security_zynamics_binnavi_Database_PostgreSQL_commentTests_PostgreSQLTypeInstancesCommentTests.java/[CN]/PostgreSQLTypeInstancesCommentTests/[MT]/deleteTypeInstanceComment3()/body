@@ -1,0 +1,3 @@
+{
+  getProvider().deleteTypeInstanceComment(1,1,null,null);
+}

@@ -1,0 +1,10 @@
+{
+  int hash=0;
+  int tempHash=64 + m_text.hashCode();
+  tempHash*=m_persistentModel.hashCode();
+  hash+=m_isAboveLineComment ? 1 : 2;
+  hash+=m_isBehindLineComment ? 4 : 8;
+  hash+=m_isBehindLineComment ? 16 : 32;
+  hash+=tempHash;
+  return hash;
+}

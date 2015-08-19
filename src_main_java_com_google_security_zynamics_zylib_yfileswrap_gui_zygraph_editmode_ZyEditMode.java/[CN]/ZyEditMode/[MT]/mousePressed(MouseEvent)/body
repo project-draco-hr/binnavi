@@ -1,0 +1,13 @@
+{
+  final IMouseStateChange result=m_state.mousePressed(e,m_graph);
+  m_state=result.getNextState();
+  if (result.notifyYFiles()) {
+    m_inMousePressed=true;
+    try {
+      super.mousePressed(e);
+    }
+  finally {
+      m_inMousePressed=false;
+    }
+  }
+}

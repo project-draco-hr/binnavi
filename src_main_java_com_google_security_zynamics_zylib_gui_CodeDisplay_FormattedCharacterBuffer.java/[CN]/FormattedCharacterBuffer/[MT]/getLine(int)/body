@@ -1,0 +1,12 @@
+{
+  FormattedCharacterBuffer result=new FormattedCharacterBuffer(1,numberOfColumnsInBuffer);
+  for (int column=0; column < getNumberOfColumns(); column++) {
+    int readIndex=(lineIndex * getNumberOfColumns()) + column;
+    char value=charBuffer[readIndex];
+    Font font=perCharFonts[readIndex];
+    Color foreground=perCharForegroundColor[readIndex];
+    Color background=perCharBackgroundColor[readIndex];
+    result.setAt(0,column,value,font,foreground,background);
+  }
+  return result;
+}

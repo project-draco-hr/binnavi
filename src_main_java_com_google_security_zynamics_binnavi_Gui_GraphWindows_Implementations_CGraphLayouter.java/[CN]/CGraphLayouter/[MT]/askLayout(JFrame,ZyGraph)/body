@@ -1,0 +1,6 @@
+{
+  if (graph.visibleNodeCount() >= graph.getSettings().getLayoutSettings().getLayoutCalculationTimeWarningThreshold()) {
+    return JOptionPane.YES_OPTION == CMessageBox.showYesNoQuestion(parent,"Layouting this graph can take a while. Do you want to continue?");
+  }
+  return true;
+}

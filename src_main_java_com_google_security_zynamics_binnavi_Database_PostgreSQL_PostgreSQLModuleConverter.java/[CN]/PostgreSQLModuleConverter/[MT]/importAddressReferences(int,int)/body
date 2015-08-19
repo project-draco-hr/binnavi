@@ -1,0 +1,3 @@
+{
+  PostgreSQLDataImporter.importAddressReferences(m_provider.getConnection(),rawModuleId,moduleId);
+}

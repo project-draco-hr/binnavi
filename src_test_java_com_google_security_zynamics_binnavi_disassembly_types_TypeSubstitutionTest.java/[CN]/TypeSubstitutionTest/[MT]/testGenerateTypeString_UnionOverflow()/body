@@ -1,0 +1,4 @@
+{
+  final String typeString=TypeSubstitution.generateTypeString(createSubstitution(typeSystem.simpleUnion,Lists.newArrayList(typeSystem.suUintMember)),1);
+  Assert.assertEquals(String.format("%s.%s+1",typeSystem.simpleUnion.getName(),typeSystem.suUintMember.getName()),typeString);
+}

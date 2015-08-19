@@ -1,0 +1,11 @@
+{
+  new MockModule(provider,Lists.newArrayList(mockView),Lists.newArrayList(mockFunction));
+  MockPGNotification notification=new MockPGNotification("comment_changes","bn_text_nodes UPDATE 7777 3333");
+  final CommentNotification result=PostgreSQLCommentNotificationParser.processTextNodeCommentNotification(notification,provider);
+  assertNotNull(result);
+  final TextNodeCommentNotificationContainer container=(TextNodeCommentNotificationContainer)result;
+  final INaviTextNode textNode=container.getNode();
+  assertEquals(7777,textNode.getId());
+  assertEquals(CommentOperation.APPEND,container.getOperation());
+  assertEquals(new Integer(3333),container.getCommentId());
+}

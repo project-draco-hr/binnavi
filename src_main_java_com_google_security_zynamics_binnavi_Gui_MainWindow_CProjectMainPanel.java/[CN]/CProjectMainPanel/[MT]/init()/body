@@ -1,0 +1,3 @@
+{
+  m_projectTree.setSelectionPath(new TreePath(m_projectTree.getRootNode()));
+}

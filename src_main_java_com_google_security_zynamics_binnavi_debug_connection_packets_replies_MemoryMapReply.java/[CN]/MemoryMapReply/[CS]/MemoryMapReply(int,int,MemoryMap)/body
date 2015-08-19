@@ -1,0 +1,12 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(memoryMap,"IE01064: Memory map argument can not be null");
+  }
+ else {
+    if (memoryMap != null) {
+      throw new IllegalArgumentException("IE01065: Memory map argument must be null");
+    }
+  }
+  this.memoryMap=memoryMap;
+}

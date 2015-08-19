@@ -1,0 +1,8 @@
+{
+  final INaviModule module=new MockModule(provider);
+  final int currentUserViewSize=module.getContent().getViewContainer().getUserViews().size();
+  final ViewNotificationContainer container=new ViewNotificationContainer(view.getConfiguration().getId(),Optional.fromNullable(view),Optional.of(module.getConfiguration().getId()),Optional.of(module),Optional.<INaviProject>absent(),"INSERT");
+  final PostgreSQLViewNotificationParser parser=new PostgreSQLViewNotificationParser();
+  parser.inform(Lists.<ViewNotificationContainer>newArrayList(container),provider);
+  assertEquals(currentUserViewSize + 1,module.getContent().getViewContainer().getUserViews().size());
+}

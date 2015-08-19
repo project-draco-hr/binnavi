@@ -1,0 +1,4 @@
+INaviView view
+INaviCodeNode originalNode
+INaviInstruction inlineInstruction
+INaviFunction functionToInline

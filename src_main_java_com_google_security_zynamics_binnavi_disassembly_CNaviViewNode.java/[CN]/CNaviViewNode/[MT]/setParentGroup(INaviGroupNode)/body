@@ -1,0 +1,15 @@
+{
+  if ((group != null) && group.equals(m_parentGroup)) {
+    return;
+  }
+  Preconditions.checkArgument(group != this,"IE00211: Invalid group hierarchy");
+  m_parentGroup=group;
+  for (  final INaviViewNodeListener listener : m_naviViewNodeListeners) {
+    try {
+      listener.changedParentGroup(this,group);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

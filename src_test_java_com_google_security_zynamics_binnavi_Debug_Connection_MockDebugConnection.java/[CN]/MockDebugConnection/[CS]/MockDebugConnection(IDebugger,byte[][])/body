@@ -1,0 +1,4 @@
+{
+  m_synchronizer=new DebuggerSynchronizer(debugger);
+  m_message=data;
+}

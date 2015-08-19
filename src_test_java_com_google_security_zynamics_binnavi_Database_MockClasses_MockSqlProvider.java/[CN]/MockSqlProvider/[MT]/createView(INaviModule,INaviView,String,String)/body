@@ -1,0 +1,10 @@
+{
+  int counter=100;
+  for (  INaviEdge edge : view.getGraph().getEdges()) {
+    edge.setId(counter++);
+  }
+  for (  INaviViewNode node : view.getGraph().getNodes()) {
+    node.setId(counter++);
+  }
+  return new CView(viewCounter++,module,name,description,view.getType(),view.getGraphType(),new Date(),new Date(),view.getNodeCount(),view.getEdgeCount(),new HashSet<CTag>(),new HashSet<CTag>(),false,this);
+}

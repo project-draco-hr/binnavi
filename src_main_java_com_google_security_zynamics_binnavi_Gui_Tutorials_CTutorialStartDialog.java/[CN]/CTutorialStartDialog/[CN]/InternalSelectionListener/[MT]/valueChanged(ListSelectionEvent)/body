@@ -1,0 +1,6 @@
+{
+  final CTutorial selectedTutorial=tutorialList.getSelectedValue();
+  if (selectedTutorial != null) {
+    tutorialDescription.setText(selectedTutorial.getDescription());
+  }
+}

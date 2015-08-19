@@ -1,0 +1,14 @@
+{
+  final RegisterTrackingTransformationProvider transformationProvider=new RegisterTrackingTransformationProvider(new RegisterTrackingOptions(false,new TreeSet<String>(),false,AnalysisDirection.UP));
+  final ReilInstruction instruction=ReilHelpers.createAdd(0,OperandSize.DWORD,"ecx",OperandSize.DWORD,"ebx",OperandSize.DWORD,"eax");
+  final Pair<RegisterSetLatticeElement,RegisterSetLatticeElement> transformationResult=transformationProvider.transformAdd(instruction,createTaintedState("eax"));
+  Assert.assertNull(transformationResult.second());
+  Assert.assertFalse(transformationResult.first().isTainted("eax"));
+  Assert.assertTrue(transformationResult.first().isTainted("ecx"));
+  Assert.assertTrue(transformationResult.first().isTainted("ebx"));
+  transformationResult.first().onInstructionExit();
+  Assert.assertTrue(transformationResult.first().getReadRegisters().contains("eax"));
+  Assert.assertTrue(transformationResult.first().getNewlyTaintedRegisters().contains("ecx"));
+  Assert.assertTrue(transformationResult.first().getNewlyTaintedRegisters().contains("ebx"));
+  Assert.assertTrue(transformationResult.first().getUpdatedRegisters().isEmpty());
+}

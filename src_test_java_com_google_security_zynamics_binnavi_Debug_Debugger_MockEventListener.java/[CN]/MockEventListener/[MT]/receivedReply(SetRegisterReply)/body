@@ -1,0 +1,7 @@
+{
+  if (reply.success()) {
+  }
+ else {
+    events+="ERROR_SET_REGISTERS/" + reply.getErrorCode() + ";";
+  }
+}

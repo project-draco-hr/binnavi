@@ -1,0 +1,17 @@
+{
+  if ((labelContent == null) || (activeRealizer == null)) {
+    return;
+  }
+  unregisterListener();
+  if ((getActiveLabelContent() != null) && (labelContent != getActiveLabelContent())) {
+    if (getActiveLabelContent().isSelectable()) {
+      getActiveLabelContent().showCaret(false);
+      m_graph.updateViews();
+    }
+  }
+  setActiveLabelContent(labelContent);
+  m_activeRealizer=activeRealizer;
+  getActiveLabelContent().showCaret(getActiveLabelContent().isSelectable());
+  m_undoManager.setLabelContent(getActiveLabelContent());
+  registerListener();
+}

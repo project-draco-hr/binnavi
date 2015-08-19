@@ -1,0 +1,14 @@
+{
+  try {
+    registerView.setEnabled(false);
+    return debugger.setRegister(currentTid,registerIndex,value);
+  }
+ catch (  final DebugExceptionWrapper exception) {
+    registerView.setEnabled(true);
+    CUtilityFunctions.logException(exception);
+    final String innerMessage="E00105: " + "Could not send register change request";
+    final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the request to change the register value to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The value of the register did not change."});
+    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    return null;
+  }
+}

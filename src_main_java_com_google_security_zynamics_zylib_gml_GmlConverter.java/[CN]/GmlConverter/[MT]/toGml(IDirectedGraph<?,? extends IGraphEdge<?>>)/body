@@ -1,0 +1,31 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  final StringBuilder sb=new StringBuilder();
+  sb.append("graph\n");
+  sb.append("[\n");
+  int currentId=0;
+  final Map<Object,Integer> nodeMap=new HashMap<Object,Integer>();
+  for (  final Object node : graph.getNodes()) {
+    sb.append("\tnode\n");
+    sb.append("\t[\n");
+    sb.append("\tid " + currentId + "\n");
+    sb.append("\tlabel \"" + node + "\"\n");
+    sb.append("\t]\n");
+    nodeMap.put(node,currentId);
+    ++currentId;
+  }
+  for (  final IGraphEdge<?> edge : graph.getEdges()) {
+    sb.append("\tedge\n");
+    sb.append("\t[\n");
+    sb.append("\tsource " + nodeMap.get(edge.getSource()) + "\n");
+    sb.append("\ttarget " + nodeMap.get(edge.getTarget()) + "\n");
+    sb.append("\tgraphics\n");
+    sb.append("\t[\n");
+    sb.append("\t\tfill \"#000000\"\n");
+    sb.append("\t\ttargetArrow \"standard\"\n");
+    sb.append("\t]\n");
+    sb.append("\t]\n");
+  }
+  sb.append("]\n");
+  return sb.toString();
+}

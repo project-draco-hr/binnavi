@@ -1,0 +1,11 @@
+{
+  m_isCaseSensitive=caseSensitive;
+  for (  final IGraphSearchSettingsListener listener : m_listeners) {
+    try {
+      listener.changedCaseSensitive();
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

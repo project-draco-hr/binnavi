@@ -1,0 +1,9 @@
+{
+  for (  final CCriteriumTreeNode grandchild : parent.getChildren()) {
+    child.getChildren().add(grandchild);
+    grandchild.m_parent=child;
+  }
+  parent.getChildren().clear();
+  parent.getChildren().add(child);
+  child.m_parent=parent;
+}

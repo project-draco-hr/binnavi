@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(expression,"Error: Argument expression can't be null");
+  final List<? extends IOperandTreeNode> children=expression.getChildren();
+  if (children.size() == 0) {
+    return expression.getValue();
+  }
+ else   if (children.size() == 1) {
+    return getLeafValue(children.get(0));
+  }
+ else {
+    throw new InternalTranslationException("Error: Expression tree has invalid structure");
+  }
+}

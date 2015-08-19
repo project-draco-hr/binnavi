@@ -1,0 +1,3 @@
+{
+  m_view.getConfiguration().setDescription(null);
+}

@@ -1,0 +1,4 @@
+JFrame parent
+ZyGraph graph
+Collection<NaviNode> toShow
+Collection<NaviNode> toHide

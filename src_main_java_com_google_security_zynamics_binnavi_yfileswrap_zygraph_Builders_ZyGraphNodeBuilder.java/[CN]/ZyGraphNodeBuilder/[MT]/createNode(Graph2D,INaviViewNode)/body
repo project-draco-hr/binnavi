@@ -1,0 +1,8 @@
+{
+  if (node instanceof INaviGroupNode) {
+    return ((INaviGroupNode)node).isCollapsed() ? graph2D.getHierarchyManager().createFolderNode(graph2D) : graph2D.getHierarchyManager().createGroupNode(graph2D);
+  }
+ else {
+    return graph2D.createNode();
+  }
+}

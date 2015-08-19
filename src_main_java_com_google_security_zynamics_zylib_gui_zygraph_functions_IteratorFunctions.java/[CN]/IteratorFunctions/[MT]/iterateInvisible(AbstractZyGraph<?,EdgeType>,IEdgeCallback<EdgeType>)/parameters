@@ -1,0 +1,2 @@
+AbstractZyGraph<?,EdgeType> graph
+IEdgeCallback<EdgeType> callback

@@ -1,0 +1,12 @@
+{
+  final CSpecialInstructionsModel model=new CSpecialInstructionsModel();
+  final List<CSpecialInstruction> instructions=new ArrayList<CSpecialInstruction>();
+  final CCallsDescription callsDescription=new CCallsDescription();
+  final CSpecialInstruction instruction=new CSpecialInstruction(callsDescription,new com.google.security.zynamics.binnavi.disassembly.MockInstruction());
+  instructions.add(instruction);
+  model.setInstructions(instructions);
+  assertEquals(instruction,model.getInstruction(0));
+  assertTrue((model.getDescriptions().get(0)) instanceof CCallsDescription);
+  assertEquals("nop",model.getInstructions().get(0).getInstruction().getMnemonic());
+  @SuppressWarnings("unused") final ISpecialInstructionsModelListener listener;
+}

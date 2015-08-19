@@ -1,0 +1,12 @@
+{
+  final INaviCodeNode rawNode=(INaviCodeNode)node.getRawNode();
+  try {
+    final INaviFunction nodeFunction=rawNode.getParentFunction();
+    final INaviFunction viewFunction=model.getViewContainer().getFunction(model.getGraph().getRawView());
+    if (nodeFunction != viewFunction) {
+      add(CActionProxy.proxy(new COpenOriginalFunction(model.getParent(),model.getViewContainer(),nodeFunction)));
+    }
+  }
+ catch (  final MaybeNullException e) {
+  }
+}

@@ -1,0 +1,34 @@
+{
+  interpreter.setRegister("CR0EQ",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0LT",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0GT",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR0SO",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR1EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR1LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR1GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR1SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR2EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR2LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR2GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR2SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR3EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR3LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR3GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR3SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4EQ",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4LT",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4GT",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR4SO",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR5EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR5LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR5GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR5SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR6EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR6LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR6GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR6SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR7EQ",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR7LT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR7GT",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("CR7SO",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+}

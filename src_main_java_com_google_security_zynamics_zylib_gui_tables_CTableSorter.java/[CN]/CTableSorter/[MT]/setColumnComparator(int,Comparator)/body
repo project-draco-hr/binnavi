@@ -1,0 +1,5 @@
+{
+  if (comparator != null) {
+    primaryColumnComparator.put(column,comparator);
+  }
+}

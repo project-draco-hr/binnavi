@@ -1,0 +1,3 @@
+{
+  BaseType.getValueType(null);
+}

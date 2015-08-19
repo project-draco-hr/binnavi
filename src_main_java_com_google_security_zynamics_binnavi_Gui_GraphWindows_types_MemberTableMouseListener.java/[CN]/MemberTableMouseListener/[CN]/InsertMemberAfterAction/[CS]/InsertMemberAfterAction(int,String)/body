@@ -1,0 +1,4 @@
+{
+  super("Insert member after " + memberName);
+  this.rowIndex=rowIndex;
+}

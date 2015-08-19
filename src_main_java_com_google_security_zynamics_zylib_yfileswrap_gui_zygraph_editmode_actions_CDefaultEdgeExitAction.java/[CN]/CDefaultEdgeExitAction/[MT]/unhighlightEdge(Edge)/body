@@ -1,0 +1,3 @@
+{
+  CEdgeHighlighter.highlightEdge(((Graph2D)edge.getGraph()).getRealizer(edge),false);
+}

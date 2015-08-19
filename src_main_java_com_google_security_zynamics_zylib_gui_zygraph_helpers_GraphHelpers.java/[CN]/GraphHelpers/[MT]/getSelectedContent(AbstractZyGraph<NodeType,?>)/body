@@ -1,0 +1,17 @@
+{
+  final StringBuilder selection=new StringBuilder();
+  IteratorFunctions.iterateSelected(graph,new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType node){
+      final IZyNodeRealizer realizer=node.getRealizer();
+      final ZyLabelContent content=realizer.getNodeContent();
+      for (      final ZyLineContent line : content) {
+        selection.append(line.getText());
+        selection.append("\n");
+      }
+      selection.append("\n");
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return selection.toString();
+}

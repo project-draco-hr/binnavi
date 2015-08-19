@@ -1,0 +1,11 @@
+{
+  if (m_reilGraph == null) {
+    try {
+      m_reilGraph=ReilGraphConverter.createReilGraph(m_translator.translate(new StandardEnvironment(),m_instruction));
+    }
+ catch (    final com.google.security.zynamics.reil.translators.InternalTranslationException e) {
+      throw new InternalTranslationException(e,this);
+    }
+  }
+  return m_reilGraph;
+}

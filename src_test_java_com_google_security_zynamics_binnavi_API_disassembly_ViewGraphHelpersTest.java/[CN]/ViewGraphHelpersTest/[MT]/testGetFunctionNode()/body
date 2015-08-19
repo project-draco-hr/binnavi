@@ -1,0 +1,4 @@
+{
+  assertEquals(m_functionNode,ViewGraphHelpers.getFunctionNode(m_graph,"Mock Function"));
+  assertNull(ViewGraphHelpers.getFunctionNode(m_graph,"Sock Function"));
+}

@@ -1,0 +1,11 @@
+{
+  assertFalse(m_saveButton.isEnabled());
+  m_portTextField.setText("999");
+  assertTrue(m_saveButton.isEnabled());
+  m_template.setPort(999);
+  assertFalse(m_saveButton.isEnabled());
+  m_template.setPort(123);
+  assertEquals("123",m_portTextField.getText());
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

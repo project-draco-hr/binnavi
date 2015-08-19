@@ -1,0 +1,4 @@
+{
+  m_debuggerProvider=Preconditions.checkNotNull(debuggerProvider,"IE01346: Debugger provider argument can not be null");
+  putValue(Action.SHORT_DESCRIPTION,"Disable all breakpoints");
+}

@@ -1,0 +1,6 @@
+{
+  final TypeInstanceDialog dialog=new TypeInstanceDialog(owner,"Edit type instance",new TypeListModel(typeManager.getTypes(),new TypeListModel.PrototypesFilter()),instance,instance.getSection(),instance.getAddress().getOffset());
+  dialog.types.setEnabled(false);
+  dialog.sectionOffset.setEnabled(false);
+  return dialog;
+}

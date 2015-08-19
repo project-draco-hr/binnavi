@@ -1,0 +1,19 @@
+def actionPerformed(self, e):
+    databases = self.pi.databaseManager.databases
+    loaded_databases = filter((lambda db: db.isLoaded()), databases)
+    modules = sum(map((lambda db: db.modules), loaded_databases), [])
+    loaded_modules = filter((lambda m: m.isLoaded()), modules)
+    views = sum(map((lambda m: m.views), loaded_modules), [])
+    loaded_views = filter((lambda v: v.isLoaded()), views)
+    functions = filter((lambda v: ((v.type == ViewType.Native) and (v.graphType == GraphType.Flowgraph))), views)
+    if (views == []):
+        largest_function_name = '-'
+    else:
+        functions.sort((lambda f1, f2: (f2.nodeCount - f1.nodeCount)))
+        largest_function = functions[0]
+        largest_function_name = ('%s (%d nodes / %d edges)' % (largest_function.name, largest_function.nodeCount, largest_function.edgeCount))
+    db_str = ('%d databases configured (%d loaded).' % (len(databases), len(loaded_databases)))
+    mod_str = ('%d modules in the loaded databases (%d loaded).' % (len(modules), len(loaded_modules)))
+    view_str = ('%d views in the loaded modules (%d loaded).' % (len(views), len(loaded_views)))
+    largest_function_str = ('Largest Function: %s' % largest_function_name)
+    MessageBox.showInformation(self.pi.mainWindow.frame, ('%s\n%s\n%s\n%s' % (db_str, mod_str, view_str, largest_function_str)))

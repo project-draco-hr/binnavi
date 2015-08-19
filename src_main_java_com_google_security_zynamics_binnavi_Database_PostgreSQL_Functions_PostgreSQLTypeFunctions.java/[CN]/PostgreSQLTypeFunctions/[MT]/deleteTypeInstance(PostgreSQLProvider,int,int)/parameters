@@ -1,0 +1,3 @@
+PostgreSQLProvider provider
+int moduleId
+int typeInstanceId

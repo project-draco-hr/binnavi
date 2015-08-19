@@ -1,0 +1,7 @@
+{
+  super(new GridLayout(3,1));
+  setBorder(new TitledBorder("Controls"));
+  CSettingsPanelBuilder.addComboBox(this,mouseWheelBehaviorBox,"Mousewheel Action" + ":","Specifies whether the mousewheel is used for zooming or scrolling in graph windows.",new String[]{"Zoom","Scroll"},settings.getMouseSettings().getMouseWheelAction().ordinal());
+  CSettingsPanelBuilder.addDoubleSlider(this,m_tfScrollSensitivity,"Scroll Sensitivity" + ":","Mouse sensitivity during scroll operations.",settings.getMouseSettings().getScrollSensitivity() / 5);
+  CSettingsPanelBuilder.addDoubleSlider(this,m_tfZoomSensitivity,"Zoom Sensitivity" + ":","Mouse sensitivity during zoom operations.",settings.getMouseSettings().getZoomSensitivity() / 5);
+}

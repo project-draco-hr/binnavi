@@ -1,0 +1,9 @@
+{
+  checkArguments(debuggerProvider,rows);
+  for (  final int row : rows) {
+    final Pair<IDebugger,Integer> breakpoint=CBreakpointTableHelpers.findBreakpoint(debuggerProvider,row);
+    final BreakpointManager manager=breakpoint.first().getBreakpointManager();
+    final int breakpointIndex=breakpoint.second();
+    manager.setBreakpointStatus(BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_ENABLED,breakpointIndex);
+  }
+}

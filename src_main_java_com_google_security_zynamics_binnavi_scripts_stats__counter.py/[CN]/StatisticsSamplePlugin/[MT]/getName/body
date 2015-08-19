@@ -1,0 +1,2 @@
+def getName(self):
+    return 'Project Statistics (Python Sample Plugin)'

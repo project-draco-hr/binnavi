@@ -1,0 +1,5 @@
+{
+  super.close();
+  CommentManager.get(m_provider).unloadGroupNodeComment(this,getComments());
+  CommentManager.get(m_provider).removeListener(m_internalCommentListener);
+}

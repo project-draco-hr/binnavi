@@ -1,0 +1,7 @@
+{
+  int pointerLevel=0;
+  for (BaseType baseType=startType.pointsTo(); baseType != null; baseType=baseType.pointsTo()) {
+    ++pointerLevel;
+  }
+  return pointerLevel;
+}

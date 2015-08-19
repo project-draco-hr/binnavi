@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(module,"Error: Module argument can not be null");
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  try {
+    m_addressSpace.getContent().setImageBase(module.getNative(),new CAddress(address.toLong()));
+  }
+ catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntSaveDataException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

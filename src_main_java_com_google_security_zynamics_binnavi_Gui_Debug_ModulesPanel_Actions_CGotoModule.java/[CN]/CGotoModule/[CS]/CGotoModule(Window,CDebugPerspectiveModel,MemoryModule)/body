@@ -1,0 +1,6 @@
+{
+  super(String.format("Display module '%s'",module.getName()));
+  m_parent=parent;
+  m_debugPerspectiveModel=debugPerspectiveModel;
+  m_module=module;
+}

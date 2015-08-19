@@ -1,0 +1,4 @@
+{
+  final int errorCode=parseInteger();
+  return new EchoBreakpointsRemovedReply(packetId,errorCode,new ArrayList<Pair<RelocatedAddress,Integer>>());
+}

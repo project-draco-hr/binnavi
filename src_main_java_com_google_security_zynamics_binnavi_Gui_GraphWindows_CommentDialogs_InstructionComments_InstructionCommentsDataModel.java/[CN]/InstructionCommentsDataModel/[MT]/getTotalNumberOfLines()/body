@@ -1,0 +1,9 @@
+{
+  int totalNumberOfLines=0;
+  for (  Pair<INaviInstruction,ArrayList<IComment>> dataPair : internalData) {
+    for (    IComment comment : dataPair.second()) {
+      totalNumberOfLines+=comment.getNumberOfCommentLines();
+    }
+  }
+  return totalNumberOfLines;
+}

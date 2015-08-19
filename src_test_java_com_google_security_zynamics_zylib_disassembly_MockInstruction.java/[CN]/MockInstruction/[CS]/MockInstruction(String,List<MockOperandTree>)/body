@@ -1,0 +1,4 @@
+{
+  this.mnemonic=mnemonic;
+  this.operands=operands;
+}

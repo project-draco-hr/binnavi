@@ -1,0 +1,3 @@
+List<NaviEdge> edges
+boolean onlySelected
+boolean onlyVisible

@@ -1,0 +1,6 @@
+{
+  final Graph2DView originalView=(Graph2DView)graph.getCurrentView();
+  exportView.setGraph2DRenderer(originalView.getGraph2DRenderer());
+  graph.setCurrentView(exportView);
+  return originalView;
+}

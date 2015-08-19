@@ -1,0 +1,4 @@
+{
+  setHorizontalAlignment(RIGHT);
+  setBackground(CRightTitleComponent.DEFAULT_BACKGROUND_COLOR);
+}

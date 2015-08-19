@@ -1,0 +1,3 @@
+{
+  references.put(address,type);
+}

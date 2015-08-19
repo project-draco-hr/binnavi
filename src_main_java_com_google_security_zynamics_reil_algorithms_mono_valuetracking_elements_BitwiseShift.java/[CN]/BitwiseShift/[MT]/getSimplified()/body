@@ -1,0 +1,21 @@
+{
+  final IValueElement simplifiedLhs=m_lhs.getSimplified();
+  final IValueElement simplifiedRhs=m_rhs.getSimplified();
+  if ((simplifiedLhs instanceof Literal) && (simplifiedRhs instanceof Literal)) {
+    final Literal lhs=(Literal)simplifiedLhs;
+    final Literal rhs=(Literal)simplifiedRhs;
+    final BigInteger lhsValue=lhs.getValue();
+    final BigInteger rhsValue=rhs.getValue();
+    if (lhsValue.compareTo(BigInteger.ZERO) == -1) {
+      final BigInteger result=lhsValue.shiftLeft(rhsValue.intValue());
+      return new Literal(result);
+    }
+ else {
+      final BigInteger result=lhsValue.shiftRight(rhsValue.intValue());
+      return new Literal(result);
+    }
+  }
+ else {
+    return clone();
+  }
+}

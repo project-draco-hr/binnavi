@@ -1,0 +1,47 @@
+{
+  if (functionNodeIndices.isEmpty()) {
+    return;
+  }
+  final String query="INSERT INTO " + CTableNames.FUNCTION_NODES_TABLE + "(module_id, node_id, function, comment_id) VALUES (?, ?, ?, ?)";
+  final ArrayList<INaviFunctionNode> functionNodesWithUnsavedComments=new ArrayList<INaviFunctionNode>();
+  final PreparedStatement preparedStatement=provider.getConnection().getConnection().prepareStatement(query);
+  try {
+    for (    final int index : functionNodeIndices) {
+      final CFunctionNode node=(CFunctionNode)nodes.get(index);
+      final INaviFunction function=node.getFunction();
+      final List<IComment> comments=node.getLocalFunctionComment();
+      final Integer commentId=comments == null ? null : comments.size() == 0 ? null : Iterables.getLast(comments).getId();
+      if ((comments != null) && (comments.size() != 0) && (commentId == null)) {
+        functionNodesWithUnsavedComments.add(node);
+      }
+      preparedStatement.setInt(1,function.getModule().getConfiguration().getId());
+      preparedStatement.setInt(2,firstNode + index);
+      preparedStatement.setObject(3,function.getAddress().toBigInteger(),Types.BIGINT);
+      if (commentId == null) {
+        preparedStatement.setNull(4,Types.INTEGER);
+      }
+ else {
+        preparedStatement.setInt(4,commentId);
+      }
+      preparedStatement.addBatch();
+    }
+    preparedStatement.executeBatch();
+  }
+  finally {
+    preparedStatement.close();
+  }
+  for (  final INaviFunctionNode functionNode : functionNodesWithUnsavedComments) {
+    final ArrayList<IComment> functionNodeComments=new ArrayList<IComment>();
+    for (    final IComment comment : functionNode.getLocalFunctionComment()) {
+      try {
+        final Integer commentId=provider.appendFunctionNodeComment(functionNode,comment.getComment(),comment.getUser().getUserId());
+        final IComment newComment=new CComment(commentId,comment.getUser(),comment.getParent(),comment.getComment());
+        functionNodeComments.add(newComment);
+      }
+ catch (      final CouldntSaveDataException exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+    functionNode.initializeLocalFunctionComment(functionNodeComments);
+  }
+}

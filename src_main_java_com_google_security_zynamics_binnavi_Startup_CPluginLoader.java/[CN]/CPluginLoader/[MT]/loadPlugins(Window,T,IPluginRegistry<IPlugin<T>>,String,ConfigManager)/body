@@ -1,0 +1,18 @@
+{
+  Preconditions.checkNotNull(pluginInterface,"IE02089: Plugin interface argument can not be null");
+  Preconditions.checkNotNull(registry,"IE02090: Registry argument can not be null");
+  Preconditions.checkNotNull(startPath,"IE02091: Start path argument can not be null");
+  Preconditions.checkNotNull(configFile,"IE02092: Config file argument can not be null");
+  final List<String> pluginPaths=Lists.newArrayList(startPath + File.separator + "plugins",startPath + File.separator + "userplugins");
+  for (  final String pluginPath : pluginPaths) {
+    NaviLogger.info(String.format("Loading plugins from %s",pluginPath));
+  }
+  final PluginLoaderThread<T> thread=new PluginLoaderThread<T>(parent,startPath,pluginPaths,pluginInterface,registry,configFile);
+  CProgressDialog.show(parent,"Loading plugins ...",thread);
+  if (thread.getException() != null) {
+    CUtilityFunctions.logException(thread.getException());
+    final String message="E00104: " + "An unexpected problem occurred while the plugins were loaded";
+    final String description=CUtilityFunctions.createDescription("It is unclear what caused this problem. Please check the stack trace for more " + "information. If the stack trace does not help you fix this problem please contact " + "the BinNavi support.",new String[]{},new String[]{});
+    CNaviErrorDialog.show(null,message,description,thread.getException());
+  }
+}

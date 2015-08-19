@@ -1,0 +1,13 @@
+{
+  final ZyGraphBuilder builder=m_builders.get(view);
+  Preconditions.checkNotNull(builder,"IE00704: View was not managed");
+  m_builders.remove(view);
+  for (  final IGraphBuilderManagerListener listener : m_listeners) {
+    try {
+      listener.removedBuilder(view,builder);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final Integer commentId=provider.appendFunctionComment(function,commentText,userId);
+  return provider.loadCommentById(commentId);
+}

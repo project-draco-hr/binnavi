@@ -1,0 +1,8 @@
+{
+  if (existingType == null) {
+    return;
+  }
+  pointerLevel.setValue(existingType.getPointerLevel());
+  baseTypes.getModel().selectByBaseType(BaseType.getValueType(existingType));
+  updatePreview();
+}

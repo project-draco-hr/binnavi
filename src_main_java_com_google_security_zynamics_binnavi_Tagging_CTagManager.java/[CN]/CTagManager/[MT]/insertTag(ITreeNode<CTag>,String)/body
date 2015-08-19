@@ -1,0 +1,21 @@
+{
+  validateTag(parent);
+  Preconditions.checkNotNull(name,"IE00867: Name argument can't be null");
+  final CTag tag=m_provider.insertTag(parent,name,"",m_type);
+  final List<? extends ITreeNode<CTag>> children=parent.getChildren();
+  final ITreeNode<CTag> tagTreeNode=new TreeNode<CTag>(tag);
+  link(parent,tagTreeNode);
+  for (  final ITreeNode<CTag> child : children) {
+    parent.removeChild(child);
+    link(tagTreeNode,child);
+  }
+  for (  final ITagManagerListener listener : m_listeners) {
+    try {
+      listener.insertedTag(this,parent,tagTreeNode);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  return tagTreeNode;
+}

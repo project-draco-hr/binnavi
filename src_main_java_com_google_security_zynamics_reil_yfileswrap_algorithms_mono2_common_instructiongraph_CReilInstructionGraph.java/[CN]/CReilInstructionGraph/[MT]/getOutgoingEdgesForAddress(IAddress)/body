@@ -1,0 +1,14 @@
+{
+  final ArrayList<IInstructionGraphEdge> result=new ArrayList<IInstructionGraphEdge>();
+  final EdgeCursor edgeCursor=m_internalGraph.edges();
+  while (edgeCursor.ok()) {
+    final Edge edge=(Edge)edgeCursor.current();
+    final long sourceAddress=m_nodesMap.get(edge.source()).getReilInstruction().getAddress().toLong();
+    final long targetAddress=m_nodesMap.get(edge.target()).getReilInstruction().getAddress().toLong();
+    if (((targetAddress & 0xFF) == 0) && ((sourceAddress >> 8) == nativeInstructionAddress.toLong())) {
+      result.add(m_edgesMap.get(edge));
+    }
+    edgeCursor.next();
+  }
+  return result;
+}

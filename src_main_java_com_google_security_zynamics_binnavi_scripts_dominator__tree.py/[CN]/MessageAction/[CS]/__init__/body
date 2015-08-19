@@ -1,0 +1,4 @@
+def __init__(self, pi, frame):
+    AbstractAction.__init__(self, 'Create Dominator Tree')
+    self.pi = pi
+    self.frame = frame

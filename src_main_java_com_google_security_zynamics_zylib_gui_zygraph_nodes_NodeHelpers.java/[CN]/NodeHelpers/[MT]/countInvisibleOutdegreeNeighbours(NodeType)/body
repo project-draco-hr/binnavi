@@ -1,0 +1,10 @@
+{
+  final Set<IViewNode<?>> nodeSet=new HashSet<IViewNode<?>>();
+  for (  final IViewEdge<? extends IViewNode<?>> edge : node.getOutgoingEdges()) {
+    final IViewNode<?> target=edge.getTarget();
+    if (!target.isVisible()) {
+      nodeSet.add(target);
+    }
+  }
+  return nodeSet.size();
+}

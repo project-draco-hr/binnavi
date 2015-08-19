@@ -1,0 +1,7 @@
+{
+  try {
+    tagSelectedNodes(parent,graph,getSelectedTag(tagsTree));
+  }
+ catch (  final MaybeNullException exception) {
+  }
+}

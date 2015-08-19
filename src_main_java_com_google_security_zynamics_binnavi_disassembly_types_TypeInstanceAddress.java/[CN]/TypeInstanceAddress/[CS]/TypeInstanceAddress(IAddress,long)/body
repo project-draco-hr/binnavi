@@ -1,0 +1,5 @@
+{
+  this.baseAddress=Preconditions.checkNotNull(address);
+  this.offset=offset;
+  this.virtualAddress=address.toBigInteger().add(BigInteger.valueOf(offset)).longValue();
+}

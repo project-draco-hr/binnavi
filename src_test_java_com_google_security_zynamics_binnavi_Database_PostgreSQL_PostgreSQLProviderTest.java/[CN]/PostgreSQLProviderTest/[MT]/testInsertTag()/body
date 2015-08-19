@@ -1,0 +1,11 @@
+{
+  final CTagManager tagManager=getProvider().loadTagManager(TagType.VIEW_TAG);
+  final CTag newTag=getProvider().insertTag(tagManager.getRootTag(),"Tag Name","Tag Description",TagType.VIEW_TAG);
+  assertEquals("Tag Name",newTag.getName());
+  assertEquals("Tag Description",newTag.getDescription());
+  assertEquals(TagType.VIEW_TAG,newTag.getType());
+  getProvider().createTag(newTag,"Tag Name","Tag Description",TagType.VIEW_TAG);
+  getProvider().createTag(tagManager.getRootTag().getObject(),"Tag Name","Tag Description",TagType.VIEW_TAG);
+  final CTag tag4=getProvider().createTag(tagManager.getRootTag().getObject(),"Tag Name","Tag Description",TagType.VIEW_TAG);
+  getProvider().createTag(tag4,"Tag Name","Tag Description",TagType.VIEW_TAG);
+}

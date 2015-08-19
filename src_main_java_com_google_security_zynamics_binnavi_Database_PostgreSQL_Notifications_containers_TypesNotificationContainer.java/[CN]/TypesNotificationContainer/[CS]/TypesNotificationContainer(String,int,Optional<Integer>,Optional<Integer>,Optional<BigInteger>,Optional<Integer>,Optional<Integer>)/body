@@ -1,0 +1,9 @@
+{
+  this.databaseOperation=databaseOperation;
+  this.moduleId=moduleId;
+  this.baseTypeId=baseTypeId;
+  this.typeMemberId=typeMemberId;
+  this.typeSubstitutionAddress=typeSubstitutionAddress;
+  this.typeSubstitutionPosition=typeSubstitutionPosition;
+  this.typeSubstitutionExpressionId=typeSubstitutionExpressionId;
+}

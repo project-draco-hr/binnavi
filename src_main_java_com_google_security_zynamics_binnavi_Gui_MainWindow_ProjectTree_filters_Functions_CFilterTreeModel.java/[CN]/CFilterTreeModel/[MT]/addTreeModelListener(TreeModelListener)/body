@@ -1,0 +1,3 @@
+{
+  listeners.add(TreeModelListener.class,newListener);
+}

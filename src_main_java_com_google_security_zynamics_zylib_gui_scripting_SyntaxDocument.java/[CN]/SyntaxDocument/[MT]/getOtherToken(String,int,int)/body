@@ -1,0 +1,23 @@
+{
+  int endOfToken=startOffset + 1;
+  while (endOfToken <= endOffset) {
+    if (isDelimiter(content.substring(endOfToken,endOfToken + 1))) {
+      break;
+    }
+    endOfToken++;
+  }
+  final String token=content.substring(startOffset,endOfToken);
+  if (isKeyword(token)) {
+    doc.setCharacterAttributes(startOffset,endOfToken - startOffset,keyword,false);
+  }
+ else   if (isType(token)) {
+    doc.setCharacterAttributes(startOffset,endOfToken - startOffset,type,false);
+  }
+ else   if (isConstant(token)) {
+    doc.setCharacterAttributes(startOffset,endOfToken - startOffset,constant,false);
+  }
+ else   if (Convert.isDecString(token)) {
+    doc.setCharacterAttributes(startOffset,endOfToken - startOffset,number,false);
+  }
+  return endOfToken + 1;
+}

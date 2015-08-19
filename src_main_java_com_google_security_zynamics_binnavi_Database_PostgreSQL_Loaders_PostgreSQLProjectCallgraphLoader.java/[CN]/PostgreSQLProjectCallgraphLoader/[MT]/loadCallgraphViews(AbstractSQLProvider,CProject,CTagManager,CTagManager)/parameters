@@ -1,0 +1,4 @@
+AbstractSQLProvider provider
+CProject project
+CTagManager viewTagManager
+CTagManager nodeTagManager

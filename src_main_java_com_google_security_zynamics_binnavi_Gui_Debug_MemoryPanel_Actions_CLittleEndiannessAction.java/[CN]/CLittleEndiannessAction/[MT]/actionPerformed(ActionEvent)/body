@@ -1,0 +1,3 @@
+{
+  hexView.setFlipBytes(true);
+}

@@ -1,0 +1,22 @@
+{
+  m_synchronizer.dispose();
+  m_selectionMenu.dispose();
+  final List<IGraphMenuPlugin> plugins=Lists.newArrayList();
+  for (  final IPlugin<IPluginInterface> plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof IGraphMenuPlugin) {
+      plugins.add((IGraphMenuPlugin)plugin);
+    }
+  }
+  for (  final IGraphMenuPlugin plugin : plugins) {
+    try {
+      plugin.closed(m_model.getGraphFrame());
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+      final String innerMessage="E00106: " + "Plugin caused an unexpected exception";
+      final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
+      CNaviErrorDialog.show(m_model.getParent(),innerMessage,innerDescription,exception);
+    }
+  }
+  m_pluginsMenu.dispose();
+}

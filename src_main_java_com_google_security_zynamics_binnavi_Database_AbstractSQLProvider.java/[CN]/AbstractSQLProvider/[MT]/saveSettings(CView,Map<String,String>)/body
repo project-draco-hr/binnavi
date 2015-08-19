@@ -1,0 +1,3 @@
+{
+  PostgreSQLViewFunctions.saveSettings(this,view,settings);
+}

@@ -1,0 +1,16 @@
+{
+  final StringBuffer contents=new StringBuffer();
+  final BufferedReader input=new BufferedReader(new FileReader(file));
+  final String lineSeparator=System.getProperty("line.separator");
+  try {
+    String line=null;
+    while ((line=input.readLine()) != null) {
+      contents.append(line);
+      contents.append(lineSeparator);
+    }
+  }
+  finally {
+    input.close();
+  }
+  return contents.toString();
+}

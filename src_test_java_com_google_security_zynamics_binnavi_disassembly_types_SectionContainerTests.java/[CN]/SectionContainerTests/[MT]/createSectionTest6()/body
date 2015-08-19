@@ -1,0 +1,14 @@
+{
+  final SectionContainer sectionContainer=new SectionContainer(backend);
+  Assert.assertNotNull(sectionContainer);
+  final int numberOfSections=sectionContainer.getSections().size();
+  final Section section=sectionContainer.createSection(".text",new CAddress("100",16),new CAddress("200",16),SectionPermission.READ_WRITE_EXECUTE,new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF});
+  Assert.assertEquals(".text",section.getName());
+  Assert.assertEquals(new CAddress("100",16),section.getStartAddress());
+  Assert.assertEquals(new CAddress("200",16),section.getEndAddress());
+  Assert.assertEquals(SectionPermission.READ_WRITE_EXECUTE,section.getSectionPermission());
+  org.junit.Assert.assertArrayEquals(new byte[]{(byte)0x90,(byte)0x00,(byte)0xFF},section.getData());
+  Assert.assertEquals(numberOfSections + 1,sectionContainer.getSections().size());
+  Assert.assertTrue(sectionContainer.getSections().contains(section));
+  Assert.assertEquals(section,sectionContainer.getSection(section.getId()));
+}

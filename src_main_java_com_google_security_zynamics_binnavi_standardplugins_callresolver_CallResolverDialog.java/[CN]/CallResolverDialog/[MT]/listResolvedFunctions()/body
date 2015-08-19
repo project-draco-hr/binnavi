@@ -1,0 +1,4 @@
+{
+  outputArea.setText(OutputListGenerator.generate(callResolver.getResolvedAddresses()));
+  outputArea.setCaretPosition(0);
+}

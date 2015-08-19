@@ -1,0 +1,9 @@
+{
+  m_readLock.lock();
+  int size=0;
+  for (  final MemoryChunk chunk : m_chunks) {
+    size+=chunk.getLength();
+  }
+  m_readLock.unlock();
+  return size;
+}

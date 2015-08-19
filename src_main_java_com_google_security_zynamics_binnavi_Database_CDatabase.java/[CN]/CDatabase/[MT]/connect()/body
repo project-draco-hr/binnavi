@@ -1,0 +1,51 @@
+{
+  loadReporter.start();
+  isConnecting=true;
+  try {
+    final Pair<CConnection,SQLProvider> connectionData=CDatabaseConnection.connect(description,loadReporter);
+    provider=connectionData.second();
+  }
+ catch (  final CouldntLoadDriverException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+catch (  final CouldntConnectException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+catch (  final CouldntInitializeDatabaseException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+catch (  final InvalidDatabaseException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+catch (  final InvalidExporterDatabaseFormatException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+catch (  final LoadCancelledException exception) {
+    loadReporter.report(LoadEvents.LOADING_FINISHED);
+    throw exception;
+  }
+ finally {
+    isConnecting=false;
+  }
+  for (  final IDatabaseListener listener : listeners) {
+    try {
+      listener.openedDatabase(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+  try {
+    final PostgreSQLNotificationProvider notificationProvider=PostgreSQLNotificationProvider.initialize(provider,description);
+    notificationProvider.listen(NotificationChannel.all());
+    notificationProvider.startPolling();
+  }
+ catch (  final SQLException exception) {
+    NaviLogger.severe("Error: Could not establish a channel for receiving notifications from the database %s",exception);
+  }
+}

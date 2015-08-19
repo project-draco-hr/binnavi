@@ -1,0 +1,23 @@
+{
+  super(new BorderLayout());
+  if (ACCEPT_IMAGE == null) {
+    try {
+      ACCEPT_IMAGE=new ImageIcon(CallResolverDialog.class.getResource("accept.png").toURI().toURL());
+      BULLET_IMAGE=new ImageIcon(CallResolverDialog.class.getResource("bullet_blue.png").toURI().toURL());
+    }
+ catch (    final MalformedURLException e) {
+      e.printStackTrace();
+    }
+catch (    final URISyntaxException e) {
+      e.printStackTrace();
+    }
+  }
+  textLabel=new JLabel(text);
+  textLabel.setEnabled(false);
+  add(textLabel);
+  if (additionalComponent != null) {
+    this.additionalComponent=additionalComponent;
+    add(additionalComponent,BorderLayout.EAST);
+  }
+  setPreferredSize(new Dimension(200,20));
+}

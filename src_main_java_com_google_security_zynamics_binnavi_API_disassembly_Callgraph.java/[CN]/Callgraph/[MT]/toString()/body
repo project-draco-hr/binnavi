@@ -1,0 +1,3 @@
+{
+  return String.format("Callgraph [%d function nodes, %d edges]",nodeCount(),edgeCount());
+}

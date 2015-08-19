@@ -1,0 +1,5 @@
+{
+  final int firstVisible=getFirstVisibleByte();
+  final int lastVisible=firstVisible + getMaximumVisibleBytes();
+  return (position >= (2 * firstVisible)) && (position <= (2 * lastVisible));
+}

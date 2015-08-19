@@ -1,0 +1,4 @@
+{
+  writeBoolSetting(LOAD_DLL,instance.getBreakOnDllLoad());
+  writeBoolSetting(UNLOAD_DLL,instance.getBreakOnDllUnload());
+}

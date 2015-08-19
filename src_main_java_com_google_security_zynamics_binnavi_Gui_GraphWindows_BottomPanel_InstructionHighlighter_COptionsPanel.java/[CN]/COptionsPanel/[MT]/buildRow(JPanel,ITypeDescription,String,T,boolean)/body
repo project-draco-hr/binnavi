@@ -1,0 +1,11 @@
+{
+  component.setPreferredSize(new Dimension(COLORPANEL_WIDTH,COLORPANEL_HEIGHT));
+  final JPanel rowPanel=new JPanel(new BorderLayout());
+  rowPanel.setBorder(new EmptyBorder(0,2,isLast ? 2 : 0,2));
+  final JPanel innerPanel=new JPanel(new GridLayout(1,2));
+  innerPanel.add(new JCheckBox(new CheckboxAction(description,description.getDescription() + ":")),BorderLayout.CENTER);
+  innerPanel.add(CHintCreator.createHintPanel(component,hint),BorderLayout.EAST);
+  rowPanel.add(innerPanel,BorderLayout.WEST);
+  panel.add(rowPanel);
+  return component;
+}

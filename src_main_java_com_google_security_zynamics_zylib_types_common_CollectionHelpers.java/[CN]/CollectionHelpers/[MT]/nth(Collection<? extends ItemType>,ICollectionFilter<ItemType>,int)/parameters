@@ -1,0 +1,3 @@
+Collection<? extends ItemType> collection
+ICollectionFilter<ItemType> callback
+int index

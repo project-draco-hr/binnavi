@@ -1,0 +1,5 @@
+{
+  if (manager.getBreakpointStatus(breakpointToOldStatus.getKey().getAddress(),BreakpointType.ECHO) == BreakpointStatus.BREAKPOINT_ENABLED) {
+    toSet.add(breakpointToOldStatus.getKey().getAddress());
+  }
+}

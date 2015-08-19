@@ -1,0 +1,8 @@
+{
+  Preconditions.checkNotNull(callback,"Callback argument can't be null");
+  for (  final EdgeType edge : m_mappings.getEdges()) {
+    if (callback.nextEdge(edge) == IterationMode.STOP) {
+      return;
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  m_startAddress=startAddress;
+  m_numberOfBytes=numberOfBytes;
+}

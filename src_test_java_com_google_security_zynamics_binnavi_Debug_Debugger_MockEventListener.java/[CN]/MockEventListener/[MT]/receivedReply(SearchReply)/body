@@ -1,0 +1,3 @@
+{
+  events+="SEARCH_REPLY;";
+}

@@ -1,0 +1,3 @@
+{
+  return "You can use this input field to filter the visible trace events.\n\nFilter by thread ID: Enter the thread ID\nFilter by event address: Enter the address\nFilter by register value: Register name ==/!=/</>/<=/>= (0x)value";
+}

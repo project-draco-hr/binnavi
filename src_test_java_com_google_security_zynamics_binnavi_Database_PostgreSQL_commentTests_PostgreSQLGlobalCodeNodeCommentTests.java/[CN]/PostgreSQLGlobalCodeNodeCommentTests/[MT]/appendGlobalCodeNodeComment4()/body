@@ -1,0 +1,4 @@
+{
+  final IUser user=new UniqueTestUserGenerator(getProvider()).nextActiveUser();
+  getProvider().appendGlobalCodeNodeComment(codeNode," PASS GLOBAL CODE NODE COMMENT ",user.getUserId());
+}

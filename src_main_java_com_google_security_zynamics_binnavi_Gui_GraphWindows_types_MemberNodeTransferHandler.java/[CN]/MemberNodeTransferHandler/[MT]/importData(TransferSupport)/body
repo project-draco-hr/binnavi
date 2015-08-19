@@ -1,0 +1,36 @@
+{
+  if (!support.isDrop() || !canImport(support)) {
+    return false;
+  }
+  try {
+    @SuppressWarnings("unchecked") final List<TypeMemberTreeNode> draggedNodes=(List<TypeMemberTreeNode>)support.getTransferable().getTransferData(TypeDataFlavor.TYPE_MEMBER_FLAVOR);
+    final JTree.DropLocation location=typesTree.getDropLocation();
+    final TypesTree tree=(TypesTree)support.getComponent();
+    final TypesTreeModel model=tree.getModel();
+    final int[] selectedRows=new int[tree.getSelectionCount()];
+    int row=0;
+    final BaseTypeTreeNode parentNode=determineParentNode(location);
+    for (    final TypeMemberTreeNode node : getSelectedNodesSorted(tree)) {
+      selectedRows[row++]=model.getIndexOfChild(parentNode,node);
+    }
+    final List<TypeMember> draggedMembers=Lists.newArrayList();
+    for (    final TypeMemberTreeNode node : draggedNodes) {
+      draggedMembers.add(node.getTypeMember());
+    }
+    final int delta=determineDestinationOffset(location,parentNode) - draggedMembers.get(0).getBitOffset().get();
+    typeManager.moveMembers(parentNode.getBaseType(),draggedMembers,delta);
+  }
+ catch (  final IOException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+catch (  final UnsupportedFlavorException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+    return false;
+  }
+  return true;
+}

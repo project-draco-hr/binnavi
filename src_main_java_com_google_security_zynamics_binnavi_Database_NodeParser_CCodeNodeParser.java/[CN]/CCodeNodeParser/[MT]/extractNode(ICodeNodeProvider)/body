@@ -1,0 +1,18 @@
+{
+  if (currentNode == null) {
+    currentNode=createCurrentNode(dataset);
+  }
+  final CCodeNode nodeInProcess=currentNode;
+  while ((currentLine=extractLine(dataset)) != null) {
+    if (currentLine.getBasicBlock() == currentNode.getId()) {
+      addInstruction(currentNode,currentLine);
+    }
+ else {
+      currentNode=new CCodeNode(currentLine.getBasicBlock(),currentLine.getX(),currentLine.getY(),currentLine.getWidth(),currentLine.getHeight(),currentLine.getColor(),currentLine.getBorderColor(),currentLine.isSelected(),currentLine.isVisible(),null,currentLine.getParentFunction(),new HashSet<CTag>(),sqlProvider);
+      addInstruction(currentNode,currentLine);
+      return nodeInProcess;
+    }
+  }
+  currentNode=null;
+  return nodeInProcess;
+}

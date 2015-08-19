@@ -1,0 +1,12 @@
+{
+  if (current() == null) {
+    return;
+  }
+  m_currentSearchIndex++;
+  m_isBeforeFirst=false;
+  m_isAfterLast=false;
+  if (m_currentSearchIndex == m_reducedResults.size()) {
+    m_currentSearchIndex=0;
+    m_isAfterLast=true;
+  }
+}

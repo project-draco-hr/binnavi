@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(type,"IE02026: Type argument can't be null");
+  m_type=type;
+}

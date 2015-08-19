@@ -1,0 +1,33 @@
+{
+  Preconditions.checkNotNull(environment,"Error: Argument environment can't be null");
+  Preconditions.checkNotNull(value,"Error: Argument value can't be null");
+  Preconditions.checkNotNull(subRegister,"Error: Argument subRegister can't be null");
+  Preconditions.checkNotNull(valueSize,"Error: Argument valueSize can't be null");
+  Preconditions.checkNotNull(instructions,"Error: Argument instructions can't be null");
+  final String parentRegister=getParentRegister(subRegister);
+  final OperandSize registerSize=getRegisterSize(subRegister);
+  final OperandSize parentRegisterSize=getRegisterSize(parentRegister);
+  final OperandSize archSize=environment.getArchitectureSize();
+  if (registerSize.getByteSize() >= archSize.getByteSize()) {
+    throw new InternalTranslationException("Error: Register is not a subregister");
+  }
+  if (valueSize.getByteSize() >= archSize.getByteSize()) {
+    throw new InternalTranslationException("Error: Value doesn't fit into a subregister");
+  }
+  if (valueSize.getByteSize() >= parentRegisterSize.getByteSize()) {
+    throw new InternalTranslationException("Error: Value doesn't fit into a parent register");
+  }
+  final String mask=String.valueOf(getNegativeMask(subRegister));
+  if (isHigher8BitRegister(subRegister)) {
+    final String shiftedValue=environment.getNextVariableString();
+    final String maskedValue=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createBsh(offset,valueSize,value,valueSize,"8",archSize,shiftedValue));
+    instructions.add(ReilHelpers.createAnd(offset + 1,archSize,parentRegister,archSize,mask,archSize,maskedValue));
+    instructions.add(ReilHelpers.createOr(offset + 2,archSize,shiftedValue,archSize,maskedValue,archSize,parentRegister));
+  }
+ else {
+    final String maskedValue=environment.getNextVariableString();
+    instructions.add(ReilHelpers.createAnd(offset,archSize,parentRegister,archSize,mask,archSize,maskedValue));
+    instructions.add(ReilHelpers.createOr(offset + 1,valueSize,value,archSize,maskedValue,archSize,parentRegister));
+  }
+}

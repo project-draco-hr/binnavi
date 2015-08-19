@@ -1,0 +1,9 @@
+{
+  final DebugTargetSettings target=new ModuleTargetSettings(CommonTestObjects.MODULE);
+  final DebuggerProvider debuggerProvider=new DebuggerProvider(target);
+  final CBookmarkTableModel model=new CBookmarkTableModel(debuggerProvider);
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.getBreakpointManager().addBreakpoints(BreakpointType.REGULAR,CommonTestObjects.BP_ADDRESS_0_SET);
+  debuggerProvider.addDebugger(debugger);
+  model.dispose();
+}

@@ -1,0 +1,11 @@
+{
+  final CProjectTreeNode<?> root=(CProjectTreeNode<?>)tree.getModel().getRoot();
+  final Enumeration<?> nodes=root.breadthFirstEnumeration();
+  while (nodes.hasMoreElements()) {
+    final CProjectTreeNode<?> node=(CProjectTreeNode<?>)nodes.nextElement();
+    if (node.getObject() == object) {
+      return node;
+    }
+  }
+  return null;
+}

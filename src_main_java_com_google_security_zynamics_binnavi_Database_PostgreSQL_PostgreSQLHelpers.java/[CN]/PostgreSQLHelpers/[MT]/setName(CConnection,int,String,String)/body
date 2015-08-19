@@ -1,0 +1,21 @@
+{
+  Preconditions.checkNotNull(tableName,"IE02210: Table name argument can not be null");
+  Preconditions.checkNotNull(name,"IE02243: Name argument can not be null");
+  Preconditions.checkNotNull(connection,"IE02252: Connection argument can not be null");
+  Preconditions.checkArgument(id >= 0,"Error: Id argument can not less then zero");
+  final String query="UPDATE " + tableName + " SET name = ?, modification_date = NOW() WHERE id = ?";
+  try {
+    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
+    try {
+      statement.setString(1,name);
+      statement.setInt(2,id);
+      statement.executeUpdate();
+    }
+  finally {
+      statement.close();
+    }
+  }
+ catch (  final SQLException e) {
+    throw new CouldntSaveDataException(e);
+  }
+}

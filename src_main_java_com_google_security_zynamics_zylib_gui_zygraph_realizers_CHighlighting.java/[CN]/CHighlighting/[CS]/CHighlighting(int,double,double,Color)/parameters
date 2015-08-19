@@ -1,0 +1,4 @@
+int level
+double start
+double end
+Color color

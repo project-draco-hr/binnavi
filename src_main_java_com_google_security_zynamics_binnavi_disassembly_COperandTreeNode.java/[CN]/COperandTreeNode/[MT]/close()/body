@@ -1,0 +1,15 @@
+{
+  if (replacement != null) {
+    replacement.close();
+    replacement.removeListener(listener);
+  }
+  if (substitution != null) {
+    operandTree.getInstruction().getModule().getTypeManager().removeTypeSubstitutionInstance(substitution);
+  }
+  if (instanceReferences != null && !instanceReferences.isEmpty()) {
+    final TypeInstanceContainer container=operandTree.getInstruction().getModule().getContent().getTypeInstanceContainer();
+    for (    final TypeInstanceReference reference : instanceReferences) {
+      container.deactivateTypeInstanceReference(reference);
+    }
+  }
+}

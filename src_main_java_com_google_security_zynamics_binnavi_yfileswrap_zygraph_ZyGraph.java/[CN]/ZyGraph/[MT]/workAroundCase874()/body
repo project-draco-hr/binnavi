@@ -1,0 +1,6 @@
+{
+  getView().setCenter(CViewSettingsGenerator.createDoubleSetting(getSettings().rawSettings,"view_center_x",0),CViewSettingsGenerator.createDoubleSetting(getSettings().rawSettings,"view_center_y",0));
+  getView().setWorldRect(CViewSettingsGenerator.createIntegerSetting(getSettings().rawSettings,"world_rect_x",0),CViewSettingsGenerator.createIntegerSetting(getSettings().rawSettings,"world_rect_y",0),CViewSettingsGenerator.createIntegerSetting(getSettings().rawSettings,"world_rect_width",800),CViewSettingsGenerator.createIntegerSetting(getSettings().rawSettings,"world_rect_height",600));
+  getView().setZoom(CViewSettingsGenerator.createDoubleSetting(getSettings().rawSettings,"zoom",1));
+  updateViews();
+}

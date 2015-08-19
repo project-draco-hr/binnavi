@@ -1,0 +1,7 @@
+{
+  for (  final IPlugin<IPluginInterface> plugin : Lists.newArrayList(plugins)) {
+    plugin.unload();
+    removePlugin(plugin,DisabledPluginReason.Unload);
+  }
+  disabledPlugins.clear();
+}

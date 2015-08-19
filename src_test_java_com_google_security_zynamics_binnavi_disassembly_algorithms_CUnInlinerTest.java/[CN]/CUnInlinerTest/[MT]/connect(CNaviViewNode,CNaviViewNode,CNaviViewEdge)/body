@@ -1,0 +1,4 @@
+{
+  parentNode.addOutgoingEdge(parentEdge);
+  upperNode.addIncomingEdge(parentEdge);
+}

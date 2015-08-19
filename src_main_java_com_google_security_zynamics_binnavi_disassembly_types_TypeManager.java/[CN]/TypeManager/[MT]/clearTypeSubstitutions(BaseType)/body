@@ -1,0 +1,9 @@
+{
+  final Set<TypeSubstitution> substitutions=typesContainer.deleteSubstitutionsByType(deletedType);
+  if (!substitutions.isEmpty()) {
+    for (    final TypeSubstitution substitution : substitutions) {
+      backend.deleteTypeSubstitution(substitution);
+    }
+    notifySubstitutionsDeleted(substitutions);
+  }
+}

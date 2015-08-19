@@ -1,0 +1,9 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"cror");
+  final IOperandTreeNode targetCRBit=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode sourceCRBit1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final IOperandTreeNode sourceCRBit2=instruction.getOperands().get(2).getRootNode().getChildren().get(0);
+  Long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize bt=OperandSize.BYTE;
+  instructions.add(ReilHelpers.createOr(baseOffset++,bt,Helpers.getCRBit(Integer.decode(sourceCRBit1.getValue())),bt,Helpers.getCRBit(Integer.decode(sourceCRBit2.getValue())),bt,Helpers.getCRBit(Integer.decode(targetCRBit.getValue()))));
+}

@@ -1,0 +1,12 @@
+{
+  final int instructionIndex=CCodeNodeHelpers.getInstruction(node,address.getAddress());
+  if (instructionIndex != -1) {
+    if (instructionIndex < node.instructionCount() - 1) {
+      final INaviInstruction instruction=Iterables.get(node.getInstructions(),instructionIndex + 1);
+      instructions.add(new BreakpointAddress(instruction.getModule(),new UnrelocatedAddress(instruction.getAddress())));
+    }
+ else {
+      instructions.addAll(CSteppingHelper.getSuccessors(node));
+    }
+  }
+}

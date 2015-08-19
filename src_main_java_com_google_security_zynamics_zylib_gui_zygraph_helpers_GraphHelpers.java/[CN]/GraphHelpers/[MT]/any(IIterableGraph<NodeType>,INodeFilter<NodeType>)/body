@@ -1,0 +1,14 @@
+{
+  final ArrayList<Object> lameHack=new ArrayList<Object>();
+  graph.iterate(new INodeCallback<NodeType>(){
+    @Override public IterationMode next(    final NodeType item){
+      if (filter.qualifies(item)) {
+        lameHack.add(item);
+        return IterationMode.STOP;
+      }
+      return IterationMode.CONTINUE;
+    }
+  }
+);
+  return lameHack.size() != 0;
+}

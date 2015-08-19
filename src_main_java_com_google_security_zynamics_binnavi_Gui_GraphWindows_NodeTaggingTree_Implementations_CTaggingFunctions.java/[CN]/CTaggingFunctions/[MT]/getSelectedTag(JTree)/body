@@ -1,0 +1,8 @@
+{
+  final TreePath selectionPath=tagsTree.getSelectionPath();
+  if (selectionPath != null && selectionPath.getLastPathComponent() instanceof CTagTreeNode && selectionPath.getLastPathComponent() instanceof CTagTreeNode) {
+    final CTagTreeNode ttn=(CTagTreeNode)selectionPath.getLastPathComponent();
+    return ttn.getTag().getObject();
+  }
+  throw new MaybeNullException();
+}

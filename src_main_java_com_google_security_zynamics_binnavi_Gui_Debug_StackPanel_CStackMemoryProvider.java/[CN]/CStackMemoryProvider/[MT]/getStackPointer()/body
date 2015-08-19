@@ -1,0 +1,10 @@
+{
+  if (m_activeThread == null) {
+    return -1;
+  }
+  final BigInteger stackValue=getStackValue(m_activeThread.getRegisterValues());
+  if (stackValue == null) {
+    return -1;
+  }
+  return stackValue.longValue();
+}

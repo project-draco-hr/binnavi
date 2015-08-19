@@ -1,0 +1,5 @@
+INaviView view
+INaviFunction function
+IBlockNode blockNode
+Map<IBlockNode,CCodeNode> map
+INaviGroupNode parentGroup

@@ -1,0 +1,3 @@
+{
+  return loadModuleFlowgraphs(provider,module,viewTagManager,nodeTagManager,ViewType.Native);
+}

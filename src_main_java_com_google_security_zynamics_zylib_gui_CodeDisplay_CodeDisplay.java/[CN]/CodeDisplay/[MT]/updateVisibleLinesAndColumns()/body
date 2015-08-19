@@ -1,0 +1,13 @@
+{
+  int currentVisibleLines=getNumberOfVisibleLines();
+  int currentVisibleColumns=getNumberOfVisibleColumns();
+  if ((currentlyVisibleLines != currentVisibleLines) || (currentlyVisibleColumns != currentVisibleColumns)) {
+    currentlyVisibleLines=currentVisibleLines;
+    currentlyVisibleColumns=currentVisibleColumns;
+    int properWidth=codeModel.getTotalWidthInCharacters();
+    int properLines=currentlyVisibleLines + 1;
+    charBuffer=new FormattedCharacterBuffer(properLines,properWidth);
+    bufferedImage=new BufferedImage(properWidth * fontCharWidth,properLines * fontLineHeight,BufferedImage.TYPE_INT_RGB);
+    bufferedGraphics=(Graphics2D)bufferedImage.getGraphics();
+  }
+}

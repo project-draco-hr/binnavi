@@ -1,0 +1,6 @@
+{
+  m_emptyRegisterSetLatticeElement.taintAll(m_fullSet);
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.getTaintedRegisters().containsAll(m_fullSet));
+  m_emptyRegisterSetLatticeElement.onInstructionExit();
+  Assert.assertTrue(m_emptyRegisterSetLatticeElement.getNewlyTaintedRegisters().containsAll(m_fullSet));
+}

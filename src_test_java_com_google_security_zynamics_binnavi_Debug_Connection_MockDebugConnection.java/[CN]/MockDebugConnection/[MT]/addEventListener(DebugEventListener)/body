@@ -1,0 +1,4 @@
+{
+  super.addEventListener(listener);
+  m_synchronizer=(DebuggerSynchronizer)listener;
+}

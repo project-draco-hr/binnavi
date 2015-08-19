@@ -1,0 +1,13 @@
+{
+  for (  final TypeInstancesNotificationContainer container : containers) {
+    if (!provider.findModule(container.getModuleId()).isLoaded()) {
+      continue;
+    }
+    if (container.getAddress().isPresent()) {
+      informExpressionTypeInstanceNotification(container,provider);
+    }
+ else {
+      informTypeInstanceNotification(container,provider);
+    }
+  }
+}

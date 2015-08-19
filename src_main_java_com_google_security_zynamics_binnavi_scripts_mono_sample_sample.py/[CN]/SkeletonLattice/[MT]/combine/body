@@ -1,0 +1,5 @@
+def combine(self, states):
+    combined_state = SkeletonLatticeElement()
+    for state in states:
+        combined_state.written_registers = combined_state.written_registers.union(state.element.written_registers)
+    return combined_state

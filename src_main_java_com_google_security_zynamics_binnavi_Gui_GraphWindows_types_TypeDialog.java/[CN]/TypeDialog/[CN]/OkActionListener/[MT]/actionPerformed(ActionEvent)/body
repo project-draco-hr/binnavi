@@ -1,0 +1,13 @@
+{
+  try {
+    if (currentPanel.createOrUpdateType()) {
+      dispose();
+    }
+  }
+ catch (  final CouldntSaveDataException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+catch (  final CouldntDeleteException exception) {
+    CUtilityFunctions.logException(exception);
+  }
+}

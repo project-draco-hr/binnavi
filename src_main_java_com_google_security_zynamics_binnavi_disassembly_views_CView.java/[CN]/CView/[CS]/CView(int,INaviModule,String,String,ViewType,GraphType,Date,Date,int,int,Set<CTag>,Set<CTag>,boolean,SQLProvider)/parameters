@@ -1,0 +1,14 @@
+int viewId
+INaviModule module
+String name
+String description
+ViewType type
+GraphType graphType
+Date creationDate
+Date modificationDate
+int bbcount
+int edgecount
+Set<CTag> tags
+Set<CTag> nodeTags
+boolean isStared
+SQLProvider provider

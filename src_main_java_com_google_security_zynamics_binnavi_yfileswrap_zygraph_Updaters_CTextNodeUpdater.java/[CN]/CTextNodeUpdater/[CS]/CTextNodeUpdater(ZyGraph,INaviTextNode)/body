@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(zygraph,"IE00994: Graph argument can't be null");
+  Preconditions.checkNotNull(textNode,"IE00995: Code node argument can't be null");
+  m_graph=zygraph.getGraph();
+  m_node=textNode;
+  initializeListeners();
+}

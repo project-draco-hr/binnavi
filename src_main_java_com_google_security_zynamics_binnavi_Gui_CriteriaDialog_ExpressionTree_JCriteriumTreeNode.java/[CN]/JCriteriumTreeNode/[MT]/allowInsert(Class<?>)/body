@@ -1,0 +1,15 @@
+{
+  if (getCriterium() instanceof CConditionCriterium && !isRoot()) {
+    return false;
+  }
+  if (insertType == CConditionCriterium.class) {
+    return false;
+  }
+  if (insertType == CAndCriterium.class || insertType == COrCriterium.class) {
+    return getChildCount() > 0;
+  }
+  if (insertType == CNotCriterium.class) {
+    return allowNotInsert();
+  }
+  return true;
+}

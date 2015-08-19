@@ -1,0 +1,12 @@
+{
+  final List<INaviViewNode> nodes=new ArrayList<INaviViewNode>();
+  for (  final INaviViewNode node : graphNodes) {
+    if (node instanceof INaviFunctionNode) {
+      final INaviFunctionNode fnode=(INaviFunctionNode)node;
+      if (fnode.getFunction().getAddress().equals(reference.getTarget())) {
+        nodes.add(node);
+      }
+    }
+  }
+  return nodes;
+}

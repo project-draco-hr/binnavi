@@ -1,0 +1,13 @@
+{
+  super(new BorderLayout());
+  Preconditions.checkNotNull(model,"Error: Model argument can not be null");
+  m_model=model;
+  m_panel=new JStackPanel(model);
+  add(m_panel);
+  setFocusable(true);
+  initScrollbar();
+  setPreferredSize(new Dimension(400,400));
+  m_model.addListener(m_listener);
+  addComponentListener(m_listener);
+  addMouseWheelListener(new InternalMouseListener());
+}

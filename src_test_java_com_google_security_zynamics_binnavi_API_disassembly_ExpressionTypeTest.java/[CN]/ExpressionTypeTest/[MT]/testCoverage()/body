@@ -1,0 +1,8 @@
+{
+  for (  final ExpressionType expressionType : ExpressionType.values()) {
+    assertEquals(expressionType,ExpressionType.convert(expressionType.getNative()));
+  }
+  for (  final com.google.security.zynamics.zylib.disassembly.ExpressionType expressionType : com.google.security.zynamics.zylib.disassembly.ExpressionType.values()) {
+    assertEquals(expressionType,ExpressionType.convert(expressionType).getNative());
+  }
+}

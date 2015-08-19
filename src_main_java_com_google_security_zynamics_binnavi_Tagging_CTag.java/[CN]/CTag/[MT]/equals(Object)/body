@@ -1,0 +1,6 @@
+{
+  if (!(rhs instanceof CTag)) {
+    return false;
+  }
+  return m_id == ((CTag)rhs).m_id;
+}

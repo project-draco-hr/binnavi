@@ -1,0 +1,8 @@
+{
+  final StringBuffer nodeString=new StringBuffer();
+  for (  final Instruction instruction : m_instructions) {
+    nodeString.append(instruction.toString());
+    nodeString.append('\n');
+  }
+  return nodeString.toString();
+}

@@ -1,0 +1,3 @@
+{
+  return CTextEvaluator.evaluate(node,m_panel.getText(),m_panel.isRegularExpression(),m_panel.isCaseSensitive());
+}

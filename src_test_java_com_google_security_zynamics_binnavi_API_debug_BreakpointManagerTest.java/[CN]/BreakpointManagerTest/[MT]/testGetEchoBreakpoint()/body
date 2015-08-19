@@ -1,0 +1,23 @@
+{
+  try {
+    apiManager.getEchoBreakpoint(null,null);
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  try {
+    apiManager.getEchoBreakpoint(null,new Address(0x123));
+    fail();
+  }
+ catch (  final NullPointerException exception) {
+  }
+  apiManager.setEchoBreakpoint(module,new Address(0x123));
+  final Breakpoint breakpoint=apiManager.getEchoBreakpoint(module,new Address(0x123));
+  assertEquals(0x123,breakpoint.getAddress().toLong());
+  final Module module=ModuleFactory.get();
+  apiManager.setEchoBreakpoint(module,new Address(0x123));
+  assertTrue(apiManager.hasEchoBreakpoint(module,new Address(0x123)));
+  final Breakpoint breakpoint2=apiManager.getEchoBreakpoint(module,new Address(0x123));
+  assertEquals(0x123,breakpoint2.getAddress().toLong());
+  apiManager.removeEchoBreakpoint(module,new Address(0x123));
+}

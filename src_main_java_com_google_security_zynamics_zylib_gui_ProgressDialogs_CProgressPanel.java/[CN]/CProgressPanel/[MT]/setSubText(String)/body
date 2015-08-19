@@ -1,0 +1,11 @@
+{
+  String text=fitTextToLabel(m_description) + "\n";
+  text+=fitTextToLabel(subDescription);
+  m_label.setText(convertTextToHtml(text));
+  new SwingInvoker(){
+    @Override public void operation(){
+      m_label.updateUI();
+    }
+  }
+.invokeLater();
+}

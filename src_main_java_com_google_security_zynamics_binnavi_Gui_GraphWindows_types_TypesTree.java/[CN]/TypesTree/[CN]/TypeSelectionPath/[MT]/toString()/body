@@ -1,0 +1,8 @@
+{
+  final StringBuilder builder=new StringBuilder(rootType.getName());
+  for (  TypeMember member : members) {
+    builder.append('.');
+    builder.append(member.getName());
+  }
+  return builder.toString();
+}

@@ -1,0 +1,6 @@
+{
+  m_description=description;
+  m_progressPanel=new CProgressPanel("",indeterminate,showCancelButton);
+  m_progressPanel.start();
+  CGlobalProgressManager.instance().add(this);
+}

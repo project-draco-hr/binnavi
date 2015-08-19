@@ -1,0 +1,4 @@
+IPluginRegistry<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>> registry
+DefaultListModel<PluginItem<T>> model
+long guid
+List<com.google.security.zynamics.binnavi.api2.plugins.IPlugin<T>> added

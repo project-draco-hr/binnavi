@@ -1,0 +1,3 @@
+IGraphNode<NodeType> node
+Set<NodeType> predecessors
+Set<NodeType> visited

@@ -1,0 +1,23 @@
+{
+  if (!inconsistentTypes.contains(structTypeToFix)) {
+    return;
+  }
+  final List<TypeMember> affectedMembers=determineMembersToUpdate(structTypeToFix,affectedTypes);
+  int sizeDelta=0;
+  for (  final TypeMember member : affectedMembers) {
+    final BaseType memberBaseType=member.getBaseType();
+    if (inconsistentTypes.contains(memberBaseType)) {
+      adjustMemberOffsets(memberBaseType,inconsistentTypes,oldSizes,affectedTypes);
+    }
+    if (sizeDelta != 0) {
+      Integer newOffset=member.getBitOffset().get() + sizeDelta;
+      backend.updateStructureMember(member,member.getBaseType(),member.getName(),newOffset);
+      notifyMemberUpdated(member);
+      member.setOffset(Optional.of(newOffset));
+    }
+    if (oldSizes.containsKey(memberBaseType)) {
+      sizeDelta+=memberBaseType.getBitSize() - oldSizes.get(memberBaseType);
+    }
+  }
+  inconsistentTypes.remove(structTypeToFix);
+}

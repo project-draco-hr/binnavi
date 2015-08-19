@@ -1,0 +1,25 @@
+{
+  if (!isLoaded()) {
+    return;
+  }
+  for (  final INaviProject project : content.getProjects()) {
+    try {
+      if (project.getConfiguration().hasDebugger(debugger)) {
+        project.getConfiguration().removeDebugger(debugger);
+      }
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+  for (  final INaviModule module : content.getModules()) {
+    try {
+      if (module.getConfiguration().getDebuggerTemplate() == debugger) {
+        module.getConfiguration().setDebuggerTemplate(null);
+      }
+    }
+ catch (    final CouldntSaveDataException e) {
+      CUtilityFunctions.logException(e);
+    }
+  }
+}

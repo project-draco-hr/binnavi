@@ -1,0 +1,7 @@
+{
+  super(false);
+  putProperty(DefaultEditorKit.EndOfLineStringProperty,"\n");
+  StyleConstants.setForeground(pythonPromptAttr,Color.LIGHT_GRAY);
+  StyleConstants.setBold(pythonPromptAttr,true);
+  StyleConstants.setFontSize(pythonPromptAttr,13);
+}

@@ -1,0 +1,3 @@
+{
+  CBreakpointRemoveFunctions.removeAll(m_parent,m_debuggerProvider);
+}

@@ -1,0 +1,9 @@
+{
+  final IGraphModel graphModel=new MockGraphModel();
+  m_model=new CDebugPerspectiveModel(graphModel);
+  final CMemoryProvider provider=new CMemoryProvider();
+  m_hexView.setData(provider);
+  m_synchronizer=new CMemoryViewerSynchronizer(m_hexView,provider,m_model);
+  m_debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  m_model.setActiveDebugger(m_debugger);
+}

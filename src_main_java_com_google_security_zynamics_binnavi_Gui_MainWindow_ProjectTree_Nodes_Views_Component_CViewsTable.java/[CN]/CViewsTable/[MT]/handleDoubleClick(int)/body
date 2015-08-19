@@ -1,0 +1,4 @@
+{
+  final Action action=CActionProxy.proxy(new COpenInLastWindowAction(getParentWindow(),viewContainer,new INaviView[]{viewsTableModel.getViews().get(row)}));
+  action.actionPerformed(null);
+}

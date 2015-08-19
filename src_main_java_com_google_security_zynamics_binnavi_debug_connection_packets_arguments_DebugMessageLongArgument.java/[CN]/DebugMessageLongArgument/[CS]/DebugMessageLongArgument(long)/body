@@ -1,0 +1,4 @@
+{
+  super(DebugArgumentType.LONG);
+  appendLong(BigInteger.valueOf(value));
+}

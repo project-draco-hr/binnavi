@@ -1,0 +1,8 @@
+{
+  m_mockDebugger.connect();
+  final Trace trace=m_logger.start("Name","Description",Lists.newArrayList(new TracePoint(m_mockModule,new Address(0x100))));
+  m_logger.stop();
+  assertEquals("Name",trace.getName());
+  assertEquals("Description",trace.getDescription());
+  assertTrue(trace.getEvents().isEmpty());
+}

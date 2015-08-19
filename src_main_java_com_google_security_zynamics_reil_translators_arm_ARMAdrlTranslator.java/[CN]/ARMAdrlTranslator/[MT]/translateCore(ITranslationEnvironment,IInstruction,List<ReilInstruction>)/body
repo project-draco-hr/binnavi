@@ -1,0 +1,9 @@
+{
+  final IOperandTreeNode registerOperand1=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode immediateOperand1=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  final String targetRegister=(registerOperand1.getValue());
+  final String sourceImmediate=(immediateOperand1.getValue());
+  final OperandSize dw=OperandSize.DWORD;
+  long baseOffset=(instruction.getAddress().toLong() * 0x100) + instructions.size();
+  instructions.add(ReilHelpers.createStr(baseOffset++,dw,sourceImmediate,dw,targetRegister));
+}

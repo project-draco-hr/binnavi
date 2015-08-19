@@ -1,0 +1,21 @@
+{
+  if ((((getFormattedTextField().getText().length() - selected) + string.length()) > MAX_CHAR) || (string.indexOf("\\") > -1) || (string.indexOf("/") > -1)) {
+    invalidEdit();
+    return false;
+  }
+  final File file=new File(m_directory.getPath() + File.separator + string);
+  if (!file.exists()) {
+    try {
+      if (!file.createNewFile()) {
+        invalidEdit();
+        return false;
+      }
+      file.delete();
+    }
+ catch (    final IOException e) {
+      invalidEdit();
+      return false;
+    }
+  }
+  return true;
+}

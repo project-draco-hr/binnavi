@@ -1,0 +1,5 @@
+{
+  if (panel.getModel().getGraph().getRawView() == m_view) {
+    m_model=panel.getModel();
+  }
+}

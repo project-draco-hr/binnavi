@@ -1,0 +1,6 @@
+{
+  if (thread != null) {
+    setText(String.format("%d (0x%X)",thread.getThreadId(),thread.getThreadId()));
+  }
+  return this;
+}

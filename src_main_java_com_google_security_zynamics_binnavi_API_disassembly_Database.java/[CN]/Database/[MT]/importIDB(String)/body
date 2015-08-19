@@ -1,0 +1,8 @@
+{
+  try {
+    new CBinExportImporter().importIdbFile(ConfigManager.instance().getGeneralSettings().getIdaDirectory(),idbfile,m_database);
+  }
+ catch (  final com.google.security.zynamics.binnavi.Importers.ImportFailedException e) {
+    throw new ImportFailedException(e);
+  }
+}

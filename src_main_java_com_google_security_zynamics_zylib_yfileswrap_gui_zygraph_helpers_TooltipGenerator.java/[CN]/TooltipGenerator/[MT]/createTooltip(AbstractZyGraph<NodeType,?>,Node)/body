@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(node,"Error: Node argument can not be null");
+  final IZyNodeRealizer realizer=(IZyNodeRealizer)graph.getGraph().getRealizer(node);
+  if (realizer instanceof ZyProximityNodeRealizer<?>) {
+    return generateProximityNodeRealizer(graph,(ZyProximityNode<?>)realizer.getUserData().getNode());
+  }
+ else {
+    final ZyLabelContent content=realizer.getNodeContent();
+    final boolean boldFirstLine=requiresBoldFirstLine(graph.getNode(node));
+    return HtmlGenerator.getHtml(content,GuiHelper.getMonospaceFont(),boldFirstLine);
+  }
+}

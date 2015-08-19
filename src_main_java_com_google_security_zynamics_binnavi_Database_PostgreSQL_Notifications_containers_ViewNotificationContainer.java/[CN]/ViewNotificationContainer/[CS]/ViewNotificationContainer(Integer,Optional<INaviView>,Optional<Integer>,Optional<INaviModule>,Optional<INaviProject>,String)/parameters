@@ -1,0 +1,6 @@
+Integer viewId
+Optional<INaviView> view
+Optional<Integer> notificationObjectId
+Optional<INaviModule> notificationModule
+Optional<INaviProject> notificationProject
+String databaseOperation

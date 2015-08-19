@@ -1,0 +1,28 @@
+{
+  interpreter.setRegister("%r0",BigInteger.valueOf(0x0L),OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r18",BigInteger.valueOf(0x3039417FL),OperandSize.DWORD,ReilRegisterStatus.DEFINED);
+  final MockOperandTree operandTree1=new MockOperandTree();
+  operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree1.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"%r0"));
+  final MockOperandTree operandTree2=new MockOperandTree();
+  operandTree2.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree2.root.m_children.add(new MockOperandTreeNode(ExpressionType.REGISTER,"%r18"));
+  final MockOperandTree operandTree3=new MockOperandTree();
+  operandTree3.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree3.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"5"));
+  final MockOperandTree operandTree4=new MockOperandTree();
+  operandTree4.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");
+  operandTree4.root.m_children.add(new MockOperandTreeNode(ExpressionType.IMMEDIATE_INTEGER,"19"));
+  final List<MockOperandTree> operands=Lists.newArrayList(operandTree1,operandTree2,operandTree3,operandTree4);
+  final IInstruction instruction=new MockInstruction("extrwi.",operands);
+  translator.translate(environment,instruction,instructions);
+  interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100L));
+  assertEquals(BigInteger.valueOf(0x1L),interpreter.getVariableValue("%r0"));
+  assertEquals(BigInteger.valueOf(0x3039417FL),interpreter.getVariableValue("%r18"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CR0LT"));
+  assertEquals(BigInteger.ONE,interpreter.getVariableValue("CR0GT"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CR0EQ"));
+  assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CR0SO"));
+  assertEquals(BigInteger.ZERO,BigInteger.valueOf(interpreter.getMemorySize()));
+  assertEquals(8,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+}

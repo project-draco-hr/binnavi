@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    globalEdgeCommentContainer.unsetComments(edge,comments);
+  }
+ else {
+    localEdgeCommentContainer.unsetComments(edge,comments);
+  }
+}

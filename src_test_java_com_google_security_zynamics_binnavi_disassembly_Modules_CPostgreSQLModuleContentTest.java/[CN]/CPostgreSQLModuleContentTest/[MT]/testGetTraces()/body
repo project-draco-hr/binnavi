@@ -1,0 +1,13 @@
+{
+  final CModule module6=(CModule)getDatabase().getContent().getModules().get(0);
+  module6.load();
+  final CModuleContent moduleContent6=module6.getContent();
+  assertNotNull(moduleContent6.getTraceContainer().getTraces());
+  module6.close();
+  try {
+    moduleContent6.getTraceContainer().getTraces();
+    fail();
+  }
+ catch (  final IllegalStateException e) {
+  }
+}

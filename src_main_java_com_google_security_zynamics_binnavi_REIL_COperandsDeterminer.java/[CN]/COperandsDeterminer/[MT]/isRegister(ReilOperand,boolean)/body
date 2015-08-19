@@ -1,0 +1,3 @@
+{
+  return ((operand.getType() == OperandType.REGISTER) && (translatingReil || ReilHelpers.isNativeRegister(operand)));
+}

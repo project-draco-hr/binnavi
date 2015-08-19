@@ -1,0 +1,7 @@
+{
+  super(DebugCommandType.CMD_READ_MEMORY,packetId);
+  Preconditions.checkNotNull(address,"IE01015: Address argument can not be null");
+  Preconditions.checkNotNull(length,"IE01021: Length argument can not be null");
+  addArgument(new DebugMessageAddressArgument(address));
+  addArgument(new DebugMessageAddressArgument(length));
+}

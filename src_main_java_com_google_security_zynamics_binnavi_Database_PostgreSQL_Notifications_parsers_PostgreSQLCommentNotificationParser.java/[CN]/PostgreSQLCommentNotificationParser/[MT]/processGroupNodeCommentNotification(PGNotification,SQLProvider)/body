@@ -1,0 +1,14 @@
+{
+  final Matcher matcher=GROUP_NODE_PATTERN.matcher(notification.getParameter());
+  if (!matcher.find()) {
+    return null;
+  }
+  final Integer nodeId=Integer.parseInt(matcher.group(3));
+  final Integer commentId=matcher.group(4).equals("null") ? null : Integer.parseInt(matcher.group(4));
+  final INaviGroupNode groupNode=(INaviGroupNode)NodeCache.get(provider).getNodeById(nodeId);
+  if (groupNode == null) {
+    return null;
+  }
+  final CommentOperation operation=commentId == null ? CommentOperation.DELETE : CommentOperation.APPEND;
+  return new GroupNodeCommentNotificationContainer(groupNode,operation,commentId);
+}

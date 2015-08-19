@@ -1,0 +1,5 @@
+{
+  for (  final INaviView view : views) {
+    CViewOpener.showViewAndCallBack(parent,container,view,window,callBack);
+  }
+}

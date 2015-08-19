@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(typeManager,"Error: typeManager argument can not be null");
+  Preconditions.checkNotNull(includedType,"Error: includedType argument can not be null");
+  return new TypesTreeModel(typeManager,new StackFrameTypesFilter(includedType,typeManager));
+}

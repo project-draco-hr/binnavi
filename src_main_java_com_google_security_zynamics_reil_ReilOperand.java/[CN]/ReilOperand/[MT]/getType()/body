@@ -1,0 +1,3 @@
+{
+  return OperandType.getOperandType(getValue());
+}

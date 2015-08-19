@@ -1,0 +1,12 @@
+{
+  final INaviModule module=getProvider().loadModules().get(1);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunctions().get(1800);
+  function.load();
+  final IBlockNode basicBlock=function.getBasicBlocks().get(0);
+  final INaviInstruction instruction=Iterables.get(basicBlock.getInstructions(),1);
+  final COperandTree tree=instruction.getOperands().get(0);
+  final INaviOperandTreeNode node=tree.getRootNode();
+  final IAddress address=instruction.getAddress();
+  PostgreSQLInstructionFunctions.addReference(getProvider(),node,address,null);
+}

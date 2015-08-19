@@ -1,0 +1,3 @@
+{
+  PostgreSQLEdgeFunctions.deleteLocalEdgeComment(this,edge,commentId,userId);
+}

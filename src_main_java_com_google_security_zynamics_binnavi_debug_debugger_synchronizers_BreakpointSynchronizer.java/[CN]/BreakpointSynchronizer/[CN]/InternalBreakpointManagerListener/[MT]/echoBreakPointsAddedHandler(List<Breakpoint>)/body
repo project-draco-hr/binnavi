@@ -1,0 +1,20 @@
+{
+  final List<BreakpointAddress> addresses=new ArrayList<BreakpointAddress>();
+  final Set<BreakpointAddress> addressesForManager=new HashSet<BreakpointAddress>();
+  for (  final Breakpoint breakpoint : breakPoints) {
+    Preconditions.checkArgument(manager.getBreakpointStatus(breakpoint.getAddress(),BreakpointType.ECHO) == BreakpointStatus.BREAKPOINT_ENABLED,"Internal Error: Breakpoint with type echo has unexpected status");
+    if (debugger.isConnected()) {
+      if (isBreakpointInsideModules(breakpoint,debugger.getProcessManager().getModules())) {
+        addresses.add(breakpoint.getAddress());
+      }
+ else {
+        addressesForManager.add(breakpoint.getAddress());
+      }
+    }
+ else {
+      NaviLogger.severe("Internal Error: It should only be possible to set echo breakpoints when the " + "debugger is connected");
+    }
+  }
+  manager.setBreakpointStatus(addressesForManager,BreakpointType.ECHO,BreakpointStatus.BREAKPOINT_INACTIVE);
+  return addresses;
+}

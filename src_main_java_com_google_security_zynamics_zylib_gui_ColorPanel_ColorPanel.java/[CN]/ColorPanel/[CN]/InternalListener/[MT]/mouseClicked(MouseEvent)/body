@@ -1,0 +1,5 @@
+{
+  if (m_editable && (event.getButton() == MouseEvent.BUTTON1) && (event.getClickCount() == 1)) {
+    chooseColor();
+  }
+}

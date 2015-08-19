@@ -1,0 +1,6 @@
+{
+  m_results.addAll(CNodeSearcher.search(node,searchString,m_settings.isRegEx(),m_settings.isCaseSensitive()));
+  if (!m_results.isEmpty()) {
+    m_cursor.reset();
+  }
+}

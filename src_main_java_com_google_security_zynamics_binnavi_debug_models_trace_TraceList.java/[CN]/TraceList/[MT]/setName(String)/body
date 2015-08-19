@@ -1,0 +1,16 @@
+{
+  Preconditions.checkNotNull(name,"IE00784: Name can not be null");
+  if (traceName.equals(name)) {
+    return;
+  }
+  sqlProvider.setName(this,name);
+  traceName=name;
+  for (  final ITraceListListener listener : listeners) {
+    try {
+      listener.changedName(this);
+    }
+ catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
+    }
+  }
+}

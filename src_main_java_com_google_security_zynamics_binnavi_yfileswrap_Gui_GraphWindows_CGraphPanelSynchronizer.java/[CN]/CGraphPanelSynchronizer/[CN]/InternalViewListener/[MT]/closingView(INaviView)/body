@@ -1,0 +1,3 @@
+{
+  return view != m_model.getGraph().getRawView() || closing;
+}

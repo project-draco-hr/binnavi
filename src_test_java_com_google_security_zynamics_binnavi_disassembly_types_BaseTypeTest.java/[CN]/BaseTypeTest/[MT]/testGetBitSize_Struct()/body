@@ -1,0 +1,3 @@
+{
+  assertEquals(10 * 32 + 32 + 32,typeSystem.simpleStruct.getBitSize());
+}

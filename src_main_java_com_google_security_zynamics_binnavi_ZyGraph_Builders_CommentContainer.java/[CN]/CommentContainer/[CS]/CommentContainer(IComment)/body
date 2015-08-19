@@ -1,0 +1,4 @@
+{
+  this.comment=Preconditions.checkNotNull(comment,"IE02730: comment argument can not be null");
+  this.commentColor=Color.getHSBColor(Float.parseFloat("0." + String.valueOf(comment.getUser().getUserId()) + "f"),1f,0.8f);
+}

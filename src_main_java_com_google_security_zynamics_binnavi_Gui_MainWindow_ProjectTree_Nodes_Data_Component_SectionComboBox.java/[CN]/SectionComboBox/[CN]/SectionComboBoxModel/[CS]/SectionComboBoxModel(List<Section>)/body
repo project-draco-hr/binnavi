@@ -1,0 +1,4 @@
+{
+  this.sectionsList=sections;
+  selectedSection=sections.get(0);
+}

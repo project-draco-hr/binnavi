@@ -1,0 +1,33 @@
+{
+  checkArguments(provider,module,flowgraphs,functions);
+  final HashMap<Integer,INaviView> viewmap=new HashMap<Integer,INaviView>();
+  for (  final IFlowgraphView view : flowgraphs) {
+    viewmap.put(view.getConfiguration().getId(),view);
+  }
+  final HashMap<IAddress,INaviFunction> functionMap=new HashMap<IAddress,INaviFunction>();
+  for (  final INaviFunction function : functions) {
+    functionMap.put(function.getAddress(),function);
+  }
+  final CConnection connection=provider.getConnection();
+  final String query="SELECT view_id, function FROM " + CTableNames.FUNCTION_VIEWS_TABLE + " WHERE module_id = "+ module.getConfiguration().getId();
+  final HashMap<INaviView,INaviFunction> viewFunctionMap=new HashMap<INaviView,INaviFunction>();
+  try {
+    final ResultSet resultSet=connection.executeQuery(query,true);
+    try {
+      while (resultSet.next()) {
+        final INaviView view=viewmap.get(resultSet.getInt("view_id"));
+        final INaviFunction function=functionMap.get(PostgreSQLHelpers.loadAddress(resultSet,"function"));
+        if ((view != null) && (function != null)) {
+          viewFunctionMap.put(view,function);
+        }
+      }
+    }
+  finally {
+      resultSet.close();
+    }
+    return new ImmutableBiMap.Builder<INaviView,INaviFunction>().putAll(viewFunctionMap).build();
+  }
+ catch (  final SQLException e) {
+    throw new CouldntLoadDataException(e);
+  }
+}

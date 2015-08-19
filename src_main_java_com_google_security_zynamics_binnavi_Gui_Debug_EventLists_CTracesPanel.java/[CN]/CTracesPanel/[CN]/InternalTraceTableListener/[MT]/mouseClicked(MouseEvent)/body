@@ -1,0 +1,9 @@
+{
+  if (event.getClickCount() == 2 && event.getButton() == MouseEvent.BUTTON1) {
+    TableHelpers.selectClickedRow(m_traceTable,event);
+    final int[] rows=m_traceTable.getConvertedSelectedRows();
+    if (rows.length == 1) {
+      CTraceFunctions.selectList(m_graph,m_traceProvider.getList(rows[0]));
+    }
+  }
+}

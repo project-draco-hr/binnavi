@@ -1,0 +1,20 @@
+{
+switch (column) {
+case COLUMN_STATUS:
+    return getBreakpointStatus(row);
+case COLUMN_DEBUGGER:
+  return getDebuggerString(row);
+case COLUMN_UNRELOCATED_ADDRESS:
+return getBreakpointAddress(row);
+case COLUMN_RELOCATED_ADDRESS:
+return getRelocatedBreakpointAddress(row);
+case COLUMN_MODULE_NAME:
+return getBreakpointModuleName(row);
+case COLUMN_CONDITION:
+return getBreakpointCondition(row);
+case COLUMN_DESCRIPTION:
+return getBreakpointDescription(row);
+default :
+throw new IllegalArgumentException("IE01340: Unknown column");
+}
+}

@@ -1,0 +1,22 @@
+{
+  final String value=search.getValue();
+  final List<ReilInstruction> instructions=Lists.newArrayList(block.getInstructions());
+  for (int i=instructions.size() - 1; i >= 0; i--) {
+    final ReilInstruction instruction=instructions.get(i);
+    if (search.getInstruction() == instruction) {
+      found=true;
+    }
+    if (!found) {
+      continue;
+    }
+    if (ReilHelpers.writesThirdOperand(instruction.getMnemonicCode()) && instruction.getThirdOperand().getValue().equals(value)) {
+      final List<OperandGraphNode> nodes=graphMap.get(block).first();
+      for (      final OperandGraphNode node : nodes) {
+        if ((node.getInstruction() == instruction) && (node.getIndex() == 2)) {
+          return node;
+        }
+      }
+    }
+  }
+  return null;
+}

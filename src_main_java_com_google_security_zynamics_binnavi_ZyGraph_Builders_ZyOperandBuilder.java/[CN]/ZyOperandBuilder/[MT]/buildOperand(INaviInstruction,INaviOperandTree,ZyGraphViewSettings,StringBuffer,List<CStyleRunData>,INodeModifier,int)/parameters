@@ -1,0 +1,7 @@
+INaviInstruction instruction
+INaviOperandTree operandTree
+ZyGraphViewSettings graphSettings
+StringBuffer line
+List<CStyleRunData> styleRun
+INodeModifier modifier
+int counter

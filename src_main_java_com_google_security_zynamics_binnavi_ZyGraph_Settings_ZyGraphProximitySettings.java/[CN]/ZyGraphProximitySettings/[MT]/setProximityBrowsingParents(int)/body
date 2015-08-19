@@ -1,0 +1,12 @@
+{
+  Preconditions.checkArgument(value >= -1,"IE00891: Distance argument must not be less than -1");
+  if (value == getProximityBrowsingParents()) {
+    return;
+  }
+  if (m_type == null) {
+    m_proximityBrowsingParents=value;
+  }
+ else {
+    m_type.setProximityBrowsingParents(value);
+  }
+}

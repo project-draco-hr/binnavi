@@ -1,0 +1,3 @@
+ITranslationEnvironment environment
+ICodeContainer<InstructionType> block
+List<ITranslationExtension<InstructionType>> extensions

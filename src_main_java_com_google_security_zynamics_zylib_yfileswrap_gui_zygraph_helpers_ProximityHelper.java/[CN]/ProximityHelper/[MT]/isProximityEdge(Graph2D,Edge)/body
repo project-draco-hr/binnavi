@@ -1,0 +1,3 @@
+{
+  return isProximityNode(graph,edge.source()) || isProximityNode(graph,edge.target());
+}

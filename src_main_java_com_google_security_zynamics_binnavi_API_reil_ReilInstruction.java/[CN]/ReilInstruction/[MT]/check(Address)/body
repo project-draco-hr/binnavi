@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(address,"Error: Address argument can not be null");
+  return address;
+}

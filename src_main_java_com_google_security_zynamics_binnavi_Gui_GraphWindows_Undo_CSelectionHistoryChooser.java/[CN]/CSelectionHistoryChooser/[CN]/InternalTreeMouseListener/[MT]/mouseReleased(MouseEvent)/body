@@ -1,0 +1,32 @@
+{
+  final TreePath path=getTreePath(event);
+  if (path == null) {
+    return;
+  }
+  if (event.getButton() == 3) {
+    final Object obj=path.getLastPathComponent();
+    if (obj instanceof CSelectionHistoryTreeNode) {
+      final CSelectionHistoryTreeNode treenode=(CSelectionHistoryTreeNode)obj;
+      final CSelectionSnapshot snapshot=treenode.getSnapshot();
+      final List<NaviNode> nodes=CollectionHelpers.filter(snapshot.getSelection(),new ICollectionFilter<NaviNode>(){
+        @Override public boolean qualifies(        final NaviNode item){
+          return item.isSelected() && item.isVisible();
+        }
+      }
+);
+      if (nodes.size() > 1) {
+        ZoomFunctions.zoomToNodes(m_graph,nodes);
+      }
+ else       if (nodes.size() == 1) {
+        handleRightClick(event.getClickCount(),nodes.get(0));
+      }
+    }
+ else     if (obj instanceof CNodeNode) {
+      final CNodeNode treenode=(CNodeNode)obj;
+      final NaviNode graphNode=treenode.getNode();
+      if (graphNode.isVisible()) {
+        handleRightClick(event.getClickCount(),graphNode);
+      }
+    }
+  }
+}

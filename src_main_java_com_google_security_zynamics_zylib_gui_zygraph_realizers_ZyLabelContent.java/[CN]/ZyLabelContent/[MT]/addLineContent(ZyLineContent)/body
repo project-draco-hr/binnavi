@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(line,"Internal Error: Line content can't be null");
+  m_content.add(line);
+}

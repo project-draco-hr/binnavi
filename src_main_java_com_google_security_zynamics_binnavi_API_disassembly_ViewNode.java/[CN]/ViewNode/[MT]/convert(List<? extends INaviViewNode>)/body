@@ -1,0 +1,7 @@
+{
+  final List<ViewNode> out=new ArrayList<ViewNode>();
+  for (  final INaviViewNode node : nodes) {
+    out.add(ObjectFinders.getObject(node,getView().getGraph().getNodes()));
+  }
+  return out;
+}

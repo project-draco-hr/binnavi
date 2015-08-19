@@ -1,0 +1,8 @@
+{
+  try {
+    return com.google.security.zynamics.zylib.types.graphs.GraphAlgorithms.getBackEdges(graph,rootNode);
+  }
+ catch (  final com.google.security.zynamics.zylib.types.graphs.algorithms.MalformedGraphException e) {
+    throw new MalformedGraphException(e);
+  }
+}

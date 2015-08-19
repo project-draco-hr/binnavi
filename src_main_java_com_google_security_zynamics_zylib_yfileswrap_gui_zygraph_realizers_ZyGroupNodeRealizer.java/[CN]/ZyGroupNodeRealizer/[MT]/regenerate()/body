@@ -1,0 +1,17 @@
+{
+  m_updater.generateContent(this,m_content);
+  final Rectangle2D bounds=m_content.getBounds();
+  final double x=getX();
+  final double y=getY();
+  setSize(bounds.getWidth(),bounds.getHeight());
+  setX(x);
+  setY(y);
+  for (  final IZyNodeRealizerListener<?> listener : m_listeners) {
+    try {
+      listener.regenerated(this);
+    }
+ catch (    final Exception exception) {
+    }
+  }
+  repaint();
+}

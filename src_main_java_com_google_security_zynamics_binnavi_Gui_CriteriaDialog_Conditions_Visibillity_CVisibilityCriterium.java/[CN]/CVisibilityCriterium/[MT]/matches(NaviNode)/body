@@ -1,0 +1,3 @@
+{
+  return CVisibilityEvaluator.evaluate(node,m_panel.getVisibilityState());
+}

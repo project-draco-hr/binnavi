@@ -1,0 +1,11 @@
+{
+  new Thread(){
+    @Override public void run(){
+      initializeModuleInternal(SwingUtilities.getWindowAncestor(projectTree),module);
+      if (module.isInitialized()) {
+        CModuleLoader.loadModule(projectTree,module);
+      }
+    }
+  }
+.start();
+}

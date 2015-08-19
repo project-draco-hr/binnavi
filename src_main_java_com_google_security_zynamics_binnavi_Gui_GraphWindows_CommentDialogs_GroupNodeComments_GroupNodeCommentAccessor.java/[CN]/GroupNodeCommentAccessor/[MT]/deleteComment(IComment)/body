@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(comment,"IE02681: comment argument can not be null");
+  groupNode.deleteComment(comment);
+}

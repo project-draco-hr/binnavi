@@ -1,0 +1,18 @@
+{
+switch (instance.getBaseType().getCategory()) {
+case ARRAY:
+    renderArray(instance,document,renderData);
+  break;
+case ATOMIC:
+renderAtomic(instance,document,renderData);
+break;
+case POINTER:
+renderPointer(instance,document);
+break;
+case STRUCT:
+renderStruct(instance,document,renderData);
+break;
+default :
+break;
+}
+}

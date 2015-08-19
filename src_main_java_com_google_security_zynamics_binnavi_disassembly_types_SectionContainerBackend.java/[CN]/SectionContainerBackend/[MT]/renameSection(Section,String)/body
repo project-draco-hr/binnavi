@@ -1,0 +1,6 @@
+{
+  Preconditions.checkNotNull(section,"Error: section argument can not be null");
+  Preconditions.checkNotNull(name,"Error: name argument can not be null");
+  provider.setSectionName(module.getConfiguration().getId(),section.getId(),name);
+  return new Section(section.getId(),name,CommentManager.get(provider),module,section.getStartAddress(),section.getEndAddress(),section.getSectionPermission(),section.getData());
+}

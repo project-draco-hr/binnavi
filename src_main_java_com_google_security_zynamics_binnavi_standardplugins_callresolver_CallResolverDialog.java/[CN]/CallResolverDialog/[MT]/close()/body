@@ -1,0 +1,5 @@
+{
+  Settings.setShowDialogs(true);
+  callResolver.dispose();
+  setVisible(false);
+}

@@ -1,0 +1,11 @@
+{
+  if (manager.hasBreakpoint(BreakpointType.REGULAR,address)) {
+    final BreakpointStatus status=manager.getBreakpointStatus(address,BreakpointType.REGULAR);
+    if (status == BreakpointStatus.BREAKPOINT_DISABLED) {
+      manager.setBreakpointStatus(Sets.newHashSet(address),BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_ENABLED);
+    }
+ else     if ((status == BreakpointStatus.BREAKPOINT_ACTIVE) || (status == BreakpointStatus.BREAKPOINT_INACTIVE) || (status == BreakpointStatus.BREAKPOINT_ENABLED)|| (status == BreakpointStatus.BREAKPOINT_HIT)) {
+      manager.setBreakpointStatus(Sets.newHashSet(address),BreakpointType.REGULAR,BreakpointStatus.BREAKPOINT_DISABLED);
+    }
+  }
+}

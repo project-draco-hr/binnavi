@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(stackView,"IE01504: Stack view argument can not be null");
+  Preconditions.checkNotNull(model,"IE01505: Model argument can not be null");
+  add(CActionProxy.proxy(new CGotoStackAction(stackView,model)));
+  addSeparator();
+  final String value=stackView.getValueAt(point);
+  if (value != null) {
+    add(CActionProxy.proxy(new CCopyStackValueAction(value)));
+    addSeparator();
+  }
+  final JMenu layoutMenu=new JMenu("Hex");
+  layoutMenu.add(CActionProxy.proxy(new CLayoutBytesAction(model)));
+  layoutMenu.add(CActionProxy.proxy(new CLayoutDwordAction(model)));
+  add(layoutMenu);
+}

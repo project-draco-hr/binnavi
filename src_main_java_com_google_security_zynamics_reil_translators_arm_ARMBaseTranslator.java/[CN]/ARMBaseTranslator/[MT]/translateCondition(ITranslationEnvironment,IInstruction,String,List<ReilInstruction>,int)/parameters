@@ -1,0 +1,5 @@
+ITranslationEnvironment environment
+IInstruction instruction
+String prefix
+List<ReilInstruction> instructions
+int nopIndex

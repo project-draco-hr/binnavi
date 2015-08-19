@@ -1,0 +1,4 @@
+{
+  super("By Name");
+  m_node=node;
+}

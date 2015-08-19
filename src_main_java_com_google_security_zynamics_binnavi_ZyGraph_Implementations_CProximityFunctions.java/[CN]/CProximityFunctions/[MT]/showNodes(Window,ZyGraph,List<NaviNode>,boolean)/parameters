@@ -1,0 +1,4 @@
+Window parent
+ZyGraph graph
+List<NaviNode> nodes
+boolean toShow

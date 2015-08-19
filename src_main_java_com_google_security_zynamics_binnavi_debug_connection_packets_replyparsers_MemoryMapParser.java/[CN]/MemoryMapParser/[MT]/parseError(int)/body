@@ -1,0 +1,4 @@
+{
+  final int errorCode=parseInteger();
+  return new MemoryMapReply(packetId,errorCode,null);
+}

@@ -1,0 +1,8 @@
+{
+  instructionNodes.inverse().remove(node);
+  if (typeInstanceReferences.containsValue(node)) {
+    final TypeInstanceReference reference=typeInstanceReferences.inverse().remove(node);
+    typeInstances.remove(reference.getTypeInstance(),reference);
+  }
+  typeSubstitutions.inverse().remove(node);
+}

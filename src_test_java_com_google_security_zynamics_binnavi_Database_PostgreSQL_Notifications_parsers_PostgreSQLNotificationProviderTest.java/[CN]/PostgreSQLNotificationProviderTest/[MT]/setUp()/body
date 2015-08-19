@@ -1,0 +1,19 @@
+{
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  databaseOne=new CDatabase("DATABASEONE",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  databaseOne.connect();
+  databaseOne.load();
+  databaseOneModuleTwo=databaseOne.getContent().getModule(2);
+  databaseOneModuleTwo.load();
+  databaseOneFunction=databaseOneModuleTwo.getContent().getFunctionContainer().getFunction(new CAddress("7C880394",16));
+  databaseOneView=databaseOneModuleTwo.getContent().getViewContainer().getView(databaseOneFunction);
+  databaseOneView.load();
+  databaseTwo=new CDatabase("DATABASETWO",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  databaseTwo.connect();
+  databaseTwo.load();
+  databaseTwoModuleTwo=databaseTwo.getContent().getModule(2);
+  databaseTwoModuleTwo.load();
+  databaseTwoFunction=databaseTwoModuleTwo.getContent().getFunctionContainer().getFunction(new CAddress("7C880394",16));
+  databaseTwoView=databaseTwoModuleTwo.getContent().getViewContainer().getView(databaseTwoFunction);
+  databaseTwoView.load();
+}

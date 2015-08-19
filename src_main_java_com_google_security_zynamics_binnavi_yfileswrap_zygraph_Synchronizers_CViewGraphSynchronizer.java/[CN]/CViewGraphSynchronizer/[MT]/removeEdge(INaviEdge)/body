@@ -1,0 +1,5 @@
+{
+  m_graphInternals.removeEdge(m_graph.getEdge(edge));
+  m_edgeDrawingSynchronizer.updateEdgeDrawingState();
+  m_graph.updateViews();
+}

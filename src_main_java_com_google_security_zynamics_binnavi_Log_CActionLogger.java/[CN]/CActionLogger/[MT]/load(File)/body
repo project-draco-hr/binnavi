@@ -1,0 +1,9 @@
+{
+  final List<String> lines=FileUtils.readTextfileLines(actionsLogFile);
+  for (  final String line : lines) {
+    final String[] parts=line.split(":");
+    if (parts.length == 2) {
+      m_countMap.put(Long.valueOf(parts[0]),Integer.valueOf(parts[1]));
+    }
+  }
+}

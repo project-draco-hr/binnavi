@@ -1,0 +1,3 @@
+{
+  return PostgreSQLProjectFunctions.createAddressSpace(this,project,name);
+}

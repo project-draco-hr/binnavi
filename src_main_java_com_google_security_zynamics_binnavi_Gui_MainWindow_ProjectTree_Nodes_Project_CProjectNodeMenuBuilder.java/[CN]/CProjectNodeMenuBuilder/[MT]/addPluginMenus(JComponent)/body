@@ -1,0 +1,31 @@
+{
+  final List<IProjectMenuPlugin> plugins=new ArrayList<IProjectMenuPlugin>();
+  for (  @SuppressWarnings("rawtypes") final IPlugin plugin : PluginInterface.instance().getPluginRegistry()) {
+    if (plugin instanceof IProjectMenuPlugin) {
+      plugins.add((IProjectMenuPlugin)plugin);
+    }
+  }
+  if (!plugins.isEmpty()) {
+    boolean addedSeparator=false;
+    for (    final IProjectMenuPlugin plugin : plugins) {
+      try {
+        final List<JComponent> menuItems=plugin.extendProjectMenu(getPluginProjects());
+        if (menuItems != null) {
+          for (          final JComponent menuItem : menuItems) {
+            if (!addedSeparator) {
+              menu.add(new JSeparator());
+              addedSeparator=true;
+            }
+            menu.add(menuItem);
+          }
+        }
+      }
+ catch (      final Exception exception) {
+        CUtilityFunctions.logException(exception);
+        final String innerMessage="E00088: " + "Plugin caused an unexpected exception";
+        final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
+        CNaviErrorDialog.show(getParent(),innerMessage,innerDescription,exception);
+      }
+    }
+  }
+}

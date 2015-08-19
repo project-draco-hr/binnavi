@@ -1,0 +1,4 @@
+{
+  this.canTraceCount=value;
+  return this;
+}

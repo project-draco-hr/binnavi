@@ -1,0 +1,4 @@
+{
+  m_searchPanel.dispose();
+  m_settings.getSearchSettings().removeListener(m_internalSearchListener);
+}

@@ -1,0 +1,5 @@
+{
+  m_synchronizer.setMultiEdgeUpdatingEnabled(false);
+  super.showNodes(toShow,toHide);
+  m_synchronizer.setMultiEdgeUpdatingEnabled(true);
+}

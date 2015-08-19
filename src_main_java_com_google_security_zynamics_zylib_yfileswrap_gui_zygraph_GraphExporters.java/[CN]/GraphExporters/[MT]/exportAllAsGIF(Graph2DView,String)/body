@@ -1,0 +1,5 @@
+{
+  final y.io.GIFIOHandler gif=new y.io.GIFIOHandler();
+  gif.setAntialiasingEnabled(true);
+  exportGraphToImageFileFormat(view.getGraph2D(),gif,filename,gif.createDefaultGraph2DView(view.getGraph2D()));
+}

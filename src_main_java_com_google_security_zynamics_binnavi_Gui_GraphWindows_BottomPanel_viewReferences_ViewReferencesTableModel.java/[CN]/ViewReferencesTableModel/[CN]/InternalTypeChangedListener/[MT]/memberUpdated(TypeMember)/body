@@ -1,0 +1,5 @@
+{
+  for (  TypeMemberTreeNode node : typeMemberToTreeNode.get(member)) {
+    nodeChanged(node);
+  }
+}

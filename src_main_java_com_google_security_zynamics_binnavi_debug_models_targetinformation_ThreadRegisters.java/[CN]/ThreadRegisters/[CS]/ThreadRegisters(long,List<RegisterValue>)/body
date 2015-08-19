@@ -1,0 +1,4 @@
+{
+  threadId=tid;
+  threadRegisterValues=new ArrayList<>(registers);
+}

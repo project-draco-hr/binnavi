@@ -1,0 +1,4 @@
+{
+  removeMouseListener(mouseListener);
+  treeTableModel.delete();
+}

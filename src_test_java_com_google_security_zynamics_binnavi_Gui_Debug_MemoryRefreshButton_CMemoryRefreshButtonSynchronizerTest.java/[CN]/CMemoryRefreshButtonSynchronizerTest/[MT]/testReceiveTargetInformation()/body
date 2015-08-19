@@ -1,0 +1,13 @@
+{
+  final MockDebugger debugger=new MockDebugger(new ModuleTargetSettings(CommonTestObjects.MODULE));
+  debugger.connect();
+  m_model.setActiveDebugger(debugger);
+  debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,true,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  assertFalse(m_refreshButton.isEnabled());
+  assertEquals(m_defaultAction,m_refreshButton.getAction());
+  debugger.connection.m_synchronizer.receivedEvent(new TargetInformationReply(0,0,new TargetInformation(32,new FilledList<RegisterDescription>(),new DebuggerOptions(false,false,false,false,false,false,false,false,false,false,1,0,new ArrayList<DebuggerException>(),false,false,false))));
+  assertFalse(m_refreshButton.isEnabled());
+  assertEquals(m_askAction,m_refreshButton.getAction());
+  m_synchronizer.dispose();
+  debugger.close();
+}

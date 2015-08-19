@@ -1,0 +1,3 @@
+{
+  getProvider().createTrace((CProject)null,"Trace Name","Trace Description");
+}

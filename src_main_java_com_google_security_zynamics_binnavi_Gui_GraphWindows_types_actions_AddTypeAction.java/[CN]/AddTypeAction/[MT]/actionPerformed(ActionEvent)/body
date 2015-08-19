@@ -1,0 +1,5 @@
+{
+  final TypeDialog dlg=TypeDialog.createBuildNewTypeDialog(owner,manager);
+  GuiHelper.centerChildToParent(owner,dlg,true);
+  dlg.setVisible(true);
+}

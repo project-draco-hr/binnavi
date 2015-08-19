@@ -1,0 +1,69 @@
+{
+  CMouseCursorHelper.setDefaultCursor(state.getGraph());
+  final AbstractZyGraph<NodeType,EdgeType> graph=state.getGraph();
+  final Node n=state.getNode();
+  final NodeType node=graph.getNode(n);
+  final double x=graph.getEditMode().translateX(event.getX());
+  final double y=graph.getEditMode().translateY(event.getY());
+  final CStateFactory<NodeType,EdgeType> factory=state.getStateFactory();
+  if (ProximityHelper.isProximityNode(state.getGraph().getGraph(),n)) {
+    CEditNodeHelper.removeCaret(graph);
+    final ZyProximityNode<?> proximityNode=ProximityHelper.getProximityNode(graph.getGraph(),n);
+    for (    final IZyEditModeListener<NodeType,EdgeType> listener : factory.getListeners()) {
+      try {
+        listener.proximityBrowserNodeClicked(proximityNode,event,x,y);
+      }
+ catch (      final Exception exception) {
+      }
+    }
+  }
+ else   if ((node != null) && (node.getRawNode() instanceof IGroupNode)) {
+    CEditNodeHelper.removeCaret(graph);
+    final GroupNodeRealizer gnr=(GroupNodeRealizer)graph.getGraph().getRealizer(node.getNode());
+    final NodeLabel handle=gnr.getStateLabel();
+    if (handle.getBox().contains(x,y)) {
+      toggleGroup(node);
+    }
+ else     if (SwingUtilities.isLeftMouseButton(event)) {
+      if ((event.getClickCount() == 2) && event.isControlDown()) {
+        toggleGroup(node);
+      }
+ else       if (event.getClickCount() == 1) {
+        CGraphSelector.selectNode(graph,node,event.isShiftDown());
+      }
+    }
+  }
+ else {
+    if (node != null) {
+      if (graph.getEditMode().getLabelEventHandler().isActiveLabel(node.getRealizer().getNodeContent())) {
+        CEditNodeHelper.setCaretEnd(graph,state.getNode(),event);
+      }
+ else {
+        if (graph.getEditMode().getLabelEventHandler().isActive()) {
+          CEditNodeHelper.removeCaret(graph);
+        }
+        final Set<NodeType> selectedNodes=graph.getSelectedNodes();
+        if (event.isShiftDown() && (selectedNodes.size() >= 1)) {
+          CGraphSelector.selectPath(graph,new ArrayList<NodeType>(selectedNodes),node);
+        }
+ else         if (event.isControlDown()) {
+          graph.selectNode(node,!node.isSelected());
+        }
+ else {
+          final Collection<NodeType> toUnselect=new ArrayList<NodeType>(graph.getNodes());
+          toUnselect.remove(node);
+          final Collection<NodeType> toSelect=new ArrayList<NodeType>();
+          toSelect.add(node);
+          graph.selectNodes(toSelect,toUnselect);
+        }
+      }
+      for (      final IZyEditModeListener<NodeType,EdgeType> listener : factory.getListeners()) {
+        try {
+          listener.nodeClicked(node,event,x,y);
+        }
+ catch (        final Exception exception) {
+        }
+      }
+    }
+  }
+}

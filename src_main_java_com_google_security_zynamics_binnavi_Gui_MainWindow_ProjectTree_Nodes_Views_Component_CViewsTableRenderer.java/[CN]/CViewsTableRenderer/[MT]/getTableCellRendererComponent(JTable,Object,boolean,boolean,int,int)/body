@@ -1,0 +1,14 @@
+{
+  final INaviView view=this.table.getUnsortedView(row);
+  if (view == null) {
+    return new JLabel("No cross references");
+  }
+  final INaviFunction function=container.getFunction(view);
+  if ((column == 0) && (function != null)) {
+    final IDebugger debugger=container.getDebuggerProvider().getDebugger(function.getModule());
+    if (debugger != null) {
+      return new CAddressLabel(table,view,debugger,function,getBackgroundColor(this.table,isSelected,function.getType(),view.getGraphType()),null);
+    }
+  }
+  return new ViewLabel(value,isSelected,row,column,null);
+}

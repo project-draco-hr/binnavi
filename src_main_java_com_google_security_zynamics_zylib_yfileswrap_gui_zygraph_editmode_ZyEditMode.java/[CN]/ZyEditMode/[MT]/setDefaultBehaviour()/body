@@ -1,0 +1,14 @@
+{
+  allowBendCreation(false);
+  allowEdgeCreation(false);
+  allowNodeCreation(false);
+  allowMoveLabels(true);
+  allowMovePorts(true);
+  allowNodeEditing(true);
+  allowMoving(true);
+  allowMoveSelection(true);
+  showEdgeTips(true);
+  showNodeTips(true);
+  setSelectionBoxMode(new CSelectionMode<NodeType>(m_graph));
+  m_graph.getView().getCanvasComponent().addMouseWheelListener(new ZyEditModeMouseWheelListener<NodeType,EdgeType>(m_graph));
+}

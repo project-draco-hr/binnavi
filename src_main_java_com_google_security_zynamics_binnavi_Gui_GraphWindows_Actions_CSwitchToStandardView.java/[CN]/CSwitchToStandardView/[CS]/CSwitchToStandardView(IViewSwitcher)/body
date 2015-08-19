@@ -1,0 +1,5 @@
+{
+  super("Standard Perspective");
+  m_viewSwitcher=Preconditions.checkNotNull(viewSwitcher,"IE02840: viewSwitcher argument can not be null");
+  putValue(ACCELERATOR_KEY,HotKeys.GRAPH_SWITCH_TO_STANDARD_PERSPECTIVE_HK.getKeyStroke());
+}

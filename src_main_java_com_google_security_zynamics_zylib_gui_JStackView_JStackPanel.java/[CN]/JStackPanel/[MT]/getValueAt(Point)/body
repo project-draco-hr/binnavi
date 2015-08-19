@@ -1,0 +1,7 @@
+{
+  final int line=((point.y - m_paddingTop) + m_rowHeight) / m_rowHeight;
+  final long elementSize=getElementSize();
+  final long startAddress=m_model.getStartAddress() + (m_firstRow * elementSize);
+  final long elementAddress=startAddress + (line * elementSize);
+  return m_model.hasData(elementAddress,elementSize) ? m_model.getElement(elementAddress) : null;
+}

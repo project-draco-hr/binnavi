@@ -1,0 +1,6 @@
+{
+  super("Create Comment Node");
+  m_node=Preconditions.checkNotNull(node,"IE00923: Node argument can not be null");
+  m_parent=Preconditions.checkNotNull(parent,"IE02363: Parent argument can not be null");
+  m_view=Preconditions.checkNotNull(view,"IE02364: View argument can not be null");
+}

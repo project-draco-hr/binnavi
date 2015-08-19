@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(m_content,"IE00191: Address space must be loaded first");
+  return m_content;
+}

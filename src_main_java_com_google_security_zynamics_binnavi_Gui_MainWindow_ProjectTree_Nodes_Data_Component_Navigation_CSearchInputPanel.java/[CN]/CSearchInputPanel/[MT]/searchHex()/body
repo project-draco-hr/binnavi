@@ -1,0 +1,14 @@
+{
+  final String text=m_inputField.getText();
+  if ((text.length() % 2) != 0) {
+    m_inputField.setBackground(Color.RED);
+    return;
+  }
+  m_inputField.setBackground(Color.WHITE);
+  final byte[] data=new byte[text.length() / 2];
+  for (int i=0; i < text.length(); i+=2) {
+    final String substr=text.substring(i,i + 2);
+    data[i / 2]=(byte)(int)Integer.valueOf(substr,16);
+  }
+  search(data);
+}

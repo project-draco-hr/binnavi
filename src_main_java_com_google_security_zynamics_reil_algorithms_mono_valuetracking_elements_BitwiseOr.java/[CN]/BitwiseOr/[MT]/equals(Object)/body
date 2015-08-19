@@ -1,0 +1,3 @@
+{
+  return (rhs instanceof BitwiseOr) && ((BitwiseOr)rhs).m_lhs.equals(m_lhs) && ((BitwiseOr)rhs).m_rhs.equals(m_rhs);
+}

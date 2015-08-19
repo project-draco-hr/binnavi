@@ -1,0 +1,8 @@
+{
+  if (searcher.hasChanged() || !searchString.equals(searcher.getLastSearchString())) {
+    CSearchExecuter.startNewSearch(parent,editor,graph,searcher,searchString,zoomToResult);
+  }
+ else   if (!searcher.getResults().isEmpty()) {
+    CSearchExecuter.cycleExistingSearch(parent,graph,searcher,cycleBackwards,zoomToResult);
+  }
+}

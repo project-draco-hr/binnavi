@@ -1,0 +1,4 @@
+{
+  final Pair<OperandSize,String> result=generator.generate(environment,0x100,instructions);
+  assertEquals("CF",result.second());
+}

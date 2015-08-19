@@ -1,0 +1,3 @@
+{
+  return ((ThreadCreatedReply)reply).getThreadId();
+}

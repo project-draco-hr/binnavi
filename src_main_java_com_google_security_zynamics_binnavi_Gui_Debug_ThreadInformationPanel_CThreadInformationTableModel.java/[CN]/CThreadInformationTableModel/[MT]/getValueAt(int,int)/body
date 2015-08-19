@@ -1,0 +1,18 @@
+{
+  try {
+synchronized (m_threads) {
+      final TargetProcessThread thread=m_threads.get(rowIndex);
+switch (columnIndex) {
+case TID_COLUMN:
+        return thread.getThreadId();
+case STATE_COLUMN:
+      return thread.getState() == ThreadState.RUNNING ? "Running" : "Suspended";
+default :
+    throw new IllegalStateException("IE00651: Unknown column");
+}
+}
+}
+ catch (final IndexOutOfBoundsException exception) {
+return "";
+}
+}

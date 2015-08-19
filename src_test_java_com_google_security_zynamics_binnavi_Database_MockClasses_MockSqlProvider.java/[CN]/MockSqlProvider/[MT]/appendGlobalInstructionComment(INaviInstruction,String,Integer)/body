@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(instruction,"Error: instruction argument can not be null");
+  return appendComment(new Commentable(instruction,CommentScope.GLOBAL),userId,commentText);
+}

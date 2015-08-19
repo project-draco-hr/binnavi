@@ -1,0 +1,48 @@
+{
+  final StringBuilder pathString=new StringBuilder(structBaseType.getName());
+  final List<TypeMember> memberList=Lists.newArrayList();
+  int memberOffset=0;
+  int currentOffset=0;
+  int lastMemberOffset=0;
+  Iterator<TypeMember> it=structBaseType.iterator();
+  while (it.hasNext()) {
+    final TypeMember member=it.next();
+    memberOffset=member.getBitOffset().isPresent() ? member.getBitOffset().get() : 0;
+    currentOffset+=memberOffset - lastMemberOffset;
+    lastMemberOffset=memberOffset;
+    if (currentOffset <= offset) {
+switch (member.getBaseType().getCategory()) {
+case ATOMIC:
+case POINTER:
+        if (currentOffset == offset) {
+          pathString.append('.');
+          pathString.append(member.getName());
+          memberList.add(member);
+          return new WalkResult(member,memberList,pathString.toString());
+        }
+      break;
+case ARRAY:
+    if (offset < currentOffset + member.getBaseType().getBitSize() && offset % getArrayElementType(member.getBaseType()).getBitSize() == 0) {
+      pathString.append('.');
+      pathString.append(determineIndexedMemberString(member,offset - currentOffset));
+      memberList.add(member);
+      return new WalkResult(member,memberList,pathString.toString());
+    }
+  break;
+case STRUCT:
+case UNION:
+if (offset < currentOffset + member.getBaseType().getBitSize()) {
+  pathString.append('.');
+  pathString.append(member.getName());
+  memberList.add(member);
+  it=member.getBaseType().iterator();
+  lastMemberOffset=0;
+}
+break;
+default :
+return new WalkResult();
+}
+}
+}
+return new WalkResult();
+}

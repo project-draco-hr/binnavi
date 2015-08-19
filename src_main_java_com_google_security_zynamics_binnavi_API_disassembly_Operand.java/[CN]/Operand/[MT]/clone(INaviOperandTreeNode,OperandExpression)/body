@@ -1,0 +1,10 @@
+{
+  final OperandExpression childExpression=new OperandExpression(currentNode);
+  if (parentExpression != null) {
+    OperandExpression.link(parentExpression,childExpression);
+  }
+  for (  final INaviOperandTreeNode child : currentNode.getChildren()) {
+    clone(child,childExpression);
+  }
+  return childExpression;
+}

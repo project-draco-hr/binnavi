@@ -1,0 +1,3 @@
+INaviInstruction startInstruction
+String trackedRegister
+CInstructionResult instructionResult

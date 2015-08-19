@@ -1,0 +1,3 @@
+{
+  return new CInstruction(false,this,address,mnemonic,operands,data,architecture,m_provider);
+}

@@ -1,0 +1,11 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"mcrf");
+  final IOperandTreeNode targetCRField=instruction.getOperands().get(0).getRootNode().getChildren().get(0);
+  final IOperandTreeNode sourceCRField=instruction.getOperands().get(1).getRootNode().getChildren().get(0);
+  Long baseOffset=instruction.getAddress().toLong() * 0x100;
+  final OperandSize bt=OperandSize.BYTE;
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CR" + sourceCRField.getValue() + "LT",bt,"CR" + targetCRField.getValue() + "LT"));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CR" + sourceCRField.getValue() + "GT",bt,"CR" + targetCRField.getValue() + "GT"));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CR" + sourceCRField.getValue() + "EQ",bt,"CR" + targetCRField.getValue() + "EQ"));
+  instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CR" + sourceCRField.getValue() + "SO",bt,"CR" + targetCRField.getValue() + "SO"));
+}

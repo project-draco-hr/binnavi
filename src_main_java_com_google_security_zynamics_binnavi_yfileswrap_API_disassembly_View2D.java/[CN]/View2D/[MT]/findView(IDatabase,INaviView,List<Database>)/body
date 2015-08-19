@@ -1,0 +1,23 @@
+{
+  final Database apiDatabase=ObjectFinders.getObject(database,databases);
+  View view=null;
+  for (  final Module m : apiDatabase.getModules()) {
+    if (!m.isLoaded()) {
+      continue;
+    }
+    view=ObjectFinders.getObject(internalView,m.getViews());
+    if (view != null) {
+      return view;
+    }
+  }
+  for (  final Project project : apiDatabase.getProjects()) {
+    if (!project.isLoaded()) {
+      continue;
+    }
+    view=ObjectFinders.getObject(internalView,project.getViews());
+    if (view != null) {
+      return view;
+    }
+  }
+  throw new IllegalStateException("Error: Unknown view");
+}

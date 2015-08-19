@@ -1,0 +1,9 @@
+{
+  if (child == parent) {
+    return true;
+  }
+  if (child.getParent() == null) {
+    return false;
+  }
+  return isAncestor((COperandTreeNode)child.getParent(),parent);
+}

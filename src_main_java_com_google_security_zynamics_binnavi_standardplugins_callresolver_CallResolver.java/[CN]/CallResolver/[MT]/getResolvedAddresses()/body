@@ -1,0 +1,5 @@
+{
+synchronized (resolvedAddresses) {
+    return new HashMap<BigInteger,Set<ResolvedFunction>>(resolvedAddresses);
+  }
+}

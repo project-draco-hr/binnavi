@@ -1,0 +1,48 @@
+{
+  Preconditions.checkNotNull(parent,"IE02358: parent argument can not be null");
+  Preconditions.checkNotNull(database,"IE02359: database argument can not be null");
+  Preconditions.checkNotNull(failedImports,"IE02361: failedImports argument can not be null");
+  final List<String> lastDirectories=ConfigManager.instance().getGeneralSettings().getIdbDirectories();
+  final CIdbSelectionDialog dialogIdb=CIdbSelectionDialog.show(parent,lastDirectories);
+  final List<File> selectedFiles=dialogIdb == null ? new ArrayList<File>() : dialogIdb.getSelectedFiles();
+  if (selectedFiles.isEmpty()) {
+    return false;
+  }
+  final CBaseExporter exporter=new CBinExportImporter();
+  ConfigManager.instance().getGeneralSettings().setDefaultExporter(dialogIdb.getSelectedExporter().ordinal());
+  updatePreviousFiles(lastDirectories,selectedFiles);
+  final ExecutorService executor=Executors.newFixedThreadPool(dialogIdb.getNumberOfParallelImports());
+  final List<Future<CFailedImport>> results=new ArrayList<Future<CFailedImport>>();
+  try {
+    final String idaDirectory=getIdaDirectory(parent);
+    for (    final File file : selectedFiles) {
+      if (!file.exists()) {
+        CMessageBox.showError(parent,String.format("The selected IDB file '%s' does not exist.",file.getAbsolutePath()));
+        continue;
+      }
+      results.add(executor.submit(new Callable<CFailedImport>(){
+        @Override public CFailedImport call(){
+          try {
+            importIdbFileInternal(idaDirectory,file.getAbsolutePath(),database,exporter);
+            return null;
+          }
+ catch (          final ImportFailedException exception) {
+            CUtilityFunctions.logException(exception);
+            return new CFailedImport(file.getAbsolutePath(),exception);
+          }
+        }
+      }
+));
+    }
+    for (    final Future<CFailedImport> future : results) {
+      if (future.get() != null) {
+        failedImports.add(future.get());
+      }
+    }
+    return true;
+  }
+ catch (  final FileNotFoundException e) {
+    CUtilityFunctions.logException(e);
+    throw new FileNotFoundException(String.format("Invalid IDA Pro executable file." + "\n" + "Importing project failed."));
+  }
+}

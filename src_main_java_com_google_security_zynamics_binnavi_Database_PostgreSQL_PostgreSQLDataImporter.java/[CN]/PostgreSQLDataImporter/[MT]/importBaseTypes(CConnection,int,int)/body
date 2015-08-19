@@ -1,0 +1,6 @@
+{
+  final String query="INSERT INTO " + CTableNames.BASE_TYPES_TABLE + " SELECT "+ moduleId+ ", id, name, size, pointer, signed "+ "FROM "+ String.format(CTableNames.RAW_BASE_TYPES,rawModuleId);
+  connection.executeUpdate(query,true);
+  final String updateSequence=String.format("SELECT setval('bn_base_types_id_seq', MAX(id)) from %s",CTableNames.BASE_TYPES_TABLE);
+  connection.executeQuery(updateSequence,true);
+}

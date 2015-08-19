@@ -1,0 +1,17 @@
+{
+  setupStartTime=System.nanoTime();
+  final String[] parts=CConfigLoader.loadPostgreSQL();
+  database=new CDatabase("Expensive base test database",CJdbcDriverNames.jdbcPostgreSQLDriverName,parts[0],"test_disassembly",parts[1],parts[2],parts[3],false,false);
+  database.connect();
+  database.load();
+  final Field privateProviderField=CDatabase.class.getDeclaredField("provider");
+  privateProviderField.setAccessible(true);
+  provider=((SQLProvider)privateProviderField.get(database));
+  ConfigManager.instance().read();
+  modules=provider.loadModules();
+  kernel32Module=findModule(Kernel32String);
+  notepadModule=findModule(NotepadString);
+  setupEndTime=System.nanoTime();
+  NaviLogger.info("Setting up took: " + String.valueOf(TimeUnit.SECONDS.convert(setupEndTime - setupStartTime,TimeUnit.NANOSECONDS)) + " seconds");
+  testStartTime=System.nanoTime();
+}

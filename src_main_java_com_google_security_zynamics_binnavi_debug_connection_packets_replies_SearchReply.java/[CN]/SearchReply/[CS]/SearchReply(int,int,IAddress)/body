@@ -1,0 +1,12 @@
+{
+  super(packetId,errorCode);
+  if (success()) {
+    Preconditions.checkNotNull(address,"IE01072: Address argument can not be null");
+  }
+ else {
+    if (address != null) {
+      throw new IllegalArgumentException("IE01073: Address argument must be null");
+    }
+  }
+  this.address=address;
+}

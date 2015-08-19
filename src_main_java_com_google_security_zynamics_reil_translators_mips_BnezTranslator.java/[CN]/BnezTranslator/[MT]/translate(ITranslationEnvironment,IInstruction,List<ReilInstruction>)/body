@@ -1,0 +1,9 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"bnez");
+  final List<? extends IOperandTree> operands=instruction.getOperands();
+  final String condition=operands.get(0).getRootNode().getChildren().get(0).getValue();
+  final IOperandTreeNode target=operands.get(1).getRootNode().getChildren().get(0);
+  final long offset=ReilHelpers.toReilAddress(instruction.getAddress()).toLong();
+  final OperandSize dw=OperandSize.DWORD;
+  Helpers.generateDelayBranch(instructions,offset,dw,condition,dw,target);
+}

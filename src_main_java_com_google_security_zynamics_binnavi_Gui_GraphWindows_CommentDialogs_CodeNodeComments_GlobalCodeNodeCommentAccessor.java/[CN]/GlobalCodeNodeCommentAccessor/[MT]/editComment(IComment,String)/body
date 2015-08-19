@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(comment,"IE02641: comment argument can not be null");
+  Preconditions.checkNotNull(newComment,"IE02642: newComment argument can not be null");
+  return m_codeNode.getComments().editGlobalCodeNodeComment(comment,newComment);
+}

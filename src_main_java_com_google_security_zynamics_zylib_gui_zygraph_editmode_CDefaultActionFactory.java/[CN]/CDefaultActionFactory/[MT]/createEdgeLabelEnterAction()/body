@@ -1,0 +1,3 @@
+{
+  return new CDefaultEdgeLabelEnterAction<NodeType,EdgeType>();
+}

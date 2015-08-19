@@ -1,0 +1,8 @@
+{
+  id=-1;
+  name="";
+  parentType=null;
+  this.offset=Optional.<Integer>of(offset);
+  numberOfElements=Optional.<Integer>absent();
+  argumentIndex=Optional.<Integer>absent();
+}

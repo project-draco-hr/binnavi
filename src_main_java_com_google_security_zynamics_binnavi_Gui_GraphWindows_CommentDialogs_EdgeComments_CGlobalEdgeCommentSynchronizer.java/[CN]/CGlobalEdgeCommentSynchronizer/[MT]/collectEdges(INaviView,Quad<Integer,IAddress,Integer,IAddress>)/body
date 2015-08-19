@@ -1,0 +1,12 @@
+{
+  final List<INaviEdge> edgelist=new ArrayList<INaviEdge>();
+  if (view.isLoaded()) {
+    for (    final INaviEdge otherEdge : view.getGraph().getEdges()) {
+      final Quad<Integer,IAddress,Integer,IAddress> edgeData=getEdgeData(otherEdge);
+      if (isEdgeDataValid(edgeData) && edgeData.equals(refEdgeData)) {
+        edgelist.add(otherEdge);
+      }
+    }
+  }
+  return edgelist;
+}

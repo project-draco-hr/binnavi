@@ -1,0 +1,4 @@
+INaviModule module
+INaviView view
+String name
+String description

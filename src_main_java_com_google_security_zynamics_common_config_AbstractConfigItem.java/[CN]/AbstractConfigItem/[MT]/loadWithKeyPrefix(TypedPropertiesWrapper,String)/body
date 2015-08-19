@@ -1,0 +1,6 @@
+{
+  final String savedPrefix=properties.getKeyPrefix();
+  properties.setKeyPrefix(keyPrefix);
+  load(properties);
+  properties.setKeyPrefix(savedPrefix);
+}

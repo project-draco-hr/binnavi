@@ -1,0 +1,16 @@
+{
+  final Collection<CSpecialInstruction> instructions=new ArrayList<CSpecialInstruction>();
+  for (  final ReilBlock block : reilCode.getGraph()) {
+    for (    final ReilInstruction reilInstruction : block) {
+      if (ReilHelpers.isFunctionCall(reilInstruction)) {
+        final List<INaviInstruction> nativeInstructions=instructionMap.get(ReilHelpers.toNativeAddress(reilInstruction.getAddress()));
+        if (nativeInstructions != null) {
+          for (          final INaviInstruction naviInstruction : nativeInstructions) {
+            instructions.add(new CSpecialInstruction(this,naviInstruction));
+          }
+        }
+      }
+    }
+  }
+  return instructions;
+}

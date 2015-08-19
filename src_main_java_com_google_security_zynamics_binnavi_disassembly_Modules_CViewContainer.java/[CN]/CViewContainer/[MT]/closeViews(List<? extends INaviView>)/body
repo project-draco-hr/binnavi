@@ -1,0 +1,8 @@
+{
+  for (  final INaviView view : new FilledList<INaviView>(views)) {
+    if (view.isLoaded() && !view.close()) {
+      return false;
+    }
+  }
+  return true;
+}

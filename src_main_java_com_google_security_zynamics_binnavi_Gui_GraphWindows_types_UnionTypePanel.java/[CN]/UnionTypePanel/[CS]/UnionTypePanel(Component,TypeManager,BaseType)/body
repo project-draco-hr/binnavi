@@ -1,0 +1,4 @@
+{
+  super(parent,typeManager,existingType);
+  members.getModel().setOffsetEditable(false);
+}

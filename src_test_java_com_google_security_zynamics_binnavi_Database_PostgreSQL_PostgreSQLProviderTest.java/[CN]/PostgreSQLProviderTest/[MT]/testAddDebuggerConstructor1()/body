@@ -1,0 +1,3 @@
+{
+  getProvider().addDebugger(null,getProvider().loadDebuggers().getDebugger(0));
+}

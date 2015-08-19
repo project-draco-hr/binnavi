@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(edge,"Error: edge argument can not be null");
+  deleteComment(new Commentable(edge,CommentScope.LOCAL),commentId,userId);
+}

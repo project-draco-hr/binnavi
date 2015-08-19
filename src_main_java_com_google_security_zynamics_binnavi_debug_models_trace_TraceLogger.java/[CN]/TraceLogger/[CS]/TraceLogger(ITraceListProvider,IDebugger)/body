@@ -1,0 +1,5 @@
+{
+  this.traceProvider=Preconditions.checkNotNull(traceProvider,"IE00785: Trace provider can not be null");
+  this.debugger=Preconditions.checkNotNull(debugger,"IE00786: Debugger can not be null");
+  breakpointManager=debugger.getBreakpointManager();
+}

@@ -1,0 +1,15 @@
+{
+  if (getGraphics() == null) {
+    return;
+  }
+  final FontMetrics fm=getGraphics().getFontMetrics();
+  m_textEllipsis=super.getText();
+  int maxlen=m_textEllipsis.length();
+  String newValue=m_textEllipsis;
+  final int width=getWidth();
+  while ((maxlen >= 12) && (fm.stringWidth(newValue) > width)) {
+    newValue=FileUtils.getPathEllipsis(m_textEllipsis,maxlen);
+    maxlen--;
+  }
+  m_textEllipsis=newValue;
+}

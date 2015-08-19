@@ -1,0 +1,8 @@
+{
+  if (m_debuggers.isEmpty()) {
+    for (    final IDebugger debugger : m_debuggerProvider.getDebuggers()) {
+      m_debuggers.add(new Debugger(debugger));
+    }
+  }
+  return new ArrayList<Debugger>(m_debuggers);
+}

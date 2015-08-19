@@ -1,0 +1,10 @@
+{
+  m_module=Preconditions.checkNotNull(module,"IE02399: module argument can not be null");
+  m_functions=new FilledList<INaviFunction>(Preconditions.checkNotNull(functions,"IE02400: functions argument can not be null"));
+  for (  final INaviFunction function : functions) {
+    m_functionMap.put(function.getAddress(),function);
+  }
+  for (  final INaviFunction function : functions) {
+    function.addListener(m_functionListener);
+  }
+}

@@ -1,0 +1,28 @@
+{
+  super(new JFrame(),"Quick Help");
+  setLayout(new BorderLayout());
+  setUndecorated(true);
+  CIconInitializer.initializeWindowIcons(this);
+  m_helpArea.setLineWrap(true);
+  m_helpArea.setWrapStyleWord(true);
+  m_helpArea.setEditable(false);
+  final JPanel innerPanel=new JPanel(new BorderLayout());
+  innerPanel.setBorder(new TitledBorder(""));
+  innerPanel.setBackground(Color.BLACK);
+  innerPanel.add(new JScrollPane(m_helpArea));
+  final JPanel lowerPanel=new JPanel(new BorderLayout());
+  m_url.setBorder(new EmptyBorder(5,0,5,5));
+  lowerPanel.add(m_url);
+  innerPanel.add(lowerPanel,BorderLayout.SOUTH);
+  add(innerPanel);
+  setAlwaysOnTop(true);
+  setSize(500,200);
+  setResizable(false);
+  addWindowFocusListener(new WindowAdapter(){
+    @Override public void windowLostFocus(    final WindowEvent event){
+      setVisible(false);
+    }
+  }
+);
+  setDefaultCloseOperation(HIDE_ON_CLOSE);
+}

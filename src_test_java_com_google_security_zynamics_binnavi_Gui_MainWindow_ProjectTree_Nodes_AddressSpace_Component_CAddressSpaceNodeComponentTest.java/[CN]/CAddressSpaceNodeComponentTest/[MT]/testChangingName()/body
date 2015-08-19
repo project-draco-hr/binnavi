@@ -1,0 +1,13 @@
+{
+  assertFalse(m_saveButton.isEnabled());
+  m_editPanel.setNameString("Hannes");
+  assertTrue(m_saveButton.isEnabled());
+  m_addressSpace.getConfiguration().setName("Hannes");
+  sleep();
+  assertFalse(m_saveButton.isEnabled());
+  m_addressSpace.getConfiguration().setName("Hannes2");
+  sleep();
+  assertEquals("Hannes2",m_editPanel.getNameString());
+  assertFalse(m_saveButton.isEnabled());
+  testListenersRemoved();
+}

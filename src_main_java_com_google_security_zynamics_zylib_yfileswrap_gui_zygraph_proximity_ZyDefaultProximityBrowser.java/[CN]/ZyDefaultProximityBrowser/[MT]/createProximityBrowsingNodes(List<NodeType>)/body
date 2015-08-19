@@ -1,0 +1,25 @@
+{
+  for (  final NodeType node : filterGroupedNodes(allNodes)) {
+    if (!node.isVisible()) {
+      continue;
+    }
+    final int invisibleIndegree=NodeHelpers.countInvisibleIndegreeNeighbours((IViewNode<?>)node.getRawNode());
+    if (invisibleIndegree > 0) {
+      final ZyProximityNode<?> infoNode=ProximityNodeCreator.createProximityNode(m_graph.getGraph(),node,invisibleIndegree,false);
+      final InternalNodeListener listener=new InternalNodeListener(node.getX(),node.getY(),infoNode);
+      ((IViewNode<?>)node.getRawNode()).addListener(listener);
+      m_nodeListeners.put(infoNode,listener);
+      m_proximityMap.put(infoNode.getNode(),infoNode);
+      ProximityNodeCreator.insertProximityEdge(m_graph.getGraph(),infoNode,getVisibleNode(node));
+    }
+    final int invisibleOutdegree=NodeHelpers.countInvisibleOutdegreeNeighbours((IViewNode<?>)node.getRawNode());
+    if (invisibleOutdegree > 0) {
+      final ZyProximityNode<?> infoNode=ProximityNodeCreator.createProximityNode(m_graph.getGraph(),node,invisibleOutdegree,true);
+      final InternalNodeListener listener=new InternalNodeListener(node.getX(),node.getY(),infoNode);
+      ((IViewNode<?>)node.getRawNode()).addListener(listener);
+      m_nodeListeners.put(infoNode,listener);
+      m_proximityMap.put(infoNode.getNode(),infoNode);
+      ProximityNodeCreator.insertProximityEdge(m_graph.getGraph(),getVisibleNode(node),infoNode);
+    }
+  }
+}

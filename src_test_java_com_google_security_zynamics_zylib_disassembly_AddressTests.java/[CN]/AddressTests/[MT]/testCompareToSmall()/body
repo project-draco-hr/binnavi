@@ -1,0 +1,12 @@
+{
+  final CAddress compareSmall=new CAddress(0x10000000L);
+  assertTrue(compareSmall.compareTo(0x87654321L) < 0);
+  assertTrue(compareSmall.compareTo(0x10000000L) == 0);
+  assertTrue(compareSmall.compareTo(0x09999999L) > 0);
+  assertTrue(compareSmall.compareTo(new CAddress(0x87654321L)) < 0);
+  assertTrue(compareSmall.compareTo(new CAddress(0x10000000L)) == 0);
+  assertTrue(compareSmall.compareTo(new CAddress(0x09999999L)) > 0);
+  assertFalse(compareSmall.compareTo(new MockAddress()) < 0);
+  assertFalse(compareSmall.compareTo(new MockAddress()) == 0);
+  assertTrue(compareSmall.compareTo(new MockAddress()) > 0);
+}

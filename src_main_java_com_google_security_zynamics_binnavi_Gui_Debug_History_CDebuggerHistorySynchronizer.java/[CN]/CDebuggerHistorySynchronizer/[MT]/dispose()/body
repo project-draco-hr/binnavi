@@ -1,0 +1,5 @@
+{
+  m_model.removeListener(m_perspectiveListener);
+  m_historyStringBuilder.removeListener(m_builderListener);
+  synchronizeDebugger(null);
+}

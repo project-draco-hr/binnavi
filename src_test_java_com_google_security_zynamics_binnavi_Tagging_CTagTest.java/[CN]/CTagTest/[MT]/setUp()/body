@@ -1,0 +1,4 @@
+{
+  m_tag=new CTag(1,"Tag Name","Tag Description",TagType.NODE_TAG,new MockSqlProvider());
+  m_tag.addListener(m_listener);
+}

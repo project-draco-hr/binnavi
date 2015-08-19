@@ -1,0 +1,13 @@
+{
+  final Pair<CNaviViewEdge,com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge> p=createEdgeForAddedEdgeTests();
+  final CNaviViewEdge edge=p.first();
+  final com.google.security.zynamics.binnavi.yfileswrap.zygraph.NaviEdge cnn=p.second();
+  assertTrue(edge.isVisible());
+  assertEquals(edge.isVisible(),cnn.isVisible());
+  edge.setVisible(false);
+  assertFalse(edge.isVisible());
+  assertEquals(edge.isVisible(),cnn.isVisible());
+  edge.setVisible(true);
+  assertTrue(edge.isVisible());
+  assertEquals(edge.isVisible(),cnn.isVisible());
+}

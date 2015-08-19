@@ -1,0 +1,8 @@
+{
+  if (coordinate + dialogSize > maximum) {
+    return maximum - dialogSize - 10;
+  }
+ else {
+    return coordinate;
+  }
+}

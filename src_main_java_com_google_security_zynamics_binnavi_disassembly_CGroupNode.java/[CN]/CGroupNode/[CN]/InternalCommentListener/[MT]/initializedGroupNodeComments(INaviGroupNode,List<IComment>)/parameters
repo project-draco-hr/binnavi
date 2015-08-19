@@ -1,0 +1,2 @@
+INaviGroupNode node
+List<IComment> comments

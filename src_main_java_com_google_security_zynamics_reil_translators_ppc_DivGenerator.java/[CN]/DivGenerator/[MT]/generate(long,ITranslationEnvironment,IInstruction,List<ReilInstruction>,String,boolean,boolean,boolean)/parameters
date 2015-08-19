@@ -1,0 +1,8 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String mnemonic
+boolean isSigned
+boolean setCr
+boolean setOv

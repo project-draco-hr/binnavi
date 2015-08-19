@@ -1,0 +1,18 @@
+{
+  final INaviModule module=getProvider().loadModules().get(0);
+  module.load();
+  final INaviFunction function=module.getContent().getFunctionContainer().getFunction("sub_1004565");
+  final INaviView view=module.getContent().getViewContainer().getView(function);
+  view.load();
+  final IInstruction instruction=Iterables.get(view.getContent().getBasicBlocks().get(0).getInstructions(),4);
+  final INaviOperandTreeNode node=(INaviOperandTreeNode)instruction.getOperands().get(1).getRootNode().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+  getProvider().setGlobalReplacement(node,"replacement");
+  view.close();
+  final INaviModule module2=getProvider().loadModules().get(0);
+  module2.load();
+  final INaviFunction function2=module2.getContent().getFunctionContainer().getFunction("sub_1004565");
+  final INaviView view2=module2.getContent().getViewContainer().getView(function2);
+  view2.load();
+  final IInstruction instruction2=Iterables.get(view2.getContent().getBasicBlocks().get(0).getInstructions(),4);
+  instruction2.getOperands().get(1).getRootNode().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+}

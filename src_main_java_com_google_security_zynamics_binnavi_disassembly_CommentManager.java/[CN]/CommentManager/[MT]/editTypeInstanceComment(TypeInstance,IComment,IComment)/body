@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(typeInstance,"Error: typeInstance argument can not be null");
+  editCommentInternal(new TypeInstanceCommentingStrategy(typeInstance),currentComment,newComment);
+}

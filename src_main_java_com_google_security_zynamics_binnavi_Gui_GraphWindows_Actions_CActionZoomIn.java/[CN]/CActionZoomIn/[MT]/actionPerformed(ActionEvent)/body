@@ -1,0 +1,3 @@
+{
+  CGraphZoomer.zoomIn(m_graph);
+}

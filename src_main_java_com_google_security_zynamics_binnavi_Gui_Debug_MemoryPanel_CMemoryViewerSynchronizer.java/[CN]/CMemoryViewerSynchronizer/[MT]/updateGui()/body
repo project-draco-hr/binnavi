@@ -1,0 +1,15 @@
+{
+  final IDebugger debugger=m_debugPerspectiveModel.getCurrentSelectedDebugger();
+  final TargetProcessThread thread=debugger == null ? null : debugger.getProcessManager().getActiveThread();
+  final boolean connected=debugger != null && debugger.isConnected();
+  final boolean suspended=connected && thread != null;
+  m_hexView.setEnabled(connected && suspended && m_provider.getDataLength() != 0);
+  if (connected) {
+    m_hexView.setDefinitionStatus(DefinitionStatus.DEFINED);
+  }
+ else {
+    m_provider.setMemorySize(0);
+    m_hexView.setBaseAddress(0);
+    m_hexView.uncolorizeAll();
+  }
+}

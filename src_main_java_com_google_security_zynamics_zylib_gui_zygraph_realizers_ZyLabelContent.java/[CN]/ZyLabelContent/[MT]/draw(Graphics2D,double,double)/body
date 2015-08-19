@@ -1,0 +1,88 @@
+{
+  if (m_sloppy) {
+    return;
+  }
+  if (!m_selectable || !m_showCaret) {
+    final float x=(float)xpos + m_leftPadding;
+    float y=(float)ypos + m_topPadding + FONTSIZE;
+    for (    final ZyLineContent line : getContent()) {
+      line.draw(gfx,x,y);
+      y+=LINEHEIGHT;
+    }
+    return;
+  }
+  final AffineTransform affineTrans=gfx.getTransform();
+  final Color color=gfx.getColor();
+  final float x=(float)xpos + getPaddingLeft();
+  final float y=(float)ypos + getPaddingTop() + getFontSize();
+  final double lineheight=getLineHeight();
+  gfx.setColor(Color.BLACK);
+  for (int linenr=0; linenr < getLineCount(); ++linenr) {
+    final TextLayout textLayout=getLineContent(linenr).getTextLayout();
+    if (!getLineContent(linenr).isEmpty()) {
+      textLayout.draw(gfx,x,(float)(y + (linenr * lineheight)));
+    }
+    if (linenr == m_caret.getYmousePressed()) {
+      gfx.setTransform(calcSelectionTransformationMatrix(affineTrans,x,y,linenr));
+      if (getLineContent(linenr).isEmpty()) {
+        m_caret.setCaretStartPos(0);
+      }
+ else       if (m_caret.getCaretStartPos() >= textLayout.getCharacterCount()) {
+        m_caret.setCaretStartPos(textLayout.getCharacterCount());
+      }
+      final Shape[] startCarets=textLayout.getCaretShapes(m_caret.getCaretStartPos());
+      gfx.setColor(m_selectionColor.darker());
+      gfx.draw(startCarets[0]);
+      gfx.setTransform(affineTrans);
+    }
+    if (linenr == m_caret.getYmouseReleased()) {
+      gfx.setTransform(calcSelectionTransformationMatrix(affineTrans,x,y,linenr));
+      if (getLineContent(linenr).isEmpty()) {
+        m_caret.setCaretEndPos(0);
+      }
+ else       if (m_caret.getCaretEndPos() >= textLayout.getCharacterCount()) {
+        m_caret.setCaretEndPos(textLayout.getCharacterCount());
+      }
+      final Shape[] endCarets=textLayout.getCaretShapes(m_caret.getCaretEndPos());
+      gfx.setColor(m_selectionColor.darker().darker());
+      gfx.draw(endCarets[0]);
+      gfx.setTransform(affineTrans);
+    }
+  }
+  if (m_caret.getXmousePressed() != m_caret.getXmouseReleased()) {
+    int pl=m_caret.getYmousePressed();
+    int rl=m_caret.getYmouseReleased();
+    if (pl > rl) {
+      pl=m_caret.getYmouseReleased();
+      rl=m_caret.getYmousePressed();
+    }
+    int pp=m_caret.getXmousePressed();
+    int rp=m_caret.getXmouseReleased();
+    if (pp > rp) {
+      pp=m_caret.getXmouseReleased();
+      rp=m_caret.getXmousePressed();
+    }
+    gfx.setColor(m_selectionColor);
+    gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f));
+    for (int linenr=pl; linenr <= rl; ++linenr) {
+      gfx.setTransform(calcSelectionTransformationMatrix(affineTrans,x,y,linenr));
+      final TextLayout textLayout=getLineContent(linenr).getTextLayout();
+      int rp2=rp;
+      if (pp > textLayout.getCharacterCount()) {
+        continue;
+      }
+      if (getLineContent(linenr).isEmpty()) {
+        rp2=pp;
+      }
+ else       if (rp > textLayout.getCharacterCount()) {
+        rp2=textLayout.getCharacterCount();
+      }
+      final Shape selection=textLayout.getLogicalHighlightShape(pp,rp2);
+      gfx.fill(selection);
+    }
+    gfx.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1f));
+    gfx.setTransform(affineTrans);
+  }
+  gfx.setColor(color);
+  gfx.setTransform(affineTrans);
+}

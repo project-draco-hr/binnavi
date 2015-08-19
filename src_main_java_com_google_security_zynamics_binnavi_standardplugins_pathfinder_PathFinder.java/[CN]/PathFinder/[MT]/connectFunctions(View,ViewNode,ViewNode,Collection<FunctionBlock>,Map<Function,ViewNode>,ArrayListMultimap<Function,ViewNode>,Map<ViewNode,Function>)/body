@@ -1,0 +1,76 @@
+{
+  ViewNode realStartNode=startNode;
+  ViewNode realTargetNode=targetNode;
+  final Set<ViewNode> handled=new HashSet<ViewNode>();
+  while (true) {
+    boolean splitNode=false;
+    start:     for (    final ViewNode node : view.getGraph().getNodes()) {
+      if (handled.contains(node)) {
+        continue;
+      }
+      if (!(node instanceof CodeNode)) {
+        continue;
+      }
+      final CodeNode cnode=(CodeNode)node;
+      for (      final Instruction instruction : cnode.getInstructions()) {
+        for (        final FunctionBlock functionBlock : passedFunctions) {
+          final Function function=functionBlock.getFunction();
+          if (callsFunction(instruction,function)) {
+            final NodePair result=splitBlock(view,functionMap.get(cnode),cnode,instruction);
+            if (realStartNode == cnode) {
+              realStartNode=result.getFirst();
+            }
+            if (realTargetNode == cnode) {
+              realTargetNode=result.getFirst();
+            }
+            for (            final FunctionBlock functionBlock2 : passedFunctions) {
+              final Function function2=functionBlock2.getFunction();
+              if (entryNodes.get(function2) == cnode) {
+                entryNodes.put(function2,result.getFirst());
+              }
+              if (exitNodes.get(function2).contains(cnode)) {
+                if (result.getSecond() != null) {
+                  exitNodes.remove(function2,cnode);
+                  exitNodes.put(function2,result.getSecond());
+                }
+              }
+            }
+            if (functionMap.containsKey(cnode)) {
+              final Function f=functionMap.get(cnode);
+              functionMap.remove(cnode);
+              functionMap.put(result.getFirst(),f);
+            }
+            handled.add(result.getFirst());
+            if (result.getSecond() == null) {
+              for (              final ViewEdge edge : node.getOutgoingEdges()) {
+                for (                final ViewNode currentExitNode : exitNodes.get(function)) {
+                  final ViewEdge leaveEdge=view.createEdge(currentExitNode,edge.getTarget(),EdgeType.LeaveInlinedFunction);
+                  leaveEdge.setColor(DEFAULT_INLINING_EDGE_COLOR);
+                }
+                view.deleteEdge(edge);
+              }
+              final ViewEdge enterEdge=view.createEdge(result.getFirst(),entryNodes.get(function),EdgeType.EnterInlinedFunction);
+              enterEdge.setColor(DEFAULT_INLINING_EDGE_COLOR);
+              handled.add(cnode);
+            }
+ else {
+              final ViewEdge enterEdge=view.createEdge(result.getFirst(),entryNodes.get(function),EdgeType.EnterInlinedFunction);
+              enterEdge.setColor(DEFAULT_INLINING_EDGE_COLOR);
+              for (              final ViewNode currentExitNode : exitNodes.get(function)) {
+                final ViewEdge leaveEdge=view.createEdge(currentExitNode,result.getSecond(),EdgeType.LeaveInlinedFunction);
+                leaveEdge.setColor(DEFAULT_INLINING_EDGE_COLOR);
+              }
+            }
+            splitNode=true;
+            break start;
+          }
+        }
+      }
+      handled.add(cnode);
+    }
+    if (!splitNode) {
+      break;
+    }
+  }
+  return new NodePair(realStartNode,realTargetNode);
+}

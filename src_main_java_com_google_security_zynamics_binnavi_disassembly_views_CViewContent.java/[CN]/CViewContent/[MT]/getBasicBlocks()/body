@@ -1,0 +1,9 @@
+{
+  final ArrayList<CCodeNode> nodes=new ArrayList<CCodeNode>();
+  for (  final INaviViewNode node : graph.getNodes()) {
+    if (node instanceof CCodeNode) {
+      nodes.add((CCodeNode)node);
+    }
+  }
+  return nodes;
+}

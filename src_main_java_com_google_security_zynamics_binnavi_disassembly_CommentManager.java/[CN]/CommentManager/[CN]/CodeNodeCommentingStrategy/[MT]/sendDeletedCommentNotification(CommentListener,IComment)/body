@@ -1,0 +1,8 @@
+{
+  if (scope.equals(CommentScope.GLOBAL)) {
+    listener.deletedGlobalCodeNodeComment(codeNode,comment);
+  }
+ else {
+    listener.deletedLocalCodeNodeComment(codeNode,comment);
+  }
+}

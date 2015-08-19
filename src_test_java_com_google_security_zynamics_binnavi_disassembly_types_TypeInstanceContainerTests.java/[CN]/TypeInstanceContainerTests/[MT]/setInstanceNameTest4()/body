@@ -1,0 +1,9 @@
+{
+  final TypeInstance instance=typeInstanceContainer.createInstance("TYPEINSTANCE1",null,baseType,section,0);
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances().contains(instance));
+  expectedEvents.addedTypeInstance(instance);
+  typeInstanceContainer.setInstanceName(instance,"NEW INSTANCE NAME");
+  Assert.assertTrue(typeInstanceContainer.getTypeInstances().contains(instance));
+  expectedEvents.changedTypeInstance(instance);
+  Assert.assertEquals(expectedEvents,listener);
+}

@@ -1,0 +1,6 @@
+{
+  final y.io.JPGIOHandler jpg=new y.io.JPGIOHandler();
+  jpg.setAntialiasingEnabled(true);
+  jpg.setQuality(0.9f);
+  exportGraphToImageFileFormat(view.getGraph2D(),jpg,filename,jpg.createDefaultGraph2DView(view.getGraph2D()));
+}

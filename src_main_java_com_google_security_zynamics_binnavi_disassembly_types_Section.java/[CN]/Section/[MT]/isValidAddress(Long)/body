@@ -1,0 +1,7 @@
+{
+  Preconditions.checkNotNull(address,"Error: address argument can not be null");
+  if (address < startAddress.toLong() || address > endAddress.toLong()) {
+    return false;
+  }
+  return true;
+}

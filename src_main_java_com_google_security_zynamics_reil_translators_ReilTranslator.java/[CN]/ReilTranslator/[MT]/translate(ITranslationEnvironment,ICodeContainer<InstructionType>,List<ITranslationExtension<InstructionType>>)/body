@@ -1,0 +1,20 @@
+{
+  final List<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
+  for (  final InstructionType instruction : block.getInstructions()) {
+    environment.nextInstruction();
+    final ITranslator<InstructionType> translator=m_translators.get(instruction.getArchitecture().toUpperCase());
+    if (translator == null) {
+      throw new InternalTranslationException("Could not translate instruction from unknown architecture " + instruction.getArchitecture());
+    }
+    try {
+      instructions.addAll(translator.translate(environment,instruction,extensions));
+    }
+ catch (    final InternalTranslationException exception) {
+      exception.setInstruction(instruction);
+      throw exception;
+    }
+  }
+  final LinkedHashMap<ICodeContainer<InstructionType>,List<ReilInstruction>> instructionMap=new LinkedHashMap<ICodeContainer<InstructionType>,List<ReilInstruction>>();
+  instructionMap.put(block,instructions);
+  return ReilGraphGenerator.createGraph(instructionMap.values(),new ArrayList<IAddress>());
+}

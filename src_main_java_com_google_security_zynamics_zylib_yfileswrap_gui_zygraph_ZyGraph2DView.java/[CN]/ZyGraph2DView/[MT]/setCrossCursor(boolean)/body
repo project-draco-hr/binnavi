@@ -1,0 +1,8 @@
+{
+  if (cross) {
+    super.setViewCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+  }
+ else {
+    super.setViewCursor(Cursor.getDefaultCursor());
+  }
+}

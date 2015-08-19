@@ -1,0 +1,13 @@
+{
+  Preconditions.checkNotNull(nodes,"Error: Nodes argument can not be null");
+  Preconditions.checkNotNull(edges,"Error: Edges argument can not be null");
+  for (  final NodeType node : nodes) {
+    Preconditions.checkNotNull(node,"Error: Node list contains null-nodes");
+  }
+  for (  final EdgeType edge : edges) {
+    m_outgoingEdges.put(edge.getSource(),edge);
+    m_incomingEdges.put(edge.getTarget(),edge);
+  }
+  m_nodes=nodes;
+  m_edges=edges;
+}

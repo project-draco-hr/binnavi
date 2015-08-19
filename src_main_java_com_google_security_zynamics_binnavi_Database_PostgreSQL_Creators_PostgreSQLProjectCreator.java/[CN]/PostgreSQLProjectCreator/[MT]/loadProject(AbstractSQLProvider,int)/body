@@ -1,0 +1,18 @@
+{
+  final String query="select id, name, description, creation_date, modification_date from " + CTableNames.PROJECTS_TABLE + " where id = "+ projectId;
+  final ResultSet resultSet=provider.getConnection().executeQuery(query,true);
+  try {
+    while (resultSet.next()) {
+      final String name=PostgreSQLHelpers.readString(resultSet,"name");
+      final String description=PostgreSQLHelpers.readString(resultSet,"description");
+      final int addressSpaceCount=0;
+      final Timestamp creationDate=resultSet.getTimestamp("creation_date");
+      final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+      return new CProject(projectId,name,description,creationDate,modificationDate,addressSpaceCount,new ArrayList<DebuggerTemplate>(),provider);
+    }
+  }
+  finally {
+    resultSet.close();
+  }
+  return null;
+}

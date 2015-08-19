@@ -1,0 +1,5 @@
+{
+  final RawBaseType rawBaseType=new RawBaseType(++typeId,name,size,previousPointerTypeId,signed,category);
+  types.put(moduleId,rawBaseType);
+  return rawBaseType.getId();
+}

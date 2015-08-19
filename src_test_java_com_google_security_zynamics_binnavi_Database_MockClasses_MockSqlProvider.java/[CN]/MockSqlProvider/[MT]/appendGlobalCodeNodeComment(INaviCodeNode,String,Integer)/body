@@ -1,0 +1,4 @@
+{
+  Preconditions.checkNotNull(node,"Error: codeNode argument can not be null");
+  return appendComment(new Commentable(node,CommentScope.GLOBAL),userId,commentText);
+}

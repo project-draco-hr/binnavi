@@ -1,0 +1,27 @@
+{
+  super("Graph");
+  final ZyGraphViewSettings settings=graph.getSettings();
+  setMnemonic("HK_MENU_GRAPH".charAt(0));
+  autoLayoutMenu.setSelected(settings.getLayoutSettings().getAutomaticLayouting());
+  add(autoLayoutMenu);
+  proximityBrowsingMenu.setSelected(settings.getProximitySettings().getProximityBrowsing());
+  add(proximityBrowsingMenu);
+  addSeparator();
+  add(CActionProxy.proxy(new CActionGraphSettings(parent,graph)));
+  add(CActionProxy.proxy(new CActionShowProximityBrowsingSettingsDialog(parent,graph.getSettings())));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionInsertView(parent,graph,container)));
+  addSeparator();
+  add(CActionProxy.proxy(new CActionDeleteSelectedNodes(graph,false)));
+  add(CActionProxy.proxy(new CActionDeleteUnselectedNodes(graph)));
+  add(CActionProxy.proxy(new CActionDeleteInvisibleNodes(graph)));
+  addSeparator();
+  final JMenu transformMenu=new JMenu("Transform");
+  transformMenu.add(CActionProxy.proxy(new CActionInlineAll(parent,container,graph)));
+  if ((container instanceof CModuleContainer) || (container instanceof CProjectContainer)) {
+    transformMenu.addSeparator();
+    transformMenu.add(CActionProxy.proxy(new CActionShowReil(parent,container,container.getModules().get(0),graph.getRawView())));
+  }
+  transformMenu.add(CActionProxy.proxy(new CActionShowDataflow(parent,container,graph.getRawView())));
+  add(transformMenu);
+}

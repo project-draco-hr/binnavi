@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(node,"IE02420: Operand tree node can not be null.");
+  Preconditions.checkNotNull(rawSubstitution,"IE02421: Raw type substitution can not be null.");
+  final BaseType baseType=typesContainer.getBaseTypeById(rawSubstitution.getBaseTypeId());
+  final TypeSubstitution substitution=new TypeSubstitution(node,baseType,rawSubstitution.getExpressionId(),rawSubstitution.getPosition(),rawSubstitution.getOffset(),rawSubstitution.getAddress());
+  node.setTypeSubstitution(substitution);
+  typesContainer.addTypeSubstitution(substitution);
+  notifySubstitutionAdded(substitution);
+}

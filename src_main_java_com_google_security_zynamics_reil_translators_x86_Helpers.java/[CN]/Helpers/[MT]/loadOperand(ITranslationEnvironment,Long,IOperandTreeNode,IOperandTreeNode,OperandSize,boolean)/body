@@ -1,0 +1,29 @@
+{
+  final String currentNodeValue=expression.getValue();
+  final int numberOfChildren=expression.getChildren().size();
+  if (TranslationHelpers.isSizeExpression(expression)) {
+    size=OperandSize.sizeStringToValue(currentNodeValue);
+  }
+  Long newBaseOffset=baseOffset.longValue();
+  final OperandSize childrenSize=isMemoryAccess(currentNodeValue) ? environment.getArchitectureSize() : size;
+  final List<TranslationResult> partialResults=translateChildrenOfNode(environment,expression,childrenSize,loadOperand,newBaseOffset);
+switch (numberOfChildren) {
+case 0:
+    return processLeafNode(environment,newBaseOffset,expression,size,loadOperand);
+case 1:
+  if (OperandSize.isSizeString(currentNodeValue)) {
+    return partialResults.get(0);
+  }
+ else   if (isSegmentExpression(currentNodeValue)) {
+    return partialResults.get(0);
+  }
+ else   if (isMemoryAccess(currentNodeValue)) {
+    return processSimpleMemoryAccess(environment,segmentOverride,size,loadOperand,partialResults.get(0));
+  }
+ else {
+    throw new InternalTranslationException("Error: Unknown node type with one child during address operand translation");
+  }
+default :
+return processInOperandArithmetic(partialResults,environment,newBaseOffset,expression);
+}
+}

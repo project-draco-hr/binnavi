@@ -1,0 +1,7 @@
+{
+  final List<U> toShow=new ArrayList<U>();
+  final Set<U> nodes=GraphHelpers.getVisibleNodes(ViewableGraph.wrap(graph));
+  toShow.addAll(nodes);
+  toShow.addAll(GraphConverters.convert(graph,GraphAlgorithms.getPredecessors(proximityNode.getRawNode().getAttachedNode())));
+  showNodes(parent,graph,toShow,true);
+}

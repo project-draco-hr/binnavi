@@ -1,0 +1,3 @@
+{
+  return String.format("%s Nodes",m_panel.getSelectionState() == SelectionState.SELECTED ? "Selected" : "Unselected");
+}

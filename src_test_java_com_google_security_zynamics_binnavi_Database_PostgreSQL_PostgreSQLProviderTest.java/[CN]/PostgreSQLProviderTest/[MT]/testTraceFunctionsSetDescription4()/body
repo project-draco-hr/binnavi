@@ -1,0 +1,6 @@
+{
+  final INaviProject project=getProvider().createProject("SOME_PROJECT");
+  getProvider().createTrace(project,"SOME_TRACE","SOME_TRACE_DESCRIPTION");
+  final TraceList trace=project.getContent().getTraces().get(0);
+  PostgreSQLTraceFunctions.setDescription((AbstractSQLProvider)getProvider(),trace,null);
+}

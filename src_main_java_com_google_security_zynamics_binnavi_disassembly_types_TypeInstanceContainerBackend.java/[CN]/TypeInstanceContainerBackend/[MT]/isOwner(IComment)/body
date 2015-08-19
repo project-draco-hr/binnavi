@@ -1,0 +1,3 @@
+{
+  return CUserManager.get(provider).getCurrentActiveUser().equals(comment.getUser());
+}

@@ -1,0 +1,8 @@
+long baseOffset
+ITranslationEnvironment environment
+IInstruction instruction
+List<ReilInstruction> instructions
+String typeValue
+String registerNodeValue
+String wBit
+IOperandTreeNode rootNodeOfRegisterList

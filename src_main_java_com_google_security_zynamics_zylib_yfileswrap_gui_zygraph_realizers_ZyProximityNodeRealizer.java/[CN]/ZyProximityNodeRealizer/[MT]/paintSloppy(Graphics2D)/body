@@ -1,0 +1,4 @@
+{
+  super.paintFilledShape(gfx);
+  super.paintShapeBorder(gfx);
+}

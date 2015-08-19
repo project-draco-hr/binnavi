@@ -1,0 +1,4 @@
+{
+  TranslationHelpers.checkTranslationArguments(environment,instruction,instructions,"CBZ");
+  translateAll(environment,instruction,"CBZ",instructions);
+}

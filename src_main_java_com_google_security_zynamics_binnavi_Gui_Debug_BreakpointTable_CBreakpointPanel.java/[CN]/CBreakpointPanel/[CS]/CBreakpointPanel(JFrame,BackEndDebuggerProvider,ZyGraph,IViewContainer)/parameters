@@ -1,0 +1,4 @@
+JFrame parent
+BackEndDebuggerProvider debuggerProvider
+ZyGraph graph
+IViewContainer viewContainer

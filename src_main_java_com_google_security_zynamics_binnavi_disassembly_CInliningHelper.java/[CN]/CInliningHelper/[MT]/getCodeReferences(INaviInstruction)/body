@@ -1,0 +1,7 @@
+{
+  final List<IReference> references=new ArrayList<IReference>();
+  for (  final IOperandTree operand : instruction.getOperands()) {
+    getCodeReference(operand.getRootNode(),references);
+  }
+  return references;
+}

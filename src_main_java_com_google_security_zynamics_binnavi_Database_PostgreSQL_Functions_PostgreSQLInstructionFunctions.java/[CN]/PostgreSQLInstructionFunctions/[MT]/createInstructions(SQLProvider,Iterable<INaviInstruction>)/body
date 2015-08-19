@@ -1,0 +1,60 @@
+{
+  Preconditions.checkNotNull(provider,"IE01550: Provider argument can not be null");
+  Preconditions.checkNotNull(instructions,"IE01554: Instruction argument can not be null");
+  final String query="INSERT INTO " + CTableNames.INSTRUCTIONS_TABLE + "(module_id, address, mnemonic, data, native, architecture, comment_id) "+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
+  final PreparedStatement insertStatement=provider.getConnection().getConnection().prepareStatement(query);
+  final ArrayList<INaviInstruction> instructionsWithUnsavedComments=new ArrayList<INaviInstruction>();
+  final List<List<COperandTree>> operands=new ArrayList<List<COperandTree>>();
+  for (  final INaviInstruction instruction : instructions) {
+    final String mnemonic=instruction.getMnemonic();
+    final byte[] data=instruction.getData();
+    operands.add(instruction.getOperands());
+    final INaviModule module=instruction.getModule();
+    final IAddress address=instruction.getAddress();
+    final int moduleID=module.getConfiguration().getId();
+    final List<IComment> comments=instruction.getGlobalComment();
+    final Integer commentId=comments == null ? null : comments.size() == 0 ? null : Iterables.getLast(comments).getId();
+    if ((comments != null) && (comments.size() != 0) && (commentId == null)) {
+      instructionsWithUnsavedComments.add(instruction);
+    }
+    try {
+      insertStatement.setInt(1,moduleID);
+      insertStatement.setObject(2,address.toBigInteger(),Types.BIGINT);
+      insertStatement.setString(3,mnemonic);
+      insertStatement.setBytes(4,data);
+      insertStatement.setBoolean(5,false);
+      insertStatement.setObject(6,instruction.getArchitecture(),Types.OTHER);
+      if (commentId == null) {
+        insertStatement.setNull(7,Types.INTEGER);
+      }
+ else {
+        insertStatement.setInt(7,commentId);
+      }
+      insertStatement.execute();
+    }
+  finally {
+      insertStatement.close();
+    }
+  }
+  for (  final INaviInstruction instruction : instructionsWithUnsavedComments) {
+    final ArrayList<IComment> instructionComments=new ArrayList<IComment>();
+    for (    final IComment comment : instruction.getGlobalComment()) {
+      try {
+        final Integer commentId=PostgreSQLInstructionFunctions.appendGlobalInstructionComment(provider,instruction,comment.getComment(),comment.getUser().getUserId());
+        final IComment newComment=new CComment(commentId,comment.getUser(),comment.getParent(),comment.getComment());
+        instructionComments.add(newComment);
+      }
+ catch (      final CouldntSaveDataException exception) {
+        CUtilityFunctions.logException(exception);
+      }
+    }
+    instruction.initializeGlobalComment(instructionComments);
+  }
+  for (  final List<COperandTree> operand : operands) {
+    int position=0;
+    for (    final COperandTree operandTree : operand) {
+      createOperandTree(provider,operandTree,position);
+      position++;
+    }
+  }
+}

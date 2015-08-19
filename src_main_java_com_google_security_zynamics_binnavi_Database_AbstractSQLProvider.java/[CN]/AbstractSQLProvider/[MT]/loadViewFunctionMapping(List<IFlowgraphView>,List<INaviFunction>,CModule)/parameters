@@ -1,0 +1,3 @@
+List<IFlowgraphView> flowgraphs
+List<INaviFunction> functions
+CModule module

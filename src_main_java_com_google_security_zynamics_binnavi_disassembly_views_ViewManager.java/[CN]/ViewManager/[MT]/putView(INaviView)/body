@@ -1,0 +1,3 @@
+{
+  viewsToId.forcePut(view,view.getConfiguration().getId());
+}
