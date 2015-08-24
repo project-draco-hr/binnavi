@@ -15,6 +15,6 @@
     NaviLogger.severe(message);
     CUtilityFunctions.logException(exception);
     NaviLogger.severe(consoleWriter.getOutput());
-    CNaviErrorDialog.show(null,message,description,exception);
+    NaviErrorDialog.show(null,message,description,exception);
   }
 }

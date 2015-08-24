@@ -1,13 +1,12 @@
 {
   Properties properties=new Properties();
   try {
-    final InputStream input=BuildVersionInformation.class.getResourceAsStream("/build-data.properties");
+    final InputStream input=CMain.class.getResourceAsStream("data/build-data.properties");
     if (input == null) {
       return;
     }
     properties.load(input);
-    buildId=properties.getProperty("build.build_id");
-    buildChangelist=properties.getProperty("build.changelist");
+    buildRevision=properties.getProperty("build.revision");
   }
  catch (  final IOException exception) {
     CUtilityFunctions.logException(exception);

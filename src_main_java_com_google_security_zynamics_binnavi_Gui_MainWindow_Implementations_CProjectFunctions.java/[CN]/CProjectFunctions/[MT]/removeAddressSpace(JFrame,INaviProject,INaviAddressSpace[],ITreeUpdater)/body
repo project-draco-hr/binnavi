@@ -13,7 +13,7 @@
           if (addressSpace.isLoaded()) {
             final String innerMessage="E00123: " + "Address space could not be deleted";
             final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not delete the address space '%s'.",addressSpace.getConfiguration().getName()),new String[]{"BinNavi or one of the active plugins vetoed the deletion " + "operation."},new String[]{"The address space can not be deleted until the delete " + "operation is not vetoed anymore."});
-            CNaviErrorDialog.show(parent,innerMessage,innerDescription);
+            NaviErrorDialog.show(parent,innerMessage,innerDescription);
           }
  else {
             try {
@@ -24,7 +24,7 @@
               CUtilityFunctions.logException(exception);
               final String innerMessage="E00143: " + "Address space could not be deleted";
               final String innerDescription=CUtilityFunctions.createDescription("The selected address space could not be deleted.",new String[]{"There was a problem with the database connection."},new String[]{"The address space was not deleted."});
-              CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+              NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
             }
           }
           operation.stop();

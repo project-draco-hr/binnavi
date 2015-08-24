@@ -29,7 +29,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00086: " + "Could not send step end command to the debug client";
       final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the step end command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The state of the debugged process remains unchanged."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
   }
 }

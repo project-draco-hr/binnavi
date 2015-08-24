@@ -12,6 +12,6 @@
     CUtilityFunctions.logException(exception);
     final String innerMessage="E00080: " + "Could not refresh memory";
     final String innerDescription=CUtilityFunctions.createDescription("The memory list and the memory data could not be refreshed.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The memory data was not refreshed."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
   }
 }

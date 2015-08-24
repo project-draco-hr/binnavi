@@ -6,7 +6,7 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00182: " + "Could not change tag name";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The name of the tag '%s' could not be changed.",m_tagTreeNode.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag name could not be changed."});
-    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),innerMessage,innerDescription,e);
+    NaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),innerMessage,innerDescription,e);
   }
   try {
     m_tagTreeNode.getObject().setDescription(m_descriptionField.getText());
@@ -15,6 +15,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00183: " + "Could not change tag description";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The description of the tag '%s' could not be changed.",m_tagTreeNode.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag description could not be changed."});
-    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),innerMessage,innerDescription,e);
+    NaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),innerMessage,innerDescription,e);
   }
 }

@@ -13,7 +13,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00195: " + "Could not save view to SVG file";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be written to the file '%s'.",graph.getViewName(),fileChooser.getSelectedFile().getAbsolutePath()),new String[]{"There was a problem writing the PNG file."},new String[]{"The view was not written to the PNG file."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
   }
 }

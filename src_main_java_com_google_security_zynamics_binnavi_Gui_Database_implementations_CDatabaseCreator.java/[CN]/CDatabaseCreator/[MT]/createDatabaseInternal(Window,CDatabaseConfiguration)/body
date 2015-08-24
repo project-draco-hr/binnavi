@@ -7,7 +7,7 @@
  catch (  final CouldntLoadDriverException exception) {
     final String message="E00047: " + "Database driver could not be loaded";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not create a database connection because " + "the database driver '%s' could not be loaded",configuration.getDriver()),new String[]{"The database driver string is wrong.","The database driver file could not be found."},new String[]{"BinNavi can not load data from the given database until " + "the problem is resolved."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final CouldntConnectException exception) {
     if (exception.getSqlState().equalsIgnoreCase(PostgreSQLErrorCodes.INVALID_PASSWORD)) {
@@ -16,11 +16,11 @@ catch (  final CouldntConnectException exception) {
     }
     final String message="E00048: " + "Database connection could not be established";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not connect to the database '%s'",configuration.getUrl()),new String[]{exception.getMessage()},new String[]{"BinNavi can not load data from the given database until the " + "problem is resolved."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final SQLException exception) {
     final String message="E00049: " + "Database could not be created";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not create the database '%s'",databaseName),new String[]{exception.getMessage()},new String[]{"There was a problem with the database connection.","The database was not created. Please try creating the database again or " + "create it manually if necessary."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 }

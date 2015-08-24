@@ -12,7 +12,7 @@
           CUtilityFunctions.logException(exception);
           final String message="E00036: " + "Could not refresh raw modules";
           final String description=CUtilityFunctions.createDescription("The list of raw modules could not be refreshed. " + "Try refreshing the raw modules again.",new String[]{"Database connection problems."},new String[]{"More raw modules than those shown in " + "the raw modules list might exist in the database."});
-          CNaviErrorDialog.show(parent,message,description,exception);
+          NaviErrorDialog.show(parent,message,description,exception);
         }
       }
   finally {

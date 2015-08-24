@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00132: " + "Could not remove function forwarding";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The forwarding of function '%s' could not be removed.",function.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The function forwarding of the selected function remains unchanged."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
   }
 }

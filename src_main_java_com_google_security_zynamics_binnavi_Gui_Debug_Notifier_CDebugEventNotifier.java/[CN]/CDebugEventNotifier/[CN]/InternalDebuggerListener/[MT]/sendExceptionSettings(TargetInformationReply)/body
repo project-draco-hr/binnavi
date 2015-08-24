@@ -6,12 +6,12 @@
     CUtilityFunctions.logException(exception);
     final String message="Exception settings could not be sent to the debugger.";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not send the exception settings to the debug client."),new String[]{"BinNavi is unable to show the debugger options " + "dialog until the problem is resolved."},new String[]{"The default debugger options will be used during this session."});
-    CNaviErrorDialog.show(m_parent,message,description,exception);
+    NaviErrorDialog.show(m_parent,message,description,exception);
   }
 catch (  final CouldntLoadDataException exception) {
     CUtilityFunctions.logException(exception);
     final String message="Exception settings could not be loaded.";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the exception settings from the database."),new String[]{"Communication error while contacting the database"},new String[]{"BinNavi is unable to read the exception settings from the database.","The default exception settings will be used during this session."});
-    CNaviErrorDialog.show(m_parent,message,description,exception);
+    NaviErrorDialog.show(m_parent,message,description,exception);
   }
 }

@@ -7,7 +7,7 @@
         for (        final CFailedImport failedImport : failedImports) {
           final String message="E00043: " + "IDB file could not be imported";
           final String description=CUtilityFunctions.createDescription(String.format("The IDB file '%s' could not be imported. Please check the stack " + "trace for more information.",failedImport.geFileName()),new String[]{"Database connection problems.","Bug in the IDB exporter."},new String[]{"The IDB file was imported partially. A raw module in an " + "incosistent state was created. This raw module should be deleted."});
-          CNaviErrorDialog.show(parent,message,description,failedImport.getImportException());
+          NaviErrorDialog.show(parent,message,description,failedImport.getImportException());
         }
         if (database.isConnected() && hasImportedModules) {
           CDatabaseFunctions.refreshRawModules(parent,database);
@@ -17,20 +17,20 @@
         CUtilityFunctions.logException(exception);
         final String message="E00034: " + "IDA Pro executable could not be found";
         final String description=CUtilityFunctions.createDescription("The selected IDB file could not be imported because the IDA Pro executable " + "file could not be found.",new String[]{"Invalid IDA Pro executable file specified."},new String[]{"The IDB file was not imported."});
-        CNaviErrorDialog.show(parent,message,description,exception);
+        NaviErrorDialog.show(parent,message,description,exception);
       }
 catch (      final InterruptedException exception) {
         CUtilityFunctions.logException(exception);
         final String message="Import of IDB files failed";
         final String description=CUtilityFunctions.createDescription("Importing failed because one of the background workers was interrupted.",new String[]{"Background threads were interrupted."},new String[]{"One or more IDB files were not imported."});
-        CNaviErrorDialog.show(parent,message,description,exception);
+        NaviErrorDialog.show(parent,message,description,exception);
         Thread.currentThread().interrupt();
       }
 catch (      final ExecutionException exception) {
         CUtilityFunctions.logException(exception);
         final String message="Import of IDB files failed";
         final String description=CUtilityFunctions.createDescription("Importing failed because the background workers threw an exception.",new String[]{"Background threads threw an exception."},new String[]{"One or more IDB files were not imported."});
-        CNaviErrorDialog.show(parent,message,description,exception);
+        NaviErrorDialog.show(parent,message,description,exception);
       }
     }
   }

@@ -1,8 +1,8 @@
 {
   super(owner,ModalityType.APPLICATION_MODAL);
-  m_message=message;
-  m_description=description;
-  m_exception=exception;
+  this.message=message;
+  this.description=description;
+  this.exception=exception;
   new CDialogEscaper(this);
   setLayout(new BorderLayout());
   createGui();

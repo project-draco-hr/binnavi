@@ -13,6 +13,6 @@
     CUtilityFunctions.logException(thread.getException());
     final String message="E00104: " + "An unexpected problem occurred while the plugins were loaded";
     final String description=CUtilityFunctions.createDescription("It is unclear what caused this problem. Please check the stack trace for more " + "information. If the stack trace does not help you fix this problem please contact " + "the BinNavi support.",new String[]{},new String[]{});
-    CNaviErrorDialog.show(null,message,description,thread.getException());
+    NaviErrorDialog.show(null,message,description,thread.getException());
   }
 }

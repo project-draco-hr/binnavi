@@ -7,27 +7,27 @@
  catch (  final CouldntLoadDriverException exception) {
     final String message="E00012: " + "Database driver could not be loaded";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not create a database connection because the database " + "driver '%s' could not be loaded",database.getConfiguration().getDriver()),new String[]{"The database driver string is wrong.","The database driver file could not be found."},new String[]{"BinNavi can not load data from the given database until the " + "problem is resolved."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final CouldntLoadDataException exception) {
     final String message="E00014: " + "Could not load data from the database";
     final String description=CUtilityFunctions.createDescription("An error occurred when loading data from the database.",new String[]{"The connection to the database was dropped while the data was loaded.","The database contains inconsistent information."},new String[]{"Close the database and open it again. Maybe close and re-start " + "BinNavi too. If the program persists, please contact the BinNavi support."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final InvalidDatabaseException exception) {
     final String message="E00015: " + "Database is in an inconsistent state";
     final String description=CUtilityFunctions.createDescription("The selected database contains an invalid combination of BinNavi tables.",new String[]{"An earlier connection attempt failed and left the database in an " + "inconsistent state.","Some BinNavi tables were deleted accidentally by an outside program."},new String[]{"BinNavi can not use this database anymore. If the database is " + "empty, please delete the database and create a new database to work with " + "BinNavi. If the database already contains data please contact the BinNavi "+ "support."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final CouldntInitializeDatabaseException exception) {
     final String message="E00016: Database could not be initialized";
     final String description=CUtilityFunctions.createDescription("BinNavi could not initialize the tables required for storing disassembly data " + "in the database.",new String[]{"There might have been a communication problem with the database."},new String[]{"The database is probably corrupted at this point. It is " + "recommended to delete the database. Afterwards you can try again with a " + "fresh database. If you do not want to do this please contact the BinNavi "+ "support to find out what other options exist for you."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final InvalidExporterDatabaseFormatException exception) {
     final String message="E00017: " + "Database has invalid exporter tables";
     final String description=CUtilityFunctions.createDescription("BinNavi could not load data from the selected database because the database " + "contains invalid exporter tables",new String[]{"The database is too old to use with BinNavi."},new String[]{"It is recommended to create a database for this version of " + "BinNavi. If you do not want to do this please contact the BinNavi support " + "to find out what other options exist for you."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final InvalidDatabaseVersionException exception) {
     if (!exception.getVersion().getString().equals("4.0.0") || !exception.getVersion().getString().equals("5.0.0")) {
@@ -46,7 +46,7 @@ catch (  final InvalidDatabaseVersionException exception) {
           CUtilityFunctions.logException(upgradeException);
           final String message="E00018: " + "Database could not be upgraded";
           final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not upgrade the database (database error %d). " + "This is a serious problem because the database could be " + "left in an inconsistent state. Please try to fix the "+ "problem that led to the error and try to update the "+ "database again.",upgradeException.getErrorCode()),new String[]{getErrorCode(upgradeException)},new String[]{"Please note that nobody must work with this database " + "until the database conversion process is complete. If someone " + "works with the database in its current state, partial or total "+ "data loss could happen."});
-          CNaviErrorDialog.show(parent,message,description,exception);
+          NaviErrorDialog.show(parent,message,description,exception);
         }
  finally {
           updateOperation.stop();
@@ -72,7 +72,7 @@ catch (  final CouldntConnectException exception) {
  else {
       final String message="E00013: Database connection could not be established";
       final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not connect to the database '%s'",database.getConfiguration().getName()),new String[]{exception.getMessage()},new String[]{"BinNavi can not load data from the given database until the " + "problem is resolved."});
-      CNaviErrorDialog.show(parent,message,description,exception);
+      NaviErrorDialog.show(parent,message,description,exception);
     }
   }
 catch (  final LoadCancelledException exception) {

@@ -7,12 +7,12 @@
     CUtilityFunctions.logException(exception);
     final String message="Debugger event settings could not be sent to the debugger.";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not send the debugger event settings to the debug client."),new String[]{},new String[]{"The default debugger event settings will be used during this session."});
-    CNaviErrorDialog.show(m_parent,message,description,exception);
+    NaviErrorDialog.show(m_parent,message,description,exception);
   }
 catch (  final CouldntLoadDataException exception) {
     CUtilityFunctions.logException(exception);
     final String message="Debugger event settings could not be retrieved from the database.";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not send the debugger event settings to the debug client."),new String[]{},new String[]{"The default debugger event settings will be used during this session."});
-    CNaviErrorDialog.show(m_parent,message,description,exception);
+    NaviErrorDialog.show(m_parent,message,description,exception);
   }
 }

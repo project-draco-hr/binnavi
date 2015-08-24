@@ -10,7 +10,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00138: " + "View could not be copied because it could not be loaded";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be copied.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The new view was not created."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
       return;
     }
 catch (    final CPartialLoadException e) {
@@ -30,6 +30,6 @@ catch (    final LoadCancelledException e) {
     CUtilityFunctions.logException(exception);
     final String innerMessage="E00206: " + "Could not save view";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The function '%s' could not be saved.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The graph remains unsaved."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
   }
 }

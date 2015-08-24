@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String message="E00164: " + "Could not change the module description";
     final String description=CUtilityFunctions.createDescription("The new module description could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the module description was saved"},new String[]{"The module description was not saved. Please try to find out what went wrong with the database connection and try to save the module description again."});
-    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),message,description,e);
+    NaviErrorDialog.show(SwingUtilities.getWindowAncestor(this),message,description,e);
   }
 }

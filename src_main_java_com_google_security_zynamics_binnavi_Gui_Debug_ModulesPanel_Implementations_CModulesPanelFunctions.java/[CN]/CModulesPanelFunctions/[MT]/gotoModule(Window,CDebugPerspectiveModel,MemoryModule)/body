@@ -11,7 +11,7 @@
   if (section == null) {
     final String message=String.format("E00046: " + "Could not display module '%s' in the memory view",module.getName());
     final String description=String.format("The module '%s' could not be displayed in the memory view because " + "the offset %s is not currently known to BinNavi. " + "Try refreshing the memory map to fix this issue.",module.getName(),module.getBaseAddress());
-    CNaviErrorDialog.show(parent,message,description);
+    NaviErrorDialog.show(parent,message,description);
   }
  else {
     CMemoryFunctions.gotoOffset(debugPerspectiveModel,module.getBaseAddress().getAddress(),true);

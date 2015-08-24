@@ -2,7 +2,7 @@
   if (!module.getConfiguration().getRawModule().isComplete()) {
     final String innerMessage="E00059: " + "The module could not be initialized because the imported data is incomplete";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The module '%s' could not be initialized.",module.getConfiguration().getName()),new String[]{"The imported data is incomplete because the exporter failed."},new String[]{"The module was not initialized."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription);
     return;
   }
   if (module.isInitializing()) {
@@ -16,7 +16,7 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00060: " + "The module could not be initialized";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The module '%s' could not be initialized.",module.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The module was not initialized."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     return;
   }
  finally {

@@ -33,7 +33,7 @@ catch (      final CouldntSaveDataException exception) {
         CUtilityFunctions.logException(exception);
         final String message="E00023: " + "Could not save function forwarding";
         final String description=CUtilityFunctions.createDescription(String.format("Could not forward the function '%s' from module '%s' to module '%s'",sourceFunction.getName(),m_module.getConfiguration().getName(),targetModule.getConfiguration().getName()),new String[]{"The database connection was dropped while saving."},new String[]{"The changes in function forwarding were not saved. Try saving function " + "forwarding again. If necessary, close the connection to the database and " + "reconnect."});
-        CNaviErrorDialog.show(this,message,description,exception);
+        NaviErrorDialog.show(this,message,description,exception);
       }
     }
   }

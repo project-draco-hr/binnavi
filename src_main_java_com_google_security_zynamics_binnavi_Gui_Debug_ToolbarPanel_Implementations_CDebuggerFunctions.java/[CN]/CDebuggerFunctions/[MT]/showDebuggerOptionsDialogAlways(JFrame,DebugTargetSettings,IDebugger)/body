@@ -23,7 +23,7 @@
     CUtilityFunctions.logException(exception);
     final String message="Exception settings could not be loaded.";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the exception settings from the database."),new String[]{"Communication error while contacting the database"},new String[]{"BinNavi is unable to show the debugger options dialog until the problem is resolved." + " The default debugger options will be used during this session."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
   final DebuggerEventSettings eventSettings=readDebuggerEventSettings(parent,debugger,target);
   final COptionsDialog dlg=new COptionsDialog(parent,options,eventSettings);
@@ -38,7 +38,7 @@
     CUtilityFunctions.logException(exception);
     final String message="Exception settings could not be written.";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not write the debugger options to the database."),new String[]{"Communication error while contacting the database"},new String[]{"BinNavi is unable to store the debugger options in the database.","Nevertheless, the debugger options will be sent to the debugger."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
   sendExceptionSettings(parent,debugger,options.getExceptions());
   sendDebuggerEventSettings(parent,debugger,target);

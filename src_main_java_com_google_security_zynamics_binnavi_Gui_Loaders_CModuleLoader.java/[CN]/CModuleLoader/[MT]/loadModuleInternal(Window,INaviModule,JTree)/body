@@ -21,7 +21,7 @@
     CUtilityFunctions.logException(exception);
     final String message="E00177: " + "Module data could not be loaded";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the module '%s'.",module.getConfiguration().getName()),new String[]{"The connection dropped while the data was loaded."},new String[]{"BinNavi can not open the module. To fix this situation try " + "to load the module again. Restart BinNavi if necessary and contact " + "the BinNavi support if the problem persists."});
-    CNaviErrorDialog.show(parent,message,description,exception);
+    NaviErrorDialog.show(parent,message,description,exception);
   }
 catch (  final LoadCancelledException e) {
   }

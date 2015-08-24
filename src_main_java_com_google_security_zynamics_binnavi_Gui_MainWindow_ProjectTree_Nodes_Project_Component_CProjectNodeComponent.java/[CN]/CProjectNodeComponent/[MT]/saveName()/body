@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00171: " + "Could not save project name";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The new name of the project '%s' could not be saved.",m_project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The project keeps its old name."});
-    CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(CProjectNodeComponent.this),innerMessage,innerDescription,e);
+    NaviErrorDialog.show(SwingUtilities.getWindowAncestor(CProjectNodeComponent.this),innerMessage,innerDescription,e);
   }
 }

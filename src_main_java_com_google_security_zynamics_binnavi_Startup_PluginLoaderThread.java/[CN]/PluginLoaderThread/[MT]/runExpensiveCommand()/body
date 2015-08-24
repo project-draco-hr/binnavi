@@ -12,7 +12,7 @@
       CUtilityFunctions.logException(failedPlugin.second());
       final String message="E00007: " + "Loading a plugin failed";
       final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not load the plugin file file '%s' because the plugin " + "caused an exception.",failedPlugin.first()),new String[]{"The plugin file contains a bug that caused the exception"},new String[]{"The plugin file was not loaded and the functionality of " + "the script will not be available in BinNavi"});
-      CNaviErrorDialog.show(parent,message,description,failedPlugin.second());
+      NaviErrorDialog.show(parent,message,description,failedPlugin.second());
     }
     for (    final Pair<IPlugin<T>,PluginStatus> pair : plugins.getLoadedPlugins()) {
       final IPlugin<T> plugin=pair.first();
@@ -37,7 +37,7 @@
       if (reason == DisabledPluginReason.ThrewOnInit) {
         final String message="E00102: " + "Error during plugin initialization";
         final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not initialize the plugin '%s' because the plugin " + "caused an exception.",plugin.getName()),new String[]{"A bug in the plugin caused an exception."},new String[]{"The plugin could not be initialized properly and was removed " + "from the list of loaded plugins."});
-        CNaviErrorDialog.show(parent,message,description);
+        NaviErrorDialog.show(parent,message,description);
       }
     }
   }

@@ -11,6 +11,6 @@
     CUtilityFunctions.logException(e);
     final String message="E00163: " + "Could not change the debugger port";
     final String description=CUtilityFunctions.createDescription("The new debugger port could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the debugger port was saved"},new String[]{"The debugger port was not saved. Please try to find out what went wrong with the database connection and try to save the debugger port again."});
-    CNaviErrorDialog.show(null,message,description,e);
+    NaviErrorDialog.show(null,message,description,e);
   }
 }

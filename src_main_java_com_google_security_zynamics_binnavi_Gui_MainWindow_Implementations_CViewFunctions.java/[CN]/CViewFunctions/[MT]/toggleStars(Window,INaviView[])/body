@@ -7,7 +7,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00142: " + "View star could not be toggled";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The star state of view '%s' could not be toggled.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view star was not updated."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
   }
 }

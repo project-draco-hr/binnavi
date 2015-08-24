@@ -7,7 +7,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00124: " + "Could not delete tag";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The tag '%s' could not be deleted.",tag.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag still exists."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
   }
 }

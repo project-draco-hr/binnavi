@@ -27,6 +27,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00150: " + "Could not write configuration file";
     final String innerDescription=CUtilityFunctions.createDescription("The configuration file where the settings are stored could not be written.",new String[]{"There was a problem writing the file. Please see the stacktrace for more " + "information."},new String[]{"The active configuration was not saved and will be lost."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
   }
 }

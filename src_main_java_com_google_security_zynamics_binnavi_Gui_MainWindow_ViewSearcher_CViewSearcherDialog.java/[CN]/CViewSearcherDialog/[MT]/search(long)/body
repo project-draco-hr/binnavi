@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00190: " + "Could not search views";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not determine what views contain the offset '%s'.",new CAddress(offset).toHexString()),new String[]{"There was a problem with the database connection."},new String[]{"The views with the given address can not be shown."});
-    CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(null,innerMessage,innerDescription,e);
   }
 }

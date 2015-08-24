@@ -7,7 +7,7 @@
     CUtilityFunctions.logException(exception);
     final String innerMessage="Could not send debugger event settings command";
     final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the debugger event settings command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The state of the debugged process remains unchanged."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
   }
   return null;
 }

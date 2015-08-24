@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00135: " + "Could not append tag";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("It was not possible to append a tag to the tag '%s'.",parentTag.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag can not be appended."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
   }
 }

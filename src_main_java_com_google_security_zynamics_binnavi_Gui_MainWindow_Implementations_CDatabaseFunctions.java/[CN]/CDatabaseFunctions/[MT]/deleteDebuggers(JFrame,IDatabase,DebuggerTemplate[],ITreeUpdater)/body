@@ -15,7 +15,7 @@
             CUtilityFunctions.logException(exception);
             final String message="E00030: " + "Debugger could not be deleted";
             final String description=CUtilityFunctions.createDescription(String.format("The debugger '%s' could not be deleted. " + "Try to delete the debugger again. " + "If the problem persists, disconnect from and "+ "reconnect to the database, restart BinNavi, "+ "or contact the BinNavi support.",debugger.getName()),new String[]{"Database connection problems."},new String[]{"The debugger still exists."});
-            CNaviErrorDialog.show(parent,message,description,exception);
+            NaviErrorDialog.show(parent,message,description,exception);
           }
  finally {
             operation.stop();

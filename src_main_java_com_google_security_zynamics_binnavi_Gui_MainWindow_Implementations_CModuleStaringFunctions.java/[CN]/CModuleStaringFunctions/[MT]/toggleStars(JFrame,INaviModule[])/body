@@ -7,7 +7,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E000063: " + "Module star could not be toggled";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The star state of module '%s' could not be toggled.",module.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The module star was not updated."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
   }
 }

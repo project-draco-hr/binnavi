@@ -1,0 +1,9 @@
+{
+  try {
+    Desktop.getDesktop().browse(new URL("https://github.com/google/binnavi/issues").toURI());
+  }
+ catch (  final Exception e) {
+    CUtilityFunctions.logException(e);
+    CMessageBox.showError(parent,"Could not open the bugtracker URL in the browser.");
+  }
+}

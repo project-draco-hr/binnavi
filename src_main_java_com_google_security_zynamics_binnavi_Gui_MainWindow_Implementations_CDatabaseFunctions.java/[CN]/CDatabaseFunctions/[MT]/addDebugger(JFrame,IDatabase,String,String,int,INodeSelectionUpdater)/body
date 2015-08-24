@@ -13,7 +13,7 @@
         CUtilityFunctions.logException(exception);
         final String message="E00028: " + "Debugger could not be created";
         final String description=CUtilityFunctions.createDescription(String.format("The debugger '%s' could not be created. " + "Try creating the debugger again. " + "If the problem persists, disconnect from and reconnect "+ "to the database, restart BinNavi, or contact the BinNavi support.",name),new String[]{"Database connection problems."},new String[]{"The debugger was not created."});
-        CNaviErrorDialog.show(parent,message,description,exception);
+        NaviErrorDialog.show(parent,message,description,exception);
       }
  finally {
         operation.getProgressPanel().next();

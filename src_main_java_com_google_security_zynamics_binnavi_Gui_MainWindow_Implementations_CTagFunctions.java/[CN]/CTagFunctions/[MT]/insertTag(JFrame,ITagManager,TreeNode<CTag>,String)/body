@@ -13,7 +13,7 @@
         CUtilityFunctions.logException(exception);
         final String innerMessage="E00147: " + "Could not insert tag";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("BinNavi could not insert a new tag with the name '%s'.",name),new String[]{"There was a problem with the database connection."},new String[]{"The tag was not created."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
       }
     }
   }

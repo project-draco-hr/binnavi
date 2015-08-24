@@ -9,7 +9,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00126: " + "Could not change tag name";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The name of the tag '%s' could not be changed.",tag.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag name could not be changed."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
     try {
       tag.setDescription(dlg.getComment());
@@ -18,7 +18,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00127: " + "Could not change tag description";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The description of the tag '%s' could not be changed.",tag.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The tag description could not be changed."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
     }
   }
 }

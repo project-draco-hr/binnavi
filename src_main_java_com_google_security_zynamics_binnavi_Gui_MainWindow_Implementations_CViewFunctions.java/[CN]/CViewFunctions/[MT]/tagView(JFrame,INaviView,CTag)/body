@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00149: " + "Could not tag view";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be tagged.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view remains untagged."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
   }
 }

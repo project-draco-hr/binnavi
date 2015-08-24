@@ -2,5 +2,5 @@
   CUtilityFunctions.logException(exception);
   final String message="Error: " + "Could not load function forwarding";
   final String description=CUtilityFunctions.createDescription(String.format("Could not load '%s'",currentModule.getConfiguration().getName()),new String[]{"The database connection was dropped while saving."},new String[]{"The changes in function forwarding were not saved. Try saving function forwarding again. If necessary, close the connection to the database and reconnect."});
-  CNaviErrorDialog.show(dialog,message,description,exception);
+  NaviErrorDialog.show(dialog,message,description,exception);
 }

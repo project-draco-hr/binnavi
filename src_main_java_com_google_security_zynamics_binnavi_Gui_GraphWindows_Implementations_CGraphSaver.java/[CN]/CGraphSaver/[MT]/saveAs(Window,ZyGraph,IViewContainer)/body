@@ -22,7 +22,7 @@
         CUtilityFunctions.logException(e);
         final String innerMessage="E00121: " + "Could not save graph";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be saved.",newName),new String[]{"There was a problem with the database connection."},new String[]{"The new view was not created."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
       }
  finally {
         operation.stop();

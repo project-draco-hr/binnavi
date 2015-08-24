@@ -1,0 +1,3 @@
+{
+  ErrorDialogFunctions.reportBug(getOwner());
+}

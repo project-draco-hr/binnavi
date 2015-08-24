@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String message="E00162: " + "Could not change the debugger host";
     final String description=CUtilityFunctions.createDescription("The new debugger host could not be saved to the database.",new String[]{"There was a problem with the connection to the database while the debugger host was saved"},new String[]{"The debugger host was not saved. Please try to find out what went wrong with the database connection and try to save the debugger host again."});
-    CNaviErrorDialog.show(null,message,description,e);
+    NaviErrorDialog.show(null,message,description,e);
   }
 }

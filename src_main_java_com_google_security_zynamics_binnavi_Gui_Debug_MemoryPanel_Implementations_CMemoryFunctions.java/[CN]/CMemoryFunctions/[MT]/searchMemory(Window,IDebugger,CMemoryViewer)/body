@@ -30,7 +30,7 @@
       CUtilityFunctions.logException(waiter.getException());
       final String innerMessage="E00079: " + "Could not search through memory";
       final String innerDescription=CUtilityFunctions.createDescription("It was not possible to send the search request to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The search operation could not be started."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,waiter.getException());
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,waiter.getException());
     }
   }
 }

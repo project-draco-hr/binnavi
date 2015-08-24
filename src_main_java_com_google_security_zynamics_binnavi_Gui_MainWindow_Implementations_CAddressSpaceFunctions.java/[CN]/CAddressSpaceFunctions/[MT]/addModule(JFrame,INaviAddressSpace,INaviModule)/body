@@ -12,7 +12,7 @@
           CUtilityFunctions.logException(exception);
           final String message="E00026: " + "Module could not be added to address space";
           final String description=CUtilityFunctions.createDescription(String.format("The module '%s' could not be added to the address space '%s'. Try adding the module to the address space again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",module.getConfiguration().getName(),addressSpace.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The address space remains unchanged."});
-          CNaviErrorDialog.show(parent,message,description,exception);
+          NaviErrorDialog.show(parent,message,description,exception);
         }
         operation.stop();
       }

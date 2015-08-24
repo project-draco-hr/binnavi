@@ -2,7 +2,7 @@
   CSettingsDirectoryCreator.createSettingsDirectory();
   final boolean firstStart=!CConfigurationFileCreator.setupConfigurationFile();
   BuildVersionInformation.loadBuildVersionInformation();
-  System.out.printf("Starting %s %s Build: %s/%s%n",Constants.PROJECT_NAME,Constants.PROJECT_VERSION,Constants.BUILD_ID,Constants.REVISION_NUMBER);
+  System.out.printf("Starting %s%n",Constants.PROJECT_NAME_VERSION_BUILD);
   CGraphPanelExtender.extend();
   GuiInitializer.initialize();
   if (firstStart) {

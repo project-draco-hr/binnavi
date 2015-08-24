@@ -12,13 +12,13 @@
  catch (      final IOException e) {
         final String innerMessage="E00151: " + "Could not write memory data to the target file";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("The memory data of the selected range could not be written to the file '%s'.",result.second().getAbsolutePath()),new String[]{"You do not have sufficient rights to write to the file.","Another program locks the selected file.","The disk is full."},new String[]{"The memory data was not written to the file."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
       }
     }
  else {
       final String innerMessage="E00152: " + "Could not read memory";
       final String innerDescription=CUtilityFunctions.createDescription("The memory section to be dumped could not be read.",new String[]{"There was a problem with the database connection."},new String[]{"The memory data could not be read and the output file was not written."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription);
     }
   }
 }

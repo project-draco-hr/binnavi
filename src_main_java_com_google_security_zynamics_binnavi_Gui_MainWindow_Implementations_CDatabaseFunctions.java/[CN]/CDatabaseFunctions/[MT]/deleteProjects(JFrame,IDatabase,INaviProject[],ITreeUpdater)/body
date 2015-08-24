@@ -15,7 +15,7 @@
             CUtilityFunctions.logException(exception);
             final String message="E00032: " + "Project could not be deleted";
             final String description=CUtilityFunctions.createDescription(String.format("The project '%s' could not be deleted. " + "Try to delete the project again. If the problem persists, " + "disconnect from and reconnect to the database, "+ "restart BinNavi, or contact the BinNavi support.",project.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The project still exists."});
-            CNaviErrorDialog.show(parent,message,description,exception);
+            NaviErrorDialog.show(parent,message,description,exception);
           }
  finally {
             operation.stop();

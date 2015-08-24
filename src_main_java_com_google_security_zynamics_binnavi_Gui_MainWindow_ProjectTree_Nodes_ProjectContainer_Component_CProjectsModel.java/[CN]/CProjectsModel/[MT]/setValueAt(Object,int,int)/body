@@ -11,7 +11,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00174: " + "Could not save project name";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The new name of the project '%s' could not be saved.",project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The project keeps its old name."});
-      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(null,innerMessage,innerDescription,e);
     }
   }
  else   if (col == DESCRIPTION_COLUMN) {
@@ -22,7 +22,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00175: " + "Could not save project description";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The new description of the project '%s' could not be saved.",project.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The project keeps its old description."});
-      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(null,innerMessage,innerDescription,e);
     }
   }
 }

@@ -11,7 +11,7 @@
         CUtilityFunctions.logException(e);
         final String innerMessage="E00133: View could not be copied";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be copied because it could not be loaded.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The new view was not created."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
         return;
       }
 catch (      final CPartialLoadException e) {

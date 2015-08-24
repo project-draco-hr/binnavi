@@ -15,7 +15,7 @@
             CUtilityFunctions.logException(e);
             final String message="E00031: " + "Module could not be deleted";
             final String description=CUtilityFunctions.createDescription(String.format("The module '%s' could not be deleted. Try to delete the module again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",module.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The module still exists."});
-            CNaviErrorDialog.show(parent,message,description,e);
+            NaviErrorDialog.show(parent,message,description,e);
           }
  finally {
             operation.stop();

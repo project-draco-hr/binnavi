@@ -14,7 +14,7 @@
         CUtilityFunctions.logException(e);
         final String innerMessage="E00120: " + "Could not save graph";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("The function '%s' could not be saved.",graph.getRawView().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The graph remains unsaved."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
       }
  finally {
         operation.stop();

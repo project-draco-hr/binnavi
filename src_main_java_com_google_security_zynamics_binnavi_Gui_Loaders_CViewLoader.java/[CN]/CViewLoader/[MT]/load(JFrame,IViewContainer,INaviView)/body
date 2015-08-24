@@ -13,14 +13,14 @@
       CUtilityFunctions.logException(exception);
       final String message="E00050: Could not load view";
       final String description=CUtilityFunctions.createDescription(String.format("The view '%s' could not be loaded.",view.getName()),new String[]{"There were problems with the database connection.","Malformed data was found in the database."},new String[]{"The view was not loaded."});
-      CNaviErrorDialog.show(parent,message,description,exception);
+      NaviErrorDialog.show(parent,message,description,exception);
     }
  else     if (exception instanceof CPartialLoadException) {
       CUtilityFunctions.logException(exception);
       final String moduleName=((CPartialLoadException)exception).getModule().getConfiguration().getName();
       final String message="E00051: Could not load view";
       final String description=CUtilityFunctions.createDescription(String.format("The view '%s' could not be loaded because it " + "depends on the unloaded module '%s'.",view.getName(),moduleName),new String[]{String.format("Module '%s' is not loaded.",moduleName)},new String[]{String.format("The view can not be loaded before the module '%s' is loaded.",moduleName)});
-      CNaviErrorDialog.show(parent,message,description,exception);
+      NaviErrorDialog.show(parent,message,description,exception);
     }
   }
 }

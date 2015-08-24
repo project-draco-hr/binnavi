@@ -6,6 +6,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00128: " + "Could not insert tag";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("It was not possible to insert a tag between the tag '%s' and its children.",parentTag.getObject().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The new tag could not be inserted."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
   }
 }

@@ -7,7 +7,7 @@
     CUtilityFunctions.logException(e);
     final String message="E000XXX: " + "Could not show REIL code for node";
     final String description=CUtilityFunctions.createDescription(String.format("BinNavi could not show the REIL code for basic block at '%X'.",node.getAddress()),new String[]{"The instructions could not be converted to REIL code."},new String[]{"You can not fix this problem yourself. Please contact " + "the BinNavi support."});
-    CNaviErrorDialog.show(parent,message,description,e);
+    NaviErrorDialog.show(parent,message,description,e);
   }
   return null;
 }

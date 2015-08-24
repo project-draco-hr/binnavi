@@ -1,3 +1,0 @@
-{
-  CErrorDialogFunctions.reportBug(getOwner());
-}

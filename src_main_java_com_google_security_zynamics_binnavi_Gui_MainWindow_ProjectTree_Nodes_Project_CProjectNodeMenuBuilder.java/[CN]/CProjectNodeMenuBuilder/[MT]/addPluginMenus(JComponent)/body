@@ -24,7 +24,7 @@
         CUtilityFunctions.logException(exception);
         final String innerMessage="E00088: " + "Plugin caused an unexpected exception";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("The plugin %s caused an unexpected exception.",plugin.getName()),new String[]{"The plugin contains a bug."},new String[]{"The plugin probably behaves erroneously from this point on but it remains active"});
-        CNaviErrorDialog.show(getParent(),innerMessage,innerDescription,exception);
+        NaviErrorDialog.show(getParent(),innerMessage,innerDescription,exception);
       }
     }
   }

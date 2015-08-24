@@ -11,7 +11,7 @@
     CUtilityFunctions.logException(thread.getException());
     final String message="E00108: " + "Script file could not be executed";
     final String description=CUtilityFunctions.createDescription(String.format("The script file '%s' could not be executed.",scriptFile.getAbsolutePath()),new String[]{"The script file is in use by another program and can not be read.","You do not have sufficient rights to read the file","The script contains a bug that caused an exception."},new String[]{"BinNavi can not read the script file."});
-    CNaviErrorDialog.show(CScriptingDialog.this,message,description,thread.getException());
+    NaviErrorDialog.show(CScriptingDialog.this,message,description,thread.getException());
   }
   final IScriptPanel panel=(IScriptPanel)scriptTab.getSelectedComponent();
   panel.setOutput(console.getOutput());

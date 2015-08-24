@@ -23,13 +23,13 @@
         CUtilityFunctions.logException(exception);
         final String innerMessage="E00140: " + "New project could not be created";
         final String innerDescription=CUtilityFunctions.createDescription("It was not possible to create a new project in the selected database.",new String[]{"There was a problem with the database connection."},new String[]{"No new project was created in the selected database."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
       }
 catch (      final CouldntLoadDataException exception) {
         CUtilityFunctions.logException(exception);
         final String innerMessage="E00141: " + "New project could not be loaded";
         final String innerDescription=CUtilityFunctions.createDescription("The new project could not be loaded.",new String[]{"There was a problem with the database connection."},new String[]{"The new project was created but it could not be loaded."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
       }
     }
   }

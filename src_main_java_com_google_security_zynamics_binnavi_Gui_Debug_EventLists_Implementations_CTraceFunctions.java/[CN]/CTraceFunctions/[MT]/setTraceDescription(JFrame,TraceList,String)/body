@@ -8,6 +8,6 @@
     CUtilityFunctions.logException(e);
     final String innerMessage="E00076: " + "Could not change trace description";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The description of the trace list '%s' could not be changed.",eventList.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The trace list keeps its old description. You could try changing the description again once the connection problem was resolved."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
   }
 }

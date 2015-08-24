@@ -11,7 +11,7 @@
       CUtilityFunctions.logException(m_loaderThread.getException());
       final String message="E00039: " + "Could not send target file request";
       final String description=CUtilityFunctions.createDescription("BinNavi could not send the target file request to the debug client.",new String[]{"The connection to the debug client was closed before" + " the request could be sent."},new String[]{"There is still no debug target selected."});
-      CNaviErrorDialog.show(m_parent,message,description,m_loaderThread.getException());
+      NaviErrorDialog.show(m_parent,message,description,m_loaderThread.getException());
     }
   }
  else   if (selectedProcess != null) {
@@ -23,7 +23,7 @@
       CUtilityFunctions.logException(m_loaderThread.getException());
       final String message="E00040: " + "Could not send target process request";
       final String description=CUtilityFunctions.createDescription("BinNavi could not send the target process request to the debug client.",new String[]{"The connection to the debug client was closed before the" + "request could be sent."},new String[]{"There is still not debug target selected."});
-      CNaviErrorDialog.show(m_parent,message,description,m_loaderThread.getException());
+      NaviErrorDialog.show(m_parent,message,description,m_loaderThread.getException());
     }
   }
 }

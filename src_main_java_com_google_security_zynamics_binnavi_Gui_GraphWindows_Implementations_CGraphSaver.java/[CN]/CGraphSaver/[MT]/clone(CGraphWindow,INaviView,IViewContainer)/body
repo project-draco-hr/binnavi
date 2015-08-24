@@ -5,6 +5,6 @@
     CUtilityFunctions.logException(cloneThread.getException());
     final String innerMessage="E00118: " + "View could not be cloned";
     final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be cloned.",view.getName()),new String[]{"It is unclear why this problem occurred. Please check the stack trace for more information."},new String[]{"The view was not cloned."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,cloneThread.getException());
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,cloneThread.getException());
   }
 }

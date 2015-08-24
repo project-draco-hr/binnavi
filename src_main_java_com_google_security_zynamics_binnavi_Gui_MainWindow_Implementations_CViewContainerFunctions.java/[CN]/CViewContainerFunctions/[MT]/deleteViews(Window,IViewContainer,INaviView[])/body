@@ -8,7 +8,7 @@
         CUtilityFunctions.logException(exception);
         final String innerMessage="E00148: " + "Could not delete view";
         final String innerDescription=CUtilityFunctions.createDescription(String.format("The view '%s' could not be deleted.",view.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The view was not deleted and can still be used."});
-        CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+        NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
       }
     }
   }

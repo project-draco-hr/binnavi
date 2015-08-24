@@ -21,7 +21,7 @@
             CUtilityFunctions.logException(e);
             final String innerMessage="E00075: " + "Could not delete trace list";
             final String innerDescription=CUtilityFunctions.createDescription(String.format("The trace list '%s' could not be deleted.",trace.getName()),new String[]{"There was a problem with the database connection."},new String[]{"The trace list was not deleted. You could try to delete the list again once the connection problem was resolved."});
-            CNaviErrorDialog.show(parent,innerMessage,innerDescription,e);
+            NaviErrorDialog.show(parent,innerMessage,innerDescription,e);
           }
  finally {
             operation.stop();

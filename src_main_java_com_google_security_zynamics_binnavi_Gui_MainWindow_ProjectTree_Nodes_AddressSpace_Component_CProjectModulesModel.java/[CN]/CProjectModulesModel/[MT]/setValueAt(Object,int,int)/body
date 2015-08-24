@@ -11,7 +11,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00156: " + "Could not save address space name";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The new name of the address space '%s' could not be saved.",m_addressSpace.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The address space keeps its old name."});
-      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(null,innerMessage,innerDescription,e);
     }
   }
  else   if (col == DESCRIPTION_COLUMN) {
@@ -22,7 +22,7 @@
       CUtilityFunctions.logException(e);
       final String innerMessage="E00157: " + "Could not save address space description";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The new description of the address space '%s' could not be saved.",m_addressSpace.getConfiguration().getName()),new String[]{"There was a problem with the database connection."},new String[]{"The address space keeps its old description."});
-      CNaviErrorDialog.show(null,innerMessage,innerDescription,e);
+      NaviErrorDialog.show(null,innerMessage,innerDescription,e);
     }
   }
 }

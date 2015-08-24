@@ -18,7 +18,7 @@
           CUtilityFunctions.logException(exception);
           final String message="E00109: " + "Address space could not be loaded";
           final String description=CUtilityFunctions.createDescription(String.format("The address space '%s' could not be loaded. Try loading the address space again. If the problem persists, disconnect from and reconnect to the database, restart com.google.security.zynamics.binnavi, or contact the BinNavi support.",addressSpace.getConfiguration().getName()),new String[]{"Database connection problems."},new String[]{"The address space was not loaded."});
-          CNaviErrorDialog.show(SwingUtilities.getWindowAncestor(projectTree),message,description,exception);
+          NaviErrorDialog.show(SwingUtilities.getWindowAncestor(projectTree),message,description,exception);
         }
 catch (        final LoadCancelledException e) {
         }

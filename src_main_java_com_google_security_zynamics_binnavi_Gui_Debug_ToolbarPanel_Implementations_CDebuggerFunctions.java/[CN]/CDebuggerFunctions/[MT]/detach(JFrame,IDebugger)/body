@@ -10,6 +10,6 @@
     CUtilityFunctions.logException(exception);
     final String innerMessage="E00073: " + "Could not send detach command";
     final String innerDescription=CUtilityFunctions.createDescription("BinNavi could not send the detach command to the debug client.",new String[]{"There was a problem with the connection to the debug client."},new String[]{"The debugger remains attached to the debug target."});
-    CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+    NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
   }
 }
