@@ -10,16 +10,10 @@
     if (rawModuleIds.isEmpty()) {
       return new DatabaseVersion("3.0.0");
     }
- else {
-      if (PostgreSQLHelpers.hasTable(m_connection,"ex_" + rawModuleIds.get(0) + "_type_structs")) {
-        return new DatabaseVersion("4.0.0");
-      }
- else {
-        return new DatabaseVersion("3.0.0");
-      }
+    if (PostgreSQLHelpers.hasTable(m_connection,"ex_" + rawModuleIds.get(0) + "_type_structs")) {
+      return new DatabaseVersion("4.0.0");
     }
+    return new DatabaseVersion("3.0.0");
   }
- else {
-    return new DatabaseVersion("6.0.0");
-  }
+  return new DatabaseVersion(Constants.PROJECT_VERSION);
 }
