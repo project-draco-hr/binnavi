@@ -2,7 +2,8 @@
   if (file.isDirectory()) {
     return true;
   }
-  if (file.getName().toLowerCase().endsWith(".idb")) {
+  final String filenameLower=file.getName().toLowerCase();
+  if (filenameLower.endsWith(".idb") || filenameLower.endsWith(".i64")) {
     return true;
   }
   return false;
