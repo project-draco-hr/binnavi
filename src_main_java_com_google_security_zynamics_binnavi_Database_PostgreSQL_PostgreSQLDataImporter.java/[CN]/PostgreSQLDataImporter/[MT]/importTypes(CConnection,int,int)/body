@@ -1,6 +1,6 @@
 {
   final String query="INSERT INTO " + CTableNames.TYPE_MEMBERS_TABLE + " SELECT "+ moduleId+ ", id, name, base_type, parent_id, position, argument, number_of_elements"+ " FROM "+ String.format(CTableNames.RAW_TYPES,rawModuleId);
   connection.executeUpdate(query,true);
-  final String updateSequence=String.format("SELECT setval('bn_types_id_seq', MAX(id)) from %s",CTableNames.TYPE_MEMBERS_TABLE);
+  final String updateSequence=String.format("SELECT setval('bn_types_id_seq', " + "COALESCE((SELECT MAX(id) + 1 FROM %s), 1), false) from %s",CTableNames.TYPE_MEMBERS_TABLE,CTableNames.TYPE_MEMBERS_TABLE);
   connection.executeQuery(updateSequence,true);
 }
