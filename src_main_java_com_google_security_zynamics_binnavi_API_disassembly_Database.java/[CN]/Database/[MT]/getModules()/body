@@ -3,10 +3,7 @@
     try {
       load();
     }
- catch (    final CouldntLoadDataException e) {
-      return new ArrayList<Module>();
-    }
-catch (    final InvalidDatabaseVersionException e) {
+ catch (    CouldntLoadDataException|InvalidDatabaseVersionException e) {
       return new ArrayList<Module>();
     }
   }
