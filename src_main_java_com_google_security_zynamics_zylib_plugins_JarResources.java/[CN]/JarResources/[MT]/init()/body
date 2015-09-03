@@ -45,10 +45,7 @@
  catch (  final NullPointerException e) {
     System.out.println("done.");
   }
-catch (  final FileNotFoundException e) {
-    e.printStackTrace();
-  }
-catch (  final IOException e) {
+catch (  IOException e) {
     e.printStackTrace();
   }
 }
