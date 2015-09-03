@@ -6,15 +6,7 @@
   try {
     return createOrUpdateTypeSubstitution(wrapper);
   }
- catch (  final IOException exception) {
-    CUtilityFunctions.logException(exception);
-    return false;
-  }
-catch (  final UnsupportedFlavorException exception) {
-    CUtilityFunctions.logException(exception);
-    return false;
-  }
-catch (  final CouldntSaveDataException exception) {
+ catch (  IOException|UnsupportedFlavorException|CouldntSaveDataException exception) {
     CUtilityFunctions.logException(exception);
     return false;
   }
