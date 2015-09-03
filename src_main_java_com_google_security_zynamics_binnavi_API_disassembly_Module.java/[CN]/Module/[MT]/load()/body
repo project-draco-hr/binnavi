@@ -5,10 +5,7 @@
   try {
     m_module.load();
   }
- catch (  final com.google.security.zynamics.binnavi.Database.Exceptions.CouldntLoadDataException e) {
-    throw new CouldntLoadDataException(e);
-  }
-catch (  final LoadCancelledException e) {
+ catch (  com.google.security.zynamics.binnavi.Database.Exceptions.CouldntLoadDataException|LoadCancelledException e) {
     throw new CouldntLoadDataException(e);
   }
 }
