@@ -22,10 +22,7 @@
         try {
           sourceNode.appendComment(start.toString(16).toUpperCase() + " -> " + function.getAddress().toHexString().toUpperCase());
         }
- catch (        final CouldntSaveDataException e) {
-          e.printStackTrace();
-        }
-catch (        final CouldntLoadDataException e) {
+ catch (        CouldntSaveDataException|CouldntLoadDataException e) {
           e.printStackTrace();
         }
         view.createEdge(sourceNode,targetNode,EdgeType.JumpUnconditional);
@@ -35,10 +32,7 @@ catch (        final CouldntLoadDataException e) {
         try {
           sourceNode.appendComment(start.toString(16).toUpperCase() + " -> " + targetString);
         }
- catch (        final CouldntSaveDataException e) {
-          e.printStackTrace();
-        }
-catch (        final CouldntLoadDataException e) {
+ catch (        CouldntSaveDataException|CouldntLoadDataException e) {
           e.printStackTrace();
         }
       }
@@ -47,10 +41,7 @@ catch (        final CouldntLoadDataException e) {
         try {
           sourceNode.appendComment(start.toString(16).toUpperCase() + " -> " + targetString);
         }
- catch (        final CouldntSaveDataException e) {
-          e.printStackTrace();
-        }
-catch (        final CouldntLoadDataException e) {
+ catch (        CouldntSaveDataException|CouldntLoadDataException e) {
           e.printStackTrace();
         }
       }
