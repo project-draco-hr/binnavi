@@ -5,10 +5,7 @@
     try {
       instanceContainer.setInstanceName(typeInstance,dialog.getVariableName());
     }
- catch (    final CouldntSaveDataException exception) {
-      CUtilityFunctions.logException(exception);
-    }
-catch (    final CouldntLoadDataException exception) {
+ catch (    CouldntSaveDataException|CouldntLoadDataException exception) {
       CUtilityFunctions.logException(exception);
     }
   }
