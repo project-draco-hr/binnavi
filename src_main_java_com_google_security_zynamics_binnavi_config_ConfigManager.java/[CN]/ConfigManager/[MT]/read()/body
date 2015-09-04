@@ -6,9 +6,6 @@
  catch (  final FileNotFoundException e) {
     notFound=true;
   }
-catch (  final InvalidPropertiesFormatException e) {
-    throw new FileReadException(e);
-  }
 catch (  final IOException e) {
     throw new FileReadException(e);
   }

@@ -24,10 +24,7 @@
       deleteCommentFunction.close();
     }
   }
- catch (  final SQLException exception) {
-    throw new CouldntDeleteException(exception);
-  }
-catch (  final MaybeNullException exception) {
+ catch (  SQLException|MaybeNullException exception) {
     throw new CouldntDeleteException(exception);
   }
 }

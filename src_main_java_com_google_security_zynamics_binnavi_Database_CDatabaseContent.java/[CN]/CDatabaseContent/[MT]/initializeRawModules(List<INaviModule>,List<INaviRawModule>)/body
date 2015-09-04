@@ -5,10 +5,7 @@
       try {
         newModules.add(createModule(rawModule));
       }
- catch (      final CouldntLoadDataException e) {
-        CUtilityFunctions.logException(e);
-      }
-catch (      final CouldntSaveDataException e) {
+ catch (      CouldntLoadDataException|CouldntSaveDataException e) {
         CUtilityFunctions.logException(e);
       }
     }
