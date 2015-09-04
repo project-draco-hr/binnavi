@@ -8,10 +8,7 @@
         try {
           addressSpace.getContent().removeModule(module);
         }
- catch (        final CouldntDeleteException exception) {
-          CUtilityFunctions.logException(exception);
-        }
-catch (        final CouldntSaveDataException exception) {
+ catch (        CouldntDeleteException|CouldntSaveDataException exception) {
           CUtilityFunctions.logException(exception);
         }
       }
