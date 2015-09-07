@@ -2,14 +2,8 @@
   Preconditions.checkNotNull(tableName,"IE02038: Table name argument can not be null");
   Preconditions.checkNotNull(connection,"IE02039: Connection argument can not be null");
   final String query="SELECT relname FROM pg_class WHERE relname = '" + tableName + "'";
-  try {
-    final ResultSet result=connection.executeQuery(query,true);
-    try {
-      return result.first();
-    }
-  finally {
-      result.close();
-    }
+  try (ResultSet result=connection.executeQuery(query,true)){
+    return result.first();
   }
  catch (  final SQLException e) {
     throw new CouldntLoadDataException(e);

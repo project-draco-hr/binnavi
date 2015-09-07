@@ -3,16 +3,10 @@
   Preconditions.checkNotNull(description,"IE01484: Description argument can not be null");
   Preconditions.checkNotNull(connection,"IE01485: Connection argument can not be null");
   final String query="UPDATE " + table + " SET description = ?, modification_date = NOW() WHERE id = ?";
-  try {
-    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
-    try {
-      statement.setString(1,description);
-      statement.setInt(2,id);
-      statement.executeUpdate();
-    }
-  finally {
-      statement.close();
-    }
+  try (PreparedStatement statement=connection.getConnection().prepareStatement(query)){
+    statement.setString(1,description);
+    statement.setInt(2,id);
+    statement.executeUpdate();
   }
  catch (  final SQLException e) {
     throw new CouldntSaveDataException(e);
