@@ -2,7 +2,7 @@
   if (!isLoaded()) {
     throw new IllegalStateException("Error: Project is not loaded");
   }
-  final List<Function> list=new ArrayList<Function>();
+  final List<Function> list=new ArrayList<>();
   for (  final AddressSpace addressSpace : m_addressSpaces) {
     if (addressSpace.isLoaded()) {
       for (      final Module module : addressSpace.getModules()) {

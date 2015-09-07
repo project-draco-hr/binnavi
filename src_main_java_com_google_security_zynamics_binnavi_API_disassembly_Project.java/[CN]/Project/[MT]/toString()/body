@@ -7,7 +7,9 @@
         spacesString.append(", ");
       }
       addComma=true;
-      spacesString.append("'" + addressSpace.getName() + "'");
+      spacesString.append("'");
+      spacesString.append(addressSpace.getName());
+      spacesString.append("'");
     }
   }
  else {
