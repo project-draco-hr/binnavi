@@ -3,16 +3,10 @@
   Preconditions.checkArgument(NetHelpers.isValidPort(port),"IE00429: Invalid port argument");
   Preconditions.checkArgument(debugger.inSameDatabase(provider),"IE00430: Debugger is not part of this database");
   final String query="UPDATE " + CTableNames.DEBUGGERS_TABLE + " SET port = ? WHERE id = ?";
-  try {
-    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
-    try {
-      statement.setInt(1,port);
-      statement.setInt(2,debugger.getId());
-      statement.executeUpdate();
-    }
-  finally {
-      statement.close();
-    }
+  try (PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query)){
+    statement.setInt(1,port);
+    statement.setInt(2,debugger.getId());
+    statement.executeUpdate();
   }
  catch (  final SQLException e) {
     throw new CouldntSaveDataException(e);
