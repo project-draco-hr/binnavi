@@ -1,14 +1,9 @@
 {
-  FileWriter fw=null;
   final CopyManager manager=new CopyManager((BaseConnection)connection);
-  try {
-    fw=new FileWriter(new File(testDataDirectory,tableName + ".sql"));
+  try (FileWriter fw=new FileWriter(new File(testDataDirectory,tableName + ".sql"))){
     manager.copyOut("COPY " + tableName + " TO STDOUT",fw);
   }
  catch (  final IOException exception) {
     CUtilityFunctions.logException(exception);
-  }
- finally {
-    fw.close();
   }
 }
