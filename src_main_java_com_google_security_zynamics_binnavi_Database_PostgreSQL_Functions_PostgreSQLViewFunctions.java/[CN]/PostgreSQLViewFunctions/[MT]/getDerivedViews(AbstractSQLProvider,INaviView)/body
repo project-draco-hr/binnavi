@@ -4,30 +4,23 @@
   if (view.getConfiguration().getModule() == null) {
     return views;
   }
-  try {
+  final String query="SELECT * FROM get_derived_views(?)";
+  try (PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);ResultSet resultSet=statement.executeQuery()){
     final List<INaviView> moduleViews=view.getConfiguration().getModule().getContent().getViewContainer().getViews();
-    final String query="SELECT * FROM get_derived_views(?)";
-    final PreparedStatement statement=provider.getConnection().getConnection().prepareStatement(query);
     statement.setInt(1,view.getConfiguration().getId());
-    final ResultSet resultSet=statement.executeQuery();
     if (resultSet == null) {
       return views;
     }
-    try {
-      while (resultSet.next()) {
-        final int viewId=resultSet.getInt(1);
-        if (viewId != view.getConfiguration().getId()) {
-          for (          final INaviView moduleView : moduleViews) {
-            if (moduleView.getConfiguration().getId() == viewId) {
-              views.add(moduleView);
-              break;
-            }
+    while (resultSet.next()) {
+      final int viewId=resultSet.getInt(1);
+      if (viewId != view.getConfiguration().getId()) {
+        for (        final INaviView moduleView : moduleViews) {
+          if (moduleView.getConfiguration().getId() == viewId) {
+            views.add(moduleView);
+            break;
           }
         }
       }
-    }
-  finally {
-      resultSet.close();
     }
     return views;
   }
