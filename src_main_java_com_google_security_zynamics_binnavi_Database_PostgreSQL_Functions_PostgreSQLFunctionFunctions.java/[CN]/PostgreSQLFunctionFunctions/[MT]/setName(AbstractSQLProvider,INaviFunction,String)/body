@@ -7,17 +7,11 @@
   final int module=function.getModule().getConfiguration().getId();
   final IAddress address=function.getAddress();
   final String query="UPDATE " + CTableNames.FUNCTIONS_TABLE + " SET name = ? WHERE module_id = ? and address = ?";
-  try {
-    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
-    try {
-      statement.setString(1,name);
-      statement.setInt(2,module);
-      statement.setObject(3,address.toBigInteger(),java.sql.Types.BIGINT);
-      statement.executeUpdate();
-    }
-  finally {
-      statement.close();
-    }
+  try (PreparedStatement statement=connection.getConnection().prepareStatement(query)){
+    statement.setString(1,name);
+    statement.setInt(2,module);
+    statement.setObject(3,address.toBigInteger(),java.sql.Types.BIGINT);
+    statement.executeUpdate();
   }
  catch (  final SQLException exception) {
     throw new CouldntSaveDataException(exception);

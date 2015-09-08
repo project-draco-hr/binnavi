@@ -5,24 +5,18 @@
   final Connection connection=provider.getConnection().getConnection();
   final Integer moduleId=function.getModule().getConfiguration().getId();
   final String storedProcedure=" { ? = call append_function_comment( ?, ?, ?, ?) } ";
-  try {
-    final CallableStatement appendCommentProcedure=connection.prepareCall(storedProcedure);
-    try {
-      appendCommentProcedure.registerOutParameter(1,Types.INTEGER);
-      appendCommentProcedure.setInt(2,moduleId);
-      appendCommentProcedure.setObject(3,function.getAddress().toBigInteger(),Types.BIGINT);
-      appendCommentProcedure.setInt(4,userId);
-      appendCommentProcedure.setString(5,commentText);
-      appendCommentProcedure.execute();
-      final int commentId=appendCommentProcedure.getInt(1);
-      if (appendCommentProcedure.wasNull()) {
-        throw new CouldntSaveDataException("Error: Got an comment id of null from the database");
-      }
-      return commentId;
+  try (CallableStatement appendCommentProcedure=connection.prepareCall(storedProcedure)){
+    appendCommentProcedure.registerOutParameter(1,Types.INTEGER);
+    appendCommentProcedure.setInt(2,moduleId);
+    appendCommentProcedure.setObject(3,function.getAddress().toBigInteger(),Types.BIGINT);
+    appendCommentProcedure.setInt(4,userId);
+    appendCommentProcedure.setString(5,commentText);
+    appendCommentProcedure.execute();
+    final int commentId=appendCommentProcedure.getInt(1);
+    if (appendCommentProcedure.wasNull()) {
+      throw new CouldntSaveDataException("Error: Got an comment id of null from the database");
     }
-  finally {
-      appendCommentProcedure.close();
-    }
+    return commentId;
   }
  catch (  final SQLException exception) {
     throw new CouldntSaveDataException(exception);
