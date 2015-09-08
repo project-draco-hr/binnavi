@@ -2,7 +2,7 @@
   Preconditions.checkNotNull(provider,"IE02083: Provider argument can not be null");
   Preconditions.checkNotNull(newParentNode,"IE02190: Parent argument can not be null");
   Preconditions.checkNotNull(movedNode,"IE02191: Child argument can not be null");
-  final List<Integer> childIds=new ArrayList<Integer>();
+  final List<Integer> childIds=new ArrayList<>();
   for (  final ITreeNode<CTag> childChild : movedNode.getChildren()) {
     childIds.add(childChild.getObject().getId());
   }

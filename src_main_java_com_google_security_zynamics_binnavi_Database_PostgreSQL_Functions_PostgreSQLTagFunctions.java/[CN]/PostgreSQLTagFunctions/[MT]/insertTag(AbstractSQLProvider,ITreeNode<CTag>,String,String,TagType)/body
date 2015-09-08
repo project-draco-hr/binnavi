@@ -3,19 +3,13 @@
   Preconditions.checkNotNull(name,"IE00563: Name argument can not be null");
   Preconditions.checkNotNull(description,"IE00564: Description argument can not be null");
   final CConnection connection=provider.getConnection();
-  try {
+  final String query=String.format("update %s set parent_id = ? where parent_id = ? and id <> ?",CTableNames.TAGS_TABLE);
+  try (PreparedStatement statement=connection.getConnection().prepareStatement(query)){
     final CTag tag=createTag(provider,parent.getObject(),name,description,type);
-    final String query=String.format("update %s set parent_id = ? where parent_id = ? and id <> ?",CTableNames.TAGS_TABLE);
-    final PreparedStatement statement=connection.getConnection().prepareStatement(query);
-    try {
-      statement.setInt(1,tag.getId());
-      statement.setInt(2,parent.getObject().getId());
-      statement.setInt(3,tag.getId());
-      statement.executeUpdate();
-    }
-  finally {
-      statement.close();
-    }
+    statement.setInt(1,tag.getId());
+    statement.setInt(2,parent.getObject().getId());
+    statement.setInt(3,tag.getId());
+    statement.executeUpdate();
     return tag;
   }
  catch (  final SQLException e) {

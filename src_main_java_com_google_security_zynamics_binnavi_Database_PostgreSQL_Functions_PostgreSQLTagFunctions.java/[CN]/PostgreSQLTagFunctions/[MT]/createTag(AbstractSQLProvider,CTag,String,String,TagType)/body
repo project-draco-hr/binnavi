@@ -4,39 +4,27 @@
   Preconditions.checkNotNull(description,"IE00557: Description argument can not be null");
   final CConnection connection=provider.getConnection();
   final String query="insert into " + CTableNames.TAGS_TABLE + "(parent_id, name, description, type) values(?, ?, ?, ?::tag_type) returning id";
-  try {
-    final PreparedStatement statement=connection.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-    try {
-      if (parent.getId() == 0) {
-        statement.setNull(1,Types.INTEGER);
-      }
+  try (PreparedStatement statement=connection.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);ResultSet resultSet=statement.executeQuery()){
+    if (parent.getId() == 0) {
+      statement.setNull(1,Types.INTEGER);
+    }
  else {
-        statement.setInt(1,parent.getId());
-      }
-      statement.setString(2,name);
-      statement.setString(3,description);
-      statement.setString(4,tagToString(type));
-      final ResultSet resultSet=statement.executeQuery();
-      Integer id=null;
-      try {
-        while (resultSet.next()) {
-          if (resultSet.isFirst()) {
-            id=resultSet.getInt(1);
-          }
-        }
-      }
-  finally {
-        resultSet.close();
-      }
-      if (id != null) {
-        return new CTag(id,name,description,type,provider);
-      }
- else {
-        throw new IllegalStateException("IE02141: Error id can not be null");
+      statement.setInt(1,parent.getId());
+    }
+    statement.setString(2,name);
+    statement.setString(3,description);
+    statement.setString(4,tagToString(type));
+    Integer id=null;
+    while (resultSet.next()) {
+      if (resultSet.isFirst()) {
+        id=resultSet.getInt(1);
       }
     }
-  finally {
-      statement.close();
+    if (id != null) {
+      return new CTag(id,name,description,type,provider);
+    }
+ else {
+      throw new IllegalStateException("IE02141: Error id can not be null");
     }
   }
  catch (  final SQLException e) {

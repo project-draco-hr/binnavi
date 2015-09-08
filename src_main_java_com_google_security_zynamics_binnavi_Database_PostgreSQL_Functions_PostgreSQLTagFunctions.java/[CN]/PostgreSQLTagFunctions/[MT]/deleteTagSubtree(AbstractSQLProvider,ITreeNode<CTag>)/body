@@ -4,7 +4,7 @@
   final CConnection connection=provider.getConnection();
   try {
     final StringBuilder query=new StringBuilder(String.format("delete from %s where id = %d",CTableNames.TAGS_TABLE,tag.getObject().getId()));
-    final List<Integer> idsToDelete=new ArrayList<Integer>();
+    final List<Integer> idsToDelete=new ArrayList<>();
     for (    final ITreeNode<CTag> child : DepthFirstSorter.getSortedList(tag)) {
       idsToDelete.add(child.getObject().getId());
       query.append(" or id = " + tag.getObject().getId());
