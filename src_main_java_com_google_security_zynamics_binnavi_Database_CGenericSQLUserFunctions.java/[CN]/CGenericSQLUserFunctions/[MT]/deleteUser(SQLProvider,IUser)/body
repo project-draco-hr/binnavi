@@ -3,15 +3,9 @@
   Preconditions.checkNotNull(user,"IE00106: user argument can not be null");
   final Connection connection=provider.getConnection().getConnection();
   final String query="DELETE FROM " + CTableNames.USER_TABLE + " WHERE user_id = ?;";
-  try {
-    final PreparedStatement statement=connection.prepareStatement(query);
-    try {
-      statement.setInt(1,user.getUserId());
-      statement.execute();
-    }
-  finally {
-      statement.close();
-    }
+  try (PreparedStatement statement=connection.prepareStatement(query)){
+    statement.setInt(1,user.getUserId());
+    statement.execute();
   }
  catch (  final SQLException exception) {
     throw new CouldntDeleteException(exception);

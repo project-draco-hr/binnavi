@@ -2,9 +2,8 @@
   Preconditions.checkNotNull(provider,"IE00206: provider argument can not be null");
   final CConnection connection=provider.getConnection();
   final String query="SELECT user_id, user_name FROM " + CTableNames.USER_TABLE;
-  final ArrayList<IUser> users=new ArrayList<IUser>();
-  try {
-    final ResultSet resultSet=connection.executeQuery(query,true);
+  final ArrayList<IUser> users=new ArrayList<>();
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
     while (resultSet.next()) {
       final int userId=resultSet.getInt(1);
       final String userName=resultSet.getString(2);
