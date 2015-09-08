@@ -1,15 +1,9 @@
 {
   Preconditions.checkNotNull(connection,"IE02410: connection argument can not be null");
-  try {
-    final String query="SELECT pg_backend_pid() AS pid";
-    final ResultSet pidResult=connection.executeQuery(query,true);
-    try {
-      while (pidResult.next()) {
-        return pidResult.getInt("pid");
-      }
-    }
-  finally {
-      pidResult.close();
+  final String query="SELECT pg_backend_pid() AS pid";
+  try (ResultSet pidResult=connection.executeQuery(query,true)){
+    while (pidResult.next()) {
+      return pidResult.getInt("pid");
     }
   }
  catch (  final SQLException exception) {

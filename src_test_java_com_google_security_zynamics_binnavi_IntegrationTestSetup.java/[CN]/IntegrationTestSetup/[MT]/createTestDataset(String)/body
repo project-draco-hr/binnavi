@@ -1,28 +1,16 @@
 {
-  try {
-    final Connection connection=DriverManager.getConnection(url + databaseName,databaseProperties);
-    final PreparedStatement statement=connection.prepareStatement("SELECT table_name FROM information_schema.tables WHERE table_schema = \'public\'");
-    final ResultSet resultSet=statement.executeQuery();
+  try (Connection connection=DriverManager.getConnection(url + databaseName,databaseProperties);PreparedStatement statement=connection.prepareStatement("SELECT table_name FROM information_schema.tables WHERE table_schema = \'public\'");ResultSet resultSet=statement.executeQuery()){
     final File testDataDirectory=new File(path + "/" + databaseName);
     if (!testDataDirectory.exists()) {
       if (!testDataDirectory.mkdirs()) {
         throw new IllegalStateException("Error: could not create directory.");
       }
     }
-    try {
-      while (resultSet.next()) {
-        dumpTableInformation(connection,testDataDirectory,resultSet.getString(1));
-      }
-    }
- catch (    final IOException exception) {
-      CUtilityFunctions.logException(exception);
-    }
- finally {
-      resultSet.close();
-      connection.close();
+    while (resultSet.next()) {
+      dumpTableInformation(connection,testDataDirectory,resultSet.getString(1));
     }
   }
- catch (  final SQLException exception) {
+ catch (  IOException|SQLException exception) {
     CUtilityFunctions.logException(exception);
   }
 }

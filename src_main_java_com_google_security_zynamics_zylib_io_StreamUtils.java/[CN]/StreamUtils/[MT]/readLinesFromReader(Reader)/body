@@ -1,6 +1,5 @@
 {
-  final BufferedReader br=new BufferedReader(reader);
-  try {
+  try (BufferedReader br=new BufferedReader(reader)){
     final List<String> lines=new ArrayList<String>();
     String line;
     while (true) {
@@ -11,7 +10,4 @@
       lines.add(line);
     }
   }
-  finally {
-    br.close();
-  }
-}
+ }

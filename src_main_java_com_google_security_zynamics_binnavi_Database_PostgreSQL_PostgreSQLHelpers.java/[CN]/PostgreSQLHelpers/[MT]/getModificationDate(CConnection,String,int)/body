@@ -2,16 +2,10 @@
   Preconditions.checkNotNull(targetTable,"IE00601: Target table argument can not be null");
   Preconditions.checkNotNull(connection,"IE00602: Connection argument can not be null");
   Preconditions.checkArgument(id >= 0,"IE00605: Id argument can not less then zero");
-  try {
-    final String query="SELECT modification_date FROM " + targetTable + " WHERE id = "+ id;
-    final ResultSet dateResult=connection.executeQuery(query,true);
-    try {
-      while (dateResult.next()) {
-        return dateResult.getTimestamp("modification_date");
-      }
-    }
-  finally {
-      dateResult.close();
+  final String query="SELECT modification_date FROM " + targetTable + " WHERE id = "+ id;
+  try (ResultSet dateResult=connection.executeQuery(query,true)){
+    while (dateResult.next()) {
+      return dateResult.getTimestamp("modification_date");
     }
   }
  catch (  final SQLException e) {
