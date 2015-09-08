@@ -1,9 +1,8 @@
 {
   final String query="SELECT id, parent_id FROM " + CTableNames.NODES_TABLE + " WHERE view_id = "+ view.getConfiguration().getId()+ " ORDER BY id";
-  final ResultSet resultSet=connection.executeQuery(query,true);
   int counter=0;
   int firstId=-1;
-  try {
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
     while (resultSet.next()) {
       if (firstId == -1) {
         firstId=resultSet.getInt("id");
@@ -17,7 +16,4 @@
       counter++;
     }
   }
-  finally {
-    resultSet.close();
-  }
-}
+ }

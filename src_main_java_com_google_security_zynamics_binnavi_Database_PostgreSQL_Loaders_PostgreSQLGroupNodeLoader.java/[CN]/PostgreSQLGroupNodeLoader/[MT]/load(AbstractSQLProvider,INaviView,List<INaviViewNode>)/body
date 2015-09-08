@@ -4,8 +4,7 @@
   Preconditions.checkNotNull(nodes,"IE02515: nodes argument can not be null");
   final Map<Integer,INaviGroupNode> commentIdToGroupNode=new HashMap<Integer,INaviGroupNode>();
   final String query="SELECT id, comment_id , collapsed, x, y, width, height, color, selected, visible " + " FROM " + CTableNames.NODES_TABLE + " JOIN "+ CTableNames.GROUP_NODES_TABLE+ " ON id = node_id WHERE view_id = "+ view.getConfiguration().getId();
-  final ResultSet resultSet=provider.getConnection().executeQuery(query,true);
-  try {
+  try (ResultSet resultSet=provider.getConnection().executeQuery(query,true)){
     while (resultSet.next()) {
       final int nodeId=resultSet.getInt("id");
       Integer commentId=resultSet.getInt("comment_id");
@@ -33,7 +32,4 @@
       }
     }
   }
-  finally {
-    resultSet.close();
-  }
-}
+ }
