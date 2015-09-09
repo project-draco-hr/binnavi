@@ -2,14 +2,8 @@
   if (m_connection == null) {
     return false;
   }
-  try {
-    final Statement statement=m_connection.createStatement();
-    try {
-      statement.execute("SELECT 1;");
-    }
-  finally {
-      statement.close();
-    }
+  try (Statement statement=m_connection.createStatement()){
+    statement.execute("SELECT 1;");
     return true;
   }
  catch (  final SQLException exception) {

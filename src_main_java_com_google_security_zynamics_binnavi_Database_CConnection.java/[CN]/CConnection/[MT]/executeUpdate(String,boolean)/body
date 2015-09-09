@@ -5,8 +5,7 @@
     militime=new GregorianCalendar().getTimeInMillis();
   }
   int result=0;
-  final PreparedStatement prep=m_connection.prepareStatement(query);
-  try {
+  try (PreparedStatement prep=m_connection.prepareStatement(query)){
     result=prep.executeUpdate();
   }
  catch (  final SQLException error) {
@@ -21,9 +20,6 @@
  else {
       throw error;
     }
-  }
- finally {
-    prep.close();
   }
   if (m_performanceOutput) {
     militime-=new GregorianCalendar().getTimeInMillis();

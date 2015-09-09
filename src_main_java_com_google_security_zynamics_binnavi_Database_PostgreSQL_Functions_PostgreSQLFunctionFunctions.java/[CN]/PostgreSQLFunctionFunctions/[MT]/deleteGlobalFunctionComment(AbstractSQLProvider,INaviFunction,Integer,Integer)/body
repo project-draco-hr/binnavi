@@ -4,22 +4,16 @@
   Preconditions.checkNotNull(commentId,"IE01247: comment argument can not be null");
   Preconditions.checkNotNull(userId,"IE01308: userId argument can not be null");
   final String deleteFunction=" { ? = call delete_function_comment(?, ?, ?, ?) } ";
-  try {
-    final CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(deleteFunction);
-    try {
-      deleteCommentStatement.registerOutParameter(1,Types.INTEGER);
-      deleteCommentStatement.setInt(2,function.getModule().getConfiguration().getId());
-      deleteCommentStatement.setObject(3,function.getAddress().toBigInteger(),Types.BIGINT);
-      deleteCommentStatement.setInt(4,commentId);
-      deleteCommentStatement.setInt(5,userId);
-      deleteCommentStatement.execute();
-      deleteCommentStatement.getInt(1);
-      if (deleteCommentStatement.wasNull()) {
-        throw new IllegalArgumentException("Error: The comment id returned by the database was null");
-      }
-    }
-  finally {
-      deleteCommentStatement.close();
+  try (CallableStatement deleteCommentStatement=provider.getConnection().getConnection().prepareCall(deleteFunction)){
+    deleteCommentStatement.registerOutParameter(1,Types.INTEGER);
+    deleteCommentStatement.setInt(2,function.getModule().getConfiguration().getId());
+    deleteCommentStatement.setObject(3,function.getAddress().toBigInteger(),Types.BIGINT);
+    deleteCommentStatement.setInt(4,commentId);
+    deleteCommentStatement.setInt(5,userId);
+    deleteCommentStatement.execute();
+    deleteCommentStatement.getInt(1);
+    if (deleteCommentStatement.wasNull()) {
+      throw new IllegalArgumentException("Error: The comment id returned by the database was null");
     }
   }
  catch (  final SQLException exception) {

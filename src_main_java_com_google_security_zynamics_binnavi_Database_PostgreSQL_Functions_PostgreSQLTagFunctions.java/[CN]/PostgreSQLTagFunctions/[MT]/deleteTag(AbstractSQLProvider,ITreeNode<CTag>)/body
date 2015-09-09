@@ -6,24 +6,16 @@
     final ITreeNode<CTag> parent=tag.getParent();
     final String parentId=parent.getObject().getId() == 0 ? "null" : String.valueOf(parent.getObject().getId());
     final String query_1=String.format("UPDATE %s SET parent_id = %s WHERE parent_id = ?",CTableNames.TAGS_TABLE,parentId);
-    final PreparedStatement statement_1=connection.getConnection().prepareStatement(query_1);
-    try {
+    try (PreparedStatement statement_1=connection.getConnection().prepareStatement(query_1)){
       statement_1.setInt(1,tag.getObject().getId());
       statement_1.executeUpdate();
     }
-  finally {
-      statement_1.close();
-    }
-    final String query_2=String.format("DELETE FROM %s WHERE id = ?",CTableNames.TAGS_TABLE);
-    final PreparedStatement statement_2=connection.getConnection().prepareStatement(query_2);
-    try {
+     final String query_2=String.format("DELETE FROM %s WHERE id = ?",CTableNames.TAGS_TABLE);
+    try (PreparedStatement statement_2=connection.getConnection().prepareStatement(query_2)){
       statement_2.setInt(1,tag.getObject().getId());
       statement_2.executeUpdate();
     }
-  finally {
-      statement_2.close();
-    }
-  }
+   }
  catch (  final SQLException e) {
     throw new CouldntDeleteException(e);
   }

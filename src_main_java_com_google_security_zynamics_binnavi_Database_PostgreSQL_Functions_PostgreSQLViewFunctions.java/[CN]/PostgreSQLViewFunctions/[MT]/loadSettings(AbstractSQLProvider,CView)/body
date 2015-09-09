@@ -2,18 +2,12 @@
   checkArguments(provider,view);
   final CConnection connection=provider.getConnection();
   final String query="SELECT name, value FROM " + CTableNames.VIEW_SETTINGS_TABLE + " WHERE view_id = "+ view.getConfiguration().getId();
-  try {
-    final ResultSet resultSet=connection.executeQuery(query,true);
-    final HashMap<String,String> settings=new HashMap<String,String>();
-    try {
-      while (resultSet.next()) {
-        settings.put(PostgreSQLHelpers.readString(resultSet,"name"),PostgreSQLHelpers.readString(resultSet,"value"));
-      }
-      return settings;
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
+    final HashMap<String,String> settings=new HashMap<>();
+    while (resultSet.next()) {
+      settings.put(PostgreSQLHelpers.readString(resultSet,"name"),PostgreSQLHelpers.readString(resultSet,"value"));
     }
-  finally {
-      resultSet.close();
-    }
+    return settings;
   }
  catch (  final SQLException exception) {
     throw new CouldntLoadDataException(exception);

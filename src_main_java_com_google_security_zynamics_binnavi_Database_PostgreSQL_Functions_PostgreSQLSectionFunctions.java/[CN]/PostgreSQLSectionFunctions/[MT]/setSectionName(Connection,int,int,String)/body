@@ -3,18 +3,12 @@
   Preconditions.checkArgument(moduleId > 0,"Error: module id must be greater than zero");
   Preconditions.checkArgument(sectionId >= 0,"Error: section id must be greater or equal than zero");
   Preconditions.checkNotNull(name,"Error: name argument can not be null");
-  try {
-    final String query=" { call set_section_name(?, ?, ?) } ";
-    final CallableStatement procedure=connection.prepareCall(query);
-    try {
-      procedure.setInt(1,moduleId);
-      procedure.setInt(2,sectionId);
-      procedure.setString(3,name);
-      procedure.execute();
-    }
-  finally {
-      procedure.close();
-    }
+  final String query=" { call set_section_name(?, ?, ?) } ";
+  try (CallableStatement procedure=connection.prepareCall(query)){
+    procedure.setInt(1,moduleId);
+    procedure.setInt(2,sectionId);
+    procedure.setString(3,name);
+    procedure.execute();
   }
  catch (  final SQLException exception) {
     throw new CouldntSaveDataException(exception);

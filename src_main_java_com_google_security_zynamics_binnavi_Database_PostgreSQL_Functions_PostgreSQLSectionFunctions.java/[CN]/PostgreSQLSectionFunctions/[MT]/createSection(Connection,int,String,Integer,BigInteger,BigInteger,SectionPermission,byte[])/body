@@ -5,33 +5,27 @@
   Preconditions.checkNotNull(startAddress,"Error: startAddress argument can not be null");
   Preconditions.checkNotNull(endAddress,"Error: endAddress argument can not be null");
   Preconditions.checkNotNull(permission,"Error: permission argument can not be null");
-  try {
-    final String query=" { ? = call create_section( ?, ?, ?, ?, ?, ?, ?) } ";
-    final CallableStatement createSectionProcedure=connection.prepareCall(query);
-    try {
-      createSectionProcedure.registerOutParameter(1,Types.INTEGER);
-      createSectionProcedure.setInt(2,moduleId);
-      createSectionProcedure.setString(3,name);
-      if (commentId == null) {
-        createSectionProcedure.setNull(4,Types.INTEGER);
-      }
+  final String query=" { ? = call create_section( ?, ?, ?, ?, ?, ?, ?) } ";
+  try (CallableStatement createSectionProcedure=connection.prepareCall(query)){
+    createSectionProcedure.registerOutParameter(1,Types.INTEGER);
+    createSectionProcedure.setInt(2,moduleId);
+    createSectionProcedure.setString(3,name);
+    if (commentId == null) {
+      createSectionProcedure.setNull(4,Types.INTEGER);
+    }
  else {
-        createSectionProcedure.setInt(4,commentId);
-      }
-      createSectionProcedure.setObject(5,startAddress,Types.BIGINT);
-      createSectionProcedure.setObject(6,endAddress,Types.BIGINT);
-      createSectionProcedure.setObject(7,permission.name(),Types.OTHER);
-      createSectionProcedure.setBytes(8,data);
-      createSectionProcedure.execute();
-      final int sectionId=createSectionProcedure.getInt(1);
-      if (createSectionProcedure.wasNull()) {
-        throw new CouldntSaveDataException("Error: Got a section id of null from the database.");
-      }
-      return sectionId;
+      createSectionProcedure.setInt(4,commentId);
     }
-  finally {
-      createSectionProcedure.close();
+    createSectionProcedure.setObject(5,startAddress,Types.BIGINT);
+    createSectionProcedure.setObject(6,endAddress,Types.BIGINT);
+    createSectionProcedure.setObject(7,permission.name(),Types.OTHER);
+    createSectionProcedure.setBytes(8,data);
+    createSectionProcedure.execute();
+    final int sectionId=createSectionProcedure.getInt(1);
+    if (createSectionProcedure.wasNull()) {
+      throw new CouldntSaveDataException("Error: Got a section id of null from the database.");
     }
+    return sectionId;
   }
  catch (  final SQLException exception) {
     throw new CouldntSaveDataException(exception);
