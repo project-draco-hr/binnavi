@@ -1,23 +1,2 @@
 {
-  Preconditions.checkNotNull(provider,"IE00513: Provider argument can not be null");
-  Preconditions.checkNotNull(name,"IE00514: Project names can not be null");
-  Preconditions.checkArgument(!("".equals(name)),"IE00515: Project names can not be empty");
-  final CConnection connection=provider.getConnection();
-  NaviLogger.info("Creating new project %s",name);
-  final String query="INSERT INTO " + CTableNames.PROJECTS_TABLE + "(name, description, creation_date, modification_date) VALUES(?, '', NOW(), NOW()) RETURNING id";
-  try (PreparedStatement statement=connection.getConnection().prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);ResultSet resultSet=statement.executeQuery()){
-    statement.setString(1,name);
-    Integer id=null;
-    while (resultSet.next()) {
-      if (resultSet.isFirst()) {
-        id=resultSet.getInt(1);
-        break;
-      }
-    }
-    Preconditions.checkNotNull(id,"IE02044: Error id for a project after creation may not be null");
-    return PostgreSQLProjectCreator.loadProject(provider,id);
-  }
- catch (  final SQLException e) {
-    throw new CouldntSaveDataException(e);
-  }
 }
