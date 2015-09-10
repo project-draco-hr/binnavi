@@ -4,8 +4,9 @@
   final Connection connection=provider.getConnection().getConnection();
   final String query="INSERT INTO " + CTableNames.USER_TABLE + " VALUES (DEFAULT, ?, null, null) RETURNING user_id;";
   CUser user=null;
-  try (PreparedStatement statement=connection.prepareStatement(query);ResultSet resultSet=statement.executeQuery()){
+  try (PreparedStatement statement=connection.prepareStatement(query)){
     statement.setString(1,userName);
+    ResultSet resultSet=statement.executeQuery();
     while (resultSet.next()) {
       user=new CUser(resultSet.getInt(1),userName);
     }
