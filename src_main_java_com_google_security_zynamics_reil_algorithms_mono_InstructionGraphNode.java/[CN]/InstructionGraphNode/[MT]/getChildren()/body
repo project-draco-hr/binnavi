@@ -1,7 +1,2 @@
 {
-  final List<InstructionGraphNode> children=new ArrayList<InstructionGraphNode>();
-  for (  final InstructionGraphEdge edge : outgoingEdges) {
-    children.add(edge.getTarget());
-  }
-  return children;
 }
