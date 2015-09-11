@@ -1,8 +1,2 @@
 {
-  Preconditions.checkNotNull(node,"Error: node argument can not be null");
-  final List<InfluencingInstructionNode> nodes=new ArrayList<InfluencingInstructionNode>();
-  for (  final InstructionGraphEdge edge : node.getIncomingEdges()) {
-    nodes.add(new InfluencingInstructionNode(edge.getSource(),new WalkInformation(edge)));
-  }
-  return nodes;
 }
