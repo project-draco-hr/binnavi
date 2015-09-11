@@ -1,10 +1,2 @@
 {
-  final StringBuilder stringBuilder=new StringBuilder();
-  stringBuilder.append("[\n");
-  for (  final Entry<GraphNode,LatticeElement> entry : mapping.entrySet()) {
-    stringBuilder.append(entry.getKey() + " -> " + entry.getValue());
-    stringBuilder.append("\n");
-  }
-  stringBuilder.append("]");
-  return stringBuilder.toString();
 }
