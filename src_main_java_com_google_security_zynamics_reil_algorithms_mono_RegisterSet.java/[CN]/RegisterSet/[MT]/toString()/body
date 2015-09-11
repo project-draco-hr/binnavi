@@ -1,14 +1,3 @@
 {
-  final StringBuilder stringBuilder=new StringBuilder();
-  stringBuilder.append("{");
-  boolean needsComma=false;
-  for (  final String register : registers) {
-    if (needsComma) {
-      stringBuilder.append(", ");
-    }
-    stringBuilder.append(register);
-    needsComma=true;
-  }
-  stringBuilder.append("}");
-  return stringBuilder.toString();
+  return registers.stream().collect(Collectors.joining(", ","{","}"));
 }
