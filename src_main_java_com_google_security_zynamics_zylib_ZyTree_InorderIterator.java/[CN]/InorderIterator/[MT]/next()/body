@@ -15,15 +15,7 @@
         return false;
       }
  else {
-        if (justProcessedNode.getChildren().size() == 0) {
-          throw new RuntimeException("Error");
-        }
- else         if (justProcessedNode.getChildren().size() == 1) {
-          pushLongestPathFrom(justProcessed.first().getChildren().get(justProcessedChildrenProcessed));
-        }
- else {
-          traversalStack.push(new Pair<IZyTreeNode,Integer>(justProcessed.first().getChildren().get(justProcessedChildrenProcessed),0));
-        }
+        checkAndPush(justProcessed,justProcessedNode,justProcessedChildrenProcessed);
       }
     }
  else {
@@ -32,15 +24,7 @@
         traversalStack.push(new Pair<IZyTreeNode,Integer>(parentProcessed.first(),parentProcessed.second() + 1));
       }
  else {
-        if (justProcessedNode.getChildren().size() == 0) {
-          throw new RuntimeException("Error");
-        }
- else         if (justProcessedNode.getChildren().size() == 1) {
-          pushLongestPathFrom(justProcessed.first().getChildren().get(justProcessedChildrenProcessed));
-        }
- else {
-          traversalStack.push(new Pair<IZyTreeNode,Integer>(justProcessed.first().getChildren().get(justProcessedChildrenProcessed),0));
-        }
+        checkAndPush(justProcessed,justProcessedNode,justProcessedChildrenProcessed);
       }
     }
   }
