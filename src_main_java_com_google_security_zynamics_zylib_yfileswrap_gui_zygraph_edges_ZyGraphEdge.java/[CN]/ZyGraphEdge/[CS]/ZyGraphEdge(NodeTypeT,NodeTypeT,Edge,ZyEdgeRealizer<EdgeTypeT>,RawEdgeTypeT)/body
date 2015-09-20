@@ -1,12 +1,8 @@
 {
-  Preconditions.checkNotNull(source,"Source node cannot be null");
-  Preconditions.checkNotNull(target,"Target node cannot be null");
-  Preconditions.checkNotNull(edge,"Edge argument cannot be null");
-  Preconditions.checkNotNull(rawEdge,"Raw edge argument cannot be null");
-  m_sourceNode=source;
-  m_targetNode=target;
-  m_edge=edge;
-  m_rawEdge=rawEdge;
+  m_sourceNode=Preconditions.checkNotNull(source,"Source node cannot be null");
+  m_targetNode=Preconditions.checkNotNull(target,"Target node cannot be null");
+  m_edge=Preconditions.checkNotNull(edge,"Edge argument cannot be null");
+  m_rawEdge=Preconditions.checkNotNull(rawEdge,"Raw edge argument cannot be null");
   m_realizer=realizer;
   m_realizer.setSelected(rawEdge.isSelected());
   m_realizer.setSourcePoint(new YPoint(rawEdge.getX1(),rawEdge.getY1()));

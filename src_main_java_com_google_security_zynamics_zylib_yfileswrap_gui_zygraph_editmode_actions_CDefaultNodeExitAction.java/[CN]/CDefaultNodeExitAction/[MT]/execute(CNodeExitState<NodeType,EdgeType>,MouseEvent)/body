@@ -11,6 +11,7 @@
         listener.nodeLeft(node);
       }
  catch (      final Exception exception) {
+        CUtilityFunctions.logException(e);
       }
     }
   }

@@ -8,7 +8,7 @@
   try {
     return (String)contents.getTransferData(DataFlavor.stringFlavor);
   }
- catch (  final UnsupportedFlavorException|IOException ex) {
+ catch (  UnsupportedFlavorException|IOException ex) {
   }
   return null;
 }
