@@ -4,6 +4,7 @@
       listener.changedLocation(this,x,y);
     }
  catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
     }
   }
 }
