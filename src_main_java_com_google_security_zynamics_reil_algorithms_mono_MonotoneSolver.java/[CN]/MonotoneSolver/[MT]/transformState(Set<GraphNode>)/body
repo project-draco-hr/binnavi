@@ -1,6 +1,6 @@
 {
-  final StateVector<GraphNode,LatticeElement> newState=new StateVector<GraphNode,LatticeElement>();
-  final Set<GraphNode> newNodesToUpdate=new LinkedHashSet<GraphNode>();
+  final StateVector<GraphNode,LatticeElement> newState=new StateVector<>();
+  final Set<GraphNode> newNodesToUpdate=new LinkedHashSet<>();
   for (  final GraphNode node : nodesToUpdate) {
     final List<IInfluencingState<LatticeElement,ObjectType>> influencingStates=getStates(walker.getInfluencing(node));
     final LatticeElement combinedState=lattice.combine(influencingStates);

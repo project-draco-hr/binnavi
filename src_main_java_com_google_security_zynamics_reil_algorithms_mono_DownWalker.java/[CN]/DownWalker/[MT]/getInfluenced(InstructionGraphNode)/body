@@ -1,8 +1,2 @@
 {
-  Preconditions.checkNotNull(node,"Error: node argument can not be null");
-  final List<InstructionGraphNode> nodes=new ArrayList<InstructionGraphNode>();
-  for (  final InstructionGraphEdge edge : node.getOutgoingEdges()) {
-    nodes.add(edge.getTarget());
-  }
-  return nodes;
 }

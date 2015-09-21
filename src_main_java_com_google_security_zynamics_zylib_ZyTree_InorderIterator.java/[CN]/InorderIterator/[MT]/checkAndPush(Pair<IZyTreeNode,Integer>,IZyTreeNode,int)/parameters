@@ -1,0 +1,3 @@
+Pair<IZyTreeNode,Integer> justProcessed
+IZyTreeNode justProcessedNode
+int justProcessedChildrenProcessed

@@ -1,7 +1,2 @@
 {
-  final List<ReilBlock> parents=new ArrayList<ReilBlock>();
-  for (  final ReilEdge edge : block.getIncomingEdges()) {
-    parents.add(edge.getSource());
-  }
-  return parents;
 }
