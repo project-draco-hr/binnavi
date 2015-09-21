@@ -1,6 +1,5 @@
 {
-  Preconditions.checkNotNull(content,"Internal Error: Content cannot be null");
-  m_content=content;
+  m_content=Preconditions.checkNotNull(content);
   setArrow(Arrow.STANDARD);
   setSmoothedBends(true);
   if (content.getLineCount() > 0) {
