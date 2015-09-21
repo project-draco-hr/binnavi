@@ -4,6 +4,7 @@
       listener.regenerated(this);
     }
  catch (    final Exception exception) {
+      CUtilityFunctions.logException(exception);
     }
   }
 }

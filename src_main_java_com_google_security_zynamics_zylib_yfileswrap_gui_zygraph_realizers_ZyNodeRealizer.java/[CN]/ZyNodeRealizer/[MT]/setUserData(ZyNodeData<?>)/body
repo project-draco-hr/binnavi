@@ -1,4 +1,4 @@
 {
-  Preconditions.checkNotNull(data,"Error: Invalid node data");
+  Preconditions.checkNotNull(data);
   m_userData=data;
 }
