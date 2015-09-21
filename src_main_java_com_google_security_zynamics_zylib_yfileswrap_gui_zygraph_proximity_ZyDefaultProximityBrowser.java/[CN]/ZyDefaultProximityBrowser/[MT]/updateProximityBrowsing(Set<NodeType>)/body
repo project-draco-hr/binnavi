@@ -1,11 +1,8 @@
 {
-  if (!m_graph.getSettings().getProximitySettings().getProximityBrowsing() || m_internallyDisabled) {
+  if (!m_graph.getSettings().getProximitySettings().getProximityBrowsing() || m_internallyDisabled || m_lastShown.equals(toShow)) {
     return;
   }
-  if (m_lastShown.equals(toShow)) {
-    return;
-  }
-  m_lastShown=new HashSet<NodeType>(toShow);
+  m_lastShown=new HashSet<>(toShow);
   m_internallyDisabled=true;
   deleteProximityBrowsingNodes();
   final List<NodeType> allNodes=GraphHelpers.getNodes(m_graph);
