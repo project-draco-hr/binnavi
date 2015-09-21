@@ -1,7 +1,7 @@
 {
-  Preconditions.checkArgument(address >= 0,"Error: Chunk addresses can't be less than 0");
-  Preconditions.checkNotNull(data,"Error: Initial data can't be null");
-  Preconditions.checkArgument(data.length != 0,"Error: Initial data can't be empty");
+  Preconditions.checkArgument(address >= 0,"Chunk addresses can't be less than 0");
+  Preconditions.checkNotNull(data,"Initial data can't be null");
+  Preconditions.checkArgument(data.length != 0,"Initial data can't be empty");
   m_address=address;
   m_data=data;
 }

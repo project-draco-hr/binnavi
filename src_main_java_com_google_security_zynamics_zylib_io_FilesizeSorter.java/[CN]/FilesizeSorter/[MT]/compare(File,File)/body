@@ -1,3 +1,3 @@
 {
-  return (int)(lhs.length() - rhs.length());
+  return Long.compare(lhs.length(),rhs.length());
 }

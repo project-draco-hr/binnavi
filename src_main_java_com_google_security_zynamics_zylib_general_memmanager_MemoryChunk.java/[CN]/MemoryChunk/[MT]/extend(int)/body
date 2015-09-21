@@ -1,5 +1,5 @@
 {
-  Preconditions.checkArgument(size > 0,"Error: The number of bytes to add must be positive");
+  Preconditions.checkArgument(size > 0,"The number of bytes to add must be positive");
   final byte[] data=new byte[m_data.length + size];
   System.arraycopy(m_data,0,data,0,m_data.length);
   m_data=data;
