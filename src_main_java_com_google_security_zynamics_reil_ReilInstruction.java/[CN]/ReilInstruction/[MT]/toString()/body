@@ -1,3 +1,20 @@
 {
-  return address.toHexString() + ": " + ReilHelpers.MnemonicCodeToMnemonic(mnemonic)+ " ["+ firstOperand.getSize()+ " "+ firstOperand+ ", "+ secondOperand.getSize()+ " "+ secondOperand+ ", "+ thirdOperand.getSize()+ " "+ thirdOperand+ "]";
+  final StringBuilder stringBuilder=new StringBuilder();
+  stringBuilder.append(address.toHexString());
+  stringBuilder.append(": ");
+  stringBuilder.append(ReilHelpers.MnemonicCodeToMnemonic(mnemonic));
+  stringBuilder.append(" [");
+  stringBuilder.append(firstOperand.getSize());
+  stringBuilder.append(" ");
+  stringBuilder.append(firstOperand);
+  stringBuilder.append(", ");
+  stringBuilder.append(secondOperand.getSize());
+  stringBuilder.append(" ");
+  stringBuilder.append(secondOperand);
+  stringBuilder.append(", ");
+  stringBuilder.append(thirdOperand.getSize());
+  stringBuilder.append(" ");
+  stringBuilder.append(thirdOperand);
+  stringBuilder.append("]");
+  return stringBuilder.toString();
 }
