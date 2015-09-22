@@ -6,20 +6,14 @@
     return modules;
   }
   final String query="SELECT id, name FROM " + CTableNames.RAW_MODULES_TABLE + " ORDER BY id";
-  try {
-    final ResultSet resultSet=connection.executeQuery(query,true);
-    try {
-      while (resultSet.next()) {
-        final int rawModuleId=resultSet.getInt("id");
-        final String name=PostgreSQLHelpers.readString(resultSet,"name");
-        final boolean isComplete=PostgreSQLDatabaseFunctions.checkRawModulesTables(provider.getConnection(),PostgreSQLHelpers.getDatabaseName(provider.getConnection()),rawModuleId);
-        final int functionCount=isComplete ? PostgreSQLDatabaseFunctions.getRawModuleFunctionCount(connection,rawModuleId) : 0;
-        final CRawModule module=new CRawModule(rawModuleId,name,functionCount,isComplete,provider);
-        modules.add(module);
-      }
-    }
-  finally {
-      resultSet.close();
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
+    while (resultSet.next()) {
+      final int rawModuleId=resultSet.getInt("id");
+      final String name=PostgreSQLHelpers.readString(resultSet,"name");
+      final boolean isComplete=PostgreSQLDatabaseFunctions.checkRawModulesTables(provider.getConnection(),PostgreSQLHelpers.getDatabaseName(provider.getConnection()),rawModuleId);
+      final int functionCount=isComplete ? PostgreSQLDatabaseFunctions.getRawModuleFunctionCount(connection,rawModuleId) : 0;
+      final CRawModule module=new CRawModule(rawModuleId,name,functionCount,isComplete,provider);
+      modules.add(module);
     }
   }
  catch (  final SQLException e) {

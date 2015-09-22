@@ -1,14 +1,9 @@
 {
   PostgreSQLDatabaseFunctions.m_cache.clear();
-  try {
-    final ResultSet result=cacheKey.first().executeQuery("select table_name from information_schema.tables " + " where table_catalog = '" + cacheKey.second() + "' ",true);
-    try {
-      while (result.next()) {
-        PostgreSQLDatabaseFunctions.m_cache.put(cacheKey,result.getString(1));
-      }
-    }
-  finally {
-      result.close();
+  final String query="select table_name from information_schema.tables  where table_catalog = '" + cacheKey.second() + "' ";
+  try (ResultSet result=cacheKey.first().executeQuery(query,true)){
+    while (result.next()) {
+      PostgreSQLDatabaseFunctions.m_cache.put(cacheKey,result.getString(1));
     }
   }
  catch (  final SQLException exception) {

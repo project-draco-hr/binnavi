@@ -1,9 +1,9 @@
 {
   Preconditions.checkNotNull(connection,"IE02261: Connection argument can not be null");
   Preconditions.checkNotNull(databaseName,"IE02262: Database name argument can not be null");
-  Preconditions.checkArgument(rawModuleId > 0,"Error: Raw module id %s must be a positive integer",rawModuleId);
+  Preconditions.checkArgument(rawModuleId > 0,"Raw module id %s must be a positive integer",rawModuleId);
   final ImmutableSet<String> rawTableNames=ImmutableSet.of(String.format(CTableNames.RAW_ADDRESS_COMMENTS_TABLE,rawModuleId),String.format(CTableNames.RAW_ADDRESS_REFERENCES_TABLE,rawModuleId),String.format(CTableNames.RAW_BASE_TYPES,rawModuleId),String.format(CTableNames.RAW_BASIC_BLOCK_INSTRUCTIONS_TABLE,rawModuleId),String.format(CTableNames.RAW_BASIC_BLOCKS_TABLE,rawModuleId),String.format(CTableNames.RAW_CALLGRAPH_TABLE,rawModuleId),String.format(CTableNames.RAW_CONTROL_FLOW_GRAPHS_TABLE,rawModuleId),String.format(CTableNames.RAW_EXPRESSION_NODES_TABLE,rawModuleId),String.format(CTableNames.RAW_EXPRESSION_SUBSTITUTIONS_TABLE,rawModuleId),String.format(CTableNames.RAW_EXPRESSION_TREE_NODES_TABLE,rawModuleId),String.format(CTableNames.RAW_EXPRESSION_TREES_TABLE,rawModuleId),String.format(CTableNames.RAW_EXPRESSION_TYPES_TABLE,rawModuleId),String.format(CTableNames.RAW_FUNCTIONS_TABLE,rawModuleId),String.format(CTableNames.RAW_INSTRUCTIONS_TABLE,rawModuleId),String.format(CTableNames.RAW_OPERANDS_TABLE,rawModuleId),String.format(CTableNames.RAW_SECTIONS,rawModuleId),String.format(CTableNames.RAW_EXPRESSION_TYPE_INSTANCES,rawModuleId),String.format(CTableNames.RAW_TYPE_INSTACES,rawModuleId),String.format(CTableNames.RAW_TYPES,rawModuleId));
-  final Pair<CConnection,String> cacheKey=new Pair<CConnection,String>(connection,databaseName);
+  final Pair<CConnection,String> cacheKey=new Pair<>(connection,databaseName);
   if (PostgreSQLDatabaseFunctions.queryCache(cacheKey,rawTableNames)) {
     return true;
   }

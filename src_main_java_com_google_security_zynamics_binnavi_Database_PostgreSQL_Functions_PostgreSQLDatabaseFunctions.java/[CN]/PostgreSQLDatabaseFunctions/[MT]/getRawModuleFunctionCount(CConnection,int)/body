@@ -1,19 +1,14 @@
 {
   Preconditions.checkNotNull(connection,"IE02266: Connection argument can not be null");
-  Preconditions.checkArgument(rawModuleId > 0,"Error: Raw module id %s must be a positive integer",rawModuleId);
-  try {
-    final ResultSet resultSet=connection.executeQuery("SELECT count(*) AS fcount " + " FROM ex_" + rawModuleId + "_functions "+ " WHERE address <> 0 "+ " OR type <> 3",true);
-    try {
-      while (resultSet.next()) {
-        return resultSet.getInt("fcount");
-      }
-    }
-  finally {
-      resultSet.close();
+  Preconditions.checkArgument(rawModuleId > 0,"Raw module id %s must be a positive integer",rawModuleId);
+  final String query="SELECT count(*) AS fcount " + " FROM ex_" + rawModuleId + "_functions "+ " WHERE address <> 0 "+ " OR type <> 3";
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
+    while (resultSet.next()) {
+      return resultSet.getInt("fcount");
     }
     return 0;
   }
  catch (  final SQLException exception) {
-    throw new SQLException("Error: could not load function count");
+    throw new SQLException("Could not load function count");
   }
 }

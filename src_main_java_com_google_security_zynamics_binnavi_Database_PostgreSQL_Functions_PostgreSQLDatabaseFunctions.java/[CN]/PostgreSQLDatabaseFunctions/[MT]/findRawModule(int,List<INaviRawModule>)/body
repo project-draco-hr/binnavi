@@ -1,5 +1,5 @@
 {
-  Preconditions.checkArgument(rawModuleId > 0,"Error: raw module id %s must be positive integer",rawModuleId);
+  Preconditions.checkArgument(rawModuleId > 0,"Raw module id %s must be positive integer",rawModuleId);
   Preconditions.checkNotNull(rawModules,"IE02263: raw modules argument can not be null");
   for (  final INaviRawModule rawModule : rawModules) {
     if (rawModule.getId() == rawModuleId) {

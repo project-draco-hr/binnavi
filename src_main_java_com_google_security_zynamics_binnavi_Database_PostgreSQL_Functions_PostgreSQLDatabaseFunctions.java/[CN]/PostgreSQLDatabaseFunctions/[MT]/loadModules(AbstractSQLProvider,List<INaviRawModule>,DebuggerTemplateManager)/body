@@ -1,41 +1,35 @@
 {
   Preconditions.checkNotNull(rawModules,"IE02043: rawModules argument can not be null");
   PostgreSQLDatabaseFunctions.checkArguments(provider,debuggerManager);
-  final List<CModule> modules=new ArrayList<CModule>();
+  final List<CModule> modules=new ArrayList<>();
   final CConnection connection=provider.getConnection();
   if (!PostgreSQLHelpers.hasTable(connection,CTableNames.MODULES_TABLE)) {
     return new ArrayList<INaviModule>(modules);
   }
   final String query="SELECT id, raw_module_id, " + CTableNames.MODULES_TABLE + ".name, "+ " md5, sha1, description, import_time, modification_date, file_base, image_base, stared, "+ " initialization_state, debugger_id, "+ " (SELECT count(*) FROM "+ CTableNames.FUNCTIONS_TABLE+ " "+ " WHERE id = "+ CTableNames.FUNCTIONS_TABLE+ ".module_id) "+ " AS function_count, "+ " (SELECT count(*) FROM "+ CTableNames.MODULE_VIEWS_TABLE+ " JOIN "+ CTableNames.VIEWS_TABLE+ " ON view_id = id "+ " WHERE type = 'non-native' and module_id = "+ CTableNames.MODULES_TABLE+ ".id) "+ " AS view_count FROM "+ CTableNames.MODULES_TABLE+ " "+ " WHERE raw_module_id IS NOT NULL ORDER BY id";
-  try {
-    final ResultSet resultSet=connection.executeQuery(query,true);
-    try {
-      while (resultSet.next()) {
-        final int moduleId=resultSet.getInt("id");
-        final String name=PostgreSQLHelpers.readString(resultSet,"name");
-        final String md5=PostgreSQLHelpers.readString(resultSet,"md5");
-        final String sha1=PostgreSQLHelpers.readString(resultSet,"sha1");
-        final String comment=PostgreSQLHelpers.readString(resultSet,"description");
-        final Timestamp timestamp=resultSet.getTimestamp("import_time");
-        final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
-        int functionCount=resultSet.getInt("function_count");
-        final int viewCount=resultSet.getInt("view_count");
-        final IAddress imageBase=PostgreSQLHelpers.loadAddress(resultSet,"image_base");
-        final IAddress fileBase=PostgreSQLHelpers.loadAddress(resultSet,"file_base");
-        final int debuggerId=resultSet.getInt("debugger_id");
-        final boolean isStared=resultSet.getBoolean("stared");
-        final int initializationState=resultSet.getInt("initialization_state");
-        final DebuggerTemplate description=debuggerManager.findDebugger(debuggerId);
-        final int rawModuleId=resultSet.getInt("raw_module_id");
-        final INaviRawModule rawModule=PostgreSQLDatabaseFunctions.findRawModule(rawModuleId,rawModules);
-        if ((functionCount == 0) && (rawModule != null)) {
-          functionCount=rawModule.getFunctionCount();
-        }
-        modules.add(new CModule(moduleId,name,comment,timestamp,modificationDate,md5,sha1,functionCount,viewCount,fileBase,imageBase,description,rawModule,initializationState,isStared,provider));
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
+    while (resultSet.next()) {
+      final int moduleId=resultSet.getInt("id");
+      final String name=PostgreSQLHelpers.readString(resultSet,"name");
+      final String md5=PostgreSQLHelpers.readString(resultSet,"md5");
+      final String sha1=PostgreSQLHelpers.readString(resultSet,"sha1");
+      final String comment=PostgreSQLHelpers.readString(resultSet,"description");
+      final Timestamp timestamp=resultSet.getTimestamp("import_time");
+      final Timestamp modificationDate=resultSet.getTimestamp("modification_date");
+      int functionCount=resultSet.getInt("function_count");
+      final int viewCount=resultSet.getInt("view_count");
+      final IAddress imageBase=PostgreSQLHelpers.loadAddress(resultSet,"image_base");
+      final IAddress fileBase=PostgreSQLHelpers.loadAddress(resultSet,"file_base");
+      final int debuggerId=resultSet.getInt("debugger_id");
+      final boolean isStared=resultSet.getBoolean("stared");
+      final int initializationState=resultSet.getInt("initialization_state");
+      final DebuggerTemplate description=debuggerManager.findDebugger(debuggerId);
+      final int rawModuleId=resultSet.getInt("raw_module_id");
+      final INaviRawModule rawModule=PostgreSQLDatabaseFunctions.findRawModule(rawModuleId,rawModules);
+      if ((functionCount == 0) && (rawModule != null)) {
+        functionCount=rawModule.getFunctionCount();
       }
-    }
-  finally {
-      resultSet.close();
+      modules.add(new CModule(moduleId,name,comment,timestamp,modificationDate,md5,sha1,functionCount,viewCount,fileBase,imageBase,description,rawModule,initializationState,isStared,provider));
     }
   }
  catch (  final SQLException e) {
