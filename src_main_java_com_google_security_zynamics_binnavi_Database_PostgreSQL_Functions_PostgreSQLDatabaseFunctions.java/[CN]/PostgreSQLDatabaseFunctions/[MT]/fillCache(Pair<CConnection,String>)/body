@@ -1,6 +1,6 @@
 {
   PostgreSQLDatabaseFunctions.m_cache.clear();
-  final String query="select table_name from information_schema.tables  where table_catalog = '" + cacheKey.second() + "' ";
+  final String query="SELECT table_name FROM information_schema.tables  WHERE table_catalog = '" + cacheKey.second() + "' ";
   try (ResultSet result=cacheKey.first().executeQuery(query,true)){
     while (result.next()) {
       PostgreSQLDatabaseFunctions.m_cache.put(cacheKey,result.getString(1));

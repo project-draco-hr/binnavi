@@ -3,7 +3,7 @@
   Preconditions.checkArgument(projectId > 0,"Project id %s must be a positive integer.",projectId);
   Preconditions.checkNotNull(debuggerManager,"IE02265: debugger manager argument can not be null");
   final List<DebuggerTemplate> debuggerIds=new ArrayList<>();
-  final String query=String.format("SELECT debugger_id FROM %s where project_id = %d",CTableNames.PROJECT_DEBUGGERS_TABLE,projectId);
+  final String query=String.format("SELECT debugger_id FROM %s WHERE project_id = %d",CTableNames.PROJECT_DEBUGGERS_TABLE,projectId);
   try (ResultSet resultSet=connection.executeQuery(query,true)){
     while (resultSet.next()) {
       debuggerIds.add(debuggerManager.findDebugger(resultSet.getInt("debugger_id")));
