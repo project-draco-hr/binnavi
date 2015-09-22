@@ -1,15 +1,9 @@
 {
   Preconditions.checkNotNull(connection,"IE02267: Connection argument can not be null");
-  final ArrayList<Integer> rawModuleIDs=new ArrayList<Integer>();
-  final ResultSet resultSet=connection.executeQuery("SELECT id FROM modules",true);
-  try {
-    try {
-      while (resultSet.next()) {
-        rawModuleIDs.add(resultSet.getInt("id"));
-      }
-    }
-  finally {
-      resultSet.close();
+  final ArrayList<Integer> rawModuleIDs=new ArrayList<>();
+  try (ResultSet resultSet=connection.executeQuery("SELECT id FROM modules",true)){
+    while (resultSet.next()) {
+      rawModuleIDs.add(resultSet.getInt("id"));
     }
   }
  catch (  final Exception exception) {

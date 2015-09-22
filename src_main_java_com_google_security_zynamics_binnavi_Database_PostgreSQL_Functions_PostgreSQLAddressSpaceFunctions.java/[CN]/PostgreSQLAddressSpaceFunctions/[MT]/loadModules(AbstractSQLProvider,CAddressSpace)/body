@@ -3,17 +3,11 @@
   final CConnection connection=provider.getConnection();
   final List<Pair<IAddress,INaviModule>> modules=new ArrayList<Pair<IAddress,INaviModule>>();
   final String query="SELECT id, name, md5, sha1, description, import_time, " + CTableNames.SPACE_MODULES_TABLE + ".image_base "+ " FROM "+ CTableNames.SPACE_MODULES_TABLE+ " JOIN "+ CTableNames.MODULES_TABLE+ " ON id = module_id WHERE address_space_id = "+ addressSpace.getConfiguration().getId();
-  try {
-    final ResultSet resultSet=connection.executeQuery(query,true);
-    try {
-      while (resultSet.next()) {
-        final IAddress imageBase=PostgreSQLHelpers.loadAddress(resultSet,"image_base");
-        final INaviModule module=provider.findModule(resultSet.getInt("id"));
-        modules.add(new Pair<IAddress,INaviModule>(imageBase,module));
-      }
-    }
-  finally {
-      resultSet.close();
+  try (ResultSet resultSet=connection.executeQuery(query,true)){
+    while (resultSet.next()) {
+      final IAddress imageBase=PostgreSQLHelpers.loadAddress(resultSet,"image_base");
+      final INaviModule module=provider.findModule(resultSet.getInt("id"));
+      modules.add(new Pair<IAddress,INaviModule>(imageBase,module));
     }
     return modules;
   }

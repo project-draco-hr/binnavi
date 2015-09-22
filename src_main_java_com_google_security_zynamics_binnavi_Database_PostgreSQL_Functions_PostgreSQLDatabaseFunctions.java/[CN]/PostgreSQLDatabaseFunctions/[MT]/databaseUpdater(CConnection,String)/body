@@ -15,14 +15,8 @@
  catch (  final IOException exception) {
     throw new CouldntUpdateDatabaseException(exception.toString(),40);
   }
-  try {
-    final PreparedStatement statement=connection.getConnection().prepareStatement(contents.toString());
-    try {
-      statement.execute();
-    }
-  finally {
-      statement.close();
-    }
+  try (PreparedStatement statement=connection.getConnection().prepareStatement(contents.toString())){
+    statement.execute();
   }
  catch (  final SQLException exception) {
     throw new CouldntUpdateDatabaseException(exception.toString(),41);
