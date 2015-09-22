@@ -1,8 +1,8 @@
 {
-  Preconditions.checkNotNull(mnemonic,"Error: Argument mnemonic can't be null");
+  Preconditions.checkNotNull(mnemonic,"Argument mnemonic can't be null");
   this.mnemonic=ReilHelpers.MnemonicToMnemonicCode(mnemonic);
-  this.firstOperand=Preconditions.checkNotNull(firstOperand,"Error: Argument firstOperand can't be null");
-  this.secondOperand=Preconditions.checkNotNull(secondOperand,"Error: Argument secondOperand can't be null");
-  this.thirdOperand=Preconditions.checkNotNull(thirdOperand,"Error: Argument thirdOperand can't be null");
+  this.firstOperand=Preconditions.checkNotNull(firstOperand);
+  this.secondOperand=Preconditions.checkNotNull(secondOperand);
+  this.thirdOperand=Preconditions.checkNotNull(thirdOperand);
   this.address=address;
 }

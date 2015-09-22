@@ -1,11 +1,5 @@
 {
-  if (mnemonic.equals(_OPCODE_STM)) {
-    return false;
-  }
- else   if (mnemonic.equals(_OPCODE_JCC)) {
-    return false;
-  }
- else   if (mnemonic.equals(_OPCODE_NOP)) {
+  if (mnemonic.equals(_OPCODE_STM) || mnemonic.equals(_OPCODE_JCC) || mnemonic.equals(_OPCODE_NOP)) {
     return false;
   }
   return true;
