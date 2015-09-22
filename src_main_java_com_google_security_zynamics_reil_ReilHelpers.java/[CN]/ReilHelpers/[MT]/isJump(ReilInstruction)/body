@@ -1,4 +1,4 @@
 {
-  Preconditions.checkNotNull(instruction,"Error: Argument instruction can't be null.");
+  Preconditions.checkNotNull(instruction,"Argument instruction can't be null.");
   return instruction.getMnemonic().equals(OPCODE_JCC);
 }

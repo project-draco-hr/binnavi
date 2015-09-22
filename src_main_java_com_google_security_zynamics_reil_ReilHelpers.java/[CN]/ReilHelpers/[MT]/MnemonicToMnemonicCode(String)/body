@@ -1,4 +1,4 @@
 {
-  Preconditions.checkNotNull(mnemonic,"Error: mnemonic argument can not be null.");
+  Preconditions.checkNotNull(mnemonic,"Mnemonic argument can not be null.");
   return MnemonicCodeMap.get(mnemonic);
 }

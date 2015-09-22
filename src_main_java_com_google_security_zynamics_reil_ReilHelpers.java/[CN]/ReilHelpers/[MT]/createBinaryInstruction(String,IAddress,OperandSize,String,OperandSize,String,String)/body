@@ -1,5 +1,5 @@
 {
-  Preconditions.checkArgument((meta.length % 2) == 0,"Error: Invalid number of arguments in metadata array.");
+  Preconditions.checkArgument((meta.length % 2) == 0,"Invalid number of arguments in metadata array.");
   final ReilOperand firstOperand=createOperand(firstSize,firstValue);
   final ReilOperand secondOperand=createOperand(OperandSize.EMPTY,"");
   final ReilOperand thirdOperand=createOperand(thirdSize,thirdValue);
