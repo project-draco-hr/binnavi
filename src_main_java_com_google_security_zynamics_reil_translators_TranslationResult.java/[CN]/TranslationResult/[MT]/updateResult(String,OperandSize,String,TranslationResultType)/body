@@ -1,6 +1,6 @@
 {
-  register=Preconditions.checkNotNull(result,"Result cannot be null.");
-  size=Preconditions.checkNotNull(resultSize,"ResultSize cannot be null.");
-  this.type=Preconditions.checkNotNull(type,"Type cannot be null.");
+  register=Preconditions.checkNotNull(result);
+  size=Preconditions.checkNotNull(resultSize);
+  this.type=Preconditions.checkNotNull(type);
   this.address=address;
 }
