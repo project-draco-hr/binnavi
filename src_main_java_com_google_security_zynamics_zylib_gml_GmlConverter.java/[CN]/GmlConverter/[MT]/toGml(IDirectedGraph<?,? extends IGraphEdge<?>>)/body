@@ -1,30 +1,24 @@
 {
-  Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
+  Preconditions.checkNotNull(graph,"Graph argument can not be null");
   final StringBuilder sb=new StringBuilder();
-  sb.append("graph\n");
-  sb.append("[\n");
+  sb.append("graph\n" + "[\n");
   int currentId=0;
-  final Map<Object,Integer> nodeMap=new HashMap<Object,Integer>();
+  final Map<Object,Integer> nodeMap=new HashMap<>();
   for (  final Object node : graph.getNodes()) {
-    sb.append("\tnode\n");
-    sb.append("\t[\n");
-    sb.append("\tid " + currentId + "\n");
-    sb.append("\tlabel \"" + node + "\"\n");
-    sb.append("\t]\n");
+    sb.append("\tnode\n" + "\t[\n" + "\tid "+ "\n");
+    sb.append(currentId);
+    sb.append("\tlabel \"");
+    sb.append(node);
+    sb.append("\"\n" + "\t]\n");
     nodeMap.put(node,currentId);
     ++currentId;
   }
   for (  final IGraphEdge<?> edge : graph.getEdges()) {
-    sb.append("\tedge\n");
-    sb.append("\t[\n");
-    sb.append("\tsource " + nodeMap.get(edge.getSource()) + "\n");
-    sb.append("\ttarget " + nodeMap.get(edge.getTarget()) + "\n");
-    sb.append("\tgraphics\n");
-    sb.append("\t[\n");
-    sb.append("\t\tfill \"#000000\"\n");
-    sb.append("\t\ttargetArrow \"standard\"\n");
-    sb.append("\t]\n");
-    sb.append("\t]\n");
+    sb.append("\tedge\n" + "\t[\n" + "\tsource ");
+    sb.append(nodeMap.get(edge.getSource()));
+    sb.append("\n" + "\ttarget ");
+    sb.append(nodeMap.get(edge.getTarget()));
+    sb.append("\n" + "\tgraphics\n" + "\t[\n"+ "\t\tfill \"#000000\"\n"+ "\t\ttargetArrow \"standard\"\n"+ "\t]\n"+ "\t]\n");
   }
   sb.append("]\n");
   return sb.toString();
