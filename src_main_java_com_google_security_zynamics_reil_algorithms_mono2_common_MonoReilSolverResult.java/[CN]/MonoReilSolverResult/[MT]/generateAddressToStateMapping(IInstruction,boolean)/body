@@ -1,5 +1,5 @@
 {
-  final Map<IAddress,LatticeElementType> addressToLatticeElementMap=new TreeMap<IAddress,LatticeElementType>();
+  final Map<IAddress,LatticeElementType> addressToLatticeElementMap=new TreeMap<>();
   final Iterator<Pair<IInstructionGraphEdge,LatticeElementType>> iter=resultIterator();
   while (iter.hasNext()) {
     final Pair<IInstructionGraphEdge,LatticeElementType> edgeToLatticeElement=iter.next();
@@ -13,7 +13,7 @@
           address=graph.getDestination(edgeToLatticeElement.first()).getReilInstruction().getAddress();
         }
         if (addressToLatticeElementMap.containsKey(address)) {
-          final ArrayList<LatticeElementType> combinelist=new ArrayList<LatticeElementType>();
+          final ArrayList<LatticeElementType> combinelist=new ArrayList<>();
           combinelist.add(edgeToLatticeElement.second());
           combinelist.add(addressToLatticeElementMap.get(address));
           addressToLatticeElementMap.put(address,lattice.combine(combinelist));
