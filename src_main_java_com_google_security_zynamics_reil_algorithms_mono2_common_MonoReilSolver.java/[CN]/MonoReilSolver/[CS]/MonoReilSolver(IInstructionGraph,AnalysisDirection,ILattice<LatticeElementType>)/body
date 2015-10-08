@@ -1,6 +1,6 @@
 {
-  m_graph=Preconditions.checkNotNull(instructionGraph,"Instruction graph argument can not be null");
-  m_direction=Preconditions.checkNotNull(analysisDirection,"Analysis direction argument can not be null");
-  m_lattice=Preconditions.checkNotNull(lattice,"Latice argument can not be null");
+  m_graph=Preconditions.checkNotNull(instructionGraph,"Error: instruction graph argument can not be null");
+  m_direction=Preconditions.checkNotNull(analysisDirection,"Error: analysis direction argument can not be null");
+  m_lattice=Preconditions.checkNotNull(lattice,"Error: latice argument can not be null");
   m_workList=MinMaxPriorityQueue.expectedSize(m_graph.size()).create();
 }
