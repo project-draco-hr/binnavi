@@ -1,7 +1,2 @@
 {
-  final List<T> outputList=new ArrayList<T>();
-  for (  final Pair<?,T> pair : list) {
-    outputList.add(pair.second());
-  }
-  return outputList;
 }
