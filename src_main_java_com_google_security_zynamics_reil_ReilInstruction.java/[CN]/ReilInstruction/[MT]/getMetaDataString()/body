@@ -1,14 +1,2 @@
 {
-  final StringBuffer stringBuffer=new StringBuffer();
-  String[] keys=new String[0];
-  keys=metaData.keySet().toArray(keys);
-  for (int i=0; i < metaData.size(); i++) {
-    stringBuffer.append(keys[i]);
-    stringBuffer.append(" : ");
-    stringBuffer.append(metaData.get(keys[i]));
-    if (i != (metaData.size() - 1)) {
-      stringBuffer.append(", ");
-    }
-  }
-  return stringBuffer.toString();
 }
