@@ -4,7 +4,6 @@
     final Method method=URLClassLoader.class.getDeclaredMethod("addURL",parameters);
     method.setAccessible(true);
     method.invoke(sysloader,new Object[]{u});
-    NaviLogger.info("Dynamically added " + u.toString() + " to classLoader");
   }
  catch (  final Exception e) {
     e.printStackTrace();
