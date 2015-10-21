@@ -1,2 +1,7 @@
 {
+  final List<OutputType> list=new ArrayList<>();
+  for (  final InputType element : elements) {
+    list.add(mapper.map(element));
+  }
+  return list;
 }
