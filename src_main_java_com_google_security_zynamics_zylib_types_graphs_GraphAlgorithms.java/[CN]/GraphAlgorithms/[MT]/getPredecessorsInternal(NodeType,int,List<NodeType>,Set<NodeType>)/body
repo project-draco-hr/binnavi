@@ -1,13 +1,2 @@
 {
-  if (depth <= 0) {
-    return;
-  }
-  for (  final NodeType parent : node.getParents()) {
-    if (visited.contains(parent)) {
-      continue;
-    }
-    visited.add(parent);
-    nodes.add(parent);
-    getPredecessorsInternal(parent,depth - 1,nodes,visited);
-  }
 }

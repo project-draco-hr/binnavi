@@ -1,6 +1,6 @@
 {
   Preconditions.checkNotNull(nodes,"Error: Nodes argument can't be null");
-  final HashSet<NodeType> successors=new HashSet<NodeType>();
+  final HashSet<NodeType> successors=new HashSet<>();
   for (  final NodeType zyGraphNode : nodes) {
     successors.addAll(getSuccessors(zyGraphNode));
   }

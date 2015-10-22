@@ -1,12 +1,12 @@
 {
   Preconditions.checkNotNull(graph,"Error: Graph argument can not be null");
   Preconditions.checkNotNull(rootNode,"Error: Root Node argument can not be null");
-  final HashMap<NodeType,ArrayList<NodeType>> nodeToBackedges=new HashMap<NodeType,ArrayList<NodeType>>();
+  final HashMap<NodeType,ArrayList<NodeType>> nodeToBackedges=new HashMap<>();
   final Pair<com.google.security.zynamics.zylib.types.trees.Tree<NodeType>,HashMap<NodeType,ITreeNode<NodeType>>> dominatorPair=LengauerTarjan.calculate(graph,rootNode);
   final HashMap<NodeType,ITreeNode<NodeType>> dominatorTreeMapping=dominatorPair.second();
   final HashMap<ITreeNode<NodeType>,Set<ITreeNode<NodeType>>> treeNodeDominateRelation=TreeAlgorithms.getDominateRelation(dominatorPair.first().getRootNode());
   for (  final NodeType t : graph.getNodes()) {
-    final ArrayList<NodeType> currentNodesBackedges=new ArrayList<NodeType>();
+    final ArrayList<NodeType> currentNodesBackedges=new ArrayList<>();
     final Set<ITreeNode<NodeType>> currentTreeNodeDominateRelation=treeNodeDominateRelation.get(dominatorTreeMapping.get(t));
     if (currentTreeNodeDominateRelation != null) {
       for (      final NodeType graphNode : t.getChildren()) {
