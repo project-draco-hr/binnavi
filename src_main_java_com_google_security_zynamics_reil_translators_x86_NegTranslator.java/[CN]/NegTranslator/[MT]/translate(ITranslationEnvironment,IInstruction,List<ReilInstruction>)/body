@@ -7,6 +7,7 @@
   long offset=baseOffset;
   final IOperandTree operand=instruction.getOperands().get(0);
   final TranslationResult result=Helpers.translateOperand(environment,offset,operand,true);
+  instructions.addAll(result.getInstructions());
   offset=baseOffset + instructions.size();
   final String operandRegister=result.getRegister();
   final OperandSize size=result.getSize();
