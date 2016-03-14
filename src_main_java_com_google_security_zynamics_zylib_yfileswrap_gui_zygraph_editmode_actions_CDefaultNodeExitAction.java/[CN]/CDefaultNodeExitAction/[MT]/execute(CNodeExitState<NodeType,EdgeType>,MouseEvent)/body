@@ -10,7 +10,7 @@
       try {
         listener.nodeLeft(node);
       }
- catch (      final Exception exception) {
+ catch (      final Exception e) {
         CUtilityFunctions.logException(e);
       }
     }

@@ -33,7 +33,7 @@
  catch (    final PrinterException exception) {
       final String innerMessage="E00119: " + "Graph could not be printed";
       final String innerDescription=CUtilityFunctions.createDescription(String.format("The graph '%s' could not be printed because there was a problem with the printer.",graph.getRawView().getName()),new String[]{"There was a problem with the printer."},new String[]{"The print operation could not be completed."});
-      CNaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
+      NaviErrorDialog.show(parent,innerMessage,innerDescription,exception);
     }
   }
 }
