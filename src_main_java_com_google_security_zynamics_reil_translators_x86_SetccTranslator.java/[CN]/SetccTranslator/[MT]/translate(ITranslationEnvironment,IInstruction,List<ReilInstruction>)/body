@@ -12,6 +12,7 @@
   final OperandSize size=result.getSize();
   final TranslationResultType type=result.getType();
   final String address=result.getAddress();
+  instructions.addAll(result.getInstructions());
   reilOffset=reilOffsetBase + instructions.size();
   final Pair<OperandSize,String> condition=conditionGenerator.generate(environment,reilOffset,instructions);
   reilOffset=reilOffsetBase + instructions.size();
