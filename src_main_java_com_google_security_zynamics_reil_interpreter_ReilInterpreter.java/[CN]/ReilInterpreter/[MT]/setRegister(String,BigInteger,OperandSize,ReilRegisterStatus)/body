@@ -1,5 +1,6 @@
 {
-  final ReilRegister r=new ReilRegister(register,size,value);
+  final BigInteger truncatedValue=value.and(getTruncateMask(size));
+  final ReilRegister r=new ReilRegister(register,size,truncatedValue);
   if (registers.containsKey(register)) {
     registers.remove(register);
   }

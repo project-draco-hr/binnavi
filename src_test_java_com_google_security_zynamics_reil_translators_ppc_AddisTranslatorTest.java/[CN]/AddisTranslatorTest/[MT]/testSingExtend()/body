@@ -1,5 +1,5 @@
 {
-  interpreter.setRegister("%r1",BigInteger.ONE,OperandSize.BYTE,ReilRegisterStatus.DEFINED);
+  interpreter.setRegister("%r1",BigInteger.ONE,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
   interpreter.setRegister("%r0",BigInteger.ZERO,OperandSize.DWORD,ReilRegisterStatus.DEFINED);
   final MockOperandTree operandTree1=new MockOperandTree();
   operandTree1.root=new MockOperandTreeNode(ExpressionType.SIZE_PREFIX,"dword");

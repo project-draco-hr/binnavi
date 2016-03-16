@@ -27,11 +27,11 @@
   instructions.add(ReilHelpers.createStr(offset++,sourceSize,sourceResult.getRegister(),sourceSize,shiftedValue));
   if (translateBsf) {
     instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"0",OperandSize.BYTE,counter));
-    instructions.add(ReilHelpers.createAnd(offset++,sourceSize,shiftedValue,sourceSize,"1",OperandSize.BYTE,isolatedMsb));
+    instructions.add(ReilHelpers.createAnd(offset++,sourceSize,shiftedValue,sourceSize,"1",sourceSize,isolatedMsb));
   }
  else {
     instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"31",OperandSize.BYTE,counter));
-    instructions.add(ReilHelpers.createAnd(offset++,sourceSize,shiftedValue,sourceSize,String.valueOf(TranslationHelpers.getMsbMask(sourceSize)),OperandSize.BYTE,isolatedMsb));
+    instructions.add(ReilHelpers.createAnd(offset++,sourceSize,shiftedValue,sourceSize,String.valueOf(TranslationHelpers.getMsbMask(sourceSize)),sourceSize,isolatedMsb));
   }
   instructions.add(ReilHelpers.createJcc(offset++,sourceSize,isolatedMsb,OperandSize.ADDRESS,labelLoopEnd));
   if (translateBsf) {
