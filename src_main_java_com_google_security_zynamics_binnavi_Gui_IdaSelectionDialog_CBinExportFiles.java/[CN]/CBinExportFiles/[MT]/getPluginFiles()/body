@@ -5,7 +5,5 @@
  else   if (SystemHelpers.isRunningLinux()) {
     return PLUGIN_FILES_LINUX.clone();
   }
- else {
-    return PLUGIN_FILES_MACOSX.clone();
-  }
+  return PLUGIN_FILES_MACOSX.clone();
 }
