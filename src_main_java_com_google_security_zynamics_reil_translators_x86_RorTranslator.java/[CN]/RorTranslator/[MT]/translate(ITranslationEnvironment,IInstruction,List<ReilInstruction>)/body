@@ -34,7 +34,7 @@
   final String modVal=String.valueOf(targetSize.getBitSize());
   final String msbMask2nd=String.valueOf(TranslationHelpers.getMsbMask(targetSize) / 2);
   final String shiftMsbLsb=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(targetSize));
-  final String shift2ndMsbLsb=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(sourceSize) / 2);
+  final String shift2ndMsbLsb=String.valueOf(TranslationHelpers.getShiftMsbLsbMask(targetSize) + 1);
   instructions.add(ReilHelpers.createMod(offset,sourceSize,sourceRegister,targetSize,modVal,targetSize,rotateMask));
   instructions.add(ReilHelpers.createBisz(offset + 1,targetSize,rotateMask,OperandSize.BYTE,rotateMaskZero));
   instructions.add(ReilHelpers.createSub(offset + 2,targetSize,rotateMask,targetSize,"1",targetSize,rotateMaskLessOne));
@@ -55,6 +55,6 @@
   instructions.add(ReilHelpers.createJcc(offset + 14,OperandSize.BYTE,"1",OperandSize.ADDRESS,jmpGoal3));
   instructions.add(ReilHelpers.createAnd(offset + 15,targetSize,result,targetSize,msbMask2nd,targetSize,tempOf));
   instructions.add(ReilHelpers.createBsh(offset + 16,targetSize,tempOf,targetSize,shift2ndMsbLsb,OperandSize.BYTE,tempOfLsb));
-  instructions.add(ReilHelpers.createBsh(offset + 17,OperandSize.BYTE,tempOfLsb,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
+  instructions.add(ReilHelpers.createXor(offset + 17,OperandSize.BYTE,tempOfLsb,OperandSize.BYTE,Helpers.CARRY_FLAG,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));
   Helpers.writeBack(environment,offset + 18,targetOperand,result,targetResult.getSize(),targetResult.getAddress(),targetResult.getType(),instructions);
 }
