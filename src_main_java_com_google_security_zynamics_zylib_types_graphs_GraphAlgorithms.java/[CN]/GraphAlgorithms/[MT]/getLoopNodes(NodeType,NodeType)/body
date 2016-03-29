@@ -1,13 +1,13 @@
 {
   if (sourceNode == destinationNode) {
-    final ArrayList<NodeType> nodeList=new ArrayList<NodeType>();
+    final ArrayList<NodeType> nodeList=new ArrayList<>();
     nodeList.add(sourceNode);
-    return new HashSet<NodeType>(nodeList);
+    return new HashSet<>(nodeList);
   }
-  final ArrayList<NodeType> upwardsNodes=new ArrayList<NodeType>();
+  final ArrayList<NodeType> upwardsNodes=new ArrayList<>();
   upwardsNodes.add(destinationNode);
-  final Set<NodeType> resolveUpwards=new HashSet<NodeType>(upwardsNodes);
-  final Stack<NodeType> upwardsWorkingList=new Stack<NodeType>();
+  final Set<NodeType> resolveUpwards=new HashSet<>(upwardsNodes);
+  final Stack<NodeType> upwardsWorkingList=new Stack<>();
   upwardsWorkingList.push(sourceNode);
   while (!upwardsWorkingList.empty()) {
     final NodeType currentNode=upwardsWorkingList.pop();
@@ -19,9 +19,9 @@
       }
     }
   }
-  final ArrayList<NodeType> downwardsNodes=new ArrayList<NodeType>();
-  final Set<NodeType> resolveDownwards=new HashSet<NodeType>(downwardsNodes);
-  final Stack<NodeType> downwardsWorkingList=new Stack<NodeType>();
+  final ArrayList<NodeType> downwardsNodes=new ArrayList<>();
+  final Set<NodeType> resolveDownwards=new HashSet<>(downwardsNodes);
+  final Stack<NodeType> downwardsWorkingList=new Stack<>();
   downwardsWorkingList.push(destinationNode);
   while (!downwardsWorkingList.empty()) {
     final NodeType currentNode=downwardsWorkingList.pop();

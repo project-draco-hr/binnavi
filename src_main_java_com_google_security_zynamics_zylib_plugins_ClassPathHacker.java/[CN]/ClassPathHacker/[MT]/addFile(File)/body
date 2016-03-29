@@ -1,2 +1,8 @@
 {
+  try {
+    addURL(f.toURI().toURL());
+  }
+ catch (  final MalformedURLException e) {
+    throw new AssertionError("Malformed URL from toURI() method");
+  }
 }

@@ -1,5 +1,5 @@
 {
-  final List<ItemType> filteredItems=new ArrayList<ItemType>();
+  final List<ItemType> filteredItems=new ArrayList<>();
   for (  final ItemType item : collection) {
     if (callback.qualifies(item)) {
       filteredItems.add(item);

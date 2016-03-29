@@ -1,5 +1,5 @@
 {
-  final List<NodeType> nodes=new ArrayList<NodeType>();
+  final List<NodeType> nodes=new ArrayList<>();
   getSuccessorsInternal(node,depth,nodes,new HashSet<NodeType>());
   return nodes;
 }

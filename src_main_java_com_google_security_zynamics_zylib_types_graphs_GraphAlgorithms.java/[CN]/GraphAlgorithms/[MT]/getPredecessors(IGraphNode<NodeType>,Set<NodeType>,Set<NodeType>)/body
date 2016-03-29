@@ -1,10 +1,2 @@
 {
-  for (  final NodeType parent : node.getParents()) {
-    if (visited.contains(parent)) {
-      continue;
-    }
-    visited.add(parent);
-    predecessors.add(parent);
-    getPredecessors(parent,predecessors,visited);
-  }
 }
