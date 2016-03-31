@@ -1,7 +1,7 @@
 long offset
 ITranslationEnvironment environment
 IInstruction instruction
-List<ReilInstruction> instructions
+List<ReilInstruction> oldInstructions
 OperandSize firstOperandSize
 String firstOperand
 OperandSize secondOperandSize

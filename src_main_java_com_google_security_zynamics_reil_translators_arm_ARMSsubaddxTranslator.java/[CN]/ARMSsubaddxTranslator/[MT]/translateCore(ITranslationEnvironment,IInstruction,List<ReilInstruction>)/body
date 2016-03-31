@@ -14,19 +14,19 @@
       final String diff1=environment.getNextVariableString();
       final String sum1=environment.getNextVariableString();
       final String trueDiff1=environment.getNextVariableString();
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[0],dw,firstTwo[0],16);
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[1],dw,firstTwo[1],16);
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[0],dw,secondTwo[0],16);
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[1],dw,secondTwo[1],16);
-      long baseOffset=offset;
-      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[0],dw,secondTwo[1],dw,sum1));
-      Helpers.signedSub(baseOffset,environment,instruction,instructions,secondTwo[0],firstTwo[1],diff1,trueDiff1);
-      instructions.add(ReilHelpers.createXor(baseOffset++,dw,sum1,dw,String.valueOf(0xFFFFL),dw,tmpResult1Not));
-      instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpResult1Not,dw,String.valueOf(-15L),bt,"CPSR_GE_0"));
-      instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CPSR_GE_0",bt,"CPSR_GE_1"));
-      instructions.add(ReilHelpers.createXor(baseOffset++,dw,trueDiff1,dw,String.valueOf(0xFFFFL),dw,tmpResult2Not));
-      instructions.add(ReilHelpers.createBsh(baseOffset++,dw,tmpResult2Not,dw,String.valueOf(-15L),bt,"CPSR_GE_2"));
-      instructions.add(ReilHelpers.createStr(baseOffset++,bt,"CPSR_GE_2",bt,"CPSR_GE_3"));
+      long baseOffset=offset - instructions.size();
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,firstTwo[0],dw,firstTwo[0],16);
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,firstTwo[1],dw,firstTwo[1],16);
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,secondTwo[0],dw,secondTwo[0],16);
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,secondTwo[1],dw,secondTwo[1],16);
+      instructions.add(ReilHelpers.createAdd(baseOffset + instructions.size(),dw,firstTwo[0],dw,secondTwo[1],dw,sum1));
+      Helpers.signedSub(baseOffset + instructions.size(),environment,instruction,instructions,secondTwo[0],firstTwo[1],diff1,trueDiff1);
+      instructions.add(ReilHelpers.createXor(baseOffset + instructions.size(),dw,sum1,dw,String.valueOf(0xFFFFL),dw,tmpResult1Not));
+      instructions.add(ReilHelpers.createBsh(baseOffset + instructions.size(),dw,tmpResult1Not,dw,String.valueOf(-15L),bt,"CPSR_GE_0"));
+      instructions.add(ReilHelpers.createStr(baseOffset + instructions.size(),bt,"CPSR_GE_0",bt,"CPSR_GE_1"));
+      instructions.add(ReilHelpers.createXor(baseOffset + instructions.size(),dw,trueDiff1,dw,String.valueOf(0xFFFFL),dw,tmpResult2Not));
+      instructions.add(ReilHelpers.createBsh(baseOffset + instructions.size(),dw,tmpResult2Not,dw,String.valueOf(-15L),bt,"CPSR_GE_2"));
+      instructions.add(ReilHelpers.createStr(baseOffset + instructions.size(),bt,"CPSR_GE_2",bt,"CPSR_GE_3"));
       return new String[]{sum1,trueDiff1};
     }
   }

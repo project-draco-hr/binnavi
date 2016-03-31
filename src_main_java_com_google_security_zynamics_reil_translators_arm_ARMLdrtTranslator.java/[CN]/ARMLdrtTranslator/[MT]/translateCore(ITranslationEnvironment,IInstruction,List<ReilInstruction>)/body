@@ -16,6 +16,7 @@
   final String rotResult2=environment.getNextVariableString();
   final String tmpData1=environment.getNextVariableString();
   final String tmpRotResult=environment.getNextVariableString();
+  baseOffset=baseOffset + instructions.size();
   instructions.add(ReilHelpers.createLdm(baseOffset++,dw,tmpAddress,dw,tmpData1));
   instructions.add(ReilHelpers.createAnd(baseOffset++,dw,tmpAddress,bt,String.valueOf(0x3L),bt,rotateVal1));
   instructions.add(ReilHelpers.createMul(baseOffset++,bt,rotateVal1,bt,String.valueOf(8),wd,rotateVal2));
