@@ -42,7 +42,7 @@
   instructions.add(ReilHelpers.createOr(baseOffset++,dw,u,dw,t,dw,v));
   instructions.add(ReilHelpers.createBsh(baseOffset++,dw,v,dw,String.valueOf(-16L),dw,w));
   instructions.add(ReilHelpers.createOr(baseOffset++,dw,w,dw,v,dw,z));
-  instructions.add(ReilHelpers.createBsh(baseOffset,dw,z,dw,String.valueOf(-1L),dw,x));
+  instructions.add(ReilHelpers.createBsh(baseOffset++,dw,z,dw,String.valueOf(-1L),dw,x));
   instructions.add(ReilHelpers.createAnd(baseOffset++,dw,x,dw,String.valueOf(0x55555555L),dw,b));
   instructions.add(ReilHelpers.createSub(baseOffset++,dw,z,dw,b,qw,c));
   instructions.add(ReilHelpers.createAnd(baseOffset++,qw,c,dw,String.valueOf(0x33333333L),dw,d));
