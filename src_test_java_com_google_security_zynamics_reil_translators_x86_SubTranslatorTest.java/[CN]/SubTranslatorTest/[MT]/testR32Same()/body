@@ -11,7 +11,7 @@
   final IInstruction instruction=new MockInstruction("sub",operands);
   translator.translate(environment,instruction,instructions);
   interpreter.interpret(TestHelpers.createMapping(instructions),BigInteger.valueOf(0x100));
-  assertEquals(6,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
+  assertEquals(7,TestHelpers.filterNativeRegisters(interpreter.getDefinedRegisters()).size());
   assertEquals(BigInteger.ZERO,interpreter.getVariableValue("eax"));
   assertEquals(BigInteger.ZERO,interpreter.getVariableValue("CF"));
   assertEquals(BigInteger.ZERO,interpreter.getVariableValue("OF"));
