@@ -54,7 +54,6 @@
     instructions.add(ReilHelpers.createAnd(baseOffset++,dw,xXory,dw,xMinusyXorx,dw,xXoryAndxMinusXorx));
     instructions.add(ReilHelpers.createXor(baseOffset++,dw,xMinusy,dw,xXoryAndxMinusXorx,dw,needsShiftCompare));
     instructions.add(ReilHelpers.createBsh(baseOffset++,dw,needsShiftCompare,dw,String.valueOf(-31L),bt,lowOverflow));
-    baseOffset++;
     instructions.add(ReilHelpers.createSub(baseOffset++,dw,highSatResult,dw,firstOperand,dw,xMinusy));
     instructions.add(ReilHelpers.createXor(baseOffset++,dw,highSatResult,dw,firstOperand,dw,xXory));
     instructions.add(ReilHelpers.createXor(baseOffset++,dw,xMinusy,dw,highSatResult,dw,xMinusyXorx));

@@ -19,6 +19,7 @@
   final String isNegative=environment.getNextVariableString();
   final String isPositive=environment.getNextVariableString();
   long baseOffset=offset;
+  final List<ReilInstruction> instructions=new ArrayList<ReilInstruction>();
   final String addOperation="ADD";
   if ((operation.equalsIgnoreCase(addOperation)) || (operation.equalsIgnoreCase("SUB"))) {
     if (operation.equalsIgnoreCase(addOperation)) {
@@ -27,10 +28,10 @@
  else     if (operation.equalsIgnoreCase("SUB")) {
       subOverflow(baseOffset,environment,instruction,instructions,firstOperandSize,firstOperand,secondOperandSize,secondOperand,resultOperandSize,resultOperand,overflow,size);
     }
+    baseOffset=baseOffset + instructions.size();
     instructions.add(ReilHelpers.createBsh(baseOffset++,dw,resultOperand,dw,"-" + String.valueOf(size - 1),bt,tmpVar1));
     instructions.add(ReilHelpers.createAnd(baseOffset++,bt,tmpVar1,bt,String.valueOf(1L),bt,isNegative));
     instructions.add(ReilHelpers.createBisz(baseOffset++,bt,isNegative,bt,isPositive));
-    baseOffset++;
     instructions.add(ReilHelpers.createAnd(baseOffset++,bt,isPositive,bt,overflow,bt,isLessCondition));
     instructions.add(ReilHelpers.createAnd(baseOffset++,bt,isNegative,bt,overflow,bt,isGreaterCondition));
     instructions.add(ReilHelpers.createBisz(baseOffset++,bt,overflow,bt,inRange));
@@ -81,4 +82,5 @@
     instructions.add(ReilHelpers.createOr(baseOffset++,dw,tmpLowResult1,dw,tmpLowResult2,dw,tmpLowResult4));
     instructions.add(ReilHelpers.createOr(baseOffset++,dw,tmpLowResult4,dw,tmpLowResult3,dw,tmpResultVar));
   }
+  oldInstructions.addAll(instructions);
 }

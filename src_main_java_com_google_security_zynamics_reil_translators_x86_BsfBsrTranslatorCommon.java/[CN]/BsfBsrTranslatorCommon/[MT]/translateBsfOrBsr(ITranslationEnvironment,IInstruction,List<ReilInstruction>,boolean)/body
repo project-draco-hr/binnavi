@@ -10,12 +10,11 @@
   instructions.addAll(sourceResult.getInstructions());
   offset=baseOffset + instructions.size();
   final OperandSize sourceSize=sourceResult.getSize();
-  final List<ReilInstruction> tempInstructions=new ArrayList<>();
   final String targetRegister=Helpers.getLeafValue(targetOperand.getRootNode());
   final String labelNotZero=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 4);
   final String labelLoopStart=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 7);
   final String labelLoopEnd=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 12);
-  final String labelEnd=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + tempInstructions.size() + 12);
+  final String labelEnd=String.format("%d.%d",instruction.getAddress().toLong(),instructions.size() + 13);
   instructions.add(ReilHelpers.createJcc(offset++,sourceSize,sourceResult.getRegister(),OperandSize.ADDRESS,labelNotZero));
   instructions.add(ReilHelpers.createStr(offset++,OperandSize.BYTE,"1",OperandSize.BYTE,Helpers.ZERO_FLAG));
   instructions.add(ReilHelpers.createUndef(offset++,environment.getArchitectureSize(),targetRegister));

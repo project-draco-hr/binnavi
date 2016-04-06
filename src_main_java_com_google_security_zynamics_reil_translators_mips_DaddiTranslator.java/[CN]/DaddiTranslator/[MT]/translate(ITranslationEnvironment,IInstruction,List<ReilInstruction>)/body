@@ -14,6 +14,7 @@
   final String bit64=environment.getNextVariableString();
   final String jumpCondition=environment.getNextVariableString();
   final String sourceImmediateSignExtended=SignExtendGenerator.extend16BitTo64(offset,environment,sourceImmediate,instructions);
+  offset=ReilHelpers.nextReilAddress(instruction,instructions);
   instructions.add(ReilHelpers.createAdd(offset++,qw,sourceRegister,qw,sourceImmediateSignExtended,ow,temporaryResult));
   instructions.add(ReilHelpers.createBsh(offset++,ow,temporaryResult,dw,String.valueOf(-63L),bt,bit63));
   instructions.add(ReilHelpers.createBsh(offset++,ow,temporaryResult,dw,String.valueOf(-64L),bt,bit64));

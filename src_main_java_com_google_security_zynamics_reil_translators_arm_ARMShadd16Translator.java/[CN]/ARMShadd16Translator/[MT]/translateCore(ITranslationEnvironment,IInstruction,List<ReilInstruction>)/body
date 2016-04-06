@@ -13,13 +13,13 @@
     @Override protected String[] process(    final long offset,    final String[] firstTwo,    final String[] secondTwo){
       final String sum1=environment.getNextVariableString();
       final String sum2=environment.getNextVariableString();
-      long baseOffset=offset;
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[0],dw,firstTwo[0],16);
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,firstTwo[1],dw,firstTwo[1],16);
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[0],dw,secondTwo[0],16);
-      Helpers.signExtend(baseOffset,environment,instruction,instructions,dw,secondTwo[1],dw,secondTwo[1],16);
-      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[0],dw,secondTwo[0],dw,sum1));
-      instructions.add(ReilHelpers.createAdd(baseOffset++,dw,firstTwo[1],dw,secondTwo[1],dw,sum2));
+      long baseOffset=offset - instructions.size();
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,firstTwo[0],dw,firstTwo[0],16);
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,firstTwo[1],dw,firstTwo[1],16);
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,secondTwo[0],dw,secondTwo[0],16);
+      Helpers.signExtend(baseOffset + instructions.size(),environment,instruction,instructions,dw,secondTwo[1],dw,secondTwo[1],16);
+      instructions.add(ReilHelpers.createAdd(baseOffset + instructions.size(),dw,firstTwo[0],dw,secondTwo[0],dw,sum1));
+      instructions.add(ReilHelpers.createAdd(baseOffset + instructions.size(),dw,firstTwo[1],dw,secondTwo[1],dw,sum2));
       return new String[]{sum1,sum2};
     }
   }

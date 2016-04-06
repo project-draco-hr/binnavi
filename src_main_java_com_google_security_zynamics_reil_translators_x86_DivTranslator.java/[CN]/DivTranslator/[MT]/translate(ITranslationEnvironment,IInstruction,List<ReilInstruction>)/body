@@ -21,6 +21,7 @@
   instructions.add(ReilHelpers.createDiv(offset++,size,dividend,size,divisor,size,divResult));
   instructions.add(ReilHelpers.createMod(offset++,size,dividend,size,divisor,size,modResult));
   instructions.addAll(Helpers.writeDivResult(environment,offset++,divResult,modResult,size));
+  offset=baseOffset + instructions.size();
   instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.AUXILIARY_FLAG));
   instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.CARRY_FLAG));
   instructions.add(ReilHelpers.createUndef(offset++,OperandSize.BYTE,Helpers.OVERFLOW_FLAG));

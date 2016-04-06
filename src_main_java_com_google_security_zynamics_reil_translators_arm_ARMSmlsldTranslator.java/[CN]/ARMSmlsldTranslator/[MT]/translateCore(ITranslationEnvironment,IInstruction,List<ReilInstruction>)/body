@@ -45,6 +45,7 @@
   Helpers.signedMul(baseOffset,environment,instruction,instructions,wd,registerRm31to16,wd,operand2from31to16,dw,product2);
   baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
   Helpers.signedSub(baseOffset,environment,instruction,instructions,product2,product1,tmpVar2,tmpVar3);
+  baseOffset=ReilHelpers.nextReilAddress(instruction,instructions);
   instructions.add(ReilHelpers.createAdd(baseOffset++,qw,tmpVar2,dw,String.valueOf(0x0000000080000000L),qw,tmpVar1));
   instructions.add(ReilHelpers.createAnd(baseOffset++,qw,tmpVar1,dw,String.valueOf(0x00000000FFFFFFFFL),qw,tmpVar2));
   instructions.add(ReilHelpers.createSub(baseOffset++,qw,tmpVar2,dw,String.valueOf(0x0000000080000000L),qw,tmpVar3));
