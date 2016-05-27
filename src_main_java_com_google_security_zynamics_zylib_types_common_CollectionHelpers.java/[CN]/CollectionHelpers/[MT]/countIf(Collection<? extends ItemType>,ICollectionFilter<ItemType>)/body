@@ -1,9 +1,2 @@
 {
-  int counter=0;
-  for (  final ItemType itemType : collection) {
-    if (item.qualifies(itemType)) {
-      counter++;
-    }
-  }
-  return counter;
 }

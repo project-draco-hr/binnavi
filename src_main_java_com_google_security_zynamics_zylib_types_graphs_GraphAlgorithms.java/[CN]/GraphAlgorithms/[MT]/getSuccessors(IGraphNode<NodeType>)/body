@@ -1,7 +1,7 @@
 {
   Preconditions.checkNotNull(node,"Error: Start node can't be null");
-  final Set<NodeType> successors=new HashSet<NodeType>();
-  final Set<NodeType> visited=new HashSet<NodeType>();
+  final Set<NodeType> successors=new HashSet<>();
+  final Set<NodeType> visited=new HashSet<>();
   getSuccessors(node,successors,visited);
   return successors;
 }

@@ -19,5 +19,7 @@
   final String register2=operand2Result.getRegister();
   final String subResultValue=Helpers.generateSub(environment,offset,size,register1,register2,instructions);
   offset=baseOffset + instructions.size();
+  Helpers.writeParityFlag(environment,offset,size,subResultValue,instructions);
+  offset=baseOffset + instructions.size();
   Helpers.writeBack(environment,offset,operand1,subResultValue,size,operand1Result.getAddress(),operand1Result.getType(),instructions);
 }

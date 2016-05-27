@@ -1,12 +1,11 @@
 {
-  int counter=0;
-  for (  final ItemType itemType : collection) {
-    if (callback.qualifies(itemType)) {
-      if (counter == index) {
-        return itemType;
-      }
-      counter++;
-    }
+  Preconditions.checkArgument(index >= 0 && index < collection.size(),"Error: Index argument should be between 0 and collection size");
+  Object[] array=collection.toArray();
+  ItemType itemType=(ItemType)array[index];
+  if (callback.qualifies(itemType)) {
+    return itemType;
   }
-  throw new IllegalStateException("Error: nth element does not exist");
+ else {
+    throw new IllegalStateException("Error: nth element does not exist");
+  }
 }

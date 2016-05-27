@@ -51,5 +51,5 @@
   instructions.add(ReilHelpers.createAnd(offset + 12,resultSize,addResult,resultSize,truncateMask,size,truncatedResult));
   instructions.add(ReilHelpers.createBisz(offset + 13,size,truncatedResult,OperandSize.BYTE,Helpers.ZERO_FLAG));
   Helpers.writeBack(environment,offset + 14,sourceOperand,targetRegister,size,sourceResult.getAddress(),sourceResult.getType(),instructions);
-  Helpers.writeBack(environment,offset + instructions.size(),targetOperand,truncatedResult,size,targetResult.getAddress(),targetResult.getType(),instructions);
+  Helpers.writeBack(environment,baseOffset + instructions.size(),targetOperand,truncatedResult,size,targetResult.getAddress(),targetResult.getType(),instructions);
 }

@@ -3,11 +3,12 @@
   final String multResult=environment.getNextVariableString();
   final String toggleMask=environment.getNextVariableString();
   final String xoredSigns=environment.getNextVariableString();
-  long baseOffset=offset;
-  final Pair<String,String> abs1=generateAbs(environment,baseOffset,firstOperand,firstOperandSize,instructions);
-  final Pair<String,String> abs2=generateAbs(environment,baseOffset,secondOperand,secondOperandSize,instructions);
+  long baseOffset=offset - instructions.size();
+  final Pair<String,String> abs1=generateAbs(environment,baseOffset + instructions.size(),firstOperand,firstOperandSize,instructions);
+  final Pair<String,String> abs2=generateAbs(environment,baseOffset + instructions.size(),secondOperand,secondOperandSize,instructions);
   final String firstAbs=abs1.second();
   final String secondAbs=abs2.second();
+  baseOffset=offset + instructions.size();
   instructions.add(ReilHelpers.createMul(baseOffset++,firstOperandSize,firstAbs,secondOperandSize,secondAbs,resultOperandSize,multResult));
   instructions.add(ReilHelpers.createXor(baseOffset++,firstOperandSize,abs1.first(),secondOperandSize,abs2.first(),firstOperandSize,xoredSigns));
   instructions.add(ReilHelpers.createSub(baseOffset++,firstOperandSize,"0",firstOperandSize,xoredSigns,resultOperandSize,toggleMask));
