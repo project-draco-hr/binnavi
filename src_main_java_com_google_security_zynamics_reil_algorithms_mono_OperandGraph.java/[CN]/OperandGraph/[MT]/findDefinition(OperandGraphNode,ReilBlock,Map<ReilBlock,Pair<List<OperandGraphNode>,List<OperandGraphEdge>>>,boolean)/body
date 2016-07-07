@@ -9,6 +9,7 @@
     if (!found) {
       continue;
     }
+    if (search.getInstruction() == instruction)     continue;
     if (ReilHelpers.writesThirdOperand(instruction.getMnemonicCode()) && instruction.getThirdOperand().getValue().equals(value)) {
       final List<OperandGraphNode> nodes=graphMap.get(block).first();
       for (      final OperandGraphNode node : nodes) {
